@@ -1,0 +1,71 @@
+# Flux.jl DDP Thesis Dashboard
+
+Supervisor: Carlo  
+Current checkpoint: C0 - Repository and API audit  
+Active Flux branch: `ddp/audit`  
+Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
+Flux upstream commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
+Last update: `2026-07-02`  
+Last reproducible command: `make audit`  
+Current blocker: `none`  
+Next action: Finish `docs/audits/000-current-flux-distributed.md`
+
+## Goal
+
+Stabilize, test, document, and evaluate Distributed Data Parallel training support in Flux.jl. The immediate objective is not performance work; the immediate objective is correctness, reproducibility, and understanding the current implementation.
+
+## Repository layout
+
+- `../Flux.jl`: local fork of Flux.jl used for source inspection and later implementation work.
+- `.`: thesis-control workspace for progress tracking, scripts, audit notes, artifacts, logs, and agent context.
+
+## Progress
+
+| ID | Status | Branch | Deliverable | Pass condition | Evidence |
+|---|---|---|---|---|---|
+| C0 | Done | `ddp/audit` | `docs/audits/000-current-flux-distributed.md` | One-page audit of API, missing pieces, risky areas, and chosen baseline path | `artifacts/logs/audit_flux_distributed_20260702_172217.txt` |
+| C1 | Not started | `ddp/reference-loop` | Deterministic single-process reference loop | Fixed loss, gradients, and updates stored as baseline tests | - |
+| C2 | Not started | `ddp/launch` | Distributed launch skeleton | 2-process and 4-process launches complete without deadlock | - |
+| C3 | Not started | `ddp/sync-model` | Model broadcast and parameter verification | All ranks start from identical parameters | - |
+| C4 | Not started | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | - |
+| C5 | Not started | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | - |
+| C6 | Not started | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | - |
+| C7 | Not started | `ddp/docs-examples` | End-to-end two-GPU example | One documented command reproduces training on 2 GPUs | - |
+| C8 | Not started | `ddp/tests` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | - |
+| C9 | Not started | `ddp/perf` | Profiling and bottleneck report | Timeline plus bottleneck analysis exists | - |
+| C10 | Not started | `ddp/perf` | Performance improvement pass | Throughput improves or bottleneck is explained with evidence | - |
+| C11 | Not started | `ddp/docs-examples` | Documentation and thesis-ready examples | New user can reproduce examples and understand limitations | - |
+| C12 | Not started | `final/evaluation` | Final evaluation package | Correctness, throughput, speedup, memory, limitations, and future work are reported | - |
+
+## This checkpoint
+
+- [x] Verify local Flux checkout and remotes.
+- [x] Create local Julia environment that develops Flux from the local path.
+- [x] Install `mpiexecjl`.
+- [x] Run CPU/MPI smoke test.
+- [x] Audit `src/distributed`, distributed extensions, tests, and docs.
+- [x] Update `docs/context/current.md`.
+- [x] Write first devlog entry.
+
+## Reproducible commands
+
+Include these commands, with `<FLUX_REPO_PATH>` replaced by the actual path:
+
+```bash
+make env
+make install-mpiexec
+make check
+make smoke-cpu
+make audit
+```
+
+## Non-negotiable engineering rules
+
+- Keep DDP communication outside AD for the first baseline.
+- Do not implement a custom optimizer for the main path.
+- Use Flux, Functors.jl, Zygote.jl, and Optimisers.jl idioms.
+- Avoid silent GPU-to-CPU transfers.
+- Every collective must be called by every rank in the same order.
+- Scale gradients explicitly and document the convention.
+- Do not treat “loss decreases” as proof of correctness.
+- Profile only after correctness tests pass.

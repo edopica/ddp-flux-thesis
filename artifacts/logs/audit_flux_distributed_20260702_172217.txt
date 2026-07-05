@@ -1,0 +1,342 @@
+# Flux distributed audit grep
+Date: Thu Jul  2 05:22:17 PM CEST 2026
+Flux repo: /home/kurapica/Projects/ddp_flux/ddp_flux
+Flux commit: 57e29baf48edf50c0dd4fc9f027a8900ce3cef66
+Flux branch: ddp/audit
+
+## Candidate distributed files
+
+### src/distributed
+/home/kurapica/Projects/ddp_flux/ddp_flux/src/distributed/backend.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/src/distributed/public_api.jl
+
+### ext/FluxMPIExt
+/home/kurapica/Projects/ddp_flux/ddp_flux/ext/FluxMPIExt/FluxMPIExt.jl
+
+### ext/FluxMPINCCLExt
+/home/kurapica/Projects/ddp_flux/ddp_flux/ext/FluxMPINCCLExt/FluxMPINCCLExt.jl
+
+### test/ext_distributed
+/home/kurapica/Projects/ddp_flux/ddp_flux/test/ext_distributed/common.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/test/ext_distributed/data.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/test/ext_distributed/optimizer.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/test/ext_distributed/reduce_distributedtest.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/test/ext_distributed/runtests.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/test/ext_distributed/synchronized.jl
+
+### docs
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/make.jl
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/old_tutorials/2021-02-07-convnet.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/old_tutorials/2021-10-08-dcgan-mnist.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/old_tutorials/2021-10-14-vanilla-gan.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/old_tutorials/2024-04-10-blitz.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/old_tutorials/2024-04-10-mlp.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/old_tutorials/README.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/Project.toml
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/assets/flux.css
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/assets/logo-dark.png
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/assets/logo.png
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/assets/rnn-basic.png
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/assets/zygote-crop.png
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/ecosystem.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/guide/gpu.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/guide/performance.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/guide/saving.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/index.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/reference/destructure.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/reference/outputsize.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/reference/utilities.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/tutorials/custom_layers.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/tutorials/linear_regression.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/tutorials/logistic_regression.md
+/home/kurapica/Projects/ddp_flux/ddp_flux/docs/src/tutorials/model_zoo.md
+
+## Grep results
+docs/old_tutorials/2021-02-07-convnet.md:74:Now, we define the `build_model` function that creates a ConvNet model which is composed of *three* convolution layers (feature detection) and *one* classification layer. The input layer size is `28x28`. The images are grayscale, which means there is only *one* channel (compared to 3 for RGB) in every data point. Combined together, the convolutional layer structure would look like `Conv(kernel, input_channels => output_channels, ...)`. Each convolution layer reduces the size of the image by applying the Rectified Linear unit (ReLU) and MaxPool operations.
+docs/old_tutorials/2021-10-08-dcgan-mnist.md:218:    image_array = reduce(vcat, reduce.(hcat, partition(fake_images, hparams.output_dim)))
+docs/old_tutorials/2024-04-10-blitz.md:222:Training a network reduces down to iterating on a dataset multiple times, performing these steps in order. Just for a quick implementation, let’s train a network that learns to predict `0.5` for every input of 10 floats. `Flux` defines the `train!` function to do it for us.
+docs/src/guide/gpu.md:308:Flux supports now distributed data parallel training with `DistributedUtils` module.
+docs/src/guide/gpu.md:319:You can use either the `MPIBackend` or `NCCLBackend`, the latter only if also `NCCL.jl` is loaded. First, initialize a backend with `DistributedUtils.initialize`, e.g.
+docs/src/guide/gpu.md:326:julia> DistributedUtils.initialize(NCCLBackend)
+docs/src/guide/gpu.md:328:julia> backend = DistributedUtils.get_distributed_backend(NCCLBackend)
+docs/src/guide/gpu.md:329:NCCLBackend{Communicator, MPIBackend{MPI.Comm}}(Communicator(Ptr{NCCL.LibNCCL.ncclComm} @0x000000000607a660), MPIBackend{MPI.Comm}(MPI.Comm(1140850688)))
+docs/src/guide/gpu.md:349:In this case, we are training on a total of `16 * number of processes` samples. You can also use `DistributedUtils.DistributedDataContainer` to split the data uniformly across processes (or do it manually).
+docs/src/guide/gpu.md:352:julia> data = DistributedUtils.DistributedDataContainer(backend, x)
+docs/src/guide/gpu.md:353:Flux.DistributedUtils.DistributedDataContainer(Float32[0.23932439 0.33102947 … 0.66191036 0.75822026], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16])
+docs/src/guide/gpu.md:356:You have to wrap your model in `DistributedUtils.FluxDistributedModel` and synchronize it (broadcast across all processes):
+docs/src/guide/gpu.md:358:julia> model = DistributedUtils.synchronize!!(backend, DistributedUtils.FluxDistributedModel(model); root=0)
+docs/src/guide/gpu.md:366:Time to set up an optimizer by using `DistributedUtils.DistributedOptimizer` and synchronize it as well.
+docs/src/guide/gpu.md:370:julia> opt = DistributedUtils.DistributedOptimizer(backend, Optimisers.Adam(0.001f0))
+docs/src/guide/gpu.md:371:DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8))
+docs/src/guide/gpu.md:374:(layers = ((weight = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0; 0.0; … ; 0.0; 0.0;;], Float32[0.0; 0.0; … ; 0.0; 0.0;;], (0.9, 0.999))), bias = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], (0.9, 0.999))), σ = ()), (weight = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0 0.0 … 0.0 0.0], Float32[0.0 0.0 … 0.0 0.0], (0.9, 0.999))), bias = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0], Float32[0.0], (0.9, 0.999))), σ = ())),)
+docs/src/guide/gpu.md:376:julia> st_opt = DistributedUtils.synchronize!!(backend, st_opt; root=0)
+docs/src/guide/gpu.md:377:(layers = ((weight = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0; 0.0; … ; 0.0; 0.0;;], Float32[0.0; 0.0; … ; 0.0; 0.0;;], (0.9, 0.999))), bias = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], Float32[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0  …  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], (0.9, 0.999))), σ = ()), (weight = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0 0.0 … 0.0 0.0], Float32[0.0 0.0 … 0.0 0.0], (0.9, 0.999))), bias = Leaf(DistributedOptimizer{MPIBackend{Comm}}(MPIBackend{Comm}(Comm(1140850688)), Adam(0.001, (0.9, 0.999), 1.0e-8)), (Float32[0.0], Float32[0.0], (0.9, 0.999))), σ = ())),)
+docs/src/guide/performance.md:66:x_batch = reduce(hcat, xs)
+docs/src/guide/performance.md:67:y_batch = reduce(hcat, ys)
+docs/src/guide/performance.md:75:When doing this kind of concatenation use `reduce(hcat, xs)` rather than `hcat(xs...)`.
+docs/src/guide/performance.md:76:This will avoid the splatting penalty, and will hit the optimised `reduce` method.
+docs/src/guide/training/training.md:29:  # Update the parameters so as to reduce the objective,
+docs/src/reference/models/layers.md:64:These layers are commonly used after a convolution layer, and reduce the size of its output. They have no trainable parameters.
+docs/src/reference/models/layers.md:125:These layers don't affect the structure of the network but may improve training times or reduce overfitting. Some of them contain trainable parameters, while others do not.
+docs/src/tutorials/linear_regression.md:258:The line fits well! There is room for improvement, but we leave that up to you! You can play with the optimisers, the number of epochs, learning rate, etc. to improve the fitting and reduce the loss!
+ext/FluxMPIExt/FluxMPIExt.jl:3:using Flux: MPIBackend, NCCLBackend, DistributedUtils,
+ext/FluxMPIExt/FluxMPIExt.jl:9:function DistributedUtils.__initialize(
+ext/FluxMPIExt/FluxMPIExt.jl:10:        ::Type{MPIBackend}; cuda_devices=nothing, amdgpu_devices=nothing,
+ext/FluxMPIExt/FluxMPIExt.jl:13:    DistributedUtils.MPI_Initialized[] = true
+ext/FluxMPIExt/FluxMPIExt.jl:40:DistributedUtils.__get_distributed_backend(::Type{MPIBackend}) = MPIBackend(MPI.COMM_WORLD)
+ext/FluxMPIExt/FluxMPIExt.jl:42:DistributedUtils.local_rank(backend::MPIBackend) = MPI.Comm_rank(backend.comm)
+ext/FluxMPIExt/FluxMPIExt.jl:44:DistributedUtils.total_workers(backend::MPIBackend) = MPI.Comm_size(backend.comm)
+ext/FluxMPIExt/FluxMPIExt.jl:48:function DistributedUtils.__bcast!(
+ext/FluxMPIExt/FluxMPIExt.jl:49:        backend::MPIBackend, sendrecvbuf, dev::AbstractDevice; root=0)
+ext/FluxMPIExt/FluxMPIExt.jl:54:function DistributedUtils.__bcast!(
+ext/FluxMPIExt/FluxMPIExt.jl:55:        backend::MPIBackend, sendbuf, recvbuf, dev::AbstractDevice; root=0)
+ext/FluxMPIExt/FluxMPIExt.jl:56:    return DistributedUtils.__bcast!(
+ext/FluxMPIExt/FluxMPIExt.jl:57:        backend, ifelse(DistributedUtils.local_rank(backend) == root, sendbuf, recvbuf),
+ext/FluxMPIExt/FluxMPIExt.jl:66:            function DistributedUtils.__bcast!(
+ext/FluxMPIExt/FluxMPIExt.jl:67:                    backend::MPIBackend, sendrecvbuf, dev::$dType; root=0)
+ext/FluxMPIExt/FluxMPIExt.jl:70:                DistributedUtils.__bcast!(backend, sendrecvbuf_, cdev; root)
+ext/FluxMPIExt/FluxMPIExt.jl:75:            function DistributedUtils.__bcast!(
+ext/FluxMPIExt/FluxMPIExt.jl:76:                    backend::MPIBackend, sendbuf, recvbuf, dev::$dType; root=0)
+ext/FluxMPIExt/FluxMPIExt.jl:80:                DistributedUtils.__bcast!(backend, sendbuf_, recvbuf_, cdev; root)
+ext/FluxMPIExt/FluxMPIExt.jl:89:# Allreduce
+ext/FluxMPIExt/FluxMPIExt.jl:90:function DistributedUtils.__allreduce!(
+ext/FluxMPIExt/FluxMPIExt.jl:91:        backend::MPIBackend, sendrecvbuf, op::F, ::AbstractDevice) where {F}
+ext/FluxMPIExt/FluxMPIExt.jl:92:    mpiop = ifelse(op === DistributedUtils.avg, +, op)
+ext/FluxMPIExt/FluxMPIExt.jl:93:    MPI.Allreduce!(sendrecvbuf, mpiop, backend.comm)
+ext/FluxMPIExt/FluxMPIExt.jl:94:    if op === DistributedUtils.avg
+ext/FluxMPIExt/FluxMPIExt.jl:95:        sendrecvbuf ./= DistributedUtils.total_workers(backend)
+ext/FluxMPIExt/FluxMPIExt.jl:100:function DistributedUtils.__allreduce!(
+ext/FluxMPIExt/FluxMPIExt.jl:101:        backend::MPIBackend, sendbuf, recvbuf, op::F, ::AbstractDevice) where {F}
+ext/FluxMPIExt/FluxMPIExt.jl:102:    mpiop = ifelse(op === DistributedUtils.avg, +, op)
+ext/FluxMPIExt/FluxMPIExt.jl:103:    MPI.Allreduce!(sendbuf, recvbuf, mpiop, backend.comm)
+ext/FluxMPIExt/FluxMPIExt.jl:104:    if op === DistributedUtils.avg
+ext/FluxMPIExt/FluxMPIExt.jl:105:        recvbuf ./= DistributedUtils.total_workers(backend)
+ext/FluxMPIExt/FluxMPIExt.jl:113:            function DistributedUtils.__allreduce!(
+ext/FluxMPIExt/FluxMPIExt.jl:114:                    backend::MPIBackend, sendrecvbuf, op::F, dev::$dType) where {F}
+ext/FluxMPIExt/FluxMPIExt.jl:117:                DistributedUtils.__allreduce!(backend, sendrecvbuf_, op, cdev)
+ext/FluxMPIExt/FluxMPIExt.jl:122:            function DistributedUtils.__allreduce!(
+ext/FluxMPIExt/FluxMPIExt.jl:123:                    backend::MPIBackend, sendbuf, recvbuf, op::F, dev::$dType) where {F}
+ext/FluxMPIExt/FluxMPIExt.jl:127:                DistributedUtils.__allreduce!(backend, sendbuf_, recvbuf_, op, cdev)
+ext/FluxMPIExt/FluxMPIExt.jl:136:function DistributedUtils.__reduce!(backend::MPIBackend, sendrecvbuf, op::F,
+ext/FluxMPIExt/FluxMPIExt.jl:138:    mpiop = ifelse(op === DistributedUtils.avg, +, op)
+ext/FluxMPIExt/FluxMPIExt.jl:140:    if op === DistributedUtils.avg
+ext/FluxMPIExt/FluxMPIExt.jl:141:        sendrecvbuf ./= DistributedUtils.total_workers(backend)
+ext/FluxMPIExt/FluxMPIExt.jl:146:function DistributedUtils.__reduce!(backend::MPIBackend, sendbuf, recvbuf, op::F,
+ext/FluxMPIExt/FluxMPIExt.jl:148:    mpiop = ifelse(op === DistributedUtils.avg, +, op)
+ext/FluxMPIExt/FluxMPIExt.jl:150:    if op === DistributedUtils.avg
+ext/FluxMPIExt/FluxMPIExt.jl:151:        recvbuf ./= DistributedUtils.total_workers(backend)
+ext/FluxMPIExt/FluxMPIExt.jl:159:            function DistributedUtils.__reduce!(backend::MPIBackend, sendrecvbuf, op::F,
+ext/FluxMPIExt/FluxMPIExt.jl:163:                DistributedUtils.__reduce!(backend, sendrecvbuf_, op, cdev; root)
+ext/FluxMPIExt/FluxMPIExt.jl:168:            function DistributedUtils.__reduce!(backend::MPIBackend, sendbuf, recvbuf,
+ext/FluxMPIExt/FluxMPIExt.jl:173:                DistributedUtils.__reduce!(backend, sendbuf_, recvbuf_, op, cdev; root)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:3:using Flux: MPIBackend, NCCLBackend, DistributedUtils
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:10:function DistributedUtils.__initialize(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:11:        ::Type{NCCLBackend}; cuda_devices=nothing, amdgpu_devices=missing)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:13:    DistributedUtils.__initialize(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:14:        MPIBackend; cuda_devices, force_cuda=true, caller="NCCLBackend", amdgpu_devices)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:15:    DistributedUtils.NCCL_Initialized[] = true
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:19:function DistributedUtils.__get_distributed_backend(::Type{NCCLBackend})
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:21:    mpi_backend = DistributedUtils.__get_distributed_backend(MPIBackend)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:23:    DistributedUtils.bcast!(mpi_backend, buf; root=0)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:26:    nranks = DistributedUtils.total_workers(mpi_backend)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:27:    rank = DistributedUtils.local_rank(mpi_backend)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:29:    return NCCLBackend(NCCL.Communicator(nranks, rank; unique_id), mpi_backend)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:32:DistributedUtils.local_rank(backend::NCCLBackend) = NCCL.rank(backend.comm)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:34:DistributedUtils.total_workers(backend::NCCLBackend) = NCCL.size(backend.comm)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:38:function DistributedUtils.__bcast!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:39:        backend::NCCLBackend, sendrecvbuf::CuArray, ::CUDADevice; root=0)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:44:function DistributedUtils.__bcast!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:45:        backend::NCCLBackend, sendrecvbuf, dev::AbstractDevice; root=0)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:46:    return DistributedUtils.__bcast!(backend.mpi_backend, sendrecvbuf, dev; root)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:49:function DistributedUtils.__bcast!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:50:        backend::NCCLBackend, sendbuf, recvbuf, ::CUDADevice; root=0)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:55:function DistributedUtils.__bcast!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:56:        backend::NCCLBackend, sendbuf, recvbuf, dev::AbstractDevice; root=0)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:57:    return DistributedUtils.__bcast!(backend.mpi_backend, sendbuf, recvbuf, dev; root)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:60:# Allreduce
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:61:function DistributedUtils.__allreduce!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:62:        backend::NCCLBackend, sendrecvbuf::CuArray, op::F, dev::CUDADevice) where {F}
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:63:    op = ifelse(op === DistributedUtils.avg, NCCL.avg, op)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:64:    NCCL.Allreduce!(sendrecvbuf, op, backend.comm)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:68:function DistributedUtils.__allreduce!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:69:        backend::NCCLBackend, sendrecvbuf, op::F, dev::AbstractDevice) where {F}
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:70:    return DistributedUtils.__allreduce!(backend.mpi_backend, sendrecvbuf, op, dev)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:73:function DistributedUtils.__allreduce!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:74:        backend::NCCLBackend, sendbuf, recvbuf, op::F, ::CUDADevice) where {F}
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:75:    op = ifelse(op === DistributedUtils.avg, NCCL.avg, op)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:76:    NCCL.Allreduce!(sendbuf, recvbuf, op, backend.comm)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:80:function DistributedUtils.__allreduce!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:81:        backend::NCCLBackend, sendbuf, recvbuf, op::F, dev::AbstractDevice) where {F}
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:82:    return DistributedUtils.__allreduce!(backend.mpi_backend, sendbuf, recvbuf, op, dev)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:86:function DistributedUtils.__reduce!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:87:        backend::NCCLBackend, sendrecvbuf, op::F, ::CUDADevice; root::Int) where {F}
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:88:    op = ifelse(op === DistributedUtils.avg, NCCL.avg, op)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:93:function DistributedUtils.__reduce!(backend::NCCLBackend, sendrecvbuf, op::F,
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:95:    return DistributedUtils.__reduce!(backend.mpi_backend, sendrecvbuf, op, dev; root)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:98:function DistributedUtils.__reduce!(
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:99:        backend::NCCLBackend, sendbuf, recvbuf, op::F, ::CUDADevice; root::Int) where {F}
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:100:    op = ifelse(op === DistributedUtils.avg, NCCL.avg, op)
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:105:function DistributedUtils.__reduce!(backend::NCCLBackend, sendbuf, recvbuf, op::F,
+ext/FluxMPINCCLExt/FluxMPINCCLExt.jl:107:    return DistributedUtils.__reduce!(backend.mpi_backend, sendbuf, recvbuf, op, dev; root)
+src/Flux.jl:138:export MPIBackend, NCCLBackend, DistributedUtils
+src/distributed/backend.jl:8:    MPIBackend(comm = nothing)
+src/distributed/backend.jl:11:Instead use [`DistributedUtils.get_distributed_backend(MPIBackend)`](@ref).
+src/distributed/backend.jl:13:struct MPIBackend{C} <: AbstractFluxDistributedBackend
+src/distributed/backend.jl:16:    function MPIBackend(comm=nothing)
+src/distributed/backend.jl:18:            error("`MPIBackend` requires `MPI.jl` to be loaded.")
+src/distributed/backend.jl:25:    NCCLBackend(comm = nothing, mpi_backend = nothing)
+src/distributed/backend.jl:28:directly. Instead use [`DistributedUtils.get_distributed_backend(NCCLBackend)`](@ref).
+src/distributed/backend.jl:30:struct NCCLBackend{C, M <: Union{Nothing, MPIBackend}} <: AbstractFluxDistributedBackend
+src/distributed/backend.jl:34:    function NCCLBackend(comm=nothing, mpi_backend=nothing)
+src/distributed/backend.jl:36:            error("`NCCLBackend` requires `CUDA.jl`, `MPI.jl` and `NCCL.jl` to be loaded.")
+src/distributed/public_api.jl:5:module DistributedUtils
+src/distributed/public_api.jl:8:using ..Flux: AbstractFluxDistributedBackend, MPIBackend, NCCLBackend
+src/distributed/public_api.jl:26:initialized(::Type{<:MPIBackend}) = MPI_Initialized[]
+src/distributed/public_api.jl:27:initialized(::Type{<:NCCLBackend}) = NCCL_Initialized[]
+src/distributed/public_api.jl:40:  - `MPIBackend`: MPI backend for distributed training. Requires `MPI.jl` to be installed.
+src/distributed/public_api.jl:41:  - `NCCLBackend`: NCCL backend for CUDA distributed training. Requires `CUDA.jl`,
+src/distributed/public_api.jl:58:  - `MPIBackend`: MPI backend for distributed training. Requires `MPI.jl` to be installed.
+src/distributed/public_api.jl:59:  - `NCCLBackend`: NCCL backend for CUDA distributed training. Requires `CUDA.jl`,
+src/distributed/public_api.jl:69:        error("Backend `$(backend)` is not initialized. Call `DistributedUtils.initialize` first.")
+src/distributed/public_api.jl:96:    bcast!(backend::AbstractFluxDistributedBackend, sendrecvbuf; root::Int=0)
+src/distributed/public_api.jl:97:    bcast!(backend::AbstractFluxDistributedBackend, sendbuf, recvbuf; root::Int=0)
+src/distributed/public_api.jl:102:function bcast!(backend::AbstractFluxDistributedBackend, sendrecvbuf; root::Int=0)
+src/distributed/public_api.jl:103:    return __bcast!(backend, sendrecvbuf, get_device(sendrecvbuf); root)
+src/distributed/public_api.jl:106:function bcast!(backend::AbstractFluxDistributedBackend, sendbuf, recvbuf; root::Int=0)
+src/distributed/public_api.jl:110:        return __bcast!(backend, sendbuf, recvbuf, send_dev; root)
+src/distributed/public_api.jl:114:        return __bcast!(backend, sendbuf_, recvbuf, recv_dev; root)
+src/distributed/public_api.jl:118:function __bcast! end
+src/distributed/public_api.jl:120:CRC.@non_differentiable bcast!(::Any...)
+src/distributed/public_api.jl:125:    allreduce!(backend::AbstractFluxDistributedBackend, sendrecvbuf, op)
+src/distributed/public_api.jl:126:    allreduce!(backend::AbstractFluxDistributedBackend, sendbuf, recvbuf, op)
+src/distributed/public_api.jl:128:Backend Agnostic API to perform an allreduce operation on the given buffer `sendrecvbuf` or
+src/distributed/public_api.jl:131:`op` allows a special `DistributedUtils.avg` operation that averages the result across all
+src/distributed/public_api.jl:134:function allreduce!(backend::AbstractFluxDistributedBackend, sendrecvbuf, op::F) where {F}
+src/distributed/public_api.jl:135:    return __allreduce!(backend, sendrecvbuf, op, get_device(sendrecvbuf))
+src/distributed/public_api.jl:138:function allreduce!(
+src/distributed/public_api.jl:143:        __allreduce!(backend, sendbuf, recvbuf, op, send_dev)
+src/distributed/public_api.jl:147:        __allreduce!(backend, sendbuf_, recvbuf, op, recv_dev)
+src/distributed/public_api.jl:152:function __allreduce! end
+src/distributed/public_api.jl:154:CRC.@non_differentiable allreduce!(::Any...)
+src/distributed/public_api.jl:157:    reduce!(backend::AbstractFluxDistributedBackend, sendrecvbuf, op; root::Int=0)
+src/distributed/public_api.jl:158:    reduce!(backend::AbstractFluxDistributedBackend, sendbuf, recvbuf, op; root::Int=0)
+src/distributed/public_api.jl:160:Backend Agnostic API to perform a reduce operation on the given buffer `sendrecvbuf` or
+src/distributed/public_api.jl:163:`op` allows a special `DistributedUtils.avg` operation that averages the result across all
+src/distributed/public_api.jl:166:function reduce!(
+src/distributed/public_api.jl:168:    return __reduce!(backend, sendrecvbuf, op, get_device(sendrecvbuf); root)
+src/distributed/public_api.jl:171:function reduce!(backend::AbstractFluxDistributedBackend,
+src/distributed/public_api.jl:176:        __reduce!(backend, sendbuf, recvbuf, op, send_dev; root)
+src/distributed/public_api.jl:180:        __reduce!(backend, sendbuf_, recvbuf, op, recv_dev; root)
+src/distributed/public_api.jl:185:function __reduce! end
+src/distributed/public_api.jl:187:CRC.@non_differentiable reduce!(::Any...)
+src/distributed/public_api.jl:189:## As Flux model is an arbitrary type it's not possible to dispatch `synchronize!!`
+src/distributed/public_api.jl:191:## e.g. model = DistributedUtils.synchronize!!(backend, FluxDistributedModel(model); root=0) 
+src/distributed/public_api.jl:198:    synchronize!!(backend::AbstractFluxDistributedBackend, ps; root::Int=0)
+src/distributed/public_api.jl:203:function synchronize!!(backend::AbstractFluxDistributedBackend, model::FluxDistributedModel; root::Int=0)
+src/distributed/public_api.jl:204:    return fmap(x -> synchronize!!(backend, x; root), model.model)
+src/distributed/public_api.jl:207:function synchronize!!(backend::AbstractFluxDistributedBackend, ps::Tuple; root::Int=0)
+src/distributed/public_api.jl:209:    return map(x -> synchronize!!(backend, x; root), ps)
+src/distributed/public_api.jl:212:function synchronize!!(backend::AbstractFluxDistributedBackend,
+src/distributed/public_api.jl:215:    return NamedTuple{fields}(map(x -> synchronize!!(backend, x; root), values(ps)))
+src/distributed/public_api.jl:218:function synchronize!!(
+src/distributed/public_api.jl:221:        bcast!(backend, ps; root)
+src/distributed/public_api.jl:224:    return map(x -> synchronize!!(backend, x; root), ps)
+src/distributed/public_api.jl:228:function synchronize!!(backend::AbstractFluxDistributedBackend, ps::T; root::Int=0) where {T}
+src/distributed/public_api.jl:229:    isbitstype(T) && return bcast!(backend, [ps]; root)[]
+src/distributed/public_api.jl:235:    DistributedDataContainer(backend::AbstractFluxDistributedBackend, data)
+src/distributed/public_api.jl:245:struct DistributedDataContainer
+src/distributed/public_api.jl:250:function DistributedDataContainer(backend::AbstractFluxDistributedBackend, data)
+src/distributed/public_api.jl:254:Base.length(ddc::DistributedDataContainer) = length(ddc.idxs)
+src/distributed/public_api.jl:256:Base.getindex(ddc::DistributedDataContainer, i) = getindex(ddc.data, ddc.idxs[i])
+src/distributed/public_api.jl:258:function MLUtils.getobs(dc::DistributedDataContainer, idx)
+src/distributed/public_api.jl:271:    return DistributedDataContainer(data, idxs)
+src/distributed/public_api.jl:276:    DistributedOptimizer(backend::AbstractFluxDistributedBacked, optimizer)
+src/distributed/public_api.jl:278:Wrap the `optimizer` in a `DistributedOptimizer`. Before updating the parameters, this
+src/distributed/public_api.jl:279:averages the gradients across the processes using Allreduce.
+src/distributed/public_api.jl:286:struct DistributedOptimizer{B <: AbstractFluxDistributedBackend} <: AbstractRule
+src/distributed/public_api.jl:291:function Optimisers.apply!(opt::DistributedOptimizer, state, x, y)
+src/distributed/public_api.jl:292:    y_avg = DistributedUtils.allreduce!(opt.backend, y, DistributedUtils.avg)
+src/distributed/public_api.jl:296:Optimisers.init(opt::DistributedOptimizer, x::AbstractArray) = Optimisers.init(opt.opt, x)
+src/distributed/public_api.jl:298:function Optimisers._adjust(opt::DistributedOptimizer, nt::NamedTuple)
+src/distributed/public_api.jl:299:    return DistributedOptimizer(opt.backend, Optimisers._adjust(opt.opt, nt))
+src/distributed/public_api.jl:302:function DistributedUtils.synchronize!!(
+src/distributed/public_api.jl:304:    @set! ps.state = DistributedUtils.synchronize!!(backend, ps.state; root)
+src/layers/basic.jl:45:For large models, there is a special type-unstable path which can reduce compilation
+src/layers/basic.jl:310:See also [`Parallel`](@ref) to reduce with other operators.
+src/layers/basic.jl:342:  mapreduce(f -> f(input), (acc, out) -> max.(acc, out), mo.layers)
+src/layers/basic.jl:512:and [`Maxout`](@ref) which reduces by broadcasting `max`.
+src/layers/basic.jl:820:Their individual embedding vectors are reduced to one, using `mean` or some other function.
+src/layers/basic.jl:824:* Acting on a vector of "bags", it produces a matrix whose columns are the reduced vectors.
+src/layers/basic.jl:924:(m::EmbeddingBag)(bags::AbstractVector{<:AbstractVector}) = reduce(hcat, m.(bags))
+src/layers/basic.jl:927:(m::EmbeddingBag)(bags::AbstractArray{<:AbstractMatrix{Bool}}) = reshape(reduce(hcat, m.(vec(bags))), :, size(bags)...)
+src/layers/normalise.jl:13:This is used as a regularisation, i.e. to reduce overfitting.
+src/layers/normalise.jl:221:# Compute the statistics on the slices specified by reduce_dims.
+src/layers/normalise.jl:222:# reduce_dims=[1,...,N-2,N] for BatchNorm
+src/layers/normalise.jl:223:# reduce_dims=[1,...,N-2] for InstanceNorm and GroupNorm
+src/layers/normalise.jl:225:  l, x::AbstractArray{T, N}; reduce_dims, affine_shape,
+src/layers/normalise.jl:234:    μ = mean(x; dims=reduce_dims)
+src/layers/normalise.jl:235:    σ² = var(x; mean=μ, dims=reduce_dims, corrected=false)
+src/layers/normalise.jl:237:      _track_stats!(l, x, μ, σ², reduce_dims) # update moving mean/std
+src/layers/normalise.jl:255:  bn, x::AbstractArray{T, N}, μ, σ², reduce_dims,
+src/layers/normalise.jl:260:  m = prod(size(x, i) for i in reduce_dims)
+src/layers/normalise.jl:262:  μnew = vec(N ∈ reduce_dims ? μ : mean(μ, dims=N))
+src/layers/normalise.jl:263:  σ²new = vec(N ∈ reduce_dims ? σ² : mean(σ², dims=N))
+src/layers/normalise.jl:348:  reduce_dims = [1:N-2; N]
+src/layers/normalise.jl:352:  return _norm_layer_forward(BN, x; reduce_dims, affine_shape)
+src/layers/normalise.jl:439:  reduce_dims = 1:N-2
+src/layers/normalise.jl:443:  return _norm_layer_forward(l, x; reduce_dims, affine_shape)
+src/layers/normalise.jl:542:  reduce_dims = 1:N-2
+src/layers/normalise.jl:546:  x3 = _norm_layer_forward(gn, x2; reduce_dims, affine_shape)
+test/ext_distributed/common.jl:2:const backend_type = input_args[2] == "nccl" ? NCCLBackend : MPIBackend
+test/ext_distributed/common.jl:7:DistributedUtils.initialize(backend_type)
+test/ext_distributed/common.jl:8:backend = DistributedUtils.get_distributed_backend(backend_type)
+test/ext_distributed/common.jl:10:@test DistributedUtils.initialized(backend_type)
+test/ext_distributed/common.jl:13:rank = DistributedUtils.local_rank(backend)
+test/ext_distributed/common.jl:14:nworkers = DistributedUtils.total_workers(backend)
+test/ext_distributed/common.jl:23:    DistributedUtils.bcast!(backend, sendbuf, recvbuf; root=0)
+test/ext_distributed/common.jl:28:    DistributedUtils.bcast!(backend, sendrecvbuf; root=0)
+test/ext_distributed/common.jl:33:## reduce!
+test/ext_distributed/common.jl:38:    DistributedUtils.reduce!(backend, sendbuf, recvbuf, +; root=0)
+test/ext_distributed/common.jl:44:    DistributedUtils.reduce!(backend, sendbuf, recvbuf, DistributedUtils.avg; root=0)
+test/ext_distributed/common.jl:50:    DistributedUtils.reduce!(backend, sendrecvbuf, +; root=0)
+test/ext_distributed/common.jl:56:    DistributedUtils.reduce!(backend, sendrecvbuf, DistributedUtils.avg; root=0)
+test/ext_distributed/common.jl:61:## allreduce!
+test/ext_distributed/common.jl:66:    DistributedUtils.allreduce!(backend, sendbuf, recvbuf, +)
+test/ext_distributed/common.jl:72:    DistributedUtils.allreduce!(backend, sendbuf, recvbuf, DistributedUtils.avg)
+test/ext_distributed/common.jl:78:    DistributedUtils.allreduce!(backend, sendrecvbuf, +)
+test/ext_distributed/common.jl:84:    DistributedUtils.allreduce!(backend, sendrecvbuf, DistributedUtils.avg)
+test/ext_distributed/data.jl:2:const backend_type = input_args[2] == "nccl" ? NCCLBackend : MPIBackend
+test/ext_distributed/data.jl:7:DistributedUtils.initialize(backend_type)
+test/ext_distributed/data.jl:8:backend = DistributedUtils.get_distributed_backend(backend_type)
+test/ext_distributed/data.jl:11:dcontainer = DistributedUtils.DistributedDataContainer(backend, data)
+test/ext_distributed/data.jl:13:rank = DistributedUtils.local_rank(backend)
+test/ext_distributed/data.jl:14:tworkers = DistributedUtils.total_workers(backend)
+test/ext_distributed/data.jl:24:@test DistributedUtils.allreduce!(backend, [dsum], +)[1] ≈ sum(data)
+test/ext_distributed/optimizer.jl:2:const backend_type = input_args[2] == "nccl" ? NCCLBackend : MPIBackend
+test/ext_distributed/optimizer.jl:5:DistributedUtils.initialize(backend_type)
+test/ext_distributed/optimizer.jl:6:backend = DistributedUtils.get_distributed_backend(backend_type)
+test/ext_distributed/optimizer.jl:12:dopt = DistributedUtils.DistributedOptimizer(backend, opt)
+test/ext_distributed/optimizer.jl:18:@test_nowarn DistributedUtils.synchronize!!(backend, st_dopt)
+test/ext_distributed/reduce_distributedtest.jl:5:    backend_type = MPIBackend
+test/ext_distributed/reduce_distributedtest.jl:8:    backend_type = NCCLBackend
+test/ext_distributed/reduce_distributedtest.jl:13:DistributedUtils.initialize(backend_type)
+test/ext_distributed/reduce_distributedtest.jl:14:backend = DistributedUtils.get_distributed_backend(backend_type)
+test/ext_distributed/reduce_distributedtest.jl:16:rank = DistributedUtils.local_rank(backend)
+test/ext_distributed/reduce_distributedtest.jl:17:total_workers = DistributedUtils.total_workers(backend)
+test/ext_distributed/reduce_distributedtest.jl:21:DistributedUtils.reduce!(backend, sendrecvbuf, +)
+test/ext_distributed/synchronized.jl:2:const backend_type = input_args[2] == "nccl" ? NCCLBackend : MPIBackend
+test/ext_distributed/synchronized.jl:6:    DistributedUtils.local_rank(backend) == root && return ones(dims...)
+test/ext_distributed/synchronized.jl:12:DistributedUtils.initialize(backend_type)
+test/ext_distributed/synchronized.jl:13:backend = DistributedUtils.get_distributed_backend(backend_type)
+test/ext_distributed/synchronized.jl:21:gs_ = DistributedUtils.synchronize!!(backend, gs; root)
+test/ext_distributed/synchronized.jl:31:if DistributedUtils.local_rank(backend) == root
+test/ext_distributed/synchronized.jl:40:st_opt = DistributedUtils.synchronize!!(backend, st_opt; root)
+test/ext_distributed/synchronized.jl:53:@test_nowarn DistributedUtils.synchronize!!(backend, st_opt; root)
+test/ext_distributed/synchronized.jl:60:cgs_ = DistributedUtils.synchronize!!(backend, gs; root)
+test/ext_distributed/synchronized.jl:72:gs = DistributedUtils.synchronize!!(backend, gs; root)
+test/ext_distributed/synchronized.jl:80:x = DistributedUtils.synchronize!!(backend, x; root)
+test/ext_distributed/synchronized.jl:83:x = ifelse(root == DistributedUtils.local_rank(backend), :x, :y)
+test/ext_distributed/synchronized.jl:84:x_ = DistributedUtils.synchronize!!(backend, x; root)
+test/ext_distributed/synchronized.jl:88:x = DistributedUtils.synchronize!!(backend, DistributedUtils.local_rank(backend); root)
+test/layers/basic.jl:399:      z = reduce(hcat, reduction.(emb.(x), dims=2))
+test/layers/basic.jl:407:      z = reduce(hcat, reduction.(emb.(xvec), dims=2))

@@ -1,0 +1,21 @@
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Julia generated files
+*.ji
+
+# Heavy profiler outputs
+artifacts/profiles/*.nsys-rep
+artifacts/profiles/*.qdrep
+artifacts/profiles/*.sqlite
+
+# Temporary logs; curated summaries should be copied into Markdown when important
+artifacts/logs/*.tmp
+artifacts/logs/*.trace
+
+# Local machine notes
+.local/
+.env
