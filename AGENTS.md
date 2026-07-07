@@ -9,10 +9,10 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 Read these files before acting:
 
 1. `README.md`
-2. `docs/context/current.md`
-3. Latest file in `docs/devlog/`
-4. Relevant files in `docs/decisions/`
-5. Relevant files in `docs/audits/`
+2. `openwiki/context/current.md`
+3. Latest file in `openwiki/devlog/`
+4. Relevant files in `openwiki/decisions/`
+5. Relevant files in `openwiki/audits/`
 
 ## Current checkpoint
 
@@ -38,11 +38,14 @@ C0 - Repository and API audit.
 - Record exact commands used to reproduce results.
 - Rank 0 should be the only rank writing shared output files unless explicitly designed otherwise.
 - Do not fabricate results or mark tasks complete without evidence.
+- Scale gradients explicitly and document the convention.
+- Do not treat “loss decreases” as proof of correctness.
+- Profile only after correctness tests pass.
 
 ## Before ending a session
 
-- Update `docs/context/current.md`.
+- Update `openwiki/context/current.md`.
 - Add or update today’s devlog entry.
 - Update the README progress table if the status changed.
-- Record failures in `docs/failures/` if any command failed.
+- Record failures in `openwiki/failures/` if any command failed.
 - Print the exact next action.

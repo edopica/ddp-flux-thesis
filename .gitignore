@@ -19,3 +19,4 @@ artifacts/logs/*.trace
 # Local machine notes
 .local/
 .env
+temp/
