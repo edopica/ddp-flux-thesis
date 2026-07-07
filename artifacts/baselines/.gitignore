@@ -1,0 +1,3 @@
+# Baseline JLD2 files are generated, not committed.
+# Re-generate with: make reference
+*.jld2

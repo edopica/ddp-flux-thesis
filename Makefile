@@ -2,7 +2,7 @@ JULIA ?= julia
 FLUX_REPO_PATH ?= ../Flux.jl
 MPIEXECJL ?= mpiexecjl
 
-.PHONY: env env-gpu install-mpiexec check smoke-cpu audit status
+.PHONY: env env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify
 
 env:
 	FLUX_REPO_PATH="$(FLUX_REPO_PATH)" $(JULIA) --project=. -e 'using Pkg; Pkg.develop(path=ENV["FLUX_REPO_PATH"]); Pkg.add(["MPI","Optimisers","Zygote","Functors","MLUtils","Adapt","BenchmarkTools","Revise"]); Pkg.instantiate(); Pkg.precompile()'
@@ -27,3 +27,10 @@ status:
 	git -C "$(FLUX_REPO_PATH)" status --short
 	git -C "$(FLUX_REPO_PATH)" branch --show-current
 	git -C "$(FLUX_REPO_PATH)" rev-parse HEAD
+
+reference:
+	@mkdir -p artifacts/baselines
+	$(JULIA) --project=. scripts/save_reference.jl
+
+reference-verify:
+	$(JULIA) --project=. scripts/verify_reference.jl
