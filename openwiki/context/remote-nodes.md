@@ -42,3 +42,9 @@ To test the C2 distributed launch skeleton on the HPC cluster:
    ./scripts/run_remote.sh hpc make check
    ./scripts/run_remote.sh hpc make smoke-cpu
    ```
+
+## Deathstar Node
+For instructions on using the  node, see [deathstar.md](deathstar.md).
+
+## Deathstar Node
+For instructions on using the deathstar node, see [deathstar.md](deathstar.md).

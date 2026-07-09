@@ -12,6 +12,6 @@ THESIS_DIR="~/projects/ddp-flux-thesis"
 
 echo "Setting up environment on $REMOTE_HOST..."
 
-ssh "$REMOTE_HOST" "cd $THESIS_DIR && make env FLUX_REPO_PATH=../ddp_flux"
+ssh "$REMOTE_HOST" "cd $THESIS_DIR && bash -l -c \"make env FLUX_REPO_PATH=../ddp_flux\""
 
 echo "Environment setup complete!"
