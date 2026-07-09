@@ -34,3 +34,9 @@ reference:
 
 reference-verify:
 	$(JULIA) --project=. scripts/verify_reference.jl
+
+launch-2:
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=pmi2 -n 2 $(JULIA) --project=. scripts/launch_skeleton.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/launch_skeleton.jl; fi
+
+launch-4:
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=pmi2 -n 4 $(JULIA) --project=. scripts/launch_skeleton.jl; else $(MPIEXECJL) --project=. -n 4 $(JULIA) scripts/launch_skeleton.jl; fi

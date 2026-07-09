@@ -1,8 +1,8 @@
 # Current context
 
 Date: 2026-07-09
-Active checkpoint: C1 - Deterministic single-process reference loop (Done) -> C2 - Distributed launch skeleton
-Active Flux branch: `ddp/reference-loop`  
+Active checkpoint: C2 - Distributed launch skeleton (Done) -> C3 - Model broadcast and parameter verification
+Active Flux branch: `ddp/launch`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
 Thesis repo commit: `pending commit`
@@ -19,15 +19,11 @@ Thesis repo commit: `pending commit`
 
 ## What was done last
 
-- Successfully configured the `deathstar` remote node environment via SSH using `sync_code.sh deathstar` and `setup_node.sh deathstar` (after fixing `setup_node.sh` to use `bash -l -c` to invoke the correct Julia version).
-- Added documentation for `deathstar` remote node (`openwiki/context/deathstar.md`), emphasizing cautious usage since it's a shared personal PC without SLURM.
-- Implemented Remote Execution & HPC Integration Plan (created `sync_code.sh`, `setup_node.sh`, `run_remote.sh` and documented in `remote-nodes.md`).
-- Implemented C1: deterministic reference loop module (`scripts/ReferenceLoop.jl`).
-- Created `scripts/save_reference.jl` (baseline generator) and `scripts/verify_reference.jl` (determinism verifier).
-- Added JLD2 dependency for serialization.
-- Added `make reference` and `make reference-verify` targets.
-- Created `artifacts/baselines/` with `.gitignore` for JLD2 files.
-- Both `make reference` and `make reference-verify` pass — PASS: all 20 steps are bit-identical.
+- Implemented C2: Created `scripts/launch_skeleton.jl` that successfully launches via MPI.
+- Updated `Makefile` with `launch-2` and `launch-4` targets.
+- Resolved HPC execution blocker: `run_remote.sh` now provisions SLURM interactive allocations properly via `salloc --ntasks=4` (with adjusted `--cpus-per-task=2` for queue limits).
+- Configured SLURM launches to natively use `srun --mpi=pmi2` avoiding `mpiexecjl` crashes.
+- Both local (`mpiexecjl`) and remote (`srun`) runs finish without deadlock.
 
 ## Commands that pass
 
@@ -38,6 +34,8 @@ Thesis repo commit: `pending commit`
 - `make audit`
 - `make reference`
 - `make reference-verify`
+- `make launch-2`
+- `make launch-4`
 
 ## Commands that fail
 
@@ -49,4 +47,4 @@ Thesis repo commit: `pending commit`
 
 ## Next exact action
 
-Start checkpoint C2: Create a distributed launch skeleton (2-process and 4-process MPI launches without deadlock).
+Start checkpoint C3: Model broadcast and parameter verification. Implement syncing model parameters so that all ranks start from an identical state.

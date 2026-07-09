@@ -1,13 +1,13 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C1 - Deterministic single-process reference loop (Done)  
-Active Flux branch: `ddp/reference-loop`  
+Current checkpoint: C2 - Distributed launch skeleton (Done)  
+Active Flux branch: `ddp/launch`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux upstream commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
-Last update: `2026-07-07`  
-Last reproducible command: `make reference-verify`  
+Last update: `2026-07-09`  
+Last reproducible command: `make launch-4`  
 Current blocker: `none`  
-Next action: Implement C2 — distributed launch skeleton
+Next action: Implement C3 — Model broadcast and parameter verification
 
 ## Goal
 
@@ -24,7 +24,7 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 |---|---|---|---|---|---|
 | C0 | Done | `ddp/audit` | `openwiki/audits/000-current-flux-distributed.md` | One-page audit of API, missing pieces, risky areas, and chosen baseline path | `artifacts/logs/audit_flux_distributed_20260702_172217.txt` |
 | C1 | Done | `ddp/reference-loop` | Deterministic single-process reference loop | Fixed loss, gradients, and updates stored as baseline tests | `artifacts/baselines/reference_loop_baseline.jld2` |
-| C2 | Not started | `ddp/launch` | Distributed launch skeleton | 2-process and 4-process launches complete without deadlock | - |
+| C2 | Done | `ddp/launch` | Distributed launch skeleton | 2-process and 4-process launches complete without deadlock | `openwiki/devlog/20260709-c2-launch.md` |
 | C3 | Not started | `ddp/sync-model` | Model broadcast and parameter verification | All ranks start from identical parameters | - |
 | C4 | Not started | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | - |
 | C5 | Not started | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | - |
@@ -63,5 +63,7 @@ make smoke-cpu
 make audit
 make reference
 make reference-verify
+make launch-2
+make launch-4
 ```
 
