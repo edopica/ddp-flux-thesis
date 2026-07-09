@@ -1,6 +1,6 @@
 JULIA ?= julia
 FLUX_REPO_PATH ?= ../Flux.jl
-MPIEXECJL ?= mpiexecjl
+MPIEXECJL ?= $(HOME)/.julia/bin/mpiexecjl
 
 .PHONY: env env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify
 

@@ -12,15 +12,13 @@ shift
 COMMAND="$@"
 THESIS_DIR="~/projects/ddp-flux-thesis"
 
-# If the remote host is 'hpc', we wrap the command with srun
-if [ "$REMOTE_HOST" = "hpc" ]; then
-    # Using salloc so that it allocates resources and lets the command run on the login node 
-    # but with SLURM environment variables, allowing inner srun commands to work correctly.
-    WRAPPER="salloc --ntasks=4 --gres=gpu:0 --mem=32G --cpus-per-task=2 --account=3320522 --partition=stud --qos=stud"
-    FULL_COMMAND="$WRAPPER $COMMAND"
-else
-    FULL_COMMAND="$COMMAND"
+# Load remote-specific configuration if it exists
+WRAPPER=""
+if [ -f "scripts/remotes/${REMOTE_HOST}.conf" ]; then
+    source "scripts/remotes/${REMOTE_HOST}.conf"
 fi
+
+FULL_COMMAND="$WRAPPER $COMMAND"
 
 echo "Executing on $REMOTE_HOST: $FULL_COMMAND"
 
