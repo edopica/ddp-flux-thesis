@@ -1,0 +1,4 @@
+.git
+.julia
+Manifest.toml
+artifacts/baselines/*.jld2

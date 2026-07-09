@@ -19,6 +19,7 @@ Thesis repo commit: `pending commit`
 
 ## What was done last
 
+- Implemented Remote Execution & HPC Integration Plan (created `sync_code.sh`, `setup_node.sh`, `run_remote.sh` and documented in `remote-nodes.md`).
 - Implemented C1: deterministic reference loop module (`scripts/ReferenceLoop.jl`).
 - Created `scripts/save_reference.jl` (baseline generator) and `scripts/verify_reference.jl` (determinism verifier).
 - Added JLD2 dependency for serialization.
