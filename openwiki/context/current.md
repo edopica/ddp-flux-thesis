@@ -20,10 +20,11 @@ Thesis repo commit: `pending commit`
 ## What was done last
 
 - Implemented C2: Created `scripts/launch_skeleton.jl` that successfully launches via MPI.
-- Updated `Makefile` with `launch-2` and `launch-4` targets.
-- Resolved HPC execution blocker: `run_remote.sh` now provisions SLURM interactive allocations properly via `salloc --ntasks=4` (with adjusted `--cpus-per-task=2` for queue limits).
-- Configured SLURM launches to natively use `srun --mpi=pmi2` avoiding `mpiexecjl` crashes.
+- Resolved HPC execution blocker: `run_remote.sh` now provisions SLURM interactive allocations properly via `salloc`.
 - Both local (`mpiexecjl`) and remote (`srun`) runs finish without deadlock.
+- Refactored SSH workflow: Extracted HPC slurm logic into `scripts/remotes/hpc.conf` and updated `run_remote.sh` to dynamically source configs.
+- Fixed `Makefile` and `setup_node.sh` to robustly handle `mpiexecjl` paths.
+- Verified `make launch-4` on `deathstar` successfully without SLURM.
 
 ## Commands that pass
 
