@@ -25,12 +25,14 @@ Thesis repo commit: `pending commit`
 - Refactored SSH workflow: Extracted HPC slurm logic into `scripts/remotes/hpc.conf` and updated `run_remote.sh` to dynamically source configs.
 - Fixed `Makefile` and `setup_node.sh` to robustly handle `mpiexecjl` paths.
 - Verified `make launch-4` on `deathstar` successfully without SLURM.
+- **Implemented PMI Mismatch Guardrails**: Added strict environment checks in `FluxMPIExt.jl`, added a `make health-check` target, formalized `SLURM_MPI_TYPE=pmi2`, and documented HPC launch requirements in the README.
 
 ## Commands that pass
 
 - `make env`
 - `make install-mpiexec`
 - `make check`
+- `make health-check`
 - `make smoke-cpu`
 - `make audit`
 - `make reference`

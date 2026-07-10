@@ -4,8 +4,8 @@ Current checkpoint: C2 - Distributed launch skeleton (Done)
 Active Flux branch: `ddp/launch`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux upstream commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
-Last update: `2026-07-09`  
-Last reproducible command: `make launch-4`  
+Last update: `2026-07-10`  
+Last reproducible command: `make health-check`  
 Current blocker: `none`  
 Next action: Implement C3 — Model broadcast and parameter verification
 
@@ -46,6 +46,17 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 - [x] Update `openwiki/context/current.md`.
 - [x] Write first devlog entry.
 
+## Cluster & MPI Guardrails
+
+When launching on a Slurm cluster, it's crucial to match the launcher's PMI version with the MPI library's expected PMI protocol. 
+Flux.jl DDP is tested exclusively with Julia's default `MPICH_jll`, which uses the **PMI2** wire protocol.
+If you use a system MPI (`JULIA_MPI_BINARY=system`), you must match your `srun` configuration accordingly. 
+
+**Guardrails implemented:**
+- **Initialization checks**: `DistributedUtils.initialize(MPIBackend)` now inspects `ENV` for `PMIX_RANK` and `OMPI_COMM_WORLD_RANK`, warning or throwing errors if unsupported environments are detected.
+- **Health Check**: Run `make health-check` to isolate MPI/PMI mismatches before attempting to train. This script prints the MPI version, PMI environment variables, and verifies process synchronization.
+- **Launch Defaults**: Our `make` targets (`make launch-2`, `make launch-4`, `make health-check`) and remote scripts default to `srun --mpi=pmi2` within Slurm allocations via the `SLURM_MPI_TYPE` environment variable.
+
 ## Notes for future checkpoints
 
 - **MLUtils DataLoader overhaul** (2026-07): The MLUtils DataLoader now supports `parallel=true` (multithreading) and `num_workers=N` (multi-process, PyTorch-style). Relevant for C4 (distributed data sharding) and C7+ (end-to-end examples). Source: https://github.com/JuliaML/MLUtils.jl
@@ -59,6 +70,7 @@ Include these commands, with `<FLUX_REPO_PATH>` replaced by the actual path:
 make env
 make install-mpiexec
 make check
+make health-check
 make smoke-cpu
 make audit
 make reference
