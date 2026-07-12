@@ -23,7 +23,7 @@ This ensures active testing on the cluster uses compute nodes instead of tying u
 When using these scripts on an HPC cluster, you may encounter the following behaviors during package precompilation:
 
 1. **Long Setup Times:** The initial run of `setup_node.sh` installs and precompiles heavy packages (like LLVM, Zygote, and Flux). This can take 5-10 minutes. If running this via an automated agent with strict timeouts, the command might get aborted. Simply re-run `setup_node.sh`—Julia will resume precompilation right where it left off.
-2. **Double Precompilation (Login vs. Compute Nodes):** `setup_node.sh` executes on the cluster's **login node**. However, `run_remote.sh hpc` uses `srun` to execute your command on a **compute node**. Since compute nodes often have a different CPU architecture or instruction set than login nodes, Julia will detect the hardware change and trigger a second round of precompilation the first time you run `run.sh`. This is normal and ensures the code is optimized for the actual execution hardware.
+2. **Double Precompilation (Login vs. Compute Nodes):** `setup_node.sh` executes on the cluster's **login node**. However, `run.sh hpc` uses `srun` to execute your command on a **compute node**. Since compute nodes often have a different CPU architecture or instruction set than login nodes, Julia will detect the hardware change and trigger a second round of precompilation the first time you run `run.sh`. This is normal and ensures the code is optimized for the actual execution hardware.
 
 ## Usage Example
 
@@ -42,9 +42,6 @@ To test the C2 distributed launch skeleton on the HPC cluster:
    ./scripts/remote/run.sh hpc make check
    ./scripts/remote/run.sh hpc make smoke-cpu
    ```
-
-## Deathstar Node
-For instructions on using the  node, see [deathstar.md](deathstar.md).
 
 ## Deathstar Node
 For instructions on using the deathstar node, see [deathstar.md](deathstar.md).

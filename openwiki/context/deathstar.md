@@ -31,7 +31,7 @@ To execute a command or test on `deathstar`:
 ```bash
 ./scripts/remote/run.sh deathstar make check
 ```
-*(Note: Unlike the `hpc` node, `run_remote.sh deathstar` executes commands directly on the host without `srun`.)*
+*(Note: Unlike the `hpc` node, `run.sh deathstar` executes commands directly on the host without `srun`.)*
 
 ## Current Status
 - SSH configuration is present in `~/.ssh/config`.

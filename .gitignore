@@ -20,3 +20,4 @@ artifacts/logs/*.trace
 .local/
 .env
 temp/
+*.jld2
