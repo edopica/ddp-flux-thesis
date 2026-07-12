@@ -1,13 +1,13 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C2 - Distributed launch skeleton (Done)  
-Active Flux branch: `ddp/launch`  
+Current checkpoint: C3 - Model broadcast and parameter verification (Done)  
+Active Flux branch: `ddp/sync-model`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux upstream commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
-Last update: `2026-07-10`  
-Last reproducible command: `make health-check`  
+Last update: `2026-07-11`  
+Last reproducible command: `make verify-sync`  
 Current blocker: `none`  
-Next action: Implement C3 — Model broadcast and parameter verification
+Next action: Implement C4 — Distributed data sharding
 
 ## Goal
 
@@ -17,6 +17,12 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 
 - `../Flux.jl`: local fork of Flux.jl used for source inspection and later implementation work.
 - `.`: thesis-control workspace for progress tracking, scripts, audit notes, artifacts, logs, and agent context.
+  - `scripts/setup/`: Environment and auditing utilities.
+  - `scripts/checks/`: MPI health and smoke tests.
+  - `scripts/remote/`: Cluster deployment and synchronization.
+  - `scripts/reference/`: C1 single-process deterministic baseline.
+  - `scripts/launch/`: C2 distributed launch utilities.
+  - `scripts/sync/`: C3 model broadcast verification.
 
 ## Progress
 
@@ -25,7 +31,7 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 | C0 | Done | `ddp/audit` | `openwiki/audits/000-current-flux-distributed.md` | One-page audit of API, missing pieces, risky areas, and chosen baseline path | `artifacts/logs/audit_flux_distributed_20260702_172217.txt` |
 | C1 | Done | `ddp/reference-loop` | Deterministic single-process reference loop | Fixed loss, gradients, and updates stored as baseline tests | `artifacts/baselines/reference_loop_baseline.jld2` |
 | C2 | Done | `ddp/launch` | Distributed launch skeleton | 2-process and 4-process launches complete without deadlock | `openwiki/devlog/20260709-c2-launch.md` |
-| C3 | Not started | `ddp/sync-model` | Model broadcast and parameter verification | All ranks start from identical parameters | - |
+| C3 | Done | `ddp/sync-model` | Model broadcast and parameter verification | All ranks start from identical parameters | `openwiki/devlog/20260711-c3-sync-model.md` |
 | C4 | Not started | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | - |
 | C5 | Not started | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | - |
 | C6 | Not started | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | - |
@@ -77,5 +83,17 @@ make reference
 make reference-verify
 make launch-2
 make launch-4
+make sync-model
+make verify-sync
 ```
+
+## C3 goals
+
+- [x] Broadcast model parameters from rank 0 to all ranks via `synchronize!!`.
+- [x] Verify all ranks hold bit-identical parameters (max deviation = 0.0).
+- [x] Verify rank 0's model is unchanged after broadcast.
+- [x] Broadcast optimizer state via `synchronize!!`.
+- [x] Test with a larger model (3-layer MLP, 9729 params).
+- [x] Verify synced model matches rank 0's original seed-42 build.
+- [x] Update devlog and context.
 

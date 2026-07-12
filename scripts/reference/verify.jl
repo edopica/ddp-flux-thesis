@@ -1,6 +1,6 @@
 #!/usr/bin/env julia
 """
-verify_reference.jl — Determinism verifier for C1.
+verify.jl — Determinism verifier for C1.
 
 Loads the saved baseline, re-runs the reference loop with the same config,
 and asserts bit-identical equality for:
@@ -12,14 +12,14 @@ and asserts bit-identical equality for:
 Prints PASS or FAIL with details of the first mismatch.
 
 Usage:
-    julia --project=. scripts/verify_reference.jl
+    julia --project=. scripts/reference/verify.jl
 """
 
 include(joinpath(@__DIR__, "ReferenceLoop.jl"))
 using .ReferenceLoop
 using Functors
 
-const BASELINE_PATH = joinpath(@__DIR__, "..", "artifacts", "baselines", "reference_loop_baseline.jld2")
+const BASELINE_PATH = joinpath(@__DIR__, "..", "..", "artifacts", "baselines", "reference_loop_baseline.jld2")
 
 """
     collect_arrays(x)

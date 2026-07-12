@@ -4,7 +4,7 @@
 
 **Command**:
 ```bash
-./scripts/sync_code.sh deathstar
+./scripts/remote/sync_code.sh deathstar
 ```
 
 **Output**:

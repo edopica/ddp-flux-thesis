@@ -1,13 +1,13 @@
 #!/usr/bin/env julia
 """
-save_reference.jl — Baseline generator for C1.
+save.jl — Baseline generator for C1.
 
 Constructs the default ReferenceConfig, runs the deterministic reference loop,
 saves the result to artifacts/baselines/reference_loop_baseline.jld2, and
 prints a summary (loss curve, gradient norms, total time) to stdout.
 
 Usage:
-    julia --project=. scripts/save_reference.jl
+    julia --project=. scripts/reference/save.jl
 """
 
 include(joinpath(@__DIR__, "ReferenceLoop.jl"))
@@ -16,7 +16,7 @@ using LinearAlgebra: norm
 using Printf
 using Functors
 
-const BASELINE_PATH = joinpath(@__DIR__, "..", "artifacts", "baselines", "reference_loop_baseline.jld2")
+const BASELINE_PATH = joinpath(@__DIR__, "..", "..", "artifacts", "baselines", "reference_loop_baseline.jld2")
 
 function main()
     println("=" ^ 60)

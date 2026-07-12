@@ -1,8 +1,8 @@
 # Current context
 
-Date: 2026-07-09
-Active checkpoint: C2 - Distributed launch skeleton (Done) -> C3 - Model broadcast and parameter verification
-Active Flux branch: `ddp/launch`  
+Date: 2026-07-11
+Active checkpoint: C3 - Model broadcast and parameter verification (Done) -> C4 - Distributed data sharding
+Active Flux branch: `ddp/sync-model`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
 Thesis repo commit: `pending commit`
@@ -13,19 +13,20 @@ Thesis repo commit: `pending commit`
 - The first implementation priority is understanding the current distributed code.
 - CPU/MPI verification comes before GPU/NCCL work.
 - The existing Flux distributed implementation (`DistributedUtils`) has a good foundation (MPI/NCCL abstractions, `DistributedOptimizer`, `DistributedDataContainer`) but lacks documentation, end-to-end examples, and some tests aren't being run by the test runner.
-- A deterministic single-process reference loop exists (`scripts/ReferenceLoop.jl`) producing bit-identical results across runs (seed=42, 20 steps, Chain(Dense(1=>256,tanh), Dense(256=>1)), y=x³ data).
+- A deterministic single-process reference loop exists (`scripts/reference/ReferenceLoop.jl`) producing bit-identical results across runs (seed=42, 20 steps, Chain(Dense(1=>256,tanh), Dense(256=>1)), y=x³ data).
 - Baseline is saved at `artifacts/baselines/reference_loop_baseline.jld2`.
 - Loss converges from 0.240 to 0.034 over 20 steps (MSE, Adam 0.001).
+- **Model broadcast works**: `synchronize!!` with `FluxDistributedModel` wrapper broadcasts all parameter tensors from rank 0 to all ranks with 0.0 max deviation.
+- **Optimizer state broadcast works**: `synchronize!!` handles `Optimisers.Leaf` state correctly.
+- Both the reference 2-layer MLP (769 params) and a 3-layer MLP (9729 params) sync correctly.
 
 ## What was done last
 
-- Implemented C2: Created `scripts/launch_skeleton.jl` that successfully launches via MPI.
-- Resolved HPC execution blocker: `run_remote.sh` now provisions SLURM interactive allocations properly via `salloc`.
-- Both local (`mpiexecjl`) and remote (`srun`) runs finish without deadlock.
-- Refactored SSH workflow: Extracted HPC slurm logic into `scripts/remotes/hpc.conf` and updated `run_remote.sh` to dynamically source configs.
-- Fixed `Makefile` and `setup_node.sh` to robustly handle `mpiexecjl` paths.
-- Verified `make launch-4` on `deathstar` successfully without SLURM.
-- **Implemented PMI Mismatch Guardrails**: Added strict environment checks in `FluxMPIExt.jl`, added a `make health-check` target, formalized `SLURM_MPI_TYPE=pmi2`, and documented HPC launch requirements in the README.
+- Implemented C3: Created `scripts/sync/broadcast.jl` and `scripts/sync/verify.jl`.
+- `broadcast.jl`: builds models with different seeds per rank, broadcasts from rank 0, verifies bit-identical parameters via allreduce max-deviation check.
+- `verify.jl`: 4 deep verification tests (per-tensor check, optimizer state, reference consistency, larger model).
+- Added `make sync-model` and `make verify-sync` targets.
+- Both pass on 2 processes locally with 0.0 max deviation.
 
 ## Commands that pass
 
@@ -39,6 +40,8 @@ Thesis repo commit: `pending commit`
 - `make reference-verify`
 - `make launch-2`
 - `make launch-4`
+- `make sync-model`
+- `make verify-sync`
 
 ## Commands that fail
 
@@ -50,4 +53,4 @@ Thesis repo commit: `pending commit`
 
 ## Next exact action
 
-Start checkpoint C3: Model broadcast and parameter verification. Implement syncing model parameters so that all ranks start from an identical state.
+Start checkpoint C4: Distributed data sharding. Implement `DistributedDataContainer` usage and verify dataset coverage and duplication policy are documented and tested.

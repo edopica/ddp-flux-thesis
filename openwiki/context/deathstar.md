@@ -16,20 +16,20 @@ The same scripts used for the `hpc` cluster can be used for `deathstar`, but the
 ### 1. Syncing Code
 To sync the local modifications to the remote node:
 ```bash
-./scripts/sync_code.sh deathstar
+./scripts/remote/sync_code.sh deathstar
 ```
 This syncs both the Flux fork and the thesis workspace to `~/projects/` on `deathstar`.
 
 ### 2. Setting Up the Environment
 To initialize the remote environment (compiling dependencies, setting up the Julia environment):
 ```bash
-./scripts/setup_node.sh deathstar
+./scripts/remote/setup_node.sh deathstar
 ```
 
 ### 3. Running Commands
 To execute a command or test on `deathstar`:
 ```bash
-./scripts/run_remote.sh deathstar make check
+./scripts/remote/run.sh deathstar make check
 ```
 *(Note: Unlike the `hpc` node, `run_remote.sh deathstar` executes commands directly on the host without `srun`.)*
 

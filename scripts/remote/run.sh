@@ -14,8 +14,8 @@ THESIS_DIR="~/projects/ddp-flux-thesis"
 
 # Load remote-specific configuration if it exists
 WRAPPER=""
-if [ -f "scripts/remotes/${REMOTE_HOST}.conf" ]; then
-    source "scripts/remotes/${REMOTE_HOST}.conf"
+if [ -f "scripts/remote/hosts/${REMOTE_HOST}.conf" ]; then
+    source "scripts/remote/hosts/${REMOTE_HOST}.conf"
 fi
 
 FULL_COMMAND="$WRAPPER $COMMAND"

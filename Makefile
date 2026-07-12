@@ -5,25 +5,25 @@ MPIEXECJL ?= $(HOME)/.julia/bin/mpiexecjl
 # Default to PMI2 for SLURM environments because Julia's MPICH_jll uses PMI2
 SLURM_MPI_TYPE ?= pmi2
 
-.PHONY: env env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify health-check launch-2 launch-4
+.PHONY: env env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify health-check launch-2 launch-4 sync-model verify-sync
 
 env:
 	FLUX_REPO_PATH="$(FLUX_REPO_PATH)" $(JULIA) --project=. -e 'using Pkg; Pkg.develop(path=ENV["FLUX_REPO_PATH"]); Pkg.add(["MPI","Optimisers","Zygote","Functors","MLUtils","Adapt","BenchmarkTools","Revise"]); Pkg.instantiate(); Pkg.precompile()'
 
 env-gpu:
-	$(JULIA) --project=. scripts/setup_env_gpu.jl
+	$(JULIA) --project=. scripts/setup/setup_gpu.jl
 
 install-mpiexec:
 	$(JULIA) --project=. -e 'using MPI; MPI.install_mpiexecjl()'
 
 check:
-	$(JULIA) --project=. scripts/check_env.jl
+	$(JULIA) --project=. scripts/setup/check_env.jl
 
 smoke-cpu:
-	$(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/smoke_mpi_cpu.jl
+	$(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/checks/smoke_mpi.jl
 
 audit:
-	bash scripts/audit_flux_distributed.sh "$(FLUX_REPO_PATH)"
+	bash scripts/setup/audit_distributed.sh "$(FLUX_REPO_PATH)"
 
 status:
 	git status --short
@@ -33,16 +33,22 @@ status:
 
 reference:
 	@mkdir -p artifacts/baselines
-	$(JULIA) --project=. scripts/save_reference.jl
+	$(JULIA) --project=. scripts/reference/save.jl
 
 reference-verify:
-	$(JULIA) --project=. scripts/verify_reference.jl
+	$(JULIA) --project=. scripts/reference/verify.jl
 
 launch-2:
-	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/launch_skeleton.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/launch_skeleton.jl; fi
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/launch/skeleton.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/launch/skeleton.jl; fi
 
 launch-4:
-	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 4 $(JULIA) --project=. scripts/launch_skeleton.jl; else $(MPIEXECJL) --project=. -n 4 $(JULIA) scripts/launch_skeleton.jl; fi
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 4 $(JULIA) --project=. scripts/launch/skeleton.jl; else $(MPIEXECJL) --project=. -n 4 $(JULIA) scripts/launch/skeleton.jl; fi
 
 health-check:
-	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/mpi_health_check.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/mpi_health_check.jl; fi
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/checks/health_check.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/checks/health_check.jl; fi
+
+sync-model:
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/sync/broadcast.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/sync/broadcast.jl; fi
+
+verify-sync:
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/sync/verify.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/sync/verify.jl; fi
