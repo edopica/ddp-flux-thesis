@@ -1,0 +1,16 @@
+Rank 1: initializing with world size 4Rank 2: initializing with world size 4Rank 0: initializing with world size 4Rank 3: initializing with world size 4
+Rank 1: constructing DistributedDataContainer
+Rank 1: successfully created DDC with 3 items.
+
+Rank 2: constructing DistributedDataContainer
+Rank 2: successfully created DDC with 3 items.
+
+Rank 3: constructing DistributedDataContainer
+
+Rank 0: constructing DistributedDataContainer
+Rank 0: successfully created DDC with 3 items.
+Rank 3: caught exception:
+Rank 2: items = [7, 8, 9]
+BoundsError: attempt to access Rank 1: items = [4, 5, 6]
+Rank 0: items = [1, 2, 3]
+3-element Vector{UnitRange{Int64}} at index [4]

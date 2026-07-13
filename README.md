@@ -1,13 +1,13 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C3 - Model broadcast and parameter verification (Done)  
-Active Flux branch: `ddp/sync-model`  
+Current checkpoint: C4 - Distributed data sharding (Done)  
+Active Flux branch: `ddp/data`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
-Flux upstream commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
-Last update: `2026-07-11`  
-Last reproducible command: `make verify-sync`  
+Flux upstream commit: `d6ff1bba08f39eb866ec5747bc23c1777cc88c6f`  
+Last update: `2026-07-13`  
+Last reproducible command: `make verify-data`  
 Current blocker: `none`  
-Next action: Implement C4 — Distributed data sharding
+Next action: Implement C5 — Gradient synchronization minimal case
 
 ## Goal
 
@@ -32,7 +32,7 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 | C1 | Done | `ddp/reference-loop` | Deterministic single-process reference loop | Fixed loss, gradients, and updates stored as baseline tests | `artifacts/baselines/reference_loop_baseline.jld2` |
 | C2 | Done | `ddp/launch` | Distributed launch skeleton | 2-process and 4-process launches complete without deadlock | `openwiki/devlog/20260709-c2-launch.md` |
 | C3 | Done | `ddp/sync-model` | Model broadcast and parameter verification | All ranks start from identical parameters | `openwiki/devlog/20260711-c3-sync-model.md` |
-| C4 | Not started | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | - |
+| C4 | Done | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | `openwiki/devlog/20260713-c4-data-sharding.md` |
 | C5 | Not started | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | - |
 | C6 | Not started | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | - |
 | C7 | Not started | `ddp/docs-examples` | End-to-end two-GPU example | One documented command reproduces training on 2 GPUs | - |
@@ -85,6 +85,7 @@ make launch-2
 make launch-4
 make sync-model
 make verify-sync
+make verify-data
 ```
 
 ## C3 goals

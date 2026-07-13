@@ -1,10 +1,10 @@
 # Current context
 
-Date: 2026-07-11
-Active checkpoint: C3 - Model broadcast and parameter verification (Done) -> C4 - Distributed data sharding
-Active Flux branch: `ddp/sync-model`  
+Date: 2026-07-13
+Active checkpoint: C4 - Distributed data sharding (Done) -> C5 - Gradient synchronization minimal case
+Active Flux branch: `ddp/data`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
-Flux commit: `57e29baf48edf50c0dd4fc9f027a8900ce3cef66`  
+Flux commit: `d6ff1bba08f39eb866ec5747bc23c1777cc88c6f`  
 Thesis repo commit: `pending commit`
 
 ## What is known
@@ -22,11 +22,11 @@ Thesis repo commit: `pending commit`
 
 ## What was done last
 
-- Implemented C3: Created `scripts/sync/broadcast.jl` and `scripts/sync/verify.jl`.
-- `broadcast.jl`: builds models with different seeds per rank, broadcasts from rank 0, verifies bit-identical parameters via allreduce max-deviation check.
-- `verify.jl`: 4 deep verification tests (per-tensor check, optimizer state, reference consistency, larger model).
-- Added `make sync-model` and `make verify-sync` targets.
-- Both pass on 2 processes locally with 0.0 max deviation.
+- Implemented C4: Fixed mathematical flaw in `DistributedDataContainer` that caused bounds errors and DDP deadlocks when distributing unaligned dataset sizes.
+- Replicated PyTorch's `DistributedSampler` default behavior by padding datasets.
+- Created `scripts/data/verify_sharding.jl` and `notebook/C4_Data_Sharding.ipynb`.
+- Added `make verify-data`.
+- All ranks now process exactly the same number of items and batches per epoch.
 
 ## Commands that pass
 
@@ -42,6 +42,7 @@ Thesis repo commit: `pending commit`
 - `make launch-4`
 - `make sync-model`
 - `make verify-sync`
+- `make verify-data`
 
 ## Commands that fail
 
@@ -53,4 +54,4 @@ Thesis repo commit: `pending commit`
 
 ## Next exact action
 
-Start checkpoint C4: Distributed data sharding. Implement `DistributedDataContainer` usage and verify dataset coverage and duplication policy are documented and tested.
+Start checkpoint C5: Gradient synchronization minimal case. Ensure DDP gradients match single-process global-batch gradients within numerical tolerance.
