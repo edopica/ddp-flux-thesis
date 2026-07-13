@@ -28,6 +28,7 @@ C0 - Repository and API audit.
 ## Non-negotiable rules
 
 - Do not optimize before correctness tests pass.
+- All modifications to the `Flux.jl` upstream repository must be strictly motivated by a specific failure mode and fully documented (e.g., via ADRs or Notebooks) explaining the root cause and the fix.
 - Keep DDP communication outside automatic differentiation for the baseline.
 - Do not implement a custom optimizer for the main training path.
 - Use Optimisers.jl for optimizer setup and updates.

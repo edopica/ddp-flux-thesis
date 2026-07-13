@@ -1,13 +1,13 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C4 - Distributed data sharding (Done)  
-Active Flux branch: `ddp/data`  
+Current checkpoint: C6 - Optimisers.jl integration (Done)  
+Active Flux branch: `ddp/optimizer`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux upstream commit: `d6ff1bba08f39eb866ec5747bc23c1777cc88c6f`  
 Last update: `2026-07-13`  
-Last reproducible command: `make verify-data`  
+Last reproducible command: `make verify-gradients`  
 Current blocker: `none`  
-Next action: Implement C5 — Gradient synchronization minimal case
+Next action: Implement C7 — End-to-end two-GPU example
 
 ## Goal
 
@@ -33,24 +33,14 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 | C2 | Done | `ddp/launch` | Distributed launch skeleton | 2-process and 4-process launches complete without deadlock | `openwiki/devlog/20260709-c2-launch.md` |
 | C3 | Done | `ddp/sync-model` | Model broadcast and parameter verification | All ranks start from identical parameters | `openwiki/devlog/20260711-c3-sync-model.md` |
 | C4 | Done | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | `openwiki/devlog/20260713-c4-data-sharding.md` |
-| C5 | Not started | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | - |
-| C6 | Not started | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | - |
+| C5 | Done | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | `scripts/sync/verify_gradients.jl` |
+| C6 | Done | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | `scripts/sync/verify_gradients.jl` |
 | C7 | Not started | `ddp/docs-examples` | End-to-end two-GPU example | One documented command reproduces training on 2 GPUs | - |
 | C8 | Not started | `ddp/tests` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | - |
 | C9 | Not started | `ddp/perf` | Profiling and bottleneck report | Timeline plus bottleneck analysis exists | - |
 | C10 | Not started | `ddp/perf` | Performance improvement pass | Throughput improves or bottleneck is explained with evidence | - |
 | C11 | Not started | `ddp/docs-examples` | Documentation and thesis-ready examples | New user can reproduce examples and understand limitations | - |
 | C12 | Not started | `final/evaluation` | Final evaluation package | Correctness, throughput, speedup, memory, limitations, and future work are reported | - |
-
-## C0 goals
-
-- [x] Verify local Flux checkout and remotes.
-- [x] Create local Julia environment that develops Flux from the local path.
-- [x] Install `mpiexecjl`.
-- [x] Run CPU/MPI smoke test.
-- [x] Audit `src/distributed`, distributed extensions, tests, and docs.
-- [x] Update `openwiki/context/current.md`.
-- [x] Write first devlog entry.
 
 ## Cluster & MPI Guardrails
 
@@ -86,15 +76,5 @@ make launch-4
 make sync-model
 make verify-sync
 make verify-data
+make verify-gradients
 ```
-
-## C3 goals
-
-- [x] Broadcast model parameters from rank 0 to all ranks via `synchronize!!`.
-- [x] Verify all ranks hold bit-identical parameters (max deviation = 0.0).
-- [x] Verify rank 0's model is unchanged after broadcast.
-- [x] Broadcast optimizer state via `synchronize!!`.
-- [x] Test with a larger model (3-layer MLP, 9729 params).
-- [x] Verify synced model matches rank 0's original seed-42 build.
-- [x] Update devlog and context.
-

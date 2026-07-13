@@ -1,11 +1,11 @@
 # Current context
 
-Date: 2026-07-13
-Active checkpoint: C4 - Distributed data sharding (Done) -> C5 - Gradient synchronization minimal case
-Active Flux branch: `ddp/data`  
+Date: 2026-07-14
+Active checkpoint: C6 - Optimisers.jl integration (Done) -> C7 - End-to-end two-GPU example
+Active Flux branch: `ddp/optimizer`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux commit: `d6ff1bba08f39eb866ec5747bc23c1777cc88c6f`  
-Thesis repo commit: `pending commit`
+Thesis repo commit: `ddbe0e1`
 
 ## What is known
 
@@ -22,11 +22,11 @@ Thesis repo commit: `pending commit`
 
 ## What was done last
 
-- Implemented C4: Fixed mathematical flaw in `DistributedDataContainer` that caused bounds errors and DDP deadlocks when distributing unaligned dataset sizes.
-- Replicated PyTorch's `DistributedSampler` default behavior by padding datasets.
-- Created `scripts/data/verify_sharding.jl` and `notebook/C4_Data_Sharding.ipynb`.
-- Added `make verify-data`.
-- All ranks now process exactly the same number of items and batches per epoch.
+- Implemented C5 & C6: Validated that gradient accumulation over mini-batches matches global batch gradients within floating point precision limits.
+- Found that `Adam` amplifies small gradient floating-point noise `O(eps(Float32))` into macroscopic parameter differences `O(0.0005)`. Used `Descent` for strictly deterministic parameter trajectory matching.
+- Implemented `DistributedUtils.resolve_unused_parameters!` in `Flux.jl` to fix conditional graph deadlocks by replacing `nothing` gradients with zero-filled arrays.
+- Created `scripts/sync/verify_gradients.jl` and verified cross-rank parameter synchronization over 20 steps.
+- Updated `make verify-gradients` to run tests on HPC cluster via PMI2.
 
 ## Commands that pass
 
@@ -43,6 +43,7 @@ Thesis repo commit: `pending commit`
 - `make sync-model`
 - `make verify-sync`
 - `make verify-data`
+- `make verify-gradients`
 
 ## Commands that fail
 
@@ -54,4 +55,4 @@ Thesis repo commit: `pending commit`
 
 ## Next exact action
 
-Start checkpoint C5: Gradient synchronization minimal case. Ensure DDP gradients match single-process global-batch gradients within numerical tolerance.
+Start checkpoint C7: End-to-end two-GPU example. Implement a complete example using real data (e.g. HuggingFaceDatasets.jl) that can be run on 2 GPUs to ensure NCCL communication paths are working.

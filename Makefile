@@ -55,3 +55,6 @@ verify-sync:
 
 verify-data:
 	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 4 $(JULIA) --project=. scripts/data/verify_sharding.jl; else $(MPIEXECJL) --project=. -n 4 $(JULIA) scripts/data/verify_sharding.jl; fi
+verify-gradients:
+	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 4 $(JULIA) --project=. scripts/sync/verify_gradients.jl; else $(MPIEXECJL) --project=. -n 4 $(JULIA) scripts/sync/verify_gradients.jl; fi
+

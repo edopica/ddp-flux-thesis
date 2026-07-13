@@ -64,10 +64,10 @@ end
 """
     default_setup_fn(model)
 
-Sets up the optimizer state using Adam(0.001f0) via Optimisers.jl.
+Sets up the optimizer state using Descent(0.01f0) via Optimisers.jl.
 """
 function default_setup_fn(model)
-    Optimisers.setup(Adam(0.001f0), model)
+    Optimisers.setup(Descent(0.01f0), model)
 end
 
 # ---------------------------------------------------------------------------

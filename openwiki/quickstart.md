@@ -2,8 +2,8 @@
 
 Flux.jl DDP Thesis — a thesis-control workspace for stabilizing, testing, documenting, and evaluating Distributed Data Parallel training in Flux.jl.
 
-**Current checkpoint:** C4 — Distributed data sharding (Done) → C5 — Gradient synchronization minimal case  
-**Active Flux branch:** `ddp/data`
+**Current checkpoint:** C6 — Optimisers.jl integration (Done) → C7 — End-to-end two-GPU example  
+**Active Flux branch:** `ddp/optimizer`
 
 ## Repository overview
 
@@ -18,7 +18,7 @@ Key areas:
 | `scripts/remote/` | Cluster deployment and synchronization |
 | `scripts/reference/` | C1 deterministic single-process baseline |
 | `scripts/launch/` | C2 distributed launch skeleton |
-| `scripts/sync/` | C3 model broadcast and verification |
+| `scripts/sync/` | C3 model broadcast and C5/C6 gradient/optimizer synchronization |
 | `scripts/data/` | C4 distributed data sharding verification |
 | `artifacts/baselines/` | Reference loop baseline data |
 | `artifacts/logs/` | Audit and test output logs |
@@ -34,7 +34,7 @@ make health-check         # MPI/PMI validation
 make smoke-cpu            # 2-process MPI smoke test
 ```
 
-All reproducible commands (through C4): `make env`, `make install-mpiexec`, `make check`, `make health-check`, `make smoke-cpu`, `make audit`, `make reference`, `make reference-verify`, `make launch-2`, `make launch-4`, `make sync-model`, `make verify-sync`, `make verify-data`.
+All reproducible commands (through C6): `make env`, `make install-mpiexec`, `make check`, `make health-check`, `make smoke-cpu`, `make audit`, `make reference`, `make reference-verify`, `make launch-2`, `make launch-4`, `make sync-model`, `make verify-sync`, `make verify-data`, `make verify-gradients`.
 
 ## Documentation sections
 
@@ -66,6 +66,7 @@ Chronological development log entries for each checkpoint and milestone.
 - **[2026-07-10](devlog/2026-07-10.md)** — PMI mismatch guardrails.
 - **[20260711-c3-sync-model](devlog/20260711-c3-sync-model.md)** — C3 model broadcast and verification.
 - **[20260713-c4-data-sharding](devlog/20260713-c4-data-sharding.md)** — C4 distributed data sharding and padding fix.
+- **[20260713-c5-c6-grad-sync](devlog/20260713-c5-c6-grad-sync.md)** — C5/C6 gradient synchronization and Optimisers.jl integration.
 
 ### Audits
 Codebase audit notes.
