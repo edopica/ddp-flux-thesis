@@ -93,7 +93,7 @@ One-page audit note covering existing API, missing pieces, risky areas, and chos
 
 ## Missing pieces
 
-1. **No Flux documentation** — zero mentions of distributed training in `openwiki/`. No user-facing guide exists.
+1. **No Flux documentation** — zero mentions of distributed training in `wiki/`. No user-facing guide exists.
 2. **No end-to-end training loop example** — only primitive tests, no complete DDP training script.
 3. **Test runner gap** — most test files (`common.jl`, `data.jl`, `optimizer.jl`, `synchronized.jl`) are not run by `runtests.jl`.
 4. **No gradient correctness test** — no test that verifies DDP gradients match a single-process global-batch gradient.

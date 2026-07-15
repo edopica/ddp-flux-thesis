@@ -1,9 +1,9 @@
-# OpenWiki Quickstart
+# Wiki Quickstart
 
 Flux.jl DDP Thesis — a thesis-control workspace for stabilizing, testing, documenting, and evaluating Distributed Data Parallel training in Flux.jl.
 
-**Current checkpoint:** C6 — Optimisers.jl integration (Done) → C7 — End-to-end two-GPU example  
-**Active Flux branch:** `ddp/optimizer`
+**Current checkpoint:** C6b — Upstream PR preparation  
+**Active Flux branch:** `ddp/upstream-pr`
 
 ## Repository overview
 
@@ -34,7 +34,7 @@ make health-check         # MPI/PMI validation
 make smoke-cpu            # 2-process MPI smoke test
 ```
 
-All reproducible commands (through C6): `make env`, `make install-mpiexec`, `make check`, `make health-check`, `make smoke-cpu`, `make audit`, `make reference`, `make reference-verify`, `make launch-2`, `make launch-4`, `make sync-model`, `make verify-sync`, `make verify-data`, `make verify-gradients`.
+All reproducible commands (through C6): `make env`, `make install-mpiexec`, `make check`, `make health-check`, `make smoke-cpu`, `make audit`, `make reference`, `make reference-verify`, `make launch-2`, `make launch-4`, `make sync-model`, `make verify-sync`, `make verify-data`, `make verify-gradients`, `make verify-conditional`.
 
 ## Documentation sections
 
@@ -67,6 +67,9 @@ Chronological development log entries for each checkpoint and milestone.
 - **[20260711-c3-sync-model](devlog/20260711-c3-sync-model.md)** — C3 model broadcast and verification.
 - **[20260713-c4-data-sharding](devlog/20260713-c4-data-sharding.md)** — C4 distributed data sharding and padding fix.
 - **[20260713-c5-c6-grad-sync](devlog/20260713-c5-c6-grad-sync.md)** — C5/C6 gradient synchronization and Optimisers.jl integration.
+- **[20260714-openwiki-manual-update](devlog/20260714-openwiki-manual-update.md)** — Manual documentation update due to API error.
+- **[20260715-conditional-testing](devlog/20260715-conditional-testing.md)** — Enhanced testing for conditional graphs.
+- **[20260716-wiki-rename](devlog/20260716-wiki-rename.md)** — Renamed openwiki to wiki and standard terminology update.
 
 ### Audits
 Codebase audit notes.
@@ -89,7 +92,7 @@ Templates for new documentation entries.
 
 When working in this repository:
 
-1. Read `README.md` and `openwiki/context/current.md` first.
+1. Read `README.md` and `wiki/context/current.md` first.
 2. Check the latest devlog entry for recent activity.
 3. Consult relevant ADRs before making architectural changes.
 4. Record all reproducible commands and their outcomes.

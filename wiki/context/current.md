@@ -1,11 +1,11 @@
 # Current context
 
-Date: 2026-07-14
-Active checkpoint: C6 - Optimisers.jl integration (Done) -> C7 - End-to-end two-GPU example
-Active Flux branch: `ddp/optimizer`  
+Date: 2026-07-16
+Active checkpoint: C6b - Upstream PR preparation
+Active Flux branch: `ddp/upstream-pr`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux commit: `d6ff1bba08f39eb866ec5747bc23c1777cc88c6f`  
-Thesis repo commit: `ddbe0e1`
+Thesis repo commit: `6a176ca`
 
 ## What is known
 
@@ -27,15 +27,19 @@ Thesis repo commit: `ddbe0e1`
 - Implemented `DistributedUtils.resolve_unused_parameters!` in `Flux.jl` to fix conditional graph deadlocks by replacing `nothing` gradients with zero-filled arrays.
 - Created `scripts/sync/verify_gradients.jl` and verified cross-rank parameter synchronization over 20 steps.
 - Updated `make verify-gradients` to run tests on HPC cluster via PMI2.
+- Enhanced `scripts/sync/verify_conditional.jl` to include 5 end-to-end tests for conditional graphs and unused parameters, plus a strict deterministic mathematical baseline verification. Added `make verify-conditional` (runs on 3 ranks).
+- Renamed `openwiki` directory to `wiki` and updated all internal references to adhere to the standard terminology.
 
 ## Commands that pass
 
 - `make env`
+- `make precompile`
 - `make install-mpiexec`
 - `make check`
 - `make health-check`
 - `make smoke-cpu`
 - `make audit`
+- `make status`
 - `make reference`
 - `make reference-verify`
 - `make launch-2`
@@ -44,6 +48,7 @@ Thesis repo commit: `ddbe0e1`
 - `make verify-sync`
 - `make verify-data`
 - `make verify-gradients`
+- `make verify-conditional`
 
 ## Commands that fail
 
@@ -55,4 +60,4 @@ Thesis repo commit: `ddbe0e1`
 
 ## Next exact action
 
-Start checkpoint C7: End-to-end two-GPU example. Implement a complete example using real data (e.g. HuggingFaceDatasets.jl) that can be run on 2 GPUs to ensure NCCL communication paths are working.
+Start checkpoint C6b: Upstream PR preparation. Prepare the commits and ensure all correctness tests are ready to be integrated into the upstream Flux.jl repository before moving on to the C7 End-to-end examples.

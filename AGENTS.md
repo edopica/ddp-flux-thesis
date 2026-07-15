@@ -9,10 +9,10 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 Read these files before acting:
 
 1. `README.md`
-2. `openwiki/context/current.md`
-3. Latest file in `openwiki/devlog/`
-4. Relevant files in `openwiki/decisions/`
-5. Relevant files in `openwiki/audits/`
+2. `wiki/context/current.md`
+3. Latest file in `wiki/devlog/`
+4. Relevant files in `wiki/decisions/`
+5. Relevant files in `wiki/audits/`
 
 ## Current checkpoint
 
@@ -45,19 +45,19 @@ C0 - Repository and API audit.
 
 ## Before ending a session
 
-- Update `openwiki/context/current.md`.
+- Update `wiki/context/current.md`.
 - Add or update today’s devlog entry.
 - Update the README progress table if the status changed.
-- Record failures in `openwiki/failures/` if any command failed.
+- Record failures in `wiki/failures/` if any command failed.
 - Print the exact next action.
 
-## OpenWiki
+## Wiki
 
-This repository has documentation located in the /openwiki directory.
+This repository has documentation located in the /wiki directory.
 
 Start here:
-- [OpenWiki quickstart](openwiki/quickstart.md)
+- [Wiki quickstart](wiki/quickstart.md)
 
-OpenWiki includes repository overview, architecture notes, workflows, domain concepts, operations, integrations, testing guidance, and source maps.
+Wiki includes repository overview, architecture notes, workflows, domain concepts, operations, integrations, testing guidance, and source maps.
 
-When working in this repository, read the OpenWiki quickstart first, then follow its links to the relevant architecture, workflow, domain, operation, and testing notes.
+When working in this repository, read the Wiki quickstart first, then follow its links to the relevant architecture, workflow, domain, operation, and testing notes.

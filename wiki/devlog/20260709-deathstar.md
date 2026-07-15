@@ -6,7 +6,7 @@ Set up the `deathstar` remote node for project execution and test the SSH pipeli
 
 ## Completed
 
-- Created `openwiki/context/deathstar.md` documenting the rules and usage for the `deathstar` node (a non-SLURM Ubuntu machine owned by someone else).
+- Created `wiki/context/deathstar.md` documenting the rules and usage for the `deathstar` node (a non-SLURM Ubuntu machine owned by someone else).
 - Emphasized restrictions: no overuse, no destructive commands, caution with heavy workflows.
 - Linked `deathstar.md` in `remote-nodes.md`.
 - Tested the SSH pipeline (`sync_code.sh` and `setup_node.sh`), encountered an initial SSH authentication error which was resolved by the user.

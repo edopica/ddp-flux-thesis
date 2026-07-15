@@ -27,5 +27,5 @@
 - Run it in a real MPI environment to confirm the fix works and all ranks complete training loops without deadlocking.
 
 ## 6. Documentation
-- Write the devlog `openwiki/devlog/202607XX-c4-data-sharding.md`.
+- Write the devlog `wiki/devlog/202607XX-c4-data-sharding.md`.
 - Update the thesis dashboard and `current.md` to reflect C4 completion.

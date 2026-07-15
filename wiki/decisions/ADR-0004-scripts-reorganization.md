@@ -24,4 +24,4 @@ The new layout is:
 - Improved navigability and cleaner filenames.
 - Simpler addition of new checkpoints (C4-C12) as they will naturally fall into new subdirectories.
 - Git history remains intact via `git mv`.
-- Makefile paths and OpenWiki documentation required updates to reflect the new paths.
+- Makefile paths and Wiki documentation required updates to reflect the new paths.
