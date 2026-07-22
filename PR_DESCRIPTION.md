@@ -34,7 +34,7 @@ elements.  Surplus slots are filled by wrapping around from the start
 (`[1, 2, …, n_samples, 1, 2, …]`).  The data‑loading logic is unchanged;
 only the index array passed to `DistributedDataContainer` is padded.
 
-## 3. `resolve_unused_parameters!` for conditional computation graphs
+## 3. `resolve_unused_parameters!!` for conditional computation graphs
 
 **Problem:** A model with conditional branches (e.g. `if`/`else` selecting
 different layers) can produce `nothing` gradients on ranks that did not execute
@@ -42,7 +42,7 @@ a particular parameter.  When `DistributedOptimizer` later calls `allreduce`
 over all gradients, the mismatched set of buffers deadlocks — different ranks
 participate in different collectives.
 
-**Fix:** New public function `resolve_unused_parameters!(backend, gs, model)`
+**Fix:** New public function `resolve_unused_parameters!!(backend, gs, model)`
 replaces every `nothing` gradient with a zero‑filled array matching the
 parameter's shape, element type, and device.  It walks nested structures
 (NamedTuples, etc.) and works with arbitrary tree depths thanks to Functors'
@@ -62,23 +62,23 @@ All tests pass with `mpiexecjl -n 2` on CPU/MPI.
 ## Files changed
 
 ```
- .github/workflows/JuliaFormatter.yml               |  2 +-
- ext/FluxMPIExt/FluxMPIExt.jl                       | 37 +++++++++-
- src/distributed/public_api.jl                      | 41 ++++++++++-
- .../{common.jl => common_distributedtest.jl}       | 17 ++++-
- test/ext_distributed/data.jl                       | 24 -------
- test/ext_distributed/data_distributedtest.jl       | 62 +++++++++++++++++
- .../{optimizer.jl => optimizer_distributedtest.jl} | 18 ++++-
- test/ext_distributed/reduce_distributedtest.jl     |  4 ++
- ...hronized.jl => synchronized_distributedtest.jl} | 18 ++++-
- .../unused_parameters_distributedtest.jl           | 80 ++++++++++++++++++++++
- test/runtests.jl                                   |  2 +-
- 11 files changed, 272 insertions(+), 33 deletions(-)
+ NEWS.md                                            | 15 ++++++++++++
+ docs/src/guide/gpu.md                              | 18 ++++++++++++++
+ ext/FluxMPIExt/FluxMPIExt.jl                       | 37 +++++++++++++++++-
+ src/distributed/public_api.jl                      | 38 ++++++++++++++++++-
+ .../{common.jl => common_distributedtest.jl}       | 18 +++++++++-
+ test/ext_distributed/data.jl                       | 24 ---------------
+ test/ext_distributed/data_distributedtest.jl       | 62 +++++++++++++++++++++++++
+ .../{optimizer.jl => optimizer_distributedtest.jl} | 19 +++++++++-
+ test/ext_distributed/reduce_distributedtest.jl     |  4 +++
+ ...hronized.jl => synchronized_distributedtest.jl} | 19 +++++++++-
+ .../unused_parameters_distributedtest.jl           | 80 ++++++++++++++++++++++++++++++
+ 11 files changed, 310 insertions(+), 39 deletions(-)
 ```
 
 ## Backward compatibility
 
 All changes are additive or replace a broken code path with a working one.
-`resolve_unused_parameters!` is a new, optional public API — existing
+`resolve_unused_parameters!!` is a new, optional public API — existing
 training loops that don't use conditional computation are unaffected.
 The PMI check can be bypassed with `force=true`.
