@@ -1,13 +1,13 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C6b - Upstream PR preparation  
+Current checkpoint: C6b - Upstream PR preparation (DONE)
 Active Flux branch: `ddp/upstream-pr`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
-Flux upstream commit: `d6ff1bba08f39eb866ec5747bc23c1777cc88c6f`  
+Flux PR commits: `60272e41`, `d00c5af6`, `dc73fc75`  
 Last update: `2026-07-16`  
-Last reproducible command: `make verify-gradients`  
+Last reproducible command: `scripts/remote/run_tests.sh` (HPC, 2 MPI ranks, both test files pass)  
 Current blocker: `none`  
-Next action: Implement C6b — Upstream PR preparation
+Next action: C7 — End-to-end examples
 
 ## Goal
 
@@ -35,7 +35,7 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 | C4 | Done | `ddp/data` | Distributed data sharding | Dataset coverage and duplication policy are documented and tested | `wiki/devlog/20260713-c4-data-sharding.md` |
 | C5 | Done | `ddp/grad-sync` | Gradient synchronization minimal case | DDP gradient matches single-process global-batch gradient within tolerance | `scripts/sync/verify_gradients.jl` |
 | C6 | Done | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | `scripts/sync/verify_gradients.jl` |
-| C6b | Not started | `ddp/upstream-pr` | Upstream PR preparation | Commits polished, tests added/updated, tests passing | - |
+| C6b | Done | `ddp/upstream-pr` | Upstream PR preparation | Commits polished, tests added/updated, tests passing | HPC: 20/20 tests pass, `wiki/devlog/20260716-c6b-hpc-tests.md` |
 | C7 | Not started | `ddp/docs-examples` | End-to-end two-GPU example | One documented command reproduces training on 2 GPUs | - |
 | C8 | Not started | `ddp/tests` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | - |
 | C9 | Not started | `ddp/perf` | Profiling and bottleneck report | Timeline plus bottleneck analysis exists | - |

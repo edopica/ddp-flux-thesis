@@ -1,4 +1,5 @@
 .git
 .julia
 Manifest.toml
+.opencode/
 artifacts/baselines/*.jld2

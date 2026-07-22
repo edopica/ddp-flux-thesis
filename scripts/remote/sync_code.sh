@@ -17,7 +17,7 @@ ssh "$REMOTE_HOST" "mkdir -p $REMOTE_PROJECT_DIR"
 
 # Sync ddp_flux (the Flux fork)
 echo "Syncing ddp_flux..."
-rsync -avz --exclude='.git' --exclude='.julia' --exclude='Manifest.toml' \
+rsync -avz --exclude='.git' --exclude='.julia' \
     ../ddp_flux "$REMOTE_HOST:$REMOTE_PROJECT_DIR/"
 
 # Sync ddp-flux-thesis (the thesis workspace)
