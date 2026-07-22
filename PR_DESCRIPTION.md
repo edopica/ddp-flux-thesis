@@ -1,8 +1,10 @@
 # Fix three DDP deadlock/crash scenarios in DistributedUtils
 
 This PR addresses three independent correctness issues in Flux's distributed
-training path (MPI backend).  Each bug causes either a deadlock or a hard crash
+training path (MPI backend), originally introduced in the distributed data parallel PR (#2464). Each bug causes either a deadlock or a hard crash
 when running DDP with non‑trivial models or launch configurations.
+
+Additionally, this PR enables MPI distributed tests to run automatically on Linux CI runners.
 
 ## 1. PMI version mismatch guardrails
 
@@ -59,26 +61,29 @@ parameter's shape, element type, and device.  It walks nested structures
 
 All tests pass with `mpiexecjl -n 2` on CPU/MPI.
 
-## Files changed
-
-```
- NEWS.md                                            | 15 ++++++++++++
- docs/src/guide/gpu.md                              | 18 ++++++++++++++
- ext/FluxMPIExt/FluxMPIExt.jl                       | 37 +++++++++++++++++-
- src/distributed/public_api.jl                      | 38 ++++++++++++++++++-
- .../{common.jl => common_distributedtest.jl}       | 18 +++++++++-
- test/ext_distributed/data.jl                       | 24 ---------------
- test/ext_distributed/data_distributedtest.jl       | 62 +++++++++++++++++++++++++
- .../{optimizer.jl => optimizer_distributedtest.jl} | 19 +++++++++-
- test/ext_distributed/reduce_distributedtest.jl     |  4 +++
- ...hronized.jl => synchronized_distributedtest.jl} | 19 +++++++++-
- .../unused_parameters_distributedtest.jl           | 80 ++++++++++++++++++++++++++++++
- 11 files changed, 310 insertions(+), 39 deletions(-)
-```
-
 ## Backward compatibility
 
 All changes are additive or replace a broken code path with a working one.
 `resolve_unused_parameters!!` is a new, optional public API — existing
 training loops that don't use conditional computation are unaffected.
 The PMI check can be bypassed with `force=true`.
+
+## Files changed
+
+```
+ NEWS.md                                            |  15 +++
+ docs/make.jl                                       |   1 +
+ docs/src/guide/distributed.md                      | 137 +++++++++++++++++++++
+ docs/src/guide/gpu.md                              |  18 +++
+ ext/FluxMPIExt/FluxMPIExt.jl                       |  38 +++++-
+ src/distributed/public_api.jl                      |  41 +++++-
+ .../{common.jl => common_distributedtest.jl}       |  23 +++-
+ test/ext_distributed/data.jl                       |  24 ----
+ test/ext_distributed/data_distributedtest.jl       |  62 ++++++++++
+ .../{optimizer.jl => optimizer_distributedtest.jl} |  22 +++-
+ test/ext_distributed/reduce_distributedtest.jl     |   4 +
+ ...hronized.jl => synchronized_distributedtest.jl} |  22 +++-
+ .../unused_parameters_distributedtest.jl           |  80 ++++++++++++
+ test/runtests.jl                                   |   2 +-
+ 14 files changed, 449 insertions(+), 40 deletions(-)
+```
