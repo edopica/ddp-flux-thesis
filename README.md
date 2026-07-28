@@ -1,10 +1,10 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C7 - End-to-end examples (DONE)
-Active Flux branch: `ddp/docs-examples`  
+Current checkpoint: C8 - Correctness battery (ACTIVE)
+Active Flux branch: `ddp/tests`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux PR commits: `60272e41`, `d00c5af6`, `dc73fc75`  
-Last update: `2026-07-22`  
+Last update: `2026-07-28`  
 Last reproducible command: `NTASKS=2 ./scripts/remote/run.sh hpc make example-ddp` (HPC, 2 MPI ranks, passes)  
 Current blocker: `none`  
 Next action: C8 — Correctness battery

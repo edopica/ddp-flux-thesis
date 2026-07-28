@@ -2,8 +2,8 @@
 
 Flux.jl DDP Thesis — a thesis-control workspace for stabilizing, testing, documenting, and evaluating Distributed Data Parallel training in Flux.jl.
 
-**Current checkpoint:** C6b — Upstream PR preparation  
-**Active Flux branch:** `ddp/upstream-pr`
+**Current checkpoint:** C8 — Correctness battery  
+**Active Flux branch:** `ddp/tests`
 
 ## Repository overview
 
@@ -69,7 +69,10 @@ Chronological development log entries for each checkpoint and milestone.
 - **[20260713-c5-c6-grad-sync](devlog/20260713-c5-c6-grad-sync.md)** — C5/C6 gradient synchronization and Optimisers.jl integration.
 - **[20260714-openwiki-manual-update](devlog/20260714-openwiki-manual-update.md)** — Manual documentation update due to API error.
 - **[20260715-conditional-testing](devlog/20260715-conditional-testing.md)** — Enhanced testing for conditional graphs.
+- **[20260716-c6b-hpc-tests](devlog/20260716-c6b-hpc-tests.md)** — Polished upstream PR commits and ran HPC tests.
 - **[20260716-wiki-rename](devlog/20260716-wiki-rename.md)** — Renamed openwiki to wiki and standard terminology update.
+- **[20260722-c7-end-to-end](devlog/20260722-c7-end-to-end.md)** — C7 end-to-end example integration.
+- **[20260728-c7-fixes](devlog/20260728-c7-fixes.md)** — Addressed C7 blindspots (data sharding, checkpointing, validation loop) and validated HPC GPU.
 
 ### Audits
 Codebase audit notes.

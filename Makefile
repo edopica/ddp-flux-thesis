@@ -8,7 +8,7 @@ SLURM_MPI_TYPE ?= pmi2
 .PHONY: env precompile env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify health-check launch-2 launch-4 sync-model verify-sync verify-data verify-gradients verify-conditional example-ddp
 
 env:
-	FLUX_REPO_PATH="$(FLUX_REPO_PATH)" $(JULIA) --project=. -e 'using Pkg; Pkg.develop(path=ENV["FLUX_REPO_PATH"]); Pkg.add(["MPI","Optimisers","Zygote","Functors","MLUtils","Adapt","BenchmarkTools","Revise"]); Pkg.instantiate(); Pkg.precompile()'
+	FLUX_REPO_PATH="$(FLUX_REPO_PATH)" $(JULIA) --project=. -e 'using Pkg; Pkg.develop(path=ENV["FLUX_REPO_PATH"]); Pkg.add(["MPI","Optimisers","Zygote","Functors","MLUtils","Adapt","BenchmarkTools","Revise","JLD2"]); Pkg.instantiate(); Pkg.precompile()'
 
 precompile:
 	$(JULIA) --project=. -t auto -e 'using Pkg; Pkg.precompile()'
