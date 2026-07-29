@@ -3,3 +3,4 @@
 Manifest.toml
 .opencode/
 artifacts/baselines/*.jld2
+reports/

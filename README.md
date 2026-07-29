@@ -1,10 +1,12 @@
 # Flux.jl DDP Thesis Dashboard
 
 Current checkpoint: C8 - Correctness battery (ACTIVE)
-Active Flux branch: `ddp/tests`  
+Active Flux branch: `master`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
-Flux PR commits: `60272e41`, `d00c5af6`, `dc73fc75`  
-Last update: `2026-07-28`  
+Flux base commit: `d583411f` (merge of `ddp/docs-examples` + `upsteam-pr` into `master`)  
+Base upstream commit: `780af631` (upstream/master)  
+Preserved branches: `upsteam-pr`  
+Last update: `2026-07-29`  
 Last reproducible command: `NTASKS=2 ./scripts/remote/run.sh hpc make example-ddp` (HPC, 2 MPI ranks, passes)  
 Current blocker: `none`  
 Next action: C8 — Correctness battery
@@ -37,7 +39,7 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 | C6 | Done | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | `scripts/sync/verify_gradients.jl` |
 | C6b | Done | `ddp/upstream-pr` | Upstream PR preparation | Commits polished, tests added/updated, tests passing | HPC: 20/20 tests pass, `wiki/devlog/20260716-c6b-hpc-tests.md` |
 | C7 | Done | `ddp/docs-examples` | End-to-end two-GPU example | One documented command reproduces training on 2 GPUs | `make example-ddp` (HPC test devlog) |
-| C8 | Not started | `ddp/tests` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | - |
+| C8 | Not started | `master` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | - |
 | C9 | Not started | `ddp/perf` | Profiling and bottleneck report | Timeline plus bottleneck analysis exists | - |
 | C10 | Not started | `ddp/perf` | Performance improvement pass | Throughput improves or bottleneck is explained with evidence | - |
 | C11 | Not started | `ddp/docs-examples` | Documentation and thesis-ready examples | New user can reproduce examples and understand limitations | - |
