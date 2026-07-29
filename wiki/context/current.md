@@ -18,10 +18,17 @@ Preserved reference branch: `upsteam-pr`
 
 ## What was done last
 
-- **Branch cleanup**: Merged all DDP work (`ddp/docs-examples` + `upsteam-pr`) into `master` at `d583411f`. Deleted stale branches (`ddp/docs-examples`, `ddp/upstream-pr`, `ddp/data`, `ddp/audit`, `ddp/tests`). Preserved `upsteam-pr` for reference.
-- Merge conflict in `docs/src/guide/distributed.md` resolved by taking `upsteam-pr` version (superset: validation loop, checkpointing, `Random.seed!`, no explicit `CUDA.device!`).
-- Updated README.md and wiki/context/current.md to point to `master`.
-- Conducted roundtable review of C8 plan: launcher `@test true` bug identified as P0 fix.
+- **C8.0/C8.1 harness implementation (2026-07-29):**
+  - Fixed launcher `@test true` → `proc.exitcode == 0` in `test/ext_distributed/runtests.jl`
+  - Created `test/ext_distributed/helper.jl` with `run_with_enforced_exit()`, `set_rank_seed!()`, `compare_structures()`
+  - Rewrapped all 6 distributed test files to use `run_with_enforced_exit()` pattern
+  - Added watchdog timeout (120s) + SIGUSR1 stack dump mechanism
+  - CI YAML `distributed_ci.yml`: 2-rank fast + 4-rank edge jobs, direct `mpiexecjl` invocation
+  - Fixed cyclic padding bug: `public_api.jl:273` now uses `mod1(i, total_size)` instead of unrestricted range
+  - Added N=1, N=2, N=0 test cases to `data_distributedtest.jl`
+  - Created correctness matrix at `wiki/testing/c8-correctness-matrix.md`
+  - **All changes uncommitted in Flux working tree** — 9 modified + 2 new files
+- **Deadlock verification:** Deferred — local MPICH segfaults with Julia 1.12/MPI.jl (see `wiki/failures/`)
 
 ## Commands that pass
 
@@ -31,8 +38,9 @@ Preserved reference branch: `upsteam-pr`
 
 ## Open questions
 
-- (Resolved by C8.md) Known failure modes to test: tiny-dataset sharding (N=1, W=4), NCCL silent fallback, tautological optimizer test, missing per-test timeouts, CI not enabling distributed flags.
+- Deadlock exit condition must be verified on HPC (local MPI broken)
+- N=0 `@test_throws ArgumentError` — source may not yet throw; test documents expected behavior, source fix may need separate PR
 
 ## Next exact action
 
-P0: Fix the launcher's `@test true` silent-pass bug in `test/ext_distributed/runtests.jl`.
+Commit the Flux working tree changes, then run deadlock verification on HPC or CI.
