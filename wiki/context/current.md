@@ -1,6 +1,6 @@
 # Current context
 
-Date: 2026-07-29
+Date: 2026-07-30
 Active checkpoint: C8 - Correctness battery
 Active Flux branch: `master` (at `d583411f`, merging `ddp/docs-examples` + `upsteam-pr`)
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
@@ -12,35 +12,35 @@ Preserved reference branch: `upsteam-pr`
 - The first implementation priority was understanding the current distributed code (C0-C6b done).
 - CPU/MPI verification and upstream PR prep is mostly done.
 - C7 is complete: an end-to-end example `scripts/examples/train_ddp.jl` was successfully created, executed on HPC using `make example-ddp`, and added as a documentation guide (`distributed.md`) to the Flux upstream docs.
-- The example explicitly handles a conditional graph (using `resolve_unused_parameters!!`) and operates conditionally on NCCL if CUDA is present.
 - The `resolve_unused_parameters!` API in Flux was updated to `!!` in recent upstream PR work, and our example scripts are aligned with this.
 - HPC precompilation works smoothly with `scripts/remote/precompile.sh hpc`.
 
 ## What was done last
 
-- **C8.0/C8.1 harness implementation (2026-07-29):**
-  - Fixed launcher `@test true` → `proc.exitcode == 0` in `test/ext_distributed/runtests.jl`
-  - Created `test/ext_distributed/helper.jl` with `run_with_enforced_exit()`, `set_rank_seed!()`, `compare_structures()`
-  - Rewrapped all 6 distributed test files to use `run_with_enforced_exit()` pattern
-  - Added watchdog timeout (120s) + SIGUSR1 stack dump mechanism
-  - CI YAML `distributed_ci.yml`: 2-rank fast + 4-rank edge jobs, direct `mpiexecjl` invocation
-  - Fixed cyclic padding bug: `public_api.jl:273` now uses `mod1(i, total_size)` instead of unrestricted range
-  - Added N=1, N=2, N=0 test cases to `data_distributedtest.jl`
-  - Created correctness matrix at `wiki/testing/c8-correctness-matrix.md`
-  - **All changes uncommitted in Flux working tree** — 9 modified + 2 new files
-- **Deadlock verification:** Deferred — local MPICH segfaults with Julia 1.12/MPI.jl (see `wiki/failures/`)
+- **C8.2 Collective Invariants (2026-07-30):**
+  - Rewrote `test/ext_distributed/common_distributedtest.jl` with five test blocks:
+    1. Data Type Coverage Matrix (MPI: Float32/Float64 on `Array`; NCCL: Float16/Float32 on `CuArray`)
+    2. Nonzero Root Broadcast (root=1)
+    3. Sum vs. Average Convention (nworkers==2: [2.0]/[4.0] → avg [3.0], sum [6.0])
+    4. Buffer Reuse Leakage (fill(rank,4) → mutate → fill(rank*2,4) → allreduce again)
+    5. NCCL vs MPI Math Equivalence (large Float32 CuArray, NCCL allreduce vs MPI allreduce via `backend.mpi_backend`, max abs diff < 1e-6)
+  - **HPC verification:** MPI/CPU 36/36 PASS (2 ranks, test project env); NCCL/GPU 37/37 PASS (2 ranks, thesis project env, `FLUX_TEST_DISTRIBUTED_NCCL=true`).
+  - **Test env resolution issue (documented, not fixed):** Adding CUDA/NCCL to `test/Project.toml` triggers a `StridedViews` conflict (explicit transitive pin 0.4.6 vs CUDA's 0.5 requirement). Workaround: run NCCL tests against the thesis project env (`~/projects/ddp-flux-thesis`), which has CUDA/NCCL precompiled. `test/Project.toml` was reverted to its original state.
 
 ## Commands that pass
 
 - `make example-ddp` (HPC and local)
 - `make precompile`
+- MPI/CPU `common_distributedtest.jl` (36/36, 2 ranks)
+- NCCL/GPU `common_distributedtest.jl` (37/37, 2 ranks, thesis env)
 - (All previous C1-C6b checks)
 
 ## Open questions
 
+- `test/Project.toml` cannot resolve with CUDA/NCCL added (StridedViews conflict). Fix needed before CI can run the NCCL path from the test project; candidate fix: investigate which transitive dep pins StridedViews 0.4.6 and loosen it, or restructure the test env.
 - Deadlock exit condition must be verified on HPC (local MPI broken)
 - N=0 `@test_throws ArgumentError` — source may not yet throw; test documents expected behavior, source fix may need separate PR
 
 ## Next exact action
 
-Commit the Flux working tree changes, then run deadlock verification on HPC or CI.
+Proceed to the next C8 sub-item: Functors traversal ordering test in `synchronized_distributedtest.jl`, or multi-step descent equivalence in `optimizer_distributedtest.jl`.
