@@ -43,6 +43,15 @@ C0 - Repository and API audit.
 - Do not treat “loss decreases” as proof of correctness.
 - Profile only after correctness tests pass.
 
+## HPC execution rules (hpc / deathstar)
+
+- Load the `remote` skill before running anything on `hpc` or `deathstar`.
+- On `hpc`, precompile ONLY on compute nodes: run `scripts/remote/precompile.sh hpc` after every `sync_code.sh` or Flux source change, and BEFORE running tests. Login-node julia compiles target the wrong CPU (`graniterapids` vs `icelake-server`); a skipped precompile makes the first test run silently recompile for ~2-5 min inside the test watchdog ("timeout on precomp").
+- Never run julia that loads the project envs (`--project=...` with `using Flux`) on the HPC login node.
+- Pass make variables as make args on `hpc` (`make c8-mpi FLUX_REPO_PATH=../ddp_flux`), not as env prefixes before the command (salloc execs argv directly). Resource overrides go before the *script*: `NTASKS=2 CPUS_PER_TASK=4 scripts/remote/run.sh hpc ...`.
+- If a run prints `Precompiling packages...`, a sync happened without a follow-up precompile: stop, precompile, rerun.
+- Evidence and rationale: `wiki/decisions/ADR-0005-precompile-compute-only.md`, `wiki/context/remote-nodes.md`, `wiki/devlog/2026-09-03-precompile-experiment.md`.
+
 ## Before ending a session
 
 - Update `wiki/context/current.md`.

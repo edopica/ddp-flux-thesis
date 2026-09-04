@@ -11,19 +11,28 @@ This document outlines the workflows for syncing local development code to remot
 ### 2. `scripts/remote/setup_node.sh <remote_host>`
 **Purpose**: Automatically initialize the remote environment after the first sync (or whenever `Project.toml` changes).
 **Mechanism**: Connects via SSH and executes `make env` on the remote side, establishing a native Julia environment.
+**Note**: `make env` only resolves dependencies since 2026-09 (it never precompiles: `JULIA_PKG_PRECOMPILE_AUTO=0` and no trailing `Pkg.precompile()`). Precompilation is a separate, compute-node-only step (see below).
 
-### 3. `scripts/remote/run.sh <remote_host> <command...>`
+### 3. `scripts/remote/precompile.sh <remote_host>`
+**Purpose**: Precompile both project envs (thesis env + `ddp_flux/test` env) on a **compute node**.
+**Mechanism**: Runs `make precompile-all` inside `srun` (via `salloc`), so every julia process compiles on gnode01/gnode02 (icelake-server), never on the login node.
+**When to run**: after every `sync_code.sh`, or after any change to the Flux fork source or to dependency manifests.
+
+### 4. `scripts/remote/run.sh <remote_host> <command...>`
 **Purpose**: Transparently execute a command (like `make check` or a specific script) on the remote node.
 **HPC Integration**: If the remote host is `hpc`, it automatically intercepts the command and prefixes it with the Slurm `srun` wrapper:
 `srun --gres=gpu:1 --mem=32G --cpus-per-task=8 --account=3320522 --partition=stud --qos=stud`
 This ensures active testing on the cluster uses compute nodes instead of tying up the head node.
 
-## Notes on Julia Precompilation
+## Notes on Julia Precompilation (measured on HPC, 2026-09-03)
 
-When using these scripts on an HPC cluster, you may encounter the following behaviors during package precompilation:
+Precompilation on this cluster was the source of long delays and test timeouts. The measured root causes and the rules that fix them:
 
-1. **Long Setup Times:** The initial run of `setup_node.sh` installs and precompiles heavy packages (like LLVM, Zygote, and Flux). This can take 5-10 minutes. If running this via an automated agent with strict timeouts, the command might get aborted. Simply re-run `setup_node.sh`—Julia will resume precompilation right where it left off.
-2. **Double Precompilation (Login vs. Compute Nodes):** `setup_node.sh` executes on the cluster's **login node**. However, `run.sh hpc` uses `srun` to execute your command on a **compute node**. Since compute nodes often have a different CPU architecture or instruction set than login nodes, Julia will detect the hardware change and trigger a second round of precompilation the first time you run `run.sh`. This is normal and ensures the code is optimized for the actual execution hardware.
+1. **Precompiling on the login node is wasted work.** Julia caches bake the host CPU feature set: the login node (`slnode01`, Xeon "Emerald Rapids", julia target `graniterapids`) and the compute nodes (gnode01/02, Xeon Gold Ice Lake, julia target `icelake-server`) do not share caches. Every precompile pass on the login node (5-10 min for the envs) left the compute nodes cold anyway; the first test run after a Flux source change then silently recompiled on-node for ~4 min inside the test harness's per-file watchdog (default 300 s, reports used 120 s) — that is the "timeout on precomp" symptom.
+2. **Fix: precompile only on compute nodes.** `scripts/remote/precompile.sh hpc` runs julia under `srun`. Measured: full env precompile on a compute node ~200 s (thesis) / ~220 s (Flux test env, first time after sync); steady-state cost per Flux source change ~2-3 min for both envs; afterwards the warm 2-rank test suite runs in ~4.5-5 min with zero in-test compilation. gnode01 and gnode02 are flag-identical, so one precompile pass warms both.
+3. **Do not pin `JULIA_CPU_TARGET`.** The env var only affects Pkg's precompile workers, not the loading process; only the CLI flag `-C` pins the target. Even `-C` cannot bridge login↔compute here because gnode-built images carry the `pconfig` feature, which the login node lacks. Keep all julia work on compute nodes instead.
+4. **`JULIA_PKG_PRECOMPILE_AUTO=0` is set for every `run.sh`/`precompile.sh` session** (see `scripts/remote/hosts/hpc.conf`) and inside `make env`. Effect measured 2026-09-03: it stops Pkg *operations* (develop/add/instantiate, e.g. during `make env` on the login node) from precompiling, so setup stays compile-free. **It does NOT stop silent load-time recompiles**: `using Flux` on a stale cache recompiles anyway (~97 s for Flux + FluxMPIExt, measured). The real protection is workflow: run `scripts/remote/precompile.sh hpc` after every sync/source change so caches are never stale when tests start. If you see recompilation starting during a test run, a sync happened without a following precompile — stop, precompile, rerun.
+5. **On `hpc`, pass make variables as make arguments, not env prefixes.** `scripts/remote/run.sh hpc "FLUX_REPO_PATH=../ddp_flux make c8-mpi"` fails with `salloc: error: _fork_command: Unable to find command "FLUX_REPO_PATH=../ddp_flux"` (salloc execs argv directly, no shell). Use `scripts/remote/run.sh hpc "make c8-mpi FLUX_REPO_PATH=../ddp_flux"` instead. Resource overrides (NTASKS, CPUS_PER_TASK) ARE env prefixes — but they must precede the *script*, e.g. `NTASKS=2 CPUS_PER_TASK=4 scripts/remote/run.sh hpc "make c8-mpi FLUX_REPO_PATH=../ddp_flux"`.
 
 ## Usage Example
 
@@ -37,7 +46,11 @@ To test the C2 distributed launch skeleton on the HPC cluster:
    ```bash
    ./scripts/remote/setup_node.sh hpc
    ```
-3. **Execute commands:**
+3. **Precompile on a compute node (after every sync / Flux source change):**
+   ```bash
+   ./scripts/remote/precompile.sh hpc
+   ```
+4. **Execute commands:**
    ```bash
    ./scripts/remote/run.sh hpc make check
    ./scripts/remote/run.sh hpc make smoke-cpu

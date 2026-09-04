@@ -1,15 +1,16 @@
 # Flux.jl DDP Thesis Dashboard
 
-Current checkpoint: C8 - Correctness battery (ACTIVE)
+Current checkpoint: C8 - Correctness battery (IN PROGRESS)
 Active Flux branch: `master`  
 Flux repo path: `/home/kurapica/Projects/ddp_flux/ddp_flux`  
 Flux base commit: `d583411f` (merge of `ddp/docs-examples` + `upsteam-pr` into `master`)  
-Base upstream commit: `780af631` (upstream/master)  
-Preserved branches: `upsteam-pr`  
-Last update: `2026-07-29`  
-Last reproducible command: `NTASKS=2 ./scripts/remote/run.sh hpc make example-ddp` (HPC, 2 MPI ranks, passes)  
-Current blocker: `none`  
-Next action: C8 — Correctness battery
+Base upstream commit: `404ff37d` (upstream/master, fetched 2026-08-17)  
+PR #2694 head: `bc40df25` (rebased `upsteam-pr`, 2 commits, mergeable)  
+Preserved branches: `upsteam-pr` (= PR head)  
+Last update: `2026-08-17`  
+Last reproducible command: `FLUX_REPO_PATH=../ddp_flux make c8-mpi-4` (deathstar, Julia 1.12, 4 MPI ranks, 7/7 PASS)  
+Current blocker: `none — CI on PR #2694 running`  
+Next action: monitor PR #2694 CI, then address review comments
 
 ## Goal
 
@@ -39,7 +40,7 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 | C6 | Done | `ddp/optimizer` | Optimisers.jl integration | Parameters remain synchronized after multiple updates | `scripts/sync/verify_gradients.jl` |
 | C6b | Done | `ddp/upstream-pr` | Upstream PR preparation | Commits polished, tests added/updated, tests passing | HPC: 20/20 tests pass, `wiki/devlog/20260716-c6b-hpc-tests.md` |
 | C7 | Done | `ddp/docs-examples` | End-to-end two-GPU example | One documented command reproduces training on 2 GPUs | `make example-ddp` (HPC test devlog) |
-| C8 | Not started | `master` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | - |
+| C8 | In progress | `master` | Correctness battery | Tests catch known failure modes and pass locally or in hardware-enabled CI | `make c8-mpi` (deathstar, 6/6 PASS) |
 | C9 | Not started | `ddp/perf` | Profiling and bottleneck report | Timeline plus bottleneck analysis exists | - |
 | C10 | Not started | `ddp/perf` | Performance improvement pass | Throughput improves or bottleneck is explained with evidence | - |
 | C11 | Not started | `ddp/docs-examples` | Documentation and thesis-ready examples | New user can reproduce examples and understand limitations | - |
@@ -50,6 +51,8 @@ Stabilize, test, document, and evaluate Distributed Data Parallel training suppo
 When launching on a Slurm cluster, it's crucial to match the launcher's PMI version with the MPI library's expected PMI protocol. 
 Flux.jl DDP is tested exclusively with Julia's default `MPICH_jll`, which uses the **PMI2** wire protocol.
 If you use a system MPI (`JULIA_MPI_BINARY=system`), you must match your `srun` configuration accordingly. 
+
+**Precompilation guardrail (Julia 1.12, measured 2026-09-03):** precompilation runs only on compute nodes. Login-node compiles target the wrong CPU (`graniterapids` vs `icelake-server`) and leave tests cold anyway. After every `sync_code.sh` or Flux source change, run `scripts/remote/precompile.sh hpc` (precompiles thesis env + Flux test env under `srun`). `make env` no longer precompiles and `JULIA_PKG_PRECOMPILE_AUTO=0` keeps the login node compile-free during Pkg operations; a stale cache will still recompile silently at first load, so never skip the precompile step after a sync. Details and measurements: `wiki/context/remote-nodes.md`, `wiki/devlog/2026-09-03-precompile-experiment.md`, ADR-0005.
 
 **Guardrails implemented:**
 - **Initialization checks**: `DistributedUtils.initialize(MPIBackend)` now inspects `ENV` for `PMIX_RANK` and `OMPI_COMM_WORLD_RANK`, warning or throwing errors if unsupported environments are detected.
