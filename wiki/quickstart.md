@@ -91,6 +91,11 @@ Templates for new documentation entries.
 - **[devlog-template](templates/devlog-template.md)**
 - **[experiment-template](templates/experiment-template.md)**
 
+### Testing
+CI diagnostics guidance and distributed-test campaign notes.
+
+- **[ci-diagnostics.md](testing/ci-diagnostics.md)** — Best practices and anti-pattern examples from the PR #2694 CI failure investigation (harness output capture, MPI slots, docker parity repro).
+
 ## For agents
 
 When working in this repository:
