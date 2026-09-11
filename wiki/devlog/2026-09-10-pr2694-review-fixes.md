@@ -2,7 +2,7 @@
 
 Follows phases 1-2 (`...-phases-1-2.md`), phase 3a (`...-phase3a-launcher-guard-tests.md`), phase 3b (`...-phase3b-pmi-guardrail.md`), phase 4 (`...-phase4-cyclic-data-padding.md`), phase 5 (`...-phase5-polish-carlo-tests.md`), phase 6 (`2026-09-10-pr2694-salvage-phase6-docs-consistency.md`), and phase 7 (`2026-09-10-pr2694-salvage-phase7-verification.md`). Plan: `temp/pr_salvage_plan.md`.
 
-A six-agent review of PR #2694 salvage phases 2-7 produced findings. The orchestrator fixed all in-scope findings with RED/GREEN subagents. Commit `15ca2d9c` contains the review fixes. Final commit `c64f695f857a4248846163b0455b1a002978f869` only corrects stale routing-test comments. The worktree is clean. Nothing was pushed.
+A six-agent review of PR #2694 salvage phases 2-7 produced findings. The orchestrator fixed all in-scope findings with RED/GREEN subagents. Commit `15ca2d9c` contains the review fixes. Final commit `c64f695f857a4248846163b0455b1a002978f869` only corrects stale routing-test comments. The worktree is clean. PR #2694 now points to this commit.
 
 ## What the review found
 
@@ -81,7 +81,7 @@ Root cause: `test/runtests.jl` calls `Pkg.add("MPI")` unconditionally when distr
 
 `FLUX_TEST_REACTANT=false` does **NOT** help: `Pkg.add("MPI")` still instantiates the project (and the `Reactant` dependency line was still present in the working tree). Side effect: the aborted first run's `Pkg.add("Reactant")` appended a `Reactant = "3c362404-f566-11ee-1572-e11a4b42c853"` line to `test/Project.toml`; the orchestrator reverted it with `git restore test/Project.toml`. No tracked environment changes remain; the gitignored root `Manifest.toml` hash is unchanged (see above).
 
-The main-suite route is therefore verified locally via the real-discovery routing check + routing unit test + direct dedicated runner. The full route remains a CI gate. Full write-up: `wiki/failures/2026-09-10-main-suite-reactant-instantiation.md`.
+The real-discovery routing check and routing unit test cover test selection. The direct dedicated runner covers distributed execution. The full main-suite route remains unverified end to end. Full write-up: `wiki/failures/2026-09-10-main-suite-reactant-instantiation.md`.
 
 ## Final commit and OpenMPI topology-emulation gate rerun (2026-09-11)
 
@@ -97,10 +97,17 @@ This gate uses hwloc topology emulation. It does not provide real cgroup-cpuset 
 
 ## Git state after session
 
-Worktree `/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage` is clean on `ddp/pr2694-salvage` at exact `c64f695f857a4248846163b0455b1a002978f869`. Nothing was pushed. `ddp/upstream-pr` can still be fast-forwarded.
+Worktree `/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage` is clean on `ddp/pr2694-salvage` at exact `c64f695f857a4248846163b0455b1a002978f869`.
+
+Command:
+
+```bash
+git push origin ddp/pr2694-salvage:ddp/upstream-pr
+```
+
+Result: fast-forward from `08f468e3` to `c64f695f`. GitHub reports PR #2694 as open and mergeable. Live checks started.
 
 ## Next exact action
 
-1. Review the final diff and status.
-2. When approved, fast-forward push to `ddp/upstream-pr`.
-3. Then monitor live CI.
+1. Monitor PR #2694 live CI.
+2. Inspect any failure before merge.

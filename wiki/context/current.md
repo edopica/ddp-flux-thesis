@@ -1,12 +1,12 @@
 # Current context
 
 Date: 2026-09-11
-Active checkpoint: PR #2694 review fixes committed and the final OpenMPI topology-emulation gate passed. NOT pushed.
+Active checkpoint: PR #2694 updated to `c64f695f`; live CI is in progress.
 Active Flux branch: `ddp/pr2694-salvage` at `c64f695f857a4248846163b0455b1a002978f869` in `/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage`. The worktree is clean.
 Archived research branch: `archive/pr2694-unused-gradient-spike` at `3370b910`.
 Flux repo paths: `/home/kurapica/Projects/ddp_flux/ddp_flux` (C8 dirty work, frozen) · `/home/kurapica/Projects/ddp_flux/flux-integration` (PR #2694 unused-gradient research, preserved, NOT for this PR) · `/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage` (PR #2694 salvage worktree — work ONLY here)
-PR #2694 head: `08f468e3`. Candidate base: `fa3bf228`. Salvage head: `c64f695f`. Parent review-fix commit: `15ca2d9c`.
-Upstream merge base: `404ff37d`. The salvage branch is NOT pushed.
+PR #2694 head: `c64f695f`. Candidate base: `fa3bf228`. Parent review-fix commit: `15ca2d9c`.
+Upstream merge base: `404ff37d`. The push fast-forwarded `ddp/upstream-pr` from `08f468e3` to `c64f695f`.
 
 ## What is known
 
@@ -37,7 +37,8 @@ Upstream merge base: `404ff37d`. The salvage branch is NOT pushed.
 - **Gate rerun**: the rootless Podman/OpenMPI hwloc topology-emulation gate used exact `c64f695f`. All original 9 steps exited 0. The 2-rank and 4-rank suites each passed 5/5. Then exact workflow `timeout=900` reruns passed 5/5 at both rank counts. The final step restored plain MPI preferences.
 - **Evidence**: `temp/docker_ci_fix/podman/podman-c64f695f-*.log` and `temp/docker_ci_fix/podman/podman-c64f695f-timeout900-*.log`.
 - **Scope**: this gate emulates the OpenMPI topology with hwloc. It does not provide real cgroup-cpuset parity.
-- **Git state**: `ddp/pr2694-salvage` is clean at exact `c64f695f857a4248846163b0455b1a002978f869`. The branch is not pushed.
+- **Git state**: `ddp/pr2694-salvage` is clean at exact `c64f695f857a4248846163b0455b1a002978f869`. PR #2694 points to this commit.
+- **Push**: `git push origin ddp/pr2694-salvage:ddp/upstream-pr` fast-forwarded the PR branch from `08f468e3` to `c64f695f`. GitHub reports the PR as open and mergeable. Live checks started.
 
 ## What was done before (2026-09-10) — rootless podman topology-emulation validation
 
@@ -178,15 +179,14 @@ Upstream merge base: `404ff37d`. The salvage branch is NOT pushed.
 - M1+M1.1 is unpushed. Decide whether to fold into PR #2694 or extend the spike — see Next exact action.
 - Port dirty-master C8 tests as a separate commit, only after M1.1 review.
 - PR #2694 salvage phase 7 in-scope audit findings are fixed in `15ca2d9c`: NCCL `force` guard bypass (`initialize(NCCLBackend; force=true)`), `"MPIwrapper"` naming, duplicated-observation/training-gradient-bias wording, and the additional in-scope corrections. See `wiki/devlog/2026-09-10-pr2694-review-fixes.md`. NOT fixed: latent `CUDA.devices()` without `using CUDA` (phase-7 finding 4, only reachable under `FLUX_TEST_DISTRIBUTED_NCCL=true`) and the stale out-of-scope `gpu.md` examples (finding 8).
-- The full local main-suite route remains unverified: `test/runtests.jl` cannot run on this 14 GiB host because `Pkg.add("MPI")` instantiates the test project and pulls in Reactant/XLA (every worker loads Reactant); two attempts crashed the desktop. See failure `2026-09-10-main-suite-reactant-instantiation.md`. The full route is a CI gate; locally it is substituted by the real-discovery routing check + routing unit test + direct dedicated runner.
+- The full local main-suite route remains unverified: `test/runtests.jl` cannot run on this 14 GiB host because `Pkg.add("MPI")` instantiates the test project and pulls in Reactant/XLA (every worker loads Reactant); two attempts crashed the desktop. See failure `2026-09-10-main-suite-reactant-instantiation.md`. Routing checks cover test selection, and dedicated CI covers the direct runner.
 - The final OpenMPI topology-emulation gate passed at exact `c64f695f` on 2026-09-11. All original 9 steps exited 0, and both suites passed 5/5. Exact workflow `timeout=900` reruns also passed at 2 and 4 ranks. This is hwloc topology emulation, not real cgroup-cpuset parity.
 
 ## Next exact action
 
-1. Review the final diff and status.
-2. When approved, fast-forward push to `ddp/upstream-pr`.
-3. Then monitor live CI.
+1. Monitor PR #2694 live CI.
+2. Inspect any failure before merge.
 
-The review fixes and final comment correction are committed locally. The branch is clean and not pushed. The full main-suite opt-in route remains unverified end to end locally; routing checks cover test selection, and dedicated CI covers the direct runner.
+The review fixes and final comment correction are committed and pushed to PR #2694. The branch is clean. The full main-suite opt-in route remains unverified end to end locally; routing checks cover test selection, and dedicated CI covers the direct runner.
 
 Note: `docs/src/guide/gpu.md:366-377` (pre-M1 Leaf output) is unrelated to this PR scope and remains deferred. When replying to Carlo, explain that `distributed_setup.jl` centralizes the setup instead of `test/test_module.jl`: each MPI rank is a fresh standalone Julia process, so importing the full general test module into every rank is unnecessary.
