@@ -2,8 +2,9 @@
 
 Flux.jl DDP Thesis — a thesis-control workspace for stabilizing, testing, documenting, and evaluating Distributed Data Parallel training in Flux.jl.
 
-**Current checkpoint:** C8 — Correctness battery  
-**Active Flux branch:** `ddp/tests`
+**Current checkpoint:** Conditional-graph wrapper Phases D1-D3 are committed at Flux `cbdd3edc`. D3 keeps presence metadata on the CPU and preserves parameter-buffer placement. Independent two-rank tests passed D3 16/16 per rank. D4-D5 remain open.
+**Active implementation branch:** `ddp/integration-m1-spike` at `cbdd3edc` (`../flux-integration` worktree, clean, not pushed).
+**Next action:** Implement Phase D4: legacy tuple-returning `trainable` selection, with equal-valued distinct mutable fields and RED evidence before production changes.
 
 ## Repository overview
 
