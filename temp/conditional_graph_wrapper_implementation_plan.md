@@ -1,12 +1,20 @@
 # Conditional-Graph Wrapper Implementation Plan
 
+Phase E review correction (2026-09-30): **both P2 gaps corrected; correction gate GREEN; committed at `55171e65`**. The device-adaptation test now uses Adam, transforms exactly the two nonzero state arrays, asserts types/values/backend identity/source immutability, and updates through the adapted state against a native reference. The M1.1 API checks are restored (`Chain tuple-gradient diagnostic`, `Enzyme Duplicated model setup and update`, shared-gradient tied subcase, whole-wrapper `freeze!`/`thaw!`), and the freeze test uses Adam with retained states and moment assertions. Correction gate at two ranks: focused conditional **367/367 per rank**, optimizer 6/6, dedicated suite `Distributed \| 6 6 2m02.6s`, 0 ambiguities, `git diff --check` clean. Evidence: devlog "Corrections applied" and "Commit" sections, `artifacts/logs/conditional-wrapper/phaseE-correction-*`. Current next action: Phase F (two- and four-rank gates).
+
 Date: 2026-09-16
 
 Status: Approved implementation direction
 
-Revision: 2026-09-29. Phases D1-D3 are committed at `cbdd3edc`. D3 review found no blocking code issues. D4-D5 remain.
+Phase E update (2026-09-30): **Phase E complete and review-corrected — GREEN, committed at `55171e65`**. `test/ext_distributed/conditional_distributedtest.jl` gained 15 testsets (+560/−0, tests only): the M1.1 real-AD and public-API cases with no stronger Phase D equivalent, the two Phase E items (stateful freeze with collective-count assertions, Functor device adaptation with backend retention and state-array traversal), and the restored M1.1 API checks (`Chain` tuple-gradient diagnostic, `Enzyme Duplicated` setup/update). M1.1 testsets already superseded by stronger D5 testsets were not duplicated. Two-rank GREEN: focused conditional 367/367 per rank across 30 testsets, focused optimizer 6/6, full dedicated suite `Distributed | 6 6 2m02.6s`, 0 ambiguities, `git diff --check` clean. All RED iterations were new-test defects; no production change. Next action: Phase F (two- and four-rank CPU/MPI gates; the four-rank case must prove weighting). Details: `wiki/devlog/2026-09-30-conditional-wrapper-phase-e-m11-battery.md`, `artifacts/logs/conditional-wrapper/phaseE-metadata.md`.
 
-Current entry point: section 12, Phase D4. Sections 11 and Phase A describe completed branch integration, not commands to repeat.
+Independent review (2026-09-30): **D5 reopened for two P2 test gaps, then corrected**. The absent Adam parameter now takes prior active steps (nonzero moments) before becoming absent; caller gradients are rank-distinct with per-rank snapshots, an independent global mean, and a genuinely read-only gradient. Targeted RED runs show each corrected testset fails under the defect it targets (aliased buffer mutates the caller gradient to the global mean; absent leaf fed a zero gradient changes value and full Adam state). Final two-rank gate GREEN: conditional 232/232 per rank, optimizer 6/6, dedicated suite 6/6. Next action: Phase E. Review and correction details are in the D5 devlog.
+
+Review update (2026-09-30): **Phase D5 complete — committed at `d6046103`**. Eight focused testsets pin the retained contracts (BatchNorm running statistics, Transpose/Adjoint parent space, caller-gradient non-mutation on both paths, immutable `update!` returns and wrapper identity, fresh `update` wrapper without input mutation, globally absent Adam state, locally absent global mean, empty trainable models, array-container shape, composition guards). The gate found one real defect: `_buildmap` flattened multidimensional array containers (`size` `(4,)` vs `(2, 2)`); `_buildmap`/`_foreach_child` now use `CartesianIndices`. RED → GREEN at two MPI ranks: focused conditional 224/224 per rank, focused optimizer 6/6, full dedicated suite `Distributed | 6 6 1m38.2s`, 0 ambiguities, `git diff --check` clean. Next action: Phase E (restore the M1.1 battery). Evidence and exact commands: `wiki/devlog/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md`.
+
+Revision: 2026-09-30. Phases D1-D3 are committed at `cbdd3edc`; the corrected D4 and D5 are committed at `d6046103`; the review-corrected Phase E is committed at `55171e65` (none pushed). Phase D and Phase E (including the review correction) are complete; Phases F-H remain.
+
+Current entry point: section 12, Phase F (Phase E is committed at `55171e65` on `ddp/integration-m1-spike`; commit/push authorization remains separate). Sections 11 and Phase A describe completed branch integration, not commands to repeat.
 
 Primary implementation worktree: `/home/kurapica/Projects/ddp_flux/flux-integration`
 
@@ -820,20 +828,27 @@ This mock does not replace the four-rank weighting gate in Phase F. It does not 
 
 #### D4: Legacy trainable selection
 
+Status 2026-09-29 (corrected after review P1): implemented in the `flux-integration` working tree (uncommitted, based on committed `cbdd3edc`). The synchronization walk reads the selection from the state tree returned by `Optimisers.setup` (`state.tree`), the retained setup-time record, instead of recomputing `trainable` on every update: `_sync_gradients(backend, tree, model, grads)`; `_walk!`/`_build!` pair each model child with its tree node through the shared structural `_child` helper; a numeric child is trainable iff its tree node is an `Optimisers.Leaf`, and an empty tree node (`()`) skips the subtree. `_trainable_child` is removed; no warning is emitted in the walk. The first attempt (`_trainable_child(ch::NamedTuple, tr::Tuple, k) = ch[k] in tr`, value membership per update) failed review: after the first update made equal-valued fields diverge, a setup-selected field was silently dropped from later updates although its `Leaf` remained (review characterization `phaseD-d4-review-multistep.jl`: step 2 wrapper `b=0.45` vs native `-0.10`, 2 collectives vs 3; both update paths). Regression: the `LegacyTupleTrainable` one-step native-reference testset plus a new multi-step testset `legacy tuple trainable selection persists across updates` (two steps, both `Optimisers.update!` and `Optimisers.update`, stateful `Momentum`, native global-mean reference, parameter + `state.tree == ref_state` + cumulative collective-count assertions, cross-rank equality). RED (first defect, before the legacy predicate existed): exit 1, 33 s, D4 12 passed / 3 failed / 5 errored, first error `MethodError: haskey(::Tuple{Vector{Float64}}, ::Symbol)`. GREEN (first fix): exit 0, 44 s, D4 20/20 per rank. RED2 (second-step defect, corrected tests on the buggy source): exit 1, 37.8 s, new testset 24 passed / 6 failed per rank. GREEN2 (final): exit 0, 48 s, control 5/5 + D1 10/10 + guard 11/11 + D2 38/38 + D3 16/16 + D4 20/20 + D4-multistep 30/30 per rank; full 2-rank suite 6/6 (`Distributed | 6 6 1m12.0s`); 0 ambiguities. Evidence under `artifacts/logs/conditional-wrapper/phaseD-d4-*`; devlog `wiki/devlog/2026-09-29-conditional-wrapper-phase-d4-legacy-trainable.md`.
+
 1. Add a struct with a tuple-returning `trainable` method and an excluded array field.
 2. Add equal-valued, distinct mutable fields to expose value-membership semantics.
 3. Compare selected leaves against public native `Optimisers.setup` behavior.
 4. Compare updates and collective counts against the same selected parameters.
 5. Record the legacy-selection RED result before production changes.
-6. Normalize legacy selection into model-field order through public APIs.
+6. Read the selected children from the state tree returned by `Optimisers.setup`; keep canonical model order through the model's functor children.
 7. Preserve the native setup warning without repeated update warnings.
-8. Run D1-D4 again and record GREEN evidence.
+8. Compare parameters, optimizer state, and collective counts against a native reference over at least two updates, for both `Optimisers.update!` and `Optimisers.update`, so a selection that changes between steps fails.
+9. Run D1-D4 again and record GREEN evidence.
 
 If an earlier normalization change also fixes D4, record that dependency. Demonstrate RED against the unchanged Phase C baseline separately.
 
 Do not weaken a regression or introduce an artificial defect to produce RED evidence.
 
 #### D5: Regression gate
+
+Status 2026-09-30: complete and committed at `d6046103` (together with the corrected D4). Eight testsets added to `test/ext_distributed/conditional_distributedtest.jl` (BatchNorm running statistics, transpose/adjoint parent space, caller-gradient non-mutation for both update paths, immutable `update!` return + wrapper identity, fresh `update` wrapper without input mutation, globally absent Adam state, locally absent global mean, empty trainable model, array-container shape). The gate found and corrected one defect: `_buildmap`/`_foreach_child` now map array containers over `CartesianIndices`, so a 2×2 `Matrix` child keeps its shape instead of being flattened to a length-4 vector. RED: focused 2-rank conditional exit 1, array-container 18/20, `(4,) == (2, 2)`; GREEN: 224/224 per rank, focused optimizer 6/6, full dedicated 2-rank suite `Distributed | 6 6 1m38.2s`, 0 ambiguities, `git diff --check` clean. Evidence: `artifacts/logs/conditional-wrapper/phaseD-d5-*`; devlog `wiki/devlog/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md`.
+
+Status update after independent review (2026-09-30): the review reopened D5 for two P2 coverage gaps, both now corrected in the same working tree. (1) The absent-Adam testset now runs two active steps on `absent` first, asserts nonzero moments and a moved value, snapshots value and full optimizer state, then runs three globally absent steps and asserts exact preservation of the snapshot (a reset to fresh state would fail because the test also asserts `snap_state != fresh.absent.state`). (2) The caller-gradient testset now uses rank-distinct gradients on both update paths and in the read-only case, compares every caller gradient with its local snapshot, and checks each updated model against an independent global mean; the writable `view` was replaced by a `ReadOnlyGradient` wrapper whose `setindex!` throws. Targeted RED A: with a temporary aliasing defect (`buf = g` for the length-2 gradients), the corrected testset fails `gs.w == snap` with the global mean `[0.4, -0.075]` on both ranks, and the read-only case errors on unaliasing — earlier testsets all pass; exit 1, 1 m 10.8 s. Targeted RED B: with a temporary absent-leaf defect (`_build!` emits the zero buffer instead of `ZeroTangent`), the corrected absent testset fails `model.absent == snap_value` and `state.tree.absent.state == snap_state` with changed moments and step products — earlier testsets and the caller testset all pass; exit 1, 1 m 14.3 s. Production source was restored byte-for-byte after both injections (md5 `06c2b464a5d9c1c784e07cb7752a0e7e`) and no defect was shipped. Final GREEN: focused conditional 232/232 per rank, focused optimizer 6/6, full dedicated 2-rank suite `Distributed | 6 6 1m45.2s`, 0 ambiguities, `git diff --check` clean. Combined uncommitted D4 + D5 diff relative to `cbdd3edc`: 2 files, +633/−66 (`src` +67/−65 unchanged, test +567/−1). Evidence: `artifacts/logs/conditional-wrapper/phaseD-d5-correction-*-2026-09-30.log`, `phaseD-d5-metadata.md`; devlog corrections section. The whole Phase D4 + D5 diff was committed as `d6046103` (2 files, +633/−66, not pushed) after the corrections.
 
 Retain or add focused assertions for these contracts:
 
@@ -871,6 +886,8 @@ Keep tests and their corresponding fixes reviewable as separate changes. Commit 
 Phase D is complete only after D1-D5 pass. Completion does not imply Phase E, F, G, or H completion.
 
 ### Phase E: Restore and improve the M1.1 test battery
+
+Status 2026-09-30: complete, review-corrected, and GREEN, committed at Flux `55171e65` (not pushed). Ported 13 M1.1 testsets with no stronger Phase D equivalent plus the two Phase E items (stateful freeze with collective-count assertions; Functor device adaptation with state-array traversal and backend retention) and the restored M1.1 API checks (`Chain` tuple-gradient diagnostic, `Enzyme Duplicated` setup/update). Two-rank GREEN: focused conditional 367/367 per rank (30 testsets), optimizer 6/6, dedicated suite 6/6, 0 ambiguities, `git diff --check` clean. Tests only: +560/−0. Evidence: `artifacts/logs/conditional-wrapper/phaseE-metadata.md` and `phaseE-correction-*`; devlog `wiki/devlog/2026-09-30-conditional-wrapper-phase-e-m11-battery.md`.
 
 Goal: regain the proven M1.1 cases without restoring its known defects.
 
@@ -1336,10 +1353,10 @@ State these limits in every review summary.
 
 Start in `/home/kurapica/Projects/ddp_flux/flux-integration`.
 
-Make sure that commit `cbdd3edc` (D1-D3) is present and that the worktree has no conflicting changes.
+Make sure that commit `cbdd3edc` (D1-D3) is present and that the working tree contains the corrected D4 changes (`src/distributed/public_api.jl` and `test/ext_distributed/conditional_distributedtest.jl`) with no conflicting changes.
 
-If the active Optimisers version changed, read its source again. The D1-D3 evidence used Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`).
+If the active Optimisers version changed, read its source again. The D1-D4 evidence used Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`).
 
-Add the Phase D4 legacy tuple-returning `trainable` fixture from section 12. Include equal-valued distinct mutable fields. Record RED before production changes.
+Review the corrected D4 selection (state tree, section 12 D4) and its RED2/GREEN2 evidence, then implement Phase D5: retain or add the focused contract assertions and run the focused conditional and optimizer files at two MPI ranks, followed by the complete dedicated two-rank suite.
 
-Run the D1-D4 focused regressions and the focused optimizer file at two MPI ranks. Do not repeat the completed phases. Four-rank gates remain Phase F.
+Do not run the full local main suite. Four-rank gates remain Phase F. Commit or push only with explicit user authorization.
