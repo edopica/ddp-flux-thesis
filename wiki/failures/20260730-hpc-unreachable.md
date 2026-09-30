@@ -1,8 +1,8 @@
-# Failure: HPC Unreachable (2026-07-30)
+# Failure: Bocconi Cluster Unreachable (2026-07-30)
 
 ## Operation
 
-C8 negative demonstrations — revert regression guards in `public_api.jl`, run data sharding tests on HPC, capture failures, restore.
+C8 negative demonstrations — revert regression guards in `public_api.jl`, run data sharding tests on Bocconi, capture failures, restore.
 
 ## Symptom
 
@@ -17,13 +17,13 @@ DNS resolution failing for `slogin.hpc.unibocconi.it`. Likely the VPN (Cisco Any
 ## Commands attempted
 
 ```bash
-ssh hpc "echo 'HPC reachable' && hostname"
-ssh -v hpc echo ok
+ssh bocconi "echo 'Bocconi reachable' && hostname"
+ssh -v bocconi echo ok
 ```
 
 ## Impact
 
-Both demos require HPC MPI execution. Cannot proceed until connectivity is restored.
+Both demos require Bocconi MPI execution. Cannot proceed until connectivity is restored.
 
 ## Mitigation
 

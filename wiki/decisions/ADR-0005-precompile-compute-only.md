@@ -1,11 +1,11 @@
-# ADR-0005 - Precompile only on HPC compute nodes
+# ADR-0005 - Precompile only on Bocconi compute nodes
 
 Date: 2026-09-03
 Status: Accepted
 
 ## Context
 
-Running distributed Flux tests on the HPC cluster (slnode01 login, gnode01/02 compute)
+Running distributed Flux tests on the Bocconi cluster (slnode01 login, gnode01/02 compute)
 regularly hit very long precompilation delays and "timeout on precomp" failures after
 every minor change to the dev'd Flux fork. The remote workflow scripts
 (`setup_node.sh`, `precompile.sh`, `run.sh`) executed plain `julia` inside an `salloc`
@@ -38,20 +38,20 @@ Measured facts (2026-09-03, full protocol in `wiki/devlog/2026-09-03-precompile-
 
 ## Decision
 
-- Precompilation runs ONLY on compute nodes, via `srun`: `scripts/remote/precompile.sh hpc`
+- Precompilation runs ONLY on compute nodes, via `srun`: `scripts/remote/precompile.sh bocconi`
   now runs `make precompile-all` (thesis env + `ddp_flux/test` env) under
   `NTASKS=1 CPUS_PER_TASK=8`, executed as `srun` julia inside the salloc allocation.
 - `make env` no longer calls `Pkg.precompile()` and sets `JULIA_PKG_PRECOMPILE_AUTO=0`
   (login-node setup resolves but never compiles).
-- Makefile targets `precompile` / `precompile-flux-test` are `srun`-guarded on HPC
+- Makefile targets `precompile` / `precompile-flux-test` are `srun`-guarded on Bocconi
   (SLURM_JOB_ID set -> srun branch) and refuse to run on the login node (hostname
   `slnode01` guard). Locally they behave as before.
-- `scripts/remote/hosts/hpc.conf` exports `JULIA_PKG_PRECOMPILE_AUTO=0` for every
+- `scripts/remote/hosts/bocconi.conf` exports `JULIA_PKG_PRECOMPILE_AUTO=0` for every
   run.sh/precompile.sh session.
-- Workflow rule: `sync_code.sh hpc` -> (first time or Project change: `setup_node.sh hpc`)
-  -> `precompile.sh hpc` -> tests. Never run tests right after a sync without the
+- Workflow rule: `sync_code.sh bocconi` -> (first time or Project change: `setup_node.sh bocconi`)
+  -> `precompile.sh bocconi` -> tests. Never run tests right after a sync without the
   precompile step; a stale cache recompiles silently during the run.
-- On `hpc`, make variables are passed as make arguments
+- On `bocconi`, make variables are passed as make arguments
   (`make c8-mpi FLUX_REPO_PATH=../ddp_flux`), not as env prefixes before the command,
   because salloc execs argv directly.
 

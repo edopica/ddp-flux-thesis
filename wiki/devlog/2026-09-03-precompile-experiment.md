@@ -1,9 +1,9 @@
-# 2026-09-03 — Precompilation experiment on HPC (branch `experiment/precompile`)
+# 2026-09-03 — Precompilation experiment on Bocconi (branch `experiment/precompile`)
 
 ## Problem
 
 - Every minor change to the dev'd Flux fork (`src/distributed/*.jl` is part of the Flux
-  package itself) seemed to cost a long precompilation on HPC; tests sometimes died with
+  package itself) seemed to cost a long precompilation on Bocconi; tests sometimes died with
   "timeout on precomp". The workflow precompiled for changes it should not need to.
 
 ## Hypotheses (from Phase A audit)
@@ -15,7 +15,7 @@
   120 s in several reports); silent on-node recompiles inside that window read as
   "timeout on precomp".
 
-## Baseline measurements (Phase B, all on hpc, Julia 1.12.6)
+## Baseline measurements (Phase B, all on bocconi, Julia 1.12.6)
 
 | Scenario | Wall time | Notes |
 |---|---|---|
@@ -55,7 +55,7 @@ The fix is process-level: precompile only on compute nodes via `srun`.
   `install-mpiexec` uses `force=true` (idempotent).
 - `scripts/remote/precompile.sh`: now runs `make precompile-all FLUX_REPO_PATH=../ddp_flux`
   under NTASKS=1 CPUS_PER_TASK=8 (julia executes on the compute node).
-- `scripts/remote/hosts/hpc.conf`: exports `JULIA_PKG_PRECOMPILE_AUTO=0` + comments.
+- `scripts/remote/hosts/bocconi.conf`: exports `JULIA_PKG_PRECOMPILE_AUTO=0` + comments.
 - `scripts/remote/setup_node.sh`: messaging updated (resolve-only).
 - Docs: `wiki/context/remote-nodes.md`, `README.md`, `ADR-0005`.
 

@@ -18,11 +18,11 @@ Starting the C8 correctness battery phase. The objective is to establish unambig
    - CI YAML (`distributed_ci.yml`): 2-rank MPI fast + 4-rank MPI edge jobs, direct `mpiexecjl` invocation
    - **Cyclic padding fix:** `public_api.jl:273` — `append!(indices, 1:(...))` → `append!(indices, [mod1(i, total_size) for i in 1:(...)])`
    - **New tests in `data_distributedtest.jl`:** N=1 (cyclic repeat), N=2 (valid indices), N=0 (`@test_throws ArgumentError`)
-6. **Deadlock verification:** Deferred — local MPICH segfaults with Julia 1.12/MPI.jl. Harness logic verified by inspection. Documented in `wiki/failures/20260729-mpi-setup-segfault.md`. Will reattempt on HPC.
+6. **Deadlock verification:** Deferred — local MPICH segfaults with Julia 1.12/MPI.jl. Harness logic verified by inspection. Documented in `wiki/failures/20260729-mpi-setup-segfault.md`. Will reattempt on Bocconi.
 7. **Project.toml cleanup:** Reverted accidental MPI/MPIPreferences hard-dep additions from setup attempt.
 
 ## Next Steps
 
 - Commit the Flux working tree changes (harness + cyclic padding + N<world_size tests)
-- Run deadlock verification on HPC where MPI.jl is properly configured
+- Run deadlock verification on Bocconi where MPI.jl is properly configured
 - Begin C8.2: strengthen collective tests (sum-vs-average convention, buffer reuse, Functors traversal)

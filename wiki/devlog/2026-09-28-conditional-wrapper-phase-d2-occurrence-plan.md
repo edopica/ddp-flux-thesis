@@ -121,7 +121,7 @@ byte-identical from a saved copy before this run.
 - D2 only. The mixed tied/isbits defect is corrected and guarded; equal-valued isbits
   occurrences stay independent.
 - D3 (CPU presence metadata), D4 (legacy tuple `trainable`), and D5 (regression gate)
-  remain open. Four-rank execution remains Phase F; no GPU/NCCL, detector, HPC, or
+  remain open. Four-rank execution remains Phase F; no GPU/NCCL, detector, Bocconi, or
   main-suite runs.
 - No commit. Tests and fix stay reviewable as separate changes in the worktree;
   commit/push only with explicit user authorization.

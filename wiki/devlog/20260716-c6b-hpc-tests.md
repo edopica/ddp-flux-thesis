@@ -1,8 +1,8 @@
-# 2026-07-16: C6b - Distributed tests validated on HPC
+# 2026-07-16: C6b - Distributed tests validated on Bocconi
 
 ## Summary
 
-Executed C6b plan: prepared upstream PR branch, created test files, verified on HPC.
+Executed C6b plan: prepared upstream PR branch, created test files, verified on Bocconi.
 
 ## Details
 
@@ -19,13 +19,13 @@ Executed C6b plan: prepared upstream PR branch, created test files, verified on 
 - `test/ext_distributed/unused_parameters_distributedtest.jl` — new: 20 tests (nothing gradients, nested NamedTuples, no-op, shapes/types)
 - `test/ext_distributed/reduce_distributedtest.jl` — fixed missing imports
 
-### Test results (HPC, 2 MPI ranks)
+### Test results (Bocconi, 2 MPI ranks)
 - `make verify-gradients`: PASS (local)
 - `make verify-conditional`: PASS (local)
-- `reduce_distributedtest.jl`: PASS (HPC)
-- `unused_parameters_distributedtest.jl`: 20/20 PASS (HPC)
+- `reduce_distributedtest.jl`: PASS (Bocconi)
+- `unused_parameters_distributedtest.jl`: 20/20 PASS (Bocconi)
 
-### HPC workflow improvements
+### Bocconi workflow improvements
 - Precompile with NTASKS=1 CPUS_PER_TASK=8 (320s for all deps)
 - Tests with NTASKS=2 CPUS_PER_TASK=2
 - Removed `--exclude='Manifest.toml'` from sync_code.sh for Flux repo

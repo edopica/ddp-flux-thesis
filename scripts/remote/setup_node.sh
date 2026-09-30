@@ -3,7 +3,7 @@ set -e
 
 if [ -z "$1" ]; then
     echo "Usage: $0 <remote_host>"
-    echo "Example: $0 hpc"
+    echo "Example: $0 bocconi"
     exit 1
 fi
 

@@ -43,8 +43,10 @@ All reproducible commands (through C6): `make env`, `make install-mpiexec`, `mak
 Current project state, remote node guides, and operational knowledge.
 
 - **[current.md](context/current.md)** — Always start here. Current checkpoint, what is known, what was done last, commands that pass/fail, and next action.
-- **[remote-nodes.md](context/remote-nodes.md)** — HPC cluster and remote execution workflow (sync, setup, run).
+- **[remote-nodes.md](context/remote-nodes.md)** — Remote execution index: workflow, tools, and server list.
+- **[bocconi.md](context/bocconi.md)** — Bocconi SLURM cluster: precompile rules and usage.
 - **[deathstar.md](context/deathstar.md)** — Non-SLURM remote node usage (courtesy machine, use with care).
+- **[leonardo.md](context/leonardo.md)** — Planned CINECA GPU cluster (not operational yet).
 
 ### Decisions
 Architecture Decision Records explaining why the codebase is structured the way it is.
@@ -70,10 +72,10 @@ Chronological development log entries for each checkpoint and milestone.
 - **[20260713-c5-c6-grad-sync](devlog/20260713-c5-c6-grad-sync.md)** — C5/C6 gradient synchronization and Optimisers.jl integration.
 - **[20260714-openwiki-manual-update](devlog/20260714-openwiki-manual-update.md)** — Manual documentation update due to API error.
 - **[20260715-conditional-testing](devlog/20260715-conditional-testing.md)** — Enhanced testing for conditional graphs.
-- **[20260716-c6b-hpc-tests](devlog/20260716-c6b-hpc-tests.md)** — Polished upstream PR commits and ran HPC tests.
+- **[20260716-c6b-hpc-tests](devlog/20260716-c6b-hpc-tests.md)** — Polished upstream PR commits and ran Bocconi cluster tests.
 - **[20260716-wiki-rename](devlog/20260716-wiki-rename.md)** — Renamed openwiki to wiki and standard terminology update.
 - **[20260722-c7-end-to-end](devlog/20260722-c7-end-to-end.md)** — C7 end-to-end example integration.
-- **[20260728-c7-fixes](devlog/20260728-c7-fixes.md)** — Addressed C7 blindspots (data sharding, checkpointing, validation loop) and validated HPC GPU.
+- **[20260728-c7-fixes](devlog/20260728-c7-fixes.md)** — Addressed C7 blindspots (data sharding, checkpointing, validation loop) and validated Bocconi GPU.
 
 ### Audits
 Codebase audit notes.

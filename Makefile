@@ -7,23 +7,23 @@ SLURM_MPI_TYPE ?= pmi2
 
 .PHONY: env precompile precompile-flux-test precompile-all env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify health-check launch-2 launch-4 sync-model verify-sync verify-data verify-gradients verify-conditional example-ddp c8-mpi c8-mpi-4 c8-nccl c8-all
 
-# NOTE on precompilation (Julia 1.12, HPC): never let julia precompile the
-# project envs on the HPC login node. Julia caches bake the host CPU feature
+# NOTE on precompilation (Julia 1.12, Bocconi): never let julia precompile the
+# project envs on the Bocconi login node. Julia caches bake the host CPU feature
 # set: login (graniterapids) compiles are unusable on compute nodes
 # (icelake-server), and gnode caches cannot load on login either. Precompile
-# must run on a compute node: `bash scripts/remote/precompile.sh hpc`.
+# must run on a compute node: `bash scripts/remote/precompile.sh bocconi`.
 # `env` only resolves dependencies and never precompiles (auto-precompile off).
 env:
 	FLUX_REPO_PATH="$(FLUX_REPO_PATH)" JULIA_PKG_PRECOMPILE_AUTO=0 $(JULIA) --project=. -e 'using Pkg; Pkg.develop(path=ENV["FLUX_REPO_PATH"]); Pkg.add(["MPI","Optimisers","Zygote","Functors","MLUtils","Adapt","BenchmarkTools","Revise","JLD2"]); Pkg.instantiate()'
 
 precompile:
 	@if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 1 -c 8 $(JULIA) --startup-file=no --project=. -e 'using Pkg; Pkg.precompile()'; \
-	elif [ "$$(hostname)" = "slnode01" ]; then echo "ERROR: on the HPC login node. Precompile would target the wrong CPU. Use: bash scripts/remote/precompile.sh hpc"; exit 1; \
+	elif [ "$$(hostname)" = "slnode01" ]; then echo "ERROR: on the Bocconi login node. Precompile would target the wrong CPU. Use: bash scripts/remote/precompile.sh bocconi"; exit 1; \
 	else $(JULIA) --startup-file=no --project=. -e 'using Pkg; Pkg.precompile()'; fi
 
 precompile-flux-test:
 	@if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 1 -c 8 $(JULIA) --startup-file=no --project=$(FLUX_REPO_PATH)/test -e 'using Pkg; Pkg.precompile()'; \
-	elif [ "$$(hostname)" = "slnode01" ]; then echo "ERROR: on the HPC login node. Precompile would target the wrong CPU. Use: bash scripts/remote/precompile.sh hpc"; exit 1; \
+	elif [ "$$(hostname)" = "slnode01" ]; then echo "ERROR: on the Bocconi login node. Precompile would target the wrong CPU. Use: bash scripts/remote/precompile.sh bocconi"; exit 1; \
 	else $(JULIA) --startup-file=no --project=$(FLUX_REPO_PATH)/test -e 'using Pkg; Pkg.precompile()'; fi
 
 precompile-all: precompile precompile-flux-test

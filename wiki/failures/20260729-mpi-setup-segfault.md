@@ -25,4 +25,4 @@ Cannot run deadlock verification locally. The harness watchdog logic is correct 
 - Reports failure via `@test false` on timeout, `@test proc.exitcode == 0` on normal exit
 
 ## Action
-Deadlock verification deferred to HPC or CI environment where MPI.jl is properly configured.
+Deadlock verification deferred to Bocconi or CI environment where MPI.jl is properly configured.

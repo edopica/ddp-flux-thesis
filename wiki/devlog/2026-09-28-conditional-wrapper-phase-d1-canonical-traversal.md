@@ -92,7 +92,7 @@ Environment: Julia 1.12.6, Optimisers 0.4.9
 
 - D1 only. The mixed tied/isbits counter defect (D2), CPU presence metadata (D3),
   legacy tuple `trainable` (D4), and the D5 regression gate remain open.
-- Four-rank execution remains Phase F; no GPU/NCCL, detector, HPC, or main-suite
+- Four-rank execution remains Phase F; no GPU/NCCL, detector, Bocconi, or main-suite
   runs.
 - No commit. Tests and fix stay reviewable as separate changes in the worktree;
   commit/push only with explicit user authorization.

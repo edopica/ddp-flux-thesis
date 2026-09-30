@@ -90,7 +90,7 @@ covered by the D2 testset.
   +411/-0. No production source edited. No commit.
 - Two ranks only. Phase F (four-rank weighting), Phase G (detector conversion),
   and Phase H (compatibility review) remain.
-- No four-rank run, no GPU/NCCL run, no detector update, no HPC run, no
+- No four-rank run, no GPU/NCCL run, no detector update, no Bocconi run, no
   main-suite run.
 - Exact commands, package versions, exit codes, elapsed times, and per-testset
   counts: `artifacts/logs/conditional-wrapper/phaseE-metadata.md`.

@@ -105,7 +105,7 @@ Environment: Julia 1.12.6, Optimisers 0.4.9
   labeled as such; the four-rank weighting gate remains Phase F. The fixture does
   not prove native CUDA or NCCL behavior.
 - Legacy tuple `trainable` (D4) and the D5 regression gate remain open. No
-  GPU/NCCL, detector, HPC, or main-suite runs.
+  GPU/NCCL, detector, Bocconi, or main-suite runs.
 - No commit. Tests and fix stay reviewable as separate changes in the worktree;
   commit/push only with explicit user authorization.
 
