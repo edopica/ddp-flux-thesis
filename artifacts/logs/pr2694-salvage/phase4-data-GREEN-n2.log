@@ -1,0 +1,19 @@
+PrecompilingPrecompiling packages...
+ packages...
+    Flux Being precompiled by another process (pid: 271865, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  12223.2 ms  ✓ Flux
+  1 dependency successfully precompiled in 13 seconds. 154 already precompiled.
+  12312.3 ms  ✓ Flux
+  1 dependency successfully precompiled in 13 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 271865, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   3337.2 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 4 seconds. 167 already precompiled.
+   3068.6 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 4 seconds. 167 already precompiled.
+Test Summary:                           | Pass  Total  Time
+DistributedDataContainer cyclic padding |   45     45  1.3s
+Test Summary:                           | Pass  Total  Time
+DistributedDataContainer cyclic padding |   45     45  1.3s
+EXIT=0

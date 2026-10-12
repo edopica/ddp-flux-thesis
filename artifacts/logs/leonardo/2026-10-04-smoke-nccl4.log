@@ -1,0 +1,11 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 4 -c 4 bash ~/leonardo-setup/smoke-nccl4.sh
+salloc: Granted job allocation 59336993
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0056 are ready for job
+rank=2 device=3 device_name=NVIDIA A100-SXM-64GB allreduce=10.0 expected=10.0
+rank=3 device=0 device_name=NVIDIA A100-SXM-64GB allreduce=10.0 expected=10.0
+rank=0 device=1 device_name=NVIDIA A100-SXM-64GB allreduce=10.0 expected=10.0
+rank=1 device=2 device_name=NVIDIA A100-SXM-64GB allreduce=10.0 expected=10.0
+NCCL 4-rank allreduce smoke OK
+salloc: Relinquishing job allocation 59336993
+EXIT=0

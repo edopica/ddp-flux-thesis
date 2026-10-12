@@ -1,0 +1,11 @@
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 1025032, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4342.7 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4275.7 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.3s
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.3s

@@ -1,0 +1,19 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 8 --chdir=$HOME/projects/ddp-flux-thesis julia --startup-file=no --project=$HOME/projects/flux-integration/test scripts/checks/conditional_graph_demo_check.jl --root artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4 --dataset toy --backend nccl --ranks 4 --steps 16 --timeout 1800 --label k1-leonardo-nccl4
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 59424022
+salloc: job 59424022 queued and waiting for resources
+salloc: job 59424022 has been allocated resources
+salloc: Granted job allocation 59424022
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn3394 are ready for job
+srun: Job step's --cpus-per-task value exceeds that of job (8 > 4). Job step may never run.
+[PASS] prepared       ranks=1 exit=0 elapsed=12.7s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/prepared/console.log
+[PASS] nccl4-train    ranks=4 exit=0 elapsed=183.6s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4-train/console.log
+[PASS] nccl4-resume   ranks=4 exit=0 elapsed=67.7s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4-resume/console.log
+Test Summary:               | Pass  Total     Time
+Phase K toy campaign (nccl) |    8      8  4m27.5s
+
+PHASE_K_SUMMARY dataset=toy backend=nccl ranks=4 PASS root=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4
+salloc: Relinquishing job allocation 59424022

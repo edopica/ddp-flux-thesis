@@ -1,0 +1,198 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  17.9s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  17.9s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.9s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.9s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.7s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.7s
+Test Summary:                                                | Test Summary:                                                | Pass  Pass  Total  Total  TimeTime
+
+explicit occurrence mapping for mixed tied/isbits parametersexplicit occurrence mapping for mixed tied/isbits parameters |  |   38    38     38     38  2.9s2.9s
+
+Test Summary:                                    | Pass  Total  Time
+CPU presence metadata for device-like parameters |   16     16  0.7s
+Test Summary:                                    | Pass  Total  Time
+CPU presence metadata for device-like parameters |   16     16  0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Test Summary:                                         | Pass  Pass  Total  Total  TimeTime
+
+legacy tuple trainable selection matches native setuplegacy tuple trainable selection matches native setup |  |   20    20     20     20  1.9s1.9s
+
+legacy tuple trainable selection persists across updates: legacy tuple trainable selection persists across updates: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:615
+  Expression: ≈(model.b, ref_model.b, atol = 1.0e-12)
+   Evaluated: [0.55, 0.55, 0.55, 0.55] ≈ [-0.605, -0.605, -0.605, -0.605] (atol=1.0e-12)
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:615
+  Expression: ≈(model.b, ref_model.b, atol = 1.0e-12)
+   Evaluated: [0.55, 0.55, 0.55, 0.55] ≈ [-0.605, -0.605, -0.605, -0.605] (atol=1.0e-12)
+
+Stacktrace:
+ 
+Stacktrace:
+ [1] top-level scope
+[1] top-level scope
+   @   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585conditional_distributedtest.jl:585
+
+  [2][2]  macro expansionmacro expansion
+
+   @   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:615 [inlined]
+ [4] macro expansion
+   @  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:615 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:618
+  Expression: state.tree == ref_state
+   Evaluated: (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [0.45, 0.45, 0.45, 0.45]), excluded = ()) == (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [1.155, 1.155, 1.155, 1.155]), excluded = ())
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:618 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:619
+  Expression: length(rec.log) == 3step
+   Evaluated: 5 == 6
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:619 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:618
+  Expression: state.tree == ref_state
+   Evaluated: (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [0.45, 0.45, 0.45, 0.45]), excluded = ()) == (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [1.155, 1.155, 1.155, 1.155]), excluded = ())
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:618 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:619
+  Expression: length(rec.log) == 3step
+   Evaluated: 5 == 6
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:619 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection persists across updates: Test Failed at legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:639
+  Expression: ≈(model2.b, ref_model2.b, atol = 1.0e-12)
+   Evaluated: /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:639
+  Expression: ≈(model2.b, ref_model2.b, atol = 1.0e-12)
+   Evaluated: [0.55, 0.55, 0.55, 0.55] ≈ [-0.605, -0.605, -0.605, -0.605] (atol=1.0e-12)
+[0.55, 0.55, 0.55, 0.55] ≈ [-0.605, -0.605, -0.605, -0.605] (atol=1.0e-12)
+
+Stacktrace:
+
+Stacktrace:
+ [1] [1] top-level scope top-level scope
+
+   @   @  ~/Projects/ddp_flux/flux-integration/test/ext_distributed/~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585
+conditional_distributedtest.jl:585
+ [2] [2]  macro expansionmacro expansion
+   @
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:639 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:642
+  Expression: state2.tree == ref_state2
+   Evaluated: (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [0.45, 0.45, 0.45, 0.45]), excluded = ()) == (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [1.155, 1.155, 1.155, 1.155]), excluded = ())
+ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:639 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection persists across updates: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:642
+  Expression: state2.tree == ref_state2
+   Evaluated: (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [0.45, 0.45, 0.45, 0.45]), excluded = ()) == (a = Leaf(Momentum(eta=0.1, rho=0.9), [0.675, 0.675, 0.675, 0.675]), b = Leaf(Momentum(eta=0.1, rho=0.9), [1.155, 1.155, 1.155, 1.155]), excluded = ())
+
+Stacktrace:
+Stacktrace:
+ 
+ [1] [1] top-level scopetop-level scope
+
+   @   @  ~/Projects/ddp_flux/flux-integration/test/ext_distributed/~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585conditional_distributedtest.jl:585
+
+  [2][2]  macro expansionmacro expansion
+
+   @   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]Test.jl:1777 [inlined]
+ 
+ [3] [3] macro expansion
+macro expansion
+   @   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:642conditional_distributedtest.jl:642 [inlined] [inlined]
+
+ [4] [4]  macro expansionmacro expansion
+
+   @   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]Test.jl:680 [inlined]
+
+legacy tuple trainable selection persists across updates: legacy tuple trainable selection persists across updates: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:643
+  Expression: /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:643
+  Expression: length(rec2.log) == 3step
+   Evaluated: 5 == 6length(rec2.log) == 3step
+   Evaluated: 5 == 6
+
+
+Stacktrace:
+Stacktrace:
+
+ [1]  [1] top-level scope
+top-level scope
+   @   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:585conditional_distributedtest.jl:585
+
+  [2] [2] macro expansion
+macro expansion
+   @   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]Test.jl:1777 [inlined]
+
+  [3][3]  macro expansionmacro expansion
+
+   @   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:643 [inlined]
+ [4] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:643 [inlined]
+ [4] macro expansion
+   @  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ [inlined]
+Test.jl:680 [inlined]
+Test Summary:                                            | Pass  Fail  Total  Time
+legacy tuple trainable selection persists across updates |   24     6  Test Summary:                                            |    30  3.8s
+Pass  Fail  Total  Time
+legacy tuple trainable selection persists across updates |   24     6     30  3.8s
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0xa0da54a42bf511f2, 0xb992a0c5ad591352, 0xa772c0b132c38805, 0x1d36327cc31161fd, 0xdf4b5bd4874ba1ec)
+0xb7b97fabe3ddf430, 0x08a5998e0f842340, 0xaae013de5adc81bd, 0x2f4af6bd57f10f8a, 0x73176edb40505367)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 24 passed, 6 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:584
+Some tests did not pass: 24 passed, 6 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:584
+
+real	0m37.769s
+user	1m13.034s
+sys	0m3.153s

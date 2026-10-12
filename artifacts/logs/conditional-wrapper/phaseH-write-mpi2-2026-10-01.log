@@ -1,0 +1,24 @@
+COMMAND /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/bin/mpiexec -n 2 /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no --startup-file=no --color=no --project=/home/kurapica/Projects/ddp_flux/flux-integration/test /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_wrapper_compatibility_probe.jl write /tmp/opencode/phaseH-EHgNtc
+Precompiling packages...
+Precompiling packages...
+    JLD2Ext Being precompiled by another process (pid: 7730, pidfile: /home/kurapica/.julia/compiled/v1.12/JLD2Ext/LWN1a_UqiLT.ji.pidfile)
+   3303.4 ms  ✓ JLD2Ext (serial)
+  1 dependency successfully precompiled in 4 seconds
+   3345.2 ms  ✓ JLD2Ext (serial)
+  1 dependency successfully precompiled in 4 seconds
+Julia=1.12.6 mode=write ranks=2
+Flux=0.16.11 source=/home/kurapica/Projects/ddp_flux/flux-integration/src/Flux.jl
+Optimisers=0.4.9 source=/home/kurapica/.julia/packages/Optimisers/tMaaf/src/Optimisers.jl
+Functors=0.5.3 source=/home/kurapica/.julia/packages/Functors/PfDWx/src/Functors.jl
+MPI=0.20.27 source=/home/kurapica/.julia/packages/MPI/E9X9Q/src/MPI.jl
+JLD2=0.6.6 source=/home/kurapica/.julia/packages/JLD2/r2pdD/src/JLD2.jl
+MPI_library=MPICH
+SYNC_CHARACTERIZATION rank=0 wrapper_scalar=(0.5, 0.6) returned_scalar=(0.5, 0.6) rule_eta=0.01 frozen=true native_return_breaks_leaf_ties=true
+SYNC_CHARACTERIZATION rank=1 wrapper_scalar=(0.6, 0.7) returned_scalar=(0.5, 0.6) rule_eta=0.02 frozen=false native_return_breaks_leaf_ties=true
+Test Summary:        | Pass  Total   Time
+Phase H write rank=1 |   54     54  11.1s
+PHASE_H_DONE mode=write rank=1 elapsed=13.173
+Test Summary:        | Pass  Total   Time
+Phase H write rank=0 |   54     54  10.7s
+PHASE_H_DONE mode=write rank=0 elapsed=13.261
+RESULT exit=0 timeout=false elapsed=21.362

@@ -1,0 +1,13 @@
+Phase K mnist-fashion campaign summary
+date	2026-10-05T15:21:43.170
+root	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2
+backend	nccl
+ranks	[2]
+label	k2-deathstar-nccl2
+julia	1.12.6
+project	/home/picazio/projects/flux-integration/test
+steps	120
+command	`/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2 --dataset mnist-fashion --prepared artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/prepared/mnist-fashion_prepared.jls --backend nccl --ranks 2 --steps 120 --timeout 5400 --label k2-deathstar-nccl2
+job	nccl2-train	ranks=2	exit=0	elapsed=80.302	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2-train/console.log
+job	nccl2-resume	ranks=2	exit=0	elapsed=78.773	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2-resume/console.log
+status	PASS

@@ -1,0 +1,97 @@
+julia --startup-file=no --project="../flux-integration/test" scripts/checks/conditional_deadlock_check.jl
+
+--- deadlock mode trace ---
+PROBE_READY rank=0
+PROBE_READY rank=1
+PROBE_COLLECTIVE_BEGIN rank=1 number=1 kind=presence input=1.0,0.0,0.0,1.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=1 kind=presence input=1.0,1.0,1.0,0.0
+TRACE rank=0 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,1.0,0.0 output=1.0,0.5,0.5,0.5 END
+TRACE rank=1 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,0.0,0.0,1.0 output=1.0,0.5,0.5,0.5 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0 END
+TRACE rank=1 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=3 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+TRACE rank=0 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-1.0,-1.0,-1.0,-1.0 END
+TRACE rank=1 allreduce #3 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-1.0,-1.0,-1.0,-1.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=4 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-4.0,-4.0,-4.0,-4.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=5 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=1 allreduce #4 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-4.0,-4.0,-4.0,-4.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=5 kind=gradient input=-4.0,-4.0,-4.0,-4.0
+TRACE rank=0 allreduce #5 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-2.0,-2.0,-2.0,-2.0 END
+TRACE rank=1 allreduce #5 kind=gradient dtype=Float64 op=avg input=-4.0,-4.0,-4.0,-4.0 output=-2.0,-2.0,-2.0,-2.0 END
+PROBE_UPDATE_DONE rank=0
+PROBE_UPDATE_DONE rank=1
+PROBE_VERDICT mode=deadlock rank=1 correct=true expected=1.0,1.1,1.4,1.2 actual=1.0,1.1,1.4,1.2
+PROBE_VERDICT mode=deadlock rank=0 correct=true expected=1.0,1.1,1.4,1.2 actual=1.0,1.1,1.4,1.2
+PROBE_FINISHED rank=0
+PROBE_FINISHED rank=1
+
+[driver] mode=deadlock exit=0 timeout=none elapsed=22.034s
+
+--- corruption mode trace ---
+PROBE_READY rank=1
+PROBE_READY rank=0
+PROBE_COLLECTIVE_BEGIN rank=1 number=1 kind=presence input=1.0,0.0,1.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=1 kind=presence input=1.0,1.0,0.0,0.0
+TRACE rank=0 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,0.0,0.0 output=1.0,0.5,0.5,0.0 END
+TRACE rank=1 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,0.0,1.0,0.0 output=1.0,0.5,0.5,0.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0 END
+TRACE rank=1 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=3 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+TRACE rank=0 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-1.0,-1.0,-1.0,-1.0 END
+TRACE rank=1 allreduce #3 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-1.0,-1.0,-1.0,-1.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=4 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0
+TRACE rank=0 allreduce #4 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-4.0,-4.0,-4.0,-4.0 END
+TRACE rank=1 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-4.0,-4.0,-4.0,-4.0 END
+PROBE_UPDATE_DONE rank=0
+PROBE_UPDATE_DONE rank=1
+PROBE_VERDICT mode=corruption rank=0 correct=true expected=1.0,1.1,1.4,1.0 actual=1.0,1.1,1.4,1.0
+PROBE_VERDICT mode=corruption rank=1 correct=true expected=1.0,1.1,1.4,1.0 actual=1.0,1.1,1.4,1.0
+PROBE_FINISHED rank=0
+PROBE_FINISHED rank=1
+
+[driver] mode=corruption exit=0 timeout=none elapsed=22.752s
+
+--- control mode trace ---
+PROBE_READY rank=1
+PROBE_READY rank=0
+PROBE_COLLECTIVE_BEGIN rank=1 number=1 kind=presence input=1.0,1.0,1.0,1.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=1 kind=presence input=1.0,1.0,1.0,1.0
+TRACE rank=0 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,1.0,1.0 output=1.0,1.0,1.0,1.0 END
+TRACE rank=1 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,1.0,1.0 output=1.0,1.0,1.0,1.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+TRACE rank=1 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+TRACE rank=0 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-2.0,-2.0,-2.0,-2.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0
+TRACE rank=1 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-2.0,-2.0,-2.0,-2.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0
+TRACE rank=0 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-8.0,-8.0,-8.0,-8.0 END
+PROBE_COLLECTIVE_BEGIN rank=0 number=5 kind=gradient input=-4.0,-4.0,-4.0,-4.0
+TRACE rank=1 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-8.0,-8.0,-8.0,-8.0 END
+PROBE_COLLECTIVE_BEGIN rank=1 number=5 kind=gradient input=-4.0,-4.0,-4.0,-4.0
+TRACE rank=0 allreduce #5 kind=gradient dtype=Float64 op=avg input=-4.0,-4.0,-4.0,-4.0 output=-4.0,-4.0,-4.0,-4.0 END
+TRACE rank=1 allreduce #5 kind=gradient dtype=Float64 op=avg input=-4.0,-4.0,-4.0,-4.0 output=-4.0,-4.0,-4.0,-4.0 END
+PROBE_UPDATE_DONE rank=1
+PROBE_UPDATE_DONE rank=0
+PROBE_VERDICT mode=control rank=0 correct=true expected=1.0,1.2,1.8,1.4 actual=1.0,1.2,1.8,1.4
+PROBE_VERDICT mode=control rank=1 correct=true expected=1.0,1.2,1.8,1.4 actual=1.0,1.2,1.8,1.4
+PROBE_FINISHED rank=0
+PROBE_FINISHED rank=1
+
+[driver] mode=control exit=0 timeout=none elapsed=21.944s
+Test Summary:                            | Pass  Total     Time
+conditional-graph DDP success regression |  210    210  1m07.1s
+
+DETECTOR SUMMARY: conditional-graph support works (CPU/MPI, two ranks)

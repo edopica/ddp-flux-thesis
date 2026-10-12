@@ -1,0 +1,15 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 2 bash -lc '/usr/bin/nvidia-smi -L'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 59434335
+salloc: job 59434335 queued and waiting for resources
+salloc: job 59434335 has been allocated resources
+salloc: Granted job allocation 59434335
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn3078 are ready for job
+GPU 0: NVIDIA A100-SXM-64GB (UUID: GPU-29bd3280-b725-8a1b-6f9b-48cade2c68c2)
+GPU 1: NVIDIA A100-SXM-64GB (UUID: GPU-d2ddbd6b-43cb-6e12-9834-e2cb4b75879c)
+GPU 2: NVIDIA A100-SXM-64GB (UUID: GPU-ea26c0dc-fae2-f078-4971-fd8965194f45)
+GPU 3: NVIDIA A100-SXM-64GB (UUID: GPU-ccb0a852-ebbc-8138-e7ec-761ff3975bcb)
+salloc: Relinquishing job allocation 59434335

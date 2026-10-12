@@ -1,0 +1,209 @@
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+fatal: not a git repository (or any of the parent directories): .git
+DEMO_META mode=resume rank=0 backend=mpi ranks=2 dtype=Float64 tolerances="atol=1.0e-12 rtol=1.0e-10" flux=/home/picazio/projects/flux-integration/src/Flux.jl step_next=3
+DEMO_COLLECTIVE mode=resume step=3 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=resume step=3 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=resume step=3 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=3 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=3 cycle=3 rank=1 head=a present_a=true present_b=false counts_a=2 counts_b=0 loss_ref=NaN loss_local=0.3728342696 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_STEP mode=resume step=3 cycle=3 rank=0 head=a present_a=true present_b=false counts_a=2 counts_b=0 loss_ref=0.3826737915 loss_local=0.3925133135 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_COLLECTIVE mode=resume step=4 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=resume step=4 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=resume step=4 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=4 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=4 cycle=4 rank=0 head=b present_a=false present_b=true counts_a=0 counts_b=2 loss_ref=1.0152247861 loss_local=1.0249223543 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_STEP mode=resume step=4 cycle=4 rank=1 head=b present_a=false present_b=true counts_a=0 counts_b=2 loss_ref=NaN loss_local=1.0055272178 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=5 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=5 cycle=5 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.6116116535 loss_local=0.3160825923 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=5 cycle=5 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.9071407148 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=6 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=6 cycle=6 rank=0 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.5468255569 loss_local=0.8187751260 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=6 cycle=6 rank=1 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.2748759879 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=7 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=7 cycle=1 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.4775751132 loss_local=0.2546783700 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=7 cycle=1 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.7004718565 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=8 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=8 cycle=2 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.4197974758 loss_local=0.2407937279 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=8 cycle=2 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.5988012237 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=9 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=resume step=9 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=resume step=9 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=9 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=9 cycle=3 rank=0 head=a present_a=true present_b=false counts_a=2 counts_b=0 loss_ref=0.1925289319 loss_local=0.1946448454 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_STEP mode=resume step=9 cycle=3 rank=1 head=a present_a=true present_b=false counts_a=2 counts_b=0 loss_ref=NaN loss_local=0.1904130184 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_COLLECTIVE mode=resume step=10 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=resume step=10 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=resume step=10 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=10 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=10 cycle=4 rank=0 head=b present_a=false present_b=true counts_a=0 counts_b=2 loss_ref=0.4965354738 loss_local=0.5042460839 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_STEP mode=resume step=10 cycle=4 rank=1 head=b present_a=false present_b=true counts_a=0 counts_b=2 loss_ref=NaN loss_local=0.4888248637 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=11 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=11 cycle=5 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.2940546642 loss_local=0.1676798610 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=11 cycle=5 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.4204294673 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=12 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=12 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=resume step=12 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=resume step=12 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=12 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=12 cycle=6 rank=0 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.2433503500 loss_local=0.3644673601 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=12 cycle=6 rank=1 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.1222333398 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=13 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=13 cycle=1 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.2282529206 loss_local=0.1243832242 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=13 cycle=1 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.3321226171 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=0 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.5, 0.5, 0.5, 0.5]
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=6 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=14 rank=1 order=7 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=14 cycle=2 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=0.2065461659 loss_local=0.1075249171 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_STEP mode=resume step=14 cycle=2 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=1 loss_ref=NaN loss_local=0.3055674146 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=7 resume_match=true
+DEMO_COLLECTIVE mode=resume step=15 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=resume step=15 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=resume step=15 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=15 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=15 cycle=3 rank=1 head=a present_a=true present_b=false counts_a=2 counts_b=0 loss_ref=NaN loss_local=0.1207858834 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_STEP mode=resume step=15 cycle=3 rank=0 head=a present_a=true present_b=false counts_a=2 counts_b=0 loss_ref=0.1127180286 loss_local=0.1046501738 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_COLLECTIVE mode=resume step=16 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=resume step=16 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=resume step=16 rank=1 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=0 order=2 type=Matrix{Float64} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=1 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=0 order=3 type=Vector{Float64} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=1 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=0 order=4 type=Matrix{Float64} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=1 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=resume step=16 rank=0 order=5 type=Vector{Float64} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=resume step=16 cycle=4 rank=1 head=b present_a=false present_b=true counts_a=0 counts_b=2 loss_ref=NaN loss_local=0.2403180465 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_STEP mode=resume step=16 cycle=4 rank=0 head=b present_a=false present_b=true counts_a=0 counts_b=2 loss_ref=0.2392170705 loss_local=0.2381160944 peer_param_maxerr=0.000e+00 peer_mom1_maxerr=0.000e+00 peer_mom2_maxerr=0.000e+00 beta_exact=true collectives=5 resume_match=true
+DEMO_RANK_DONE mode=resume rank=1 start_step=3 steps=16 exit=ok
+DEMO_SCHEMA_OK mode=resume validation_steps=15
+DEMO_RANK_DONE mode=resume rank=0 start_step=3 steps=16 exit=ok
+DEMO_RESUME_DONE mode=resume backend=mpi ranks=2 start_step=3 stop_step=16

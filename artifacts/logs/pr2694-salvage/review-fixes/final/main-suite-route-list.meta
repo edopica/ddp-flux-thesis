@@ -1,0 +1,4 @@
+cmd: FLUX_TEST_DISTRIBUTED_MPI=true FLUX_TEST_REACTANT=false julia --project=test test/runtests.jl --list
+cwd: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+purpose: exercise find_tests + strip_distributed_tests! + add_distributed_runner! and print discovered keys WITHOUT spawning workers

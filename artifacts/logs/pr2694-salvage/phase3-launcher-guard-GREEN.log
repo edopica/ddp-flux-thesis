@@ -1,0 +1,5 @@
+Precompiling packages...
+  11020.5 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+Test Summary:                         | Pass  Total  Time
+check_launcher_compat decision matrix |  169    169  0.3s

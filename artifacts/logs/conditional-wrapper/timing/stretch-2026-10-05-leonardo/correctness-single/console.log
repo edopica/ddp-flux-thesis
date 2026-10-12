@@ -1,0 +1,28 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+TIMING_META mode=single rank=0 world=4 dtype=Float32 tolerances="atol=2.0e-6 rtol=1.0e-5" flux=/leonardo/home/userexternal/epicazio/projects/flux-integration/src/Flux.jl schedule_digest=ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57
+TIMING_START mode=single world=4 steps=12 warmup=2 repeats=1 record_every=4 device=cuda
+TIMING_WARMUP mode=single warmup_steps=2 compile_warmup_s=33.339991
+TIMING_CHECK step=1 maxabs=7.450581e-09 nbad=0
+TIMING_CHECK step=2 maxabs=1.024455e-08 nbad=0
+TIMING_CHECK step=3 maxabs=1.769513e-08 nbad=0
+TIMING_CHECK step=4 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=5 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=6 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=7 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=8 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=9 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=10 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=11 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK step=12 maxabs=2.980232e-08 nbad=0
+TIMING_CHECK_RESULT source=trajectory PASS maxabs=2.980232e-08
+TIMING_REPEAT mode=single repeat=1 t_total_s=0.104019 t_train_s=0.067152 t_val_s=0.036867 slowest_rank_s=0.104019
+TIMING_SUMMARY mode=single repeats=1 median_total_s=0.104019 min_total_s=0.104019 max_total_s=0.104019 median_updates_per_s=115.363161
+TIMING_RANK_DONE mode=single rank=0 steps=12
+TIMING_DONE mode=single

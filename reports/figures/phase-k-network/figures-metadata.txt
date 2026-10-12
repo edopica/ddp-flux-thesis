@@ -1,0 +1,23 @@
+phase_k_network_plot_metadata
+generated_at_utc	2026-10-05T23:49:54+00:00
+python	3.13.13
+matplotlib	3.11.2
+numpy	2.5.3
+command	scripts/plots/plot_phase_k_network.py --out reports/figures/phase-k-network
+reproducible_command	uv run --offline --with matplotlib --with numpy python3 scripts/plots/plot_phase_k_network.py --out reports/figures/phase-k-network
+source	demo	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl	b6e6725d51577e4bde4ac900cfbb7ba59ce156bff0321bd7b94d5a26eb99ce7d
+source	model	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/examples/conditional_graph/model.jl	07de4f0fb5bed36727a49cd89f1f21bc1c198c12515cb1aa0ac32fe9fa9b67f0
+source	schedule	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/examples/conditional_graph/schedule.jl	9e7bb59e8494ac9dbf26d84643ce144f91e61c22115f22429a699cdb59ce99e3
+source	common	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/examples/conditional_graph/common.jl	9dfa74ee90c29ccfcac2b102315255791f5ad15d11ba6622e9ed060dd7355f99
+model	indim	784	hidden	32	nclasses	10
+parameters	trunk	25120	head	330	total	25780
+global_batch	128
+worlds	2,4
+routing	cycle=1	split	a	b	local absence and one-versus-rest weighting
+routing	cycle=2	split	a	b	nonzero Adam history on both heads
+routing	cycle=3	all	a	None	B globally absent after prior activity
+routing	cycle=4	all	b	None	A globally absent after prior activity
+routing	cycle=5	split	a	b	reactivation after absence
+routing	cycle=6	split	b	a	reversed participation
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-network/phase-k-k2-network.png	266257984053bafcce5aa96fa845c6fa2acab1e7c10f6fa4e5e6de28a910979f	bytes=282809
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-network/phase-k-k2-routing.png	64d50f71f1dbcfbd24a9d8980ac538961dd7b50ba0f29ef0f0b8d581f6f55915	bytes=223839

@@ -1,0 +1,20 @@
+ Downloading artifact: CUDA_Compiler
+[ Info: Unpacking /scratch_local/jl_UvUJAjWjEv-download.gz into /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/jl_JLVX0A...
+OK CUDA_Compiler cuda=12 -> /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/486b1a24f652206e8b1369615e163ab59ef0152c
+ Downloading artifact: CUDNN
+[ Info: Unpacking /scratch_local/jl_8L8fwr6tGR-download.gz into /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/jl_ddn4mZ...
+OK CUDNN cuda=12.0 -> /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/1fb1c92ee996b0d496b7c65e69cdcf5e7836b8ce
+ Downloading artifact: NCCL
+[ Info: Unpacking /scratch_local/jl_Q1KbUzuxST-download.gz into /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/jl_WRJtTV...
+OK NCCL cuda=12.9 -> /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/b40757c32104349052a13ecfaa1b92b630d5dd62
+ Downloading artifact: CUDA_Runtime
+[ Info: Unpacking /scratch_local/jl_E5WNGl6R0N-download.gz into /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/jl_NZDdOe...
+ERROR: Data Error : jl_E5WNGl6R0N-download
+     Failure artifact: CUDA_Runtime
+ Downloading artifact: CUDA_Runtime
+[ Info: No hash cache found
+[ Info: Calculated hash b28829a62b37140ba5fdb47b1566d9b90f7fed8082decdd7584d8ab14952397d for file /scratch_local/jl_kpAxSdCbOv-download.gz
+[ Info: Unpacking /scratch_local/jl_kpAxSdCbOv-download.gz into /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/jl_MPqKbe...
+OK CUDA_Runtime cuda=12.9 -> /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/artifacts/b842734cc2028a5166fdcefc7e5a24fb79ab3e79
+ALL ARTIFACTS INSTALLED
+EXIT=0

@@ -1,13 +1,619 @@
 # Current context
 
-Remote tooling update (2026-09-30): the `hpc` SSH alias and every reference were renamed to `bocconi` (real hostname `slogin.hpc.unibocconi.it` unchanged; SSH config alias only, no key change). `scripts/remote/` was cleaned up: stale `run_tests.sh` and `setup_mpi.jl` deleted, `update_wiki.sh` moved to `scripts/setup/`, `hosts/hpc.conf` -> `hosts/bocconi.conf` (wrapper byte-identical), `run.sh` now rejects unknown host names, and both syncs use `rsync --delete` with the remote-resolved `test/Manifest.toml` protected. Per-server docs now live in `wiki/context/bocconi.md` / `deathstar.md` / `leonardo.md` (new stub) behind a slimmed `remote` skill index. No Flux code, tests, or checkpoint state changed. Next action unchanged: Phase F (two- and four-rank CPU/MPI gates; the four-rank case must prove weighting). Details: `wiki/devlog/2026-09-30-remote-tooling-bocconi-rename.md`.
+## Wiki reorganized by project scope — 2026-10-07
+
+The flat `wiki/devlog/` (76 entries) and `wiki/audits/` (3 reports) folders are
+grouped by project scope: [`01-pr2694/`](../devlog/01-pr2694/) (C0–C8, M0/M1,
+PS1–PS8, Windows fix, era tooling) and
+[`02-conditional-graph/`](../devlog/02-conditional-graph/) (wrapper Phases A–K,
+GPU validation, timing, notebooks). Complete indexes:
+[`wiki/devlog/README.md`](../devlog/README.md) and
+[`wiki/audits/README.md`](../audits/README.md). All relative links were
+rewritten; a repo-wide markdown-link inventory reports zero broken links among
+the moved files.
+
+The same pass corrected stale wiki facts: quickstart next action and indexes,
+Leonardo status, README status rows, the `../Flux.jl` fork path, ADR
+superseded-notes, resolved open questions in this file, and missing reference
+files in testing docs. No Julia, MPI, CUDA, notebook, or Makefile change.
+Details: [2026-10-07-wiki-reorganization](../devlog/02-conditional-graph/2026-10-07-wiki-reorganization.md).
+
+**Exact next action:** unchanged — implement `notebook/conditional_graph_benchmark.ipynb` from the corrected `timing/stretch-2026-10-06-leonardo/` artifacts (two-notebook plan implementation item 6).
+
+## Conditional graph implementation report written — 2026-10-06
+
+A detailed implementation report is ready for the supervisor meeting:
+[`reports/conditional-graph-implementation.md`](../../reports/conditional-graph-implementation.md).
+It documents how conditional graph support was implemented, with file paths,
+line numbers, code snippets, the defect history, the test evidence, and the
+audit 002 limitations. The report uses the simple-english rules and was
+cross-checked against the implementation worktree (commit chain `6065ce8f` to
+`55171e65`, production diff +384/-13 in `src/distributed/public_api.jl`).
+Documentation only: no Flux source, test, Julia, MPI, CUDA, or remote command
+changed this session. Devlog:
+[2026-10-06-conditional-graph-implementation-report](../devlog/02-conditional-graph/2026-10-06-conditional-graph-implementation-report.md).
+
+**Exact next action:** unchanged — implement `notebook/conditional_graph_benchmark.ipynb` from the corrected `timing/stretch-2026-10-06-leonardo/` artifacts (two-notebook plan implementation item 6).
+
+## Distributed workflow notebook implemented — 2026-10-06
+
+Deliverable 1 of the two-notebook plan is implemented and executed from fresh
+IJulia kernels in artifact mode.
+`notebook/conditional_graph_distributed_workflow.ipynb` selects a complete run
+bundle: four-rank Leonardo NCCL by default, two-rank deathstar NCCL through
+`PHASE_K_TUTORIAL_CONFIG=tutorial-2rank`. The kernel reads saved artifacts,
+calls the Python plotters through `uv` with the pinned environment in
+`scripts/plots/requirements-phase-k.txt`, and never joins a collective; fresh
+training is an opt-in child process through the bounded driver.
+
+Acceptance checks passed: four-rank resume 472/472 and exposures 6400/8960;
+two-rank resume 236/236 and exposures 7680/7680; both HTML exports show 12
+figures and nine sections with no error outputs; missing artifacts produce an
+explicit error listing every path. The child-process path was executed
+separately (MPI 2 ranks, driver 6/6 PASS, 151.8 s). New plotter figures cover
+exposure, collectives, and continuation. Records:
+[devlog](../devlog/02-conditional-graph/2026-10-06-phase-k-workflow-notebook-implementation.md),
+`artifacts/logs/conditional-wrapper/notebook/2026-10-06/COMMANDS.md`.
+
+**Exact next action:** implement `notebook/conditional_graph_benchmark.ipynb`
+from the corrected `timing/stretch-2026-10-06-leonardo/` artifacts (plan
+implementation item 6).
+
+## Two Phase K notebooks planned — 2026-10-06
+
+The user selected two IJulia notebooks: a distributed-wrapper tutorial and a separate one-A100/four-A100 benchmark.
+The tutorial defaults to four ranks and permits a two-rank selection.
+Both notebooks analyze saved artifacts and include reproduction commands.
+
+The [implementation plan](../../reports/conditional-graph-phase-k-notebook-plan.md) defines each graph, its data, interpretation, and acceptance checks.
+The recommendation is to retain the Python plotters and call them from Julia through subprocesses.
+New views cover task exposure, checkpoint continuation, throughput, and optional timing components.
+This replaces the earlier single `conditional_graph_gpu_recap.ipynb` proposal.
+Notebook implementation remains pending. Broader deferred-behavior acceptance remains a separate decision.
+
+**Exact next action:** implement the artifact bundle map and shared IJulia display helper, then extend the existing Python figures.
+
+## GPU notebook preconditions reviewed — 2026-10-06
+
+The corrected timing summaries both report PASS. The recorded ratios are
+1.888594 for training-only time and 1.397335 for total time.
+
+Audit 002 section 6 needs three clarifications for the notebook:
+
+- Finite loss does not imply finite gradients. Any future pre-update guard must
+  reach an all-rank decision before any rank stops or skips an update.
+- `Flux.train!` is not a workaround for asymmetric non-finite losses (DB-1).
+  The notebook can retain the existing explicit fixed-step driver.
+- Equal participation is the requirement. The existing saved Phase K schedule
+  already supplies equal batch sizes and update counts without padding.
+  `DistributedDataContainer` is not required for this demonstration.
+
+Proposed scope: existing two-/four-rank correctness artifacts, fixed model and
+native Adam configuration, data-only fresh-process continuation, and the corrected
+one-/four-A100 timing results. Numerical-failure recovery and untested GPU paths
+remain documented limitations. User acceptance remains pending.
+
+**Exact next action:** obtain the user's decision on these demonstration
+preconditions, then create `notebook/conditional_graph_gpu_recap.ipynb`.
+
+## Timing corrections applied and re-measured on Leonardo — 2026-10-06
+
+The 2026-10-06 [review](../../reports/conditional-graph-phase-k-review.md)
+found three timing findings in the optional post-Phase K stretch. All three are
+corrected and the campaign was re-measured.
+
+- P1: the timed single-GPU baseline took asymmetric diagnostic host copies
+  (480 `Array` copies per 120-step repeat through `CGReference.reference_step!`
+  absent-head snapshots); DDP had none. Timed and warm-up baseline steps now
+  use the plain native `CGReference.reference_update!`; the assertions remain
+  in the untimed `--check-trajectory` correctness path.
+- P2a: timing did not isolate training-only duration (record writes stayed in
+  `t_train_s`; no slowest-rank training-only field). A barrier-guarded
+  diagnostic window now excludes validation and record writes; `repeats.tsv`
+  gained `t_write_s` and `slowest_train_s`; `TIMING_SUMMARY` reports
+  `median_total_s` and `median_train_s`.
+- P2b: the speedup figure used the median of paired per-repeat ratios while the
+  report used the ratio of medians. Driver and figure now both use the ratio of
+  medians; the figure shows per-mode individual repeat durations.
+- New driver phase `--phase timing` (baseline + DDP, one `summary-timing.txt`).
+  `repeats.tsv` now has 15 columns; the strict plotter exits 2 on the old
+  11-column header, so the 2026-10-05 campaign root is no longer replottable.
+
+Corrected campaign (Leonardo, node `lrdn0009`, 4× A100-SXM-64GB, driver
+535.274.02; correctness job `59514262` on `lrdn1934`, timing job `59514959` on
+`lrdn0009`):
+
+- Correctness preflight PASS: `single` trajectory `maxabs=2.980232e-08`, `ddp`
+  `maxabs=0.000000e+00`, tolerances unchanged (`atol=2.0e-6`, `rtol=1.0e-5`).
+- Timing: baseline 5/5 (1× A100), DDP 5/5 (4 NCCL ranks, devices `[1,2,3,0]`),
+  fixed work 120 updates × batch 128 = 15360 samples per repeat, 0
+  `Precompiling packages` lines, no Flux source change, no commits.
+- Corrected headline (ratio of medians): training-only speedup
+  `0.263440 / 0.139490 = 1.888594`; total speedup
+  `0.438678 / 0.313939 = 1.397335`.
+- Historical instrumented run (2026-10-05) reported total speedup 1.480203
+  (baseline median `t_total_s` 0.465324, DDP median `slowest_rank_s` 0.314365,
+  baseline median `t_train_s` 0.295540). The corrected baseline median
+  `t_train_s` is 0.263440 (−0.032100 s, −10.9%), consistent with removing the
+  diagnostic host copies; the corrected DDP slowest total is 0.313939
+  (−0.14%). The historical 1.480203 describes the instrumented runs only and
+  is superseded.
+
+Files: run root
+`artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/`
+(`summary-correctness.txt`, `summary-timing.txt`, both status PASS); local
+driver logs `artifacts/logs/leonardo/2026-10-06-timing-correctness-r2.log` and
+`...-timing-r2.log`; figures regenerated (8 PNGs plus `figures-metadata.txt`)
+under `reports/figures/phase-k-timing/`; rewritten report
+`reports/conditional-graph-phase-k-timing-stretch.md`; campaign record
+`artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/CAMPAIGN.md`;
+devlog [2026-10-06-timing-corrections](../devlog/02-conditional-graph/2026-10-06-timing-corrections.md).
+
+Timeline: local implementation and independent local CPU/MPI verification,
+then remote correctness preflight and timing campaign, then documentation. The
+core correctness matrix remains untouched and valid; the GPU recap notebook
+next action is unchanged.
+
+**Exact next action:** review the deferred findings and decide the
+demonstration preconditions (report section 6); then create
+`notebook/conditional_graph_gpu_recap.ipynb` from the existing two-rank and
+four-rank correctness artifacts.
+
+## Deferred-behavior report complete — 2026-10-06
+
+The deferred-behavior investigation is complete; it was the last remaining
+Phase K item. Report:
+[002-conditional-wrapper-deferred-behaviors](../audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md).
+
+New bounded two-rank CPU/MPI probes characterized the wrapper boundaries.
+Final run: **8/8 modes PASS, 83 assertions, 0 failures, exit 0**
+(summary `artifacts/logs/conditional-wrapper/deferred/check-summary-2026-10-06.log`;
+raw logs and `deferred-metadata.md` in the same directory). Runtime-confirmed
+findings:
+
+- DB-1: one rank's non-finite loss makes `Flux.train!` hang (the offender
+  throws `DomainError` after skipping its update; other ranks block in the
+  presence `allreduce!`).
+- DB-2: all-rank non-finite loss is a clean coordinated stop with the model and
+  state unchanged.
+- DB-3: a finite loss with a non-finite gradient silently corrupts parameters
+  and Adam moments on every rank (no gradient finiteness check exists).
+- DB-4: a manual `trainstep!` loop with one skipped update silently shifts
+  gradient pairing (`delta_vs_shifted=0.0` against an independent reference)
+  and then hangs.
+- DB-5: a rank-local loop stop hangs the remaining ranks.
+- DB-6/DB-7: rank-local learning-rate or frozen-flag changes diverge replicas
+  silently with an unchanged collective schedule (accepted configuration
+  precondition).
+- DB-8: `synchronize!!` excludes rules/frozen/backend and is not a checkpoint
+  restore (accepted contract).
+- DB-10: non-finite behavior is untested under CUDA/NCCL; recorded GPU failures
+  are harness-only.
+
+No Flux source or test changed; no commits; no remote execution. Probe/driver:
+`scripts/checks/conditional_graph_deferred_probe.jl` and
+`..._check.jl`; follow-up backlog A1-A8 is in the report (section 7) and the
+implementation plan (section 21). Probe-tooling iterations are recorded in
+[the failure note](../failures/2026-10-06-deferred-probe-driver-defects.md).
+
+**Exact next action:** review the deferred-behavior report and decide which
+deferred findings the demonstration carries (report section 6); then proceed to
+the GPU recap notebook or the next campaign. No other Phase K item remains.
+
+## Phase K K2 network diagram — 2026-10-06
+
+Added `scripts/plots/plot_phase_k_network.py`, which parses the K2 network
+(`TwoHeadModel`: trunk `Dense(784 => 32, tanh)`, two `Dense(32 => 10)` heads,
+25 780 Float32 parameters) and the six-step `ROUTING_CYCLE` from the example
+sources and writes two deterministic figures plus provenance metadata under
+`reports/figures/phase-k-network/`. The recorded source hashes match the K2
+deathstar campaign `prepare_metadata.txt`; repeated runs produce byte-identical
+PNGs. No training ran; no Flux source changed.
+
+Devlog: [2026-10-06-phase-k-network-figure](../devlog/02-conditional-graph/2026-10-06-phase-k-network-figure.md).
+
+**Exact next action:** unchanged — create `notebook/conditional_graph_gpu_recap.ipynb` from the existing two-rank and four-rank correctness artifacts; the deferred-behavior report remains pending.
+
+## Phase K review and GPU notebook plan — 2026-10-06
+
+The implementation review found no blocking defect in the inspected correctness path.
+Stored K2 GPU evidence passed local checks: two-rank resume 236/236 and four-rank resume 472/472.
+Local figure regeneration produced 17 PNGs plus metadata. No new training ran.
+
+The optional timing path needs corrections before a new training-speed comparison.
+The timed single-GPU baseline copies absent-head parameters and Adam state to CPU, unlike DDP.
+The timing fields also retain record-write overhead, and the speedup figure uses a different summary statistic.
+The historical 1.480203 ratio describes those instrumented runs only.
+
+Review and notebook outline: [Phase K review](../../reports/conditional-graph-phase-k-review.md).
+The required correctness matrix remains complete. The deferred-behavior report remains pending.
+
+**Exact next action:** create `notebook/conditional_graph_gpu_recap.ipynb` from the existing two-rank and four-rank correctness artifacts.
+
+## Phase K timing stretch complete on Leonardo — 2026-10-05
+
+The optional post-Phase K timing stretch passed its correctness preflight and
+completed 5/5 timed repeats in both modes on Leonardo (4× A100-SXM-64GB,
+driver 535.274.02). Jobs: correctness `lrdn0790` (salloc `59434349`),
+baseline `lrdn1990` (`59434611`), DDP `lrdn1847` (`59435161`), GPU check
+`lrdn3078` (`59434335`). No Flux source changed; no commits; 0
+`Precompiling packages` lines in every console log.
+
+- Correctness preflight PASS: local CPU 4-rank `single`-vs-`ddp` snapshot check
+  `TIMING_CHECK_RESULT source=single-vs-ddp PASS maxabs=2.980232e-08`; Leonardo
+  trajectory checks `single` `maxabs=2.980232e-08` and `ddp`
+  `maxabs=0.0`, tolerances unchanged (`atol=2.0e-6`, `rtol=1.0e-5`).
+- Fixed work: 120 global updates × global batch 128 = 15360 samples per repeat
+  (a=6400, b=8960). Baseline = 1 process on 1 A100; DDP = 4 NCCL ranks on
+  devices `[1,2,3,0]`.
+- Baseline `t_total_s` per repeat 0.626333, 0.439836, 0.832694, 0.465324,
+  0.444683; median 0.465324 (median 257.884817 updates/s).
+- DDP `slowest_rank_s` per repeat 0.714849, 0.344812, 0.282049, 0.314365,
+  0.266138; median 0.314365 (median 381.721898 updates/s).
+- Measured diagnostic `speedup = 0.465324 / 0.314365 = 1.480203` for this
+  tiny fixed schedule; not a production-speedup claim.
+- 8 PNGs plus `figures-metadata.txt` in `reports/figures/phase-k-timing/`.
+  Live viewer captured WAITING/RUNNING/DONE
+  (`.../stretch-2026-10-05-leonardo/viewer/timing-live.png`), with the
+  documented caveat that the ssh stream arrived in a late buffered burst.
+
+Evidence: report
+[conditional-graph-phase-k-timing-stretch.md](../../reports/conditional-graph-phase-k-timing-stretch.md);
+campaign record
+[CAMPAIGN.md](../../artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/CAMPAIGN.md);
+devlog [2026-10-05-phase-k-timing-stretch](../devlog/02-conditional-graph/2026-10-05-phase-k-timing-stretch.md).
+
+**Exact next action:** write the deferred-behavior report
+(`temp/conditional_graph_deferred_behaviors_prompt.md`); it is the only
+remaining Phase K item. Nothing else from Phase K is pending.
+
+## Phase K complete on Leonardo (4-rank NCCL) — 2026-10-05
+
+Both remaining Phase K acceptance cells PASS on Leonardo (4× A100-SXM-64GB,
+driver 535.274.02) with CUDA/NCCL at 4 ranks; driver exit 0 for both roots.
+No Flux source changed this session.
+
+- K1 toy, node `lrdn3394`, root
+  `artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4`:
+  prepared ranks=1 exit 0 (12.7 s), `nccl4-train` ranks=4 exit 0 (183.6 s),
+  `nccl4-resume` ranks=4 exit 0 (67.7 s); testset
+  `Phase K toy campaign (nccl) | 8 8 4m27.5s`;
+  `PHASE_K_SUMMARY dataset=toy backend=nccl ranks=4 PASS`; `DEMO_SCHEMA_OK`
+  train `validation_steps=17`, resume `validation_steps=15`; 64/56
+  `DEMO_STEP` records; `resume_match` 56/56; collectives 24×5 + 40×7 (train)
+  and 24×5 + 32×7 (resume); maxima (train = resume) param 2.980e-08,
+  mom1 2.980e-08, mom2 1.164e-10; `peer_beta_exact=false` count 0.
+- K2 MNIST/Fashion-MNIST, node `lrdn0436`, root
+  `artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-leonardo-nccl4`:
+  `nccl4-train` ranks=4 exit 0 (184.657 s), `nccl4-resume` ranks=4 exit 0
+  (77.235 s); testset `Phase K mnist-fashion campaign (nccl) | 6 6 4m25.6s`;
+  `PHASE_K_SUMMARY dataset=mnist-fashion backend=nccl ranks=4 PASS`;
+  `DEMO_SCHEMA_OK` train `validation_steps=121`, resume
+  `validation_steps=119`; 480/472 `DEMO_STEP` records; `resume_match`
+  472/472; collectives 160×5 + 320×7 (train) and 160×5 + 312×7 (resume);
+  maxima (train = resume) param 5.960e-08, mom1 4.657e-09, mom2 1.455e-11;
+  `peer_beta_exact=false` count 0.
+- Both runs map rank 0→1, 1→2, 2→3, 3→0 (`devices=[1, 2, 3, 0]`).
+  Tolerances unchanged (`atol=2.0e-6`, `rtol=1.0e-5`); the nonzero 4-rank
+  maxima are Float32 accumulation differences inside them.
+- K2 reused the deathstar prepared dataset
+  `/leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls`
+  (SHA-256 `7f0d38d997b14de3905ab9176cd3f914103363398c0bd9be6bf6360595373cd6`,
+  39804054 bytes); schedule digest
+  `ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57`
+  (identical to deathstar mpi4); dataset digest
+  `658e3dd341ca4e4fa9e5e4a05eacf53c0bebca626a05b17a87e917062dec2971`;
+  exposures a=6400 / b=8960, local batch 32, 120 steps, Adam eta=0.001. No
+  download on compute nodes and 0 `Precompiling packages` lines.
+- Figures: `reports/figures/phase-k-k2/` regenerated to 41 PNGs plus
+  `figures-metadata.txt`; 8 new `k2-2026-10-05-leonardo-nccl4-nccl4-*` files.
+- Local driver logs: `artifacts/logs/leonardo/2026-10-05-k1-leonardo-nccl4.log`
+  and `...-k2-leonardo-nccl4.log`.
+
+Evidence: campaign record
+[CAMPAIGN-2026-10-05-leonardo-k2.md](../../artifacts/logs/conditional-wrapper/demo/CAMPAIGN-2026-10-05-leonardo-k2.md);
+devlog [2026-10-05-leonardo-k1-k2-4rank-nccl](../devlog/02-conditional-graph/2026-10-05-leonardo-k1-k2-4rank-nccl.md);
+failure record
+[2026-10-05-leonardo-k1-k2-nccl4](../failures/2026-10-05-leonardo-k1-k2-nccl4.md).
+
+**Exact next action:** the required Phase K acceptance matrix is complete; only
+the optional post-Phase K live one-A100 versus four-rank A100 timing stretch
+and the deferred-behavior report remain unrun.
+
+## Phase K K2 complete on deathstar — 2026-10-05
+
+The K2 task-conditioned MNIST/Fashion-MNIST campaign is complete on `deathstar`.
+All driver summaries are PASS: smoke2 mpi2 8/8, K1 toy regression mpi2 8/8,
+full CPU/MPI (mpi2 and mpi4, 120 steps) 13/13, CUDA/NCCL 2 ranks 6/6.
+
+- mpi2 and NCCL parameter/Adam-moment maxima are exactly 0.0 with
+  `resume_match` 236/236; mpi4 maxima are within the declared Float32
+  `atol=2e-6, rtol=1e-5` (train param 7.451e-09, resume param 5.960e-08) with
+  `resume_match` 472/472. Tolerances were not changed.
+- Final validation (initial digits 0.1170, clothing 0.0460): mpi2 and NCCL
+  digits acc 0.8560 / loss 0.6935, clothing acc 0.7270 / loss 0.7968
+  (exposure 7680/7680); mpi4 digits acc 0.8470 / loss 0.7658 (exposure 6400),
+  clothing acc 0.7390 / loss 0.7740 (exposure 8960). mpi2 and NCCL
+  trajectories are identical; mpi4 is a different routed objective by design
+  (steps 1-2 route A to 1 of 4 ranks and B to 3 of 4).
+- Per-step evidence covers parameters, both Adam moments, decay products,
+  rules/frozen/shape/dtype/device, local and global AD absence, equal update
+  counts, rank-vs-reference and rank-vs-rank comparisons, and the ordered
+  collective trace per rank on every step (5 collectives when one head is
+  globally absent, 7 otherwise).
+- One defect was found by the smoke and fixed:
+  `CGCheckpoint.checkpoint_digest` was unstable across a `Serialization`
+  roundtrip. Canonicalization (Dict/NamedTuple/Tuple/AbstractVector) plus the
+  new `scripts/checks/conditional_graph_checkpoint_roundtrip.jl` regression
+  (RED then GREEN) close it. Pre-fix checkpoints are intentionally
+  incompatible.
+- Presentation assets: 33 PNGs plus `figures-metadata.txt` under
+  `reports/figures/phase-k-k2/`; supervisor report
+  `reports/conditional-graph-phase-k.md`.
+
+Evidence: `artifacts/logs/conditional-wrapper/demo/CAMPAIGN-2026-10-05-deathstar-k2.md`;
+devlog `wiki/devlog/02-conditional-graph/2026-10-05-phase-k-k2-mnist-implementation.md`; failure
+record `wiki/failures/2026-10-05-phase-k-k2-campaign.md`.
+
+Unrun/pending (not counted as passing): the optional post-Phase K live
+one-versus-four A100 timing comparison and the deferred-behavior report. The
+Leonardo 4-rank K1/K2 correctness cells now PASS; see the top section.
+
+**Exact next action:** run the optional live one-A100 versus four-rank A100
+timing stretch and write the deferred-behavior report.
+
+## Phase K visualization plan — 2026-10-05
+
+The Phase K prompt and implementation plan now require reference-overlay validation loss and accuracy curves for each task.
+They also require plots of the configured Adam learning rate for DDP and the independent reference.
+The reference consumes each distributed run's saved schedule in one process, including its task weights and virtual shards.
+Separate metric records cover initialization, every update, task exposure, and checkpoint continuation.
+
+An optional post–Phase K stretch compares one A100 with four NCCL ranks on Leonardo through an external live chart.
+The timing runs use equal work, separate jobs, warm-up, CUDA synchronization, and repeated measurements.
+The chart can compare live DDP progress with a saved baseline and replay explicitly labeled records.
+Speedup remains unmeasured. The small model can be communication-bound.
+
+This session changed documentation only. Existing K1 evidence remains the latest runtime evidence.
+K2 and the required Leonardo K1 cell remain pending.
+Details: `temp/conditional_graph_phase_k_prompt.md`, sections 8 and 11.
+
+**Exact next action:** inspect the K1 metric schema and native reference, then extend K2 with separate reference metrics and learning-rate records.
+
+## Phase K toy implementation complete — 2026-10-04
+
+The deterministic toy case from `temp/conditional_graph_phase_k_prompt.md` (K1)
+is implemented and validated on CPU/MPI and on native CUDA/NCCL.
+
+- New files: `scripts/examples/conditional_graph_demo.jl` and
+  `scripts/examples/conditional_graph/{common,model,dataset,schedule,reference,checkpoint}.jl`;
+  bounded campaign driver `scripts/checks/conditional_graph_demo_check.jl`.
+- Contract per step: shared-trunk two-head model, saved six-step routing cycle,
+  comparison against an independent single-process native Adam reference,
+  ordered collective trace (7 or 5 collectives), data-only Serialization
+  checkpoints with fresh-process continuation, rank-0 metrics.
+- CPU/MPI matrix (2 and 4 ranks) PASS, 9/9 driver assertions: per-step maximum
+  parameter error 0.0 (R=2) and 1.11e-16 (R=4); moments ≤5.6e-17; `beta_exact`
+  on all rows. Evidence:
+  `artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/`.
+- deathstar CUDA/NCCL 2 ranks PASS, 6/6 driver assertions: per-step errors
+  exactly 0.0 against the same-device Float32 native reference; 20×7 + 12×5
+  collectives per rank at the scheduled presence pattern; task-B validation
+  accuracy 0.000 → 1.000 by step 11; fresh-process resume matched all 28
+  markers. Evidence: `.../toy-2026-10-04-deathstar-nccl2/`.
+- Toy learning rate set to 1e-2: the prompt's 1e-3 (a recommendation) leaves
+  head B inverted at 0.0 accuracy after the 16-update budget for the prepared
+  seed; documented in the devlog.
+- First NCCL attempt failed in GPU-only demo code (`CUDA` referenced in a
+  device-generic module); recorded in
+  `wiki/failures/2026-10-04-phasek-nccl-cuda-ref.md`, failed console kept under
+  `toy-2026-10-04-deathstar-nccl2-attempt1/`.
+- No Flux production or test source changed; runs use the existing wrapper at
+  `55171e65` through `--project=../flux-integration/test`.
+
+Devlog: `wiki/devlog/02-conditional-graph/2026-10-04-conditional-wrapper-phase-k-toy-implementation.md`.
+
+**Exact next action:** implement K2, the task-conditioned MNIST/Fashion-MNIST
+presentation campaign (120 updates, rank-0 metrics, fresh-process
+continuation), and run it through the same driver at the validated
+configurations.
+
+## Phase K task-conditioned dataset decision — 2026-10-04
+
+The user requested a standalone Phase K prompt and implementation discussion.
+The user then selected toy diagnostics followed by a task-conditioned MNIST/Fashion-MNIST demonstration.
+The prompt is `temp/conditional_graph_phase_k_prompt.md`.
+The presentation model shares a trunk and uses separate ten-class digit and clothing heads.
+Known dataset identity selects the head without the target class or a learned router.
+The saved schedule records task identity and samples together for the independent native Adam reference.
+Mixed-task, single-task, and reactivation steps exercise local absence and global absence after nonzero Adam history.
+It also specifies per-step comparisons, ordered collective traces, and data-only checkpoints with fresh-process continuation.
+The presentation reports task-specific metrics and sample exposure counts.
+Suggested model sizes, sample counts, and run lengths are recommendations for discussion.
+No Phase K implementation or runtime result exists from this session.
+
+**Exact next action:** implement the saved toy schedule and independent native reference from the isolated prompt.
+
+## Leonardo 4-rank NCCL validation complete — 2026-10-04
+
+The previously deferred 4-rank/NCCL weighting case is closed on CINECA
+Leonardo (4× A100-SXM-64GB, driver 535.274.02, MPICH via `srun --mpi=pmi2`):
+
+- Focused Phase J regression: **217/217 assertions per rank**, exit 0; ranks on
+  devices `[1, 2, 3, 0]`. Log:
+  `artifacts/logs/conditional-wrapper/phaseJ-gpu-focused-nccl4-leonardo-2026-10-04.log`.
+- Full dedicated suite at 4 ranks under both backends:
+  `Distributed | 14 14 5m55.7s`, exit 0. Log:
+  `phaseJ-remote-suite-nccl4-leonardo-2026-10-04.log`.
+- 4-rank MPI and NCCL smokes pass; stack check: CUDA/cuDNN functional, 4 A100s.
+- Bring-up: Julia 1.12.6 on `$WORK`, `scripts/remote/hosts/leonardo.conf`,
+  GPU-node precompile (278 deps, 221 s), login-side CUDA artifact prefetch
+  (`scripts/remote/leonardo/fetch-cuda-artifacts.jl`).
+- Traps recorded in `wiki/failures/2026-10-04-leonardo-cuda-artifact-prefetch.md`
+  (no-internet compute nodes, driverless precompile, `cd && srun` wrapper).
+- No product change; `flux-integration` still dirty at `55171e65`.
+
+The pre-bring-up readiness record
+`artifacts/logs/leonardo/2026-10-04-node-readiness.md` (written before Julia was
+installed) is superseded by this entry and by the updated
+`wiki/context/leonardo.md`.
+
+**Exact next action:** Phase K (plan section 12): deterministic toy dataset
+reference first, then the MNIST presentation run, on the validated 2-rank
+(deathstar) and 4-rank (leonardo) GPU configurations.
+
+## Phase J complete — 2026-10-04
+
+Native CUDA/NCCL validation passed on `deathstar` at 2 ranks (4 GPUs are
+unavailable on both hosts; the user authorized the 2-rank gate).
+
+- Focused device-generic regression `test/ext_distributed/cuda_conditional_distributedtest.jl`
+  on real `CuArray` parameters with `CUDA.allowscalar(false)`: **217/217
+  assertions per rank**, 6 testsets, exit 0, 52.2 s; ranks mapped to devices 1
+  and 2. Log: `phaseJ-gpu-focused-nccl2-deathstar-2026-10-04.log`.
+- Complete dedicated suite, MPI only: `Distributed | 7 7 2m03.6s`, exit 0.
+  Stretch: with `FLUX_TEST_DISTRIBUTED_NCCL=true`, all 7 child files under both
+  backends: `Distributed | 14 14 5m01.9s`, exit 0.
+- No product failure; no production source changed. Test-only changes: the new
+  file, a `cuDNN` import in the NCCL branch of `distributed_setup.jl` (required
+  because `MLDataDevices.functional(CUDADevice)` is defined only in its cuDNN
+  extension), and a device-aware `NUMERIC_ATOL` for Float32 reference
+  comparisons.
+- Both harness failures and the deferred cases are recorded in
+  `artifacts/logs/conditional-wrapper/phaseJ-metadata.md` and
+  `wiki/failures/2026-10-04-phaseJ-nccl-harness-failures.md`.
+- Flux remains dirty at `55171e65`; nothing committed or pushed.
+
+**Exact next action:** Phase K (plan section 12): deterministic toy dataset
+reference first, then the MNIST presentation run, on the 2-rank GPU
+configuration that passed Phase J.
+
+## Phase J attempt — 2026-10-04 (superseded by the completion entry above)
+
+Phase J (native CUDA/NCCL validation) implementation is complete in the
+`flux-integration` worktree and CPU-validated; the native GPU gate has **not**
+passed yet. Handoff: `temp/phaseJ_handoff.md`; devlog:
+`wiki/devlog/02-conditional-graph/2026-10-04-conditional-wrapper-phase-j-native-gpu-attempt.md`.
+
+- New device-generic regression `test/ext_distributed/cuda_conditional_distributedtest.jl`
+  (CuArray under NCCL with `allowscalar(false)`; identical body on host Arrays
+  under MPI). Local 2-rank CPU evidence: 212 assertions/rank; full dedicated
+  suite 7/7, exit 0 (log `phaseJ-local-suite-mpi2-2026-10-04.log`).
+- Test env now adds CUDA, NCCL, cuDNN in `test/Project.toml`; runner imports
+  CUDA only for the NCCL pass.
+- deathstar is healthy (3× TITAN RTX, driver 555.42.02, CUDA functional). The
+  stale Phase F remote manifest (StridedViews conflict) was backed up as
+  `Manifest.toml.phaseF-bak` and regenerated; precompile passed (188 deps,
+  137 s; Flux 0.16.11, Optimisers 0.4.9, Functors 0.5.3, MPI 0.20.27, CUDA
+  6.2.2, NCCL 0.1.3).
+- GPU run blocked by a diagnosed harness issue: `FluxMPIExt` calls
+  `MLDataDevices.functional(CUDADevice)`, which in MLDataDevices 1.17.10 is
+  defined only in its cuDNN extension; without cuDNN the fallback is `false`
+  and `force_cuda` errors. cuDNN was added to `test/Project.toml` locally and
+  must now be synced, resolved, precompiled, and rerun on deathstar.
+- Sync hazard: the root workspace `Manifest.toml` must be excluded from the
+  flux-integration rsync (or re-resolved after every sync), otherwise the stale
+  local manifest overwrites the regenerated remote one.
+- 4-GPU runs are impossible on both hosts; the user authorized the 2-rank gate.
+
+**Exact next action:** follow section 8 of `temp/phaseJ_handoff.md`: sync with
+the root-manifest exclusion, re-run `.phaseJ_resolve_env.jl` on deathstar, then
+run the focused 2-rank NCCL regression.
+
+## Phase I user decisions — 2026-10-02
+
+The user accepted the wrapper API, explicit `.tree` migration, synchronization contract, and fresh-backend checkpoint recipe for a supervisor prototype.
+The user requested native GPU validation and a concrete dataset-level demonstration.
+GPU-specific failures can move to the next upgrade batch after characterization. The CPU evidence remains the current correctness baseline.
+
+The implementation plan now defines Phase J native CUDA/NCCL validation and Phase K toy/MNIST validation.
+The demonstration will compare complete training trajectories against an independent native Optimisers global-batch reference.
+The existing example still calls the removed `resolve_unused_parameters!!` helper and cannot establish the current wrapper behavior unchanged.
+The current conditional fixture uses CPU `Vector` fields. Selecting NCCL alone does not prove CUDA gradient communication.
+
+The later agent prompt is `temp/conditional_graph_deferred_behaviors_prompt.md`.
+It requests an evidence-based report on non-finite values, rank participation, configuration mismatch, state boundaries, and available GPU findings.
+The report must distinguish realistic reachability from unmeasured prevalence before recommending deferral.
+No new runtime result exists from this planning update.
+
+**Exact next action:** implement the focused native CUDA/NCCL regression in section 12, Phase J1, of the implementation plan.
+
+## Phase I planning — 2026-10-02
+
+The user requested guidance for Phase I and performance goals after stable conditional-graph support 1.0.
+The implementation plan now includes an acceptance agenda in section 12 and a C9/C10 roadmap in section 23.
+Phase I acceptance and the stable 1.0 backend scope remain pending.
+
+Source inspection shows one CPU presence flag per synchronization buffer, not per scalar weight.
+Each update constructs the identity map, occurrence plan, gradient buffers, and presence arrays again.
+The roadmap separates traversal/allocation costs from gradient bytes and collective latency.
+It covers reusable storage, cache lifecycle, SIMD candidates, safe threading, and metadata transport.
+These are source-based hypotheses and future goals. No profiling or performance result exists from this session.
+
+The combined Phase H correctness evidence remains the latest result. Flux retains its existing uncommitted changes on `55171e65`.
+Session record: [Phase I planning](../devlog/02-conditional-graph/2026-10-02-conditional-wrapper-phase-i-planning.md).
+**Exact next action:** review the Phase I decision table, starting with the supported backends and release limitations.
+
+## Current checkpoint — 2026-10-02
+
+Independent Phase H review found no blocking defects within the documented CPU/MPI scope.
+The combined dedicated suites passed 6/6 child files at two ranks (1 m 58.7 s) and four ranks (2 m 22.8 s).
+Checkpoint continuation passed 204 assertions across two fresh MPI jobs. The ambiguity count is zero.
+Flux retains its existing uncommitted changes on `55171e65`.
+Evidence and exact commands: [Phase H review](../devlog/02-conditional-graph/2026-10-02-conditional-wrapper-phase-h-review.md).
+**Exact next action:** conduct Phase I user review of the API, synchronization contract, migration policy, remaining limitations, and combined evidence.
+
+## Current checkpoint — 2026-10-01
+
+The four Phase H issue agents completed their focused work sequentially.
+The scalar-state correction also preserves tied-leaf identity. Both have RED/GREEN evidence and continuation regressions.
+The explicit synchronization contract covers supported `Leaf.state` values. Rules and frozen flags remain local and must match across ranks.
+The state-shape review retains explicit `.tree` paths and documents checkpoint migration without forwarding methods.
+
+Latest evidence: **499/499 assertions per rank** in the synchronized file at two ranks, plus **204 assertions** across checkpoint write/resume jobs.
+The checkpoint jobs passed with Serialization and JLD2, fresh backends, and nonzero frozen-leaf history.
+Reports and exact commands: `temp/phase_h/01-scalar-state.md`, `02-tied-leaf-identity.md`, `03-rule-frozen-contract.md`, and `04-state-shape-migration.md`.
+Flux HEAD remains `55171e65`, with uncommitted source, tests, and NEWS changes.
+**Exact next action:** review the combined diff and run the dedicated CPU/MPI gates at two and four ranks with fresh evidence filenames.
+Full combined gates and Phase I acceptance remain pending. The non-finite-loss risk remains outside these four corrections.
+
+### Historical Phase H audit result, before corrections
+
+Phase H compatibility audit is complete. The report covers all requested interfaces, state-shape migration, checkpoint continuation, and a proposed Optimisers pre-update hook.
+Report: [wrapper compatibility audit](../audits/02-conditional-graph/001-conditional-wrapper-compatibility.md).
+
+Two sequential local MPI jobs passed **178 assertions**: 54 per rank for characterization and 35 per rank for fresh-process resume.
+Both jobs used two ranks and returned 0. Serialization and JLD2 continuation preserved the tested model ties, leaf ties, Adam state, and frozen flags.
+Each rank loaded the data-only checkpoint and attached a fresh backend.
+
+The audit found synchronization limitations. Wrapper `synchronize!!` discards replacement scalar state, although mutable moment arrays synchronize.
+The native synchronized tree loses tied `Leaf` identity. Rules and frozen flags remain rank-local.
+These are passing characterizations of unsupported behavior, not resolved defects.
+The report also records a source-only risk from rank-local non-finite losses in `Flux.train!`.
+
+Flux remains clean at `55171e659b2f425da980cbc83177bf5c38f0a7a1`.
+Exact commands and evidence: `artifacts/logs/conditional-wrapper/phaseH-metadata.md` and `wiki/devlog/02-conditional-graph/2026-10-01-conditional-wrapper-phase-h-compatibility.md`.
+**Next action:** conduct Phase I user review of the production diff, CPU/MPI evidence, compatibility report, remaining limitations, and Optimisers discussion points.
+The review must decide the synchronization contract and state-shape migration policy before further implementation or native NCCL work.
+
+## Earlier session records — Phase G
+
+Independent Phase G review (2026-09-30): no blocking findings. The local two-rank rerun passed 210/210 assertions, exit 0, with a testset time of 1 m 5.2 s. Both ranks completed all three modes with the expected values and collective order. Flux remains clean at `55171e65`, and `git diff --check` passed. The review covered the detector, probe, Makefile target, and stored evidence. Timeout termination was inspected but not exercised in this review. Exact commands and scope are in the Phase G devlog. Next action: Phase H, wrapper compatibility review.
+
+Phase G complete (2026-09-30): the external detector passed **210/210 assertions** locally at two MPI ranks, exit 0, 1 m 7.1 s. Both ranks finished `deadlock`, `corruption`, and `control` with correct values. Traces prove one CPU presence reduction followed by gradients in model order (5/4/5 collectives per rank). The Makefile now uses the selected Flux test environment. A first-run trace-framing defect is corrected and recorded in `wiki/failures/2026-09-30-conditional-detector-trace-framing.md`. Flux remains clean at `55171e65`. Next action: **Phase H, wrapper compatibility review**. Command: `make verify-conditional-deadlock FLUX_REPO_PATH=../flux-integration`. Evidence: `wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-g-detector.md` and `artifacts/logs/conditional-wrapper/phaseG-detector-GREEN-mpi2-2026-09-30.log`.
+
+## Earlier session records
+
+Phase F (CPU/MPI gates) complete on `deathstar` (2026-09-30): **all gates GREEN at two and four ranks**. Focused conditional file 367/367 per rank at 2 ranks (exit 0, 1 m 3.6 s) and at 4 ranks (exit 0, 1 m 7.9 s); focused optimizer 6/6 per rank (8.5 s); complete dedicated suite `Distributed | 6 6 1m33.5s` at 2 ranks and `Distributed | 6 6 1m43.6s` at 4 ranks, all exit 0; 0 ambiguities; `git diff --check` clean. The four-rank weighting is proven analytically by the first testset (rank 0 uses branch A = 1/4 weight; ranks 1-3 use branch B = 3/4 weight; both updated values asserted on every rank). The correct worktree was synced manually with rsync because `sync_code.sh` syncs the frozen C8 `ddp_flux`, not `flux-integration`; the remote conditional test md5 matched (`c26ef49b...`). Flux was unchanged at `55171e65` (Phase F changed no source or tests). Precompile on deathstar: 128 deps in 115 s. The remote environment was verified after a brief VPN drop was restored: Optimisers 0.4.9, MPI 0.20.27, Flux 0.16.11, MPICH launcher artifact identical to local, and the three remote source/test md5s match the local worktree exactly. Next action: Phase G (convert the deadlock detector to a success regression). Details: `wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-f-cpu-mpi-gates.md`, `artifacts/logs/conditional-wrapper/phaseF-metadata.md`.
+
+Remote tooling update (2026-09-30): the `hpc` SSH alias and every reference were renamed to `bocconi` (real hostname `slogin.hpc.unibocconi.it` unchanged; SSH config alias only, no key change). `scripts/remote/` was cleaned up: stale `run_tests.sh` and `setup_mpi.jl` deleted, `update_wiki.sh` moved to `scripts/setup/`, `hosts/hpc.conf` -> `hosts/bocconi.conf` (wrapper byte-identical), `run.sh` now rejects unknown host names, and both syncs use `rsync --delete` with the remote-resolved `test/Manifest.toml` protected. Per-server docs now live in `wiki/context/bocconi.md` / `deathstar.md` / `leonardo.md` (new stub) behind a slimmed `remote` skill index. No Flux code, tests, or checkpoint state changed. Next action unchanged: Phase F (two- and four-rank CPU/MPI gates; the four-rank case must prove weighting). Details: `wiki/devlog/02-conditional-graph/2026-09-30-remote-tooling-bocconi-rename.md`.
 
 Independent Phase E follow-up (2026-09-30): **both P2 findings closed; Phase E approved within its CPU/MPI scope**. The corrected adaptation test transforms nonzero Adam arrays and updates through the adapted state. The missing M1.1 diagnostic and delegation checks are present. Independent focused run: 367/367 per rank at two MPI ranks, exit 0, 78.972 seconds wall time. Flux diff remains tests-only (+560/-0), with clean whitespace. Stored correction logs support the optimizer 6/6, complete suite 6/6, and zero-ambiguity results. Exact review command is in the Phase E devlog. Next action: Phase F, focused child followed by the dedicated suite at two and four ranks, with analytical four-rank weighting.
 
 Phase E review correction (2026-09-30): **both P2 gaps corrected; correction gate GREEN**. The device-adaptation test now uses Adam, transforms exactly the two nonzero state arrays (`mt`, `vt`), asserts adapted types, preserved values, backend identity, and an untouched source state, then updates through the adapted state and matches a native Adam reference. The M1.1 API checks are restored (`Chain tuple-gradient diagnostic`, `Enzyme Duplicated model setup and update`, the shared-gradient tied subcase, whole-wrapper `freeze!`/`thaw!`), and the freeze test now uses Adam with retained returned states, frozen-moment assertions, and a native reference. Correction gate at two ranks: focused conditional **367/367 per rank** across 30 testsets (exit 0, 1 m 22.0 s; aggregate `conditional file | 367 367 | 1m22.0s`), optimizer 6/6 (10.3 s), full dedicated suite `Distributed | 6 6 2m02.6s` (exit 0, 2 m 4.8 s), 0 ambiguities, `git diff --check` clean. The correction runs passed on the first attempt; no production defect and no production change. Test-only diff is +560/−0, committed at Flux `55171e65` ("Add Phase E conditional wrapper tests and restore M1.1 API checks", not pushed). Next action: Phase F (two- and four-rank CPU/MPI gates; the four-rank case must prove weighting). Evidence: `artifacts/logs/conditional-wrapper/phaseE-correction-*` and the updated `phaseE-metadata.md`; devlog "Corrections applied" section.
 
 Date: 2026-09-30
-Phase E (restore and improve the M1.1 test battery) complete, review-corrected, and GREEN, committed at Flux `55171e65`. `test/ext_distributed/conditional_distributedtest.jl` gained 15 testsets (+560 lines, tests only; no production change) ported from `3370b910` plus the two Phase E items and the restored M1.1 API checks: `real AD conditional branches average over multiple steps` (11), `Adam matches an independent global-mean reference` (9), `tied parameters through real AD` (13, incl. the M1.1 shared-gradient subcase), `tied parameter through a transpose with real AD` (5), `isbits parameters (FillArrays) sync independently` (5), `higher-order gradients rejected` (2), `Chain tuple-gradient diagnostic` (5, M1.1 API restore), `Enzyme Duplicated model setup and update` (5, M1.1 API restore), `collective count protocol with real AD` (4), `Flux.train! with DistributedOptimizerState` (3), `nested model (Chain of custom layer and Dense)` (2), `synchronize!! on DistributedOptimizerState` (3), `adjust / adjust! on wrapped state and rule` (11), `freeze! and thaw! preserve wrapper state and collectives` (31; Adam, retained states, whole-wrapper + partial delegation, collective counts, native reference), `Functor device adaptation keeps the backend` (26; Adam state arrays transformed and reused, native reference). M1.1 testsets already superseded by stronger Phase D5 testsets (BatchNorm, transpose/adjoint, caller gradients, immutable returns, globally absent Adam) were not duplicated. Two-rank GREEN: focused conditional **367/367 per rank** across 30 testsets, focused optimizer 6/6, full dedicated suite `Distributed | 6 6 2m02.6s`, 0 ambiguities, `git diff --check` clean. Optimisers 0.4.9. All RED iterations were new-test defects; no production defect was found. Next action: Phase F (two- and four-rank CPU/MPI gates; the four-rank case must prove weighting). Evidence: `artifacts/logs/conditional-wrapper/phaseE-*`; devlog `wiki/devlog/2026-09-30-conditional-wrapper-phase-e-m11-battery.md`.
+Phase E (restore and improve the M1.1 test battery) complete, review-corrected, and GREEN, committed at Flux `55171e65`. `test/ext_distributed/conditional_distributedtest.jl` gained 15 testsets (+560 lines, tests only; no production change) ported from `3370b910` plus the two Phase E items and the restored M1.1 API checks: `real AD conditional branches average over multiple steps` (11), `Adam matches an independent global-mean reference` (9), `tied parameters through real AD` (13, incl. the M1.1 shared-gradient subcase), `tied parameter through a transpose with real AD` (5), `isbits parameters (FillArrays) sync independently` (5), `higher-order gradients rejected` (2), `Chain tuple-gradient diagnostic` (5, M1.1 API restore), `Enzyme Duplicated model setup and update` (5, M1.1 API restore), `collective count protocol with real AD` (4), `Flux.train! with DistributedOptimizerState` (3), `nested model (Chain of custom layer and Dense)` (2), `synchronize!! on DistributedOptimizerState` (3), `adjust / adjust! on wrapped state and rule` (11), `freeze! and thaw! preserve wrapper state and collectives` (31; Adam, retained states, whole-wrapper + partial delegation, collective counts, native reference), `Functor device adaptation keeps the backend` (26; Adam state arrays transformed and reused, native reference). M1.1 testsets already superseded by stronger Phase D5 testsets (BatchNorm, transpose/adjoint, caller gradients, immutable returns, globally absent Adam) were not duplicated. Two-rank GREEN: focused conditional **367/367 per rank** across 30 testsets, focused optimizer 6/6, full dedicated suite `Distributed | 6 6 2m02.6s`, 0 ambiguities, `git diff --check` clean. Optimisers 0.4.9. All RED iterations were new-test defects; no production defect was found. Next action: Phase F (two- and four-rank CPU/MPI gates; the four-rank case must prove weighting). Evidence: `artifacts/logs/conditional-wrapper/phaseE-*`; devlog `wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-e-m11-battery.md`.
 
 Phase D is complete and committed at `d6046103` (D1-D3 at `cbdd3edc`, D4 + D5 at `d6046103`, not pushed). Active implementation branch `ddp/integration-m1-spike`; Phase E is committed at `55171e65` in the same worktree (not pushed).
 
@@ -15,14 +621,14 @@ Independent follow-up review: **Both D5 P2 findings are closed.** The corrected 
 
 Review result (2026-09-30): **D5 reopened for two P2 test gaps, now corrected**. (1) The absent Adam parameter now takes two active steps first (nonzero moments), snapshots value and full state, then becomes globally absent; exact preservation is asserted, and a reset to the fresh state would fail because `snap_state != fresh.absent.state` is asserted before the absent steps. (2) The caller-gradient tests now use rank-distinct gradients on both update paths and a genuinely read-only gradient, compare each caller gradient with its local snapshot, and check each updated model against an independent global mean; identical gradients and the writable `view` could not detect aliasing. Targeted RED: with a temporary aliased buffer the corrected caller testset fails `gs.w == snap` with the global mean on both ranks (exit 1, 1 m 10.8 s); with a temporary absent-leaf zero-gradient emission the corrected absent testset fails both snapshots with changed moments and step products (exit 1, 1 m 14.3 s). The production source was restored byte-for-byte after each injection. Repeated D5 gate GREEN: conditional 232/232 per rank, optimizer 6/6, dedicated suite `Distributed | 6 6 1m45.2s`, 0 ambiguities, clean `git diff --check`. Exact commands and logs are in the D5 devlog correction section.
 
-Phase D5 (regression gate) complete and committed at Flux `d6046103` (together with the corrected D4; not pushed). Eight focused testsets pin the retained contracts; the gate found and fixed one real defect: `_buildmap`/`_foreach_child` mapped multidimensional array containers over `eachindex`, flattening a 2×2 `Matrix` child to a length-4 vector, so array containers lost their shape during gradient reconstruction. The production now maps array containers over `CartesianIndices`. RED: focused 2-rank conditional exit 1, array-container 18 passed / 2 failed (`size` `(4,) == (2, 2)`, `axes` mismatch). GREEN after the review corrections: focused conditional 232/232 per rank, focused optimizer 6/6, full dedicated 2-rank suite `Distributed | 6 6 1m45.2s`, 0 ambiguities, `git diff --check` clean. Next action: Phase E (restore the M1.1 battery). Evidence: `artifacts/logs/conditional-wrapper/phaseD-d5-*`; devlog `wiki/devlog/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md`.
+Phase D5 (regression gate) complete and committed at Flux `d6046103` (together with the corrected D4; not pushed). Eight focused testsets pin the retained contracts; the gate found and fixed one real defect: `_buildmap`/`_foreach_child` mapped multidimensional array containers over `eachindex`, flattening a 2×2 `Matrix` child to a length-4 vector, so array containers lost their shape during gradient reconstruction. The production now maps array containers over `CartesianIndices`. RED: focused 2-rank conditional exit 1, array-container 18 passed / 2 failed (`size` `(4,) == (2, 2)`, `axes` mismatch). GREEN after the review corrections: focused conditional 232/232 per rank, focused optimizer 6/6, full dedicated 2-rank suite `Distributed | 6 6 1m45.2s`, 0 ambiguities, `git diff --check` clean. Next action: Phase E (restore the M1.1 battery). Evidence: `artifacts/logs/conditional-wrapper/phaseD-d5-*`; devlog `wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md`.
 
 Review update: **D4 P1 resolved — D4 + D5 committed at `d6046103`**. Selection is now read from the setup state tree (`_sync_gradients(backend, tree, model, grads)`), so later updates keep exactly the leaves setup chose; `_trainable_child` is removed. RED2 confirmed the second-step defect, and the new two-step regression (both update paths, momentum state, collective counts) is GREEN. D5 passed on top of that, including the review corrections. Details and commands are in the D4 and D5 devlogs.
 
-Active checkpoint: Conditional-graph wrapper **Phase E complete, review-corrected, and GREEN, committed at `55171e65`** (Phase D committed at `d6046103`). D1-D3 are at `cbdd3edc`; the corrected D4 and the D5 gate (including the review corrections) are at `d6046103` (2 files, +633/−66, not pushed). Phase E is tests-only: `test/ext_distributed/conditional_distributedtest.jl` +560/−0, no production change. Phase E correction gate totals: focused conditional 367/367 per rank across 30 testsets, focused optimizer 6/6, full 2-rank suite 6/6 (`Distributed | 6 6 2m02.6s`), 0 ambiguities, clean `git diff --check`. Phase F (two- and four-rank gates), G (detector), H (compatibility) remain.
-Active implementation branch: `ddp/integration-m1-spike` at `55171e65` in `/home/kurapica/Projects/ddp_flux/flux-integration` (Phase E committed; not pushed).
+Active checkpoint: Phase K required matrix complete; the benchmark notebook is the remaining deliverable (see the top sections).
+Active implementation branch: `ddp/integration-m1-spike` at `55171e65` in `/home/kurapica/Projects/ddp_flux/flux-integration` (Phase E committed; later-phase changes uncommitted in the worktree; not pushed).
 Archived research branch: `archive/pr2694-unused-gradient-spike` at `3370b910`.
-Flux repo paths: `/home/kurapica/Projects/ddp_flux/ddp_flux` (C8 dirty work, frozen) · `/home/kurapica/Projects/ddp_flux/flux-integration` (PR #2694 unused-gradient research, preserved, NOT for this PR) · `/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage` (PR #2694 salvage worktree — work ONLY here)
+Flux repo paths: `/home/kurapica/Projects/ddp_flux/ddp_flux` (C8 dirty work, frozen) · `/home/kurapica/Projects/ddp_flux/flux-integration` (conditional-graph implementation worktree) · `/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage` (PR #2694 worktree; currently on `ddp/windows-path-fix` at `fee2c310` — work ONLY here for that PR)
 PR #2694 head: `fee2c310`. Candidate base: `fa3bf228`. Windows-path fix commits: `69703025`, `fee2c310`.
 Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr` from `c64f695f` to `fee2c310`.
 
@@ -34,7 +640,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - C7 is complete: an end-to-end example `scripts/examples/train_ddp.jl` was successfully created, executed on Bocconi using `make example-ddp`, and added as a documentation guide (`distributed.md`) to the Flux upstream docs.
 - Bocconi GPUs are reachable via `salloc --gres=gpu:2` + `mpiexecjl` (NOT via `run.sh` which wraps in `bash -l` that resets env).
 - Bocconi login node (slnode01) ≠ GPU compute node (gnode01); salloc grants allocation but `bash -c` runs on login node; use `mpiexecjl`/`srun` to launch on GPU nodes.
-- **Precompilation (2026-09-03, branch `experiment/precompile`):** julia caches bake the host CPU feature set. Login node (graniterapids) and compute nodes (gnode01/02, icelake-server, mutually compatible) do NOT share caches. Old workflow precompiled on the login node (~10 min per Flux change, wasted) and the first compute-node test after a source change silently recompiled for ~4 min inside the test watchdog -> "timeouts on precomp". New workflow: precompile ONLY on compute nodes via `srun` (`scripts/remote/precompile.sh bocconi`, now runs `make precompile-all FLUX_REPO_PATH=../ddp_flux`), `make env` never precompiles, `JULIA_PKG_PRECOMPILE_AUTO=0` in bocconi.conf. Validated end-to-end on bocconi: warm 2-rank suite 4m25 with zero in-test compilation; ADR-0005 + devlog `2026-09-03-precompile-experiment.md`. CPU-target pinning (`JULIA_CPU_TARGET`/`-C`) was tested and rejected (env var ignored at load; gnode images carry `pconfig` absent on login).
+- **Precompilation (2026-09-03; the temporary `experiment/precompile` branch was deleted after adoption):** julia caches bake the host CPU feature set. Login node (graniterapids) and compute nodes (gnode01/02, icelake-server, mutually compatible) do NOT share caches. Old workflow precompiled on the login node (~10 min per Flux change, wasted) and the first compute-node test after a source change silently recompiled for ~4 min inside the test watchdog -> "timeouts on precomp". New workflow: precompile ONLY on compute nodes via `srun` (`scripts/remote/precompile.sh bocconi`, now runs `make precompile-all FLUX_REPO_PATH=../ddp_flux`), `make env` never precompiles, `JULIA_PKG_PRECOMPILE_AUTO=0` in bocconi.conf. Validated end-to-end on bocconi: warm 2-rank suite 4m25 with zero in-test compilation; ADR-0005 + devlog `2026-09-03-precompile-experiment.md`. CPU-target pinning (`JULIA_CPU_TARGET`/`-C`) was tested and rejected (env var ignored at load; gnode images carry `pconfig` absent on login).
 - **M0 (2026-09-08, ADR-0006):** integration workspace isolated. Dirty master (`b633cdc7`) preserved untouched (working tree verified identical) and snapshotted on `archive/dirty-master-c8.2-wip` @ `b0034f55`. Worktree `/home/kurapica/Projects/ddp_flux/flux-integration` on branch `ddp/integration-m1-spike` @ `fa3bf228` (tip of `ddp/pr2694-ci-fix`), tree clean, no C8 content. Metadata, port inventory, and checklist in ADR-0006 (scope user-approved). Policy: dirty master not merged wholesale; C8 test expansions port later as separate commits only after M1 proof.
 - **M1 (2026-09-08, commit `04ddeaa0`, NOT pushed):** automatic unused-gradient architecture. `DistributedOptimizer` stays `<: Optimisers.AbstractRule` but per-leaf `apply!` no longer communicates. New `DistributedUtils.DistributedOptimizerState` wrapper returned by specialized `Optimisers.setup(::DistributedOptimizer, model)`; specialized `Optimisers.update`/`update!` fill missing (`nothing`/AbstractZero) gradients with device-matched zeros (`similar(p)`), run one in-place allreduce per unique trainable parameter (model-structure order, tied params deduped by identity), then delegate to the native inner update. Communication stays outside AD. Added state-level adjust/adjust!/freeze!/thaw!, `DistributedUtils.synchronize!!`, updated docstrings; `resolve_unused_parameters!!` kept as legacy fallback (manual use forbidden). Public APIs only — no private Optimisers internals. **Gate REOPENED by review (2026-09-08):** 7 blocking findings + additional risks + test-proof gaps — see M1.1 below.
 - **M1.1 (2026-09-08, commit `3370b910` on top of `04ddeaa0`, NOT pushed):** corrective spike after the M1 gate reopen. Fixed all 7 blocking findings: (1) trainable-semantics traversal via `Optimisers.trainable`, stopping at `Optimisers.isnumeric` leaves, exactly mirroring `Optimisers.setup` (BatchNorm μ/σ² excluded, proven by CountingBackend test); (2) `update!` propagates the model returned by the inner update; (3) structural gradient pairing via `Functors.functor(typeof(model_node), base(grad_node))[1]` — no KeyPath replay, Transpose/Adjoint get parent-space grads; (4) presence protocol (one Float32 `avg` allreduce of 0/1 flags per step, threshold `> 0`; globally-absent → `ZeroTangent`, optimizer step skipped, Adam state untouched); (5) nested composition rejected with ArgumentError (init/apply!); (6) caller grads never mutated (copied into fresh `similar(p)`); (7) device-preserving buffers (`similar(p)` + `copyto!`, `collect(g)` removed). Extras: higher-order grads rejected; Enzyme Duplicated setup unwraps `model.val` / Duplicated update rejected; Chain-tuple diagnostic; rule-level adjust moved to public `Optimisers.adjust`; `Functors.@functor DistributedOptimizerState (tree,)`; `resolve_unused_parameters!!` + `unused_parameters_distributedtest.jl` deleted (automatic path supersedes); `Test.detect_ambiguities(DistributedUtils; recursive=false)` → 0.
@@ -53,7 +659,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - Tied real-AD diagnostics: both ranks return `gs.a = [0.0, 2.0]`, `gs.b = [-2.0, 0.0]` as distinct objects; the test proves the wrapper's local tied sum matches native Optimisers. Rank-distinct tied averaging remains covered by D2.
 - Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`). No mock or simulated value. Not committed; commit/push only with explicit authorization.
 - Phase F (two- and four-rank gates; the four-rank case must prove weighting), Phase G (detector conversion), and Phase H (compatibility review) remain. No four-rank run, no GPU/NCCL, no detector, no Bocconi run, no main suite.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseE-*` and `phaseE-correction-*`. Details: `wiki/devlog/2026-09-30-conditional-wrapper-phase-e-m11-battery.md` (see the "Corrections applied" section).
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseE-*` and `phaseE-correction-*`. Details: `wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-e-m11-battery.md` (see the "Corrections applied" section).
 
 ## What was done before (2026-09-30) — conditional-graph wrapper Phase D5 (regression gate)
 
@@ -63,7 +669,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **GREEN evidence**: exit 0, 1 m 18.0 s (one local Flux + FluxMPIExt recompile): all 15 testsets **224/224 per rank**; focused optimizer 6/6, 11.7 s; full dedicated 2-rank suite `Distributed | 6 6 1m38.2s`, 1 m 41.4 s; `Test.detect_ambiguities(Flux.DistributedUtils; recursive=false)` → 0; `git diff --check` clean. Combined uncommitted D4 + D5 diff relative to `cbdd3edc`: 2 files, +581/−66 (`src` +67/−65, test +514/−1).
 - Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`). No mock or simulated value in the D5 testsets. Not committed; commit/push only with explicit authorization.
 - Phase D (D1-D5) is complete. Phase E (restore the M1.1 battery), Phase F (four ranks), Phase G (detector conversion), and Phase H (compatibility review) remain. No four-rank run, no GPU/NCCL, no detector, no Bocconi run, no main suite.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d5-*`. Details: `wiki/devlog/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d5-*`. Details: `wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md`.
 
 ## What was done before (2026-09-29) — conditional-graph wrapper Phase D4 (P1 corrected)
 
@@ -74,7 +680,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **GREEN2 evidence**: exit 0, 48 s focused conditional (control 5/5 + D1 10/10 + guard 11/11 + D2 38/38 + D3 16/16 + D4 20/20 + D4-review 30/30 per rank); focused optimizer 6/6, 10 s; full dedicated 2-rank suite `Distributed | 6 6 1m12.0s`, 74 s; `Test.detect_ambiguities(Flux.DistributedUtils; recursive=false)` → 0; `git diff --check` clean with only the two expected files.
 - Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`). Final uncommitted D4 diff: 2 files, +244/−64 relative to `cbdd3edc` (`src` +62/−63 including the D3 direct-call update, test +182/−1). Not committed; commit/push only with explicit authorization.
 - D5 (regression gate) remains. No four-rank run (Phase F), no GPU/NCCL, no detector, no Bocconi run, no main suite. No mock or simulated value is used in the D4 testsets.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d4-*` (metadata Correction section). Details: `wiki/devlog/2026-09-29-conditional-wrapper-phase-d4-legacy-trainable.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d4-*` (metadata Correction section). Details: `wiki/devlog/02-conditional-graph/2026-09-29-conditional-wrapper-phase-d4-legacy-trainable.md`.
 
 ## What was done before (2026-09-29) — conditional-graph wrapper Phase D3
 
@@ -87,7 +693,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **GREEN evidence**: after the fix → exit 0, 44 s (one local Flux + FluxMPIExt recompile), control 5/5 + D1 10/10 + guard 11/11 + D2 38/38 + D3 16/16 per rank; focused optimizer 6/6, 12 s; full dedicated 2-rank suite `Distributed | 6 6 1m03.6s`, exit 0, 66 s; `Test.detect_ambiguities(Flux.DistributedUtils; recursive=false)` → 0; `git diff --check` clean.
 - Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`). Combined uncommitted D1+D2+D3 working-tree diff: 2 files, +480/−34 (`src` +74/−34, test +406/−0). Not committed; commit/push only with explicit authorization.
 - The `0.25f0` presence result is simulated by the mock and labeled as such. No four-rank run (Phase F), no GPU/NCCL, no detector, no Bocconi run, no main suite. D4 (legacy tuple `trainable`) and D5 (regression gate) remain.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d3-*`. Details: `wiki/devlog/2026-09-29-conditional-wrapper-phase-d3-cpu-presence-metadata.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d3-*`. Details: `wiki/devlog/02-conditional-graph/2026-09-29-conditional-wrapper-phase-d3-cpu-presence-metadata.md`.
 
 ## What was done before (2026-09-28) — conditional-graph wrapper Phase D2
 
@@ -99,7 +705,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **GREEN evidence**: after the fix → exit 0, 40 s (type-preserving fixture), control 5/5 + D1 10/10 + guard 11/11 + D2 38/38 per rank; focused optimizer 6/6, 10 s; full dedicated 2-rank suite `Distributed | 6 6 57.4s`, exit 0, 59 s; `Test.detect_ambiguities(Flux.DistributedUtils; recursive=false)` → 0; `git diff --check` clean.
 - Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`). Combined uncommitted D1+D2 working-tree diff: 2 files, +355/−27 (`src` +63/−27, test +292/−0). Not committed; commit/push only with explicit authorization.
 - D3 (CPU presence metadata), D4 (legacy selection), D5 (regression gate) remain. Four-rank gates remain Phase F; no GPU/NCCL, detector, Bocconi, or main-suite runs.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d2-*`. Details: `wiki/devlog/2026-09-28-conditional-wrapper-phase-d2-occurrence-plan.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d2-*`. Details: `wiki/devlog/02-conditional-graph/2026-09-28-conditional-wrapper-phase-d2-occurrence-plan.md`.
 
 ## What was done before (2026-09-28) — conditional-graph wrapper Phase D1
 
@@ -110,30 +716,30 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **GREEN evidence**: after the fix → exit 0, 37 s cold (one Flux + FluxMPIExt recompile), control 5/5 + D1 10/10 per rank; focused optimizer file 6/6, 11 s; full dedicated 2-rank suite `Distributed | 6 6 55.5s`, exit 0, 59 s; `Test.detect_ambiguities(Flux.DistributedUtils; recursive=false)` → 0; `git diff --check` clean.
 - Optimisers 0.4.9 (`/home/kurapica/.julia/packages/Optimisers/tMaaf`). Production diff `src/distributed/public_api.jl` +20/−1; test +92. Not committed; commit/push only with explicit authorization.
 - Verified at baseline that a legacy tuple `trainable` already fails with `MethodError: haskey(::Tuple, ::Symbol)`; D1 preserves that failure mode. D3 (CPU presence metadata), D4 (legacy selection), and D5 (regression gate) remained open after D1. Four-rank gates remain Phase F.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d1-*`. Details: `wiki/devlog/2026-09-28-conditional-wrapper-phase-d1-canonical-traversal.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseD-d1-*`. Details: `wiki/devlog/02-conditional-graph/2026-09-28-conditional-wrapper-phase-d1-canonical-traversal.md`.
 
 ## What was done before (2026-09-22) - Supervisor meeting note
 
 - Reviewed the Italian report against its meeting-preparation goal, then rewrote it with user approval.
-- `reports/conditional-graph-support-it.pdf` now has 3 pages instead of 10: problem, proposed design, evidence and meeting decisions.
+- `reports/conditional-graph-support-it.pdf` had 3 pages instead of 10: problem, proposed design, evidence and meeting decisions. (Status 2026-10-07: the compiled PDF is no longer present in the workspace; the `reports/conditional-graph-support-it.typ` source remains.)
 - Removed the detailed diagrams, REPL quotation, and compatibility inventory. Kept the conditional-branch example and the absent-versus-zero distinction.
 - Added explicit total-rank averaging, replica preconditions, composition limits, and architectural tradeoffs.
 - Separated earlier prototype results at 2 and 4 ranks from current implementation results at 2 ranks. Compatibility corrections remain open.
 - Typst compilation passed. PDF metadata and extracted text were checked. All three pages were inspected visually.
 - No Flux code or tests changed. Implementation checkpoint and README progress remain unchanged.
 - Next report action: discuss the state-wrapper boundary, initial scope, and acceptance criteria with the supervisor.
-- Details: `wiki/devlog/2026-09-22-supervisor-meeting-report.md`.
+- Details: `wiki/devlog/02-conditional-graph/2026-09-22-supervisor-meeting-report.md`.
 
 ## What was done before (2026-09-21) — report italiano compatto
 
-- Created `reports/conditional-graph-support-it.typ` (614 lines) and compiled `reports/conditional-graph-support-it.pdf` (10 pages, 170,568 bytes, A4, Typst 0.15.1, exit 0) as a compact Italian design report for the thesis supervisor. The English `reports/conditional-graph-support.typ` is unchanged (980 lines; 18-page PDF per `pdfinfo`).
+- Created `reports/conditional-graph-support-it.typ` (614 lines at creation; now 177 lines after the 2026-09-22 rewrite) and compiled `reports/conditional-graph-support-it.pdf` (10 pages, 170,568 bytes, A4, Typst 0.15.1, exit 0) as a compact Italian design report for the thesis supervisor. The English `reports/conditional-graph-support.typ` is unchanged (980 lines; 18-page PDF per `pdfinfo`).
 - First draft: three sequential subagents — Italian translation; compaction of the Optimisers.jl `update!` contract section; section 6 built around a verbatim quotation of the Optimisers docs "Incomplete or nothing gradients" (REPL Adam example; the `generaly` typo stays).
 - Revision (user request, simple-english skill applied): removed every reference to PR #2694, spike M1.1, branches, commits, local paths, and internal probe/log identifiers; section 7 rewritten from an implementation walkthrough to a design section (traversata, presenza, riduzione e ricostruzione); compatibility table reduced to two columns; "Evidenze" replaced by a short "Stato della verifica"; `hang` -> `blocco`. After a user question, section 3 now states explicitly that it describes the integration Flux ships today, not the proposal (heading: "L'integrazione distribuita che Flux fornisce oggi"); the section 4 caption is aligned.
 - Kept in full: all 3 native-Typst diagrams and the error taxonomy.
 - Typst fixes: `\#140`/`\#1`/`\#2`/`\#3` escapes (an unescaped `#` plus digits is evaluated and drops the hash — pre-existing defect), `#outline(title: [Indice], depth: 1)`, and `#set par(justify: false)` in the title block.
 - Verification: `typst compile ...` exit 0; `pdfinfo` 10 pages; `pdftotext` finds `Incomplete or nothing gradients`, `generaly`, `0.997003`, `Indice`, `update completato`, `21 settembre 2026`; `rg` for PR/spike/worktree terms returns no match; all 10 pages inspected as PNG.
 - No Flux source, tests, or commits touched. Checkpoint unchanged: Phase D1 planned on `ddp/integration-m1-spike`, Flux `f5b87975`.
-- Details: `wiki/devlog/2026-09-21-conditional-graph-report-italian.md`.
+- Details: `wiki/devlog/02-conditional-graph/2026-09-21-conditional-graph-report-italian.md`.
 
 ## What was done before (2026-09-17) - Phase D plan revision
 
@@ -145,7 +751,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - Optimisers 0.4.9 uses value membership for legacy tuple selection (`src/interface.jl:193-195`). Identity-only selection is not equivalent.
 - D5 adds focused contract checks and a complete two-rank regression gate. Four-rank gates remain Phase F, with native GPU/NCCL work deferred.
 - Corrected the plan's obsolete branch ancestry and entry instructions. Phase A is historical and must not repeat.
-- Details: `wiki/devlog/2026-09-17-conditional-wrapper-phase-d-plan-revision.md`.
+- Details: `wiki/devlog/02-conditional-graph/2026-09-17-conditional-wrapper-phase-d-plan-revision.md`.
 
 ## What was done before (2026-09-17) — Phase C review follow-up
 
@@ -156,7 +762,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **RED evidence** (before fix, at `a18392dd`): focused file at 2 MPI ranks (`FLUX_TEST_DISTRIBUTED_BACKEND=mpi $MPIEXEC -n 2 julia --startup-file=no --project=test test/ext_distributed/optimizer_distributedtest.jl`) → exit 1, 13 s, composition testset `4 passed / 2 failed` per rank; the 2 failures are exactly the direct-nesting assertions ("Expected: ArgumentError, No exception thrown"), not fixture/dependency errors. Log: `phaseC-review-guard-RED-mpi2-2026-09-17.log`.
 - **GREEN evidence** (after fix, at `f5b87975`): focused optimizer file at 2 ranks → exit 0, 15 s cold with a one-time local `FluxMPIExt` precompile, 6/6 per rank; warm rerun exit 0, 10 s, no precompile; focused `conditional_distributedtest.jl` at 2 ranks → exit 0, 19 s, 5/5 per rank; full dedicated two-rank suite `JULIA_MPI_TEST_NPROCS=2 julia --startup-file=no --project=test test/ext_distributed/runtests.jl mpi` → exit 0, 56 s, `Distributed | 6 6 54.4s`, all 6 children; `Test.detect_ambiguities(Flux.DistributedUtils; recursive=false)` → 0; `git diff --check` clean; `using Flux` exit 0, 14 s.
 - **Scope**: only the composition guard changed. Traversal ordering, mixed tied/isbits occurrence handling, CPU presence metadata, and legacy tuple-`trainable` handling remain deferred to Phase D and were not touched. No remote/GPU/NCCL/main-suite runs.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseC-review-metadata.md`, `phaseC-review-guard-RED-mpi2-2026-09-17.log`, `phaseC-review-guard-GREEN-mpi2-2026-09-17.log`, `phaseC-review-guard-GREEN-mpi2-warm-2026-09-17.log`, `phaseC-review-conditional-mpi2-2026-09-17.log`, `phaseC-review-suite-nprocs2-2026-09-17.log`, `phaseC-review-ambiguities-2026-09-17.log`, `phaseC-review-diff-check-2026-09-17.log`. Details: `wiki/devlog/2026-09-17-conditional-wrapper-phase-c-review-followup.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseC-review-metadata.md`, `phaseC-review-guard-RED-mpi2-2026-09-17.log`, `phaseC-review-guard-GREEN-mpi2-2026-09-17.log`, `phaseC-review-guard-GREEN-mpi2-warm-2026-09-17.log`, `phaseC-review-conditional-mpi2-2026-09-17.log`, `phaseC-review-suite-nprocs2-2026-09-17.log`, `phaseC-review-ambiguities-2026-09-17.log`, `phaseC-review-diff-check-2026-09-17.log`. Details: `wiki/devlog/02-conditional-graph/2026-09-17-conditional-wrapper-phase-c-review-followup.md`.
 
 ## What was done before (2026-09-17) — Phase C wrapper boundary
 
@@ -166,21 +772,21 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **Committed**: the wrapper boundary is commit `109aad9c` (2 files: `src/distributed/public_api.jl`, `test/ext_distributed/optimizer_distributedtest.jl`). Flux HEAD then advanced to `f5b87975` with the direct-nesting fix (see the follow-up section above). Thesis HEAD `7e098319`; wiki and artifact changes uncommitted.
 - **Known Phase C limitations deferred to Phase D** (plan sections 9.2-9.4): rebuilt tree maps isbits occurrences by a global counter (mixed tied+isbits order defect); presence vector allocated from a parameter buffer (GPU host-control defect); old tuple-returning `Optimisers.trainable` behavior not yet proven.
 - Not done (Phases F, G, H): four-rank runs, detector conversion, compatibility review.
-- **Evidence**: `artifacts/logs/conditional-wrapper/phaseC-metadata.md`, `phaseC-GREEN-mpi2-2026-09-17.log`, `phaseC-GREEN-mpi2-warm-2026-09-17.log`, `phaseC-GREEN-optimizer-mpi2-2026-09-17.log`, `phaseC-suite-nprocs2-2026-09-17.log`, `phaseC-ambiguities-2026-09-17.log`, `phaseC-diff-check-2026-09-17.log`. Details: `wiki/devlog/2026-09-17-conditional-wrapper-phase-c-wrapper-boundary.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/phaseC-metadata.md`, `phaseC-GREEN-mpi2-2026-09-17.log`, `phaseC-GREEN-mpi2-warm-2026-09-17.log`, `phaseC-GREEN-optimizer-mpi2-2026-09-17.log`, `phaseC-suite-nprocs2-2026-09-17.log`, `phaseC-ambiguities-2026-09-17.log`, `phaseC-diff-check-2026-09-17.log`. Details: `wiki/devlog/02-conditional-graph/2026-09-17-conditional-wrapper-phase-c-wrapper-boundary.md`.
 
 ## What was done before (2026-09-16) — conditional-graph wrapper Phase B RED test
 
 - Added `test/ext_distributed/conditional_distributedtest.jl` (55 lines, one testset), commit `6065ce8f` "Add conditional-graph distributed corruption regression (RED)". Follow-up commit `8add0e42` "Strengthen conditional-graph RED test preconditions" adds `@test tworkers >= 2` and `gs[1]` inactive-branch `nothing` assertions, so a one-rank run or changed AD behavior cannot produce a false green. No production code changed; not pushed.
 - The test uses a real-AD `TwoBranch` model with two equal-shaped branches: rank 0 trains `a`, every other rank trains `b`, inactive branch gets `nothing`. It computes the analytic global mean per branch and asserts both updated values on every rank.
 - RED evidence: `FLUX_TEST_DISTRIBUTED_BACKEND=mpi <mpiexec> -n 2 julia --startup-file=no --project=test test/ext_distributed/conditional_distributedtest.jl` → exit 1, 24 s, `3 passed, 2 failed` per rank (the 3 preconditions pass; the original run before the follow-up was `0 passed, 2 failed`). Fast numerical failure, no timeout. For `eta=0.1, ta=zeros(4), tb=fill(3.0,4)`: `a` actual 1.1 (rank 0) / 1.0 (rank 1) vs expected 0.9; `b` actual 1.1 / 1.0 vs expected 1.2. The current per-leaf `apply!` pairs the two single-rank allreduces by call order, so `avg(g_a, g_b)` mixes the branches and each rank updates only its own branch.
-- Evidence: `artifacts/logs/conditional-wrapper/phaseB-RED-mpi2-2026-09-16.log`, `phaseB-RED-mpi2-strengthened-2026-09-16.log`, `phaseB-RED-metadata.md`. Details: `wiki/devlog/2026-09-16-conditional-wrapper-phase-b-red-test.md`.
+- Evidence: `artifacts/logs/conditional-wrapper/phaseB-RED-mpi2-2026-09-16.log`, `phaseB-RED-mpi2-strengthened-2026-09-16.log`, `phaseB-RED-metadata.md`. Details: `wiki/devlog/02-conditional-graph/2026-09-16-conditional-wrapper-phase-b-red-test.md`.
 - Worktree clean; `ddp/windows-path-fix` and `ddp/pr2694-salvage` untouched; `archive/pr2694-unused-gradient-spike` still at `3370b910`.
 
 ## What was done before (2026-09-16) — conditional-graph wrapper Phase A baseline
 
 - **Branch move (plan deviation)**: the plan claimed `fee2c310` descends from `3370b910`. It does not; both are siblings off `fa3bf228`, so `git merge --ff-only ddp/windows-path-fix` is impossible. The user approved `git reset --hard fee2c310` on `ddp/integration-m1-spike`. Only that branch moved; `ddp/windows-path-fix` and `ddp/pr2694-salvage` were not touched; `archive/pr2694-unused-gradient-spike` still holds `3370b910`.
 - **Baseline**: HEAD `fee2c310`, worktree clean, `DistributedOptimizerState` absent from `src/` and `test/`. Routing test `julia --startup-file=no --project=test test/distributed_routing.jl` → 17/17, exit 0, 2 s. Two-rank suite `JULIA_MPI_TEST_NPROCS=2 julia --startup-file=no --project=test test/ext_distributed/runtests.jl mpi` → 5/5, exit 0, 55 s (5 child files: common, data, optimizer, reduce, synchronized). `conditional_distributedtest.jl` is absent after the reset, as expected.
-- **Evidence**: `artifacts/logs/conditional-wrapper/` (`baseline-routing-fee2c310-2026-09-16.log`, `baseline-mpi2-fee2c310-2026-09-16.log`, `baseline-metadata.md`). Details: `wiki/devlog/2026-09-16-conditional-wrapper-phase-a-baseline.md`.
+- **Evidence**: `artifacts/logs/conditional-wrapper/` (`baseline-routing-fee2c310-2026-09-16.log`, `baseline-mpi2-fee2c310-2026-09-16.log`, `baseline-metadata.md`). Details: `wiki/devlog/02-conditional-graph/2026-09-16-conditional-wrapper-phase-a-baseline.md`.
 - No Flux source changed in this session.
 
 ## What was done before (2026-09-16) — conditional-graph wrapper implementation plan
@@ -198,7 +804,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - Commit `69703025` replaced rendered-text matching with inspection of the stored expression argument. Follow-up commit `fee2c310` removed the redundant injected Windows-path testset and uses `@test expr.args[2] == runner_path`, retaining the existing expression-shape assertions.
 - `julia --startup-file=no test/distributed_routing.jl` passed 17/17 locally. `git diff --check` passed.
 - `git push origin HEAD:ddp/upstream-pr` fast-forwarded the PR branch from `c64f695f` to `fee2c310`. GitHub confirms PR #2694 now points to `fee2c310a32958ca2f44c5ce5c1ddbef3db87c75`; live checks started, including Windows.
-- Details: `temp/2026-09-15-pr2694-windows-distributed-routing-failure.md`, `wiki/devlog/2026-09-16-pr2694-windows-routing-fix.md`.
+- Details: `temp/2026-09-15-pr2694-windows-distributed-routing-failure.md`, `wiki/devlog/01-pr2694/2026-09-16-pr2694-windows-routing-fix.md`.
 
 ## What was done before (2026-09-14) — conditional-graph onboarding (report + detector + notebook)
 
@@ -208,11 +814,11 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - **Detector result**: `make verify-conditional-deadlock` → **12/12 PASS, exit 0, 1m20.0s** (2026-09-14). Log `artifacts/logs/conditional-deadlock/detector-2026-09-14.log`. Deadlock trace shows `TRACE rank=0 allreduce #3` with `PROBE_UPDATE_DONE rank=1` and no rank-0 finish; corruption shows `a_expected=1.1 a_actual=1.5 b_expected=1.4 b_actual=1.5 corrupted=true`; control `correct=true a=1.2 b=1.8 c=1.4`. This is a characterization test (passes while the bug exists); it must be updated when the fix lands.
 - **Driver bug fixed**: `pipeline(cmd, stdout=log, stderr=log)` opened the same path twice (each handle at offset 0) so stderr overwrote the stdout markers; fixed by sharing one `IO` handle. Evidence: first run captured an empty trace, rerun captured it.
 - **Notebook**: `notebook/conditional_graph_optimisers.jl`, valid Pluto `.jl` (25 cells = 13 Markdown + 12 code, matching `Cell order`). Optimisers alone → Flux context → distributed failure modes, with a `RUN_MPI=false` toggle. Validation: `STRUCTURE_OK cells=25 code_cells=12`, `PARSE_OK cells=25 markdown=13`, extracted code cells run `julia --project=.` `EXIT=0` no warnings, value assertions pass.
-- Details: `wiki/devlog/2026-09-14-conditional-graph-onboarding.md`, `wiki/devlog/2026-09-14-conditional-graph-optimisers-notebook.md`. Consistent with ADR-0007 (unused-parameter support deferred).
+- Details: `wiki/devlog/02-conditional-graph/2026-09-14-conditional-graph-onboarding.md`, `wiki/devlog/02-conditional-graph/2026-09-14-conditional-graph-optimisers-notebook.md`. Consistent with ADR-0007 (unused-parameter support deferred).
 
 ## What was done last (2026-09-11) — final Flux commit and gate rerun
 
-- **Review**: a six-agent review of PR #2694 salvage phases 2-7 produced findings. The orchestrator fixed all in-scope findings with RED/GREEN subagents. Commit `15ca2d9c` contains these review fixes. Details: `wiki/devlog/2026-09-10-pr2694-review-fixes.md`.
+- **Review**: a six-agent review of PR #2694 salvage phases 2-7 produced findings. The orchestrator fixed all in-scope findings with RED/GREEN subagents. Commit `15ca2d9c` contains these review fixes. Details: `wiki/devlog/01-pr2694/2026-09-10-pr2694-review-fixes.md`.
 - **Push blocker 1 (NCCL guard bypass)**: `initialize(NCCLBackend; force=true)` raised `MethodError`. Fixed `ext/FluxMPINCCLExt/FluxMPINCCLExt.jl` — added `force::Bool=false` to `__initialize(::Type{NCCLBackend}; ...)` and forwarded `force` to the MPI initializer; `src/distributed/public_api.jl` docstring now says the guardrail protects `MPI.Init()` including the `MPI.Init()` performed while bootstrapping `NCCLBackend`, the error prefix is backend-neutral `"Distributed initialization failed:"`, and it recommends `force=true` to the same `initialize` call; `NEWS.md` updated likewise.
 - **Push blocker 2 (main-suite distributed opt-in)**: `ParallelTestRunner` discovered `ext_distributed/*` child files individually, so workers lacked `FLUX_TEST_DISTRIBUTED_BACKEND`. Fixed by making `test/ext_distributed/runtests.jl` the sole entry point: new `test/test_utils_distributed.jl` (`strip_distributed_tests!`, `add_distributed_runner!`); `test/runtests.jl` always strips `ext_distributed` from discovery, deletes the helper from discovery, and conditionally adds one `"ext_distributed"` entry when `FLUX_TEST_DIST_MPI || FLUX_TEST_DIST_NCCL`.
 - **Push blocker 3 (padding docs)**: `DistributedDataContainer` docstring, `docs/src/guide/gpu.md`, and `NEWS.md` now state duplicated observations enter training batches, get extra weight in the averaged gradients, and change the effective training objective (not only epoch/metric accounting).
@@ -229,7 +835,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 
 ## What was done before (2026-09-10) — rootless podman topology-emulation validation
 
-- Ran the rootful-docker → rootless-podman migration validation (evidence `temp/docker_ci_fix/podman/`, details `wiki/devlog/2026-09-10-rootless-podman-ci-parity.md`). Key result: the planned `taskset -c 0-3 podman run ...` does NOT restrict the container (rootless `conmon` is forked by the systemd user manager; container PID 1 affinity `0-11`, `nproc` = 12), and inside-container `taskset` restricts affinity (`nproc` = 4) but OpenMPI 4.1.6 counts hwloc slots, not affinity, so plain `mpiexec -n 4` still succeeds. The literal negative control passed 5/5 (44s) — taskset-only parity is invalid.
+- Ran the rootful-docker → rootless-podman migration validation (evidence `temp/docker_ci_fix/podman/`, details `wiki/devlog/01-pr2694/2026-09-10-rootless-podman-ci-parity.md`). Key result: the planned `taskset -c 0-3 podman run ...` does NOT restrict the container (rootless `conmon` is forked by the systemd user manager; container PID 1 affinity `0-11`, `nproc` = 12), and inside-container `taskset` restricts affinity (`nproc` = 4) but OpenMPI 4.1.6 counts hwloc slots, not affinity, so plain `mpiexec -n 4` still succeeds. The literal negative control passed 5/5 (44s) — taskset-only parity is invalid.
 - Real cgroup cpuset is impossible rootless: `podman run --cpuset-cpus=0-3` errors (`cpuset.cpus: no such file or directory`, exit 127; cpuset controller not delegated — `user@1000.service/cgroup.controllers = cpu memory pids`), direct `cgroup.subtree_control` write is ENOENT, and `systemd-run --user --scope -p AllowedCPUs=0-3` is silently ignored.
 - Working emulation: OpenMPI MCA `hwloc_base_topo_file` + hwloc-generated topology XML (2 cores / 4 PUs from CPUs 0-3; `/tmp/opencode/podman_migrate/topo-gen.c` → `topo-2c4t.xml`). Probe: plain `mpiexec -n 4` → "not enough slots" exit 1; plain `-n 2` → exit 0; `--use-hwthread-cpus -n 4` → exit 0.
 - Full validation with the emulation (all real exit codes): R1a negative 4-rank 0 passed / 5 failed, banner ×5, EXIT 1 (8s); R2b positive 4-rank 5/5, EXIT 0 (59s); R3 2-rank control 5/5, EXIT 0 (51s); R4 CI-order 4-rank job 5/5, EXIT 0 (63s); R5 prefs restored byte-identical to backup (md5 `183acda9c034313d0b27f63abe08f2a5`). Staging repo left as found (only `test/LocalPreferences.toml` written during runs, restored).
@@ -238,7 +844,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 
 ## What was done before (2026-09-10) — PR #2694 salvage phase 7: verification gates
 
-- **Phase 7 done**: Phase 7 of `temp/pr_salvage_plan.md` (lines 268-290) — the pre-push verification gates — is complete. Method: the orchestrator launched a swarm of subagents (gate checks + independent audits). All subagents completed; no subagent failed. Details: `wiki/devlog/2026-09-10-pr2694-salvage-phase7-verification.md`.
+- **Phase 7 done**: Phase 7 of `temp/pr_salvage_plan.md` (lines 268-290) — the pre-push verification gates — is complete. Method: the orchestrator launched a swarm of subagents (gate checks + independent audits). All subagents completed; no subagent failed. Details: `wiki/devlog/01-pr2694/2026-09-10-pr2694-salvage-phase7-verification.md`.
 - **Gate results (all six PASS)**: Gate 1 static scope checks PASS after fix; Gate 2 PMI guard tests PASS (169/169); Gate 3 MPI suite PASS (`JULIA_MPI_TEST_NPROCS=2` 5/5, 49s; `=4` 5/5, 54s); Gate 4 OpenMPI topology emulation **PASS via rootless podman** (see below); Gate 5 docs build PASS (`julia --project=docs docs/make.jl`, exit 0); Gate 6 final review PASS.
 - **Gate 4 detail (2026-09-10, rootless podman)**: ran the real runner `scripts/podman/run-ci-parity.sh` only (no docker/sudo/`newgrp`/`--cpuset-cpus`), per `scripts/podman/README.md`. Staged salvage content `caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f` to `/tmp/opencode/docker_ci/repo-salvage/` (Flux worktree untouched); all 9 steps exit 0. `mpi_fast` (2 ranks) exit 0, 5/5, 35.8s. `mpi_edge` (4 ranks) exit 0, 5/5, 1m01.4s. Probe: `mpiexec (OpenRTE) 4.1.6`, `nproc`=4, affinity `0-3`, `MPI.mpiexec()` = `mpiexec --use-hwthread-cpus`, `MPI.MPI_LIBRARY` = `OpenMPI`, `4-rank launch OK`; no `not enough slots` in any log. Non-blocking anomaly: the 4-rank log warns `155 dependencies precompiled but different versions are currently loaded (...)`; suite still exit 0 and 5/5. No podman runner problems; nothing needed fixing. Logs/summary: `temp/docker_ci_fix/podman/podman-phase7-00..08-*.log`, `temp/docker_ci_fix/podman/podman-phase7-SUMMARY.md`.
 - **Gate 1 fix commit `caf47145`** "Document distributed changes and fix whitespace hygiene (phase 6)": 8 files, `+23/-19` — the 4 phase-6 docs/consistency files plus `runtests.jl` trailing whitespace and 3 test files missing final newlines. `git diff --check 404ff37d...HEAD` clean (exit 0); worktree clean; **NOT pushed**.
@@ -258,7 +864,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - Checks passed (independent verifier, reproduced): `git diff --check` clean (exit 0); old launcher order absent; "split uniformly" absent; both `#2694` links present; `docs/src/guide/distributed.md` absent and `docs/make.jl` has no registration; no stale terms (`resolve_unused_parameters`, `unused_parameters`, `DistributedOptimizerState`, `conditional-gradient`, `AbstractFluxDistributedBacked`, `split uniformly`); no child distributed test reads `ARGS`; only the 4 expected files modified, no untracked files. **Correction**: the phase-6 verifier checked the 4 edited files but the claim that the whole changeset was newline-clean was inaccurate — 3 committed test files lacked final newlines and `runtests.jl` had 5 trailing-whitespace lines; fixed in `caf47145` during gate 1. Full MPI suite and docs build NOT run in phase 6 — both are Phase 7 gates.
 - Scope boundaries honored: narrow edits only (4 files); no unused-gradient content, no `DistributedOptimizerState` content, no conditional-gradient API, no re-added distributed guide, no NCCL-validation claim.
 - Note: `docs/src/guide/gpu.md:366-377` (pre-M1 Leaf output) is unrelated to this PR scope and remains deferred.
-- Details: `wiki/devlog/2026-09-10-pr2694-salvage-phase6-docs-consistency.md`; plan: `temp/pr_salvage_plan.md` (lines 251-267).
+- Details: `wiki/devlog/01-pr2694/2026-09-10-pr2694-salvage-phase6-docs-consistency.md`; plan: `temp/pr_salvage_plan.md` (lines 251-267).
 
 ## What was done last (2026-09-09) — PR #2694 salvage phase 5: retained & polished Carlo's test changes
 
@@ -269,39 +875,39 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - Checks passed: `git diff --check` clean; workflow YAML parses (jobs `mpi_fast`, `mpi_edge`); `Meta.parseall` on runtests.jl ok; grep confirms no `FLUX_TEST_DISTRIBUTED_MPI`, no "Sharding & Asymmetry", no "Edge cases", no commented NCCL block, no `supervisor`/`native`/`CPU-buffer`/`fallback` claims in the changed files or `test/ext_distributed/`. Full MPI suite NOT re-run (comment-only change); full two-rank/four-rank MPI runs remain a Phase 7 verification gate.
 - Retained-from-`fa3bf228` items re-confirmed present and untouched: `test/ext_distributed/distributed_setup.jl`; child test files do not read `ARGS`; backend selected from `FLUX_TEST_DISTRIBUTED_BACKEND` env in `distributed_setup.jl`; deterministic `sort!(distributedtestfiles)`; `MPI = "da04e1cc-30fd-572f-bb4f-1f8673147195"` in `test/Project.toml`.
 - Pre-existing out-of-scope observation (note, NOT a phase-5 defect): `test/ext_distributed/runtests.jl` ~line 28 references `CUDA.devices()` with no `using CUDA` visible at file top; would only error if `FLUX_TEST_DISTRIBUTED_NCCL=true` were set, which the current CI never does. Predates phase 5 and untouched.
-- Details: `wiki/devlog/2026-09-09-pr2694-salvage-phase5-polish-carlo-tests.md`; plan: `temp/pr_salvage_plan.md` (lines 228-251).
+- Details: `wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase5-polish-carlo-tests.md`; plan: `temp/pr_salvage_plan.md` (lines 228-251).
 
 ## What was done last (2026-09-09) — PR #2694 salvage phase 3: PMI guardrail narrowed (RED tests + GREEN implementation)
 
 - **3a RED**: committed `af728837` — `test/distributed_launcher_guard.jl`, decision-matrix tests for the pure checker `DistributedUtils.check_launcher_compat(env; library, force, mpi_initialized)`. 52 errored / 0 passed (checker did not exist). Log: `artifacts/logs/pr2694-salvage/phase3-launcher-guard-RED.log`. Rows pin: MPICH+PMIX_RANK/OMPI vars → actionable error (names library + trigger var + force=true); force / already-initialized → ok; OpenMPI+PMIx vars → ok; PMI2/SLURM-only envs → ok; non-MPICH non-OpenMPI libraries never judged.
 - **3b GREEN**: committed `cd8de233` (+53/-41). (1) New pure MPI-free `DistributedUtils.check_launcher_compat` in `src/distributed/public_api.jl` — returns `nothing` unless `library=="MPICH"` && PMIX_RANK/OMPI_COMM_WORLD_RANK present && !force && !mpi_initialized; message names library, trigger vars, `force=true`, launch alternatives. (2) `ext/FluxMPIExt/FluxMPIExt.jl` inline guard (40 lines: broad non-OpenMPI-PMI2 errors + SLURM-no-PMI2 `@warn`) replaced by 4-line delegation, still gated pre-`MPI.Init()`. (3) `initialize` docstring + NEWS narrowed to the limited behavior; `force=true` stays the documented expert bypass.
 - Phase 3 evidence: guard tests **169/169 pass** (GREEN log `artifacts/logs/pr2694-salvage/phase3-launcher-guard-GREEN.log`); integration smokes on local MPICH_jll — `PMIX_RANK=0` set → `initialize(MPIBackend)` throws before `MPI.Init()` (init stays false); clean env → initializes fine. No stale "expects PMI2"/"is not OpenMPI"/SLURM-warning references left in src/ext/docs/NEWS.
-- Details: `wiki/devlog/2026-09-09-pr2694-salvage-phase3a-launcher-guard-tests.md`, `wiki/devlog/2026-09-09-pr2694-salvage-phase3b-pmi-guardrail.md`.
+- Details: `wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase3a-launcher-guard-tests.md`, `wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase3b-pmi-guardrail.md`.
 
 ## What was done last (2026-09-09) — PR #2694 salvage phase 4: cyclic data padding (RED + GREEN)
 
 - **4a RED**: committed `e64165d3` — rewrote `test/ext_distributed/data_distributedtest.jl` as the five-size cyclic-padding matrix (N=0/1/2/7/10) driven by `_cyclic_spec(N, tworkers)`: `per = cld(N, W)`, `total = per*W`, `full = [mod1(i, N) for i in 1:total]`, rank `r` gets the contiguous slice `full[(r*per+1):((r+1)*per)]`. Each non-empty N asserts identity-container obs == cyclic chunk, all indices valid in `1:N`, originals-before-padding, and an allreduce aggregate equal to `sum(data[full])`. N=0 asserts `ArgumentError`. Against the old padding (`append!(1:pad_count)`), N=1 @ 4 ranks fails with BoundsError (invalid indices 2,3) + NaN allreduce aggregate → RED evidence. Logs: `artifacts/logs/pr2694-salvage/phase4-data-RED-n2.log` (EXIT 0), `phase4-data-RED-n4.log` (EXIT 1).
 - **4b GREEN**: committed `4eb5708e` — `__construct_distributed_data_container` now throws a clear `ArgumentError` when `numobs(data) == 0` (before partitioning), uses `cld(N, split_across)` (no float `ceil`), and builds `indices = [mod1(i, N) for i in 1:total_padded]` so padding repeats cyclically from the start and every index stays in `1:N`. Docstring for `DistributedDataContainer` extended: dataset not modified (only the index sequence is padded), shard length `cld(N, workers)`, padding duplicates observations (metrics over sharded data count duplicates and must account for them), empty dataset rejected. Matrix now **45/45 pass per rank** at both `-n 2` and `-n 4`, EXIT 0 both. Logs: `artifacts/logs/pr2694-salvage/phase4-data-GREEN-n2.log`, `phase4-data-GREEN-n4.log`.
-- Details: `wiki/devlog/2026-09-09-pr2694-salvage-phase4-cyclic-data-padding.md`; plan: `temp/pr_salvage_plan.md`.
+- Details: `wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase4-cyclic-data-padding.md`; plan: `temp/pr_salvage_plan.md`.
 
 ## What was done last (2026-09-09) — PR #2694 salvage phases 1-2
 
 - **Phase 1**: archived `3370b910` as `archive/pr2694-unused-gradient-spike` (local); retired the clean `/tmp/opencode/pr2694-ci-fix` worktree (branch `ddp/pr2694-ci-fix` kept @ `fa3bf228`); created permanent worktree `../flux-pr2694-salvage` on `ddp/pr2694-salvage` @ `fa3bf228`. Dirty `master`, `flux-integration` @ `3370b910`, and `archive/dirty-master-c8.2-wip` untouched and verified identical.
 - **Phase 2**: single scope-reset commit `5c6ea561` (pure deletions, 6 files / 267 lines): removed `resolve_unused_parameters!!` from `public_api.jl`, deleted `unused_parameters_distributedtest.jl`, removed unused-parameter NEWS text, deleted `docs/src/guide/distributed.md` + `docs/make.jl` entry, removed commented NCCL CI placeholder and NCCL-validation claims from `distributed_ci.yml`. Nothing ported from `04ddeaa0`/`3370b910`; `gpu.md` untouched (fa3bf228 cleanup retained).
-- Details: `wiki/devlog/2026-09-09-pr2694-salvage-phases-1-2.md`; plan: `temp/pr_salvage_plan.md`.
+- Details: `wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phases-1-2.md`; plan: `temp/pr_salvage_plan.md`.
 
 ## What was done last (2026-09-08) — M0 + M1 + M1.1 PR #2694 integration spike
 
 - M0: preserved dirty master (verified identical), snapshotted `archive/dirty-master-c8.2-wip` @ `b0034f55`, created the `../flux-integration` worktree @ `fa3bf228`, recorded metadata/port inventory/checklist in ADR-0006 (scope approved via checkpoint question).
 - M1: implemented the `DistributedOptimizerState` wrapper spike (`04ddeaa0`): fixed `optimizer_distributedtest.jl` wrapper access; added `conditional_distributedtest.jl` (rank-gated branches, analytic global-mean checks, tied-param and frozen-param checks, CountingBackend collective counts); full ext_distributed MPI suite green.
 - M1.1: review (2026-09-08) REOPENED the M1 gate with 7 blocking findings + risks + test-proof gaps; fixed all of them in `3370b910` (trainable-semantics traversal, update! model return, structural grad pairing, presence protocol, composition rejected, grad non-mutation, device-preserving buffers, plus extras); rebuilt `conditional_distributedtest.jl` (570 lines) with real AD; suite 6/6 at nprocs=2 and 4 via the direct runner.
-- Details: `wiki/devlog/2026-09-08-m0-m1-integration-spike.md`, `wiki/devlog/2026-09-08-m1.1-corrective-spike.md`, `wiki/decisions/ADR-0006-integration-baseline.md`.
+- Details: `wiki/devlog/01-pr2694/2026-09-08-m0-m1-integration-spike.md`, `wiki/devlog/01-pr2694/2026-09-08-m1.1-corrective-spike.md`, `wiki/decisions/ADR-0006-integration-baseline.md`.
 
 ## What was done before (2026-09-03) — precompile experiment
 
 - Phase A audit + Phase B baseline + Phase C mitigation experiments + Phase D
-  implementation + Phase E end-to-end validation on bocconi (details: `wiki/devlog/2026-09-03-precompile-experiment.md`, ADR-0005, branch `experiment/precompile`).
-- Local uncommitted changes on `experiment/precompile`: Makefile (env/precompile/precompile-flux-test/precompile-all/install-mpiexec), scripts/remote/{precompile.sh,setup_node.sh,hosts/bocconi.conf}, README.md, wiki/{context/remote-nodes.md, decisions/ADR-0005-*, devlog/2026-09-03-*}.
+  implementation + Phase E end-to-end validation on bocconi (details: `wiki/devlog/01-pr2694/2026-09-03-precompile-experiment.md`, ADR-0005, branch `experiment/precompile`).
+- Local uncommitted changes on `experiment/precompile`: Makefile (env/precompile/precompile-flux-test/precompile-all/install-mpiexec), scripts/remote/{precompile.sh,setup_node.sh,hosts/bocconi.conf}, README.md, wiki/{context/remote-nodes.md, decisions/ADR-0005-*, devlog/01-pr2694/2026-09-03-*}.
 
 ## What was done before (2026-08-17) — PR #2694 frozen-branch restore + rebase
 
@@ -314,7 +920,7 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 - PR now mergeable (`mergeable: true`); CI running.
 - Local backups: `backup/pr2694-old-head` (`df95f602`),
   `backup/upsteam-pr-pre-rebase` (`504e816e`).
-- Details: `wiki/devlog/2026-08-17-pr2694-restore.md`.
+- Details: `wiki/devlog/01-pr2694/2026-08-17-pr2694-restore.md`.
 
 ## What was done before (2026-08-01) — C8.3 NCCL verification
 
@@ -358,25 +964,19 @@ Upstream merge base: `404ff37d`. The latest push fast-forwarded `ddp/upstream-pr
 
 ## Open questions
 
-- `test/Project.toml` cannot resolve with CUDA/NCCL added (StridedViews conflict). Fix needed before CI can run the NCCL path from the test project.
-- Pre-existing NCCL test failures in common/synchronized/optimizer/deadlock tests need root cause analysis.
-- Deathstar GPU state: GPU0000:43:00.0 unavailable; GPU tests cannot run on deathstar.
-- Optional hardening for the precompile workflow: pre-flight `using Flux` warm probe / hash stamp so a stale cache cannot silently recompile inside the test watchdog.
-- NCCL runtime validation of the DistributedOptimizerState design still untested (CPU/MPI only); verify when the GPU scope reopens.
-- Docs: `docs/src/guide/gpu.md:366-377` still shows pre-M1 Leaf output — update deferred; decide when to do it.
-- M1+M1.1 and the Phase A-C wrapper work remain unpushed on `ddp/integration-m1-spike`. PR head `fee2c310` is incorporated (Phase A); the wrapper boundary and the direct-nesting guard are committed (`109aad9c`, `a18392dd`, `f5b87975`).
-- Port dirty-master C8 tests as a separate commit, only after M1.1 review.
-- PR #2694 salvage phase 7 in-scope audit findings are fixed in `15ca2d9c`: NCCL `force` guard bypass (`initialize(NCCLBackend; force=true)`), `"MPIwrapper"` naming, duplicated-observation/training-gradient-bias wording, and the additional in-scope corrections. See `wiki/devlog/2026-09-10-pr2694-review-fixes.md`. NOT fixed: latent `CUDA.devices()` without `using CUDA` (phase-7 finding 4, only reachable under `FLUX_TEST_DISTRIBUTED_NCCL=true`) and the stale out-of-scope `gpu.md` examples (finding 8).
-- The full local main-suite route remains unverified: `test/runtests.jl` cannot run on this 14 GiB host because `Pkg.add("MPI")` instantiates the test project and pulls in Reactant/XLA (every worker loads Reactant); two attempts crashed the desktop. See failure `2026-09-10-main-suite-reactant-instantiation.md`. Routing checks cover test selection, and dedicated CI covers the direct runner.
-- The final OpenMPI topology-emulation gate passed at exact `c64f695f` on 2026-09-11. All original 9 steps exited 0, and both suites passed 5/5. Exact workflow `timeout=900` reruns also passed at 2 and 4 ranks. This is hwloc topology emulation, not real cgroup-cpuset parity.
+- Port dirty-master C8 tests as a separate commit only after the conditional-graph scope is stable; the C8 worktree (`ddp_flux` master at `b633cdc7`) is frozen.
+- `docs/src/guide/gpu.md:366-377` still shows pre-M1 `Leaf` output — update deferred.
+- The full local main-suite route remains unverified: `test/runtests.jl` on this 14 GiB host instantiates Reactant/XLA and exhausts memory; routing checks cover test selection and CI covers the direct runner. See `wiki/failures/2026-09-10-main-suite-reactant-instantiation.md`.
+- The pre-existing NCCL failures recorded during C8.3 (`common`/`synchronized`/`optimizer`/`deadlock` tests on Bocconi) belong to the frozen `ddp_flux` master; re-check only if that work resumes. The Phase J/K NCCL validation used the active wrapper branch and passed.
+
+Resolved and closed since earlier updates: `test/Project.toml` resolves with CUDA/NCCL (Phase J precompiled it); deathstar GPUs are healthy (3× TITAN RTX, Phase J/K ran there); NCCL runtime validation of `DistributedOptimizerState` is complete (Phase J 217/217 and 14/14; Phase K K1/K2); the precompile hardening question closed with the compute-node workflow (ADR-0005).
 
 ## Next exact action
 
-1. Start Phase D4 of `temp/conditional_graph_wrapper_implementation_plan.md` at Flux `cbdd3edc`.
-2. Add the legacy tuple-returning `trainable` regression with equal-valued distinct mutable fields. Record RED before production changes.
-3. Compare selected leaves against public native `Optimisers.setup`. Four-rank gates remain Phase F.
+1. Implement `notebook/conditional_graph_benchmark.ipynb` from the corrected `artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/` artifacts (two-notebook plan implementation item 6).
+2. Keep PR #2694 separate from the conditional-graph feature; do not add wrapper commits to that PR.
 
-Phases A-C and D1-D3 are committed. The Flux worktree is clean at `cbdd3edc`. Evidence is in `artifacts/logs/conditional-wrapper/`.
+Phases A–K are complete at the level described at the top of this file. Evidence is in `artifacts/logs/conditional-wrapper/`.
 
 PR #2694 remains separate from the conditional-graph feature. Do not add wrapper commits to that PR. The full local main-suite route remains unsafe on this host because Reactant/XLA exhausts memory.
 

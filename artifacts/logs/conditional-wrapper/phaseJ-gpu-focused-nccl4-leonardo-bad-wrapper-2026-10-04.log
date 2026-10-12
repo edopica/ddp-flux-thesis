@@ -1,0 +1,11 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 cd ~/projects/flux-integration && time env FLUX_TEST_DISTRIBUTED_BACKEND=nccl srun --mpi=pmi2 -n 4 -c 4 julia --startup-file=no --project=test test/ext_distributed/cuda_conditional_distributedtest.jl
+salloc: Granted job allocation 59337069
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0056 are ready for job
+salloc: Relinquishing job allocation 59337069
+srun: fatal: Can not execute julia
+
+real	0m0.275s
+user	0m0.268s
+sys	0m0.004s
+EXIT=1

@@ -1,0 +1,5 @@
+cmd: julia --project=test -e '<find_tests + routing helpers>'
+cwd: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+purpose: apply the runtests.jl routing to the REAL ParallelTestRunner find_tests output, without Pkg.add/Reactant
+exit=0

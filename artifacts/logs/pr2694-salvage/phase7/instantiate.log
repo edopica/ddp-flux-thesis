@@ -1,0 +1,9 @@
+Precompiling packages...
+    Flux → FluxMooncakeExt Being precompiled by another process (pid: 340288, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMooncakeExt/q4sGm_UqiLT.ji.pidfile)
+    Mooncake → MooncakeFluxExt Being precompiled by another process (pid: 340288, pidfile: /home/kurapica/.julia/compiled/v1.12/MooncakeFluxExt/EnFIN_UqiLT.ji.pidfile)
+  10086.2 ms  ✓ Mooncake → MooncakeFluxExt
+  10642.1 ms  ✓ Flux → FluxMooncakeExt
+  12875.9 ms  ✓ Flux → FluxFiniteDifferencesExt
+  13468.0 ms  ✓ Flux → FluxMPIExt
+  17392.5 ms  ✓ Flux → FluxEnzymeExt
+  5 dependencies successfully precompiled in 22 seconds. 247 already precompiled.

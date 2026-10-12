@@ -1,0 +1,77 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.8s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.9s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.5s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                                | Pass  Total  TimeTest Summary:                                                | 
+explicit occurrence mapping for mixed tied/isbits parameters | Pass  Total    38     38  2.1sTime
+
+explicit occurrence mapping for mixed tied/isbits parameters |   38     38  2.1s
+CPU presence metadata for device-like parameters: CPU presence metadata for device-like parameters: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:445
+  Expression: DEVICE_SCALAR_ACCESSES[] == 0
+   Evaluated: 4 == 0
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:445
+  Expression: DEVICE_SCALAR_ACCESSES[] == 0
+   Evaluated: 4 == 0
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:428
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:445 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+CPU presence metadata for device-like parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:455
+  Expression: presence.buftype === Vector{Float32}
+   Evaluated: DeviceLikeArray{Float32, 1} === Vector{Float32}
+
+Stacktrace:
+ [1] top-level scope
+   @
+Stacktrace:
+  [1] top-level scope~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:428
+   @
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined] ~/Projects/ddp_flux/flux-integration/test/ext_distributed/
+ [3] macro expansionconditional_distributedtest.jl:428
+ 
+   @[2] macro expansion
+ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:455 [inlined]   @
+ [4] macro expansion ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   @
+ [3] macro expansion ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680
+   @ [inlined]
+ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:445 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                    | Pass  Fail  Total  Time
+CPU presence metadata for device-like parameters |   14     2     16  2.7s
+CPU presence metadata for device-like parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:455
+  Expression: presence.buftype === Vector{Float32}
+   Evaluated: DeviceLikeArray{Float32, 1} === Vector{Float32}
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:428
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:455 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                    | Pass  Fail  Total  Time
+CPU presence metadata for device-like parameters |   14     2     16  2.8s
+RNG of the outermost testset: Random.Xoshiro(0xa6f9523868b9845d, 0x0df5b02503373d6b, 0x397a55afc3599911, 0xb24a2651260b96b1, 0xd0451b4e4d7058ca)
+RNG of the outermost testset: Random.Xoshiro(0x6222b5479e182a72, 0xc67539c42102bea6, 0x400bad0de688cb7d, 0x7ef7e5c631709ac0, 0x6e840c44dbe09b15)
+ERROR: LoadError: Some tests did not pass: 14 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:427
+ERROR: LoadError: EXIT=1 WALL=29s LOG=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/phaseD-d3-RED-mpi2-2026-09-29.log

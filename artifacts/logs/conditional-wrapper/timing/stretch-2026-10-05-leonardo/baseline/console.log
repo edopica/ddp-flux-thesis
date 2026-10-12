@@ -1,0 +1,19 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+TIMING_META mode=single rank=0 world=4 dtype=Float32 tolerances="atol=2.0e-6 rtol=1.0e-5" flux=/leonardo/home/userexternal/epicazio/projects/flux-integration/src/Flux.jl schedule_digest=ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57
+TIMING_START mode=single world=4 steps=120 warmup=3 repeats=5 record_every=5 device=cuda
+TIMING_WARMUP mode=single warmup_steps=3 compile_warmup_s=34.094892
+TIMING_REPEAT mode=single repeat=1 t_total_s=0.626333 t_train_s=0.467879 t_val_s=0.158454 slowest_rank_s=0.626333
+TIMING_REPEAT mode=single repeat=2 t_total_s=0.439836 t_train_s=0.281983 t_val_s=0.157853 slowest_rank_s=0.439836
+TIMING_REPEAT mode=single repeat=3 t_total_s=0.832694 t_train_s=0.297053 t_val_s=0.535641 slowest_rank_s=0.832694
+TIMING_REPEAT mode=single repeat=4 t_total_s=0.465324 t_train_s=0.295540 t_val_s=0.169784 slowest_rank_s=0.465324
+TIMING_REPEAT mode=single repeat=5 t_total_s=0.444683 t_train_s=0.274797 t_val_s=0.169886 slowest_rank_s=0.444683
+TIMING_SUMMARY mode=single repeats=5 median_total_s=0.465324 min_total_s=0.439836 max_total_s=0.832694 median_updates_per_s=257.884817
+TIMING_RANK_DONE mode=single rank=0 steps=120
+TIMING_DONE mode=single

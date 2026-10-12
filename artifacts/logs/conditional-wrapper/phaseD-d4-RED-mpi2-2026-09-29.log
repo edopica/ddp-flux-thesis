@@ -1,0 +1,408 @@
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.6s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.7s
+Test Summary:                                          | Pass  Test Summary:                                          | Pass  Total  TimeTotal  Time
+canonical traversal order for reversed named trainable | 
+canonical traversal order for reversed named trainable |   10    10     10     10  1.5s
+1.4s
+Test Summary:                                    | Pass  Total  Test Summary:                                    | Time
+equal-valued isbits occurrences stay independent |   11  Pass     11  0.5sTotal  
+Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                                | Pass  Test Summary:                                                | Pass  Total  TimeTotal  Time
+explicit occurrence mapping for mixed tied/isbits parameters | 
+explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38     38  2.3s
+2.3s
+Test Summary:                                    | Pass  Test Summary:                                    | Pass  Total  Time
+CPU presence metadata for device-like parametersTotal  Time
+CPU presence metadata for device-like parameters |  |   16     16    16     16  0.7s
+0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+legacy tuple trainable selection matches native setup: legacy tuple trainable selection matches native setup: Error During Test at Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:544
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:544
+  Test threw exception
+  Test threw exception
+  Expression: begin
+    Optimisers.update!(state, model, (a = ga, b = gb, excluded = gex))
+end
+  Expression: begin
+    Optimisers.update!(state, model, (a = ga, b = gb, excluded = gex))
+end
+  MethodError: no method matching haskey(::Tuple{Vector{Float64}}, ::Symbol)
+  The function `haskey` exists, but no method is defined for this combination of argument types.
+  
+  Closest candidates are:
+    haskey(!Matched::Zygote.Grads, ::Any)
+     @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:399
+    haskey(!Matched::Pkg.Types.Manifest, ::Any)
+     @ Pkg ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Pkg/src/Types.jl:329
+    haskey(!Matched::LibGit2.CachedCredentials, ::Any)
+     @ LibGit2 ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/LibGit2/src/types.jl:1357
+    ...
+  
+  Stacktrace:
+    [1] _trainable_child(tr::Tuple{Vector{Float64}}, k::Symbol)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:652
+    [2] (::Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}})(k::Symbol, c::Vector{Float64})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:618
+    [3] (::Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}})(k::Symbol)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:664
+    [4] (::Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}})(::Nothing, x::Symbol)
+      @ Base ./tuple.jl:691
+    [5] BottomRF
+      @ ./reduce.jl:78 [inlined]
+    [6] afoldl(::Base.BottomRF{Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}}, ::Nothing, ::Symbol, ::Symbol, ::Symbol)
+      @ Base ./operators.jl:599
+    [7] _foldl_impl(op::Base.BottomRF{Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}}, init::Nothing, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./reduce.jl:60
+    [8] foldl_impl(op::Base.BottomRF{Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}}, nt::Nothing, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./reduce.jl:40
+    [9] mapfoldl_impl(f::typeof(identity), op::Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}, nt::Nothing, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./reduce.jl:36
+   [10] mapfoldl(f::Function, op::Function, itr::Tuple{Symbol, Symbol, Symbol}; init::Nothing)
+      @ Base ./reduce.jl:167
+   [11] mapfoldl
+      @ ./reduce.jl:167 [inlined]
+   [12] #foldl#271
+      @ ./reduce.jl:190 [inlined]
+   [13] foreach(f::Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./tuple.jl:691
+   [14] _foreach_child(f::Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, ch::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:664
+   [15] _walk!(bufs::Vector{Flux.DistributedUtils._SyncBuf}, seen::IdDict{Any, Int64}, plan::Vector{Flux.DistributedUtils._SyncOccurrence}, x::LegacyTupleTrainable, x̄::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:617
+   [16] _sync_gradients(backend::RecordingBackend{MPIBackend{MPI.Comm}}, model::LegacyTupleTrainable, grads::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:673
+   [17] update!(::Flux.DistributedUtils.DistributedOptimizerState{RecordingBackend{MPIBackend{MPI.Comm}}, @NamedTuple{a::Optimisers.Leaf{Descent{Float64}, Nothing}, b::Optimisers.Leaf{Descent{Float64}, Nothing}, excluded::Tuple{}}}, ::LegacyTupleTrainable, ::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:434
+   [18] (::var"#14#15"{Vector{Float64}, Vector{Float64}, Vector{Float64}, Flux.DistributedUtils.DistributedOptimizerState{RecordingBackend{MPIBackend{MPI.Comm}}, @NamedTuple{a::Optimisers.Leaf{Descent{Float64}, Nothing}, b::Optimisers.Leaf{Descent{Float64}, Nothing}, excluded::Tuple{}}}, LegacyTupleTrainable})()
+      @ Main ./none:-1
+   [19] with_logstate(f::var"#14#15"{Vector{Float64}, Vector{Float64}, Vector{Float64}, Flux.DistributedUtils.DistributedOptimizerState{RecordingBackend{MPIBackend{MPI.Comm}}, @NamedTuple{a::Optimisers.Leaf{Descent{Float64}, Nothing}, b::Optimisers.Leaf{Descent{Float64}, Nothing}, excluded::Tuple{}}}, LegacyTupleTrainable}, logstate::Base.CoreLogging.LogState)
+      @ Base.CoreLogging ./logging/logging.jl:542
+   [20] with_logger(f::Function, logger::TestLogger)
+      @ Base.CoreLogging ./logging/logging.jl:653
+   [21] #collect_test_logs#50
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/logging.jl:126 [inlined]
+   [22] collect_test_logs
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/logging.jl:124 [inlined]
+   [23] #match_logs#51
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/logging.jl:274 [inlined]
+   [24] top-level scope
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [25] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [26] macro expansion
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:544 [inlined]
+  MethodError: no method matching haskey(::Tuple{Vector{Float64}}, ::Symbol)
+  The function `haskey` exists, but no method is defined for this combination of argument types.
+  
+  Closest candidates are:
+    haskey(!Matched::Zygote.Grads, ::Any)
+     @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:399
+    haskey(!Matched::Pkg.Types.Manifest, ::Any)
+     @ Pkg ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Pkg/src/Types.jl:329
+    haskey(!Matched::LibGit2.CachedCredentials, ::Any)
+     @ LibGit2 ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/LibGit2/src/types.jl:1357
+    ...
+  
+  Stacktrace:
+    [1] _trainable_child(tr::Tuple{Vector{Float64}}, k::Symbol)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:652
+    [2] (::Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}})(k::Symbol, c::Vector{Float64})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:618
+    [3] (::Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}})(k::Symbol)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:664
+    [4] (::Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}})(::Nothing, x::Symbol)
+      @ Base ./tuple.jl:691
+    [5] BottomRF
+      @ ./reduce.jl:78 [inlined]
+    [6] afoldl(::Base.BottomRF{Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}}, ::Nothing, ::Symbol, ::Symbol, ::Symbol)
+      @ Base ./operators.jl:599
+    [7] _foldl_impl(op::Base.BottomRF{Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}}, init::Nothing, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./reduce.jl:60
+    [8] foldl_impl(op::Base.BottomRF{Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}}, nt::Nothing, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./reduce.jl:40
+    [9] mapfoldl_impl(f::typeof(identity), op::Base.var"#foreach##0#foreach##1"{Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}}, nt::Nothing, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./reduce.jl:36
+   [10] mapfoldl(f::Function, op::Function, itr::Tuple{Symbol, Symbol, Symbol}; init::Nothing)
+      @ Base ./reduce.jl:167
+   [11] mapfoldl
+      @ ./reduce.jl:167 [inlined]
+   [12] #foldl#271
+      @ ./reduce.jl:190 [inlined]
+   [13] foreach(f::Flux.DistributedUtils.var"#_foreach_child##0#_foreach_child##1"{Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}}, itr::Tuple{Symbol, Symbol, Symbol})
+      @ Base ./tuple.jl:691
+   [14] _foreach_child(f::Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}}, Tuple{Vector{Float64}}}, ch::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:664
+   [15] _walk!(bufs::Vector{Flux.DistributedUtils._SyncBuf}, seen::IdDict{Any, Int64}, plan::Vector{Flux.DistributedUtils._SyncOccurrence}, x::LegacyTupleTrainable, x̄::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:617
+   [16] _sync_gradients(backend::RecordingBackend{MPIBackend{MPI.Comm}}, model::LegacyTupleTrainable, grads::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:673
+   [17] update!(::Flux.DistributedUtils.DistributedOptimizerState{RecordingBackend{MPIBackend{MPI.Comm}}, @NamedTuple{a::Optimisers.Leaf{Descent{Float64}, Nothing}, b::Optimisers.Leaf{Descent{Float64}, Nothing}, excluded::Tuple{}}}, ::LegacyTupleTrainable, ::@NamedTuple{a::Vector{Float64}, b::Vector{Float64}, excluded::Vector{Float64}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:434
+   [18] (::var"#14#15"{Vector{Float64}, Vector{Float64}, Vector{Float64}, Flux.DistributedUtils.DistributedOptimizerState{RecordingBackend{MPIBackend{MPI.Comm}}, @NamedTuple{a::Optimisers.Leaf{Descent{Float64}, Nothing}, b::Optimisers.Leaf{Descent{Float64}, Nothing}, excluded::Tuple{}}}, LegacyTupleTrainable})()
+      @ Main ./none:-1
+   [19] with_logstate(f::var"#14#15"{Vector{Float64}, Vector{Float64}, Vector{Float64}, Flux.DistributedUtils.DistributedOptimizerState{RecordingBackend{MPIBackend{MPI.Comm}}, @NamedTuple{a::Optimisers.Leaf{Descent{Float64}, Nothing}, b::Optimisers.Leaf{Descent{Float64}, Nothing}, excluded::Tuple{}}}, LegacyTupleTrainable}, logstate::Base.CoreLogging.LogState)
+      @ Base.CoreLogging ./logging/logging.jl:542
+   [20] with_logger(f::Function, logger::TestLogger)
+      @ Base.CoreLogging ./logging/logging.jl:653
+   [21] #collect_test_logs#50
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/logging.jl:126 [inlined]
+   [22] collect_test_logs
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/logging.jl:124 [inlined]
+   [23] #match_logs#51
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/logging.jl:274 [inlined]
+   [24] top-level scope
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [25] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [26] macro expansion
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:544 [inlined]
+legacy tuple trainable selection matches native setup: legacy tuple trainable selection matches native setup: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:550
+  Expression: ≈(model.a, ref2.a, atol = 1.0e-12)
+   Evaluated: [1.0, 1.0, 1.0, 1.0] ≈ [0.85, 0.85, 0.85, 0.85] (atol=1.0e-12)
+Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:550
+  Expression: ≈(model.a, ref2.a, atol = 1.0e-12)
+   Evaluated: [1.0, 1.0, 1.0, 1.0] ≈ [0.85, 0.85, 0.85, 0.85] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:550 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection matches native setup: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:551
+  Expression: ≈(model.b, ref2.b, atol = 1.0e-12)
+   Evaluated: [1.0, 1.0, 1.0, 1.0] ≈ [0.44999999999999996, 0.44999999999999996, 0.44999999999999996, 0.44999999999999996] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:551 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection matches native setup: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:557
+  Expression: length(rec.log) == 3
+   Evaluated: 0 == 3
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:557 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:550 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection matches native setup: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:551
+  Expression: ≈(model.b, ref2.b, atol = 1.0e-12)
+   Evaluated: [1.0, 1.0, 1.0, 1.0] ≈ [0.44999999999999996, 0.44999999999999996, 0.44999999999999996, 0.44999999999999996] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:551 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection matches native setup: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:557
+  Expression: length(rec.log) == 3
+   Evaluated: 0 == 3
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:557 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:558
+  Test threw exception
+  Expression: (rec.log[1])[1] == (2,) && (rec.log[1])[2] == Float32
+  BoundsError: attempt to access 0-element Vector{Any} at index [1]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:558 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:558 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:558
+  Test threw exception
+  Expression: (rec.log[1])[1] == (2,) && (rec.log[1])[2] == Float32
+  BoundsError: attempt to access 0-element Vector{Any} at index [1]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:558 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:558 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:559
+  Test threw exception
+  Expression: all((==)(1.0), (rec.log[1])[3])
+  BoundsError: attempt to access 0-element Vector{Any} at index [1]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:559 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:559 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:559
+  Test threw exception
+  Expression: all((==)(1.0), (rec.log[1])[3])
+  BoundsError: attempt to access 0-element Vector{Any} at index [1]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:559 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:559 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:560
+  Test threw exception
+  Expression: (rec.log[2])[1] == (4,) && (rec.log[2])[3] == ga
+  BoundsError: attempt to access 0-element Vector{Any} at index [2]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:560 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:560 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:560
+  Test threw exception
+  Expression: (rec.log[2])[1] == (4,) && (rec.log[2])[3] == ga
+  BoundsError: attempt to access 0-element Vector{Any} at index [2]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:560 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:560 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:561
+  Test threw exception
+  Expression: (rec.log[3])[1] == (4,) && (rec.log[3])[3] == gb
+  BoundsError: attempt to access 0-element Vector{Any} at index [3]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:561 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:561 [inlined]
+legacy tuple trainable selection matches native setup: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:561
+  Test threw exception
+  Expression: (rec.log[3])[1] == (4,) && (rec.log[3])[3] == gb
+  BoundsError: attempt to access 0-element Vector{Any} at index [3]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Any}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Any}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:505
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:561 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [7] macro expansion
+     @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:561 [inlined]
+Test Summary:                                         | Pass  Fail  Error  Total  Time
+legacy tuple trainable selection matches native setup |   12     3      5     20  5.6s
+Test Summary:                                         | Pass  Fail  Error  Total  Time
+legacy tuple trainable selection matches native setup |   12     3      5     20  5.6s
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0xea6beb2b99857a10, 0x201d7bd657d4c6db, 0xb12067262c396d14, 0xb2a6f6ca3470ef9a, 0xa2f721f4ed397d3b)
+0x7977d754f2b2f11f, 0x0eecc585e3bd7935, 0xdabfdc1f505496e8, 0xd45104cc4f54903c, 0xba3496195ae240ea)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 12 passed, 3 failed, 5 errored, 0 broken.Some tests did not pass: 12 passed, 3 failed, 5 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:504
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:504
+
+
+real	0m33.388s
+user	1m3.913s
+sys	0m3.488s

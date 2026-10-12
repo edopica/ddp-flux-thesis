@@ -5,7 +5,7 @@ MPIEXECJL ?= $(HOME)/.julia/bin/mpiexecjl
 # Default to PMI2 for SLURM environments because Julia's MPICH_jll uses PMI2
 SLURM_MPI_TYPE ?= pmi2
 
-.PHONY: env precompile precompile-flux-test precompile-all env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify health-check launch-2 launch-4 sync-model verify-sync verify-data verify-gradients verify-conditional example-ddp c8-mpi c8-mpi-4 c8-nccl c8-all
+.PHONY: env precompile precompile-flux-test precompile-all env-gpu install-mpiexec check smoke-cpu audit status reference reference-verify health-check launch-2 launch-4 sync-model verify-sync verify-data verify-gradients verify-conditional verify-conditional-deadlock example-ddp c8-mpi c8-mpi-4 c8-nccl c8-all
 
 # NOTE on precompilation (Julia 1.12, Bocconi): never let julia precompile the
 # project envs on the Bocconi login node. Julia caches bake the host CPU feature
@@ -79,6 +79,12 @@ verify-gradients:
 verify-conditional:
 	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 3 $(JULIA) --project=. scripts/sync/verify_conditional.jl; else $(MPIEXECJL) --project=. -n 3 $(JULIA) scripts/sync/verify_conditional.jl; fi
 
+# Conditional-graph success regression: both ranks must finish with correct values
+# and one presence reduction followed by gradients in model order. Exit 0 == pass.
+# The single-process driver uses MPI.mpiexec() and the selected Flux test environment.
+verify-conditional-deadlock:
+	$(JULIA) --startup-file=no --project="$(FLUX_REPO_PATH)/test" scripts/checks/conditional_deadlock_check.jl
+
 example-ddp:
 	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/examples/train_ddp.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/examples/train_ddp.jl; fi
 
@@ -98,4 +104,3 @@ c8-all: c8-mpi c8-mpi-4
 	else \
 		echo "SKIP: No GPU (nvidia-smi not found). NCCL suite not run."; \
 	fi
-

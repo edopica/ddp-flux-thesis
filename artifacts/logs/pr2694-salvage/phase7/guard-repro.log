@@ -1,0 +1,16 @@
+MPI_LIBRARY = MPICH
+MPI.Initialized() before = false
+env: PMIX_RANK=0 OMPI_COMM_WORLD_RANK=0
+pure check_launcher_compat -> "MPI backend initialization failed: found PMIX_RANK and OMPI_COMM_WORLD_RANK in the environment, but the loaded MPI library is MPICH. PMIx/OpenMPI launchers set these variables, and the loaded MPICH build was not started by such a launcher, so `MPI.Init()` will likely abort or hang at the native level. Relaunch with a launcher matching the loaded MPI library (e.g. `mpiexecjl` for MPI.jl's default MPICH_jll, or `srun --mpi=pmi2` on SLURM), configure MPI.jl to use your system MPI via `MPIPreferences.use_system_binary()`, or bypass this check by passing `force=true` to `initialize(MPIBackend)`."
+initialize(MPIBackend) threw = true
+error type = ErrorException
+error msg = MPI backend initialization failed: found PMIX_RANK and OMPI_COMM_WORLD_RANK in the environment, but the loaded MPI library is MPICH. PMIx/OpenMPI launchers set these variables, and the loaded MPICH build was not started by such a launcher, so `MPI.Init()` will likely abort or hang at the native level. Relaunch with a launcher matching the loaded MPI library (e.g. `mpiexecjl` for MPI.jl's default MPICH_jll, or `srun --mpi=pmi2` on SLURM), configure MPI.jl to use your system MPI via `MPIPreferences.use_system_binary()`, or bypass this check by passing `force=true` to `initialize(MPIBackend)`.
+MPI.Initialized() after throw = false
+pure check force=true -> nothing
+Calling initialize(MPIBackend; force=true) ...
+[unset]: launcher not compatible with PMI1 client
+Abort(672810255): Fatal error in internal_Init_thread: Other MPI error, error stack:
+internal_Init_thread(71): MPI_Init_thread(argc=(nil), argv=(nil), required=2, provided=0x7ffdc3bf14e0) failed
+MPII_Init_thread(204)...: 
+MPIR_pmi_init(235)......: 
+pmi1_init(14)...........: PMI_Init returned -1

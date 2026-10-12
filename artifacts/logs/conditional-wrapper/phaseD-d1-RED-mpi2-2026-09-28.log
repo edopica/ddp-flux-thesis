@@ -1,0 +1,117 @@
+=== command: FLUX_TEST_DISTRIBUTED_BACKEND=mpi <mpiexec> -n 2 julia --startup-file=no --project=test test/ext_distributed/conditional_distributedtest.jl ===
+=== started: 2026-09-28T16:30:04+02:00 flux HEAD f5b87975a4c62ce254736625b0a80015b6a1adb6 ===
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  13.7s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  13.6s
+canonical traversal order for reversed named trainable: canonical traversal order for reversed named trainable: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:144
+  Expression: ≈(model2.a, ref2.a, atol = 1.0e-12)
+   Evaluated: [0.44999999999999996, 0.44999999999999996, 0.44999999999999996, 0.44999999999999996] ≈ [0.85, 0.85, 0.85, 0.85] (atol=1.0e-12)/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:144
+  Expression: ≈(model2.a, ref2.a, atol = 1.0e-12)
+   Evaluated: [0.44999999999999996, 0.44999999999999996, 0.44999999999999996, 0.44999999999999996] ≈ [0.85, 0.85, 0.85, 0.85] (atol=1.0e-12)
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:144 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+canonical traversal order for reversed named trainable: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:145
+  Expression: ≈(model2.b, ref2.b, atol = 1.0e-12)
+   Evaluated: [0.85, 0.85, 0.85, 0.85] ≈ [0.44999999999999996, 0.44999999999999996, 0.44999999999999996, 0.44999999999999996] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:145 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:144 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+canonical traversal order for reversed named trainable: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:145
+  Expression: ≈(model2.b, ref2.b, atol = 1.0e-12)
+   Evaluated: [0.85, 0.85, 0.85, 0.85] ≈ [0.44999999999999996, 0.44999999999999996, 0.44999999999999996, 0.44999999999999996] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:145 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+canonical traversal order for reversed named trainable: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:152
+  Expression: (rec.log[2])[1] == (4,) && (rec.log[2])[3] == ga
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:152 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+canonical traversal order for reversed named trainable: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:153
+  Expression: (rec.log[3])[1] == (4,) && (rec.log[3])[3] == gb
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:153 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+canonical traversal order for reversed named trainable: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:152
+  Expression: (rec.log[2])[1] == (4,) && (rec.log[2])[3] == ga
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:152 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+canonical traversal order for reversed named trainable: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:153
+  Expression: (rec.log[3])[1] == (4,) && (rec.log[3])[3] == gb
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:117
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:153 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                          | Pass  Fail  Total  Time
+canonical traversal order for reversed named trainable |    6     4     10  3.4s
+Test Summary:                                          | Pass  Fail  Total  Time
+canonical traversal order for reversed named trainable |    6     4     10  3.4s
+RNG of the outermost testset: Random.Xoshiro(0x902decc8d9198cf5, 0x29bbc2ba1e307120, 0xc7804f9f7ccd9616, 0x8c63261d60c65d33, 0xc998cde2491b5b28)
+RNG of the outermost testset: Random.Xoshiro(0x180d979b0f302039, 0x24b8c042a7957a59, 0xb92b6566c51cad6c, 0x805d45d2766bb6c3, 0xa69dbc261c71f1b5)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 6 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:116
+Some tests did not pass: 6 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:116
+=== exit code: 1 wall: 25s ===

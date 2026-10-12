@@ -1,0 +1,4 @@
+cmd: JULIA_MPI_TEST_NPROCS=2 julia --project=test test/ext_distributed/runtests.jl
+cwd: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+exit=0

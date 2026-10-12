@@ -1,0 +1,6 @@
+# Pinned Phase K plotting environment (Python 3.13).
+# Use with:
+#   uv run --offline --with-requirements scripts/plots/requirements-phase-k.txt \
+#       python3 scripts/plots/plot_phase_k_demo.py ...
+matplotlib==3.11.2
+numpy==2.5.3

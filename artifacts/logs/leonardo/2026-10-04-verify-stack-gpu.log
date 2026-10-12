@@ -1,0 +1,21 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 4 bash ~/leonardo-setup/verify-stack.sh
+salloc: Granted job allocation 59336913
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0349 are ready for job
+host=lrdn0349.leonardo.local CUDA_VISIBLE_DEVICES=0,1,2,3
+GPU 0: NVIDIA A100-SXM-64GB (UUID: GPU-59ecf0cd-7245-e8e2-986d-e19964605152)
+GPU 1: NVIDIA A100-SXM-64GB (UUID: GPU-d1595270-32fc-a3b3-79b1-a0713a7aa63e)
+GPU 2: NVIDIA A100-SXM-64GB (UUID: GPU-19ce0601-212b-070e-89e3-ad4a6a758d97)
+GPU 3: NVIDIA A100-SXM-64GB (UUID: GPU-94ce8a65-9285-8183-209e-2d2b7f3f49e5)
+julia=1.12.6
+cuda_functional=true
+cudnn_functional=true
+ndevices=4
+device: NVIDIA A100-SXM-64GB
+device: NVIDIA A100-SXM-64GB
+device: NVIDIA A100-SXM-64GB
+device: NVIDIA A100-SXM-64GB
+mpi_library=MPICH
+MPI.version=5.0.0
+salloc: Relinquishing job allocation 59336913
+EXIT=0

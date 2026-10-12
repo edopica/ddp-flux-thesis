@@ -1,0 +1,14 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 4 -c 2 bash ~/leonardo-setup/smoke-mpi4.sh
+salloc: Pending job allocation 59336978
+salloc: job 59336978 queued and waiting for resources
+salloc: job 59336978 has been allocated resources
+salloc: Granted job allocation 59336978
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0056 are ready for job
+rank=2 of 4
+rank=3 of 4
+rank=0 of 4
+rank=1 of 4
+MPI 4-rank smoke OK
+salloc: Relinquishing job allocation 59336978
+EXIT=0

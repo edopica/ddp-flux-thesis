@@ -1,0 +1,25 @@
+=== command: FLUX_TEST_DISTRIBUTED_BACKEND=mpi <mpiexec> -n 2 julia --startup-file=no --project=test test/ext_distributed/conditional_distributedtest.jl ===
+=== started: 2026-09-28T16:32:26+02:00 flux HEAD f5b87975a4c62ce254736625b0a80015b6a1adb6 (working tree modified: src/distributed/public_api.jl + test) ===
+PrecompilingPrecompiling packages...
+ packages...
+    Flux Being precompiled by another process (pid: 35743, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  11240.2 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+  11354.0 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 35743, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4471.7 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4204.4 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  13.7s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  13.8s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.3s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.3s
+=== exit code: 0 wall: 37s ===

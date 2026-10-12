@@ -1,0 +1,250 @@
+julia --startup-file=no --project="../flux-integration/test" scripts/checks/conditional_deadlock_check.jl
+
+--- deadlock mode trace ---
+PROBE_READY rank=1
+PROBE_READY rank=0
+PROBE_COLLECTIVE_BEGIN rank=1 number=1 kind=presence input=1.0,0.0,0.0,1.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=1 kind=presence input=1.0,1.0,1.0,0.0
+TRACE rank=0 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,1.0,0.0 output=1.0,0.5,0.5,0.5
+TRACE rank=1 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,0.0,0.0,1.0 output=1.0,0.5,0.5,0.5
+PROBE_COLLECTIVE_BEGIN rank=0 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0TRACE rank=1 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0
+
+PROBE_COLLECTIVE_BEGIN rank=0 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=3 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-1.0,-1.0,-1.0,-1.0
+TRACE rank=1 allreduce #3 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-1.0,-1.0,-1.0,-1.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0PROBE_COLLECTIVE_BEGIN rank=1 number=4 kind=gradient input=0.0,0.0,0.0,0.0
+
+TRACE rank=0 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-4.0,-4.0,-4.0,-4.0
+TRACE rank=1 allreduce #4 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-4.0,-4.0,-4.0,-4.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=5 kind=gradient input=0.0,0.0,0.0,0.0PROBE_COLLECTIVE_BEGIN rank=1 number=5 kind=gradient input=-4.0,-4.0,-4.0,-4.0
+
+TRACE rank=0 allreduce #5 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-2.0,-2.0,-2.0,-2.0
+TRACE rank=1 allreduce #5 kind=gradient dtype=Float64 op=avg input=-4.0,-4.0,-4.0,-4.0 output=-2.0,-2.0,-2.0,-2.0
+PROBE_UPDATE_DONE rank=0
+PROBE_UPDATE_DONE rank=1
+PROBE_VERDICT mode=deadlock rank=0 correct=true expected=1.0,1.1,1.4,1.2 actual=1.0,1.1,1.4,1.2
+PROBE_VERDICT mode=deadlock rank=1 correct=true expected=1.0,1.1,1.4,1.2 actual=1.0,1.1,1.4,1.2
+PROBE_FINISHED rank=0
+PROBE_FINISHED rank=1
+
+[driver] mode=deadlock exit=0 timeout=none elapsed=22.424s
+deadlock: Error During Test at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+  Test threw exception
+  Expression: parse.(Float64, split(output, ',')) ≈ want.output
+  ArgumentError: cannot parse "0.0TRACE" as Float64
+  Stacktrace:
+    [1] _parse_failure(T::Type, s::SubString{String}, startpos::Int64, endpos::Int64)
+      @ Base ./parse.jl:388
+    [2] #tryparse_internal#474
+      @ ./parse.jl:384 [inlined]
+    [3] tryparse_internal
+      @ ./parse.jl:381 [inlined]
+    [4] parse
+      @ ./parse.jl:394 [inlined]
+    [5] _broadcast_getindex_evalf
+      @ ./broadcast.jl:699 [inlined]
+    [6] _broadcast_getindex
+      @ ./broadcast.jl:682 [inlined]
+    [7] _getindex
+      @ ./broadcast.jl:620 [inlined]
+    [8] getindex
+      @ ./broadcast.jl:616 [inlined]
+    [9] macro expansion
+      @ ./broadcast.jl:995 [inlined]
+   [10] macro expansion
+      @ ./simdloop.jl:77 [inlined]
+   [11] copyto!
+      @ ./broadcast.jl:994 [inlined]
+   [12] copyto!
+      @ ./broadcast.jl:947 [inlined]
+   [13] copy(bc::Base.Broadcast.Broadcasted{Base.Broadcast.DefaultArrayStyle{1}, Tuple{Base.OneTo{Int64}}, typeof(parse), Tuple{Base.RefValue{Type{Float64}}, Vector{SubString{String}}}})
+      @ Base.Broadcast ./broadcast.jl:919
+   [14] materialize
+      @ ./broadcast.jl:894 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [16] check_trace(out::String, mode::String, rank::Int64)
+      @ Main ~/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+
+--- corruption mode trace ---
+PROBE_READY rank=0
+PROBE_READY rank=1
+PROBE_COLLECTIVE_BEGIN rank=0 number=1 kind=presence input=1.0,1.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=1 kind=presence input=1.0,0.0,1.0,0.0
+TRACE rank=0 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,0.0,0.0 output=1.0,0.5,0.5,0.0TRACE rank=1 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,0.0,1.0,0.0 output=1.0,0.5,0.5,0.0
+
+PROBE_COLLECTIVE_BEGIN rank=0 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0TRACE rank=1 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0
+
+PROBE_COLLECTIVE_BEGIN rank=0 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0PROBE_COLLECTIVE_BEGIN rank=1 number=3 kind=gradient input=0.0,0.0,0.0,0.0
+
+TRACE rank=0 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-1.0,-1.0,-1.0,-1.0TRACE rank=1 allreduce #3 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-1.0,-1.0,-1.0,-1.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0
+
+PROBE_COLLECTIVE_BEGIN rank=0 number=4 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #4 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=-4.0,-4.0,-4.0,-4.0
+TRACE rank=1 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-4.0,-4.0,-4.0,-4.0
+PROBE_UPDATE_DONE rank=0
+PROBE_UPDATE_DONE rank=1
+PROBE_VERDICT mode=corruption rank=0 correct=true expected=1.0,1.1,1.4,1.0 actual=1.0,1.1,1.4,1.0PROBE_VERDICT mode=corruption rank=1 correct=true expected=1.0,1.1,1.4,1.0 actual=1.0,1.1,1.4,1.0
+
+PROBE_FINISHED rank=0
+PROBE_FINISHED rank=1
+
+[driver] mode=corruption exit=0 timeout=none elapsed=22.349s
+corruption: Error During Test at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+  Test threw exception
+  Expression: parse.(Float64, split(output, ',')) ≈ want.output
+  ArgumentError: cannot parse "0.0TRACE" as Float64
+  Stacktrace:
+    [1] _parse_failure(T::Type, s::SubString{String}, startpos::Int64, endpos::Int64)
+      @ Base ./parse.jl:388
+    [2] #tryparse_internal#474
+      @ ./parse.jl:384 [inlined]
+    [3] tryparse_internal
+      @ ./parse.jl:381 [inlined]
+    [4] parse
+      @ ./parse.jl:394 [inlined]
+    [5] _broadcast_getindex_evalf
+      @ ./broadcast.jl:699 [inlined]
+    [6] _broadcast_getindex
+      @ ./broadcast.jl:682 [inlined]
+    [7] _getindex
+      @ ./broadcast.jl:620 [inlined]
+    [8] getindex
+      @ ./broadcast.jl:616 [inlined]
+    [9] macro expansion
+      @ ./broadcast.jl:995 [inlined]
+   [10] macro expansion
+      @ ./simdloop.jl:77 [inlined]
+   [11] copyto!
+      @ ./broadcast.jl:994 [inlined]
+   [12] copyto!
+      @ ./broadcast.jl:947 [inlined]
+   [13] copy(bc::Base.Broadcast.Broadcasted{Base.Broadcast.DefaultArrayStyle{1}, Tuple{Base.OneTo{Int64}}, typeof(parse), Tuple{Base.RefValue{Type{Float64}}, Vector{SubString{String}}}})
+      @ Base.Broadcast ./broadcast.jl:919
+   [14] materialize
+      @ ./broadcast.jl:894 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [16] check_trace(out::String, mode::String, rank::Int64)
+      @ Main ~/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+corruption: Error During Test at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+  Test threw exception
+  Expression: parse.(Float64, split(output, ',')) ≈ want.output
+  ArgumentError: cannot parse "0.0TRACE" as Float64
+  Stacktrace:
+    [1] _parse_failure(T::Type, s::SubString{String}, startpos::Int64, endpos::Int64)
+      @ Base ./parse.jl:388
+    [2] #tryparse_internal#474
+      @ ./parse.jl:384 [inlined]
+    [3] tryparse_internal
+      @ ./parse.jl:381 [inlined]
+    [4] parse
+      @ ./parse.jl:394 [inlined]
+    [5] _broadcast_getindex_evalf
+      @ ./broadcast.jl:699 [inlined]
+    [6] _broadcast_getindex
+      @ ./broadcast.jl:682 [inlined]
+    [7] _getindex
+      @ ./broadcast.jl:620 [inlined]
+    [8] getindex
+      @ ./broadcast.jl:616 [inlined]
+    [9] macro expansion
+      @ ./broadcast.jl:995 [inlined]
+   [10] macro expansion
+      @ ./simdloop.jl:77 [inlined]
+   [11] copyto!
+      @ ./broadcast.jl:994 [inlined]
+   [12] copyto!
+      @ ./broadcast.jl:947 [inlined]
+   [13] copy(bc::Base.Broadcast.Broadcasted{Base.Broadcast.DefaultArrayStyle{1}, Tuple{Base.OneTo{Int64}}, typeof(parse), Tuple{Base.RefValue{Type{Float64}}, Vector{SubString{String}}}})
+      @ Base.Broadcast ./broadcast.jl:919
+   [14] materialize
+      @ ./broadcast.jl:894 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [16] check_trace(out::String, mode::String, rank::Int64)
+      @ Main ~/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+corruption: Error During Test at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+  Test threw exception
+  Expression: parse.(Float64, split(output, ',')) ≈ want.output
+  ArgumentError: cannot parse "-1.0TRACE" as Float64
+  Stacktrace:
+    [1] _parse_failure(T::Type, s::SubString{String}, startpos::Int64, endpos::Int64)
+      @ Base ./parse.jl:388
+    [2] #tryparse_internal#474
+      @ ./parse.jl:384 [inlined]
+    [3] tryparse_internal
+      @ ./parse.jl:381 [inlined]
+    [4] parse
+      @ ./parse.jl:394 [inlined]
+    [5] _broadcast_getindex_evalf
+      @ ./broadcast.jl:699 [inlined]
+    [6] _broadcast_getindex
+      @ ./broadcast.jl:682 [inlined]
+    [7] _getindex
+      @ ./broadcast.jl:620 [inlined]
+    [8] getindex
+      @ ./broadcast.jl:616 [inlined]
+    [9] macro expansion
+      @ ./broadcast.jl:995 [inlined]
+   [10] macro expansion
+      @ ./simdloop.jl:77 [inlined]
+   [11] copyto!
+      @ ./broadcast.jl:994 [inlined]
+   [12] copyto!
+      @ ./broadcast.jl:947 [inlined]
+   [13] copy(bc::Base.Broadcast.Broadcasted{Base.Broadcast.DefaultArrayStyle{1}, Tuple{Base.OneTo{Int64}}, typeof(parse), Tuple{Base.RefValue{Type{Float64}}, Vector{SubString{String}}}})
+      @ Base.Broadcast ./broadcast.jl:919
+   [14] materialize
+      @ ./broadcast.jl:894 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [16] check_trace(out::String, mode::String, rank::Int64)
+      @ Main ~/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_deadlock_check.jl:97
+
+--- control mode trace ---
+PROBE_READY rank=1
+PROBE_READY rank=0
+PROBE_COLLECTIVE_BEGIN rank=1 number=1 kind=presence input=1.0,1.0,1.0,1.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=1 kind=presence input=1.0,1.0,1.0,1.0
+TRACE rank=0 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,1.0,1.0 output=1.0,1.0,1.0,1.0
+TRACE rank=1 allreduce #1 kind=presence dtype=Float32 op=avg input=1.0,1.0,1.0,1.0 output=1.0,1.0,1.0,1.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=2 kind=gradient input=0.0,0.0,0.0,0.0
+TRACE rank=0 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0
+TRACE rank=1 allreduce #2 kind=gradient dtype=Float64 op=avg input=0.0,0.0,0.0,0.0 output=0.0,0.0,0.0,0.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=3 kind=gradient input=-2.0,-2.0,-2.0,-2.0
+TRACE rank=0 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-2.0,-2.0,-2.0,-2.0
+TRACE rank=1 allreduce #3 kind=gradient dtype=Float64 op=avg input=-2.0,-2.0,-2.0,-2.0 output=-2.0,-2.0,-2.0,-2.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0PROBE_COLLECTIVE_BEGIN rank=0 number=4 kind=gradient input=-8.0,-8.0,-8.0,-8.0
+
+TRACE rank=0 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-8.0,-8.0,-8.0,-8.0
+TRACE rank=1 allreduce #4 kind=gradient dtype=Float64 op=avg input=-8.0,-8.0,-8.0,-8.0 output=-8.0,-8.0,-8.0,-8.0
+PROBE_COLLECTIVE_BEGIN rank=0 number=5 kind=gradient input=-4.0,-4.0,-4.0,-4.0
+PROBE_COLLECTIVE_BEGIN rank=1 number=5 kind=gradient input=-4.0,-4.0,-4.0,-4.0
+TRACE rank=0 allreduce #5 kind=gradient dtype=Float64 op=avg input=-4.0,-4.0,-4.0,-4.0 output=-4.0,-4.0,-4.0,-4.0
+TRACE rank=1 allreduce #5 kind=gradient dtype=Float64 op=avg input=-4.0,-4.0,-4.0,-4.0 output=-4.0,-4.0,-4.0,-4.0
+PROBE_UPDATE_DONE rank=1
+PROBE_UPDATE_DONE rank=0
+PROBE_VERDICT mode=control rank=1 correct=true expected=1.0,1.2,1.8,1.4 actual=1.0,1.2,1.8,1.4
+PROBE_VERDICT mode=control rank=0 correct=true expected=1.0,1.2,1.8,1.4 actual=1.0,1.2,1.8,1.4
+PROBE_FINISHED rank=0
+PROBE_FINISHED rank=1
+
+[driver] mode=control exit=0 timeout=none elapsed=21.944s
+Test Summary:                            | Pass  Error  Total     Time
+conditional-graph DDP success regression |  206      4    210  1m08.4s
+  deadlock                               |   73      1     74    24.0s
+  corruption                             |   59      3     62    22.4s
+  control                                |   74            74    21.9s
+RNG of the outermost testset: Random.Xoshiro(0x9d29873895405d99, 0x01b7fdcdc7676ff8, 0xf338808b592dd379, 0x195f02516f048732, 0x14051394b27b813c)
+
+DETECTOR SUMMARY: conditional-graph regression FAILED
+make: *** [Makefile:86: verify-conditional-deadlock] Error 1

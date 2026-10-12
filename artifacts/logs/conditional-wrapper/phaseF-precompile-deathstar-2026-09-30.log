@@ -1,0 +1,152 @@
+Executing on deathstar:  cd ../flux-integration && md5sum test/ext_distributed/conditional_distributedtest.jl && time julia --startup-file=no --project=test -e 'using Pkg; Pkg.instantiate(); Pkg.precompile()'
+c26ef49b070bf2c446b827c64cc313c0  test/ext_distributed/conditional_distributedtest.jl
+   Installed InlineStrings ──────────── v1.4.6
+   Installed LERC_jll ───────────────── v4.2.0+0
+   Installed HarfBuzz_jll ───────────── v100.14004.0+0
+   Installed Enzyme_jll ─────────────── v0.0.292+0
+   Installed Unitful ────────────────── v1.29.0
+   Installed JSON ───────────────────── v1.8.0
+   Installed Expat_jll ──────────────── v2.8.4+0
+   Installed CommonWorldInvalidations ─ v1.2.2
+   Installed Parsers ────────────────── v2.8.8
+   Installed Enzyme ─────────────────── v0.13.202
+   Installed Mooncake ───────────────── v0.5.53
+  Installing 4 artifacts
+   Installed artifact LERC                     280.1 KiB
+   Installed artifact Expat                    300.4 KiB
+   Installed artifact HarfBuzz                 2.0 MiB
+   Installed artifact Enzyme                   156.0 MiB
+Precompiling packages...
+    806.4 ms  ✓ CodecZlib
+    965.0 ms  ✓ Statistics
+    936.1 ms  ✓ CommonWorldInvalidations
+   1064.4 ms  ✓ Expat_jll
+   1021.5 ms  ✓ SparseInverseSubset
+   1336.3 ms  ✓ OpenSSH_jll
+   1576.9 ms  ✓ ADTypes
+    850.2 ms  ✓ SciMLPublic
+   1667.2 ms  ✓ FillArrays
+   1004.1 ms  ✓ ZygoteRules
+    839.2 ms  ✓ Statistics → SparseArraysExt
+   1667.3 ms  ✓ OpenMPI_jll
+   2779.5 ms  ✓ StructUtils
+   2814.2 ms  ✓ ArrayInterface
+   2864.1 ms  ✓ Functors
+   3027.7 ms  ✓ DataStructures
+   1550.6 ms  ✓ MPIABI_jll
+   3223.7 ms  ✓ UnsafeAtomics
+   1945.7 ms  ✓ Enzyme_jll
+    610.6 ms  ✓ ADTypes → ADTypesChainRulesCoreExt
+   1823.8 ms  ✓ LLVMExtra_jll
+    677.8 ms  ✓ ADTypes → ADTypesEnzymeCoreExt
+    593.7 ms  ✓ ADTypes → ADTypesConstructionBaseExt
+   1067.0 ms  ✓ Git_jll
+    745.5 ms  ✓ FillArrays → FillArraysStatisticsExt
+    601.6 ms  ✓ StructUtils → StructUtilsStaticArraysCoreExt
+   3896.6 ms  ✓ Tables
+    651.8 ms  ✓ ArrayInterface → ArrayInterfaceGPUArraysCoreExt
+    759.2 ms  ✓ ArrayInterface → ArrayInterfaceSparseArraysExt
+    615.0 ms  ✓ ArrayInterface → ArrayInterfaceStaticArraysCoreExt
+    649.5 ms  ✓ ArrayInterface → ArrayInterfaceChainRulesCoreExt
+    687.4 ms  ✓ ArrayInterface → ArrayInterfaceFillArraysExt
+   1026.1 ms  ✓ FillArrays → FillArraysSparseArraysExt
+   4403.3 ms  ✓ IRTools
+   2621.6 ms  ✓ ParallelTestRunner
+    848.7 ms  ✓ SortingAlgorithms
+    694.2 ms  ✓ Atomix
+    631.3 ms  ✓ Git
+   1183.7 ms  ✓ MLDataDevices
+   3892.0 ms  ✓ SpecialFunctions
+    595.6 ms  ✓ StructUtils → StructUtilsTablesExt
+    664.3 ms  ✓ MLDataDevices → FillArraysExt
+    820.1 ms  ✓ MLDataDevices → SparseArraysExt
+    826.3 ms  ✓ MLDataDevices → ChainRulesCoreExt
+   1505.9 ms  ✓ MLCore
+   2429.9 ms  ✓ StructArrays
+    509.8 ms  ✓ StructArrays → StructArraysAdaptExt
+    562.4 ms  ✓ StructArrays → StructArraysLinearAlgebraExt
+   3389.9 ms  ✓ Optimisers
+   2215.9 ms  ✓ SpecialFunctions → SpecialFunctionsChainRulesCoreExt
+    746.3 ms  ✓ StructArrays → StructArraysSparseArraysExt
+    501.9 ms  ✓ Optimisers → OptimisersEnzymeCoreExt
+    549.0 ms  ✓ Optimisers → OptimisersAdaptExt
+   4189.3 ms  ✓ StatsBase
+   8611.1 ms  ✓ Parsers
+   5492.3 ms  ✓ ForwardDiff
+  10498.2 ms  ✓ StaticArrays
+   6618.6 ms  ✓ MPI
+    732.8 ms  ✓ Adapt → AdaptStaticArraysExt
+    915.9 ms  ✓ ConstructionBase → ConstructionBaseStaticArraysExt
+    927.4 ms  ✓ FillArrays → FillArraysStaticArraysExt
+    943.6 ms  ✓ StaticArrays → StaticArraysStatisticsExt
+   1019.2 ms  ✓ ForwardDiff → ForwardDiffStaticArraysExt
+   2297.8 ms  ✓ StructArrays → StructArraysStaticArraysExt
+   2407.3 ms  ✓ StaticArrays → StaticArraysChainRulesCoreExt
+  10316.8 ms  ✓ LLVM
+  12063.8 ms  ✓ Static
+   2656.4 ms  ✓ FiniteDifferences
+   1380.0 ms  ✓ LLVM → BFloat16sExt
+   8620.3 ms  ✓ ChainRules
+   7235.6 ms  ✓ JSON
+   2321.9 ms  ✓ UnsafeAtomics → UnsafeAtomicsLLVM
+   5573.6 ms  ✓ KernelAbstractions
+   1208.0 ms  ✓ MLDataDevices → ChainRulesExt
+   1219.6 ms  ✓ ArrayInterface → ArrayInterfaceChainRulesExt
+   2466.3 ms  ✓ StaticArrayInterface
+    967.8 ms  ✓ KernelAbstractions → EnzymeExt
+   1000.1 ms  ✓ KernelAbstractions → LinearAlgebraExt
+   1075.0 ms  ✓ StructArrays → StructArraysGPUArraysCoreExt
+   1152.7 ms  ✓ KernelAbstractions → SparseArraysExt
+    811.6 ms  ✓ StaticArrayInterface → StaticArrayInterfaceStaticArraysExt
+   1694.6 ms  ✓ ComponentArrays
+    695.5 ms  ✓ MLDataDevices → ComponentArraysExt
+    703.0 ms  ✓ ComponentArrays → ComponentArraysOptimisersExt
+   2083.3 ms  ✓ ComponentArrays → ComponentArraysKernelAbstractionsExt
+   5852.4 ms  ✓ NNlib
+   1043.1 ms  ✓ NNlib → NNlibForwardDiffExt
+   1119.7 ms  ✓ NNlib → NNlibSpecialFunctionsExt
+   1238.3 ms  ✓ NNlib → NNlibEnzymeCoreExt
+   1264.4 ms  ✓ OneHotArrays
+   7082.0 ms  ✓ GPUArrays
+    822.6 ms  ✓ MLDataDevices → OneHotArraysExt
+   2229.4 ms  ✓ MLDataDevices → GPUArraysSparseArraysExt
+   2555.1 ms  ✓ ComponentArrays → ComponentArraysGPUArraysExt
+   4390.6 ms  ✓ MLUtils
+   1623.6 ms  ✓ MLDataDevices → MLUtilsExt
+   6522.5 ms  ✓ Tracker
+   1163.3 ms  ✓ ArrayInterface → ArrayInterfaceTrackerExt
+   1364.0 ms  ✓ MLDataDevices → TrackerExt
+   1514.3 ms  ✓ ComponentArrays → ComponentArraysTrackerExt
+   1521.0 ms  ✓ ArrayInterface → ArrayInterfaceGPUArraysCoreTrackerExt
+  30015.7 ms  ✓ GPUCompiler
+  28438.4 ms  ✓ Documenter
+  32907.3 ms  ✓ Zygote
+   1469.8 ms  ✓ MLDataDevices → ZygoteExt
+   1635.2 ms  ✓ ComponentArrays → ComponentArraysZygoteExt
+   1858.1 ms  ✓ Zygote → ZygoteTrackerExt
+   9028.3 ms  ✓ Flux
+   3003.8 ms  ✓ Flux → FluxFiniteDifferencesExt
+   3091.7 ms  ✓ Flux → FluxMPIExt
+  52635.1 ms  ✓ Enzyme
+   2266.6 ms  ✓ Enzyme → EnzymeOrderedCollectionsExt
+   2374.3 ms  ✓ Enzyme → EnzymeGPUArraysCoreExt
+   2426.0 ms  ✓ Enzyme → EnzymeBFloat16sExt
+   2496.2 ms  ✓ Enzyme → EnzymeLogExpFunctionsExt
+   2527.7 ms  ✓ Enzyme → EnzymeChainRulesCoreExt
+   2684.9 ms  ✓ Enzyme → EnzymeStaticArraysExt
+   3693.0 ms  ✓ Enzyme → EnzymeSpecialFunctionsExt
+   4564.6 ms  ✓ Flux → FluxEnzymeExt
+ 106065.1 ms  ✓ Mooncake
+   1745.6 ms  ✓ Mooncake → MooncakeBFloat16sExt
+   1802.1 ms  ✓ ComponentArrays → ComponentArraysMooncakeExt
+   1957.8 ms  ✓ Mooncake → MooncakeLogExpFunctionsExt
+   2485.5 ms  ✓ Mooncake → MooncakeSpecialFunctionsExt
+   3151.9 ms  ✓ Mooncake → MooncakeChainRulesExt
+   3225.1 ms  ✓ Mooncake → MooncakeNNlibExt
+   4065.7 ms  ✓ Mooncake → MooncakeFluxExt
+   4092.0 ms  ✓ Flux → FluxMooncakeExt
+  128 dependencies successfully precompiled in 115 seconds. 124 already precompiled.
+
+real	2m7,543s
+user	18m13,528s
+sys	0m43,921s

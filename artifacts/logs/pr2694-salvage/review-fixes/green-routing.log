@@ -1,0 +1,36 @@
+=== julia --project=test test/distributed_routing.jl ===
+Test Summary:            | Pass  Total  Time
+distributed test routing |   18     18  0.4s
+EXIT_CODE=0
+
+=== routing helpers smoke ===
+ERROR: MethodError: Cannot `convert` an object of type Symbol to an object of type Expr
+The function `convert` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  Expr(::Any...)
+   @ Core boot.jl:293
+  convert(::Type{T}, !Matched::T) where T
+   @ Base Base_compiler.jl:133
+
+Stacktrace:
+ [1] setindex!(h::Dict{String, Expr}, v0::Symbol, key::String)
+   @ Base ./dict.jl:355
+ [2] Dict{String, Expr}(::Pair{String, Symbol}, ::Vararg{Pair{String, Symbol}})
+   @ Base ./dict.jl:103
+ [3] top-level scope
+   @ none:1
+ [4] eval(m::Module, e::Any)
+   @ Core ./boot.jl:489
+ [5] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:283
+ [6] _start()
+   @ Base ./client.jl:550
+EXIT_CODE=1
+
+=== git diff --check ===
+DIFF_CHECK_EXIT=0
+
+=== routing helpers smoke (corrected: :(nothing) is a value, not Expr; use real expressions) ===
+routing helpers OK
+EXIT_CODE=0

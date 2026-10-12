@@ -1,0 +1,236 @@
+Precompiling packages...
+Precompiling packages...
+    Flux Being precompiled by another process (pid: 175294, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  11278.3 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+  11379.5 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 175295, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4364.8 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4644.2 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  13.9s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.0s
+Test Summary:                                          | Test Summary:                                          | Pass  Pass  Total  Total  Time
+Time
+canonical traversal order for reversed named trainablecanonical traversal order for reversed named trainable |  |   10    10     10  1.5s   10  
+1.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                                | Test Summary:                                                | Pass  Total  Pass  Total  TimeTime
+
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38  2.5s   38  
+2.5s
+Test Summary:                                    | Test Summary:                                    | Pass  Total  Pass  Total  Time
+Time
+CPU presence metadata for device-like parameters | CPU presence metadata for device-like parameters |   16    16     16     16  0.7s
+0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Test Summary:                                         | Pass  Total  TimePass  Total  
+legacy tuple trainable selection matches native setup | Time  20     20  
+legacy tuple trainable selection matches native setup1.6s
+ |   20     20  1.6s
+Test Summary:                                            | Pass  Total  Time
+Test Summary:                                            | Pass  Total  Time
+legacy tuple trainable selection persists across updates |   30  legacy tuple trainable selection persists across updates |   30     30     30  1.2s
+1.2s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  16.8s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  16.8s
+Test Summary:                                        | Pass  Test Summary:                                        | Pass  Total  Time
+Total  Time
+transpose and adjoint gradients pair in parent space | transpose and adjoint gradients pair in parent space |   16     16    16     16  4.7s
+4.7s
+caller gradients stay unchanged on both update paths: caller gradients stay unchanged on both update paths: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:788
+  Expression: gs.w == snap
+   Evaluated: [0.4, -0.07500000000000001] == [0.3, -0.1]/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:788
+  Expression: gs.w == snap
+   Evaluated: [0.4, -0.07500000000000001] == [0.5, -0.05]
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:774
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:788 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:774
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:788 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+caller gradients stay unchanged on both update paths: Test Failed at caller gradients stay unchanged on both update paths: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:801
+  Expression: gs2.w == snap2/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:801
+  Expression: gs2.w == snap2
+   Evaluated: [-0.35000000000000003, 0.625] == [-0.4, 0.7]
+
+   Evaluated: [-0.35000000000000003, 0.625] == [-0.30000000000000004, 0.5499999999999999]
+
+Stacktrace:
+
+Stacktrace:
+ [1] top-level scope
+   @ [1] top-level scope
+   @  ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:774~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:774
+ [2] 
+ [2] macro expansion
+   @macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ [inlined]
+ [3]Test.jl:1777 [inlined]
+  macro expansion
+   @[3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:801 [inlined]
+ conditional_distributedtest.jl:801 [inlined]
+[4] macro expansion
+ [4] macro expansion   @
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined] ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/
+Test.jl:680 [inlined]
+caller gradients stay unchanged on both update paths: caller gradients stay unchanged on both update paths: Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:773
+Error During Test at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:773
+  Got exception outside of a @test
+  Got exception outside of a @test
+  ArgumentError: an array of type `ReadOnlyGradient` shares memory with another argument and must make a preventative copy of itself in order to maintain consistent semantics, but `copy(::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}})` returns a new array of type `Vector{Float64}`.
+  To fix, implement:
+  `Base.unaliascopy(A::ReadOnlyGradient)::typeof(A)`
+  Stacktrace:
+    [1] _unaliascopy(A::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}, C::Vector{Float64})
+      @ Base ./abstractarray.jl:1551
+    [2] unaliascopy(A::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}})
+      @ Base ./abstractarray.jl:1547
+    [3] unalias
+      @ ./abstractarray.jl:1530 [inlined]
+    [4] copyto!
+      @ ./abstractarray.jl:1069 [inlined]
+    [5] _walk!(bufs::Vector{Flux.DistributedUtils._SyncBuf}, seen::IdDict{Any, Int64}, plan::Vector{Flux.DistributedUtils._SyncOccurrence}, t::Optimisers.Leaf{Descent{Float64}, Nothing}, x::Vector{Float64}, x̄::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:601
+    [6] (::Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{w::Optimisers.Leaf{Descent{Float64}, Nothing}}, @NamedTuple{w::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}}})(k::Symbol, c::Vector{Float64})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:617
+    [7] #_foreach_child##0
+      @ ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:666 [inlined]
+    [8] #foreach##0
+      @ ./tuple.jl:691 [inlined]
+    [9] BottomRF
+      @ ./reduce.jl:78 [inlined]
+   [10] afoldl
+      @ ./operators.jl:599 [inlined]
+   [11] _foldl_impl
+      @ ./reduce.jl:60 [inlined]
+   [12] foldl_impl
+      @ ./reduce.jl:40 [inlined]
+   [13] mapfoldl_impl
+      @ ./reduce.jl:36 [inlined]
+   [14] mapfoldl
+      @ ./reduce.jl:167 [inlined]
+   [15] foldl
+      @ ./reduce.jl:190 [inlined]
+   [16] foreach
+      @ ./tuple.jl:691 [inlined]
+   [17] _foreach_child
+      @ ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:666 [inlined]
+   [18] _walk!
+      @ ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:614 [inlined]
+   [19] _sync_gradients(backend::MPIBackend{MPI.Comm}, tree::@NamedTuple{w::Optimisers.Leaf{Descent{Float64}, Nothing}}, model::@NamedTuple{w::Vector{Float64}}, grads::@NamedTuple{w::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:675
+   [20] update!(::Flux.DistributedUtils.DistributedOptimizerState{MPIBackend{MPI.Comm}, @NamedTuple{w::Optimisers.Leaf{Descent{Float64}, Nothing}}}, ::@NamedTuple{w::Vector{Float64}}, ::@NamedTuple{w::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:436
+   [21] top-level scope
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:774
+   [22] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [23] macro expansion
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:812 [inlined]
+   [24] include(mod::Module, _path::String)
+      @ Base ./Base.jl:306
+   [25] exec_options(opts::Base.JLOptions)
+      @ Base ./client.jl:317
+   [26] _start()
+      @ Base ./client.jl:550
+  ArgumentError: an array of type `ReadOnlyGradient` shares memory with another argument and must make a preventative copy of itself in order to maintain consistent semantics, but `copy(::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}})` returns a new array of type `Vector{Float64}`.
+  To fix, implement:
+  `Base.unaliascopy(A::ReadOnlyGradient)::typeof(A)`
+  Stacktrace:
+    [1] _unaliascopy(A::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}, C::Vector{Float64})
+      @ Base ./abstractarray.jl:1551
+    [2] unaliascopy(A::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}})
+      @ Base ./abstractarray.jl:1547
+    [3] unalias
+      @ ./abstractarray.jl:1530 [inlined]
+    [4] copyto!
+      @ ./abstractarray.jl:1069 [inlined]
+    [5] _walk!(bufs::Vector{Flux.DistributedUtils._SyncBuf}, seen::IdDict{Any, Int64}, plan::Vector{Flux.DistributedUtils._SyncOccurrence}, t::Optimisers.Leaf{Descent{Float64}, Nothing}, x::Vector{Float64}, x̄::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:601
+    [6] (::Flux.DistributedUtils.var"#_walk!##0#_walk!##1"{Vector{Flux.DistributedUtils._SyncBuf}, IdDict{Any, Int64}, Vector{Flux.DistributedUtils._SyncOccurrence}, @NamedTuple{w::Optimisers.Leaf{Descent{Float64}, Nothing}}, @NamedTuple{w::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}}})(k::Symbol, c::Vector{Float64})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:617
+    [7] #_foreach_child##0
+      @ ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:666 [inlined]
+    [8] #foreach##0
+      @ ./tuple.jl:691 [inlined]
+    [9] BottomRF
+      @ ./reduce.jl:78 [inlined]
+   [10] afoldl
+      @ ./operators.jl:599 [inlined]
+   [11] _foldl_impl
+      @ ./reduce.jl:60 [inlined]
+   [12] foldl_impl
+      @ ./reduce.jl:40 [inlined]
+   [13] mapfoldl_impl
+      @ ./reduce.jl:36 [inlined]
+   [14] mapfoldl
+      @ ./reduce.jl:167 [inlined]
+   [15] foldl
+      @ ./reduce.jl:190 [inlined]
+   [16] foreach
+      @ ./tuple.jl:691 [inlined]
+   [17] _foreach_child
+      @ ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:666 [inlined]
+   [18] _walk!
+      @ ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:614 [inlined]
+   [19] _sync_gradients(backend::MPIBackend{MPI.Comm}, tree::@NamedTuple{w::Optimisers.Leaf{Descent{Float64}, Nothing}}, model::@NamedTuple{w::Vector{Float64}}, grads::@NamedTuple{w::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:675
+   [20] update!(::Flux.DistributedUtils.DistributedOptimizerState{MPIBackend{MPI.Comm}, @NamedTuple{w::Optimisers.Leaf{Descent{Float64}, Nothing}}}, ::@NamedTuple{w::Vector{Float64}}, ::@NamedTuple{w::ReadOnlyGradient{Float64, SubArray{Float64, 1, Vector{Float64}, Tuple{UnitRange{Int64}}, true}}})
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:436
+   [21] top-level scope
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:774
+   [22] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [23] macro expansion
+      @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:812 [inlined]
+   [24] include(mod::Module, _path::String)
+      @ Base ./Base.jl:306
+   [25] exec_options(opts::Base.JLOptions)
+      @ Base ./client.jl:317
+   [26] _start()
+      @ Base ./client.jl:550
+Test Summary:                                        | Test Summary:                                        | Pass  Pass  Fail  Error  Fail  Error  Total  Total  Time
+Time
+caller gradients stay unchanged on both update paths | caller gradients stay unchanged on both update paths |    7     7     2     2      1      1     10     10  3.9s3.9s
+
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0x82366a8348fe2d80, 0xefd66748a1f2978b, 0xb28700238f277ac4, 0xbb7d4978820e57bf, 0xeec9a35a88ffc02e)
+0x2e067b0e8b972536, 0x0069349c87f94e3a, 0x44caf736129566dc, 0xebe835036bed0812, 0xfa92600a73e94aae)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 7 passed, 2 failed, 1 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:773
+Some tests did not pass: 7 passed, 2 failed, 1 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:773
+
+real	1m10.789s
+user	2m1.307s
+sys	0m7.650s

@@ -1,0 +1,50 @@
+graph TB
+    subgraph "Rank 0"
+        P0[Process 0]
+        GPU0[GPU 0]
+        M0[Model Replica]
+        D0[Data Shard]
+        P0 --> M0
+        P0 --> D0
+        P0 -.-> GPU0
+        SYNC[Model Sync - broadcast]
+        CKPT[Checkpoint Writer - JLD2]
+        LOG[Log Printer]
+        P0 --> SYNC
+        P0 --> CKPT
+        P0 --> LOG
+    end
+
+    subgraph "Rank 1"
+        P1[Process 1]
+        GPU1[GPU 1]
+        M1[Model Replica]
+        D1[Data Shard]
+        P1 --> M1
+        P1 --> D1
+        P1 -.-> GPU1
+    end
+
+    subgraph "Communication Backend"
+        NCCL[NCCLBackend - GPU]
+        MPI[MPIBackend - CPU]
+    end
+
+    P0 <--> NCCL
+    P1 <--> NCCL
+    P0 <--> MPI
+    P1 <--> MPI
+    NCCL <--> MPI
+
+    subgraph "Distributed Training Layer"
+        DO[DistributedOptimizer]
+        DO -->|wraps| BO[Base Optimizer Adam]
+        DO -->|triggers| AR[Gradient AllReduce]
+        DDC[DistributedDataContainer]
+        DDC -->|shards| DS[Global Dataset]
+    end
+
+    P0 --> DO
+    P1 --> DO
+    D0 --> DDC
+    D1 --> DDC

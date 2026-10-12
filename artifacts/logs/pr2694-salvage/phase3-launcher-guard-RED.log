@@ -1,0 +1,1062 @@
+known unsafe: MPICH under a PMIx launcher environment: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+  Got exception outside of a @test
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty
+     @ ./Base_compiler.jl:47 [inlined]
+   [2] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:55 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [4] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:49 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [6] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+   [7] include(mod::Module, _path::String)
+     @ Base ./Base.jl:306
+   [8] exec_options(opts::Base.JLOptions)
+     @ Base ./client.jl:317
+   [9] _start()
+     @ Base ./client.jl:550
+known unsafe: MPICH launched by OpenMPI mpirun: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:65
+  Got exception outside of a @test
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:70 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [4] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:66 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [6] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+   [7] include(mod::Module, _path::String)
+     @ Base ./Base.jl:306
+   [8] exec_options(opts::Base.JLOptions)
+     @ Base ./client.jl:317
+   [9] _start()
+     @ Base ./client.jl:550
+force=true bypasses every known mismatch: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = true, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:81 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+force=true bypasses every known mismatch: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = true, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:81 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+force=true bypasses every known mismatch: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = true, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:81 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+force=true bypasses every known mismatch: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = true, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:83 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:81 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+guard never runs when MPI is already initialized: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = true) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:94 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:91 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+system OpenMPI is always allowed: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "OpenMPI", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:101 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+system OpenMPI is always allowed: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "OpenMPI", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:101 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+system OpenMPI is always allowed: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "OpenMPI", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:101 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+system OpenMPI is always allowed: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "OpenMPI", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:101 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+system OpenMPI is always allowed: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "OpenMPI", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:101 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+system OpenMPI is always allowed: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "OpenMPI", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:104 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:101 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:112 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:112 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:112 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:112 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = "MPICH", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:114 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:112 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:118
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(Dict{String, String}("PMI_RANK" => "0"); library = "MPICH", force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:118 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:112 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+detect only the known unsafe MPICH case (no broad claims): Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130
+  Test threw exception
+  Expression: DistributedUtils.check_launcher_compat(env; library = library, force = false, mpi_initialized = false) === nothing
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [3] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:130 [inlined]
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:126 [inlined]
+   [6] macro expansionERROR: LoadError: Some tests did not pass: 0 passed, 0 failed, 52 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:47
+
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [7] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+result contract: nothing or non-empty String, never throws: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:136
+  Got exception outside of a @test
+  UndefVarError: `check_launcher_compat` not defined in `Flux.DistributedUtils`
+  Suggestion: check for spelling errors or missing imports.
+  Stacktrace:
+   [1] getproperty(x::Module, f::Symbol)
+     @ Base ./Base_compiler.jl:47
+   [2] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:142 [inlined]
+   [3] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [4] macro expansion
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:137 [inlined]
+   [5] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [6] top-level scope
+     @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:48
+   [7] include(mod::Module, _path::String)
+     @ Base ./Base.jl:306
+   [8] exec_options(opts::Base.JLOptions)
+     @ Base ./client.jl:317
+   [9] _start()
+     @ Base ./client.jl:550
+Test Summary:                                                             | Error  Total  Time
+check_launcher_compat decision matrix                                     |    52     52  1.8s
+  known unsafe: MPICH under a PMIx launcher environment                   |     1      1  1.4s
+  known unsafe: MPICH launched by OpenMPI mpirun                          |     1      1  0.1s
+  force=true bypasses every known mismatch                                |     4      4  0.2s
+  guard never runs when MPI is already initialized                        |    12     12  0.0s
+  system OpenMPI is always allowed                                        |     6      6  0.0s
+  no PMIx/OpenMPI launcher variables is always ok (incl. PMI2/SLURM envs) |     6      6  0.0s
+  detect only the known unsafe MPICH case (no broad claims)               |    21     21  0.0s
+  result contract: nothing or non-empty String, never throws              |     1      1  0.0s
+RNG of the outermost testset: Random.Xoshiro(0x16a4dcf4be8ea2e7, 0xaa52472ba5f05edf, 0xc314e102d5291a2e, 0x5228fb7312928417, 0x2422f7ab5c2edf0b)

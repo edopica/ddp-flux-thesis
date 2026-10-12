@@ -1,0 +1,8 @@
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.3s
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.3s
+
+real	0m11.805s
+user	0m22.401s
+sys	0m1.747s

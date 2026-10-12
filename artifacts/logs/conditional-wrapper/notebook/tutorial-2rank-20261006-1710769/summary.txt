@@ -1,0 +1,13 @@
+Phase K mnist-fashion campaign summary
+date	2026-10-06T17:27:23.615
+root	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769
+backend	mpi
+ranks	[2]
+label	k2-notebook
+julia	1.12.6
+project	/home/kurapica/Projects/ddp_flux/flux-integration/test
+steps	120
+command	`/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` --root /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769 --dataset mnist-fashion --backend mpi --ranks 2 --steps 120 --prepared /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/prepared/mnist-fashion_prepared.jls --timeout 1200 --label k2-notebook
+job	mpi2-train	ranks=2	exit=0	elapsed=69.719	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-train/console.log
+job	mpi2-resume	ranks=2	exit=0	elapsed=66.703	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-resume/console.log
+status	PASS

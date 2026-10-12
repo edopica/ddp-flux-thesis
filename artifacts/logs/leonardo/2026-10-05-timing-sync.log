@@ -1,0 +1,15 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+scripts/checks/
+scripts/checks/conditional_graph_timing_check.jl
+scripts/examples/
+scripts/examples/conditional_graph_timing.jl
+scripts/examples/conditional_graph/reference.jl
+scripts/plots/
+scripts/plots/README.md
+scripts/plots/plot_phase_k_timing.py
+
+sent 23,670 bytes  received 197 bytes  9,546.80 bytes/sec
+total size is 89,609  speedup is 3.75

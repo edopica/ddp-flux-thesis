@@ -1,0 +1,279 @@
+identity index container: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:39
+  Test threw exception
+  Expression: [MLUtils.getobs(dc_id, k) for k = 1:length(dc_id)] == chunk
+  BoundsError: attempt to access 1-element Vector{Float32} at index [2]
+  Stacktrace:
+    [1] throw_boundserror(A::Vector{Float32}, I::Tuple{Int64})
+      @ Base ./essentials.jl:15
+    [2] getindex
+      @ ./essentials.jl:919 [inlined]
+    [3] getobs(A::Vector{Float32}, idx::Int64)
+      @ MLCore ~/.julia/packages/MLCore/OdWCf/src/observation.jl:172
+    [4] getobs(dc::Flux.DistributedUtils.DistributedDataContainer, idx::Int64)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-pr2694-salvage/src/distributed/public_api.jl:302
+    [5] #15
+      @ ./none:-1 [inlined]
+    [6] iterate
+      @ ./generator.jl:48 [inlined]
+    [7] collect(itr::Base.Generator{UnitRange{Int64}, var"#15#16"{Flux.DistributedUtils.DistributedDataContainer}})
+      @ Base ./array.jl:790
+    [8] top-level scope
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+    [9] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [10] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+   [11] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [12] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:36 [inlined]
+   [13] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [14] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:39 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+identity index container: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40
+  Test threw exception
+  Expression: all((v->begin
+            #= /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40 =#
+            1 <= v <= N
+        end), [MLUtils.getobs(dc_id, k) for k = 1:length(dc_id)])
+  BoundsError: attempt to access 1-element Vector{Float32} at index [2]
+  Stacktrace:
+    [1] throw_boundserror(A::Vector{Float32}, I::Tuple{Int64})
+      @ Base ./essentials.jl:15
+    [2] getindex
+      @ ./essentials.jl:919 [inlined]
+    [3] getobs(A::Vector{Float32}, idx::Int64)
+      @ MLCore ~/.julia/packages/MLCore/OdWCf/src/observation.jl:172
+    [4] getobs(dc::Flux.DistributedUtils.DistributedDataContainer, idx::Int64)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-pr2694-salvage/src/distributed/public_api.jl:302
+    [5] #19
+      @ ./none:-1 [inlined]
+    [6] iterate
+      @ ./generator.jl:48 [inlined]
+    [7] collect(itr::Base.Generator{UnitRange{Int64}, var"#19#20"{Flux.DistributedUtils.DistributedDataContainer}})
+      @ Base ./array.jl:790
+    [8] top-level scope
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+    [9] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [10] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+   [11] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [12] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:36 [inlined]
+   [13] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [14] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [16] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40 [inlined]
+identity index container: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:39
+  Test threw exception
+  Expression: [MLUtils.getobs(dc_id, k) for k = 1:length(dc_id)] == chunk
+  BoundsError: attempt to access 1-element Vector{Float32} at index [3]
+  Stacktrace:
+    [1] throw_boundserror(A::Vector{Float32}, I::Tuple{Int64})
+      @ Base ./essentials.jl:15
+    [2] getindex
+      @ ./essentials.jl:919 [inlined]
+    [3] getobs(A::Vector{Float32}, idx::Int64)
+      @ MLCore ~/.julia/packages/MLCore/OdWCf/src/observation.jl:172
+    [4] getobs(dc::Flux.DistributedUtils.DistributedDataContainer, idx::Int64)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-pr2694-salvage/src/distributed/public_api.jl:302
+    [5] #15
+      @ ./none:-1 [inlined]
+    [6] iterate
+      @ ./generator.jl:48 [inlined]
+    [7] collect(itr::Base.Generator{UnitRange{Int64}, var"#15#16"{Flux.DistributedUtils.DistributedDataContainer}})
+      @ Base ./array.jl:790
+    [8] top-level scope
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+    [9] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [10] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+   [11] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [12] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:36 [inlined]
+   [13] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [14] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:39 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+identity index container: Error During Test at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40
+  Test threw exception
+  Expression: all((v->begin
+            #= /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40 =#
+            1 <= v <= N
+        end), [MLUtils.getobs(dc_id, k) for k = 1:length(dc_id)])
+  BoundsError: attempt to access 1-element Vector{Float32} at index [3]
+  Stacktrace:
+    [1] throw_boundserror(A::Vector{Float32}, I::Tuple{Int64})
+      @ Base ./essentials.jl:15
+    [2] getindex
+      @ ./essentials.jl:919 [inlined]
+    [3] getobs(A::Vector{Float32}, idx::Int64)
+      @ MLCore ~/.julia/packages/MLCore/OdWCf/src/observation.jl:172
+    [4] getobs(dc::Flux.DistributedUtils.DistributedDataContainer, idx::Int64)
+      @ Flux.DistributedUtils ~/Projects/ddp_flux/flux-pr2694-salvage/src/distributed/public_api.jl:302
+    [5] #19
+      @ ./none:-1 [inlined]
+    [6] iterate
+      @ ./generator.jl:48 [inlined]
+    [7] collect(itr::Base.Generator{UnitRange{Int64}, var"#19#20"{Flux.DistributedUtils.DistributedDataContainer}})
+      @ Base ./array.jl:790
+    [8] top-level scope
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+    [9] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [10] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+   [11] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [12] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:36 [inlined]
+   [13] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [14] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40 [inlined]
+   [15] macro expansion
+      @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+   [16] macro expansion
+      @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:40 [inlined]
+duplicate aggregate via allreduceduplicate aggregate via allreduce: : Test Failed at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53
+Test Failed at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53
+  Expression: global_sum ≈ sum(data_rand[full])
+   Evaluated: NaN32 ≈ -1.4389156f0  Expression: global_sum ≈ sum(data_rand[full])
+   Evaluated: NaN32 ≈ -1.4389156f0
+
+duplicate aggregate via allreduceduplicate aggregate via allreduce: : Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53
+  Expression: global_sum ≈ sum(data_rand[full])
+   Evaluated: NaN32 ≈ -1.4389156f0/home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53
+  Expression: global_sum ≈ sum(data_rand[full])
+   Evaluated: NaN32 ≈ -1.4389156f0
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:45 [inlined]
+ [6] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [7] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53 [inlined]
+ [8] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:45 [inlined]
+ [6] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [7] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53 [inlined]
+ [8] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:45 [inlined]
+ [6] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [7] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53 [inlined]
+ [8] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:22
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:24 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:45 [inlined]
+ [6] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [7] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:53 [inlined]
+ [8] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                           | Pass  Fail  Error  Total  Time
+DistributedDataContainer cyclic padding |   42     1      2     45  4.9s
+  N = 1                                 |    8     1      2     11  4.6s
+    identity index container            |    1            2      3  1.6s
+    duplicate aggregate via allreduce   |          1             1  2.6s
+  N = 2                                 |   11                  11  0.2s
+  N = 7                                 |   11                  11  0.0s
+  N = 10                                |   11                  11  0.0s
+  N = 0 empty dataset rejected          |    1                   1  0.1s
+Test Summary:                           | Pass  Fail  Error  Total  Test Summary:                           | Pass  Fail  Total  Time
+DistributedDataContainer cyclic padding |   42     1      2     45  4.8s
+  N = 1                                 |    8     1      2     11  4.4s
+    identity index container            |    1            2      3  1.7s
+    duplicate aggregate via allreduce   |          1             1  2.2s
+  N = 2                                 |   11                  11  0.3s
+  N = 7                                 |   11                  11  0.0s
+  N = 10                                |   11                  11  0.0s
+  N = 0 empty dataset rejected          |    1                   1  0.1s
+Test Summary:                           | Pass  Fail  Total  Time
+DistributedDataContainer cyclic padding |   44     1     45  4.8s
+  N = 1                                 |   10     1     11  4.6s
+    identity index container            |    3            3  0.4s
+    duplicate aggregate via allreduce   |          1      1  3.6s
+  N = 2                                 |   11           11  0.0s
+  N = 7                                 |   11           11  0.0s
+  N = 10                                |   11           11  0.0s
+  N = 0 empty dataset rejected          |    1            1  0.1s
+Time
+DistributedDataContainer cyclic padding |   44     1     45  5.0s
+  N = 1                                 |   10     1     11  4.7s
+    identity index container            |    3            3  0.4s
+    duplicate aggregate via allreduce   |          1      1  3.9s
+  N = 2                                 |   11           11  0.2s
+  N = 7                                 |   11           11  0.0s
+  N = 10                                |   11           11  0.0s
+  N = 0 empty dataset rejected          |    1            1  0.1s
+RNG of the outermost testset: Xoshiro(0x2228d9e036479758, 0x2c873abdf91c51f7, 0x22c1193c113d3cac, 0xa36c22afc69f2148, 0xcd78fb14e628a591)
+RNG of the outermost testset: Xoshiro(0xc7a176498d163e63, 0xc19b183d880315ad, 0x012773d162327dc9, 0xda9ed8188b0ae505, 0x0c8feac4dd68377a)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 44 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:21
+RNG of the outermost testset: Xoshiro(Some tests did not pass: 44 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl:21
+0x3ebebaf28b355272, 0xd3f85be5926f152e, 0x511f7189c00e361f, 0x12773918ae58950d, 0xd1879600c735b3f2)
+RNG of the outermost testset: Xoshiro(ERROR: 0xc9a478f5cb3a9265, 0x4396fa0224943293, 0xd311b4bfe28d5e3f, 0xcb27fcc65b9671ad, 0x41d9d82826d71d14)
+LoadError: EXIT=1

@@ -1,0 +1,39 @@
+phase_k_demo_plot_metadata
+generated_at_utc	2026-10-06T15:54:48+00:00
+python	3.13.13
+matplotlib	3.11.2
+numpy	2.5.3
+command	scripts/plots/plot_phase_k_demo.py --run artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2 --out notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank --title 'Phase K tutorial: k2-deathstar-nccl2'
+reproducible_command	uv run --offline --with-requirements scripts/plots/requirements-phase-k.txt python3 scripts/plots/plot_phase_k_demo.py --run artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2 --out notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank --title 'Phase K tutorial: k2-deathstar-nccl2'
+run_root	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2
+pair	nccl2	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2	steps=120	checkpoint_step=2	workers=2	dataset=mnist-fashion	backend=nccl	modes=resume,train
+run_id	nccl2	k2-2026-10-05-deathstar-nccl2-nccl2
+schedule_digest	nccl2	f27e2ef87e10d9dfe63f99f62fad82d58db5d54309c9b621bcdbb8496e539280
+dataset_digest	nccl2	658e3dd341ca4e4fa9e5e4a05eacf53c0bebca626a05b17a87e917062dec2971
+eta	nccl2	0.001
+input	nccl2	resume	validation	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/resume/validation-resume.tsv	d8f5e488ba2e8bb90cfdfdb3c451fa80d0f381b8528935403c07ad9f65dedbad	rows=476
+input	nccl2	resume	learning-rate	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/resume/learning-rate-resume.tsv	d08a0eb4152aa9fa781dad4695feff60e507c743f2c3a1a477f97a2e7f72899d	rows=2124
+input	nccl2	resume	predictions	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/resume/predictions-resume.tsv	c137bada256460c7cf4b8bba249d0c73996d720739c519f08ea1470241f775df	rows=160
+input	nccl2	resume	metrics	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/resume/metrics-resume.tsv	6fd0c5733890e55df52c0fa40ab8145c8c9da75ab1681ca153ff7533bbf36b25	rows=118
+input	nccl2	resume	metadata	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/resume/metadata.txt	d4e191ae84f5655c36b283635d0402f78c3ee682701960952b7f1c912bb72a32
+input	nccl2	train	validation	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/train/validation-train.tsv	8db66a11069782358890e1e2e1dab890e6316ed2e22b3e75ddac668a3f885c39	rows=484
+input	nccl2	train	learning-rate	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/train/learning-rate-train.tsv	f9541d115d1b53af0c236e1746b700940aac3cce472e9a6e719fb3ddd4fabfcc	rows=2160
+input	nccl2	train	predictions	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/train/predictions-train.tsv	750ef61c9cdba78ddb159e9e61bb3ab48cb0ec5b7d7868180617e13bef0b7af8	rows=160
+input	nccl2	train	metrics	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/train/metrics-train.tsv	d592570c9f95cde40f7bb0139c9350fcb88fe51a1f7ae17d11b1f9869e8cb2b7	rows=120
+input	nccl2	train	metadata	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/train/metadata.txt	a03234c58389e26ed33b89a4843af5d810b912f7d9f0cfca722dd692ef5a448a
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-validation-loss.png	6f7c5d6cb10383133d70947e2506a02c7a5efd64fe4bd298d637cda243d0fa3d	bytes=141327
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-validation-accuracy.png	0aba5e2415b3ca322198a01d5fa0763872053db18162cd4be0433b3052292e3c	bytes=142243
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-validation-difference.png	f0ce82b293c5a75943d1909b22773913d4a542a388a1076b05916c7498a47398	bytes=133200
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-learning-rate.png	235de9b6f9091a6681dc9fb4b8f94f82bb7a4ee3082976725f63944ae2216ebb	bytes=80562
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-discrepancy.png	683deef98c4f9c7f6a6c5dfe1ae5258140a99e12b6000f568505c1f2155478c0	bytes=205741
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-exposure.png	38adb5d00bf70cb0e9507ba942ef39ccdd9afd45cc71fe92eea27f298ae39ed0	bytes=121546
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-collectives.png	4770f0b399cad798f28e651712f5dc3733642131cd60bf77678039b0516c449d	bytes=81671
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-continuation.png	cc9fcfa400822eed1401ea042039a18f98c0871b72cb20fcfa2799cdfa63f5e9	bytes=86929
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-predictions-task-a.png	ba896316cb1fc74bf81f7d245f9f9cdc54f8eb8c5e215428e1b43e97b7b977e6	bytes=178287
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-predictions-task-b.png	d0ccc93f267328f38d99776feafc21122cc277e77fe354cda8074596406b6f7f	bytes=251503
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-schedule.png	fee10dda5602e9b8d59ef374ccb8572eb65aa008faae20abdaddb24c2ba3345b	bytes=147225
+warning	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2: replacing legacy resume directory for run /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2: /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2-resume -> /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/resume
+warning	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2: replacing legacy train directory for run /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2: /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2-train -> /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-nccl2/nccl2/train
+warning	nccl2: prepared directory not found; sources.tsv/subset_indices.tsv not recorded
+warning	nccl2: no prepared directory found; sources.tsv and subset_indices.tsv not recorded
+warning	nccl2: no prepared provenance files recorded

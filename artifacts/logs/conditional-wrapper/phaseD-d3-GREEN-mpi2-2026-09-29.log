@@ -1,0 +1,35 @@
+PrecompilingPrecompiling packages...
+ packages...
+    Flux Being precompiled by another process (pid: 109457, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  11615.8 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+  11723.5 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 109457, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4796.9 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4472.7 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Test Summary:                                         | Pass  Pass  Total  Total   Time Time
+
+equal-shaped conditional branches do not cross-reduce |    5      5  15.3s
+equal-shaped conditional branches do not cross-reduce |    5      5  15.3s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.6s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.6s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.7s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.6s
+Test Summary:                                                | Test Summary:                                                | Pass  Total  Pass  Total  Time
+Time
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38     38  2.6s
+2.6s
+Test Summary:                                    | Test Summary:                                    | Pass  Pass  Total  Total  TimeTime
+CPU presence metadata for device-like parameters | 
+CPU presence metadata for device-like parameters |   16     16    16     16  0.7s
+0.7s
+EXIT=0 WALL=44s LOG=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/phaseD-d3-GREEN-mpi2-2026-09-29.log

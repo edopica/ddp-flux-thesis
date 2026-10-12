@@ -1,0 +1,4 @@
+cmd: FLUX_TEST_DISTRIBUTED_MPI=true FLUX_TEST_REACTANT=false JULIA_MPI_TEST_NPROCS=2 julia --project=test test/runtests.jl ext_distributed
+cwd: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+manifest_before: 3b86244bc58065456acd34494db9d936953678e3824b107f8fdb4f68ecbb0046

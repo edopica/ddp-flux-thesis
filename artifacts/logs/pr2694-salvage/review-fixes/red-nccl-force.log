@@ -1,0 +1,40 @@
+# RED evidence: NCCL extension missing `force` keyword (pr2694 salvage)
+command: julia --project=test test/distributed_launcher_guard.jl
+cwd: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+date_utc: 2026-09-10T19:14:48Z
+---
+ERROR: LoadError: Some tests did not pass: 4 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:206
+Test Summary:                         | Pass  Total  Time
+check_launcher_compat decision matrix |  169    169  0.3s
+NCCL extension exposes the `force` guard bypass (static contract): Test Failed at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:228
+  Expression: :force in declared
+   Evaluated: force in [:cuda_devices, :amdgpu_devices]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:207
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:228 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+NCCL extension exposes the `force` guard bypass (static contract): Test Failed at /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:245
+  Expression: :force in forwarded
+   Evaluated: force in [:cuda_devices, :force_cuda, :caller, :amdgpu_devices]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:207
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-pr2694-salvage/test/distributed_launcher_guard.jl:245 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                                     | Pass  Fail  Total  Time
+NCCL extension exposes the `force` guard bypass (static contract) |    4     2      6  1.9s
+RNG of the outermost testset: Random.Xoshiro(0xbab66f559fd1a18d, 0x598c5a91874decca, 0xb6880a7561e20ddf, 0x34e653323b8c7ee9, 0xca4ff9b4bffd25a5)
+exit_code: 1

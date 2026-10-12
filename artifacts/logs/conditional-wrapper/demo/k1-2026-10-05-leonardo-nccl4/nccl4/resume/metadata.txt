@@ -1,0 +1,52 @@
+mode	resume
+label	k1-leonardo-nccl4
+date	2026-10-05T18:28:33.732
+host	lrdn3394.leonardo.local
+julia	1.12.6
+backend	nccl
+workers	4
+dtype	Float32
+command	`/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia -C native -J/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/lib/julia/sys.so -g1 --startup-file=no` resume --checkpoint /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/checkpoint-step2.jls --expected /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls --out /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/resume --backend nccl --label k1-leonardo-nccl4
+diagnostics	MPI Allgather configuration; Bcast reference configuration; Allgather snapshots; Bcast reference snapshot; Allgather step; checkpoint barrier
+git_head	thesis	unavailable
+git_branch	thesis	"unavailable"
+git_status	thesis	"unavailable"
+git_head	Flux	unavailable
+git_branch	Flux	"unavailable"
+git_status	Flux	"unavailable"
+tolerances	atol=2.0e-6 rtol=1.0e-5
+package	Flux	0.16.11	/leonardo/home/userexternal/epicazio/projects/flux-integration/src/Flux.jl
+package	Optimisers	0.4.9	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/Optimisers/tMaaf/src/Optimisers.jl
+package	Functors	0.5.3	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/Functors/PfDWx/src/Functors.jl
+package	MPI	0.20.27	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/MPI/E9X9Q/src/MPI.jl
+package	Zygote	0.7.13	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/Zygote/dywlZ/src/Zygote.jl
+package	CUDA	6.2.2	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDA/nBYpB/src/CUDA.jl
+package	NCCL	0.1.3	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/NCCL/19Emw/src/NCCL.jl
+package	cuDNN	6.2.2	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/cuDNN/0SFve/src/cuDNN.jl
+package	Zygote	0.7.13	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/Zygote/dywlZ/src/Zygote.jl
+package	CUDA	6.2.2	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDA/nBYpB/src/CUDA.jl
+package	NCCL	0.1.3	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/NCCL/19Emw/src/NCCL.jl
+package	cuDNN	6.2.2	/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/cuDNN/0SFve/src/cuDNN.jl
+dataset	toy	digest=55a8204c50f7f5fe03f046cb39490e9f641f262c6723c40cc90e1108eddf6ee0	train_per_task=512	val_per_task=128
+schedule	digest=d677a30a782429357a7d6f27b18e0d152902eeae9e610eb560fb7ba47d58cb19	steps=16	global_batch=128	local_batch=32	workers=4
+schedule_task	a	exposure=832	pool=512	completed_passes=1	partial=320	reused=320
+schedule_task	b	exposure=1216	pool=512	completed_passes=2	partial=192	reused=704
+extra	checkpoint	/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/checkpoint-step2.jls
+extra	checkpoint_digest	51300cb57610a09681aed91614f16ca2c2ce6488ba567e4f5534b1b05213b765
+extra	expected	/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls
+extra	on_gpu	true
+extra	restored_rules_and_frozen	true
+extra	run_id	k1-2026-10-05-leonardo-nccl4-nccl4
+extra	schedule_digest	d677a30a782429357a7d6f27b18e0d152902eeae9e610eb560fb7ba47d58cb19
+extra	step_next	3
+source_hash	flux-integration/src/Flux.jl	78710f9b398971609ac86824cb9ce6ab2ce3ab4672139df2142d24d44bacd0ce
+source_hash	flux-integration/src/distributed/public_api.jl	2984210b84e136da9bc9948c3b5928877f1f6c10f870f8db841ad2d4ab6136f0
+source_hash	scripts/checks/conditional_graph_demo_check.jl	2241cb6b1c37ce8ce6f61099797e55bea5b422bcbdbb1b017d4d58843a5da488
+source_hash	scripts/examples/conditional_graph/checkpoint.jl	d494550fbdabdfe43808d4ced48fa860da9c9412616f7be19f45f9d7eb287b4e
+source_hash	scripts/examples/conditional_graph/common.jl	9dfa74ee90c29ccfcac2b102315255791f5ad15d11ba6622e9ed060dd7355f99
+source_hash	scripts/examples/conditional_graph/dataset.jl	1681c7b7a5059267dd805ae3a38f9e48226f9ab5b8c3de521897e4e9da6b4488
+source_hash	scripts/examples/conditional_graph/metrics.jl	74f25667fd48bce2e4e0872793cd54cfeda57878e72e1be55fa2ad34d915b67c
+source_hash	scripts/examples/conditional_graph/model.jl	07de4f0fb5bed36727a49cd89f1f21bc1c198c12515cb1aa0ac32fe9fa9b67f0
+source_hash	scripts/examples/conditional_graph/reference.jl	71ac4a90d3770835a43a14aa310bad840b486be9c1d7d73c7d944a70503f9ff1
+source_hash	scripts/examples/conditional_graph/schedule.jl	9e7bb59e8494ac9dbf26d84643ce144f91e61c22115f22429a699cdb59ce99e3
+source_hash	scripts/examples/conditional_graph_demo.jl	b6e6725d51577e4bde4ac900cfbb7ba59ce156bff0321bd7b94d5a26eb99ce7d

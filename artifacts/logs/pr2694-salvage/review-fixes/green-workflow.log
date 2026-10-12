@@ -1,0 +1,53 @@
+# Review fix: shorter child watchdog than workflow step timeout
+
+Repo:   /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+Branch: ddp/pr2694-salvage
+Head:   caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+File:   .github/workflows/distributed_ci.yml (only file modified)
+Commit: none (do not commit / do not push)
+
+## Change
+- mpi_fast: FLUX_TEST_DISTRIBUTED_TIMEOUT "1200" -> "900"
+- mpi_edge: FLUX_TEST_DISTRIBUTED_TIMEOUT "1200" -> "900"
+- Added 2-line comment before each env var: child watchdog fires at 15 min,
+  before the 20-minute step timeout, so it can emit diagnostics before GitHub
+  terminates the step.
+- Workflow-step `timeout-minutes: 20` left unchanged (must exceed child watchdog).
+- Nothing else changed (job names, rank counts, --use-hwthread-cpus untouched).
+
+## Verification
+$ git diff .github/workflows/distributed_ci.yml
+@@ -13,7 +13,9 @@ jobs:
+     runs-on: ubuntu-latest
+     env:
+       JULIA_MPI_TEST_NPROCS: "2"
+-      FLUX_TEST_DISTRIBUTED_TIMEOUT: "1200"
++      # Child watchdog fires at 15 min, before the 20-minute step timeout,
++      # so it can emit diagnostics before GitHub terminates the step.
++      FLUX_TEST_DISTRIBUTED_TIMEOUT: "900"
+@@ -43,7 +45,9 @@ jobs:
+     runs-on: ubuntu-latest
+     env:
+       JULIA_MPI_TEST_NPROCS: "4"
+-      FLUX_TEST_DISTRIBUTED_TIMEOUT: "1200"
++      # Child watchdog fires at 15 min, before the 20-minute step timeout,
++      # so it can emit diagnostics before GitHub terminates the step.
++      FLUX_TEST_DISTRIBUTED_TIMEOUT: "900"
+
+$ grep -n "FLUX_TEST_DISTRIBUTED_TIMEOUT\|timeout-minutes" .github/workflows/distributed_ci.yml
+18:      FLUX_TEST_DISTRIBUTED_TIMEOUT: "900"
+25:        timeout-minutes: 5
+41:        timeout-minutes: 20
+50:      FLUX_TEST_DISTRIBUTED_TIMEOUT: "900"
+65:        timeout-minutes: 5
+77:        timeout-minutes: 5
+94:        timeout-minutes: 20
+
+$ git diff --check
+(clean)
+
+$ git status --porcelain .github/workflows/distributed_ci.yml
+ M .github/workflows/distributed_ci.yml
+
+Result: both env vars = 900 (15 min), both step timeouts = 20 min.
+Only .github/workflows/distributed_ci.yml modified. No commit. No push.

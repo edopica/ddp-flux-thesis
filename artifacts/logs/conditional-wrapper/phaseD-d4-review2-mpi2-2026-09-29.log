@@ -1,0 +1,36 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.7s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.6s
+Test Summary:                                          | Pass  Total  Test Summary:                                          | Pass  Total  Time
+Time
+canonical traversal order for reversed named trainable |   10  canonical traversal order for reversed named trainable |   10     10     10  1.7s
+1.7s
+Test Summary:                                    | Pass  Total  Test Summary:                                    | Pass  Total  Time
+Time
+equal-valued isbits occurrences stay independent |   11  equal-valued isbits occurrences stay independent |   11     11     11  0.6s
+0.6s
+Test Summary:                                                | Test Summary:                                                | Pass  Pass  Total  Total  Time
+Time
+explicit occurrence mapping for mixed tied/isbits parametersexplicit occurrence mapping for mixed tied/isbits parameters |  |   38    38     38     38  2.8s
+2.8s
+Test Summary:                                    | Pass  Test Summary:                                    | Pass  Total  Total  Time
+CPU presence metadata for device-like parametersTime
+CPU presence metadata for device-like parameters |  |   16     16    16     16  0.8s
+0.8s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Test Summary:                                         | Pass  Total  Pass  Total  Time
+Time
+legacy tuple trainable selection matches native setup | legacy tuple trainable selection matches native setup |   20    20     20     20  1.7s
+1.7s
+Test Summary:                                            | Test Summary:                                            | Pass  Pass  Total  Total  TimeTime
+legacy tuple trainable selection persists across updates
+legacy tuple trainable selection persists across updates |  |   30     30    30  1.4s
+   30  1.4s
+
+real	0m31.201s
+user	1m0.036s
+sys	0m3.013s

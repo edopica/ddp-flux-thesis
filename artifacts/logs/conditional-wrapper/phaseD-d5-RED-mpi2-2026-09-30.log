@@ -1,0 +1,126 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.4s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.4s
+Test Summary:                                          | Test Summary:                                          | Pass  Pass  Total  TimeTotal  Time
+
+canonical traversal order for reversed named trainable | canonical traversal order for reversed named trainable |   10     10    10     10  1.6s
+1.6s
+Test Summary:                                    | Pass  Total  Test Summary:                                    | Time
+equal-valued isbits occurrences stay independent |   11  Pass  Total     11  0.6s
+Time
+equal-valued isbits occurrences stay independent |   11     11  0.6s
+Test Summary:                                                | Pass  Test Summary:                                                | Pass  Total  TimeTotal  Time
+
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38     38  2.6s2.6s
+
+Test Summary:                                    | Pass  Total  Test Summary:                                    | Pass  Total  Time
+CPU presence metadata for device-like parameters | Time
+CPU presence metadata for device-like parameters |   16    16     16     16  0.7s
+0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Pass  Test Summary:                                         | Pass  Total  Total  TimeTime
+
+legacy tuple trainable selection matches native setup | legacy tuple trainable selection matches native setup |   20     20    20     20  1.7s
+1.7s
+Test Summary:                                            | Pass  Test Summary:                                            | Pass  Total  TimeTotal  Time
+
+legacy tuple trainable selection persists across updates | legacy tuple trainable selection persists across updates |   30    30     30     30  1.4s
+1.4s
+Test Summary:                              | Test Summary:                              | Pass  Pass  Total  Total   Time
+ Time
+BatchNorm running statistics stay excluded |    6  BatchNorm running statistics stay excluded |     6  18.0s
+   6      6  18.0s
+Test Summary:                                        | Test Summary:                                        | Pass  Pass  Total  Total  Time
+Time
+transpose and adjoint gradients pair in parent spacetranspose and adjoint gradients pair in parent space |  |   16    16     16     16  5.0s
+5.0s
+Test Summary:                                        | Pass  Test Summary:                                        | Pass  Total  Time
+Total  Time
+caller gradients stay unchanged on both update paths | caller gradients stay unchanged on both update paths |    8     8      8  0.7s
+    8  0.7s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.3s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.3s
+Test Summary:                                          | Pass  Total  Time
+update returns a fresh wrapper without mutating inputs |   15     15  0.5s
+Test Summary:                                          | Pass  Total  Time
+update returns a fresh wrapper without mutating inputs |   15     15  0.5s
+Test Summary:                                                 | Pass  Total  TimeTest Summary:                                                 | Pass  Total  Time
+globally absent parameters keep Adam state after active steps | 
+globally absent parameters keep Adam state after active steps |   11     11    11     11  2.1s2.1s
+
+Test Summary:                                 | Pass  Test Summary:                                 | Total  Pass  Total  TimeTime
+
+empty trainable model performs no collectivesempty trainable model performs no collectives |  |    9     9      9      9  0.3s
+0.3s
+array containers keep their shape during reconstruction: array containers keep their shape during reconstruction: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:963
+  Expression: size(synced.w) == size(model.w)
+   Evaluated: (4,) == (2, 2)/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:963
+  Expression: size(synced.w) == size(model.w)
+   Evaluated: (4,) == (2, 2)
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:963 [inlined]
+ [4] macro expansion
+   @ 
+Stacktrace:~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/
+Test.jl:680 [inlined]
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:963 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+array containers keep their shape during reconstruction: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:964
+  Expression: axes(synced.w) == axes(model.w)
+   Evaluated: (Base.OneTo(4),) == (Base.OneTo(2), Base.OneTo(2))
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:964 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+array containers keep their shape during reconstruction: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:964
+  Expression: axes(synced.w) == axes(model.w)
+   Evaluated: (Base.OneTo(4),) == (Base.OneTo(2), Base.OneTo(2))
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:964 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                           | Pass  Fail  Total  Time
+array containers keep their shape during reconstruction |   18     2     20  3.5s
+Test Summary:                                           | Pass  Fail  Total  Time
+array containers keep their shape during reconstruction |   18     2     20  3.5s
+RNG of the outermost testset: Random.Xoshiro(0xed16595581a967e5, 0x0c5cc06cf42f0d11, 0xdda5f5d59a8f5861, 0x2556db814139d57e, 0x6bca68512b981f6f)
+RNG of the outermost testset: Random.Xoshiro(0x2c0a306ac1595c88, 0x9c7c0856bc656ee1, 0x9f4ba4e4aec4a6d6, 0x2e01e66e5482b0bb, 0x6005ceeaaff3c076)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 18 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:943
+Some tests did not pass: 18 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:943
+
+real	1m4.292s
+user	2m4.080s
+sys	0m5.246s

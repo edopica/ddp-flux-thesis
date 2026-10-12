@@ -1,0 +1,2 @@
+run_id	mode	repeat	t_total_s	t_train_s	t_val_s	steps	samples_total	updates_per_s	samples_per_s	slowest_rank_s
+single	single	1	0.104019	0.067152	0.036867	12	1536	115.363161	14766.484629	0.104019

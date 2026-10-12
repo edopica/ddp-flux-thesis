@@ -1,0 +1,19 @@
+Executing on deathstar:  cd ~/projects/flux-integration && JULIA_PKG_PRECOMPILE_AUTO=0 /home/picazio/.juliaup/bin/julia --startup-file=no --project=test .phaseJ_resolve_env.jl
+   Installed CUDNN_jll ─ v9.26.0+0
+   Installed cuDNN ───── v6.2.2
+  Installing 1 artifacts
+   Installed artifact CUDNN                    733.5 MiB
+    Updating `~/projects/flux-integration/test/Project.toml`
+⌃ [02a925ec] + cuDNN v6.2.2
+    Updating `~/projects/flux-integration/Manifest.toml`
+⌃ [02a925ec] + cuDNN v6.2.2
+  [62b44479] + CUDNN_jll v9.26.0+0
+        Info Packages marked with ⌃ have new versions available and may be upgradable.
+Precompiling packages...
+   2553.8 ms  ✓ CUDNN_jll
+   6344.0 ms  ✓ cuDNN
+   5370.4 ms  ✓ MLDataDevices → cuDNNExt
+   6284.2 ms  ✓ NNlib → NNlibCUDACUDNNExt
+   2802.2 ms  ✓ NNlib → NNlibEnzymeCoreCUDNNExt
+  19765.9 ms  ✓ Mooncake → MooncakecuDNNExt
+  6 dependencies successfully precompiled in 29 seconds. 298 already precompiled.

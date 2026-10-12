@@ -1,0 +1,16 @@
+# Verification: pr2694-salvage core API fixes
+# Worktree: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+# Branch: ddp/pr2694-salvage  HEAD: caf47145
+# Date: 2026-09-10T21:17:07+02:00
+
+$ julia --project=test -e 'using Flux; println("loaded"); println(hasmethod(Flux.DistributedUtils.__check_launcher_compat, Tuple{Dict{String,String}}))'
+loaded
+true
+exit=0
+
+$ julia --project=test -e 'using Flux; @show Flux.DistributedUtils.__check_launcher_compat(Dict{String,String}(); library="MPICH", force=false, mpi_initialized=false)'
+Flux.DistributedUtils.__check_launcher_compat(Dict{String, String}(); library = "MPICH", force = false, mpi_initialized = false) = nothing
+exit=0
+
+$ git diff --check -- src/distributed/public_api.jl
+exit=0

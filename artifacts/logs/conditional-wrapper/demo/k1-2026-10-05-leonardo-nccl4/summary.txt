@@ -1,0 +1,14 @@
+Phase K toy campaign summary
+date	2026-10-05T18:29:17.826
+root	/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4
+backend	nccl
+ranks	[4]
+label	k1-leonardo-nccl4
+julia	1.12.6
+project	/leonardo/home/userexternal/epicazio/projects/flux-integration/test
+steps	16
+command	`/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia -C native -J/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4 --dataset toy --backend nccl --ranks 4 --steps 16 --timeout 1800 --label k1-leonardo-nccl4
+job	prepared	ranks=1	exit=0	elapsed=12.716	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/prepared/console.log
+job	nccl4-train	ranks=4	exit=0	elapsed=183.574	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4-train/console.log
+job	nccl4-resume	ranks=4	exit=0	elapsed=67.707	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4-resume/console.log
+status	PASS

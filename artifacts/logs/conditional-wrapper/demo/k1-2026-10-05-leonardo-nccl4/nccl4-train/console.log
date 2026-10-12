@@ -1,0 +1,485 @@
+DEMO_GPU_MAP rank=0 device=1 name=NVIDIA A100-SXM-64GB devices=[1, 2, 3, 0]
+DEMO_GPU_MAP rank=1 device=2 name=NVIDIA A100-SXM-64GB devices=[1, 2, 3, 0]
+DEMO_GPU_MAP rank=2 device=3 name=NVIDIA A100-SXM-64GB devices=[1, 2, 3, 0]
+DEMO_GPU_MAP rank=3 device=0 name=NVIDIA A100-SXM-64GB devices=[1, 2, 3, 0]
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+DEMO_META mode=train rank=0 backend=nccl ranks=4 dtype=Float32 tolerances="atol=2.0e-6 rtol=1.0e-5" flux=/leonardo/home/userexternal/epicazio/projects/flux-integration/src/Flux.jl schedule_digest=d677a30a782429357a7d6f27b18e0d152902eeae9e610eb560fb7ba47d58cb19
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]DEMO_COLLECTIVE mode=train step=1 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+
+DEMO_COLLECTIVE mode=train step=1 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=1 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=1 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=1 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=1 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=1 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=1 cycle=1 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=1.1804497242 loss_local=0.5128641129 peer_param_maxerr=9.313e-10 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=2.910e-11 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=1 cycle=1 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=1.4408022165 peer_param_maxerr=9.313e-10 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=2.910e-11 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=1 cycle=1 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=1.3599951267 peer_param_maxerr=9.313e-10 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=2.910e-11 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=1 cycle=1 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=1.4081373215 peer_param_maxerr=9.313e-10 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=2.910e-11 beta_exact=true collectives=7 resume_match=n/a
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=2 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=2 cycle=2 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=1.1869921684 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=2 cycle=2 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=1.2492983341 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=2 cycle=2 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=1.0226681232 loss_local=0.4490749538 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_STEP mode=train step=2 cycle=2 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=1.2053067684 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=3.725e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=7 resume_match=n/a
+DEMO_CHECKPOINT step_saved=2 step_next=3 path=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/checkpoint-step2.jls digest=51300cb57610a09681aed91614f16ca2c2ce6488ba567e4f5534b1b05213b765
+DEMO_COLLECTIVE mode=train step=3 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=3 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=3 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=3 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=3 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=3 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=3 cycle=3 rank=0 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=0.3953577876 loss_local=0.3988535404 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=7.451e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=3 cycle=3 rank=1 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.3851306438 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=7.451e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=3 cycle=3 rank=2 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.4017251134 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=7.451e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=3 cycle=3 rank=3 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.3957217336 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=7.451e-09 peer_mom2_maxerr=5.821e-11 beta_exact=true collectives=5 resume_match=n/a
+DEMO_COLLECTIVE mode=train step=4 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=4 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=4 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=4 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=4 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=4 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=4 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=4 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=4 cycle=4 rank=0 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=1.0058331490 loss_local=0.9937437773 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/aDEMO_STEP mode=train step=4 cycle=4 rank=1 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.9951599240 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=4 cycle=4 rank=2 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=1.0040670633 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=4 cycle=4 rank=3 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=1.0303617716 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=5 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=5 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=5 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=5 cycle=5 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=0.7626804113 loss_local=0.3161353469 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=5 cycle=5 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.9007475376 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=5 cycle=5 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.9168215990 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=5 cycle=5 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.9170168638 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=6 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=6 cycle=6 rank=0 head=b present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=0.4124904573 loss_local=0.7645388842 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=6 cycle=6 rank=1 head=a present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=NaN loss_local=0.2924532890 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=6 cycle=6 rank=2 head=a present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=NaN loss_local=0.3054457903 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=6 cycle=6 rank=3 head=a present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=NaN loss_local=0.2875238061 peer_param_maxerr=1.490e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=7 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=7 cycle=1 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=0.5671346784 loss_local=0.2407641858 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=7 cycle=1 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.6696995497 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=7 cycle=1 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.6716667414 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=7 cycle=1 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.6864082813 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=8 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=8 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=8 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=8 cycle=2 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.5908558369 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=8 cycle=2 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.6038470268 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=8 cycle=2 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.5585259199 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=8 cycle=2 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=0.5019351244 loss_local=0.2545118928 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=9 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=9 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=9 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=9 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=9 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=9 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=9 cycle=3 rank=0 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=0.2327887416 loss_local=0.2278553843 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/aDEMO_STEP mode=train step=9 cycle=3 rank=1 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.2185003161 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=9 cycle=3 rank=2 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.2425307482 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=9 cycle=3 rank=3 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.2422685325 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=10 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=10 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]DEMO_COLLECTIVE mode=train step=10 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+
+DEMO_COLLECTIVE mode=train step=10 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=10 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=10 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=10 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=10 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=10 cycle=4 rank=0 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=0.4690355659 loss_local=0.4735888243 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.235e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/aDEMO_STEP mode=train step=10 cycle=4 rank=1 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.4670158327 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.235e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=10 cycle=4 rank=2 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.4707394838 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.235e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=10 cycle=4 rank=3 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.4647981226 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.235e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=11 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=11 cycle=5 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=0.3691087961 loss_local=0.1859855652 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=11 cycle=5 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.4081670642 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=11 cycle=5 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.4407186508 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=11 cycle=5 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.4415638447 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.75, 0.75, 0.25, 0.25]
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=12 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=12 cycle=6 rank=0 head=b present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=0.2211629450 loss_local=0.3858174682 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=12 cycle=6 rank=1 head=a present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=NaN loss_local=0.1715612411 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=12 cycle=6 rank=2 head=a present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=NaN loss_local=0.1733990908 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=12 cycle=6 rank=3 head=a present_a=true present_b=true counts_a=3 counts_b=1 loss_ref=NaN loss_local=0.1538739651 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=13 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=13 cycle=1 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=0.2782827616 loss_local=0.1464243233 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=13 cycle=1 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.3162875175 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=13 cycle=1 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.3234767318 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=13 cycle=1 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.3269424438 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=2.980e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=14 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.25, 0.25, 0.75, 0.75]
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=14 rank=2 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=6 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=0 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=2 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=3 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=14 rank=1 order=7 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=14 cycle=2 rank=0 head=a present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=0.2449781001 loss_local=0.1455011219 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/aDEMO_STEP mode=train step=14 cycle=2 rank=1 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.2680230439 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=14 cycle=2 rank=2 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.2810671628 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+DEMO_STEP mode=train step=14 cycle=2 rank=3 head=b present_a=true present_b=true counts_a=1 counts_b=3 loss_ref=NaN loss_local=0.2853211164 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=7 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=15 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=15 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]DEMO_COLLECTIVE mode=train step=15 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+
+DEMO_COLLECTIVE mode=train step=15 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0] global=Float32[1.0, 1.0, 1.0, 1.0, 0.0, 0.0]
+DEMO_COLLECTIVE mode=train step=15 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=15 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=15 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=15 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=15 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=15 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=15 cycle=3 rank=0 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=0.1082103699 loss_local=0.1031359583 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/aDEMO_STEP mode=train step=15 cycle=3 rank=1 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.0955234692 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=15 cycle=3 rank=2 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.1222704723 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=15 cycle=3 rank=3 head=a present_a=true present_b=false counts_a=4 counts_b=0 loss_ref=NaN loss_local=0.1119115800 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+
+DEMO_COLLECTIVE mode=train step=16 rank=0 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=16 rank=2 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=16 rank=3 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=16 rank=1 order=1 type=Vector{Float32} shape=(6,) avg=true local=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0] global=Float32[1.0, 1.0, 0.0, 0.0, 1.0, 1.0]
+DEMO_COLLECTIVE mode=train step=16 rank=0 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=2 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=3 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=1 order=2 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(16, 2) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=0 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=2 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=16 rank=3 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=16 rank=1 order=3 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(16,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=0 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=2 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=16 rank=3 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=16 rank=1 order=4 type=CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory} shape=(2, 16) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=0 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_COLLECTIVE mode=train step=16 rank=3 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothingDEMO_COLLECTIVE mode=train step=16 rank=2 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+
+DEMO_COLLECTIVE mode=train step=16 rank=1 order=5 type=CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory} shape=(2,) avg=true local=nothing global=nothing
+DEMO_STEP mode=train step=16 cycle=4 rank=0 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=0.2172691375 loss_local=0.2220318764 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/aDEMO_STEP mode=train step=16 cycle=4 rank=1 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.2120600939 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=16 cycle=4 rank=2 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.2254926860 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+DEMO_STEP mode=train step=16 cycle=4 rank=3 head=b present_a=false present_b=true counts_a=0 counts_b=4 loss_ref=NaN loss_local=0.2094919086 peer_param_maxerr=2.980e-08 peer_mom1_maxerr=1.490e-08 peer_mom2_maxerr=1.164e-10 beta_exact=true collectives=5 resume_match=n/a
+
+DEMO_RANK_DONE mode=train rank=3 steps=16 exit=ok
+DEMO_RANK_DONE mode=train rank=1 steps=16 exit=okDEMO_RANK_DONE mode=train rank=2 steps=16 exit=ok
+
+DEMO_SCHEMA_OK mode=train validation_steps=17
+DEMO_TRAJECTORY path=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls steps=16 checkpoint_step=2
+DEMO_RANK_DONE mode=train rank=0 steps=16 exit=ok
+DEMO_TRAIN_DONE mode=train backend=nccl ranks=4 steps=16 checkpoint=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/checkpoint-step2.jls trajectory=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls

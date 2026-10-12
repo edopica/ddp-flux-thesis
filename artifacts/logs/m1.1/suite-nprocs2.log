@@ -1,0 +1,107 @@
+[ Info: Running Distributed Tests with 2 processes
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                                              | [22m[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+real AD conditional branches (averaging, not broadcasting) | [32m  10  [39m[36m   10  [39m[0m13.9s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+real AD conditional branches (averaging, not broadcasting) | [32m  10  [39m[36m   10  [39m[0m13.9s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | 
+Adam matches an independent global-mean reference | [32m   8  [39m[36m    8  [39m[32m   8  [39m[36m    8  [39m[0m1.0s
+[0m1.0s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameter stays put with Adam | [32m   6  [39m[36m    6  [39m[0m2.4s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameter stays put with Adam | [32m   6  [39m[36m    6  [39m[0m2.4s
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2, tanh; bias=false)  [90m# 4 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×4 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/Projects/ddp_flux/flux-integration/src/layers/stateless.jl:18[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2, tanh; bias=false)  [90m# 4 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×4 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/Projects/ddp_flux/flux-integration/src/layers/stateless.jl:18[39m
+[0m[1mTest Summary:                          | [22m[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm non-trainable arrays ignored[0m[1m Time[22m | 
+[32m   5  [39mBatchNorm non-trainable arrays ignored | [36m    5  [39m[0m18.1s[32m   5  [39m
+[36m    5  [39m[0m18.1s
+[0m[1mTest Summary:                                               | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint parameters get parent-space gradients
+ | [32m   3  [39mtranspose and adjoint parameters get parent-space gradients | [36m    3  [39m[32m   3  [39m[0m4.0s
+[36m    3  [39m[0m4.0s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | 
+tied parameters through real AD | [32m   5  [39m[36m    5  [39m[32m   5  [39m[0m1.3s
+[36m    5  [39m[0m1.3s
+[0m[1mTest Summary:                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose | [0m[1mTime[22m
+tied parameter through a transpose | [32m   3  [39m[32m   3  [39m[36m    3  [39m[36m    3  [39m[0m1.4s
+[0m1.4s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   4  [39m[36m    4  [39m[0m1.7s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   4  [39m[36m    4  [39m[0m1.7s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+composition inside OptimiserChain rejected | [32m   1  [39m[36m    1  [39m[0m0.2s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+composition inside OptimiserChain rejected | [32m   1  [39m[36m    1  [39m[0m0.2s
+[0m[1mTest Summary:                                      | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m[1mTime[22m
+update/update! never mutate the caller's gradients | update/update! never mutate the caller's gradients | [32m   4  [39m[32m   4  [39m[36m    4  [39m[36m    4  [39m[0m0.5s
+[0m0.5s
+[0m[1mTest Summary:                 | [22m[0m[1mTest Summary:                 | [22m[32m[1mPass  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTime[22m
+
+immutable model return values | immutable model return values | [32m   7  [39m[32m   7  [39m[36m    7  [39m[36m    7  [39m[0m0.7s
+[0m0.7s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [0m[1mTime[22m
+higher-order gradients rejected[32m   2  [39m | [36m    2  [39m[32m   2  [39m[0m0.0s[36m    2  [39m
+[0m0.0s
+[0m[1mTest Summary:               | [22m[0m[1mTest Summary:               | [22m[32m[1mPass  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTime[22m
+
+Chain tuple-grad diagnosticChain tuple-grad diagnostic |  | [32m   4  [39m[32m   4  [39m[36m    4  [39m[36m    4  [39m[0m3.1s
+[0m3.1s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:             | [22m[0m[1mTest Summary:             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m[1mTime[22m
+collective count protocol | collective count protocol | [32m   3  [39m[32m   3  [39m[36m    3  [39m[36m    3  [39m[0m0.9s
+[0m0.9s
+[0m[1mTest Summary:               | [22m[0m[1mTest Summary:               | [22m[32m[1mPass  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTime[22m
+
+frozen parameters untouchedfrozen parameters untouched |  | [32m   6  [39m[32m   6  [39m[36m    6  [39m[0m0.3s
+[36m    6  [39m[0m0.3s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.setup and Optimisers.setup | [32m   4  [39m[36m    4  [39m[0m0.0s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.setup and Optimisers.setup | [32m   4  [39m[36m    4  [39m[0m0.0s
+[0m[1mTest Summary: | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train!   | [32m   1  [39m[36m    1  [39m[0m1.3s
+[0m[1mTest Summary: | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train!   | [32m   1  [39m[36m    1  [39m[0m1.4s
+[0m[1mTest Summary:                          | [22m[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m[1mTime[22m
+explicit withgradient + update!/update | explicit withgradient + update!/update | [32m   2  [39m[36m    2  [39m[32m   2  [39m[0m0.3s
+[36m    2  [39m[0m0.4s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m   9  [39m[36m    9  [39m[32m   9  [39m[0m0.1s
+[36m    9  [39m[0m0.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   2  [39m[36m    2  [39m[0m0.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   2  [39m[36m    2  [39m[0m0.3s
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   1  [39m[36m    1  [39m[0m4.6s
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   1  [39m[36m    1  [39m[0m4.6s
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+Test Summary: | Pass  Total     Time
+Distributed   |    6      6  1m35.6s

@@ -6,7 +6,7 @@ This document is the index for syncing code to remote machines and running tests
 |---|---|---|---|
 | `bocconi` | SLURM | University cluster: CPU/MPI tests and GPU validation | [bocconi.md](bocconi.md) |
 | `deathstar` | none | Non-SLURM workstation (courtesy machine), main CPU workforce | [deathstar.md](deathstar.md) |
-| `leonardo` | SLURM | Planned CINECA GPU cluster; not operational yet | [leonardo.md](leonardo.md) |
+| `leonardo` | SLURM | CINECA GPU cluster; operational since 2026-10-04 (Julia workflow and 4-rank NCCL verified) | [leonardo.md](leonardo.md) |
 
 SSH aliases are defined in `~/.ssh/config`. The tools live in `scripts/remote/` and all commands below run from the thesis repo root.
 

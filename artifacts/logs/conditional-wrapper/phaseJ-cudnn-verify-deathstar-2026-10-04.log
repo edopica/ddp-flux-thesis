@@ -1,0 +1,3 @@
+Executing on deathstar:  cd ~/projects/flux-integration && /home/picazio/.juliaup/bin/julia --startup-file=no --project=test -e 'using cuDNN, CUDA; @show cuDNN.functional() CUDA.functional()'
+cuDNN.functional() = true
+CUDA.functional() = true

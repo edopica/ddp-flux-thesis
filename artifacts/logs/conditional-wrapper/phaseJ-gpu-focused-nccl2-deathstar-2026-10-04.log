@@ -1,0 +1,31 @@
+Executing on deathstar:  cd ~/projects/flux-integration && time env FLUX_TEST_DISTRIBUTED_BACKEND=nccl /home/picazio/.julia/bin/mpiexecjl --project=test -n 2 julia --startup-file=no --project=test test/ext_distributed/cuda_conditional_distributedtest.jl
+Phase J rank-to-device mapping: rank=1 device=2 devices=[1, 2] ndevices=3 name=NVIDIA TITAN RTX
+Phase J rank-to-device mapping: rank=0 device=1 devices=[1, 2] ndevices=3 name=NVIDIA TITAN RTX
+Test Summary:                                              | Pass  Total  Time
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.3s
+Test Summary:                                              | Pass  Total  Time
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.3s
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  28.6s
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  28.6s
+Test Summary:                                         | Pass  Total  Time
+tied device parameter reduces once and keeps identity |   11     11  4.5s
+Test Summary:                                         | Pass  Total  Time
+tied device parameter reduces once and keeps identity |   11     11  4.5s
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.9s
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.9s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  5.8s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  5.9s
+Test Summary:                                       | Pass  Total  Time
+device freeze and thaw preserve values and protocol |   10     10  0.9s
+Test Summary:                                       | Pass  Total  Time
+device freeze and thaw preserve values and protocol |   10     10  0.9s
+
+real	0m52,208s
+user	1m45,772s
+sys	0m5,895s

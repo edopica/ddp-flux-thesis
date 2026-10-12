@@ -1,0 +1,99 @@
+[ Info: Running Distributed Tests with 2 processes
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[32m[1mPrecompiling[22m[39m[32m[1mPrecompiling[22m[39m packages...
+ packages...
+    Flux[36m Being precompiled by another process (pid: 175827, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)[39m
+  10354.1 ms[32m  ✓ [39mFlux
+  1 dependency successfully precompiled in 11 seconds. 154 already precompiled.
+  10454.2 ms[32m  ✓ [39mFlux
+  1 dependency successfully precompiled in 11 seconds. 154 already precompiled.
+[32m[1mPrecompiling[22m[39m packages...
+[32m[1mPrecompiling[22m[39m packages...
+    Flux → FluxMPIExt[36m Being precompiled by another process (pid: 175827, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)[39m
+   4537.3 ms[32m  ✓ [39mFlux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4236.5 ms[32m  ✓ [39mFlux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                                         | [22m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m14.0s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m14.1s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTest Summary:                                          | [22m
+canonical traversal order for reversed named trainable | [32m[1mPass  [22m[39m[32m  10  [39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[36m   10  [39m[0m1.5s
+canonical traversal order for reversed named trainable | 
+[32m  10  [39m[36m   10  [39m[0m1.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[32m  38  [39m[36m   38  [39m[36m   38  [39m[0m2.5s
+[0m2.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[36m   16  [39m[0m0.7sCPU presence metadata for device-like parameters | 
+[32m  16  [39m[36m   16  [39m[0m0.7s
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | legacy tuple trainable selection matches native setup | [32m  20  [39m[32m  20  [39m[36m   20  [39m[0m1.6s[36m   20  [39m[0m1.6s
+
+[0m[1mTest Summary:                                            | [22m[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[32m  30  [39m[36m   30  [39m[36m   30  [39m[0m1.2s[0m1.2s
+
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m16.6s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m16.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | transpose and adjoint gradients pair in parent space | [32m  16  [39m[32m  16  [39m[36m   16  [39m[36m   16  [39m[0m4.2s
+[0m4.2s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | caller gradients stay unchanged on both update paths | [32m  11  [39m[32m  11  [39m[36m   11  [39m[36m   11  [39m[0m0.6s
+[0m0.6s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.3s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.3s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.4s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.4s
+[0m[1mTest Summary:                                                 | [22m[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+
+globally absent parameters keep Adam state after active steps | globally absent parameters keep Adam state after active steps | [32m  16  [39m[32m  16  [39m[36m   16  [39m[36m   16  [39m[0m3.0s[0m3.0s
+
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives
+empty trainable model performs no collectives |  | [32m   9  [39m[32m   9  [39m[36m    9  [39m[36m    9  [39m[0m0.3s
+[0m0.3s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [36m[1mTotal  [22m[39m[0m[1mTime[22m[32m  20  [39m[36m   20  [39m
+array containers keep their shape during reconstruction | [0m1.2s
+[32m  20  [39m[36m   20  [39m[0m1.1s
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+
+DistributedDataContainer cyclic padding | DistributedDataContainer cyclic padding | [32m  51  [39m[32m  51  [39m[36m   51  [39m[36m   51  [39m[0m0.9s[0m0.9s
+
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+Test Summary: | Pass  Total     Time
+Distributed   |    6      6  1m45.2s
+
+real	1m48.286s
+user	3m9.339s
+sys	0m13.325s

@@ -1,0 +1,62 @@
+Executing on deathstar:  cd ~/projects/flux-integration && env FLUX_TEST_DISTRIBUTED_BACKEND=nccl /home/picazio/.julia/bin/mpiexecjl --project=test -n 2 julia --startup-file=no --project=test test/ext_distributed/.phaseJ_ulp_repro.jl
+Phase J rank-to-device mapping: rank=0 device=1 devices=[1, 2] ndevices=3 name=NVIDIA TITAN RTX
+Phase J rank-to-device mapping: rank=1 device=2 devices=[1, 2] ndevices=3 name=NVIDIA TITAN RTX
+Test Summary:                                              | Pass  Total  Time
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.3s
+Test Summary:                                              | Pass  Total  Time
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.3s
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  29.7s
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  29.7s
+Test Summary:                                         | Pass  Total  Time
+tied device parameter reduces once and keeps identity |   11     11  4.7s
+Test Summary:                                         | Pass  Total  Time
+tied device parameter reduces once and keeps identity |   11     11  4.7s
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.7s
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.7s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  6.1s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  6.1s
+device freeze and thaw preserve values and protocol: device freeze and thaw preserve values and protocol: Test Failed at Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:449
+  Expression: ≈(to_host(state.tree.w.state[1]), ref_state.w.state[1], atol = NUMERIC_ATOL)
+   Evaluated: Float32[-0.18800005, -0.18800005, -0.18800005, -0.18800005] ≈ Float32[-0.18800004, -0.18800004, -0.18800004, -0.18800004] (atol=1.0e-8)/home/picazio/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:449
+  Expression: ≈(to_host(state.tree.w.state[1]), ref_state.w.state[1], atol = NUMERIC_ATOL)
+   Evaluated: Float32[-0.18800005, -0.18800005, -0.18800005, -0.18800005] ≈ Float32[-0.18800004, -0.18800004, -0.18800004, -0.18800004] (atol=1.0e-8)
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:405
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:449 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:405
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:449 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                       | Pass  Fail  Total  Time
+device freeze and thaw preserve values and protocol |    9     1     10  2.7s
+Test Summary:                                       | Pass  Fail  Total  Time
+device freeze and thaw preserve values and protocol |    9     1     10  2.7s
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0xa6834f450193ec99, 0x7df5467f0d6fb183, 0x08c5085567e2f9b7, 0x89f00f111a61a925, 0x11ccb5e4e9fd81b8)
+0x9efa491ffd4dd007, 0x3c2978e4ed4e6d02, 0x7098c5b4ca4aca4b, 0xb5921b52b8bfed4b, 0x7d714f99c5ee8791)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 9 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:404
+Some tests did not pass: 9 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/.phaseJ_ulp_repro.jl:404
+[91m[1m┌ [22m[39m[91m[1mError: [22m[39mThe MPI process failed
+[91m[1m│ [22m[39m  proc = Process(setenv(`[4m/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/bin/mpiexec[24m [4m-n[24m [4m2[24m [4mjulia[24m [4m--startup-file=no[24m [4mtest/ext_distributed/.phaseJ_ulp_repro.jl[24m`,["PATH=/home/picazio/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/bin:/home/picazio/.julia/artifacts/110c1594febf9d894b6e4a30b3eeca0fa435f04f/bin:/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/bin:/home/picazio/.juliaup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/aime-ml-containers", "JULIA_PROJECT=/home/picazio/projects/flux-integration/test", "XDG_SESSION_CLASS=user", "PWD=/home/picazio/projects/flux-integration", "LC_TELEPHONE=de_DE.UTF-8", "XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop", "SHELL=/bin/bash", "SSH_CONNECTION=172.30.2.132 57466 10.1.60.14 22", "LD_LIBRARY_PATH=/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/picazio/.julia/artifacts/5acd766faaca59c3c1f3cfa67e2bf6dcf1e3e883/lib:/home/picazio/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/lib:/home/picazio/.julia/artifacts/f36f3fe2fef57e1f6dc8a55991543cf71bfa6ce0/lib:/home/picazio/.julia/artifacts/110c1594febf9d894b6e4a30b3eeca0fa435f04f/lib:/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/lib:/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib", "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"  …  "_=/usr/bin/env", "OPENBLAS_DEFAULT_NUM_THREADS=1", "UCX_MEMTYPE_CACHE=no", "USER=picazio", "LC_TIME=de_DE.UTF-8", "LC_NUMERIC=de_DE.UTF-8", "UCX_ERROR_SIGNALS=SIGILL,SIGBUS,SIGFPE", "HOME=/home/picazio", "OPENBLAS_MAIN_FREE=1", "LC_MEASUREMENT=de_DE.UTF-8"]), ProcessExited(1))
+[91m[1m└ [22m[39m[90m@ Main none:7[39m

@@ -1,0 +1,58 @@
+DistributedOptimizer composition guard: DistributedOptimizer composition guard: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:48
+  Expression: Optimisers.setup(nested, ps)
+    Expected: ArgumentError
+  No exception thrown
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:48
+  Expression: Optimisers.setup(nested, ps)
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:45
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:48 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:45
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:48 [inlined]
+DistributedOptimizer composition guard: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:49
+  Expression: Optimisers.setup(nested, Flux.EnzymeCore.Duplicated(ps, gs))
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:45
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:49 [inlined]
+DistributedOptimizer composition guard: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:49
+  Expression: Optimisers.setup(nested, Flux.EnzymeCore.Duplicated(ps, gs))
+    Expected: ArgumentError
+  No exception thrown
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:45
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:49 [inlined]
+Test Summary:                          | Pass  Fail  Total  Time
+DistributedOptimizer composition guard |    4     2      6  2.4s
+Test Summary:                          | Pass  Fail  Total  Time
+DistributedOptimizer composition guard |    4     2      6  2.4s
+RNG of the outermost testset: Random.Xoshiro(0xcc301a19b20c9065, 0x72870f41863eaa80, 0x69dc6e65c11da994, 0x2e3dd1425248ea2a, 0x78c428ab4a5b46ef)
+RNG of the outermost testset: Random.Xoshiro(0xc9c5f2a52f4b89a1, 0x53448e5af61ac888, 0x3432114d3f6dd9a5, 0x54645282438bdb20, 0x174c35c827942152)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 4 passed, 2 failed, 0 errored, 0 broken.Some tests did not pass: 4 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:44
+
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl:44

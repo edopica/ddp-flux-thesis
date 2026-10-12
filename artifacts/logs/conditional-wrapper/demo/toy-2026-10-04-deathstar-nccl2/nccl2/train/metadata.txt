@@ -1,0 +1,34 @@
+mode	train
+label	toy-deathstar-nccl2
+date	2026-10-04T23:38:48.655
+host	deathstar
+julia	1.12.6
+backend	nccl
+workers	2
+dtype	Float32
+tolerances	atol=2.0e-6 rtol=1.0e-5
+package	Flux	0.16.11	/home/picazio/projects/flux-integration/src/Flux.jl
+package	Optimisers	0.4.9	/home/picazio/.julia/packages/Optimisers/tMaaf/src/Optimisers.jl
+package	Functors	0.5.3	/home/picazio/.julia/packages/Functors/PfDWx/src/Functors.jl
+package	MPI	0.20.27	/home/picazio/.julia/packages/MPI/E9X9Q/src/MPI.jl
+dataset	toy	digest=55a8204c50f7f5fe03f046cb39490e9f641f262c6723c40cc90e1108eddf6ee0	train_per_task=512	val_per_task=128
+schedule	digest=517d03e040d2b7909766708fcdd11cc05b506a29e1a379048ab4e08844c0542b	steps=16	global_batch=128	local_batch=64	workers=2
+schedule_task	a	exposure=1024	pool=512	completed_passes=2	partial=0	reused=512
+schedule_task	b	exposure=1024	pool=512	completed_passes=2	partial=0	reused=512
+extra	model_definition_version	1
+extra	on_gpu	true
+extra	optimizer	Adam eta=0.01
+extra	prepared	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-deathstar-nccl2/prepared/toy_prepared.jls
+extra	prepared_dataset_digest	55a8204c50f7f5fe03f046cb39490e9f641f262c6723c40cc90e1108eddf6ee0
+extra	routing	six-step cycle (see schedule module)
+extra	schedule_digest	517d03e040d2b7909766708fcdd11cc05b506a29e1a379048ab4e08844c0542b
+source_hash	flux-integration/src/Flux.jl	78710f9b398971609ac86824cb9ce6ab2ce3ab4672139df2142d24d44bacd0ce
+source_hash	flux-integration/src/distributed/public_api.jl	2984210b84e136da9bc9948c3b5928877f1f6c10f870f8db841ad2d4ab6136f0
+source_hash	scripts/checks/conditional_graph_demo_check.jl	f4998926f0e39f10fc179505e0e1b9650333e155a16ff9237e612b68202d5d88
+source_hash	scripts/examples/conditional_graph/checkpoint.jl	6f1d1a9522f64c30a142eca1d9c2585867b2e0379756bd264a48e33b0d689f65
+source_hash	scripts/examples/conditional_graph/common.jl	ce402447e4f0e77250a696d1a6115f63c5c01011ffbd2039d64a2d0118781c7e
+source_hash	scripts/examples/conditional_graph/dataset.jl	70d4b0ace88180b4a80cbb25a6d989dcd36376d107599ebb9e186a3897bd3b18
+source_hash	scripts/examples/conditional_graph/model.jl	07de4f0fb5bed36727a49cd89f1f21bc1c198c12515cb1aa0ac32fe9fa9b67f0
+source_hash	scripts/examples/conditional_graph/reference.jl	5fdf53bc21d881b98e9acef95afc0bae3060ec57a04902837caebd465c5fd632
+source_hash	scripts/examples/conditional_graph/schedule.jl	94fc18aa93f9cbb62d72e186c5945eeee4e186a32f6f7e32a78c09e13ba4062c
+source_hash	scripts/examples/conditional_graph_demo.jl	83c883efaca8b9ae57134a73152e4f65130d00221b62a3dd04adb589a692c7ba

@@ -1,0 +1,18 @@
+total 11
+drwxr-xr-x. 2 epicazio interactive 4096 Oct  4 18:41 .
+drwx------. 6 epicazio interactive 4096 Oct  4 18:35 ..
+-rwxr-xr-x. 1 epicazio interactive  179 Oct  4 18:41 precompile-test.sh
+-rwxr-xr-x. 1 epicazio interactive  175 Oct  4 18:41 precompile-thesis.sh
+-rwxr-xr-x. 1 epicazio interactive  341 Oct  4 18:41 smoke-mpi4.sh
+-rwxr-xr-x. 1 epicazio interactive  813 Oct  4 18:41 smoke-nccl4.sh
+-rwxr-xr-x. 1 epicazio interactive  571 Oct  4 18:41 verify-stack.sh
+71e76342f880095ad1ec724b29fdad3c  /leonardo/home/userexternal/epicazio/leonardo-setup/precompile-test.sh
+e760582c7efe82b11c1b40b60945ac02  /leonardo/home/userexternal/epicazio/leonardo-setup/precompile-thesis.sh
+3a20b46cd5581dfaa3cb0e79080b08fc  /leonardo/home/userexternal/epicazio/leonardo-setup/smoke-mpi4.sh
+3af691f8865b3fd297e81bbf1e78b28b  /leonardo/home/userexternal/epicazio/leonardo-setup/smoke-nccl4.sh
+108545606020c8a392da04a5e0d5abaa  /leonardo/home/userexternal/epicazio/leonardo-setup/verify-stack.sh
+71e76342f880095ad1ec724b29fdad3c  /tmp/opencode/leonardo-setup/precompile-test.sh
+e760582c7efe82b11c1b40b60945ac02  /tmp/opencode/leonardo-setup/precompile-thesis.sh
+3a20b46cd5581dfaa3cb0e79080b08fc  /tmp/opencode/leonardo-setup/smoke-mpi4.sh
+3af691f8865b3fd297e81bbf1e78b28b  /tmp/opencode/leonardo-setup/smoke-nccl4.sh
+108545606020c8a392da04a5e0d5abaa  /tmp/opencode/leonardo-setup/verify-stack.sh

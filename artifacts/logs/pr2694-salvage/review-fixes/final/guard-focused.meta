@@ -1,0 +1,5 @@
+cmd: julia --project=test test/distributed_launcher_guard.jl
+cwd: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+status: 12 dirty entries
+guard exit=0

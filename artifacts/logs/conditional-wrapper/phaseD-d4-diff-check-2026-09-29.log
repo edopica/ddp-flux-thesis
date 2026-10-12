@@ -1,0 +1,4 @@
+diff-check-exit=0
+ M src/distributed/public_api.jl
+ M test/ext_distributed/conditional_distributedtest.jl
+cbdd3edcb5fdeaa791968768a5d7c660e5817244

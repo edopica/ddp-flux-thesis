@@ -1,0 +1,38 @@
+[0m[1mTest Summary:                                         | [22m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m15.5s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m15.5s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTime[22m
+canonical traversal order for reversed named trainable
+canonical traversal order for reversed named trainable |  | [32m  10  [39m[32m  10  [39m[36m   10  [39m[36m   10  [39m[0m1.6s
+[0m1.6s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                    | [22m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m   11  [39m[0m0.5s
+[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39mexplicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.4s[36m   38  [39m
+[0m2.4s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters[0m[1mTime[22m
+CPU presence metadata for device-like parameters |  | [32m  16  [39m[32m  16  [39m[36m   16  [39m[36m   16  [39m[0m0.7s
+[0m0.7s
+[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[32m  51  [39m[36m   51  [39m[0m0.9s
+
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m0.9s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[ Info: Running Distributed Tests with 2 processes
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+Test Summary: | Pass  Total     Time
+Distributed   |    6      6  1m03.6s
+EXIT=0 WALL=66s LOG=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/phaseD-d3-GREEN-suite-nprocs2-2026-09-29.log

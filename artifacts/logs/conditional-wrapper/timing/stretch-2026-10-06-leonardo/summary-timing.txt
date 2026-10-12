@@ -1,0 +1,27 @@
+Phase K timing stretch driver summary
+date	2026-10-06T15:25:37.613
+root	/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo
+prepared	/leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls
+trajectory	none
+backend	nccl
+device	cuda
+ranks	4
+label	k2-timing-r2
+julia	1.12.6
+project	/leonardo/home/userexternal/epicazio/projects/flux-integration/test
+steps	120
+warmup	3
+repeats	5
+record_every	5
+check_steps	12
+phase	timing
+speedup_train	1.888594
+speedup_total	1.397335
+median_single_train_s	0.263440
+median_ddp_slowest_train_s	0.139490
+median_single_total_s	0.438678
+median_ddp_slowest_total_s	0.313939
+command	`/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia -C native -J/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo --prepared /leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls --backend nccl --device cuda --ranks 4 --steps 120 --warmup 3 --repeats 5 --record-every 5 --timeout 3600 --phase timing --label k2-timing-r2
+job	baseline	ranks=1	exit=0	elapsed=157.522	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline/console.log
+job	ddp	ranks=4	exit=0	elapsed=61.703	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp/console.log
+status	PASS

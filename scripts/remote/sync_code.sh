@@ -16,7 +16,7 @@ echo "Syncing to $REMOTE_HOST:$REMOTE_PROJECT_DIR..."
 ssh "$REMOTE_HOST" "mkdir -p $REMOTE_PROJECT_DIR"
 
 # Sync ddp_flux (the Flux fork). Root Manifest.toml is synced on purpose
-# (wiki/devlog/20260716-c6b-hpc-tests.md); test/Manifest.toml is protected so
+# (wiki/devlog/01-pr2694/20260716-c6b-hpc-tests.md); test/Manifest.toml is protected so
 # the remote-resolved test environment survives. --delete prunes files removed
 # locally but never touches excluded paths.
 echo "Syncing ddp_flux..."

@@ -1,0 +1,42 @@
+flowchart TD
+    A[Start Training] --> B{CUDA available?}
+    B -->|Yes| C1[Initialize NCCLBackend]
+    B -->|No| C2[Initialize MPIBackend]
+
+    C1 --> D[Random.seed! 42 on all ranks]
+    C2 --> D
+
+    D --> E[Create identical global dataset]
+    E --> F[Shard via DistributedDataContainer]
+    F --> G[Initialize model weights]
+    G --> H[Sync model: broadcast from rank 0]
+    H --> I[Setup DistributedOptimizer]
+    I --> J[Sync optimizer state: broadcast from rank 0]
+
+    J --> K[Epoch Loop]
+    subgraph EPOCH[For Each Epoch]
+        K --> L[Batch Loop]
+        subgraph BATCH[For Each Batch]
+            L --> M{rank == 0?}
+            M -->|use_head_a=true| N1[Forward: Head A]
+            M -->|use_head_a=false| N2[Forward: Head B]
+            N1 --> O[Compute loss]
+            N2 --> O
+            O --> P[Backward via Zygote]
+            P --> Q[resolve_unused_parameters!!]
+            Q --> R[Optimisers.update - auto allreduce]
+            R --> L
+        end
+        R --> S[Validation Loop]
+        subgraph VAL[Validation]
+            S --> T[Forward pass only, no grad]
+            T --> U[AllReduce val loss]
+            U --> V[Rank 0 prints val loss]
+        end
+        V --> W[Rank 0 prints train loss]
+        W --> K
+    end
+
+    K --> X[Training complete]
+    X --> Y[Rank 0 saves checkpoint JLD2]
+    Y --> Z[End]

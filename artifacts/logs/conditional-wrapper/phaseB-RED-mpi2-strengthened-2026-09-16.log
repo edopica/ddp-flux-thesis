@@ -1,0 +1,62 @@
+equal-shaped conditional branches do not cross-reduceequal-shaped conditional branches do not cross-reduce: : Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:65
+  Expression: ≈(model.a, expected_a, atol = 1.0e-8)
+   Evaluated: [1.1, 1.1, 1.1, 1.1] ≈ [0.9, 0.9, 0.9, 0.9] (atol=1.0e-8)
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:65
+  Expression: ≈(model.a, expected_a, atol = 1.0e-8)
+   Evaluated: [1.0, 1.0, 1.0, 1.0] ≈ [0.9, 0.9, 0.9, 0.9] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:33
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:65 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+equal-shaped conditional branches do not cross-reduce: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:66
+  Expression: ≈(model.b, expected_b, atol = 1.0e-8)
+   Evaluated: [1.0, 1.0, 1.0, 1.0] ≈ [1.2, 1.2, 1.2, 1.2] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:33
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:66 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:33
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:65 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+equal-shaped conditional branches do not cross-reduce: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:66
+  Expression: ≈(model.b, expected_b, atol = 1.0e-8)
+   Evaluated: [1.1, 1.1, 1.1, 1.1] ≈ [1.2, 1.2, 1.2, 1.2] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:33
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:66 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                         | Pass  Fail  Total   Time
+equal-shaped conditional branches do not cross-reduce |    3     2      5  16.4s
+Test Summary:                                         | Pass  Fail  Total   Time
+equal-shaped conditional branches do not cross-reduce |    3     2      5  16.4s
+RNG of the outermost testset: Random.Xoshiro(0x12078ad03b20bc24, 0x643b9f142d315d3c, 0xd89fe085b45d73a8, 0x1df0b99756d9875b, 0x4b6eddcca87ac99d)
+RNG of the outermost testset: Random.Xoshiro(0x6675c210067525b4, 0xf08177c034e23e46, 0xee5213a80bda196b, 0xa027e0cae402836d, 0x40abb1251c6ff798)
+ERROR: LoadError: ERROR: LoadError: Some tests did not pass: 3 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:30
+Some tests did not pass: 3 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:30

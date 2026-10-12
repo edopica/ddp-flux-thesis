@@ -1,0 +1,148 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.0s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.0s
+Test Summary:                                          | Pass  Test Summary:                                          | Pass  Total  TimeTotal  Time
+canonical traversal order for reversed named trainable | 
+canonical traversal order for reversed named trainable |   10    10     10     10  1.5s1.5s
+
+Test Summary:                                    | Test Summary:                                    | Pass  Total  Pass  Total  Time
+Time
+equal-valued isbits occurrences stay independent | equal-valued isbits occurrences stay independent |   11    11     11     11  0.5s
+0.5s
+explicit occurrence mapping for mixed tied/isbits parameters: explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:276
+  Expression: ≈(model.c, ref_model.c, atol = 1.0e-12)
+   Evaluated: [0.9000000002222222, 0.9000000002222222, 0.9000000002222222, 0.9000000002222222] ≈ [0.9000000002857143, 0.9000000002857143, 0.9000000002857143, 0.9000000002857143] (atol=1.0e-12)
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:276
+  Expression: ≈(model.c, ref_model.c, atol = 1.0e-12)
+   Evaluated: [0.9000000002222222, 0.9000000002222222, 0.9000000002222222, 0.9000000002222222] ≈ [0.9000000002857143, 0.9000000002857143, 0.9000000002857143, 0.9000000002857143] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:276 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:276 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:289
+  Expression: state_ok(state.tree.c.state, ref_tree.c.state)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:289 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:289
+  Expression: state_ok(state.tree.c.state, ref_tree.c.state)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:289 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:309
+  Expression: ≈(model.c, ref_model.c, atol = 1.0e-12)
+   Evaluated: [0.8006802512088362, 0.8006802512088362, 0.8006802512088362, 0.8006802512088362] ≈ [0.8027184078077062, 0.8027184078077062, 0.8027184078077062, 0.8027184078077062] (atol=1.0e-12)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237
+ [2] macro expansion
+   @explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:309
+  Expression: ≈(model.c, ref_model.c, atol = 1.0e-12) [inlined]
+ [3] macro expansion
+   @
+   Evaluated: [0.8006802512088362, 0.8006802512088362, 0.8006802512088362, 0.8006802512088362] ≈ [0.8027184078077062, 0.8027184078077062, 0.8027184078077062, 0.8027184078077062] (atol=1.0e-12)
+ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:309 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:309 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:332
+  Expression: explicit occurrence mapping for mixed tied/isbits parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:332
+  Expression: ≈(model.c, ref_model.c, atol = 1.0e-12)
+   Evaluated: [0.702473695407949, 0.702473695407949, 0.702473695407949, 0.702473695407949] ≈ [0.7061403846624245, 0.7061403846624245, 0.7061403846624245, 0.7061403846624245] (atol=1.0e-12)
+≈(model.c, ref_model.c, atol = 1.0e-12)
+   Evaluated: [0.702473695407949, 0.702473695407949, 0.702473695407949, 0.702473695407949] ≈ [0.7061403846624245, 0.7061403846624245, 0.7061403846624245, 0.7061403846624245] (atol=1.0e-12)
+
+Stacktrace:
+
+Stacktrace:
+ [1] top-level scope
+   @ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ conditional_distributedtest.jl:237
+ [2] ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:237macro expansion
+   @
+ [2] macro expansion
+ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]   @
+ [3] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:332 [inlined]
+ [3] macro expansion
+   @ [4] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:332 [inlined]
+ [4]  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+explicit occurrence mapping for mixed tied/isbits parametersexplicit occurrence mapping for mixed tied/isbits parameters: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:340
+  Expression: state_ok(state.tree.c.state, ref_tree.c.state)
+: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:340
+  Expression: state_ok(state.tree.c.state, ref_tree.c.state)
+
+Stacktrace:
+
+Stacktrace: [1] top-level scope
+
+ [1]   @ top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ conditional_distributedtest.jl:237~/Projects/ddp_flux/flux-integration/test/ext_distributed/
+ [2]conditional_distributedtest.jl:237
+ macro expansion [2] 
+   @macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:340 [inlined]
+  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:340 [inlined]
+ [4] macro expansion
+[4] macro expansion
+   @   @  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680Test.jl:680 [inlined] [inlined]
+
+Test Summary:                                                | Pass  Test Summary:                                                | Fail  Total  TimePass  
+Fail  Total  explicit occurrence mapping for mixed tied/isbits parameters |   30     5  Time
+   35  4.2s
+explicit occurrence mapping for mixed tied/isbits parameters |   30     5     35  4.2s
+RNG of the outermost testset: Random.Xoshiro(0x32e6e4005ac14588, 0x96ee7dbdf456ac9a, 0x38f3a5c19f50eeff, 0x81af49f55dd205e8, 0xa03f9fb7e5181fa9)
+RNG of the outermost testset: Random.Xoshiro(0xac133bc27ae91f88, 0xf263ca563f696f67, 0xbdcc3bc2140f08e3, 0xa19dce3cead2eff4, 0xa38c693a093529d8)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 30 passed, 5 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:236
+Some tests did not pass: 30 passed, 5 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:236

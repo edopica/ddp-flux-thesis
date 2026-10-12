@@ -1,0 +1,6 @@
+=== git diff --check @ 2026-09-28T16:34:35+02:00 ===
+exit: 0
+=== git diff --stat ===
+ src/distributed/public_api.jl                      | 20 ++++-
+ .../ext_distributed/conditional_distributedtest.jl | 92 ++++++++++++++++++++++
+ 2 files changed, 111 insertions(+), 1 deletion(-)

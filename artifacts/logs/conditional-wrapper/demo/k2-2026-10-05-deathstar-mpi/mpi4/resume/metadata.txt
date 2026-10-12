@@ -1,0 +1,46 @@
+mode	resume
+label	k2-deathstar-mpi
+date	2026-10-05T15:17:54.343
+host	deathstar
+julia	1.12.6
+backend	mpi
+workers	4
+dtype	Float32
+command	`/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` resume --checkpoint /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4/train/checkpoint-step2.jls --expected /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4/train/trajectory.jls --out /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4/resume --backend mpi --label k2-deathstar-mpi
+diagnostics	MPI Allgather configuration; Bcast reference configuration; Allgather snapshots; Bcast reference snapshot; Allgather step; checkpoint barrier
+git_head	thesis	unavailable
+git_branch	thesis	"unavailable"
+git_status	thesis	"unavailable"
+git_head	Flux	unavailable
+git_branch	Flux	"unavailable"
+git_status	Flux	"unavailable"
+tolerances	atol=2.0e-6 rtol=1.0e-5
+package	Flux	0.16.11	/home/picazio/projects/flux-integration/src/Flux.jl
+package	Optimisers	0.4.9	/home/picazio/.julia/packages/Optimisers/tMaaf/src/Optimisers.jl
+package	Functors	0.5.3	/home/picazio/.julia/packages/Functors/PfDWx/src/Functors.jl
+package	MPI	0.20.27	/home/picazio/.julia/packages/MPI/E9X9Q/src/MPI.jl
+package	Zygote	0.7.13	/home/picazio/.julia/packages/Zygote/dywlZ/src/Zygote.jl
+package	Zygote	0.7.13	/home/picazio/.julia/packages/Zygote/dywlZ/src/Zygote.jl
+dataset	mnist-fashion	digest=658e3dd341ca4e4fa9e5e4a05eacf53c0bebca626a05b17a87e917062dec2971	train_per_task=5120	val_per_task=1000
+schedule	digest=ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57	steps=120	global_batch=128	local_batch=32	workers=4
+schedule_task	a	exposure=6400	pool=5120	completed_passes=1	partial=1280	reused=1280
+schedule_task	b	exposure=8960	pool=5120	completed_passes=1	partial=3840	reused=3840
+extra	checkpoint	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4/train/checkpoint-step2.jls
+extra	checkpoint_digest	fd4008b9b18f2b28fe4c06d2f48afb74e5a183be5e036b4d73f8e6626abfcbb9
+extra	expected	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4/train/trajectory.jls
+extra	on_gpu	false
+extra	restored_rules_and_frozen	true
+extra	run_id	k2-2026-10-05-deathstar-mpi-mpi4
+extra	schedule_digest	ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57
+extra	step_next	3
+source_hash	flux-integration/src/Flux.jl	78710f9b398971609ac86824cb9ce6ab2ce3ab4672139df2142d24d44bacd0ce
+source_hash	flux-integration/src/distributed/public_api.jl	2984210b84e136da9bc9948c3b5928877f1f6c10f870f8db841ad2d4ab6136f0
+source_hash	scripts/checks/conditional_graph_demo_check.jl	2241cb6b1c37ce8ce6f61099797e55bea5b422bcbdbb1b017d4d58843a5da488
+source_hash	scripts/examples/conditional_graph/checkpoint.jl	d494550fbdabdfe43808d4ced48fa860da9c9412616f7be19f45f9d7eb287b4e
+source_hash	scripts/examples/conditional_graph/common.jl	9dfa74ee90c29ccfcac2b102315255791f5ad15d11ba6622e9ed060dd7355f99
+source_hash	scripts/examples/conditional_graph/dataset.jl	1681c7b7a5059267dd805ae3a38f9e48226f9ab5b8c3de521897e4e9da6b4488
+source_hash	scripts/examples/conditional_graph/metrics.jl	74f25667fd48bce2e4e0872793cd54cfeda57878e72e1be55fa2ad34d915b67c
+source_hash	scripts/examples/conditional_graph/model.jl	07de4f0fb5bed36727a49cd89f1f21bc1c198c12515cb1aa0ac32fe9fa9b67f0
+source_hash	scripts/examples/conditional_graph/reference.jl	71ac4a90d3770835a43a14aa310bad840b486be9c1d7d73c7d944a70503f9ff1
+source_hash	scripts/examples/conditional_graph/schedule.jl	9e7bb59e8494ac9dbf26d84643ce144f91e61c22115f22429a699cdb59ce99e3
+source_hash	scripts/examples/conditional_graph_demo.jl	b6e6725d51577e4bde4ac900cfbb7ba59ce156bff0321bd7b94d5a26eb99ce7d

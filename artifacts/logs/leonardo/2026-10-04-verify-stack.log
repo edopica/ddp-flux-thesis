@@ -1,0 +1,55 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 4 bash ~/leonardo-setup/verify-stack.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 59335604
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0050 are ready for job
+host=lrdn0050.leonardo.local CUDA_VISIBLE_DEVICES=0,1,2,3
+GPU 0: NVIDIA A100-SXM-64GB (UUID: GPU-3e17323c-3cd9-6404-be7b-1d989119082d)
+GPU 1: NVIDIA A100-SXM-64GB (UUID: GPU-4c7f32fa-e03a-baf2-75f3-f92dba894a56)
+GPU 2: NVIDIA A100-SXM-64GB (UUID: GPU-8c4adf1d-b6af-86b8-ac29-7ad2df1f4b0a)
+GPU 3: NVIDIA A100-SXM-64GB (UUID: GPU-586232c6-53dd-9181-dc5a-5f06ddb3144a)
+┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│ 
+│ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│ This can happen when installing CUDA.jl on an HPC log-in node,
+│ or in a container. In that case, you need to specify which CUDA
+│ version to use at run time by calling `CUDA.set_runtime_version!`
+│ or provisioning the preference it sets at compile time.
+│ 
+│ If you are not running in a container or on an HPC log-in node,
+│ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│                       "CUDA_Runtime_jll")
+│      Base.compilecache(pkg)
+│      # re-start Julia and re-load CUDA.jl
+│ 
+│ For more details, refer to the CUDA.jl documentation at
+│ https://cuda.juliagpu.org/stable/installation/overview/
+└ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+julia=1.12.6
+cuda_functional=false
+cudnn_functional=false
+ERROR: CUDA error (code 3, CUDA_ERROR_NOT_INITIALIZED)
+Stacktrace:
+ [1] throw_api_error(res::CUDACore.cudaError_enum)
+   @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/lib/cudadrv/libcuda.jl:30
+ [2] check(f::CUDACore.var"#cuDeviceGetCount##0#cuDeviceGetCount##1"{Base.RefValue{Int32}})
+   @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/lib/cudadrv/libcuda.jl:37
+ [3] cuDeviceGetCount(count::Base.RefValue{Int32})
+   @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/GPUToolbox/n5u72/src/ccalls.jl:33
+ [4] ndevices()
+   @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/lib/cudadrv/devices.jl:147
+ [5] top-level scope
+   @ none:6
+ [6] eval(m::Module, e::Any)
+   @ Core ./boot.jl:489
+ [7] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:283
+ [8] _start()
+   @ Base ./client.jl:550
+srun: error: lrdn0050: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 59335604
+salloc: Job allocation 59335604 has been revoked.
+verify-stack exit=1 elapsed=77s

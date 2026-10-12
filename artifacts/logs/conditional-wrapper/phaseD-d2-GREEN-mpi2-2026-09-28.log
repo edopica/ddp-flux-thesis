@@ -1,0 +1,23 @@
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 44180, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4602.2 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4594.6 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.9s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.9s
+Test Summary:                                          | Pass  Test Summary:                                          | Pass  Total  Time
+Total  Time
+canonical traversal order for reversed named trainable |   10  canonical traversal order for reversed named trainable |   10     10     10  1.5s
+1.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.6s
+Test Summary:                                                | Test Summary:                                                | Pass  Total  Pass  Total  Time
+Time
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   35     35    35  2.2s
+   35  2.2s

@@ -1,0 +1,95 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 8 bash ~/leonardo-setup/recompile-cuda-stack.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 59336197
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0006 are ready for job
+Precompiling packages...
+   3051.6 ms  ✓ OpenSSL_jll
+   1619.0 ms  ✓ Zlib_jll
+   1655.6 ms  ✓ Logging
+   1664.9 ms  ✓ NetworkOptions
+   1660.6 ms  ✓ UUIDs
+   1648.4 ms  ✓ CompilerSupportLibraries_jll
+   1645.0 ms  ✓ MozillaCACerts_jll
+   1641.7 ms  ✓ nghttp2_jll
+   1638.2 ms  ✓ Unicode
+   1603.2 ms  ✓ Base64
+    518.4 ms  ✓ p7zip_jll
+    551.9 ms  ✓ LibSSH2_jll
+    641.2 ms  ✓ Printf
+   2549.7 ms  ✓ ArgTools
+    554.2 ms  ✓ LibGit2_jll
+    550.5 ms  ✓ LibCURL_jll
+    704.3 ms  ✓ Tar
+    823.6 ms  ✓ LibCURL
+   3158.2 ms  ✓ Dates
+    545.8 ms  ✓ TOML
+   3486.3 ms  ✓ LibGit2
+   3607.1 ms  ✓ Downloads
+   9405.1 ms  ✓ StyledStrings
+   2066.4 ms  ✓ JuliaSyntaxHighlighting
+   4765.1 ms  ✓ Markdown
+  52333.1 ms  ✓ Pkg
+  26 dependencies successfully precompiled in 71 seconds
+Precompiling packages...
+    629.2 ms  ✓ Preferences
+    482.3 ms  ✓ JLLWrappers
+   1308.6 ms  ✓ CUDA_Driver_jll
+  3 dependencies successfully precompiled in 2 seconds. 4 already precompiled.
+Precompiling packages...
+    841.6 ms  ✓ LazyArtifacts
+   2056.7 ms  ✓ CUDA_Runtime_jll
+  2 dependencies successfully precompiled in 3 seconds. 29 already precompiled.
+ Downloading artifact: CUDA_Runtime
+     Failure artifact: CUDA_Runtime
+ Downloading artifact: CUDA_Runtime
+     Failure artifact: CUDA_Runtime
+ Downloading artifact: CUDA_Runtime
+     Failure artifact: CUDA_Runtime
+ Downloading artifact: CUDA_Runtime
+     Failure artifact: CUDA_Runtime
+ Downloading artifact: CUDA_Runtime
+     Failure artifact: CUDA_Runtime
+ Downloading artifact: CUDA_Runtime
+     Failure artifact: CUDA_Runtime
+  Installing 1 artifacts
+ERROR: Failed to install some artifacts:
+
+Unable to automatically download/install artifact 'CUDA_Runtime' from sources listed in '/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDA_Runtime_jll/IAakp/Artifacts.toml'.
+Sources attempted:
+- https://pkg.julialang.org/artifact/b842734cc2028a5166fdcefc7e5a24fb79ab3e79
+    Error: RequestError: Failed to connect to pkg.julialang.org port 443 after 3093 ms: Could not connect to server while requesting https://pkg.julialang.org/artifact/b842734cc2028a5166fdcefc7e5a24fb79ab3e79
+- https://github.com/JuliaBinaryWrappers/CUDA_Runtime_jll.jl/releases/download/CUDA_Runtime-v0.23.0+1/CUDA_Runtime.v0.23.0.x86_64-linux-gnu-cuda+12.9.tar.gz
+    Error: RequestError: Failed to connect to github.com port 443 after 0 ms: Could not connect to server while requesting https://github.com/JuliaBinaryWrappers/CUDA_Runtime_jll.jl/releases/download/CUDA_Runtime-v0.23.0+1/CUDA_Runtime.v0.23.0.x86_64-linux-gnu-cuda+12.9.tar.gz
+Stacktrace:
+  [1] pkgerror(msg::String)
+    @ Pkg.Types /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/Types.jl:68
+  [2] download_artifacts(ctx::Pkg.Types.Context; platform::Base.BinaryPlatforms.Platform, julia_version::VersionNumber, verbose::Bool, io::IOContext{IO}, include_lazy::Bool)
+    @ Pkg.Operations /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/Operations.jl:1075
+  [3] instantiate(ctx::Pkg.Types.Context; manifest::Nothing, update_registry::Bool, verbose::Bool, platform::Base.BinaryPlatforms.Platform, allow_build::Bool, allow_autoprecomp::Bool, workspace::Bool, julia_version_strict::Bool, kwargs::@Kwargs{io::IOContext{IO}})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:1394
+  [4] instantiate
+    @ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:1285 [inlined]
+  [5] precompile(ctx::Pkg.Types.Context, pkgs::Vector{PackageSpec}; internal_call::Bool, strict::Bool, warn_loaded::Bool, already_instantiated::Bool, timing::Bool, _from_loading::Bool, configs::Pair{Cmd, Base.CacheFlags}, workspace::Bool, kwargs::@Kwargs{io::IOContext{IO}})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:1249
+  [6] precompile(pkgs::Vector{PackageSpec}; io::IOContext{IO}, kwargs::@Kwargs{})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:169
+  [7] precompile(pkgs::Vector{PackageSpec})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:158
+  [8] precompile(; name::Nothing, uuid::Nothing, version::Nothing, url::Nothing, rev::Nothing, path::Nothing, mode::PackageMode, subdir::Nothing, kwargs::@Kwargs{})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:186
+  [9] precompile()
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:175
+ [10] top-level scope
+    @ none:1
+ [11] eval(m::Module, e::Any)
+    @ Core ./boot.jl:489
+ [12] exec_options(opts::Base.JLOptions)
+    @ Base ./client.jl:283
+ [13] _start()
+    @ Base ./client.jl:550
+srun: error: lrdn0006: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 59336197
+PIPE_EXIT=1

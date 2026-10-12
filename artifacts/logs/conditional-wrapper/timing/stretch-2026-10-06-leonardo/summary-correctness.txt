@@ -1,0 +1,27 @@
+Phase K timing stretch driver summary
+date	2026-10-06T15:21:02.869
+root	/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo
+prepared	/leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls
+trajectory	/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls
+backend	nccl
+device	cuda
+ranks	4
+label	k2-timing-correctness-r2
+julia	1.12.6
+project	/leonardo/home/userexternal/epicazio/projects/flux-integration/test
+steps	12
+warmup	2
+repeats	1
+record_every	4
+check_steps	12
+phase	correctness
+speedup_train	na
+speedup_total	na
+median_single_train_s	na
+median_ddp_slowest_train_s	na
+median_single_total_s	na
+median_ddp_slowest_total_s	na
+command	`/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia -C native -J/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo --prepared /leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls --trajectory artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls --backend nccl --device cuda --ranks 4 --steps 12 --warmup 2 --repeats 1 --record-every 4 --check-steps 12 --timeout 3600 --phase correctness --label k2-timing-correctness-r2
+job	correctness-single	ranks=1	exit=0	elapsed=164.017	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/correctness-single/console.log
+job	correctness-ddp	ranks=4	exit=0	elapsed=56.686	log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/correctness-ddp/console.log
+status	PASS

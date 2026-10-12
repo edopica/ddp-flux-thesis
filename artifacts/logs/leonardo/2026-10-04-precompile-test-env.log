@@ -1,0 +1,892 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:0 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 8 bash ~/leonardo-setup/precompile-test.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 59335481
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0332 are ready for job
+Precompiling packages...
+   2282.6 ms  ✓ GPUToolbox
+   2316.5 ms  ✓ Future
+   3069.5 ms  ✓ LLVMLoopInfo
+   2337.8 ms  ✓ LaTeXStrings
+   2333.7 ms  ✓ ExprTools
+   2330.0 ms  ✓ IteratorInterfaceExtensions
+   2322.2 ms  ✓ StatsAPI
+   2247.9 ms  ✓ Richardson
+   2226.3 ms  ✓ OpenLibm_jll
+   2213.6 ms  ✓ MistyClosures
+   2344.5 ms  ✓ AbstractFFTs
+   2300.3 ms  ✓ ANSIColoredPrinters
+   2238.8 ms  ✓ Serialization
+   2288.1 ms  ✓ FillArrays
+   2918.7 ms  ✓ CEnum
+    871.1 ms  ✓ DataValueInterfaces
+   1004.6 ms  ✓ CompilerSupportLibraries_jll
+   1011.3 ms  ✓ SuiteSparse_jll
+   1022.2 ms  ✓ Reexport
+   1006.6 ms  ✓ Unicode
+    999.8 ms  ✓ RealDot
+   1109.5 ms  ✓ StructIO
+   1316.2 ms  ✓ Statistics
+   1300.6 ms  ✓ IterTools
+   1287.0 ms  ✓ DocStringExtensions
+    856.4 ms  ✓ PtrArrays
+   1857.0 ms  ✓ Requires
+   4358.9 ms  ✓ UnsafeAtomics
+   2032.8 ms  ✓ RandomNumbers
+   1050.7 ms  ✓ Mmap
+   1037.9 ms  ✓ PCRE2_jll
+    991.6 ms  ✓ HashArrayMappedTries
+   1248.4 ms  ✓ TranscodingStreams
+   1563.0 ms  ✓ AbstractTrees
+    859.3 ms  ✓ LazilyInitializedFields
+   1007.8 ms  ✓ IfElse
+   1011.1 ms  ✓ Adapt
+   1108.6 ms  ✓ DataAPI
+   1463.5 ms  ✓ EnzymeCore
+   3300.8 ms  ✓ OrderedCollections
+   3553.0 ms  ✓ ShowCases
+   1305.7 ms  ✓ ProgressLogging
+   1091.5 ms  ✓ IOCapture
+   1180.6 ms  ✓ StaticArraysCore
+    930.8 ms  ✓ TableTraits
+    981.0 ms  ✓ Scratch
+   3389.0 ms  ✓ BSON
+   3907.0 ms  ✓ CUDA_Runtime_Discovery
+   1733.9 ms  ✓ Preferences
+   3643.6 ms  ✓ ConstructionBase
+   1086.7 ms  ✓ FillArrays → FillArraysStatisticsExt
+   2215.3 ms  ✓ LazyArtifacts
+   3312.8 ms  ✓ NaNMath
+   5390.8 ms  ✓ IrrationalConstants
+   1204.2 ms  ✓ AliasTables
+    993.4 ms  ✓ Atomix
+   3585.0 ms  ✓ BFloat16s
+   7195.9 ms  ✓ MacroTools
+   1150.5 ms  ✓ DelimitedFiles
+   2826.9 ms  ✓ PkgVersion
+   3851.5 ms  ✓ Compat
+   4069.2 ms  ✓ StructUtils
+   5383.6 ms  ✓ Crayons
+   1306.5 ms  ✓ ScopedValues
+   1410.4 ms  ✓ CodecZlib
+   5483.7 ms  ✓ InteractiveUtils
+   2145.3 ms  ✓ Random123
+   1759.3 ms  ✓ MarkdownAST
+    998.7 ms  ✓ EnzymeCore → AdaptExt
+    901.5 ms  ✓ DiffResults
+   1312.7 ms  ✓ GPUArraysCore
+   3875.9 ms  ✓ ObjectFile
+   1217.4 ms  ✓ RelocatableFolders
+   1316.2 ms  ✓ JLLWrappers
+    937.7 ms  ✓ ConstructionBase → ConstructionBaseLinearAlgebraExt
+   1446.4 ms  ✓ MPIPreferences
+   1089.8 ms  ✓ PrecompileTools
+   1055.4 ms  ✓ Compat → CompatLinearAlgebraExt
+   1292.7 ms  ✓ LogExpFunctions
+   1276.5 ms  ✓ CommonSubexpressions
+   6572.1 ms  ✓ Distributed
+   1233.1 ms  ✓ StructUtils → StructUtilsStaticArraysCoreExt
+   1007.0 ms  ✓ StructUtils → StructUtilsLazilyInitializedFieldsExt
+   3287.6 ms  ✓ RegistryInstances
+   3254.3 ms  ✓ Missings
+   3565.1 ms  ✓ ArrayInterface
+   1777.6 ms  ✓ SimpleTraits
+   1515.5 ms  ✓ Xorg_libpciaccess_jll
+   1500.2 ms  ✓ NVTX_jll
+   1402.5 ms  ✓ demumble_jll
+   1486.3 ms  ✓ LibTracyClient_jll
+   1501.3 ms  ✓ NVPTX_LLVM_Backend_jll
+   1596.4 ms  ✓ Expat_jll
+   2543.9 ms  ✓ Enzyme_jll
+   4853.4 ms  ✓ Tables
+   1301.6 ms  ✓ MicrosoftMPI_jll
+   1526.3 ms  ✓ JuliaNVTXCallbacks_jll
+   1473.3 ms  ✓ Git_LFS_jll
+   2841.4 ms  ✓ LLVMExtra_jll
+   1765.5 ms  ✓ OpenSSH_jll
+   4799.3 ms  ✓ DispatchDoctor
+   2072.6 ms  ✓ Libiconv_jll
+   1449.9 ms  ✓ OpenSpecFun_jll
+  10404.7 ms  ✓ SparseArrays
+   1122.0 ms  ✓ CommonWorldInvalidations
+   1396.4 ms  ✓ SciMLPublic
+   5254.8 ms  ✓ IRTools
+   4966.9 ms  ✓ CUDA_Driver_jll
+   2155.8 ms  ✓ MPItrampoline_jll
+   2520.2 ms  ✓ Setfield
+   2023.6 ms  ✓ ADTypes
+   2564.5 ms  ✓ OpenMPI_jll
+    978.2 ms  ✓ ArrayInterface → ArrayInterfaceGPUArraysCoreExt
+    898.6 ms  ✓ ArrayInterface → ArrayInterfaceStaticArraysCoreExt
+   1066.0 ms  ✓ ArrayInterface → ArrayInterfaceFillArraysExt
+   1225.6 ms  ✓ StructUtils → StructUtilsTablesExt
+   2175.4 ms  ✓ Malt
+   1833.2 ms  ✓ Tracy
+   1094.7 ms  ✓ DispatchDoctor → DispatchDoctorEnzymeCoreExt
+   3987.0 ms  ✓ DataStructures
+   2280.7 ms  ✓ NVTX
+   3765.8 ms  ✓ Functors
+   1654.8 ms  ✓ XML2_jll
+   2594.3 ms  ✓ MLCore
+   1678.4 ms  ✓ Git_jll
+   4541.5 ms  ✓ ChainRulesCore
+   1620.1 ms  ✓ SuiteSparse
+   9390.7 ms  ✓ Test
+   4208.9 ms  ✓ StructArrays
+   1085.2 ms  ✓ ADTypes → ADTypesEnzymeCoreExt
+   1407.3 ms  ✓ ArrayInterface → ArrayInterfaceSparseArraysExt
+   1598.6 ms  ✓ Adapt → AdaptSparseArraysExt
+   1796.2 ms  ✓ FillArrays → FillArraysSparseArraysExt
+   1754.1 ms  ✓ Statistics → SparseArraysExt
+   1166.9 ms  ✓ ADTypes → ADTypesConstructionBaseExt
+   1726.8 ms  ✓ SortingAlgorithms
+   1066.2 ms  ✓ AbstractFFTs → AbstractFFTsChainRulesCoreExt
+   1737.4 ms  ✓ Git
+   1655.6 ms  ✓ ZygoteRules
+   8205.6 ms  ✓ StringManipulation
+   2138.9 ms  ✓ Hwloc_jll
+   2280.7 ms  ✓ MLDataDevices
+   1076.2 ms  ✓ EnzymeCore → EnzymeCoreChainRulesCoreExt
+   1083.1 ms  ✓ ArrayInterface → ArrayInterfaceChainRulesCoreExt
+   1344.0 ms  ✓ ADTypes → ADTypesChainRulesCoreExt
+   1424.5 ms  ✓ DispatchDoctor → DispatchDoctorChainRulesCoreExt
+   1285.9 ms  ✓ SparseInverseSubset
+   6248.5 ms  ✓ SpecialFunctions
+   3794.5 ms  ✓ ChainRulesCore → ChainRulesCoreSparseArraysExt
+   1175.6 ms  ✓ StructArrays → StructArraysAdaptExt
+   1149.8 ms  ✓ StructArrays → StructArraysSparseArraysExt
+   1156.0 ms  ✓ StructArrays → StructArraysLinearAlgebraExt
+   3099.6 ms  ✓ LogExpFunctions → LogExpFunctionsChainRulesCoreExt
+   4569.4 ms  ✓ Optimisers
+   2948.4 ms  ✓ AbstractFFTs → AbstractFFTsTestExt
+   1327.4 ms  ✓ MLDataDevices → ChainRulesCoreExt
+   6697.0 ms  ✓ CUDA_Runtime_jll
+   1209.9 ms  ✓ MLDataDevices → FillArraysExt
+   2009.4 ms  ✓ MPICH_jll
+   1516.0 ms  ✓ MLDataDevices → SparseArraysExt
+   2498.9 ms  ✓ MPIABI_jll
+   3836.6 ms  ✓ ParallelTestRunner
+   1122.6 ms  ✓ DiffRules
+   1144.0 ms  ✓ Optimisers → OptimisersEnzymeCoreExt
+   1186.5 ms  ✓ Optimisers → OptimisersAdaptExt
+   3391.1 ms  ✓ SpecialFunctions → SpecialFunctionsChainRulesCoreExt
+   2462.8 ms  ✓ CUDNN_jll
+   2602.3 ms  ✓ NCCL_jll
+   3629.5 ms  ✓ CUDA_Compiler_jll
+  15803.8 ms  ✓ Parsers
+  16575.4 ms  ✓ StaticArrays
+   7147.2 ms  ✓ StatsBase
+   1123.6 ms  ✓ StaticArrays → StaticArraysStatisticsExt
+   1374.8 ms  ✓ ConstructionBase → ConstructionBaseStaticArraysExt
+   1406.8 ms  ✓ Adapt → AdaptStaticArraysExt
+   1614.9 ms  ✓ FillArrays → FillArraysStaticArraysExt
+   2272.4 ms  ✓ StaticArrays → StaticArraysChainRulesCoreExt
+   3253.3 ms  ✓ StructArrays → StructArraysStaticArraysExt
+  17972.0 ms  ✓ LLVM
+   9230.0 ms  ✓ ForwardDiff
+   1782.3 ms  ✓ ForwardDiff → ForwardDiffStaticArraysExt
+   2888.0 ms  ✓ LLVM → BFloat16sExt
+  18905.5 ms  ✓ Static
+   5340.4 ms  ✓ FiniteDifferences
+  12461.8 ms  ✓ ChainRules
+  11774.8 ms  ✓ MPI
+   3788.3 ms  ✓ UnsafeAtomics → UnsafeAtomicsLLVM
+    983.9 ms  ✓ ArrayInterface → ArrayInterfaceChainRulesExt
+   1028.6 ms  ✓ MLDataDevices → ChainRulesExt
+   8135.0 ms  ✓ KernelAbstractions
+   2211.6 ms  ✓ StaticArrayInterface
+    955.2 ms  ✓ StructArrays → StructArraysGPUArraysCoreExt
+    974.7 ms  ✓ KernelAbstractions → LinearAlgebraExt
+    941.8 ms  ✓ StaticArrayInterface → StaticArrayInterfaceStaticArraysExt
+   1097.9 ms  ✓ KernelAbstractions → EnzymeExt
+   1137.5 ms  ✓ KernelAbstractions → SparseArraysExt
+   2043.2 ms  ✓ ComponentArrays
+  12136.8 ms  ✓ JSON
+    794.4 ms  ✓ MLDataDevices → ComponentArraysExt
+    826.4 ms  ✓ ComponentArrays → ComponentArraysOptimisersExt
+   2007.3 ms  ✓ ComponentArrays → ComponentArraysKernelAbstractionsExt
+   5525.1 ms  ✓ NNlib
+   6269.1 ms  ✓ GPUArrays
+   1024.9 ms  ✓ NNlib → NNlibSpecialFunctionsExt
+   1036.3 ms  ✓ NNlib → NNlibForwardDiffExt
+   1149.4 ms  ✓ NNlib → NNlibEnzymeCoreExt
+   1152.5 ms  ✓ OneHotArrays
+    965.8 ms  ✓ MLDataDevices → OneHotArraysExt
+   2094.3 ms  ✓ MLDataDevices → GPUArraysSparseArraysExt
+   2370.9 ms  ✓ ComponentArrays → ComponentArraysGPUArraysExt
+   5579.1 ms  ✓ Tracker
+   2756.9 ms  ✓ ArrayInterface → ArrayInterfaceTrackerExt
+   3796.1 ms  ✓ ComponentArrays → ComponentArraysTrackerExt
+   3829.1 ms  ✓ MLDataDevices → TrackerExt
+   3110.6 ms  ✓ ArrayInterface → ArrayInterfaceGPUArraysCoreTrackerExt
+  49759.6 ms  ✓ REPL
+    933.1 ms  ✓ CodeTracking
+   3752.3 ms  ✓ MLUtils
+   6155.1 ms  ✓ Pkg → REPLExt
+   1729.0 ms  ✓ MLDataDevices → MLUtilsExt
+  32644.2 ms  ✓ Zygote
+   1594.8 ms  ✓ MLDataDevices → ZygoteExt
+   1760.3 ms  ✓ ComponentArrays → ComponentArraysZygoteExt
+   2016.9 ms  ✓ Zygote → ZygoteTrackerExt
+  10309.8 ms  ✓ Flux
+  23251.5 ms  ✓ PrettyTables
+   3366.3 ms  ✓ Flux → FluxFiniteDifferencesExt
+   3460.8 ms  ✓ Flux → FluxMPIExt
+  31172.0 ms  ✓ Documenter
+  33327.1 ms  ✓ GPUCompiler
+ 122789.4 ms  ✓ Mooncake
+   4740.0 ms  ✓ ComponentArrays → ComponentArraysMooncakeExt
+   4980.9 ms  ✓ Mooncake → MooncakeBFloat16sExt
+   6480.8 ms  ✓ Mooncake → MooncakeLogExpFunctionsExt
+   6482.6 ms  ✓ Mooncake → MooncakeSpecialFunctionsExt
+   7169.7 ms  ✓ Mooncake → MooncakeNNlibExt
+   8227.9 ms  ✓ Mooncake → MooncakeChainRulesExt
+   9310.2 ms  ✓ Mooncake → MooncakeFluxExt
+   9727.7 ms  ✓ Flux → FluxMooncakeExt
+  59923.4 ms  ✓ CUDACore
+   4541.7 ms  ✓ CUDACore → SpecialFunctionsExt
+   4757.3 ms  ✓ CUDACore → EnzymeCoreExt
+   5090.0 ms  ✓ CUDACore → ChainRulesCoreExt
+   5766.9 ms  ✓ cuFFT
+   6554.9 ms  ✓ cuRAND
+   8051.4 ms  ✓ NVML
+  10677.2 ms  ✓ CUPTI
+  12625.1 ms  ✓ cuDNN
+  13772.6 ms  ✓ cuSPARSE
+  18724.3 ms  ✓ cuBLAS
+  80345.5 ms  ✓ Enzyme
+   4009.8 ms  ✓ cuBLAS → EnzymeCoreExt
+   2701.3 ms  ✓ Enzyme → EnzymeLogExpFunctionsExt
+   3048.4 ms  ✓ Enzyme → EnzymeBFloat16sExt
+   3076.0 ms  ✓ Enzyme → EnzymeGPUArraysCoreExt
+   3261.7 ms  ✓ Enzyme → EnzymeStaticArraysExt
+   3258.0 ms  ✓ Enzyme → EnzymeChainRulesCoreExt
+   3512.0 ms  ✓ Enzyme → EnzymeOrderedCollectionsExt
+   4149.7 ms  ✓ Enzyme → EnzymeGPUArraysExt
+   4740.0 ms  ✓ Enzyme → EnzymeSpecialFunctionsExt
+   5029.1 ms  ✓ Flux → FluxEnzymeExt
+   9309.8 ms  ✓ cuSOLVER
+  17788.7 ms  ✓ CUDATools
+   4658.9 ms  ✓ CUDA
+   3749.8 ms  ✓ Flux → FluxCUDAExt
+   5415.4 ms  ✓ MPI → CUDAExt
+   5594.5 ms  ✓ ArrayInterface → ArrayInterfaceCUDAExt
+   5718.0 ms  ✓ MLDataDevices → CUDAExt
+   6087.3 ms  ✓ Atomix → AtomixCUDAExt
+   6221.3 ms  ✓ Enzyme → EnzymeCUDAExt
+   6815.7 ms  ✓ Zygote → ZygoteCUDAExt
+   6830.1 ms  ✓ NNlib → NNlibCUDAExt
+   4854.2 ms  ✓ MLDataDevices → cuDNNExt
+   5288.1 ms  ✓ NCCL
+   5580.2 ms  ✓ NNlib → NNlibCUDACUDNNExt
+  13301.7 ms  ✓ Mooncake → MooncakeCUDAExt
+   6595.0 ms  ✓ NNlib → NNlibMooncakeCUDAExt
+   2887.8 ms  ✓ NNlib → NNlibEnzymeCoreCUDNNExt
+   6665.6 ms  ✓ Flux → FluxMPINCCLExt
+  19538.6 ms  ✓ Mooncake → MooncakecuDNNExt
+  280 dependencies successfully precompiled in 216 seconds. 24 already precompiled.
+  30 dependencies had output during precompilation:
+┌ CUDA
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Flux → FluxCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Mooncake → MooncakecuDNNExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuBLAS
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ NNlib → NNlibCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Mooncake → MooncakeCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ CUDACore → SpecialFunctionsExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ NVML
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuRAND
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Enzyme → EnzymeCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ NNlib → NNlibEnzymeCoreCUDNNExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuSOLVER
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ MLDataDevices → CUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuSPARSE
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ MPI → CUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ CUDACore → EnzymeCoreExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Atomix → AtomixCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ NNlib → NNlibMooncakeCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuDNN
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ CUDATools
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ CUPTI
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuBLAS → EnzymeCoreExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ CUDACore → ChainRulesCoreExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ ArrayInterface → ArrayInterfaceCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Flux → FluxMPINCCLExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ MLDataDevices → cuDNNExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ NCCL
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ cuFFT
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ Zygote → ZygoteCUDAExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+┌ NNlib → NNlibCUDACUDNNExt
+│  ┌ Error: CUDA.jl could not find an appropriate CUDA runtime to use.
+│  │ 
+│  │ CUDA.jl's JLLs were precompiled without an NVIDIA driver present.
+│  │ This can happen when installing CUDA.jl on an HPC log-in node,
+│  │ or in a container. In that case, you need to specify which CUDA
+│  │ version to use at run time by calling `CUDA.set_runtime_version!`
+│  │ or provisioning the preference it sets at compile time.
+│  │ 
+│  │ If you are not running in a container or on an HPC log-in node,
+│  │ try re-compiling the CUDA runtime JLL and re-loading CUDA.jl:
+│  │      pkg = Base.PkgId(Base.UUID("76a88914-d11a-5bdc-97e0-2f5a05c973a2"),
+│  │                       "CUDA_Runtime_jll")
+│  │      Base.compilecache(pkg)
+│  │      # re-start Julia and re-load CUDA.jl
+│  │ 
+│  │ For more details, refer to the CUDA.jl documentation at
+│  │ https://cuda.juliagpu.org/stable/installation/overview/
+│  └ @ CUDACore /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDACore/GtzaO/src/initialization.jl:136
+└  
+salloc: Relinquishing job allocation 59335481
+precompile-test-env exit=0 elapsed=270s

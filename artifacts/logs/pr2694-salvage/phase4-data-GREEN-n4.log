@@ -1,0 +1,9 @@
+Test Summary:                           | Test Summary:                           | Test Summary:                           | Test Summary:                           | Pass  Total  Time
+DistributedDataContainer cyclic padding |   45     45  1.1s
+Pass  Total  Time
+DistributedDataContainer cyclic padding |   45     45  1.2s
+Pass  Total  Time
+DistributedDataContainer cyclic padding |   45     45  1.3s
+Pass  Total  Time
+DistributedDataContainer cyclic padding |   45     45  1.1s
+EXIT=0

@@ -1,0 +1,14 @@
+Phase K toy campaign summary
+date	2026-10-05T15:14:14.320
+root	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-regression-2026-10-05-deathstar-mpi2
+backend	mpi
+ranks	[2]
+label	k1-regression
+julia	1.12.6
+project	/home/picazio/projects/flux-integration/test
+steps	16
+command	`/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/demo/k1-regression-2026-10-05-deathstar-mpi2 --dataset toy --backend mpi --ranks 2 --steps 16 --timeout 1800 --label k1-regression
+job	prepared	ranks=1	exit=0	elapsed=11.564	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-regression-2026-10-05-deathstar-mpi2/prepared/console.log
+job	mpi2-train	ranks=2	exit=0	elapsed=49.17	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-regression-2026-10-05-deathstar-mpi2/mpi2-train/console.log
+job	mpi2-resume	ranks=2	exit=0	elapsed=47.665	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k1-regression-2026-10-05-deathstar-mpi2/mpi2-resume/console.log
+status	PASS

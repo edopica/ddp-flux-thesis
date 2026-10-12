@@ -1,0 +1,18 @@
+== git diff --check ==
+exit=0
+
+== scope searches (working tree, excluding tests) ==
+-- resolve_unused_parameters --
+none
+-- DistributedOptimizerState --
+none
+-- distributed.md guide --
+absent
+-- NCCL validation claim --
+none
+-- child ARGS access --
+none
+-- stale MPItrampoline --
+none
+-- old checker name (should be none) --
+none

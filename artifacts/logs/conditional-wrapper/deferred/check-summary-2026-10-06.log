@@ -1,0 +1,122 @@
+conditional-graph deferred-behavior check
+probe       : /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_deferred_probe.jl
+project     : /home/kurapica/Projects/ddp_flux/flux-integration/test
+output dir  : /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/deferred
+timeouts    : startup=420.0 s, hang=60.0 s
+
+=== mode: control ===
+    timeout=none exitcode=0 elapsed=21.8s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  no timeout
+    PASS  exit 0 (got 0)
+    PASS  rank 0 result ok
+    PASS  rank 0 matches native Adam shadow
+    PASS  rank 1 result ok
+    PASS  rank 1 matches native Adam shadow
+    PASS  rank 0: 12 collectives begun (got 12)
+    PASS  rank 0: 12 collectives completed (got 12)
+    PASS  rank 1: 12 collectives begun (got 12)
+    PASS  rank 1: 12 collectives completed (got 12)
+
+=== mode: nan-loss-all ===
+    timeout=none exitcode=0 elapsed=23.0s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  no timeout
+    PASS  exit 0 (got 0)
+    PASS  rank 0 stopped with DomainError at step 3
+    PASS  rank 0 state matches the two-step shadow after the stop
+    PASS  rank 0 result ok
+    PASS  rank 1 stopped with DomainError at step 3
+    PASS  rank 1 state matches the two-step shadow after the stop
+    PASS  rank 1 result ok
+    PASS  rank 0: 6 collectives begun (got 6)
+    PASS  rank 0: 6 collectives completed (got 6)
+    PASS  rank 1: 6 collectives begun (got 6)
+    PASS  rank 1: 6 collectives completed (got 6)
+
+=== mode: grad-nonfinite ===
+    timeout=none exitcode=0 elapsed=18.9s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  no timeout
+    PASS  exit 0 (got 0)
+    PASS  rank 0 finite loss and finite w gradient
+    PASS  rank 1 finite loss and NaN w gradient
+    PASS  rank 0 updated without exception; w and its Adam moments became non-finite, v stayed finite
+    PASS  rank 0 result ok
+    PASS  rank 1 updated without exception; w and its Adam moments became non-finite, v stayed finite
+    PASS  rank 1 result ok
+    PASS  rank 0: 3 collectives begun (got 3)
+    PASS  rank 0: 3 collectives completed (got 3)
+    PASS  rank 1: 3 collectives begun (got 3)
+    PASS  rank 1: 3 collectives completed (got 3)
+
+=== mode: config-eta ===
+    timeout=none exitcode=0 elapsed=20.9s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  no timeout
+    PASS  exit 0 (got 0)
+    PASS  rank 1 adjusted its learning rate locally
+    PASS  rank 0 matches its own eta=0.05 reference (maxdiff=0.0)
+    PASS  replicas diverged silently (cross delta=0.14991810934487604)
+    PASS  rank 0 result ok
+    PASS  rank 1 result ok
+    PASS  rank 0: 12 collectives begun (got 12)
+    PASS  rank 0: 12 collectives completed (got 12)
+    PASS  rank 1: 12 collectives begun (got 12)
+    PASS  rank 1: 12 collectives completed (got 12)
+
+=== mode: config-frozen ===
+    timeout=none exitcode=0 elapsed=19.3s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  no timeout
+    PASS  exit 0 (got 0)
+    PASS  rank 1 froze its wrapper state locally
+    PASS  replicas diverged silently (cross delta=0.20012763731269412)
+    PASS  rank 1 parameters stayed frozen
+    PASS  rank 0 result ok
+    PASS  rank 1 result ok
+    PASS  rank 0: 12 collectives begun (got 12)
+    PASS  rank 0: 12 collectives completed (got 12)
+    PASS  rank 1: 12 collectives begun (got 12)
+    PASS  rank 1: 12 collectives completed (got 12)
+
+=== mode: nan-loss-hang ===
+    timeout=update exitcode=15 elapsed=79.2s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  watchdog fired after startup (got update)
+    PASS  rank 1 stopped with DomainError at step 3
+    PASS  rank 1 held after the DomainError
+    PASS  rank 0 never stopped
+    PASS  rank 0: 7 collectives begun (got 7)
+    PASS  rank 0: 6 collectives completed (got 6)
+    PASS  rank 0: last begun collective is number 7 (presence)
+    PASS  rank 1: 6 collectives begun (got 6)
+    PASS  rank 1: 6 collectives completed (got 6)
+
+=== mode: early-stop ===
+    timeout=update exitcode=15 elapsed=78.4s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  watchdog fired after startup (got update)
+    PASS  rank 1 stopped its loop at step 4
+    PASS  rank 1 held after the early stop
+    PASS  rank 0: 10 collectives begun (got 10)
+    PASS  rank 0: 9 collectives completed (got 9)
+    PASS  rank 0: last begun collective is number 10 (presence)
+    PASS  rank 1: 9 collectives begun (got 9)
+    PASS  rank 1: 9 collectives completed (got 9)
+
+=== mode: step-desync ===
+    timeout=update exitcode=15 elapsed=79.4s
+    julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+    PASS  watchdog fired after startup (got update)
+    PASS  rank 1 loss was NaN at step 3
+    PASS  rank 1 held after its loop
+    PASS  rank 1 trajectory differs from the correct 5-step reference (delta=0.04994879241581662)
+    PASS  rank 1 trajectory matches the shifted-pairing reference (delta=0.0)
+    PASS  rank 0: 13 collectives begun (got 13)
+    PASS  rank 0: 12 collectives completed (got 12)
+    PASS  rank 0: last begun collective is number 13 (presence)
+    PASS  rank 1: 12 collectives begun (got 12)
+    PASS  rank 1: 12 collectives completed (got 12)
+
+failures: 0

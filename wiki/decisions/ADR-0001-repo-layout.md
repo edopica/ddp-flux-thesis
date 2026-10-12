@@ -20,3 +20,9 @@ Use two sibling repositories:
 - Thesis notes do not pollute the Flux repository.
 - Carlo can inspect progress from the README dashboard.
 - Agents can recover context from Markdown files instead of relying on hidden chat memory.
+
+## Update 2026-10-07
+
+The local fork directory is now `ddp_flux/` (renamed from `Flux.jl/`), with the
+`flux-integration/` and `flux-pr2694-salvage/` worktrees beside this repository.
+The two-repository decision is unchanged.

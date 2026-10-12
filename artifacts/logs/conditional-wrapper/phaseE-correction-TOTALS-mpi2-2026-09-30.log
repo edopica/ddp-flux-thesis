@@ -1,0 +1,18 @@
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: Layer with Float32 parameters got Float64 input.
+│   The input will be converted, but any earlier layers may be very slow.
+│   layer = Dense(2 => 2)       # 6 parameters
+│   summary(x) = "2×3 Matrix{Float64}"
+└ @ Flux ~/Projects/ddp_flux/flux-integration/src/layers/stateless.jl:18
+┌ Warning: Layer with Float32 parameters got Float64 input.
+│   The input will be converted, but any earlier layers may be very slow.
+│   layer = Dense(2 => 2)       # 6 parameters
+│   summary(x) = "2×3 Matrix{Float64}"
+└ @ Flux ~/Projects/ddp_flux/flux-integration/src/layers/stateless.jl:18
+Test Summary:    | Test Summary:    | Pass  Pass  Total  Total     Time
+   Time
+conditional file |  367  conditional file |  367    367    367  1m22.0s
+1m22.0s

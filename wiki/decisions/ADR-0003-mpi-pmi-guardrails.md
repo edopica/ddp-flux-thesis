@@ -22,3 +22,12 @@ Furthermore, we need to ensure that our current architectural choices for Distri
 - **Reproducibility:** This strategy preserves out-of-the-box reproducibility for local development and CPU smoke tests without requiring users to compile OpenMPI or MPICH.
 - **Safety:** The guardrails provide clear, actionable Julia-level errors instead of uncatchable native C aborts when environment mismatches occur.
 - **Future-proofing:** Because FSDP and DDP algorithms fundamentally rely on standard MPI collectives rather than dynamic process management features specific to PMIx, our code remains natively compatible with massive scale. When the time comes to scale to 1000+ GPUs, the transition to PMIx will be a configuration change (`JULIA_MPI_BINARY=system`), not a code rewrite, leaving the door fully open for the Julia exascale community.
+
+## Update 2026-10-07
+
+The shipped implementation is narrower than decision 1 describes. During the
+PR #2694 salvage (2026-09) the check became
+`DistributedUtils.check_launcher_compat`: it throws only for
+`library == "MPICH"` with `PMIX_RANK` or `OMPI_COMM_WORLD_RANK` present, unless
+`force=true` or MPI is already initialized. There is no warning path for other
+environments. PMI2 remains the tested configuration (`srun --mpi=pmi2`).

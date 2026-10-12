@@ -1,0 +1,5 @@
+Test Summary:                          | Test Summary:                          | Pass  Pass  Total  Total  Time
+Time
+DistributedOptimizer composition guard |    6  DistributedOptimizer composition guard |    6      6      6  0.3s
+0.3s
+EXIT=0 WALL=12s LOG=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/phaseD-d3-GREEN-optimizer-mpi2-2026-09-29.log

@@ -1,0 +1,46 @@
+Precompiling packages...
+Precompiling packages...
+    Flux Being precompiled by another process (pid: 135632, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  11300.8 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+  11371.1 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 135632, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4576.9 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4280.6 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.0s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.0s
+Test Summary:                                          | Pass  Total  Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainableTime
+canonical traversal order for reversed named trainable |   10   |   10     10     10  1.5s1.5s
+
+Test Summary:                                    | Pass  Total  Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent | Time
+  11  equal-valued isbits occurrences stay independent |    11  0.5s
+  11     11  0.6s
+Test Summary:                                                | Pass  Test Summary:                                                | Pass  Total  Time
+Total  Time
+explicit occurrence mapping for mixed tied/isbits parameters |   38  explicit occurrence mapping for mixed tied/isbits parameters |   38     38  2.5s   38  2.5s
+
+Test Summary:                                    | Pass  Total  TimeTest Summary:                                    | Pass  Total  Time
+CPU presence metadata for device-like parameters | 
+CPU presence metadata for device-like parameters |   16     16  0.7s  16     16  0.7s
+
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Pass  Total  Test Summary:                                         | Pass  Total  Time
+Time
+legacy tuple trainable selection matches native setup | legacy tuple trainable selection matches native setup |   20    20     20     20  1.6s
+1.6s
+
+real	0m43.535s
+user	1m9.131s
+sys	0m5.305s

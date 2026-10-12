@@ -1,0 +1,12 @@
+Executing on deathstar:  cd ~/projects/flux-integration && /home/picazio/.juliaup/bin/julia --startup-file=no --project=test .phaseJ_ext_probe.jl
+cuDNN loaded after using Flux: false
+cuDNNExt loaded after using Flux: false
+functional(CUDADevice) after using Flux: false
+cuDNN loaded after import CUDA/NCCL: false
+FluxCUDAExt loaded: true
+cuDNNExt loaded after import CUDA/NCCL: false
+functional(CUDADevice) after import CUDA/NCCL: false
+CUDA.functional(): true
+cuDNNExt loaded after explicit import cuDNN: true
+functional(CUDADevice) after explicit import cuDNN: true
+cuDNN.functional(): true

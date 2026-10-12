@@ -1,0 +1,68 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.5s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.5s
+Test Summary:                                          | Test Summary:                                          | Pass  Pass  Total  Total  Time
+Time
+canonical traversal order for reversed named trainablecanonical traversal order for reversed named trainable |  |   10    10     10     10  1.5s
+1.5s
+Test Summary:                                    | Pass  Test Summary:                                    | Pass  Total  Total  TimeTime
+
+equal-valued isbits occurrences stay independent | equal-valued isbits occurrences stay independent |   11     11  0.5s  11  
+   11  0.5s
+Test Summary:                                                | Test Summary:                                                | Pass  Pass  Total  Total  TimeTime
+
+explicit occurrence mapping for mixed tied/isbits parametersexplicit occurrence mapping for mixed tied/isbits parameters |  |   38    38     38  2.8s   38  2.8s
+
+Test Summary:                                    | Pass  Test Summary:                                    | Pass  Total  Total  Time
+Time
+CPU presence metadata for device-like parameters | CPU presence metadata for device-like parameters |   16    16     16  0.7s   16  
+0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Pass  Total  Test Summary:                                         | Pass  Total  Time
+Time
+legacy tuple trainable selection matches native setuplegacy tuple trainable selection matches native setup |   20   |   20     20     20  1.6s
+1.6s
+Test Summary:                                            | Pass  Total  Test Summary:                                            | Pass  Total  Time
+Time
+legacy tuple trainable selection persists across updates |   30  legacy tuple trainable selection persists across updates |   30     30     30  1.3s1.3s
+
+Test Summary:                              | Pass  Test Summary:                              | Pass  Total  Total   Time Time
+
+BatchNorm running statistics stay excludedBatchNorm running statistics stay excluded |  |    6     6      6      6  16.6s
+16.6s
+Test Summary:                                        | Test Summary:                                        | Pass  Total  Pass  Total  Time
+Time
+transpose and adjoint gradients pair in parent space | transpose and adjoint gradients pair in parent space |   16     16    16  4.4s
+   16  4.4s
+Test Summary:                                        | Test Summary:                                        | Pass  Pass  Total  Total  Time
+Time
+caller gradients stay unchanged on both update paths | caller gradients stay unchanged on both update paths |   11     11  0.6s  11  
+   11  0.6s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.4s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.4s
+Test Summary:                                          | Pass  Test Summary:                                          | Pass  Total  Time
+update returns a fresh wrapper without mutating inputs |   15  Total  Time
+update returns a fresh wrapper without mutating inputs   15  0.4s
+ |   15     15  0.4s
+Test Summary:                                                 | Pass  Total  Test Summary:                                                 | Pass  Total  Time
+globally absent parameters keep Adam state after active stepsTime
+globally absent parameters keep Adam state after active steps |   16     16  3.3s |   16     16  3.3s
+
+Test Summary:                                 | Pass  Test Summary:                                 | Pass  Total  Total  Time
+Time
+empty trainable model performs no collectives | empty trainable model performs no collectives |    9     9      9      9  0.3s
+0.3s
+Test Summary:                                           | Test Summary:                                           | Pass  Pass  Total  Time
+Total  Time
+array containers keep their shape during reconstruction | array containers keep their shape during reconstruction |   20    20     20     20  1.3s1.3s
+
+
+real	0m59.032s
+user	1m53.708s
+sys	0m5.171s

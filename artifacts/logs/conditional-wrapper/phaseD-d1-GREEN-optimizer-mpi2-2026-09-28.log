@@ -1,0 +1,6 @@
+=== command: FLUX_TEST_DISTRIBUTED_BACKEND=mpi <mpiexec> -n 2 julia --startup-file=no --project=test test/ext_distributed/optimizer_distributedtest.jl ===
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.3s
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.3s
+=== exit code: 0 wall: 11s ===

@@ -1,0 +1,26 @@
+phase_k_timing_plot_metadata
+generated_at_utc	2026-10-06T13:26:11+00:00
+python	3.13.13
+matplotlib	3.11.2
+numpy	2.5.3
+label	offline
+command	scripts/plots/plot_phase_k_timing.py --baseline artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline --ddp artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp --out reports/figures/phase-k-timing --title 'Phase K timing corrections: 1xA100 vs 4xA100 NCCL (Leonardo, 2026-10-06)'
+reproducible_command	uv run --offline --with matplotlib --with numpy python3 scripts/plots/plot_phase_k_timing.py --baseline artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline --ddp artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp --out reports/figures/phase-k-timing --title 'Phase K timing corrections: 1xA100 vs 4xA100 NCCL (Leonardo, 2026-10-06)'
+input_dir	baseline	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline
+input	baseline	records	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline/records.tsv	4b6ef679ef9f5bc80b6d9eb0729485569d7e4cf8e82a2a9941c83cb7338edd28	rows=120
+input	baseline	steps	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline/steps.tsv	4f0d38e9c2bfbc519200aa6de35084239fb18db2529446401f9e9395347e8892	rows=600
+input	baseline	repeats	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline/repeats.tsv	bb0570fdfced690d695a32e1dcdb9c8a4c81cdbaa46f0bf227f9d31668ac0866	rows=5
+input	baseline	metadata	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline/metadata.txt	132337bddf1d69bd4f777161436ad466f947a6f7cca1e9fd83caa808805d8199
+input_dir	ddp	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp
+input	ddp	records	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp/records.tsv	da5d88537b71d04b0881faec6a9eb7364dcef4a0396c8ff56a19ab98910f4f43	rows=120
+input	ddp	steps	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp/steps.tsv	9b869a38cf15282f90884615b7ca9d096d272981030503d58eb0195e351f7ebc	rows=600
+input	ddp	repeats	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp/repeats.tsv	93d416d3c9138f13f0fe054a056a7dc50293668d4c3420e8917c643663b16dc8	rows=5
+input	ddp	metadata	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp/metadata.txt	67d455adc7bb890d123c977650e20f92f0d4650cb08852090f042d9e6f8450fa
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-updates-vs-elapsed.png	3dbe398b77241cbe232ea3606cd9b2211ee553afd0d8bd53e4e02eaf16cddf8e	bytes=150573
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-samples-vs-elapsed.png	8013e0d51c8083ed0f2e529b502b57e5fa10dd99c77d8b3e0714afa14040fb57	bytes=158708
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-val-loss-a.png	f0b800cd1856e1d83b318f5a7096474ed8d26c1ca8f175b47099458d6f6f3622	bytes=150772
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-val-acc-a.png	5addb92de46d9d51d834e26333364cc34502ea3e885246f97a423164deb04dba	bytes=141020
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-val-loss-b.png	db83863375a29457a7df7305cf4aad454f2de45df6f9b50e5f0df54cc6db93e2	bytes=146279
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-val-acc-b.png	1f426ea97329eaab7488f334d3a3e8b4a70342495f9398dc039a28fe1712bd0d	bytes=140320
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-repeat-times.png	71ea53155708b3347ea5caf9e6de3dfff7a37bb3b487875556c5eac77159a694	bytes=101993
+output	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/reports/figures/phase-k-timing/timing-speedup.png	c141dbdfb523bf8322e547878216aa989c5662b8d45d21580f9fd2d2ff2971f1	bytes=105468

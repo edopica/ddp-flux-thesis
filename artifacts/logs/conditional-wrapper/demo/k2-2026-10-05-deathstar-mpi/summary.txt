@@ -1,0 +1,16 @@
+Phase K mnist-fashion campaign summary
+date	2026-10-05T15:18:30.023
+root	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi
+backend	mpi
+ranks	[2, 4]
+label	k2-deathstar-mpi
+julia	1.12.6
+project	/home/picazio/projects/flux-integration/test
+steps	120
+command	`/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi --dataset mnist-fashion --backend mpi --ranks 2,4 --steps 120 --cache /home/picazio/k2-cache-2026-10-05 --timeout 5400 --label k2-deathstar-mpi
+job	prepared	ranks=1	exit=0	elapsed=13.567	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/prepared/console.log
+job	mpi2-train	ranks=2	exit=0	elapsed=53.684	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi2-train/console.log
+job	mpi2-resume	ranks=2	exit=0	elapsed=51.176	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi2-resume/console.log
+job	mpi4-train	ranks=4	exit=0	elapsed=56.198	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4-train/console.log
+job	mpi4-resume	ranks=4	exit=0	elapsed=56.699	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/mpi4-resume/console.log
+status	PASS

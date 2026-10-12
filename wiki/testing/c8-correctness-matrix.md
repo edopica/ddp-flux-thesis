@@ -3,6 +3,13 @@
 **Last verified against implementation: 2026-07-30**
 _Sync: Replaced `reduce_distributedtest.jl` with `common_distributedtest.jl` in collective rows; added Comm:Dtype coverage matrix row; filled Source Guard/CI columns for implemented tests (N=1 sharding, Empty dataset, Uneven batches, Nested Models); marked unimplemented rows as Planned._
 
+_Scope: this matrix tracks the frozen `ddp_flux` master. The conditional rows
+(`unused_parameters_distributedtest.jl`) do not exist on the active branches:
+the wrapper work removed the PR-era resolver and helper
+([ADR-0007](../decisions/ADR-0007-defer-unused-parameter-support.md)); the
+conditional tests now live in the
+[conditional-graph devlogs](../devlog/02-conditional-graph/)._
+
 This document maps each invariant in Flux Distributed Data Parallel (DDP) training to its test file, expected behavior, and the historical regression it prevents.
 
 ## Public Behavior Decisions (C8.0)

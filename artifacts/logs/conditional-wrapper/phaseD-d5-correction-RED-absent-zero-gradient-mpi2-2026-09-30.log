@@ -1,0 +1,132 @@
+Precompiling packages...
+Precompiling packages...
+    Flux Being precompiled by another process (pid: 175564, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  11543.1 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+  11629.7 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 175564, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4529.6 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4217.0 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.0s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.1s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.5s
+Test Summary:                                          | Pass  Total  Time
+canonical traversal order for reversed named trainable |   10     10  1.5s
+Test Summary:                                    | Pass  Total  Test Summary:                                    | Pass  TimeTotal  Time
+
+equal-valued isbits occurrences stay independent | equal-valued isbits occurrences stay independent |   11     11    11     11  0.6s
+0.6s
+Test Summary:                                                | Pass  Total  Test Summary:                                                | Pass  Total  Time
+Time
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38     38  2.5s
+2.5s
+Test Summary:                                    | Pass  Test Summary:                                    | Pass  Total  Total  TimeTime
+CPU presence metadata for device-like parameters
+CPU presence metadata for device-like parameters |  |   16    16     16  0.7s   16  
+0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Test Summary:                                         | Pass  Total  Pass  TimeTotal  Time
+
+legacy tuple trainable selection matches native setup | legacy tuple trainable selection matches native setup |   20    20     20  1.6s
+   20  1.6s
+Test Summary:                                            | Test Summary:                                            | Pass  Pass  Total  Total  TimeTime
+
+legacy tuple trainable selection persists across updates | legacy tuple trainable selection persists across updates |   30    30     30     30  1.2s
+1.2s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  16.4s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  16.4s
+Test Summary:                                        | Pass  Total  Test Summary:                                        | Pass  Total  Time
+transpose and adjoint gradients pair in parent space | Time
+transpose and adjoint gradients pair in parent space |   16     16  4.4s  16     16  4.4s
+
+Test Summary:                                        | Test Summary:                                        | Pass  Total  Pass  Total  Time
+caller gradients stay unchanged on both update pathsTime
+caller gradients stay unchanged on both update paths |  |   11    11     11     11  0.7s
+0.7s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.3s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.3s
+Test Summary:                                          | Pass  Total  Time
+update returns a fresh wrapper without mutating inputs |   15     15  0.4s
+Test Summary:                                          | Pass  Total  Time
+update returns a fresh wrapper without mutating inputs |   15     15  0.4s
+globally absent parameters keep Adam state after active steps: globally absent parameters keep Adam state after active steps: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:943
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:943
+  Expression: model.absent == snap_value  Expression: model.absent == snap_value
+   Evaluated: [1.0039413571883287, 1.0039413571883287, 1.0039413571883287] == [1.0019999869276413, 1.0019999869276413, 1.0019999869276413]
+   Evaluated: [1.0039413571883287, 1.0039413571883287, 1.0039413571883287] == [1.0019999869276413, 1.0019999869276413, 1.0019999869276413]
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:902
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:943 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:902
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:943 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+globally absent parameters keep Adam state after active steps: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944
+  Expression: state.tree.absent.state == snap_state
+   Evaluated: ([-0.5538942000003644, -0.5538942000003644, -0.5538942000003644], [0.031872195860083885, 0.031872195860083885, 0.031872195860083885], (0.5314410000000002, 0.994014980014994)) == ([-0.7598000000004999, -0.7598000000004999, -0.7598000000004999], [0.03196800400004001, 0.03196800400004001, 0.03196800400004001], (0.7290000000000001, 0.997002999))
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:902
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+globally absent parameters keep Adam state after active steps: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944
+  Expression: state.tree.absent.state == snap_state
+   Evaluated: ([-0.5538942000003644, -0.5538942000003644, -0.5538942000003644], [0.031872195860083885, 0.031872195860083885, 0.031872195860083885], (0.5314410000000002, 0.994014980014994)) == ([-0.7598000000004999, -0.7598000000004999, -0.7598000000004999], [0.03196800400004001, 0.03196800400004001, 0.03196800400004001], (0.7290000000000001, 0.997002999))
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:902
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:944 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                                 | Pass  Fail  Total  Time
+globally absent parameters keep Adam state after active steps |   14     2     16  5.0s
+Test Summary:                                                 | Pass  Fail  Total  Time
+globally absent parameters keep Adam state after active steps |   14     2     16  5.1s
+RNG of the outermost testset: Random.Xoshiro(0x9fd93d2b30da2ac2, 0x9da96cb81da7937b, 0xbe4454999251d1fb, 0x4c5e31949b315fe1, 0x46be8563a3c39e41)
+RNG of the outermost testset: Random.Xoshiro(0xc80b597c9c0e8631, 0x44017e3623cd86b5, 0xd1dede403534fa97, 0x5dca66aeaa7defba, 0x3df2fa26baf18d59)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 14 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:901
+Some tests did not pass: 14 passed, 2 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:901
+
+real	1m14.336s
+user	2m8.927s
+sys	0m6.944s

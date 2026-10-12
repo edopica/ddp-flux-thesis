@@ -1,0 +1,14 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 8 --chdir=$HOME/projects/ddp-flux-thesis julia --startup-file=no --project=$HOME/projects/flux-integration/test scripts/checks/conditional_graph_timing_check.jl --root artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo --prepared /leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls --backend nccl --device cuda --ranks 4 --steps 120 --warmup 3 --repeats 5 --record-every 5 --timeout 3600 --phase ddp --label k2-timing-ddp
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 59435161
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn1847 are ready for job
+srun: Job step's --cpus-per-task value exceeds that of job (8 > 4). Job step may never run.
+[PASS] ddp                ranks=4 exit=0 elapsed=176.6s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/ddp/console.log
+Test Summary:                      | Pass  Total     Time
+Phase K timing stretch (nccl, ddp) |    1      1  2m57.2s
+
+TIMING_STRETCH_SUMMARY backend=nccl ranks=4 speedup=na status=PASS
+salloc: Relinquishing job allocation 59435161

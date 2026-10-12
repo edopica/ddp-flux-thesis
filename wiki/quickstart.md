@@ -1,14 +1,22 @@
 # Wiki Quickstart
 
+Phase K complete on deathstar and Leonardo (2026-10-05): the K2 task-conditioned MNIST/Fashion-MNIST presentation passes CPU/MPI at 2 and 4 ranks (13/13 driver cells) and CUDA/NCCL at 2 ranks (6/6) on deathstar, plus the K2 smoke (8/8) and K1 toy regression (8/8).
+The Leonardo 4-rank NCCL cells now PASS: K1 toy root `k1-2026-10-05-leonardo-nccl4` (8/8) and K2 root `k2-2026-10-05-leonardo-nccl4` (6/6), all driver exit 0 with `PHASE_K_SUMMARY ... backend=nccl ranks=4 PASS`.
+Per-step comparison against an independent native reference, ordered collective traces, fresh-process continuation, and the DDP/reference learning-curve and learning-rate figures all pass (41 PNGs plus `figures-metadata.txt` in `reports/figures/phase-k-k2/`); one checkpoint-digest defect was found, fixed, and pinned by regression. No Flux source changed.
+The optional live timing stretch is complete and corrected (2026-10-06): correctness preflight PASS and 5/5 timed repeats each mode for 1×A100 vs 4×A100 NCCL on Leonardo; ratio-of-medians training-only speedup 1.888594 and total speedup 1.397335; the historical instrumented 1.480203 is superseded ([report](../reports/conditional-graph-phase-k-timing-stretch.md), [devlog](devlog/02-conditional-graph/2026-10-06-timing-corrections.md)).
+The deferred-behavior report is complete ([audit 002](audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md)).
+Next action: implement `notebook/conditional_graph_benchmark.ipynb` from the corrected timing artifacts. See [current.md](context/current.md), the [K1/K2 Leonardo devlog](devlog/02-conditional-graph/2026-10-05-leonardo-k1-k2-4rank-nccl.md), and the [K2 devlog](devlog/02-conditional-graph/2026-10-05-phase-k-k2-mnist-implementation.md).
+Earlier phases are summarized in [current.md](context/current.md) and the [devlog index](devlog/README.md).
+
 Flux.jl DDP Thesis — a thesis-control workspace for stabilizing, testing, documenting, and evaluating Distributed Data Parallel training in Flux.jl.
 
-**Current checkpoint:** Conditional-graph wrapper Phases D1-D3 are committed at Flux `cbdd3edc`. D3 keeps presence metadata on the CPU and preserves parameter-buffer placement. Independent two-rank tests passed D3 16/16 per rank. D4-D5 remain open.
-**Active implementation branch:** `ddp/integration-m1-spike` at `cbdd3edc` (`../flux-integration` worktree, clean, not pushed).
-**Next action:** Implement Phase D4: legacy tuple-returning `trainable` selection, with equal-valued distinct mutable fields and RED evidence before production changes.
+**Current checkpoint:** Phase K required acceptance matrix complete (2026-10-05): deathstar K2 CPU/MPI at 2 and 4 ranks (13/13) and native CUDA/NCCL at 2 ranks (6/6); Leonardo 4-rank CUDA/NCCL K1 `k1-2026-10-05-leonardo-nccl4` (8/8) and K2 `k2-2026-10-05-leonardo-nccl4` (6/6) PASS, driver exit 0; 41 figures in `reports/figures/phase-k-k2/`. The optional post-Phase K live timing stretch is complete and corrected (training-only 1.888594, total 1.397335; historical instrumented 1.480203 superseded; `reports/conditional-graph-phase-k-timing-stretch.md`). The deferred-behavior report is complete (`wiki/audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md`). Flux has uncommitted changes on `55171e65`.
+**Active implementation branch:** `ddp/integration-m1-spike` at `55171e65` (`../flux-integration` worktree, not pushed).
+**Next action:** implement `notebook/conditional_graph_benchmark.ipynb` from the corrected `artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/` artifacts (two-notebook plan implementation item 6).
 
 ## Repository overview
 
-This repository is the control center for a 12-checkpoint plan (C0–C12) to bring Flux.jl's DDP support from audit through correctness verification to production-ready examples. A local Flux.jl fork at `../Flux.jl` (`/home/kurapica/Projects/ddp_flux/ddp_flux`) is developed alongside this repo.
+This repository is the control center for a 12-checkpoint plan (C0–C12) to bring Flux.jl's DDP support from audit through correctness verification to production-ready examples. A local Flux.jl fork at `../ddp_flux` (`/home/kurapica/Projects/ddp_flux/ddp_flux`) is developed alongside this repo.
 
 Key areas:
 
@@ -35,7 +43,8 @@ make health-check         # MPI/PMI validation
 make smoke-cpu            # 2-process MPI smoke test
 ```
 
-All reproducible commands (through C6): `make env`, `make install-mpiexec`, `make check`, `make health-check`, `make smoke-cpu`, `make audit`, `make reference`, `make reference-verify`, `make launch-2`, `make launch-4`, `make sync-model`, `make verify-sync`, `make verify-data`, `make verify-gradients`, `make verify-conditional`.
+Common reproducible commands: `make env`, `make install-mpiexec`, `make check`, `make health-check`, `make smoke-cpu`, `make audit`, `make reference`, `make reference-verify`, `make launch-2`, `make launch-4`, `make sync-model`, `make verify-sync`, `make verify-data`, `make verify-gradients`.
+The `Makefile` default `FLUX_REPO_PATH` still names the old fork path `../Flux.jl`; pass the real path explicitly, for example `make env FLUX_REPO_PATH=../ddp_flux` or `make audit FLUX_REPO_PATH=../ddp_flux`.
 
 ## Documentation sections
 
@@ -46,7 +55,7 @@ Current project state, remote node guides, and operational knowledge.
 - **[remote-nodes.md](context/remote-nodes.md)** — Remote execution index: workflow, tools, and server list.
 - **[bocconi.md](context/bocconi.md)** — Bocconi SLURM cluster: precompile rules and usage.
 - **[deathstar.md](context/deathstar.md)** — Non-SLURM remote node usage (courtesy machine, use with care).
-- **[leonardo.md](context/leonardo.md)** — Planned CINECA GPU cluster (not operational yet).
+- **[leonardo.md](context/leonardo.md)** — CINECA GPU cluster: operational since 2026-10-04 (SSH, Slurm, Julia workflow, 4-rank NCCL verified).
 
 ### Decisions
 Architecture Decision Records explaining why the codebase is structured the way it is.
@@ -55,38 +64,26 @@ Architecture Decision Records explaining why the codebase is structured the way 
 - **[ADR-0002](decisions/ADR-0002-baseline-ddp-path.md)** — Choosing DDP as the baseline distributed training path.
 - **[ADR-0003](decisions/ADR-0003-mpi-pmi-guardrails.md)** — MPI/PMI mismatch guardrails and health checks.
 - **[ADR-0004](decisions/ADR-0004-scripts-reorganization.md)** — Scripts directory reorganization into functional subdirectories.
+- **[ADR-0005](decisions/ADR-0005-precompile-compute-only.md)** — Precompile only on compute nodes (Bocconi CPU-cache incompatibility).
+- **[ADR-0006](decisions/ADR-0006-integration-baseline.md)** — PR #2694 integration baseline and isolated worktree policy.
+- **[ADR-0007](decisions/ADR-0007-defer-unused-parameter-support.md)** — Defer unused-parameter support from the upstream PR; conditional graph as separate work.
 
 ### Devlog
-Chronological development log entries for each checkpoint and milestone.
+Chronological development log entries for each checkpoint and milestone, grouped by project scope.
 
-- **[2026-07-02](devlog/2026-07-02.md)** — C0 audit kickoff.
-- **[2026-07-05](devlog/2026-07-05.md)** — C0 audit continuation.
-- **[2026-07-07](devlog/2026-07-07.md)** — C1 deterministic reference loop.
-- **[2026-07-07-remote](devlog/2026-07-07-remote.md)** — Remote execution workflow setup.
-- **[20260709-c2-launch](devlog/20260709-c2-launch.md)** — C2 distributed launch skeleton.
-- **[20260709-ssh-refactor](devlog/20260709-ssh-refactor.md)** — SSH workflow refactoring.
-- **[20260709-deathstar](devlog/20260709-deathstar.md)** — Deathstar node setup.
-- **[2026-07-10](devlog/2026-07-10.md)** — PMI mismatch guardrails.
-- **[20260711-c3-sync-model](devlog/20260711-c3-sync-model.md)** — C3 model broadcast and verification.
-- **[20260713-c4-data-sharding](devlog/20260713-c4-data-sharding.md)** — C4 distributed data sharding and padding fix.
-- **[20260713-c5-c6-grad-sync](devlog/20260713-c5-c6-grad-sync.md)** — C5/C6 gradient synchronization and Optimisers.jl integration.
-- **[20260714-openwiki-manual-update](devlog/20260714-openwiki-manual-update.md)** — Manual documentation update due to API error.
-- **[20260715-conditional-testing](devlog/20260715-conditional-testing.md)** — Enhanced testing for conditional graphs.
-- **[20260716-c6b-hpc-tests](devlog/20260716-c6b-hpc-tests.md)** — Polished upstream PR commits and ran Bocconi cluster tests.
-- **[20260716-wiki-rename](devlog/20260716-wiki-rename.md)** — Renamed openwiki to wiki and standard terminology update.
-- **[20260722-c7-end-to-end](devlog/20260722-c7-end-to-end.md)** — C7 end-to-end example integration.
-- **[20260728-c7-fixes](devlog/20260728-c7-fixes.md)** — Addressed C7 blindspots (data sharding, checkpointing, validation loop) and validated Bocconi GPU.
+- **[01-pr2694/](devlog/01-pr2694/)** — C0–C8 upstream DDP work, M0/M1 integration spike, PS1–PS8 PR #2694 salvage, Windows routing fix.
+- **[02-conditional-graph/](devlog/02-conditional-graph/)** — conditional-graph onboarding, wrapper Phases A–K, native CUDA/NCCL validation, timing, notebooks.
+
+Complete dated index: **[devlog/README.md](devlog/README.md)**.
 
 ### Audits
-Codebase audit notes.
+Codebase audit notes, grouped by project scope. Complete index: **[audits/README.md](audits/README.md)**.
 
-- **[000-current-flux-distributed](audits/000-current-flux-distributed.md)** — C0 audit of Flux.jl's distributed training implementation.
+- **[01-pr2694/](audits/01-pr2694/)** — C0 audit of Flux.jl's distributed training implementation.
+- **[02-conditional-graph/](audits/02-conditional-graph/)** — Phase H compatibility audit (001) and deferred-behavior audit (002).
 
 ### Failures
-Post-mortem analysis of significant failures encountered during development.
-
-- **[20260709-ssh-deathstar](failures/20260709-ssh-deathstar.md)** — SSH authentication failure on deathstar node.
-- **[0000-template](failures/0000-template.md)** — Failure report template.
+Post-mortem analysis of significant failures encountered during development. All records live in **[failures/](failures/)**; the [template](failures/0000-template.md) is `0000-template.md`. Recent records cover the conditional detector, the Phase H defects, the NCCL harness, Leonardo artifact prefetch, and the Phase K campaigns.
 
 ### Templates
 Templates for new documentation entries.
@@ -98,6 +95,12 @@ Templates for new documentation entries.
 CI diagnostics guidance and distributed-test campaign notes.
 
 - **[ci-diagnostics.md](testing/ci-diagnostics.md)** — Best practices and anti-pattern examples from the PR #2694 CI failure investigation (harness output capture, MPI slots, docker parity repro).
+- **[c8-correctness-matrix.md](testing/c8-correctness-matrix.md)** — C8 correctness matrix (frozen `ddp_flux` master scope).
+
+### Reports
+Wiki-local reports; thesis-facing drafts live in the top-level `reports/` directory.
+
+- **[c8-negative-demonstrations.md](reports/c8-negative-demonstrations.md)** — C8 negative demonstrations for the frozen master scope.
 
 ## For agents
 

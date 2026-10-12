@@ -1,0 +1,26 @@
+# pr2694-salvage review fix: gpu.md padding-bias documentation
+
+Repo: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+Branch: ddp/pr2694-salvage
+Head: caf47145ba1ea2ca06370a2b3422df0b7ddf4a0f
+File owned: docs/src/guide/gpu.md (line 349)
+
+## Change
+Replaced the DistributedDataContainer cyclic-padding paragraph to state that
+duplicated observations are included in training batches, receive extra weight
+in the averaged gradients, and change the effective training objective. Kept
+the existing epoch-accounting/metric caveat and empty-dataset note.
+
+## Verification
+$ git diff docs/src/guide/gpu.md
+  -> single paragraph changed (line 349), +1/-1
+$ git diff --check
+  -> check-clean
+$ grep -n "training objective" docs/src/guide/gpu.md
+  -> 349:In this case, we are training on a total of `16 * number of processes` samples. ... change the effective training objective; ...
+$ git diff --stat docs/src/guide/gpu.md
+  -> docs/src/guide/gpu.md | 2 +-
+
+## Scope
+Only docs/src/guide/gpu.md was modified by this task.
+No commit. No push.

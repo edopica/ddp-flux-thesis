@@ -1,0 +1,236 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.8s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.8s
+Test Summary:                                          | Test Summary:                                          | Pass  Pass  Total  Time
+Total  Time
+canonical traversal order for reversed named trainable | canonical traversal order for reversed named trainable |   10    10     10     10  1.6s
+1.6s
+Test Summary:                                    | Test Summary:                                    | Pass  Pass  Total  Total  TimeTime
+
+equal-valued isbits occurrences stay independent | equal-valued isbits occurrences stay independent |   11    11     11     11  0.5s
+0.5s
+Test Summary:                                                | Pass  Total  Test Summary:                                                | Pass  Total  Time
+Time
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38  2.5s   38  2.5s
+
+Test Summary:                                    | Test Summary:                                    | Pass  Pass  Total  Total  Time
+Time
+CPU presence metadata for device-like parametersCPU presence metadata for device-like parameters |  |   16    16     16     16  0.7s
+0.7s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Pass  Test Summary:                                         | Total  Time
+Pass  legacy tuple trainable selection matches native setup | Total    20  Time   20  1.6s
+
+legacy tuple trainable selection matches native setup |   20     20  1.6s
+Test Summary:                                            | Pass  Total  TimeTest Summary:                                            | Pass  Total  Time
+legacy tuple trainable selection persists across updates | 
+legacy tuple trainable selection persists across updates |   30     30    30     30  1.2s1.2s
+
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  16.6s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  16.6s
+Test Summary:                                        | Pass  Total  Test Summary:                                        | Pass  Total  Time
+transpose and adjoint gradients pair in parent spaceTime
+transpose and adjoint gradients pair in parent space |   16   |   16     16     16  4.3s
+4.3s
+Test Summary:                                        | Test Summary:                                        | Pass  Total  Pass  Total  Time
+Time
+caller gradients stay unchanged on both update paths | caller gradients stay unchanged on both update paths |   11     11    11     11  0.6s0.6s
+
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.3s
+Test Summary:                                                         | Pass  Total  Time
+update! propagates immutable model returns and keeps wrapper identity |    9      9  1.3s
+Test Summary:                                          | Pass  Test Summary:                                          | Pass  Total  Time
+Total  Time
+update returns a fresh wrapper without mutating inputs | update returns a fresh wrapper without mutating inputs |   15     15    15     15  0.4s
+0.4s
+Test Summary:                                                 | Pass  Total  Test Summary:                                                 | Pass  Total  Time
+globally absent parameters keep Adam state after active steps | Time
+globally absent parameters keep Adam state after active steps |   16    16     16     16  3.0s3.0s
+
+Test Summary:                                 | Pass  Test Summary:                                 | Pass  Total  Total  Time
+Time
+empty trainable model performs no collectivesempty trainable model performs no collectives |  |    9     9      9      9  0.3s0.3s
+
+Test Summary:                                           | Pass  Total  Time
+array containers keep their shape during reconstruction |   20     20  1.1s
+Test Summary:                                           | Pass  Total  Time
+array containers keep their shape during reconstruction |   20     20  1.1s
+Test Summary:                                            | Pass  Test Summary:                                            | Pass  Total  TimeTotal  Time
+real AD conditional branches average over multiple steps | 
+real AD conditional branches average over multiple steps |   11    11     11     11  0.2s0.2s
+
+Test Summary:                                     | Pass  Test Summary:                                     | Pass  Total  Total  Time
+Time
+Adam matches an independent global-mean referenceAdam matches an independent global-mean reference |  |    9     9      9      9  0.5s
+0.5s
+Test Summary:                   | Pass  Total  Time
+tied parameters through real AD |    9      9  0.7s
+Test Summary:                   | Pass  Total  Time
+tied parameters through real AD |    9      9  0.7s
+Test Summary:                                   | Pass  Total  Time
+tied parameter through a transpose with real AD |    5      5  1.5s
+Test Summary:                                   | Pass  Total  Time
+tied parameter through a transpose with real AD |    5      5  1.6s
+Test Summary:                                     | Pass  Total  Time
+isbits parameters (FillArrays) sync independently |    5      5  1.0s
+Test Summary:                                     | Pass  Total  Time
+isbits parameters (FillArrays) sync independently |    5      5  1.0s
+Test Summary:                   | Pass  Total  Time
+higher-order gradients rejected |    2      2  0.1s
+Test Summary:                   | Pass  Total  Time
+higher-order gradients rejected |    2      2  0.1s
+Test Summary:                          | Pass  Total  Test Summary:                          | Pass  Total  Time
+collective count protocol with real ADTime
+collective count protocol with real AD |    4      4   |    4      4  1.0s
+1.0s
+Test Summary:                              | Pass  Total  Time
+Flux.train! with DistributedOptimizerState |    3      3  1.2s
+Test Summary:                              | Pass  Total  Time
+Flux.train! with DistributedOptimizerState |    3      3  1.2s
+┌ Warning: Layer with Float32 parameters got Float64 input.
+│   The input will be converted, but any earlier layers may be very slow.
+│   layer = Dense(2 => 2)       # 6 parameters
+│   summary(x) = "2×3 Matrix{Float64}"
+└ @ Flux ~/Projects/ddp_flux/flux-integration/src/layers/stateless.jl:18
+┌ Warning: Layer with Float32 parameters got Float64 input.
+│   The input will be converted, but any earlier layers may be very slow.
+│   layer = Dense(2 => 2)       # 6 parameters
+│   summary(x) = "2×3 Matrix{Float64}"
+└ @ Flux ~/Projects/ddp_flux/flux-integration/src/layers/stateless.jl:18
+Test Summary:                                  | Test Summary:                                  | Pass  Total  TimePass  Total  Time
+
+nested model (Chain of custom layer and Dense)nested model (Chain of custom layer and Dense) |    2   |    2      2  7.5s
+    2  7.5s
+Test Summary:                              | Pass  Total  Time
+synchronize!! on DistributedOptimizerState |    3      3  0.3s
+Test Summary:                              | Pass  Total  Time
+synchronize!! on DistributedOptimizerState |    3      3  0.3s
+Test Summary:                              | Pass  Total  Test Summary:                              | Pass  Total  Time
+adjust / adjust! on wrapped state and ruleTime
+adjust / adjust! on wrapped state and rule |  |   11    11     11  0.1s   11  
+0.1s
+partial freeze on all ranks keeps the collective protocol: partial freeze on all ranks keeps the collective protocol: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1362
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1362
+  Expression: m2.frozen == m1.frozen  Expression: m2.frozen == m1.frozen
+   Evaluated: [1.0, 2.0] == [0.9, 1.9]
+   Evaluated: [1.0, 2.0] == [0.9, 1.9]
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1362 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1362 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+partial freeze on all ranks keeps the collective protocol: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1363
+  Expression: ≈(m2.live, [2.8, 3.8], atol = 1.0e-6)
+   Evaluated: [2.9, 3.9] ≈ [2.8, 3.8] (atol=1.0e-6)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1363 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+partial freeze on all ranks keeps the collective protocol: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1363
+  Expression: ≈(m2.live, [2.8, 3.8], atol = 1.0e-6)
+   Evaluated: [2.9, 3.9] ≈ [2.8, 3.8] (atol=1.0e-6)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1363 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+partial freeze on all ranks keeps the collective protocol: partial freeze on all ranks keeps the collective protocol: Test Failed at Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1369
+  Expression: ≈(m3.frozen, [0.8, 1.8], atol = 1.0e-6)/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1369
+  Expression: ≈(m3.frozen, [0.8, 1.8], atol = 1.0e-6)
+   Evaluated: [0.9, 1.9] ≈ [0.8, 1.8] (atol=1.0e-6)
+   Evaluated: [0.9, 1.9] ≈ [0.8, 1.8] (atol=1.0e-6)
+
+
+Stacktrace:
+ [1]
+Stacktrace:
+ [1] top-level scope top-level scope
+   @
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344 ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344
+ 
+ [2] [2] macro expansionmacro expansion
+   @
+   @  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [inlined]
+ [3] [3] macro expansion
+ macro expansion
+   @   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1369 [inlined]
+conditional_distributedtest.jl:1369 [inlined]
+ [4] [4] macro expansion
+ macro expansion
+   @   @  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test.jl:680 [inlined]
+partial freeze on all ranks keeps the collective protocol: Test Failed at partial freeze on all ranks keeps the collective protocol: Test Failed at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1370
+/home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1370
+  Expression: ≈(m3.live, [2.7, 3.7], atol = 1.0e-6)  Expression: ≈(m3.live, [2.7, 3.7], atol = 1.0e-6)
+   Evaluated: [2.8, 3.8] ≈ [2.7, 3.7] (atol=1.0e-6)
+   Evaluated: [2.8, 3.8] ≈ [2.7, 3.7] (atol=1.0e-6)
+
+
+Stacktrace:
+ [1] 
+Stacktrace:
+ [1] top-level scopetop-level scope
+   @
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344 ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1344
+ [2] 
+ [2] macro expansion
+   @macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+  [3] macro expansion
+   @[3] macro expansion
+   @ ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1370 [inlined] ~/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1370 [inlined]
+
+ [4]  [4] macro expansion
+macro expansion
+   @   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined] [inlined]
+
+Test Summary:                                             | Pass  Fail  Total  Time
+partial freeze on all ranks keeps the collective protocol |    7     4     11  2.4s
+Test Summary:                                             | Pass  Fail  Total  Time
+partial freeze on all ranks keeps the collective protocol |    7     4     11  2.4s
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0x895af09eae57d3b2, 0x6e6939b2bd7b2755, 0x5aed8d20b985293e, 0x5d8ff2ec2ca0526c, 0x2a2a03cfbec558db)
+0xaf518d8f4ead15cb, 0x8ead327818ebfb30, 0x0e219bfbaa0bcd8f, 0xe43fae8898ae1fc7, 0xdfbef69e186ee997)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 7 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1343
+Some tests did not pass: 7 passed, 4 failed, 0 errored, 0 broken.
+in expression starting at /home/kurapica/Projects/ddp_flux/flux-integration/test/ext_distributed/conditional_distributedtest.jl:1343
+
+real	1m15.872s
+user	2m25.332s
+sys	0m7.107s

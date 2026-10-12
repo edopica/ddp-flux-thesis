@@ -1,0 +1,19 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 8 --chdir=$HOME/projects/ddp-flux-thesis julia --startup-file=no --project=$HOME/projects/flux-integration/test scripts/checks/conditional_graph_timing_check.jl --root artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo --prepared /leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls --trajectory artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-leonardo-nccl4/nccl4/train/trajectory.jls --backend nccl --device cuda --ranks 4 --steps 12 --warmup 2 --repeats 1 --record-every 4 --check-steps 12 --timeout 3600 --phase correctness --label k2-timing-correctness-r2
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 59514262
+salloc: job 59514262 queued and waiting for resources
+salloc: job 59514262 has been allocated resources
+salloc: Granted job allocation 59514262
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn1934 are ready for job
+srun: Job step's --cpus-per-task value exceeds that of job (8 > 4). Job step may never run.
+[PASS] correctness-single ranks=1 exit=0 elapsed=164.0s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/correctness-single/console.log
+[PASS] correctness-ddp    ranks=4 exit=0 elapsed=56.7s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/correctness-ddp/console.log
+Test Summary:                              | Pass  Total     Time
+Phase K timing stretch (nccl, correctness) |    1      1  3m41.2s
+
+TIMING_STRETCH_SUMMARY backend=nccl ranks=4 speedup_train=na speedup_total=na status=PASS
+salloc: Relinquishing job allocation 59514262
+salloc: Job allocation 59514262 has been revoked.

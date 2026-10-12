@@ -1,0 +1,10 @@
+prepared	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/prepared/toy_prepared.jls
+dataset_digest	55a8204c50f7f5fe03f046cb39490e9f641f262c6723c40cc90e1108eddf6ee0
+model_definition_version	1
+optimizer	Adam eta=0.01 beta=(0.9, 0.999)
+schedule_workers	2	digest=517d03e040d2b7909766708fcdd11cc05b506a29e1a379048ab4e08844c0542b	steps=16	local_batch=64	global_batch=128
+schedule_task	workers=2	task=a	exposure=1024	pool=512	completed_passes=2	partial=0	reused=512
+schedule_task	workers=2	task=b	exposure=1024	pool=512	completed_passes=2	partial=0	reused=512
+schedule_workers	4	digest=d677a30a782429357a7d6f27b18e0d152902eeae9e610eb560fb7ba47d58cb19	steps=16	local_batch=32	global_batch=128
+schedule_task	workers=4	task=a	exposure=832	pool=512	completed_passes=1	partial=320	reused=320
+schedule_task	workers=4	task=b	exposure=1216	pool=512	completed_passes=2	partial=192	reused=704

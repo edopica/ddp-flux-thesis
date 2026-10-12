@@ -1,0 +1,90 @@
+CMD: julia --project=docs docs/make.jl
+CWD: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+CI=<unset>
+START: 2026-09-10T13:59:14+02:00
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: skipped.
+[ Info: ExpandTemplates: expanding markdown templates.
+[ Info: CrossReferences: building cross-references.
+┌ Warning: Cannot resolve @ref for md"[`gradient`](@ref)" in docs/src/reference/training/reference.md.
+│ - No docstring found in doc for binding `Flux.Train.gradient`.
+│ - No docstring found in doc for binding `Main.gradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`gradient`](@ref)" in docs/src/reference/training/reference.md.
+│ - No docstring found in doc for binding `Flux.Train.gradient`.
+│ - No docstring found in doc for binding `Main.gradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`make_reactant_compatible`](@ref Optimisers.make_reactant_compatible)" in docs/src/reference/training/reference.md.
+│ - No docstring found in doc for binding `Optimisers.make_reactant_compatible`.
+│ - No docstring found in doc for binding `Optimisers.make_reactant_compatible`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`rescale`](@ref)" in docs/src/reference/data/mlutils.md.
+│ - No docstring found in doc for binding `MLUtils.rescale`.
+│ - No docstring found in doc for binding `MLUtils.rescale`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`ObsDim`](@ref)" in docs/src/reference/data/mlutils.md.
+│ - No docstring found in doc for binding `MLUtils.ObsDim`.
+│ - No docstring found in doc for binding `MLUtils.ObsDim`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`withgradient`](@ref Zygote.withgradient)" in docs/src/guide/training/training.md.
+│ - No docstring found in doc for binding `Zygote.withgradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`gelu_tanh`](@ref)" in docs/src/reference/models/activation.md.
+│ - No docstring found in doc for binding `NNlib.gelu_tanh`.
+│ - No docstring found in doc for binding `NNlib.gelu_tanh`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[WeightNorm](@ref)" in docs/src/reference/models/layers.md.
+│ - Header or `@id` anchor with slug 'WeightNorm' in docs/src/reference/models/layers.md does not exist.
+│ - Header or `@id` anchor with slug 'WeightNorm' is not unique in docs/src/reference/models/layers.md.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`withgradient`](@ref)" in docs/src/guide/models/basics.md.
+│ - No docstring found in doc for binding `Main.withgradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`gradient`](@ref)" in docs/src/reference/training/gradients.md.
+│ - No docstring found in doc for binding `Zygote.gradient`.
+│ - No docstring found in doc for binding `Main.gradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`withgradient`](@ref)" in docs/src/reference/training/gradients.md.
+│ - No docstring found in doc for binding `Zygote.withgradient`.
+│ - No docstring found in doc for binding `Main.withgradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`gradient`](@ref)" in docs/src/reference/training/gradients.md.
+│ - No docstring found in doc for binding `Zygote.gradient`.
+│ - No docstring found in doc for binding `Main.gradient`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[rule configurations and calling back into AD](@ref config)" in docs/src/reference/training/gradients.md.
+│ - No docstring found in doc for binding `ChainRulesCore.config`.
+│ - No docstring found in doc for binding `Main.config`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+┌ Warning: Cannot resolve @ref for md"[`AutoEnzyme`](@ref)" in docs/src/guide/reactant.md.
+│ - No docstring found in doc for binding `ADTypes.AutoEnzyme`.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/utilities/utilities.jl:49
+[ Info: CheckDocument: running document checks.
+[ Info: Populate: populating indices.
+[ Info: RenderDocument: rendering document.
+[ Info: HTMLWriter: rendering HTML pages.
+┌ Warning: Generated HTML over size_threshold_warn limit: reference/models/layers.md
+│     Generated file size: 111.96 (KiB)
+│     size_threshold_warn: 100.0 (KiB)
+│     size_threshold:      976.56 (KiB)
+│     HTML file:           reference/models/layers.html
+└ @ Documenter.HTMLWriter ~/.julia/packages/Documenter/13nbQ/src/html/HTMLWriter.jl:2015
+┌ Warning: Generated search index over size_threshold_warn limit:
+│     Generated file size: 538.52 (KiB)
+│     search_size_threshold_warn: 500.0 (KiB)
+│     Search index file:   build/search_index.js
+└ @ Documenter.HTMLWriter ~/.julia/packages/Documenter/13nbQ/src/html/HTMLWriter.jl:933
+[ Info: Automatic `version="0.16.11"` for inventory from ../Project.toml
+[ Info: SetupBuildDirectory: setting up build directory.
+[ Info: Doctest: running doctests.
+[ Info: Skipped ExpandTemplates step (doctest only).
+[ Info: Skipped CrossReferences step (doctest only).
+[ Info: Skipped CheckDocument step (doctest only).
+[ Info: Skipped Populate step (doctest only).
+[ Info: Skipped RenderDocument step (doctest only).
+┌ Warning: Documenter could not auto-detect the building environment. Skipping deployment.
+└ @ Documenter ~/.julia/packages/Documenter/13nbQ/src/deployconfig.jl:95
+Test Summary:  | Pass  Total     Time
+Doctests: Flux |    1      1  6m03.3s
+EXIT=0
+END: 2026-09-10T14:06:23+02:00

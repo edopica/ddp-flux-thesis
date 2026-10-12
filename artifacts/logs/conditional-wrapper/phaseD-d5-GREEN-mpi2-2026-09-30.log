@@ -1,0 +1,82 @@
+PrecompilingPrecompiling packages...
+ packages...
+    Flux Being precompiled by another process (pid: 170703, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)
+  11660.7 ms  ✓ Flux
+  1 dependency successfully precompiled in 12 seconds. 154 already precompiled.
+  11762.3 ms  ✓ Flux
+  1 dependency successfully precompiled in 13 seconds. 154 already precompiled.
+Precompiling packages...
+Precompiling packages...
+    Flux → FluxMPIExt Being precompiled by another process (pid: 170703, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)
+   4947.0 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+   4566.9 ms  ✓ Flux → FluxMPIExt
+  1 dependency successfully precompiled in 5 seconds. 167 already precompiled.
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.3s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.3s
+Test Summary:                                          | Test Summary:                                          | Pass  Total  Pass  Total  Time
+Time
+canonical traversal order for reversed named trainablecanonical traversal order for reversed named trainable |  |   10    10     10     10  1.6s
+1.7s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.6s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.6s
+Test Summary:                                                | Test Summary:                                                | Pass  Total  Pass  Total  Time
+Time
+explicit occurrence mapping for mixed tied/isbits parameters | explicit occurrence mapping for mixed tied/isbits parameters |   38    38     38     38  2.8s
+2.8s
+Test Summary:                                    | Test Summary:                                    | Pass  Pass  Total  Total  Time
+Time
+CPU presence metadata for device-like parameters | CPU presence metadata for device-like parameters |   16     16    16  0.8s
+   16  0.8s
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Test Summary:                                         | Pass  Pass  Total  TimeTotal  Time
+
+legacy tuple trainable selection matches native setuplegacy tuple trainable selection matches native setup |   20   |   20     20  1.7s
+   20  1.7s
+Test Summary:                                            | Test Summary:                                            | Pass  Pass  Total  Total  Time
+Time
+legacy tuple trainable selection persists across updates | legacy tuple trainable selection persists across updates |   30    30     30     30  1.3s
+1.3s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  18.3s
+Test Summary:                              | Pass  Total   Time
+BatchNorm running statistics stay excluded |    6      6  18.3s
+Test Summary:                                        | Test Summary:                                        | Pass  Pass  Total  TimeTotal  Time
+
+transpose and adjoint gradients pair in parent space | transpose and adjoint gradients pair in parent space |   16    16     16     16  4.8s
+4.8s
+Test Summary:                                        | Pass  Total  Test Summary:                                        | Pass  Total  TimeTime
+caller gradients stay unchanged on both update paths | 
+caller gradients stay unchanged on both update paths   8   |     8  0.7s   8  
+    8  0.7s
+Test Summary:                                                         | Test Summary:                                                         | Pass  Pass  Total  Total  TimeTime
+
+update! propagates immutable model returns and keeps wrapper identityupdate! propagates immutable model returns and keeps wrapper identity |  |    9     9      9      9  1.5s1.5s
+
+Test Summary:                                          | Pass  Test Summary:                                          | Pass  Total  Total  Time
+Time
+update returns a fresh wrapper without mutating inputs | update returns a fresh wrapper without mutating inputs |   15     15    15     15  0.5s
+0.5s
+Test Summary:                                                 | Test Summary:                                                 | Pass  Total  Pass  Total  Time
+Time
+globally absent parameters keep Adam state after active stepsglobally absent parameters keep Adam state after active steps |  |   11    11     11     11  2.3s
+2.3s
+Test Summary:                                 | Test Summary:                                 | Pass  Pass  Total  Total  Time
+Time
+empty trainable model performs no collectivesempty trainable model performs no collectives |  |    9     9      9      9  0.3s0.3s
+
+Test Summary:                                           | Test Summary:                                           | Pass  Total  Pass  Total  Time
+Time
+array containers keep their shape during reconstruction | array containers keep their shape during reconstruction |   20    20     20     20  1.3s
+1.3s
+
+real	1m18.038s
+user	2m15.733s
+sys	0m6.:00s

@@ -1,0 +1,27 @@
+[ Info: Running Distributed Tests with 2 processes
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[32m[1mPrecompiling[22m[39m packages...
+[32m[1mPrecompiling[22m[39m packages...
+    Flux[36m Being precompiled by another process (pid: 403953, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)[39m
+    Flux[36m Being precompiled by another process (pid: 403953, pidfile: /home/kurapica/.julia/compiled/v1.12/Flux/QdkVy_UqiLT.ji.pidfile)[39m
+   8207.7 ms[32m  ✓ [39mFlux
+  1 dependency successfully precompiled in 9 seconds. 154 already precompiled.
+   8314.8 ms[32m  ✓ [39mFlux
+  1 dependency successfully precompiled in 9 seconds. 154 already precompiled.
+[32m[1mPrecompiling[22m[39m packages...
+[32m[1mPrecompiling[22m[39m packages...
+    Flux → FluxMPIExt[36m Being precompiled by another process (pid: 404621, pidfile: /home/kurapica/.julia/compiled/v1.12/FluxMPIExt/4vYMq_UqiLT.ji.pidfile)[39m
+   6669.3 ms[32m  ✓ [39mFlux → FluxMPIExt
+  1 dependency successfully precompiled in 8 seconds. 167 already precompiled.
+   6901.6 ms[32m  ✓ [39mFlux → FluxMPIExt
+  1 dependency successfully precompiled in 8 seconds. 167 already precompiled.
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.0s
+[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.1s
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+Test Summary: | Pass  Total   Time
+Distributed   |    5      5  54.0s

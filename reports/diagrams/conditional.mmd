@@ -1,0 +1,42 @@
+flowchart LR
+    IN[Input] --> BB[Backbone\nDense 10→32, relu]
+
+    BB --> SW{use_head_a?}
+
+    SW -->|"true - Rank 0"| HA[Head A\nDense 32→2]
+    SW -->|"false - Rank 1"| HB[Head B\nDense 32→2]
+
+    HA --> OUTA[Output A]
+    HB --> OUTB[Output B]
+
+    subgraph GRAD_R0["Gradient Flow - Rank 0"]
+        HA_grad["Head A: real grad ▽LA"]
+        HB_grad["Head B: nothing"]
+        BB_grad["Backbone: real grad"]
+    end
+
+    subgraph GRAD_R1["Gradient Flow - Rank 1"]
+        HA_grad1["Head A: nothing"]
+        HB_grad1["Head B: real grad ▽LB"]
+        BB_grad1["Backbone: real grad"]
+    end
+
+    HA --> HA_grad
+    HB -.-> HB_grad
+    HA -.-> HA_grad1
+    HB --> HB_grad1
+
+    GRAD_R0 --> RES["resolve_unused_parameters!!\nnothing → zeros(param)"]
+    GRAD_R1 --> RES
+
+    RES --> AR["Gradient AllReduce"]
+    AR --> EFF["Effective Gradient"]
+    subgraph EFF_DET["After AllReduce"]
+        EFHA["Head A: ▽LA + 0 = ▽LA ✓"]
+        EFHB["Head B: 0 + ▽LB = ▽LB ✓"]
+        EFBB["Backbone: ▽LA + ▽LB ✓"]
+    end
+
+    AR --> EFHA
+    AR --> EFHB
+    AR --> EFBB

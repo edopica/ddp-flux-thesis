@@ -1,0 +1,4 @@
+Test Summary:                                         | Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.0s
+Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  15.1s

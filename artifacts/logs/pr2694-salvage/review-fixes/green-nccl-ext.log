@@ -1,0 +1,30 @@
+== blocker-1 correction: NCCL __initialize force keyword ==
+date: 2026-09-10T21:16:37+02:00
+repo: /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage
+branch: ddp/pr2694-salvage  head: caf47145
+
+-- git diff --check --
+git diff --check exit: 0
+
+-- tail -c 1 ext/FluxMPINCCLExt/FluxMPINCCLExt.jl | od -c --
+0000000  \n
+0000001
+
+-- grep -n force ext/FluxMPINCCLExt/FluxMPINCCLExt.jl --
+12:        force::Bool=false)
+15:        MPIBackend; cuda_devices, force_cuda=true, caller="NCCLBackend",
+16:        amdgpu_devices, force)
+
+-- git diff --stat (ext file only) --
+ ext/FluxMPINCCLExt/FluxMPINCCLExt.jl | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+-- git status --short --
+ M .github/workflows/distributed_ci.yml
+ M NEWS.md
+ M docs/src/guide/gpu.md
+ M ext/FluxMPIExt/FluxMPIExt.jl
+ M ext/FluxMPINCCLExt/FluxMPINCCLExt.jl
+ M src/distributed/public_api.jl
+ M test/distributed_launcher_guard.jl
+?? test/distributed_routing.jl

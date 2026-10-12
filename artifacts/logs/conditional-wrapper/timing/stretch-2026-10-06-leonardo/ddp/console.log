@@ -1,0 +1,22 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+TIMING_META mode=ddp rank=0 backend=nccl ranks=4 dtype=Float32 tolerances="atol=2.0e-6 rtol=1.0e-5" flux=/leonardo/home/userexternal/epicazio/projects/flux-integration/src/Flux.jl schedule_digest=ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57
+TIMING_START mode=ddp world=4 steps=120 warmup=3 repeats=5 record_every=5 backend=nccl
+TIMING_WARMUP mode=ddp warmup_steps=3 compile_warmup_s=28.722841
+TIMING_REPEAT mode=ddp repeat=1 t_total_s=0.672028 t_train_s=0.471516 t_val_s=0.179729 t_write_s=0.020052 slowest_rank_s=0.672028 slowest_train_s=0.471712
+TIMING_REPEAT mode=ddp repeat=2 t_total_s=0.313939 t_train_s=0.139279 t_val_s=0.163333 t_write_s=0.010612 slowest_rank_s=0.313939 slowest_train_s=0.139490
+TIMING_REPEAT mode=ddp repeat=3 t_total_s=0.366796 t_train_s=0.193618 t_val_s=0.161043 t_write_s=0.011472 slowest_rank_s=0.366796 slowest_train_s=0.193702
+TIMING_REPEAT mode=ddp repeat=4 t_total_s=0.292301 t_train_s=0.122781 t_val_s=0.157857 t_write_s=0.011060 slowest_rank_s=0.292301 slowest_train_s=0.122834
+TIMING_RANK_DONE mode=ddp rank=1 steps=120
+TIMING_RANK_DONE mode=ddp rank=2 steps=120TIMING_RANK_DONE mode=ddp rank=3 steps=120
+
+TIMING_REPEAT mode=ddp repeat=5 t_total_s=0.290867 t_train_s=0.119330 t_val_s=0.161112 t_write_s=0.009844 slowest_rank_s=0.290867 slowest_train_s=0.119353
+TIMING_SUMMARY mode=ddp repeats=5 median_total_s=0.313939 min_total_s=0.290867 max_total_s=0.672028 median_train_s=0.139490 min_train_s=0.119353 max_train_s=0.471712 median_updates_per_s=382.240102 median_train_updates_per_s=860.276605
+TIMING_RANK_DONE mode=ddp rank=0 steps=120
+TIMING_DONE mode=ddp

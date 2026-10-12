@@ -1,0 +1,16 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 srun --mpi=pmi2 -n 1 -c 8 --chdir=$HOME/projects/ddp-flux-thesis julia --startup-file=no --project=$HOME/projects/flux-integration/test scripts/checks/conditional_graph_timing_check.jl --root artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo --prepared /leonardo_work/IscrC_UNMASKED/epicazio/phase-k-prepared-2026-10-05/mnist-fashion_prepared.jls --backend nccl --device cuda --ranks 4 --steps 120 --warmup 3 --repeats 5 --record-every 5 --timeout 3600 --phase timing --label k2-timing-r2
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 59514959
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0009 are ready for job
+srun: Job step's --cpus-per-task value exceeds that of job (8 > 4). Job step may never run.
+[PASS] baseline           ranks=1 exit=0 elapsed=157.5s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/baseline/console.log
+[PASS] ddp                ranks=4 exit=0 elapsed=61.7s log=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/ddp/console.log
+TIMING_SPEEDUP backend=nccl ranks=4 median_single_train_s=0.263440 median_ddp_slowest_train_s=0.139490 speedup_train=1.888594 median_single_total_s=0.438678 median_ddp_slowest_total_s=0.313939 speedup_total=1.397335
+Test Summary:                         | Pass  Total     Time
+Phase K timing stretch (nccl, timing) |    1      1  3m39.9s
+
+TIMING_STRETCH_SUMMARY backend=nccl ranks=4 speedup_train=1.888594 speedup_total=1.397335 status=PASS
+salloc: Relinquishing job allocation 59514959

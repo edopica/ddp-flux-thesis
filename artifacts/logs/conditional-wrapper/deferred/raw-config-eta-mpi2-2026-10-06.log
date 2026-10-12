@@ -1,0 +1,65 @@
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+PROBE_READY rank=1
+PROBE_READY rank=0
+COLLECTIVE_BEGIN rank=1 number=1 kind=presence eltype=Float32 len=2
+COLLECTIVE_BEGIN rank=0 number=1 kind=presence eltype=Float32 len=2
+COLLECTIVE_END rank=0 number=1 kind=presence value=1.0
+COLLECTIVE_END rank=1 number=1 kind=presence value=1.0
+COLLECTIVE_BEGIN rank=0 number=2 kind=gradient eltype=Float64 len=2
+COLLECTIVE_BEGIN rank=1 number=2 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=2 kind=gradient value=1.8
+COLLECTIVE_END rank=1 number=2 kind=gradient value=1.8
+COLLECTIVE_BEGIN rank=1 number=3 kind=gradient eltype=Float64 len=2
+COLLECTIVE_BEGIN rank=0 number=3 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=3 kind=gradient value=0.0
+COLLECTIVE_END rank=1 number=3 kind=gradient value=0.0
+CONFIG_STEP rank=1 i=1 param_d=0.0
+LOCAL_ADJUST rank=1 i=2 eta=0.1
+CONFIG_STEP rank=0 i=1 param_d=0.0
+COLLECTIVE_BEGIN rank=0 number=4 kind=presence eltype=Float32 len=2
+COLLECTIVE_BEGIN rank=1 number=4 kind=presence eltype=Float32 len=2
+COLLECTIVE_END rank=0 number=4 kind=presence value=1.0
+COLLECTIVE_END rank=1 number=4 kind=presence value=1.0
+COLLECTIVE_BEGIN rank=0 number=5 kind=gradient eltype=Float64 len=2
+COLLECTIVE_BEGIN rank=1 number=5 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=5 kind=gradient value=1.5000000005555556
+COLLECTIVE_BEGIN rank=0 number=6 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=1 number=5 kind=gradient value=1.5000000005555556
+COLLECTIVE_BEGIN rank=1 number=6 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=1 number=6 kind=gradient value=0.0
+COLLECTIVE_END rank=0 number=6 kind=gradient value=0.0
+CONFIG_STEP rank=0 i=2 param_d=0.0
+COLLECTIVE_BEGIN rank=0 number=7 kind=presence eltype=Float32 len=2
+CONFIG_STEP rank=1 i=2 param_d=0.0
+COLLECTIVE_BEGIN rank=1 number=7 kind=presence eltype=Float32 len=2
+COLLECTIVE_END rank=1 number=7 kind=presence value=1.0
+COLLECTIVE_BEGIN rank=1 number=8 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=7 kind=presence value=1.0
+COLLECTIVE_BEGIN rank=0 number=8 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=8 kind=gradient value=1.1513240702610492
+COLLECTIVE_BEGIN rank=0 number=9 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=1 number=8 kind=gradient value=1.1513240702610492
+COLLECTIVE_BEGIN rank=1 number=9 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=1 number=9 kind=gradient value=0.0
+COLLECTIVE_END rank=0 number=9 kind=gradient value=0.0
+CONFIG_STEP rank=0 i=3 param_d=0.0
+CONFIG_STEP rank=1 i=3 param_d=0.0
+COLLECTIVE_BEGIN rank=0 number=10 kind=presence eltype=Float32 len=2
+COLLECTIVE_END rank=0 number=10 kind=presence value=1.0
+COLLECTIVE_BEGIN rank=1 number=10 kind=presence eltype=Float32 len=2
+COLLECTIVE_END rank=1 number=10 kind=presence value=1.0
+COLLECTIVE_BEGIN rank=1 number=11 kind=gradient eltype=Float64 len=2
+COLLECTIVE_BEGIN rank=0 number=11 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=11 kind=gradient value=0.8059073601641195
+COLLECTIVE_BEGIN rank=0 number=12 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=1 number=11 kind=gradient value=0.8059073601641195
+COLLECTIVE_BEGIN rank=1 number=12 kind=gradient eltype=Float64 len=2
+COLLECTIVE_END rank=0 number=12 kind=gradient value=0.0
+COLLECTIVE_END rank=1 number=12 kind=gradient value=0.0
+CONFIG_STEP rank=0 i=4 param_d=0.0
+CONFIG_STEP rank=1 i=4 param_d=0.0
+CONFIG_ETA rank=0 self_maxdiff=0.0 cross_delta=0.14991810934487604 w1=0.8054544149914332
+CONFIG_ETA rank=1 self_maxdiff=0.0 cross_delta=0.14991810934487604 w1=0.6609088297050887
+MODE_RESULT mode=config-eta rank=0 ok=true self_maxdiff=0.0 cross_delta=0.14991810934487604
+MODE_RESULT mode=config-eta rank=1 ok=true self_maxdiff=0.0 cross_delta=0.14991810934487604

@@ -1,0 +1,4 @@
+BEFORE      = ["ext_distributed/common_distributedtest", "ext_distributed/data_distributedtest", "ext_distributed/distributed_setup", "ext_distributed/optimizer_distributedtest", "ext_distributed/reduce_distributedtest", "ext_distributed/synchronized_distributedtest"]
+AFTER_STRIP = String[]
+AFTER_ADD   = ["ext_distributed"]
+ROUTING_OK

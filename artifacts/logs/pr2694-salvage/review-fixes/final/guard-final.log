@@ -1,0 +1,4 @@
+Test Summary:                           | Pass  Total  Time
+__check_launcher_compat decision matrix |  169    169  0.3s
+Test Summary:                                                     | Pass  Total  Time
+NCCL extension exposes the `force` guard bypass (static contract) |    6      6  0.2s

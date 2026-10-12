@@ -18,7 +18,7 @@ Julia precompile caches bake the host CPU feature set. Login (`graniterapids`) a
 - `precompile.sh bocconi` compiles on a compute node via `srun` (thesis env + Flux test env). NEVER run julia that loads the project envs on the login node (`julia --project=...` with `using Flux`): a login compile is wasted work, and a compute-node run after a source change silently recompiles for ~2-5 min inside the test watchdog otherwise.
 - If a run prints `Precompiling packages...`, a sync happened without a follow-up precompile: stop, precompile, rerun.
 - `setup_node.sh bocconi` only resolves dependencies (never precompiles); run it on first setup or `Project.toml` changes.
-- `JULIA_CPU_TARGET` (env) does not pin the loading process, and even `-C` cannot bridge the login/compute gap; keep all julia work on compute nodes. Details: ADR-0005 and `wiki/devlog/2026-09-03-precompile-experiment.md`.
+- `JULIA_CPU_TARGET` (env) does not pin the loading process, and even `-C` cannot bridge the login/compute gap; keep all julia work on compute nodes. Details: ADR-0005 and `wiki/devlog/01-pr2694/2026-09-03-precompile-experiment.md`.
 
 ## Running commands
 
@@ -32,7 +32,7 @@ NTASKS=2 CPUS_PER_TASK=4 scripts/remote/run.sh bocconi "make launch-2"
 ## GPU access pattern
 
 - GPUs are reachable with `salloc --gres=gpu:2` plus `mpiexecjl` inside the allocation. `make` targets switch to `srun --mpi=pmi2` automatically when `SLURM_JOB_ID` is set.
-- `run.sh` wraps commands in `bash -l`, which resets environment variables needed for CUDA. `make example-ddp` has run through `run.sh` successfully, but a GPU/NCCL run that fails suspiciously should be retried with a direct `ssh bocconi` + `salloc` + `mpiexecjl` command (see `wiki/devlog/2026-08-01.md`).
+- `run.sh` wraps commands in `bash -l`, which resets environment variables needed for CUDA. `make example-ddp` has run through `run.sh` successfully, but a GPU/NCCL run that fails suspiciously should be retried with a direct `ssh bocconi` + `salloc` + `mpiexecjl` command (see `wiki/devlog/01-pr2694/2026-08-01.md`).
 
 ## Usage sequence
 

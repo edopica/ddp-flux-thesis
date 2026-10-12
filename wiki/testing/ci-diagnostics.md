@@ -1,8 +1,9 @@
 # CI Diagnostics Guide — best practices and failure examples
 
 Source: the PR #2694 4-rank CI failure (2026-08 → 2026-09-06). Evidence:
-`temp/docker_ci/RESULTS.md`, `temp/handoff-2026-09-05-pr2694-ci-investigation.md`,
-CI logs in `temp/ci-full-logs-32582844912/`.
+`temp/docker_ci/RESULTS.md`, CI logs in `temp/ci-full-logs-32582844912/`.
+The investigation handoff `temp/handoff-2026-09-05-pr2694-ci-investigation.md`
+is no longer present in the workspace.
 
 This guide exists because CI diagnostics will become routine as the project
 proceeds. It is split into: (1) the incident in one paragraph, (2) what we did
@@ -180,13 +181,16 @@ Full runbook and Dockerfile: `temp/docker_ci/RESULTS.md`, `temp/docker_ci/Docker
 - Direct child with stderr (the diagnostic that ended the investigation):
   `mpiexec -n 4 julia --color=yes --project=/home/runner/Flux.jl/test --startup-file=no test/ext_distributed/common_distributedtest.jl mpi`
 
+**Rootless podman (default since 2026-09-10).** Image and depot volume were migrated to podman storage; run with `podman` directly (no group, no sudo, always `--userns=keep-id`). Topology restriction does **not** work via `taskset` or `--cpuset-cpus` rootless (cpuset controller not delegated); use the hwloc topology-file workaround (`OMPI_MCA_hwloc_base_topo_file`, 2-core/4-PU XML). Agent runbook: `scripts/podman/README.md` (wrapper `scripts/podman/run-ci-parity.sh`). Full evidence, exact commands, and the optional root cpuset-delegation recipe: `temp/docker_ci_fix/RESULTS-podman.md`, `wiki/devlog/01-pr2694/2026-09-10-rootless-podman-ci-parity.md`.
+
 ## 5. Primary evidence
 
 | Item | Path |
 |---|---|
 | Reproduction results + root cause | `temp/docker_ci/RESULTS.md` |
-| Full investigation handoff (superseded hypotheses, env reference) | `temp/handoff-2026-09-05-pr2694-ci-investigation.md` |
+| Full investigation handoff (superseded hypotheses, env reference) | Removed from the workspace (was `temp/handoff-2026-09-05-pr2694-ci-investigation.md`) |
 | Real CI logs (failing step verbatim) | `temp/ci-full-logs-32582844912/full-job.log` |
 | Captured child stderr (the slots banner) | `temp/docker_ci/child-common-cpuset-stderr.log` |
 | Dockerfile / image id | `temp/docker_ci/Dockerfile`, `temp/docker_ci/image-id.txt` |
+| Rootless podman parity (current) | `temp/docker_ci_fix/RESULTS-podman.md`, `temp/docker_ci_fix/podman/` |
 | Related guardrail work | `wiki/decisions/ADR-0003-mpi-pmi-guardrails.md` |

@@ -1,0 +1,9 @@
+Executing on deathstar:  cd ../flux-integration && time env FLUX_TEST_DISTRIBUTED_BACKEND=mpi $HOME/.julia/bin/mpiexecjl --project=test -n 2 julia --startup-file=no --project=test test/ext_distributed/optimizer_distributedtest.jl
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.2s
+Test Summary:                          | Pass  Total  Time
+DistributedOptimizer composition guard |    6      6  0.2s
+
+real	0m8,474s
+user	0m23,725s
+sys	0m0,961s

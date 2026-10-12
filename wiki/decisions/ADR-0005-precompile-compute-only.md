@@ -12,7 +12,7 @@ every minor change to the dev'd Flux fork. The remote workflow scripts
 shell, which on this cluster stays on the LOGIN node (slnode01); only `srun` reaches
 the compute nodes.
 
-Measured facts (2026-09-03, full protocol in `wiki/devlog/2026-09-03-precompile-experiment.md`):
+Measured facts (2026-09-03, full protocol in `wiki/devlog/01-pr2694/2026-09-03-precompile-experiment.md`):
 
 1. **Caches are CPU-target-specific and cross-family caches do not load.** Julia bakes
    the host CPU feature set into pkgimage targets: login `slnode01` = `graniterapids`

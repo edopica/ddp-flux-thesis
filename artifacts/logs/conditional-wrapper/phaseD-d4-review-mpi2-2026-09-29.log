@@ -1,0 +1,48 @@
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.1s
+Test Summary:                                         | Pass  Total   Time
+equal-shaped conditional branches do not cross-reduce |    5      5  14.0s
+Test Summary:                                          | Pass  Total  Test Summary:                                          | Time
+Pass  canonical traversal order for reversed named trainable | Total    10     10  Time
+canonical traversal order for reversed named trainable | 1.4s
+  10     10  1.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                    | Pass  Total  Time
+equal-valued isbits occurrences stay independent |   11     11  0.5s
+Test Summary:                                                | Pass  Total  Test Summary:                                                | Pass  Total  Time
+explicit occurrence mapping for mixed tied/isbits parametersTime
+explicit occurrence mapping for mixed tied/isbits parameters |   38   |   38     38     38  2.3s2.3s
+
+Test Summary:                                    | Test Summary:                                    | Pass  Pass  Total  Total  TimeTime
+
+CPU presence metadata for device-like parametersCPU presence metadata for device-like parameters |  |   16    16     16     16  0.7s0.7s
+
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+Test Summary:                                         | Test Summary:                                         | Pass  Total  TimePass  Total  Time
+
+legacy tuple trainable selection matches native setup | legacy tuple trainable selection matches native setup |   20    20     20  1.6s   20  1.6s
+
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+┌ Warning: trainable(x) should now return a NamedTuple with the field names, not a Tuple
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194
+D4_REVIEW path=update! step=1 b=0.44999999999999996 native_b=0.44999999999999996 collectives=3
+D4_REVIEW path=update! step=2 b=0.44999999999999996 native_b=-0.10000000000000009 collectives=2
+D4_REVIEW path=update step=1 b=0.44999999999999996 native_b=0.44999999999999996 collectives=3
+D4_REVIEW path=update step=2 b=0.44999999999999996 native_b=-0.10000000000000009 collectives=2
+Test Summary:                                  | Pass  Total  Time
+D4 review: setup selection is lost on step two |   16     16  0.4s
+Test Summary:                                  | Pass  Total  Time
+D4 review: setup selection is lost on step two |   16     16  0.5s
+
+real	0m29.042s
+user	0m55.414s
+sys	0m3.468s

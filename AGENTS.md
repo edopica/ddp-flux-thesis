@@ -50,7 +50,7 @@ C0 - Repository and API audit.
 - Never run julia that loads the project envs (`--project=...` with `using Flux`) on the Bocconi login node.
 - Pass make variables as make args on `bocconi` (`make c8-mpi FLUX_REPO_PATH=../ddp_flux`), not as env prefixes before the command (salloc execs argv directly). Resource overrides go before the *script*: `NTASKS=2 CPUS_PER_TASK=4 scripts/remote/run.sh bocconi ...`.
 - If a run prints `Precompiling packages...`, a sync happened without a follow-up precompile: stop, precompile, rerun.
-- Evidence and rationale: `wiki/decisions/ADR-0005-precompile-compute-only.md`, `wiki/context/remote-nodes.md`, `wiki/context/bocconi.md`, `wiki/devlog/2026-09-03-precompile-experiment.md`.
+- Evidence and rationale: `wiki/decisions/ADR-0005-precompile-compute-only.md`, `wiki/context/remote-nodes.md`, `wiki/context/bocconi.md`, `wiki/devlog/01-pr2694/2026-09-03-precompile-experiment.md`.
 
 ## Before ending a session
 

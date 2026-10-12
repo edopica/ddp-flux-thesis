@@ -1,0 +1,16 @@
+[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.1s
+
+
+DistributedDataContainer cyclic padding | DistributedDataContainer cyclic padding | [32m  51  [39m[32m  51  [39m[36m   51  [39m[36m   51  [39m[0m1.0s
+[0m1.0s
+
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.0s
+[ Info: Running Distributed Tests with 4 processes
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/kurapica/Projects/ddp_flux/flux-pr2694-salvage/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+Test Summary: | Pass  Total   Time
+Distributed   |    5      5  40.9s

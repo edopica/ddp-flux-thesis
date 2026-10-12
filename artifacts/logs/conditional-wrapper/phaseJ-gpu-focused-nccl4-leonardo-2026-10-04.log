@@ -1,0 +1,60 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=4 --cpus-per-task=4 --gres=gpu:4 --time=00:30:00 time env FLUX_TEST_DISTRIBUTED_BACKEND=nccl srun --mpi=pmi2 -n 4 -c 4 --chdir=/leonardo/home/userexternal/epicazio/projects/flux-integration julia --startup-file=no --project=test test/ext_distributed/cuda_conditional_distributedtest.jl
+salloc: Granted job allocation 59337072
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0056 are ready for job
+Phase J rank-to-device mapping: rank=1 device=2 devices=[1, 2, 3, 0] ndevices=4 name=NVIDIA A100-SXM-64GB
+Phase J rank-to-device mapping: rank=2 device=3 devices=[1, 2, 3, 0] ndevices=4 name=NVIDIA A100-SXM-64GB
+Phase J rank-to-device mapping: rank=3 device=0 devices=[1, 2, 3, 0] ndevices=4 name=NVIDIA A100-SXM-64GB
+Phase J rank-to-device mapping: rank=0 device=1 devices=[1, 2, 3, 0] ndevices=4 name=NVIDIA A100-SXM-64GB
+Test Summary:                                              | Pass  Total  Time
+Test Summary:                                              | Pass  Total  Time
+Test Summary:                                              | Pass  Total  Time
+Test Summary:                                              | Pass  Total  Time
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.4s
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.4s
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.4s
+NCCL rank-to-device mapping uses distinct physical devices |    5      5  0.4s
+Test Summary:                                        | Pass  Total   Time
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  32.5s
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  32.5s
+rank-dependent conditional branches on device arrays |  171    171  32.5s
+Test Summary:                                        | Pass  Total   Time
+rank-dependent conditional branches on device arrays |  171    171  32.5s
+Test Summary:                                         | Pass  Total  Time
+Test Summary:                                         | Pass  Total  Time
+Test Summary:                                         | Pass  Total  Time
+Test Summary:                                         | Pass  Total  Time
+tied device parameter reduces once and keeps identity |   11     11  4.1s
+tied device parameter reduces once and keeps identity |   11     11  4.1s
+tied device parameter reduces once and keeps identity |   11     11  4.1s
+tied device parameter reduces once and keeps identity |   11     11  4.1s
+Test Summary:                                         | Pass  Total  Time
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.5s
+nested device traversal excludes non-trainable arrays |   12     12  1.5s
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.5s
+Test Summary:                                         | Pass  Total  Time
+nested device traversal excludes non-trainable arrays |   12     12  1.5s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  6.4s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  6.4s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  6.5s
+Test Summary:                                             | Pass  Total  Time
+transpose gradients pair in parent space on device arrays |    8      8  6.8s
+Test Summary:                                       | Pass  Total  Time
+device freeze and thaw preserve values and protocol |   10     10  0.8s
+Test Summary:                                       | Pass  Total  Time
+device freeze and thaw preserve values and protocol |   10     10  1.1s
+Test Summary:                                       | Pass  Total  Time
+device freeze and thaw preserve values and protocol |   10     10  1.2s
+Test Summary:                                       | Pass  Total  Time
+device freeze and thaw preserve values and protocol |   10     10  1.2s
+0.28user 0.00system 3:17.72elapsed 0%CPU (0avgtext+0avgdata 19048maxresident)k
+48inputs+0outputs (1major+2780minor)pagefaults 0swaps
+salloc: Relinquishing job allocation 59337072
+EXIT=0

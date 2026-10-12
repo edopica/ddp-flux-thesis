@@ -1,0 +1,19 @@
+COMMAND /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/bin/mpiexec -n 2 /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no --startup-file=no --color=no --project=/home/kurapica/Projects/ddp_flux/flux-integration/test /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_wrapper_compatibility_probe.jl resume /tmp/opencode/phaseH-EHgNtc
+Julia=1.12.6 mode=resume ranks=2
+Flux=0.16.11 source=/home/kurapica/Projects/ddp_flux/flux-integration/src/Flux.jl
+Optimisers=0.4.9 source=/home/kurapica/.julia/packages/Optimisers/tMaaf/src/Optimisers.jl
+Functors=0.5.3 source=/home/kurapica/.julia/packages/Functors/PfDWx/src/Functors.jl
+MPI=0.20.27 source=/home/kurapica/.julia/packages/MPI/E9X9Q/src/MPI.jl
+JLD2=0.6.6 source=/home/kurapica/.julia/packages/JLD2/r2pdD/src/JLD2.jl
+MPI_library=MPICH
+RESUME rank=0 format=Serialization fresh_process_backend=true values_moments_decay_rules_freeze_ties=pass
+RESUME rank=1 format=Serialization fresh_process_backend=true values_moments_decay_rules_freeze_ties=pass
+RESUME rank=0 format=JLD2 fresh_process_backend=true values_moments_decay_rules_freeze_ties=pass
+RESUME rank=1 format=JLD2 fresh_process_backend=true values_moments_decay_rules_freeze_ties=pass
+Test Summary:         | Pass  Total   Time
+Phase H resume rank=0 |   35     35  10.7s
+PHASE_H_DONE mode=resume rank=0 elapsed=12.521
+Test Summary:         | Pass  Total   Time
+Phase H resume rank=1 |   35     35  11.2s
+PHASE_H_DONE mode=resume rank=1 elapsed=13.098
+RESULT exit=0 timeout=false elapsed=17.223

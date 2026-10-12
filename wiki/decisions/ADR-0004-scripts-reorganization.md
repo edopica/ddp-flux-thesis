@@ -25,3 +25,8 @@ The new layout is:
 - Simpler addition of new checkpoints (C4-C12) as they will naturally fall into new subdirectories.
 - Git history remains intact via `git mv`.
 - Makefile paths and Wiki documentation required updates to reflect the new paths.
+
+## Update 2026-10-07
+
+`update_wiki.sh` later moved from `scripts/remote/` to `scripts/setup/` during
+the 2026-09-30 remote tooling cleanup. The rest of the layout stands.

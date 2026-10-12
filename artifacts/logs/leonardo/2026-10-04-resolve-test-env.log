@@ -1,0 +1,747 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+Precompiling packages...
+  93795.3 ms  ✓ Pkg (serial)
+  1 dependency successfully precompiled in 94 seconds
+ERROR: no registries have been installed. Cannot resolve the following packages:
+  `CUDA [052768ef]`
+  `Documenter [e30172f5]`
+  `BSON [fbb218c0]`
+  `ForwardDiff [f6369f11]`
+  `MLUtils [f1d291b0]`
+  `MPI [da04e1cc]`
+  `Statistics [10745b16]`
+  `ComponentArrays [b0b7db55]`
+  `FiniteDifferences [26cc04aa]`
+  `GPUCompiler [61eb1bfa]`
+  `IterTools [c8e1da08]`
+  `cuDNN [02a925ec]`
+  `GPUArraysCore [46192b85]`
+  `NCCL [3fe64909]`
+  `Tracker [9f7883ad]`
+  `ParallelTestRunner [d3525ed8]`
+  `Enzyme [7da242da]`
+  `Optimisers [3bd65402]`
+  `Functors [d9f16b24]`
+  `Zygote [e88e6eb3]`
+  `Mooncake [da2b9cff]`
+  `FillArrays [1a297f60]`
+  `ProgressLogging [33c8b6b6]`
+  `OneHotArrays [0b1bfda6]`
+  `MLCore [c2834f40]`
+  `EnzymeCore [f151be2c]`
+  `Compat [34da2185]`
+  `Preferences [21216c6a]`
+  `BFloat16s [ab4f0b2a]`
+  `GPUArrays [0c68f7d7]`
+  `MacroTools [1914dd2f]`
+  `ADTypes [47edcb42]`
+  `MLDataDevices [7e8f7934]`
+  `ChainRulesCore [d360d2e6]`
+  `NNlib [872c559c]`
+  `SpecialFunctions [276daf66]`
+  `Setfield [efcf1570]`
+  `Reexport [189a3867]`
+  `Adapt [79e6a3ab]`
+  `MLDatasets [eb30cadb]`
+  `Plots [91a5bcdd]`
+  `JLD2 [033835bb]`
+  `DataFrames [a93c6f00]`
+Stacktrace:
+  [1] pkgerror(msg::String)
+    @ Pkg.Types /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/Types.jl:68
+  [2] check_registered(registries::Vector{Pkg.Registry.RegistryInstance}, pkgs::Vector{PackageSpec})
+    @ Pkg.Operations /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/Operations.jl:1650
+  [3] up(ctx::Pkg.Types.Context, pkgs::Vector{PackageSpec}, level::UpgradeLevel; skip_writing_project::Bool, preserve::Nothing)
+    @ Pkg.Operations /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/Operations.jl:1999
+  [4] up
+    @ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/Operations.jl:1977 [inlined]
+  [5] up(ctx::Pkg.Types.Context, pkgs::Vector{PackageSpec}; level::UpgradeLevel, mode::PackageMode, preserve::Nothing, update_registry::Bool, skip_writing_project::Bool, workspace::Bool, kwargs::@Kwargs{})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:450
+  [6] up
+    @ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:419 [inlined]
+  [7] up
+    @ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:174 [inlined]
+  [8] #resolve#171
+    @ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:456 [inlined]
+  [9] resolve
+    @ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:455 [inlined]
+ [10] resolve(; io::IOContext{IO}, kwargs::@Kwargs{})
+    @ Pkg.API /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12/Pkg/src/API.jl:454
+ [11] top-level scope
+    @ none:1
+ [12] eval(m::Module, e::Any)
+    @ Core ./boot.jl:489
+ [13] exec_options(opts::Base.JLOptions)
+    @ Base ./client.jl:283
+ [14] _start()
+    @ Base ./client.jl:550
+resolve-test-env exit=1 elapsed=112s
+=== Step 3 recovery: Pkg.Registry.add("General") (fresh depot had no registry; Pkg.resolve aborted before instantiate could download it) ===
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+       Added `General` registry to /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/registries
+registry-add exit=0 elapsed=4s
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+   Installed Enzyme_jll ─────────────────── v0.0.301+0
+   Installed GR_jll ─────────────────────── v0.73.27+0
+   Installed x265_jll ───────────────────── v4.1.0+0
+   Installed libdecor_jll ───────────────── v0.2.2+0
+   Installed JpegTurbo_jll ──────────────── v3.2.0+1
+   Installed libfdk_aac_jll ─────────────── v2.0.4+0
+   Installed RegistryInstances ──────────── v0.1.0
+   Installed OffsetArrays ───────────────── v1.17.0
+   Installed LERC_jll ───────────────────── v4.2.0+0
+   Installed SciMLPublic ────────────────── v1.3.0
+   Installed ShowCases ──────────────────── v0.1.0
+   Installed CUPTI ──────────────────────── v6.2.2
+   Installed cuFFT ──────────────────────── v6.2.2
+   Installed cuDNN ──────────────────────── v6.2.2
+   Installed Libmount_jll ───────────────── v2.42.0+0
+   Installed Preferences ────────────────── v1.6.0
+   Installed LoggingExtras ──────────────── v1.2.0
+   Installed Opus_jll ───────────────────── v1.6.1+0
+   Installed LLVMLoopInfo ───────────────── v1.0.0
+   Installed Xorg_xkbcomp_jll ───────────── v1.4.7+0
+   Installed RelocatableFolders ─────────── v1.0.1
+   Installed NNlib ──────────────────────── v0.9.45
+   Installed GR ─────────────────────────── v0.73.27
+   Installed Unitful ────────────────────── v1.29.0
+   Installed InlineStrings ──────────────── v1.4.6
+   Installed Measures ───────────────────── v0.3.3
+   Installed Malt ───────────────────────── v1.4.1
+   Installed Contour ────────────────────── v0.6.3
+   Installed CUDATools ──────────────────── v6.2.2
+   Installed StaticArrays ───────────────── v1.9.22
+   Installed ZipFile ────────────────────── v0.10.1
+   Installed ConcurrentUtilities ────────── v2.6.0
+   Installed Git_jll ────────────────────── v2.56.0+0
+   Installed Tracy ──────────────────────── v0.1.6
+   Installed Optimisers ─────────────────── v0.4.9
+   Installed Xorg_xcb_util_wm_jll ───────── v0.4.2+0
+   Installed Xorg_xcb_util_image_jll ────── v0.4.1+0
+   Installed FiniteDifferences ──────────── v0.12.34
+   Installed PlotUtils ──────────────────── v1.5.0
+   Installed NVTX_jll ───────────────────── v3.2.2+0
+   Installed ColorSchemes ───────────────── v3.31.0
+   Installed RecipesPipeline ────────────── v0.6.12
+   Installed CEnum ──────────────────────── v0.5.0
+   Installed ScopedValues ───────────────── v1.6.2
+   Installed DelimitedFiles ─────────────── v1.9.1
+   Installed cuSPARSE ───────────────────── v6.2.2
+   Installed OpenSSL ────────────────────── v1.6.1
+   Installed FileIO ─────────────────────── v1.20.0
+   Installed InvertedIndices ────────────── v1.3.1
+   Installed BFloat16s ──────────────────── v0.6.2
+   Installed Cairo_jll ──────────────────── v1.18.8+0
+   Installed HTTP ───────────────────────── v1.11.0
+   Installed libva_jll ──────────────────── v2.23.0+0
+   Installed Xorg_libSM_jll ─────────────── v1.2.6+0
+   Installed GPUArrays ──────────────────── v11.5.16
+   Installed MAT ────────────────────────── v0.11.5
+   Installed Xorg_xcb_util_jll ──────────── v0.4.1+0
+   Installed Fontconfig_jll ─────────────── v2.17.1+0
+   Installed DataFrames ─────────────────── v1.8.2
+   Installed Statistics ─────────────────── v1.11.5
+   Installed RandomNumbers ──────────────── v1.6.0
+   Installed CodeTracking ───────────────── v3.0.2
+   Installed Xorg_libxkbfile_jll ────────── v1.2.0+0
+   Installed LibTracyClient_jll ─────────── v0.13.1+0
+   Installed CUDA_Runtime_jll ───────────── v0.23.0+1
+   Installed cuRAND ─────────────────────── v6.2.2
+   Installed Xorg_libXinerama_jll ───────── v1.1.7+0
+   Installed ZygoteRules ────────────────── v0.2.8
+   Installed EpollShim_jll ──────────────── v0.0.20230411+1
+   Installed Static ─────────────────────── v1.4.6
+   Installed Xorg_libXau_jll ────────────── v1.0.13+0
+   Installed MLUtils ────────────────────── v0.4.13
+   Installed TupleTools ─────────────────── v1.6.1
+   Installed Missings ───────────────────── v1.2.0
+   Installed MPIABI_jll ─────────────────── v1.0.1+0
+   Installed RealDot ────────────────────── v0.1.0
+   Installed FFMPEG ─────────────────────── v0.4.6
+   Installed LLVM ───────────────────────── v9.13.2
+   Installed Chemfiles ──────────────────── v0.10.43
+   Installed IRTools ────────────────────── v0.4.20
+   Installed Showoff ────────────────────── v1.1.1
+   Installed MLCore ─────────────────────── v1.1.0
+   Installed JLD2 ───────────────────────── v0.6.7
+   Installed IrrationalConstants ────────── v0.2.6
+   Installed demumble_jll ───────────────── v1.3.0+0
+   Installed ComponentArrays ────────────── v0.15.50
+   Installed Functors ───────────────────── v0.5.3
+   Installed GZip ───────────────────────── v0.6.2
+   Installed Pango_jll ──────────────────── v1.58.2+0
+   Installed Xorg_libpciaccess_jll ──────── v0.19.0+0
+   Installed AtomsBase ──────────────────── v0.5.3
+   Installed JSON ───────────────────────── v1.10.0
+   Installed PtrArrays ──────────────────── v1.4.0
+   Installed cuSOLVER ───────────────────── v6.2.2
+   Installed CUDA_Driver_jll ────────────── v13.3.1+0
+   Installed Hwloc_jll ──────────────────── v2.14.1+0
+   Installed ADTypes ────────────────────── v1.24.0
+   Installed xkbcommon_jll ──────────────── v1.13.0+0
+   Installed Xorg_xcb_util_keysyms_jll ──── v0.4.1+0
+   Installed Bzip2_jll ──────────────────── v1.0.9+0
+   Installed SpecialFunctions ───────────── v2.9.0
+   Installed CUDACore ───────────────────── v6.2.2
+   Installed SimpleBufferStream ─────────── v1.2.0
+   Installed ProgressLogging ────────────── v0.1.6
+   Installed XZ_jll ─────────────────────── v5.8.4+0
+   Installed HarfBuzz_jll ───────────────── v100.14004.0+0
+   Installed IfElse ─────────────────────── v0.1.1
+   Installed SentinelArrays ─────────────── v1.4.10
+   Installed PkgVersion ─────────────────── v0.3.3
+   Installed PlotThemes ─────────────────── v3.3.0
+   Installed MicrosoftMPI_jll ───────────── v10.1.4+3
+   Installed ChunkCodecLibZstd ──────────── v1.0.0
+   Installed StringEncodings ────────────── v0.3.7
+   Installed Enzyme ─────────────────────── v0.13.209
+   Installed OneHotArrays ───────────────── v0.2.11
+   Installed NaNMath ────────────────────── v1.1.4
+   Installed CUDA_Runtime_Discovery ─────── v2.1.1
+   Installed StaticArraysCore ───────────── v1.4.4
+   Installed Zygote ─────────────────────── v0.7.13
+   Installed CUDA_Compiler_jll ──────────── v0.4.4+1
+   Installed WorkerUtilities ────────────── v1.6.1
+   Installed FriBidi_jll ────────────────── v1.0.17+0
+   Installed fzf_jll ────────────────────── v0.61.1+0
+   Installed TranscodingStreams ─────────── v0.11.3
+   Installed MLDataDevices ──────────────── v1.17.10
+   Installed UnicodeFun ─────────────────── v0.4.1
+   Installed Random123 ──────────────────── v1.7.1
+   Installed MPIPreferences ─────────────── v0.1.12
+   Installed Mooncake ───────────────────── v0.5.63
+   Installed MbedTLS ────────────────────── v1.1.10
+   Installed GLFW_jll ───────────────────── v3.5.1+0
+   Installed x264_jll ───────────────────── v10164.0.1+0
+   Installed WeakRefStrings ─────────────── v1.4.3
+   Installed CommonSubexpressions ───────── v0.3.1
+   Installed DataStructures ─────────────── v0.18.22
+   Installed MappedArrays ───────────────── v0.4.3
+   Installed FreeType2_jll ──────────────── v2.14.3+1
+   Installed Colors ─────────────────────── v0.13.2
+   Installed ChainRules ─────────────────── v1.73.0
+   Installed NCCL_jll ───────────────────── v2.30.7+0
+   Installed PaddedViews ────────────────── v0.5.12
+   Installed JLFzf ──────────────────────── v0.1.11
+   Installed StatsAPI ───────────────────── v1.8.0
+   Installed ExprTools ──────────────────── v0.1.11
+   Installed Compat ─────────────────────── v4.18.1
+   Installed MistyClosures ──────────────── v2.1.0
+   Installed CommonWorldInvalidations ───── v1.2.2
+   Installed Tracker ────────────────────── v0.2.39
+   Installed DispatchDoctor ─────────────── v0.4.29
+   Installed StaticArrayInterface ───────── v1.10.0
+   Installed Glob ───────────────────────── v1.5.0
+   Installed HDF5_jll ───────────────────── v1.14.3+3
+   Installed CodecZlib ──────────────────── v0.7.9
+   Installed LazyModules ────────────────── v0.3.1
+   Installed Qt6Svg_jll ─────────────────── v6.10.2+0
+   Installed StatsBase ──────────────────── v0.34.13
+   Installed libpng_jll ─────────────────── v1.6.59+0
+   Installed PeriodicTable ──────────────── v1.2.1
+   Installed Xorg_libxcb_jll ────────────── v1.17.1+0
+   Installed MosaicViews ────────────────── v0.3.4
+   Installed StructTypes ────────────────── v1.11.0
+   Installed ANSIColoredPrinters ────────── v0.0.1
+   Installed ExceptionUnwrapping ────────── v0.1.12
+   Installed libaom_jll ─────────────────── v3.15.1+0
+   Installed mtdev_jll ──────────────────── v1.1.7+0
+   Installed MPICH_jll ──────────────────── v5.0.2+0
+   Installed Scratch ────────────────────── v1.3.0
+   Installed Dbus_jll ───────────────────── v1.16.2+0
+   Installed ImageCore ──────────────────── v0.10.5
+   Installed ColorTypes ─────────────────── v0.12.3
+   Installed CSV ────────────────────────── v0.10.17
+   Installed DiffRules ──────────────────── v1.16.0
+   Installed Plots ──────────────────────── v1.41.7
+   Installed eudev_jll ──────────────────── v3.2.14+0
+   Installed Xorg_libXext_jll ───────────── v1.3.8+0
+   Installed NVML ───────────────────────── v6.2.2
+   Installed Zstd_jll ───────────────────── v1.5.7+1
+   Installed JSON3 ──────────────────────── v1.14.3
+   Installed TensorCore ─────────────────── v0.1.1
+   Installed TableTraits ────────────────── v1.0.1
+   Installed Xorg_xcb_util_cursor_jll ───── v0.1.6+0
+   Installed Expat_jll ──────────────────── v2.8.4+0
+   Installed DiffResults ────────────────── v1.1.0
+   Installed ChunkCodecLibZlib ──────────── v1.1.0
+   Installed Parsers ────────────────────── v2.8.8
+   Installed DataDeps ───────────────────── v0.7.14
+   Installed ImageShow ──────────────────── v0.3.8
+   Installed PrettyTables ───────────────── v3.5.0
+   Installed HashArrayMappedTries ───────── v0.2.0
+   Installed OpenMPI_jll ────────────────── v4.1.10+0
+   Installed Setfield ───────────────────── v1.1.2
+   Installed PooledArrays ───────────────── v1.4.3
+   Installed Libtiff_jll ────────────────── v4.7.3+0
+   Installed Format ─────────────────────── v1.3.7
+   Installed AbstractFFTs ───────────────── v1.5.0
+   Installed JLLWrappers ────────────────── v1.8.0
+   Installed EnzymeCore ─────────────────── v0.8.22
+   Installed ConstructionBase ───────────── v1.6.0
+   Installed ColorVectorSpace ───────────── v0.11.0
+   Installed LLVMExtra_jll ──────────────── v0.0.47+0
+   Installed NVTX ───────────────────────── v1.0.3
+   Installed Libffi_jll ─────────────────── v3.4.7+0
+   Installed DataValueInterfaces ────────── v1.0.0
+   Installed OrderedCollections ─────────── v1.8.2
+   Installed AbstractTrees ──────────────── v0.4.5
+   Installed ChunkCodecCore ─────────────── v1.0.2
+   Installed Xorg_libXrender_jll ────────── v0.9.12+0
+   Installed libevdev_jll ───────────────── v1.13.4+0
+   Installed Ogg_jll ────────────────────── v1.3.6+0
+   Installed libinput_jll ───────────────── v1.28.1+0
+   Installed ChainRulesCore ─────────────── v1.26.1
+   Installed Vulkan_Loader_jll ──────────── v1.3.243+0
+   Installed Xorg_libXi_jll ─────────────── v1.8.4+0
+   Installed Qt6ShaderTools_jll ─────────── v6.10.2+1
+   Installed Reexport ───────────────────── v1.2.2
+   Installed ArrayInterface ─────────────── v7.30.2
+   Installed Ghostscript_jll ────────────── v9.55.1+0
+   Installed Qt6Declarative_jll ─────────── v6.10.2+2
+   Installed LazilyInitializedFields ────── v1.3.0
+   Installed LogExpFunctions ────────────── v1.0.2
+   Installed AliasTables ────────────────── v1.1.3
+   Installed StackViews ─────────────────── v0.1.2
+   Installed HDF5 ───────────────────────── v0.17.4
+   Installed Strided ────────────────────── v1.2.3
+   Installed KernelAbstractions ─────────── v0.9.43
+   Installed MbedTLS_jll ────────────────── v2.28.1010+0
+   Installed MacroTools ─────────────────── v0.5.16
+   Installed OpenSpecFun_jll ────────────── v0.5.6+0
+   Installed UnsafeAtomics ──────────────── v0.3.2
+   Installed NVPTX_LLVM_Backend_jll ─────── v22.1.7+1
+   Installed SparseInverseSubset ────────── v0.1.3
+   Installed Xorg_libXcursor_jll ────────── v1.2.4+0
+   Installed Git ────────────────────────── v1.5.0
+   Installed Libuuid_jll ────────────────── v2.42.0+0
+   Installed SimpleTraits ───────────────── v0.9.6
+   Installed MLDatasets ─────────────────── v0.7.21
+   Installed NCCL ───────────────────────── v0.1.3
+   Installed Atomix ─────────────────────── v1.2.1
+   Installed GPUArraysCore ──────────────── v0.2.1
+   Installed Xorg_xcb_util_renderutil_jll ─ v0.3.10+0
+   Installed Xorg_libICE_jll ────────────── v1.1.2+0
+   Installed DocStringExtensions ────────── v0.9.5
+   Installed libaec_jll ─────────────────── v1.1.7+0
+   Installed Crayons ────────────────────── v4.2.0
+   Installed Graphite2_jll ──────────────── v1.3.16+0
+   Installed libass_jll ─────────────────── v0.17.5+0
+   Installed Adapt ──────────────────────── v4.7.1
+   Installed XML2_jll ───────────────────── v2.15.4+0
+   Installed Pixman_jll ─────────────────── v0.46.4+0
+   Installed InternedStrings ────────────── v0.7.0
+   Installed ImageBase ──────────────────── v0.1.7
+   Installed Wayland_jll ────────────────── v1.24.0+0
+   Installed NPZ ────────────────────────── v0.4.3
+   Installed MarkdownAST ────────────────── v0.1.3
+   Installed Latexify ───────────────────── v0.16.12
+   Installed IterTools ──────────────────── v1.10.0
+   Installed Chemfiles_jll ──────────────── v0.10.4+0
+   Installed Xorg_xtrans_jll ────────────── v1.6.0+0
+   Installed libdrm_jll ─────────────────── v2.4.134+0
+   Installed MPI ────────────────────────── v0.20.27
+   Installed FFMPEG_jll ─────────────────── v9.0.2+0
+   Installed GPUCompiler ────────────────── v1.23.0
+   Installed BitFlags ───────────────────── v0.1.10
+   Installed IOCapture ──────────────────── v1.0.0
+   Installed Tables ─────────────────────── v1.14.0
+   Installed Xorg_xkeyboard_config_jll ──── v2.47.0+2
+   Installed DataAPI ────────────────────── v1.16.0
+   Installed LLVMOpenMP_jll ─────────────── v23.1.1+0
+   Installed Xorg_libXrandr_jll ─────────── v1.5.6+0
+   Installed FixedPointNumbers ──────────── v0.8.6
+   Installed RecipesBase ────────────────── v1.4.0
+   Installed Xorg_libXfixes_jll ─────────── v6.0.2+0
+   Installed Richardson ─────────────────── v1.4.3
+   Installed LAME_jll ───────────────────── v3.100.3+0
+   Installed StructIO ───────────────────── v0.3.1
+   Installed Qt6Wayland_jll ─────────────── v6.10.2+1
+   Installed GettextRuntime_jll ─────────── v0.22.4+0
+   Installed ParallelTestRunner ─────────── v2.9.1
+   Installed Libiconv_jll ───────────────── v1.18.0+0
+   Installed IteratorInterfaceExtensions ── v1.0.0
+   Installed Documenter ─────────────────── v1.19.0
+   Installed PrecompileTools ────────────── v1.3.4
+   Installed URIs ───────────────────────── v1.7.0
+   Installed Qt6Base_jll ────────────────── v6.10.2+2
+   Installed Glib_jll ───────────────────── v2.88.3+0
+   Installed libvorbis_jll ──────────────── v1.3.8+0
+   Installed OpenSSH_jll ────────────────── v10.5.1+0
+   Installed LaTeXStrings ───────────────── v1.4.1
+   Installed StructArrays ───────────────── v0.7.3
+   Installed GPUToolbox ─────────────────── v3.3.3
+   Installed UnitfulAtomic ──────────────── v1.0.0
+   Installed JuliaNVTXCallbacks_jll ─────── v0.2.1+0
+   Installed FilePathsBase ──────────────── v0.9.24
+   Installed Libglvnd_jll ───────────────── v1.7.1+1
+   Installed MPItrampoline_jll ──────────── v5.5.6+0
+   Installed FillArrays ─────────────────── v1.17.1
+   Installed ForwardDiff ────────────────── v1.4.6
+   Installed BSON ───────────────────────── v0.3.9
+   Installed Requires ───────────────────── v1.3.1
+   Installed Xorg_libX11_jll ────────────── v1.8.13+0
+   Installed Git_LFS_jll ────────────────── v3.7.1+0
+   Installed Xorg_libXdmcp_jll ──────────── v1.1.6+0
+   Installed ObjectFile ─────────────────── v0.5.1
+   Installed Unzip ──────────────────────── v0.2.0
+   Installed CUDNN_jll ──────────────────── v9.26.0+0
+   Installed cuBLAS ─────────────────────── v6.2.2
+   Installed Pickle ─────────────────────── v0.3.2
+   Installed SortingAlgorithms ──────────── v1.2.3
+   Installed StringManipulation ─────────── v0.6.1
+   Installed StructUtils ────────────────── v2.9.2
+   Installed CUDA ───────────────────────── v6.2.2
+  Installing 98 artifacts
+   Installed artifact Xorg_xcb_util_renderutil 32.1 KiB
+   Installed artifact Pixman                   390.8 KiB
+   Installed artifact LLVMOpenMP               738.9 KiB
+   Installed artifact LibTracyClient           502.2 KiB
+   Installed artifact Bzip2                    503.5 KiB
+   Installed artifact Qt6Wayland               1.4 MiB
+   Installed artifact Xorg_libpciaccess        26.2 KiB
+   Installed artifact Qt6ShaderTools           2.1 MiB
+   Installed artifact Hwloc                    3.5 MiB
+   Installed artifact Xorg_xtrans              48.2 KiB
+   Installed artifact LERC                     280.1 KiB
+   Installed artifact mtdev                    79.6 KiB
+   Installed artifact demumble                 322.0 KiB
+   Installed artifact Xorg_xcb_util_wm         147.9 KiB
+   Installed artifact Libmount                 6.9 MiB
+   Installed artifact XZ                       1.6 MiB
+   Installed artifact Pango                    1.1 MiB
+   Installed artifact eudev                    3.9 MiB
+   Installed artifact Libglvnd                 833.5 KiB
+   Installed artifact libinput                 1.0 MiB
+   Installed artifact Xorg_libSM               164.1 KiB
+   Installed artifact Libuuid                  3.9 MiB
+   Installed artifact Vulkan_Loader            177.3 KiB
+   Installed artifact Dbus                     489.8 KiB
+   Installed artifact HarfBuzz                 2.0 MiB
+   Installed artifact Xorg_xcb_util            39.5 KiB
+   Installed artifact Libiconv                 1.9 MiB
+   Installed artifact Glib                     7.8 MiB
+   Installed artifact Xorg_xcb_util_cursor     27.6 KiB
+   Installed artifact GLFW                     191.7 KiB
+   Installed artifact Xorg_libXext             286.6 KiB
+   Installed artifact libdecor                 44.1 KiB
+   Installed artifact Xorg_libXau              36.6 KiB
+   Installed artifact libfdk_aac               2.8 MiB
+   Installed artifact Expat                    300.4 KiB
+   Installed artifact x264                     2.1 MiB
+   Installed artifact Xorg_xcb_util_image      54.3 KiB
+   Installed artifact LLVMExtra                3.2 MiB
+   Installed artifact Git_LFS                  9.7 MiB
+   Installed artifact xkbcommon                298.7 KiB
+   Installed artifact fzf                      3.3 MiB
+   Installed artifact libpng                   329.5 KiB
+   Installed artifact HDF5                     5.3 MiB
+   Installed artifact GR                       20.4 MiB
+   Installed artifact Xorg_libX11              4.8 MiB
+   Installed artifact GettextRuntime           543.0 KiB
+   Installed artifact NVTX                     13.7 KiB
+   Installed artifact Xorg_libXinerama         25.5 KiB
+   Installed artifact Ghostscript              31.4 MiB
+   Installed artifact FriBidi                  78.9 KiB
+   Installed artifact Xorg_xcb_util_keysyms    17.8 KiB
+   Installed artifact OpenSSH                  5.0 MiB
+   Installed artifact x265                     1.4 MiB
+   Installed artifact Chemfiles                1.6 MiB
+   Installed artifact Graphite2                120.3 KiB
+   Installed artifact Zstd                     646.0 KiB
+   Installed artifact Xorg_libXrandr           97.3 KiB
+   Installed artifact Xorg_libXrender          435.9 KiB
+   Installed artifact Xorg_libxkbfile          91.1 KiB
+   Installed artifact libaom                   6.6 MiB
+   Installed artifact libass                   429.9 KiB
+   Installed artifact Xorg_libxcb              2.1 MiB
+   Installed artifact Xorg_libXdmcp            67.7 KiB
+   Installed artifact Xorg_xkbcomp             274.8 KiB
+   Installed artifact libvorbis                271.0 KiB
+   Installed artifact libaec                   50.4 KiB
+   Installed artifact Qt6Svg                   386.4 KiB
+   Installed artifact MPICH                    8.8 MiB
+   Installed artifact JuliaNVTXCallbacks       8.6 KiB
+   Installed artifact Wayland                  390.6 KiB
+   Installed artifact Libffi                   44.2 KiB
+   Installed artifact FreeType2                1.5 MiB
+   Installed artifact Cairo                    2.2 MiB
+   Installed artifact libevdev                 117.1 KiB
+   Installed artifact Opus                     960.9 KiB
+   Installed artifact XML2                     2.2 MiB
+   Installed artifact Fontconfig               984.8 KiB
+   Installed artifact JpegTurbo                1.9 MiB
+   Installed artifact FFMPEG                   12.0 MiB
+   Installed artifact NVPTX_LLVM_Backend       24.5 MiB
+   Installed artifact LAME                     292.5 KiB
+   Installed artifact Git                      56.6 MiB
+   Installed artifact Qt6Declarative           23.8 MiB
+   Installed artifact MbedTLS                  2.2 MiB
+   Installed artifact OpenSpecFun              194.9 KiB
+   Installed artifact libva                    235.7 KiB
+   Installed artifact Ogg                      250.3 KiB
+   Installed artifact Xorg_libXi               1.6 MiB
+   Installed artifact Libtiff                  2.4 MiB
+   Installed artifact Xorg_libICE              384.9 KiB
+   Installed artifact libdrm                   372.6 KiB
+   Installed artifact Xorg_libXfixes           59.0 KiB
+   Installed artifact Xorg_libXcursor          227.1 KiB
+   Installed artifact Xorg_xkeyboard_config    1.1 MiB
+   Installed artifact Qt6Base                  23.1 MiB
+   Installed artifact CUDA_Compiler            134.8 MiB
+   Installed artifact CUDA_Driver              145.9 MiB
+   Installed artifact Enzyme                   157.7 MiB
+    Updating `~/projects/flux-integration/test/Project.toml`
+  [fbb218c0] + BSON v0.3.9
+⌃ [052768ef] + CUDA v6.2.2
+  [b0b7db55] + ComponentArrays v0.15.50
+  [e30172f5] + Documenter v1.19.0
+  [7da242da] + Enzyme v0.13.209
+  [1a297f60] + FillArrays v1.17.1
+  [26cc04aa] + FiniteDifferences v0.12.34
+  [587475ba] + Flux v0.16.11 `.`
+  [f6369f11] + ForwardDiff v1.4.6
+  [d9f16b24] + Functors v0.5.3
+  [46192b85] + GPUArraysCore v0.2.1
+⌅ [61eb1bfa] + GPUCompiler v1.23.0
+  [c8e1da08] + IterTools v1.10.0
+  [f1d291b0] + MLUtils v0.4.13
+  [da04e1cc] + MPI v0.20.27
+  [da2b9cff] + Mooncake v0.5.63
+  [3fe64909] + NCCL v0.1.3
+  [3bd65402] + Optimisers v0.4.9
+  [d3525ed8] + ParallelTestRunner v2.9.1
+  [10745b16] + Statistics v1.11.5
+  [9f7883ad] + Tracker v0.2.39
+  [e88e6eb3] + Zygote v0.7.13
+⌃ [02a925ec] + cuDNN v6.2.2
+  [37e2e46d] ~ LinearAlgebra ⇒ v1.12.0
+  [44cfe95a] ~ Pkg ⇒ v1.12.1
+  [9a3f8284] ~ Random ⇒ v1.11.0
+  [2f01184e] ~ SparseArrays ⇒ v1.12.0
+  [8dfed614] ~ Test ⇒ v1.11.0
+    Updating `~/projects/flux-integration/Manifest.toml`
+Precompiling packages...
+   1233.6 ms  ✓ Unicode
+   1515.2 ms  ✓ CompilerSupportLibraries_jll
+    759.4 ms  ✓ Preferences
+   1153.5 ms  ✓ LazyArtifacts
+    641.2 ms  ✓ JLLWrappers
+   1805.5 ms  ✓ CUDA_Driver_jll
+   1831.1 ms  ✓ CUDA_Runtime_jll
+  7 dependencies successfully precompiled in 7 seconds. 24 already precompiled.
+  [47edcb42] + ADTypes v1.24.0
+  [a4c015fc] + ANSIColoredPrinters v0.0.1
+  [621f4979] + AbstractFFTs v1.5.0
+  [1520ce14] + AbstractTrees v0.4.5
+  [79e6a3ab] + Adapt v4.7.1
+  [66dad0bd] + AliasTables v1.1.3
+  [4fba245c] + ArrayInterface v7.30.2
+  [a9b6321e] + Atomix v1.2.1
+  [ab4f0b2a] + BFloat16s v0.6.2
+  [fbb218c0] + BSON v0.3.9
+  [fa961155] + CEnum v0.5.0
+⌃ [052768ef] + CUDA v6.2.2
+⌅ [bd0ed864] + CUDACore v6.2.2
+⌅ [9ec180c6] + CUDATools v6.2.2
+  [1af6417a] + CUDA_Runtime_Discovery v2.1.1
+⌅ [9e67e8f6] + CUPTI v6.2.2
+  [082447d4] + ChainRules v1.73.0
+  [d360d2e6] + ChainRulesCore v1.26.1
+  [da1fd8a2] + CodeTracking v3.0.2
+  [944b1d66] + CodecZlib v0.7.9
+  [bbf7d656] + CommonSubexpressions v0.3.1
+  [f70d9fcc] + CommonWorldInvalidations v1.2.2
+  [34da2185] + Compat v4.18.1
+  [b0b7db55] + ComponentArrays v0.15.50
+  [187b0558] + ConstructionBase v1.6.0
+  [a8cc5b0e] + Crayons v4.2.0
+  [9a962f9c] + DataAPI v1.16.0
+⌅ [864edb3b] + DataStructures v0.18.22
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [8bb1440f] + DelimitedFiles v1.9.1
+  [163ba53b] + DiffResults v1.1.0
+  [b552c78f] + DiffRules v1.16.0
+  [8d63f2c5] + DispatchDoctor v0.4.29
+  [ffbed154] + DocStringExtensions v0.9.5
+  [e30172f5] + Documenter v1.19.0
+  [7da242da] + Enzyme v0.13.209
+  [f151be2c] + EnzymeCore v0.8.22
+  [e2ba6199] + ExprTools v0.1.11
+  [1a297f60] + FillArrays v1.17.1
+  [26cc04aa] + FiniteDifferences v0.12.34
+  [587475ba] + Flux v0.16.11 `.`
+  [f6369f11] + ForwardDiff v1.4.6
+  [d9f16b24] + Functors v0.5.3
+  [0c68f7d7] + GPUArrays v11.5.16
+  [46192b85] + GPUArraysCore v0.2.1
+⌅ [61eb1bfa] + GPUCompiler v1.23.0
+  [096a3bc2] + GPUToolbox v3.3.3
+  [d7ba0133] + Git v1.5.0
+  [076d061b] + HashArrayMappedTries v0.2.0
+  [b5f81e59] + IOCapture v1.0.0
+  [7869d1d1] + IRTools v0.4.20
+  [615f187c] + IfElse v0.1.1
+  [92d709cd] + IrrationalConstants v0.2.6
+  [c8e1da08] + IterTools v1.10.0
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [692b3bcd] + JLLWrappers v1.8.0
+  [682c06a0] + JSON v1.10.0
+  [63c18a36] + KernelAbstractions v0.9.43
+⌅ [929cbde3] + LLVM v9.13.2
+  [8b046642] + LLVMLoopInfo v1.0.0
+  [b964fa9f] + LaTeXStrings v1.4.1
+  [0e77f7df] + LazilyInitializedFields v1.3.0
+  [2ab3a3ac] + LogExpFunctions v1.0.2
+  [c2834f40] + MLCore v1.1.0
+  [7e8f7934] + MLDataDevices v1.17.10
+  [f1d291b0] + MLUtils v0.4.13
+  [da04e1cc] + MPI v0.20.27
+  [3da0fdf6] + MPIPreferences v0.1.12
+  [1914dd2f] + MacroTools v0.5.16
+  [36869731] + Malt v1.4.1
+  [d0879d2d] + MarkdownAST v0.1.3
+  [e1d29d7a] + Missings v1.2.0
+  [dbe65cb8] + MistyClosures v2.1.0
+  [da2b9cff] + Mooncake v0.5.63
+  [3fe64909] + NCCL v0.1.3
+  [872c559c] + NNlib v0.9.45
+⌅ [611af6d1] + NVML v6.2.2
+  [5da4648a] + NVTX v1.0.3
+  [77ba4419] + NaNMath v1.1.4
+  [d8793406] + ObjectFile v0.5.1
+  [0b1bfda6] + OneHotArrays v0.2.11
+  [3bd65402] + Optimisers v0.4.9
+⌅ [bac558e1] + OrderedCollections v1.8.2
+  [d3525ed8] + ParallelTestRunner v2.9.1
+⌅ [69de0a69] + Parsers v2.8.8
+  [eebad327] + PkgVersion v0.3.3
+  [aea7be01] + PrecompileTools v1.3.4
+  [21216c6a] + Preferences v1.6.0
+  [08abe8d2] + PrettyTables v3.5.0
+  [33c8b6b6] + ProgressLogging v0.1.6
+  [43287f4e] + PtrArrays v1.4.0
+  [74087812] + Random123 v1.7.1
+  [e6cf234a] + RandomNumbers v1.6.0
+  [c1ae055f] + RealDot v0.1.0
+  [189a3867] + Reexport v1.2.2
+  [2792f1a3] + RegistryInstances v0.1.0
+  [05181044] + RelocatableFolders v1.0.1
+  [ae029012] + Requires v1.3.1
+  [708f8203] + Richardson v1.4.3
+  [431bcebd] + SciMLPublic v1.3.0
+  [7e506255] + ScopedValues v1.6.2
+  [6c6a2e73] + Scratch v1.3.0
+  [efcf1570] + Setfield v1.1.2
+  [605ecd9f] + ShowCases v0.1.0
+  [699a6c99] + SimpleTraits v0.9.6
+  [a2af1166] + SortingAlgorithms v1.2.3
+  [dc90abb0] + SparseInverseSubset v0.1.3
+  [276daf66] + SpecialFunctions v2.9.0
+  [aedffcd0] + Static v1.4.6
+  [0d7ed370] + StaticArrayInterface v1.10.0
+  [90137ffa] + StaticArrays v1.9.22
+  [1e83bf80] + StaticArraysCore v1.4.4
+  [10745b16] + Statistics v1.11.5
+  [82ae8749] + StatsAPI v1.8.0
+  [2913bbd2] + StatsBase v0.34.13
+  [892a3eda] + StringManipulation v0.6.1
+  [09ab397b] + StructArrays v0.7.3
+  [53d494c1] + StructIO v0.3.1
+  [ec057cc2] + StructUtils v2.9.2
+  [3783bdb8] + TableTraits v1.0.1
+  [bd369af6] + Tables v1.14.0
+  [9f7883ad] + Tracker v0.2.39
+  [e689c965] + Tracy v0.1.6
+  [3bb67fe8] + TranscodingStreams v0.11.3
+⌃ [013be700] + UnsafeAtomics v0.3.2
+  [e88e6eb3] + Zygote v0.7.13
+  [700de1a5] + ZygoteRules v0.2.8
+⌅ [182d3088] + cuBLAS v6.2.2
+⌃ [02a925ec] + cuDNN v6.2.2
+⌅ [533571aa] + cuFFT v6.2.2
+⌅ [20fd9a0b] + cuRAND v6.2.2
+⌅ [887afef0] + cuSOLVER v6.2.2
+⌅ [b26da814] + cuSPARSE v6.2.2
+⌅ [d1e2174e] + CUDA_Compiler_jll v0.4.4+1
+⌅ [4ee394cb] + CUDA_Driver_jll v13.3.1+0
+⌅ [76a88914] + CUDA_Runtime_jll v0.23.0+1
+  [62b44479] + CUDNN_jll v9.26.0+0
+  [7cc45869] + Enzyme_jll v0.0.301+0
+  [2e619515] + Expat_jll v2.8.4+0
+  [020c3dae] + Git_LFS_jll v3.7.1+0
+  [f8c6e375] + Git_jll v2.56.0+0
+  [e33a78d0] + Hwloc_jll v2.14.1+0
+  [9c1d0b0a] + JuliaNVTXCallbacks_jll v0.2.1+0
+⌅ [dad2f222] + LLVMExtra_jll v0.0.47+0
+  [ad6e5548] + LibTracyClient_jll v0.13.1+0
+  [94ce4f54] + Libiconv_jll v1.18.0+0
+  [b5ada748] + MPIABI_jll v1.0.1+0
+  [7cb0a576] + MPICH_jll v5.0.2+0
+  [f1f71cc9] + MPItrampoline_jll v5.5.6+0
+  [9237b28f] + MicrosoftMPI_jll v10.1.4+3
+  [4d6d38e4] + NCCL_jll v2.30.7+0
+⌅ [ef6e0fe3] + NVPTX_LLVM_Backend_jll v22.1.7+1
+  [e98f9f5b] + NVTX_jll v3.2.2+0
+⌅ [fe0851c0] + OpenMPI_jll v4.1.10+0
+  [9bd350c2] + OpenSSH_jll v10.5.1+0
+  [efe28fd5] + OpenSpecFun_jll v0.5.6+0
+  [02c8fc9c] + XML2_jll v2.15.4+0
+  [a65dc6b1] + Xorg_libpciaccess_jll v0.19.0+0
+  [1e29f10c] + demumble_jll v1.3.0+0
+  [0dad84c5] + ArgTools v1.1.2
+  [56f22d72] + Artifacts v1.11.0
+  [2a0f44e3] + Base64 v1.11.0
+  [ade2ca70] + Dates v1.11.0
+  [8ba89e20] + Distributed v1.11.0
+  [f43a241f] + Downloads v1.7.0
+  [7b1f6079] + FileWatching v1.11.0
+  [9fa8497b] + Future v1.11.0
+  [b77e0a4c] + InteractiveUtils v1.11.0
+  [ac6e5ff7] + JuliaSyntaxHighlighting v1.12.0
+  [4af54fe1] + LazyArtifacts v1.11.0
+  [b27032c2] + LibCURL v0.6.4
+  [76f85450] + LibGit2 v1.11.0
+  [8f399da3] + Libdl v1.11.0
+  [37e2e46d] ~ LinearAlgebra ⇒ v1.12.0
+  [56ddb016] + Logging v1.11.0
+  [d6f4376e] + Markdown v1.11.0
+  [a63ad114] + Mmap v1.11.0
+  [ca575930] + NetworkOptions v1.3.0
+  [44cfe95a] ~ Pkg ⇒ v1.12.1
+  [de0858da] + Printf v1.11.0
+  [3fa0cd96] + REPL v1.11.0
+  [9a3f8284] ~ Random ⇒ v1.11.0
+  [ea8e919c] + SHA v0.7.0
+  [9e88b42a] + Serialization v1.11.0
+  [6462fe0b] + Sockets v1.11.0
+  [2f01184e] ~ SparseArrays ⇒ v1.12.0
+  [f489334b] + StyledStrings v1.11.0
+  [4607b0f0] + SuiteSparse
+  [fa267f1f] + TOML v1.0.3
+  [a4e569a6] + Tar v1.10.0
+  [8dfed614] ~ Test ⇒ v1.11.0
+  [cf7118a7] + UUIDs v1.11.0
+  [4ec0a83e] + Unicode v1.11.0
+  [e66e0078] + CompilerSupportLibraries_jll v1.3.0+1
+  [deac9b47] + LibCURL_jll v8.15.0+0
+  [e37daf67] + LibGit2_jll v1.9.0+0
+  [29816b5a] + LibSSH2_jll v1.11.3+1
+  [14a3606d] + MozillaCACerts_jll v2025.11.4
+  [4536629a] + OpenBLAS_jll v0.3.29+0
+  [05823500] + OpenLibm_jll v0.8.7+0
+  [458c3c95] + OpenSSL_jll v3.5.4+0
+  [efcefdf7] + PCRE2_jll v10.44.0+1
+  [bea87d4a] + SuiteSparse_jll v7.8.3+2
+  [83775a58] + Zlib_jll v1.3.1+2
+  [8e850b90] + libblastrampoline_jll v5.15.0+0
+  [8e850ede] + nghttp2_jll v1.64.0+1
+  [3f19e933] + p7zip_jll v17.7.0+0
+        Info Packages marked with ⌃ and ⌅ have new versions available. Those with ⌃ may be upgradable, but those with ⌅ are restricted by compatibility constraints from upgrading. To see why use `status --outdated -m`
+step3-resolve-instantiate exit=0 elapsed=129s

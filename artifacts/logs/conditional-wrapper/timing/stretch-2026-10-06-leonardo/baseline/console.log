@@ -1,0 +1,19 @@
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+TIMING_META mode=single rank=0 world=4 dtype=Float32 tolerances="atol=2.0e-6 rtol=1.0e-5" flux=/leonardo/home/userexternal/epicazio/projects/flux-integration/src/Flux.jl schedule_digest=ce6b41aa81c9eb9d3c4cc526a25f50e4e302738e47e660db0b4e5ad2aa78bc57
+TIMING_START mode=single world=4 steps=120 warmup=3 repeats=5 record_every=5 device=cuda
+TIMING_WARMUP mode=single warmup_steps=3 compile_warmup_s=34.031006
+TIMING_REPEAT mode=single repeat=1 t_total_s=0.577706 t_train_s=0.324570 t_val_s=0.200927 t_write_s=0.051707 slowest_rank_s=0.577706 slowest_train_s=0.324570
+TIMING_REPEAT mode=single repeat=2 t_total_s=0.438678 t_train_s=0.263440 t_val_s=0.158325 t_write_s=0.016411 slowest_rank_s=0.438678 slowest_train_s=0.263440
+TIMING_REPEAT mode=single repeat=3 t_total_s=0.429985 t_train_s=0.263047 t_val_s=0.153931 t_write_s=0.012529 slowest_rank_s=0.429985 slowest_train_s=0.263047
+TIMING_REPEAT mode=single repeat=4 t_total_s=0.430569 t_train_s=0.261991 t_val_s=0.154793 t_write_s=0.013285 slowest_rank_s=0.430569 slowest_train_s=0.261991
+TIMING_REPEAT mode=single repeat=5 t_total_s=0.837961 t_train_s=0.591889 t_val_s=0.233055 t_write_s=0.012528 slowest_rank_s=0.837961 slowest_train_s=0.591889
+TIMING_SUMMARY mode=single repeats=5 median_total_s=0.438678 min_total_s=0.429985 max_total_s=0.837961 median_train_s=0.263440 min_train_s=0.261991 max_train_s=0.591889 median_updates_per_s=273.548871 median_train_updates_per_s=455.512186
+TIMING_RANK_DONE mode=single rank=0 steps=120
+TIMING_DONE mode=single
