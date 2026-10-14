@@ -1,0 +1,48 @@
+CASE_RESULT rank=1 case=healthy status=FAIL error="FieldError: type Array has no field `u`, available fields: `ref`, `size`"
+CASE_RESULT rank=0 case=healthy status=FAIL error="FieldError: type Array has no field `u`, available fields: `ref`, `size`"
+FieldError: type Array has no field `u`, available fields: `ref`, `size`FieldError: type Array has no field `u`, available fields: `ref`, `size`
+Stacktrace:
+  [1] _pullback(::Zygote.Context{false}, ::typeof(ul), ::Vector{Float64}, ::Vector{Float64})
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:87
+  [2] _apply
+    @ ./boot.jl:1019 [inlined]
+  [3] adjoint
+    @ ~/.julia/packages/Zygote/dywlZ/src/lib/lib.jl:211 [inlined]
+  [4] _pullback
+    @ ~/.julia/packages/ZygoteRules/fKghs/src/adjoint.jl:68 [inlined]
+  [5] #_eager_step!##0
+    @ ~/projects/flux-integration/src/train.jl:386 [inlined]
+  [6] _pullback(ctx::Zygote.Context{false}, f::Flux.Train.var"#_eager_step!##0#_eager_step!##1"{typeof(cond_loss), Tuple{Int64, Vector{Float64}}}, args::CondModel{Vector{Float64}})
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:0
+  [7] pullback(f::Function, cx::Zygote.Context{false}, args::CondModel{Vector{Float64}})
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:99
+  [8] pullback
+    @ ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:97 [inlined]
+  [9] withgradient(f::Function, args::CondModel{Vector{Float64}})
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:214
+ [10] withgradient
+    @ ~/projects/flux-integration/src/gradient.jl:232 [inlined]
+ [11] _eager_step!(loss::typeof(cond_loss), adtype::AutoZygote, model::CondModel{Vector{Float64}}, batch::Tuple{Int64, Vector{Float64}}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{w::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, u::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, v::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}}})
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:386
+ [12] _trainstep!(loss::Function, adtype::AutoZygote, on_reactant::Bool, model::CondModel{Vector{Float64}}, batch::Tuple{Int64, Vector{Float64}}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{w::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, u::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, v::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}}})
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:346
+ [13] macro expansion
+    @ ~/projects/flux-integration/src/train.jl:236 [inlined]
+ [14] macro expansion
+    @ ~/.julia/packages/ProgressLogging/mcUt5/src/ProgressLogging.jl:329 [inlined]
+ [15] train!(loss::Function, adtype::Nothing, model::CondModel{Vector{Float64}}, data::Vector{Tuple{Int64, Vector{Float64}}}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{w::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, u::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, v::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}}}; cb::Nothing, caching_allocator::Bool, gc_interval::Symbol)
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:224
+ [16] train!
+    @ ~/projects/flux-integration/src/train.jl:202 [inlined]
+ [17] train!(loss::Function, model::CondModel{Vector{Float64}}, data::Vector{Tuple{Int64, Vector{Float64}}}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{w::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, u::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, v::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}}})
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:261
+ [18] warmup()
+    @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:766
+ [19] top-level scope
+    @ ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:827
+ [20] include(mod::Module, _path::String)
+    @ Base ./Base.jl:306
+ [21] exec_options(opts::Base.JLOptions)
+    @ Base ./client.jl:317
+ [22] _start()
+    @ Base ./client.jl:550Abort(1) on node 1 (rank 1 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 1

@@ -1,0 +1,67 @@
+Executing on deathstar:  NUMERICAL_GUARD_PHASE=green julia --startup-file=no --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl --group loss --ranks 2 --backend nccl --outdir artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2
+DB-1/DB-4 numerical-guard check (group=loss)
+probe       : /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl
+project     : /home/picazio/projects/flux-integration/test
+backend     : nccl, ranks: 2
+output dir  : /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2
+phase       : green
+watchdogs   : startup=420.0 s, execution=120.0 s
+cases       : 13
+
+=== case: train-one backend=nccl ranks=2 fault=0 value=nan ===
+fatal: not a git repository (or any of the parent directories): .git
+    log=raw-train-one-nccl2-fault0.log timeout=none exitcode=0 elapsed=48.3s
+    verdict=PASS
+
+=== case: train-one backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-train-one-nccl2-fault1.log timeout=none exitcode=0 elapsed=47.4s
+    verdict=PASS
+
+=== case: train-one-inf backend=nccl ranks=2 fault=1 value=inf ===
+    log=raw-train-one-inf-nccl2-fault1.log timeout=none exitcode=0 elapsed=47.2s
+    verdict=PASS
+
+=== case: train-one-ninf backend=nccl ranks=2 fault=1 value=ninf ===
+    log=raw-train-one-ninf-nccl2-fault1.log timeout=none exitcode=0 elapsed=47.4s
+    verdict=PASS
+
+=== case: loop-one backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-loop-one-nccl2-fault1.log timeout=none exitcode=0 elapsed=45.7s
+    verdict=PASS
+
+=== case: loop-withgradient-one backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-loop-withgradient-one-nccl2-fault1.log timeout=none exitcode=0 elapsed=47.0s
+    verdict=PASS
+
+=== case: train-all backend=nccl ranks=2 fault=-1 value=nan ===
+    log=raw-train-all-nccl2.log timeout=none exitcode=0 elapsed=47.0s
+    verdict=PASS
+
+=== case: aux-nonfinite-ok backend=nccl ranks=2 fault=-1 value=nan ===
+    log=raw-aux-nonfinite-ok-nccl2.log timeout=none exitcode=0 elapsed=46.3s
+    verdict=PASS
+
+=== case: aux-nan-first backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-aux-nan-first-nccl2-fault1.log timeout=none exitcode=0 elapsed=46.7s
+    verdict=PASS
+
+=== case: no-trainable backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-no-trainable-nccl2-fault1.log timeout=none exitcode=0 elapsed=40.3s
+    verdict=PASS
+
+=== case: recover-one backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-recover-one-nccl2-fault1.log timeout=none exitcode=0 elapsed=47.0s
+    verdict=PASS
+
+=== case: healthy backend=nccl ranks=2 fault=-1 value=nan ===
+    log=raw-healthy-nccl2.log timeout=none exitcode=0 elapsed=60.5s
+    verdict=PASS
+
+=== case: dup-train-one backend=nccl ranks=2 fault=1 value=nan ===
+    log=raw-dup-train-one-nccl2-fault1.log timeout=none exitcode=0 elapsed=46.3s
+    verdict=UNTESTED
+      UNTESTED: dup-train-one did not run in this environment (not silently skipped)
+
+summary: PASS=12 FAIL=0 UNTESTED=1
+artifacts: /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/summary.tsv
+UNTESTED dup-train-one-nccl2-fault1 (reported explicitly, not silently skipped)

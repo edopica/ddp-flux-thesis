@@ -54,6 +54,13 @@ bring-up and remote-tooling entries (Phase J/K support) are in scope 2.
 
 ## Scope 2 — Conditional graph
 
+- [2026-10-14 review](02-conditional-graph/2026-10-14-db1-db4-v2-review.md) — R2 and NamedTuple coverage closed. R1 was closed in round 2 by exact-argv campaign matching and the extended isolation selftest ([fix devlog](02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md#review-response-r1-round-2), `green3` re-gates).
+
+- [2026-10-13 review](02-conditional-graph/2026-10-13-db1-db4-review.md) — DB-1/DB-4 production hook matches the plan; the two P2 harness/coverage corrections are implemented and re-gated in the fix devlog's review response (v2).
+
+- [2026-10-13](02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md) — DB-1/DB-4 coordinated non-finite-loss fix: hook and loss vote implemented, GREEN at 2/4 MPI ranks and 2-rank NCCL; audit resolution; review-response v2 re-gate (campaign-scoped cleanup, conditional healthy reference, NamedTuple coverage).
+- [2026-10-13](02-conditional-graph/2026-10-13-numerical-guard-red-harness.md) — DB-1/DB-4 numerical-guard RED harness: 13/13 expected failures on the unmodified source.
+- [2026-10-13](02-conditional-graph/2026-10-13-deferred-behavior-triage.md) — Deferred-behavior scope triage: DB-1/DB-4 bounded fix proposed, DB-3 separate.
 - [2026-10-07](02-conditional-graph/2026-10-07-wiki-reorganization.md) — Repo-wide wiki maintenance: devlog/audits grouped by scope; links rewritten; stale facts corrected.
 - [2026-10-06](02-conditional-graph/2026-10-06-timing-corrections.md) — Phase K timing corrections and Leonardo re-measurement (training-only 1.888594, total 1.397335).
 - [2026-10-06](02-conditional-graph/2026-10-06-phase-k-workflow-notebook-implementation.md) — Distributed workflow notebook implemented and executed in artifact mode.

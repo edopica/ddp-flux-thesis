@@ -1,0 +1,14 @@
+case	backend	ranks	fault_rank	fault_value	verdict	reason
+train-one	mpi	2	0	nan	PASS	
+train-one	mpi	2	1	nan	PASS	
+train-one-inf	mpi	2	1	inf	PASS	
+train-one-ninf	mpi	2	1	ninf	PASS	
+loop-one	mpi	2	1	nan	PASS	
+loop-withgradient-one	mpi	2	1	nan	PASS	
+train-all	mpi	2	-1	nan	PASS	
+aux-nonfinite-ok	mpi	2	-1	nan	PASS	
+aux-nan-first	mpi	2	1	nan	PASS	
+no-trainable	mpi	2	1	nan	PASS	
+recover-one	mpi	2	1	nan	PASS	
+healthy	mpi	2	-1	nan	FAIL	no GUARD_PROBE_READY on all 2 ranks; rank 0 error: FieldError: type Array has no field `u`, available fields: `ref`, `size`; rank 1 error: FieldError: type Array has no field `u`, available fields: `ref`, `size`; rank 0 CASE_RESULT status=FAIL; rank 1 CASE_RESULT status=FAIL; rank 0: expected 19 collectives, got 0; rank 1: expected 19 collectives, got 0; rank 0: missing STEP_STATE_OK step=1; rank 0: missing STEP_STATE_OK step=2; rank 0: missing STEP_STATE_OK step=3; rank 0: missing STEP_STATE_OK step=4; rank 1: missing STEP_STATE_OK step=1; rank 1: missing STEP_STATE_OK step=2; rank 1: missing STEP_STATE_OK step=3; rank 1: missing STEP_STATE_OK step=4; rank 0: missing ABSENCE_FROZEN; rank 0: missing REACTIVATED; rank 1: missing ABSENCE_FROZEN; rank 1: missing REACTIVATED; child exit code 1
+dup-train-one	mpi	2	1	nan	PASS	

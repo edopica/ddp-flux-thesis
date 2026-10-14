@@ -1,0 +1,540 @@
+
+[554144] signal 15: Terminated
+in expression starting at /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:691
+unknown function (ip: 0x7f4a6af0d195) at /lib/x86_64-linux-gnu/libc.so.6
+pthread_cond_wait at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+uv_cond_wait at /workspace/srcdir/libuv/src/unix/thread.c:822
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:523
+
+[554143] signal 15: Terminated
+in expression starting at /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:691
+unknown function (ip: 0x7fe10b2e5195) at /lib/x86_64-linux-gnu/libc.so.6
+pthread_cond_wait at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+uv_cond_wait at /workspace/srcdir/libuv/src/unix/thread.c:822
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:523
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+_trywait at ./asyncevent.jl:185
+profile_printing_listener at ./Base.jl:332
+#start_profile_listener##0 at ./Base.jl:352
+jfptr_YY.start_profile_listenerYY.YY.0_16003.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+_trywait at ./asyncevent.jl:185
+profile_printing_listener at ./Base.jl:332
+#start_profile_listener##0 at ./Base.jl:352
+jfptr_YY.start_profile_listenerYY.YY.0_16003.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1252
+unknown function (ip: (nil)) at (unknown file)
+unknown function (ip: 0x7f4a5626e410) at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so
+setindex! at ./essentials.jl:926 [inlined]
+renumber_ir_elements! at ./../usr/share/julia/Compiler/src/optimize.jl:1564
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1252
+unknown function (ip: (nil)) at (unknown file)
+int64hash at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/support/hashing.c:32
+bitmix at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/support/hashing.h:31 [inlined]
+typekeyvalue_hash at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jltypes.c:1830 [inlined]
+lookup_typevalue at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jltypes.c:1136
+lookup_arg_type_tuple at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:3072 [inlined]
+jl_lookup_generic_ at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:4141 [inlined]
+ijl_apply_generic at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:4210
+in at ./operators.jl:1362
+unknown function (ip: 0x7fe0ed997fc4) at (unknown file)
+tojlinvoke53748 at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+convert_to_ircode at ./../usr/share/julia/Compiler/src/optimize.jl:1273
+run_passes_ipo_safe at ./../usr/share/julia/Compiler/src/optimize.jl:1013
+run_passes_ipo_safe at ./../usr/share/julia/Compiler/src/optimize.jl:1027 [inlined]
+optimize at ./../usr/share/julia/Compiler/src/optimize.jl:1002 [inlined]
+typeinf_frame at ./../usr/share/julia/Compiler/src/typeinfer.jl:1127
+typeinf_code at ./../usr/share/julia/Compiler/src/typeinfer.jl:1074 [inlined]
+ci_cache_populate at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/jlgen.jl:604
+compile_method_instance at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/jlgen.jl:774
+irgen at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/irgen.jl:4
+#emit_llvm#127 at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:209
+emit_llvm at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:191
+nested_codegen! at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:1502
+invoke_codegen! at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/callconv.jl:563
+builtin_tfunction at ./../usr/share/julia/Compiler/src/tfuncs.jl:2763
+abstract_call_builtin at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1995
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2697
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896
+abstract_call at ./../usr/share/julia/Compiler/src/ssair/irinterp.jl:58
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+reprocess_instruction! at ./../usr/share/julia/Compiler/src/ssair/irinterp.jl:154
+enzyme_custom_common_rev at /home/picazio/.julia/packages/Enzyme/sBTmP/src/rules/customrules.jl:1881
+#218 at ./../usr/share/julia/Compiler/src/ssair/irinterp.jl:364
+scan! at ./../usr/share/julia/Compiler/src/ssair/irinterp.jl:286
+enzyme_custom_augfwd at /home/picazio/.julia/packages/Enzyme/sBTmP/src/rules/customrules.jl:2704
+unknown function (ip: 0x7f4925545da3) at (unknown file)
+#ir_abstract_constant_propagation#214 at ./../usr/share/julia/Compiler/src/ssair/irinterp.jl:332
+ir_abstract_constant_propagation at ./../usr/share/julia/Compiler/src/ssair/irinterp.jl:318 [inlined]
+semi_concrete_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1266
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:893
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:868 [inlined]
+handle1 at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:178
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:252
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+unknown function (ip: 0x7fe0ed9957f6) at (unknown file)
+abstract_call_gf_by_type at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:464 [inlined]
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+enzyme_custom_augfwd_cfunc at /home/picazio/.julia/packages/Enzyme/sBTmP/src/rules/llvmrules.jl:46
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+julia_enzyme_custom_augfwd_cfunc_53990_gfthunk at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+jlcapi_enzyme_custom_augfwd_cfunc_46486 at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+unknown function (ip: 0x7fe0ed965c2b) at (unknown file)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+const_prop_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1353
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:899
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:868 [inlined]
+handle1 at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:178
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:252
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+unknown function (ip: 0x7fe0ed9957f6) at (unknown file)
+abstract_call_gf_by_type at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:464 [inlined]
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+unknown function (ip: 0x7fe0ed965c2b) at (unknown file)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+const_prop_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1353
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:899
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:868 [inlined]
+handle1 at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:178
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:252
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+unknown function (ip: 0x7fe0ed9957f6) at (unknown file)
+abstract_call_gf_by_type at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:464 [inlined]
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+unknown function (ip: 0x7fe0ed965c2b) at (unknown file)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+const_prop_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1353
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:899
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:868 [inlined]
+handle1 at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:178
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:252
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+unknown function (ip: 0x7fe0ed9957f6) at (unknown file)
+abstract_call_gf_by_type at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:464 [inlined]
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+unknown function (ip: 0x7fe0ed965c2b) at (unknown file)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+const_prop_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1353
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:899
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:868 [inlined]
+handle1 at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:178
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:252
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+unknown function (ip: 0x7fe0ed9957f6) at (unknown file)
+abstract_call_gf_by_type at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:464 [inlined]
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+unknown function (ip: 0x7fe0ed965c2b) at (unknown file)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+const_prop_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:1353
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:899
+abstract_call_method_with_const_args at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:868 [inlined]
+handle1 at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:178
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:252
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+unknown function (ip: 0x7fe0ed9957f6) at (unknown file)
+abstract_call_gf_by_type at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:464 [inlined]
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call_known at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/interpreter.jl:1605
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+unknown function (ip: 0x7fe0ed965c2b) at (unknown file)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+typeinf_frame at ./../usr/share/julia/Compiler/src/typeinfer.jl:1119
+typeinf_code at ./../usr/share/julia/Compiler/src/typeinfer.jl:1074 [inlined]
+ci_cache_populate at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/jlgen.jl:604
+compile_method_instance at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/jlgen.jl:774
+irgen at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/irgen.jl:4
+#emit_llvm#127 at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:209
+emit_llvm at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:191
+nested_codegen! at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:1502
+invoke_codegen! at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler/callconv.jl:563
+enzyme_custom_common_rev at /home/picazio/.julia/packages/Enzyme/sBTmP/src/rules/customrules.jl:1881
+enzyme_custom_augfwd at /home/picazio/.julia/packages/Enzyme/sBTmP/src/rules/customrules.jl:2704
+unknown function (ip: 0x7fdfc5529a13) at (unknown file)
+enzyme_custom_augfwd_cfunc at /home/picazio/.julia/packages/Enzyme/sBTmP/src/rules/llvmrules.jl:46
+julia_enzyme_custom_augfwd_cfunc_53990_gfthunk at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+jlcapi_enzyme_custom_augfwd_cfunc_46486 at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+operator() at /workspace/srcdir/Enzyme/enzyme/Enzyme/CApi.cpp:381 [inlined]
+__invoke_impl<bool, EnzymeRegisterCallHandler(char const*, CustomAugmentedFunctionForward, CustomFunctionReverse)::<lambda(llvm::IRBuilder<>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&)>&, llvm::IRBuilder<llvm::ConstantFolder, llvm::IRBuilderDefaultInserter>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&> at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/invoke.h:60 [inlined]
+__invoke_r<bool, EnzymeRegisterCallHandler(char const*, CustomAugmentedFunctionForward, CustomFunctionReverse)::<lambda(llvm::IRBuilder<>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&)>&, llvm::IRBuilder<llvm::ConstantFolder, llvm::IRBuilderDefaultInserter>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&> at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/invoke.h:113 [inlined]
+_M_invoke at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/std_function.h:291
+operator() at /workspace/srcdir/Enzyme/enzyme/Enzyme/CApi.cpp:381 [inlined]
+__invoke_impl<bool, EnzymeRegisterCallHandler(char const*, CustomAugmentedFunctionForward, CustomFunctionReverse)::<lambda(llvm::IRBuilder<>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&)>&, llvm::IRBuilder<llvm::ConstantFolder, llvm::IRBuilderDefaultInserter>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&> at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/invoke.h:60 [inlined]
+__invoke_r<bool, EnzymeRegisterCallHandler(char const*, CustomAugmentedFunctionForward, CustomFunctionReverse)::<lambda(llvm::IRBuilder<>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&)>&, llvm::IRBuilder<llvm::ConstantFolder, llvm::IRBuilderDefaultInserter>&, llvm::CallInst*, GradientUtils&, llvm::Value*&, llvm::Value*&, llvm::Value*&> at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/invoke.h:113 [inlined]
+_M_invoke at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/std_function.h:291
+operator() at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/std_function.h:622 [inlined]
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:6743
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreatePrimalAndGradient at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:4609
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:6318
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreatePrimalAndGradient at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:4609
+EnzymeCreatePrimalAndGradient at /workspace/srcdir/Enzyme/enzyme/Enzyme/CApi.cpp:710
+EnzymeCreatePrimalAndGradient at /home/picazio/.julia/packages/Enzyme/sBTmP/src/api.jl:270
+jfptr_EnzymeCreatePrimalAndGradient_49320 at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+macro expansion at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:2998 [inlined]
+macro expansion at /home/picazio/.julia/packages/LLVM/JGisQ/src/base.jl:143 [inlined]
+enzyme! at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:2871
+compile_unhooked_impl at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:6454
+compile_unhooked at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:5674
+#compile#123 at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:67 [inlined]
+compile at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:55 [inlined]
+_thunk at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7453
+_thunk at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7451 [inlined]
+cached_compilation at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7531 [inlined]
+thunkbase at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7737
+thunk_generator at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7881
+unknown function (ip: 0x7f4951f5cbc7) at (unknown file)
+jl_call_staged at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/method.c:662
+ijl_code_for_staged at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/method.c:735
+call_get_staged at ./../usr/share/julia/Compiler/src/utilities.jl:103 [inlined]
+get_staged at ./../usr/share/julia/Compiler/src/utilities.jl:88
+jfptr_get_staged_6039.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+tojlinvoke85090.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+j_get_staged_77205.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+retrieve_code_info at ./../usr/share/julia/Compiler/src/utilities.jl:121
+InferenceState at ./../usr/share/julia/Compiler/src/inferencestate.jl:602
+typeinf_edge at ./../usr/share/julia/Compiler/src/typeinfer.jl:956
+abstract_call_method at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:735
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:167
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074 [inlined]
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+operator() at /opt/x86_64-linux-gnu/x86_64-linux-gnu/include/c++/10.2.0/bits/std_function.h:622 [inlined]
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:6743
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreateAugmentedPrimal at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:2678
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:5879
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+jfptr_typeinf_local_82127.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreatePrimalAndGradient at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:4609
+recursivelyHandleSubfunction at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:6318
+visitCallInst at /workspace/srcdir/Enzyme/enzyme/Enzyme/AdjointGenerator.h:7083
+visit at /opt/x86_64-linux-gnu/x86_64-linux-gnu/sys-root/usr/local/include/llvm/IR/InstVisitor.h:111 [inlined]
+CreatePrimalAndGradient at /workspace/srcdir/Enzyme/enzyme/Enzyme/EnzymeLogic.cpp:4609
+EnzymeCreatePrimalAndGradient at /workspace/srcdir/Enzyme/enzyme/Enzyme/CApi.cpp:710
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+typeinf_ext at ./../usr/share/julia/Compiler/src/typeinfer.jl:1256
+typeinf_ext_toplevel at ./../usr/share/julia/Compiler/src/typeinfer.jl:1439 [inlined]
+typeinf_ext_toplevel at ./../usr/share/julia/Compiler/src/typeinfer.jl:1448
+jfptr_typeinf_ext_toplevel_80206.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+EnzymeCreatePrimalAndGradient at /home/picazio/.julia/packages/Enzyme/sBTmP/src/api.jl:270
+jfptr_EnzymeCreatePrimalAndGradient_49320 at /home/picazio/.julia/compiled/v1.12/Enzyme/G1p5n_5ZnXK.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+jl_type_infer at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:466
+jl_compile_method_internal at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:3516
+_jl_invoke at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:4006 [inlined]
+ijl_apply_generic at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:4214
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+do_call at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:123
+eval_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:243
+eval_stmt_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:194 [inlined]
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:707
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:558
+jl_interpret_toplevel_thunk at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:898
+macro expansion at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:2998 [inlined]
+macro expansion at /home/picazio/.julia/packages/LLVM/JGisQ/src/base.jl:143 [inlined]
+enzyme! at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:2871
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1035
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:975
+ijl_toplevel_eval at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1047
+ijl_toplevel_eval_in at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1092
+eval at ./boot.jl:489
+include_string at ./loading.jl:2874
+_include at ./loading.jl:2934
+include at ./Base.jl:306
+exec_options at ./client.jl:317
+_start at ./client.jl:550
+jfptr__start_63319.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+true_main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:971
+jl_repl_entrypoint at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:1139
+main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/cli/loader_exe.c:58
+unknown function (ip: 0x7f4a6aea5d8f) at /lib/x86_64-linux-gnu/libc.so.6
+__libc_start_main at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+unknown function (ip: 0x4010b8) at /workspace/srcdir/glibc-2.17/csu/../sysdeps/x86_64/start.S
+unknown function (ip: (nil)) at (unknown file)
+Allocations: 1565495170 (Pool: 1565489311; Big: 5859); GC: 291
+compile_unhooked_impl at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:6454
+compile_unhooked at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:5674
+#compile#123 at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:67 [inlined]
+compile at /home/picazio/.julia/packages/GPUCompiler/BSi1T/src/driver.jl:55 [inlined]
+_thunk at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7453
+_thunk at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7451 [inlined]
+cached_compilation at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7531 [inlined]
+thunkbase at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7737
+thunk_generator at /home/picazio/.julia/packages/Enzyme/sBTmP/src/compiler.jl:7881
+unknown function (ip: 0x7fdff230cf47) at (unknown file)
+jl_call_staged at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/method.c:662
+ijl_code_for_staged at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/method.c:735
+call_get_staged at ./../usr/share/julia/Compiler/src/utilities.jl:103 [inlined]
+get_staged at ./../usr/share/julia/Compiler/src/utilities.jl:88
+jfptr_get_staged_6039.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+tojlinvoke85090.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+j_get_staged_77205.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+retrieve_code_info at ./../usr/share/julia/Compiler/src/utilities.jl:121
+InferenceState at ./../usr/share/julia/Compiler/src/inferencestate.jl:602
+typeinf_edge at ./../usr/share/julia/Compiler/src/typeinfer.jl:956
+abstract_call_method at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:735
+infercalls at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:167
+abstract_call_gf_by_type at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:338
+abstract_call_known at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2796
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2903
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:2896 [inlined]
+abstract_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3056
+abstract_eval_call at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3074 [inlined]
+abstract_eval_statement_expr at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3403
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3849 [inlined]
+abstract_eval_basic_statement at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:3806 [inlined]
+typeinf_local at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4356
+jfptr_typeinf_local_82127.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+typeinf at ./../usr/share/julia/Compiler/src/abstractinterpretation.jl:4514
+typeinf_ext at ./../usr/share/julia/Compiler/src/typeinfer.jl:1256
+typeinf_ext_toplevel at ./../usr/share/julia/Compiler/src/typeinfer.jl:1439 [inlined]
+typeinf_ext_toplevel at ./../usr/share/julia/Compiler/src/typeinfer.jl:1448
+jfptr_typeinf_ext_toplevel_80206.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+jl_type_infer at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:466
+jl_compile_method_internal at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:3516
+_jl_invoke at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:4006 [inlined]
+ijl_apply_generic at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/gf.c:4214
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+do_call at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:123
+eval_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:243
+eval_stmt_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:194 [inlined]
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:707
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:558
+jl_interpret_toplevel_thunk at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:898
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1035
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:975
+ijl_toplevel_eval at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1047
+ijl_toplevel_eval_in at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1092
+eval at ./boot.jl:489
+include_string at ./loading.jl:2874
+_include at ./loading.jl:2934
+include at ./Base.jl:306
+exec_options at ./client.jl:317
+_start at ./client.jl:550
+jfptr__start_63319.1 at /home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+true_main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:971
+jl_repl_entrypoint at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:1139
+main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/cli/loader_exe.c:58
+unknown function (ip: 0x7fe10b27dd8f) at /lib/x86_64-linux-gnu/libc.so.6
+__libc_start_main at /lib/x86_64-linux-gnu/libc.so.6 (unknown line)
+unknown function (ip: 0x4010b8) at /workspace/srcdir/glibc-2.17/csu/../sysdeps/x86_64/start.S
+unknown function (ip: (nil)) at (unknown file)
+Allocations: 1563431388 (Pool: 1563425550; Big: 5838); GC: 302
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 554144 RUNNING AT deathstar
+=   EXIT CODE: 15
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Terminated (signal 15)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions

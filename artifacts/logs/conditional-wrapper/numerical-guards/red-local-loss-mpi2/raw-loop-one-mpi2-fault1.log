@@ -1,0 +1,200 @@
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=0
+GUARD_PROBE_READY rank=1
+COLLECTIVE_BEGIN rank=1 number=1 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_BEGIN rank=0 number=1 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=1
+COLLECTIVE_BEGIN rank=0 number=2 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_END rank=1 number=1
+COLLECTIVE_BEGIN rank=1 number=2 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_END rank=0 number=2
+COLLECTIVE_END rank=1 number=2
+COLLECTIVE_BEGIN rank=0 number=3 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_BEGIN rank=1 number=3 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=0 number=3
+COLLECTIVE_END rank=1 number=3
+STEP rank=0 i=1
+STEP rank=1 i=1
+COLLECTIVE_BEGIN rank=0 number=4 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=4
+COLLECTIVE_BEGIN rank=0 number=5 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_BEGIN rank=1 number=4 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=1 number=4
+COLLECTIVE_BEGIN rank=1 number=5 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_END rank=1 number=5
+COLLECTIVE_BEGIN rank=1 number=6 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=0 number=5
+COLLECTIVE_BEGIN rank=0 number=6 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=0 number=6
+COLLECTIVE_END rank=1 number=6
+STEP rank=0 i=2
+STEP rank=1 i=2
+COLLECTIVE_BEGIN rank=0 number=7 op=avg eltype=Float32 len=2 buftype=host
+LOSS_INVALID rank=1 item=3 value=NaN
+STEP rank=1 i=3
+RETURNED_AT_FAULT rank=1
+STEPS_EXECUTED rank=1 completed=2
+SNAPSHOT_OK rank=1 ok=true moments_nonzero=true
+CASE_RESULT rank=1 case=loop-one status=FAIL reason="caught=false snapshot=true moments=true completed=2 returned=true"
+
+[152406] signal 15: Terminated
+in expression starting at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:691
+unknown function (ip: 0x7233c2ca0950) at /usr/lib/libc.so.6
+unknown function (ip: 0x7233c2c94cd8) at /usr/lib/libc.so.6
+pthread_cond_wait at /usr/lib/libc.so.6 (unknown line)
+uv_cond_wait at /workspace/srcdir/libuv/src/unix/thread.c:822
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:523
+
+[152407] signal 15: Terminated
+in expression starting at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:691
+unknown function (ip: 0x7e76acca0950) at /usr/lib/libc.so.6
+unknown function (ip: 0x7e76acc94cd8) at /usr/lib/libc.so.6
+pthread_cond_wait at /usr/lib/libc.so.6 (unknown line)
+uv_cond_wait at /workspace/srcdir/libuv/src/unix/thread.c:822
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:523
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+_trywait at ./asyncevent.jl:185
+profile_printing_listener at ./Base.jl:332
+#start_profile_listener##0 at ./Base.jl:352
+jfptr_YY.start_profile_listenerYY.YY.0_16003.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+_trywait at ./asyncevent.jl:185
+profile_printing_listener at ./Base.jl:332
+#start_profile_listener##0 at ./Base.jl:352
+jfptr_YY.start_profile_listenerYY.YY.0_16003.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1252
+unknown function (ip: (nil)) at (unknown file)
+clock_gettime at linux-vdso.so.1 (unknown line)
+clock_gettime at /usr/lib/libc.so.6 (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1252
+unknown function (ip: (nil)) at (unknown file)
+clock_gettime at linux-vdso.so.1 (unknown line)
+clock_gettime at /usr/lib/libc.so.6 (unknown line)
+ofi_gettime_ms at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+sock_cq_sreadfrom at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_NM_progress.constprop.0 at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_progress_test.isra.0 at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_POSIX_mpi_release_gather_gather at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_POSIX_mpi_allreduce_release_gather at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIR_Allreduce at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+PMPI_Allreduce at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPI_Allreduce at /home/kurapica/.julia/packages/MPI/E9X9Q/src/api/generated_api.jl:288 [inlined]
+Allreduce! at /home/kurapica/.julia/packages/MPI/E9X9Q/src/collective.jl:749 [inlined]
+Allreduce! at /home/kurapica/.julia/packages/MPI/E9X9Q/src/collective.jl:752 [inlined]
+Allreduce! at /home/kurapica/.julia/packages/MPI/E9X9Q/src/collective.jl:754 [inlined]
+Allreduce! at /home/kurapica/.julia/packages/MPI/E9X9Q/src/collective.jl:758 [inlined]
+__allreduce! at /home/kurapica/Projects/ddp_flux/flux-integration/ext/FluxMPIExt/FluxMPIExt.jl:103
+allreduce! at /home/kurapica/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:182
+unknown function (ip: 0x7233ad1f2736) at (unknown file)
+allreduce! at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:216
+_sync_gradients at /home/kurapica/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:720
+update! at /home/kurapica/Projects/ddp_flux/flux-integration/src/distributed/public_api.jl:463 [inlined]
+_update! at /home/kurapica/Projects/ddp_flux/flux-integration/src/train.jl:425
+unknown function (ip: 0x7233ad1ef3d3) at (unknown file)
+ofi_gettime_ms at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+sock_cq_sreadfrom at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_NM_progress.constprop.0 at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_progress_test at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIR_Wait_state at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIR_Wait at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIC_Wait at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIC_Sendrecv at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIR_Barrier_intra_dissemination at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIR_Barrier_allcomm_auto at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+_eager_step! at /home/kurapica/Projects/ddp_flux/flux-integration/src/train.jl:377
+unknown function (ip: 0x7233ad1ca9d2) at (unknown file)
+MPIR_Barrier_impl at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_POSIX_mpi_barrier_release_gather at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIDI_POSIX_mpi_barrier at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPIR_Barrier at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+MPI_Barrier at /home/kurapica/.julia/artifacts/8bd6881e43b97a8d20af0db9dbda166281c02323/lib/libmpi.so (unknown line)
+_trainstep! at /home/kurapica/Projects/ddp_flux/flux-integration/src/train.jl:337
+MPI_Barrier at /home/kurapica/.julia/packages/MPI/E9X9Q/src/api/generated_api.jl:360 [inlined]
+Barrier at /home/kurapica/.julia/packages/MPI/E9X9Q/src/collective.jl:15 [inlined]
+#finish_case#9 at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:315
+trainstep! at /home/kurapica/Projects/ddp_flux/flux-integration/src/train.jl:331 [inlined]
+trainstep! at /home/kurapica/Projects/ddp_flux/flux-integration/src/train.jl:323
+unknown function (ip: 0x72338c302082) at (unknown file)
+finish_case at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:313
+#run_loop#12 at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:405
+#run_loop#12 at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:432
+run_loop at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:391
+run_loop at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:391
+run_case at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:668
+unknown function (ip: 0x72338c301caf) at (unknown file)
+run_case at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:668
+unknown function (ip: 0x7e76a55ff45f) at (unknown file)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+do_call at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:123
+eval_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:243
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+do_call at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:123
+eval_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:243
+eval_stmt_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:194 [inlined]
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:707
+eval_stmt_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:194 [inlined]
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:707
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:558
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:558
+jl_interpret_toplevel_thunk at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:898
+jl_interpret_toplevel_thunk at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:898
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1035
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1035
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:975
+ijl_toplevel_eval at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1047
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:975
+ijl_toplevel_eval at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1047
+ijl_toplevel_eval_in at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1092
+ijl_toplevel_eval_in at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1092
+eval at ./boot.jl:489
+eval at ./boot.jl:489
+include_string at ./loading.jl:2874
+include_string at ./loading.jl:2874
+_include at ./loading.jl:2934
+_include at ./loading.jl:2934
+include at ./Base.jl:306
+include at ./Base.jl:306
+exec_options at ./client.jl:317
+exec_options at ./client.jl:317
+_start at ./client.jl:550
+_start at ./client.jl:550
+jfptr__start_63319.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jfptr__start_63319.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+true_main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:971
+jl_repl_entrypoint at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:1139
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+true_main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:971
+jl_repl_entrypoint at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:1139
+main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/cli/loader_exe.c:58
+main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/cli/loader_exe.c:58
+unknown function (ip: 0x7e76acc27780) at /usr/lib/libc.so.6
+unknown function (ip: 0x7233c2c27780) at /usr/lib/libc.so.6
+__libc_start_main at /usr/lib/libc.so.6 (unknown line)
+__libc_start_main at /usr/lib/libc.so.6 (unknown line)
+unknown function (ip: 0x4010b8) at /workspace/srcdir/glibc-2.17/csu/../sysdeps/x86_64/start.S
+unknown function (ip: 0x4010b8) at /workspace/srcdir/glibc-2.17/csu/../sysdeps/x86_64/start.S
+unknown function (ip: (nil)) at (unknown file)
+Allocations: 43334005 (Pool: 43333659; Big: 346); GC: 18
+unknown function (ip: (nil)) at (unknown file)
+Allocations: 43333977 (Pool: 43333631; Big: 346); GC: 18
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 152407 RUNNING AT omarchy
+=   EXIT CODE: 15
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Terminated (signal 15)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions

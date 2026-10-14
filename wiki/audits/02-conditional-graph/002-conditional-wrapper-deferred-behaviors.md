@@ -155,6 +155,14 @@ rank-consistent non-finite decision (backlog A1). Workaround for any user run:
 do not rely on `train!`'s per-rank stop; pre-screen data or add an
 all-rank loss check.
 
+> **Correction (2026-10-13): DB-1 resolved.** `Flux.train!` alone was **not** a
+> workaround for asymmetric non-finite losses: before ADR-0008 it hung exactly
+> like the manual loop, because the offending rank skipped its update and
+> issued no collective. ADR-0008 replaces the per-rank skip with a coordinated
+> all-rank loss vote; every rank now raises `DomainError` before any optimizer
+> collective, and the pre-screening workaround above is obsolete. The original
+> recommendation is preserved as the pre-fix characterization.
+
 ### 4.2 DB-2 — All ranks non-finite: coordinated clean stop
 
 **Mechanism.** Every rank skips its update at the same step, so no rank enters
@@ -229,6 +237,15 @@ document that manual loops must check the returned loss on every rank and stop
 consistently; (b) the demonstration drivers use `train!`/explicit fixed loops
 with finite data; (c) backlog A3 adds an offset-detection or coordinated-stop
 guard.
+
+> **Correction (2026-10-13): DB-4 resolved; inspecting the returned loss is too
+> late.** In a manual `trainstep!` loop, checking the returned loss cannot
+> prevent the pairing shift: the skipping rank has already returned and moved on
+> while its peers are inside the skipped step's update collectives, so the
+> mismatch exists before any caller can inspect the value. ADR-0008 rejects at
+> the `_eager_step!` boundary: the coordinated vote raises `DomainError` on
+> every rank at the injected step, before the next batch runs. The original
+> recommendation is preserved as the pre-fix characterization.
 
 ### 4.5 DB-5 — Unequal rank participation: custom-loop early stop hangs
 
@@ -439,6 +456,17 @@ demonstration:
 | DB-9 | Model structure and ties are fixed after `setup`; no custom optimizer state | Re-run `setup` after structural changes; keep ties stable; prefer Optimisers' built-in rules |
 | DB-10 | GPU untested cases stay out of scope for the demonstration | Use the validated finite K1/K2 configurations |
 
+> **Corrections (2026-10-13).** The DB-1 and DB-4 rows above record pre-fix
+> workarounds and are superseded by ADR-0008:
+>
+> - DB-1: the all-rank loss check is now built into `train!` and the other eager
+>   distributed APIs. Note that `Flux.train!` alone was **not** a workaround
+>   before the fix; it suffered the same asymmetric hang as the manual loop.
+> - DB-4: "Prefer `train!`" was not safe before the fix either (DB-1 affects
+>   `train!`), and checking each returned loss is too late: the non-finite rank
+>   proceeds to the next iteration while its peers block in the skipped step.
+>   The manual loop now raises `DomainError` on the injected step.
+
 These are conditions for deferral, not an acceptance decision. The user must
 approve which limitations the demonstration carries.
 
@@ -452,12 +480,19 @@ Suggested order; each item is RED-first with the named acceptance test.
   `train!`/`trainstep!`. Acceptance: a 2-rank probe where one rank's loss is
   NaN either stops all ranks with one error or continues all ranks, with no
   unmatched collective; the current `nan-loss-*` probe is the RED case.
+  **Addressed (2026-10-13):** [ADR-0008](../../decisions/ADR-0008-coordinated-nonfinite-loss-rejection.md),
+  resolution above, and the [fix devlog](../../devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md).
 - **A2 (DB-3, high).** Rank-consistent non-finite-gradient handling. Acceptance:
   the `grad-nonfinite` probe must not produce non-finite parameters or state on
   any rank.
 - **A3 (DB-4, high).** Manual-loop step-pairing protection or a documented
   coordinated-stop helper. Acceptance: the `step-desync` probe must not match
   the shifted-pairing reference and must not hang.
+  **Addressed (2026-10-13):** manual loops reject on every rank at the injected
+  step ([ADR-0008](../../decisions/ADR-0008-coordinated-nonfinite-loss-rejection.md));
+  harness `loop-one`, `loop-withgradient-one`, and `recover-one` PASS and
+  `nonfinite_loss_distributedtest.jl` testset 3 covers the shift. The historical
+  `step-desync` probe was not rerun against the fixed source.
 - **A4 (DB-5, medium).** Explicit unequal-participation guard or documented
   pattern. Acceptance: the `early-stop` probe produces a clear error (or a
   coordinated stop), not a hang.
@@ -468,8 +503,13 @@ Suggested order; each item is RED-first with the named acceptance test.
   Acceptance: a post-setup structural change throws a targeted `ArgumentError`.
 - **A7 (DB-10, medium).** GPU port of DB-1..DB-5 probes at 2-rank NCCL with
   `CUDA.allowscalar(false)`, following the Phase J focused-file pattern.
+  **Partially addressed (2026-10-13):** DB-1/DB-4 rejection now passes under
+  native CUDA/NCCL at 2 ranks (harness `green-deathstar-loss-nccl2-r2`, 12 PASS
+  + 1 UNTESTED; suite 16/16). DB-3 and the Duplicated eager route under NCCL
+  remain untested.
 - **A8 (DB-11, low).** Document the aux-value guard scope in the `train!`
-  docstring.
+  docstring. **Still open after the 2026-10-13 fix:** the aux-value guard scope
+  remains undocumented in the `train!` docstring; DB-11's status is unchanged.
 
 Performance/metadata work remains separate (sections 21-23 of the
 implementation plan) and is out of scope for this behavioral report.
@@ -522,3 +562,69 @@ Key source anchors:
   only.
 - The report does not modify Flux, does not commit anything, and does not accept
   limitations on the user's behalf.
+
+---
+
+## Resolution (2026-10-13)
+
+DB-1 and DB-4 are resolved by
+[ADR-0008](../../decisions/ADR-0008-coordinated-nonfinite-loss-rejection.md)
+(accepted 2026-10-13). Every eager distributed step now casts one all-rank
+loss-validity vote before the presence exchange and the gradient reductions
+(`_loss_update_allowed` in `src/train.jl` with the distributed specialization
+and `_any_rank_invalid` in `src/distributed/public_api.jl`). Any non-finite
+scalar loss raises `DomainError` on every rank, the rejected step performs no
+optimizer update, and the collective traces of rejected steps are matched.
+
+Evidence:
+
+- [Fix devlog](../../devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md)
+  and [COMMANDS.md](../../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md):
+  exact commands, versions, hashes, and results.
+- Harness: `green-deathstar-loss-mpi2/` 13/13 PASS,
+  `green-deathstar-loss-mpi4/` 8/8 PASS (one invalid non-root rank of four
+  included), `green-deathstar-loss-nccl2-r2/` 12 PASS + 1 UNTESTED
+  (`dup-train-one`).
+- Dedicated suite: `suite-deathstar/suite-mpi2-r2.log` 8/8,
+  `suite-mpi4.log` 8/8, `suite-nccl2.log` 16/16 (MPI + NCCL passes);
+  single-process `train` 137/137; `detect_ambiguities` 0.
+- New regression: `test/ext_distributed/nonfinite_loss_distributedtest.jl`
+  (device-generic, 8 testsets) with single-process compatibility in
+  `test/train.jl`.
+
+DB-2 remains a clean coordinated stop, now with a matched loss vote (harness
+`train-all` PASS at 2 MPI ranks and 2 NCCL ranks; the 4-rank matrix covers a
+single invalid rank of four).
+
+DB-3 remains open under
+[conditional-graph-db3-fix-plan.md](../../../reports/conditional-graph-db3-fix-plan.md);
+`--group gradient|all` prints `GROUP_UNAVAILABLE` and exits 2, so Phase D
+combined acceptance is pending. DB-10 is now partially covered: the DB-1/DB-4
+rejection is exercised under native CUDA/NCCL at 2 ranks, while the Duplicated
+eager route under NCCL remains untested and DB-3 GPU behavior remains open.
+
+> **Review-response note (2026-10-13, later the same day).** The harness was
+> hardened after external review
+> ([report](../../../reports/conditional-graph-db1-db4-review.md)): cleanup is
+> now campaign-token-scoped (`reap_campaign`, `--campaign TOKEN`,
+> `--selftest-cleanup`) instead of filename-wide, and the `healthy` gate runs a
+> four-step rank-distinct conditional eager `train!` trajectory with per-step
+> parameter and full Adam-leaf-state comparison against a native reference
+> (`STEP_STATE_OK`, `ABSENCE_FROZEN`, `REACTIVATED`). The dedicated test file
+> also gained a NamedTuple-loss testset (9 testsets). Re-gated with no Flux
+> source change: harness `green2-*` 13/13 (mpi2), 8/8 (mpi4), 12 PASS + 1
+> UNTESTED (nccl2); suite v2 8/8, 8/8, 16/16 (MPI + NCCL); 0
+> `Precompiling packages...` lines. Evidence:
+> [COMMANDS.md v2](../../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#v2-review-response-campaign-2026-10-13),
+> [fix devlog, review response](../../devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md#review-response-second-pass),
+> [failure note](../../failures/2026-10-13-db1-db4-healthy-probe-fielderror.md).
+> DB-3 and the Duplicated NCCL route remain as stated above.
+>
+> **R1 round-2 note (2026-10-14).** The v2 cleanup was additionally hardened to
+> exact adjacent-argv matching (`campaign_pids` scans `/proc/<pid>/cmdline` and
+> requires the probe filename plus the exact pair `("--campaign", token)`, with
+> no regex), re-gated by the extended
+> [cleanup selftest](../../../artifacts/logs/conditional-wrapper/numerical-guards/selftest-cleanup-deathstar-v2.log),
+> the `green3-*` harness artifacts, and a fresh
+> [concurrency check](../../../artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/)
+> ([COMMANDS.md v3](../../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#v3-review-response-round-2-2026-10-13)).

@@ -1,0 +1,289 @@
+Executing on deathstar:  JULIA_MPI_TEST_NPROCS=2 FLUX_TEST_DISTRIBUTED_NCCL=false julia --startup-file=no --project=../flux-integration/test ../flux-integration/test/ext_distributed/runtests.jl
+[ Info: Running Distributed Tests with 2 processes
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                                         | [22m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m11.7s
+
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m11.7s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+canonical traversal order for reversed named trainable | [32m  10  [39m[36m   10  [39m[0m1.2s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+canonical traversal order for reversed named trainable | [32m  10  [39m[36m   10  [39m[0m1.2s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.4s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.4s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.2s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.2s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m   16  [39m[0m0.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m   16  [39m[0m0.5s
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | [32m  20  [39m[36m   20  [39m[0m1.3s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | [32m  20  [39m[36m   20  [39m[0m1.3s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[36m   30  [39m[0m1.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[36m   30  [39m[0m1.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m13.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m13.3s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | [32m  16  [39m[36m   16  [39m[0m3.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | [32m  16  [39m[36m   16  [39m[0m3.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | [32m  11  [39m[36m   11  [39m[0m0.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | [32m  11  [39m[36m   11  [39m[0m0.6s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.3s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.3s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameters keep Adam state after active steps | [32m  16  [39m[36m   16  [39m[0m2.6s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameters keep Adam state after active steps | [32m  16  [39m[36m   16  [39m[0m2.6s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives | [32m   9  [39m[36m    9  [39m[0m0.2s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives | [32m   9  [39m[36m    9  [39m[0m0.2s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [32m  20  [39m[36m   20  [39m[0m1.0s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [32m  20  [39m[36m   20  [39m[0m1.0s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real AD conditional branches average over multiple steps | [32m  11  [39m[36m   11  [39m[0m0.2s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real AD conditional branches average over multiple steps | [32m  11  [39m[36m   11  [39m[0m0.2s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | [32m   9  [39m[36m    9  [39m[0m0.4s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | [32m   9  [39m[36m    9  [39m[0m0.4s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | [32m  13  [39m[36m   13  [39m[0m0.6s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | [32m  13  [39m[36m   13  [39m[0m0.6s
+[0m[1mTest Summary:                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose with real AD | [32m   5  [39m[36m    5  [39m[0m1.3s
+[0m[1mTest Summary:                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose with real AD | [32m   5  [39m[36m    5  [39m[0m1.3s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   5  [39m[36m    5  [39m[0m0.9s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   5  [39m[36m    5  [39m[0m0.9s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [32m   2  [39m[36m    2  [39m[0m0.1s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [32m   2  [39m[36m    2  [39m[0m0.1s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Chain tuple-gradient diagnostic | [32m   5  [39m[36m    5  [39m[0m2.4s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Chain tuple-gradient diagnostic | [32m   5  [39m[36m    5  [39m[0m2.4s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+collective count protocol with real AD | [32m   4  [39m[36m    4  [39m[0m0.8s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+collective count protocol with real AD | [32m   4  [39m[36m    4  [39m[0m0.8s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train! with DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m1.0s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train! with DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m1.0s
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2)       [90m# 6 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×3 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/projects/flux-integration/src/layers/stateless.jl:18[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2)       [90m# 6 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×3 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/projects/flux-integration/src/layers/stateless.jl:18[39m
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   2  [39m[36m    2  [39m[0m6.1s
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   2  [39m[36m    2  [39m[0m6.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m0.2s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m0.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m  11  [39m[36m   11  [39m[0m0.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m  11  [39m[36m   11  [39m[0m0.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+freeze! and thaw! preserve wrapper state and collectives | [32m  31  [39m[36m   31  [39m[0m0.3s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+freeze! and thaw! preserve wrapper state and collectives | [32m  31  [39m[36m   31  [39m[0m0.3s
+[0m[1mTest Summary:                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Functor device adaptation keeps the backend | [32m  26  [39m[36m   26  [39m[0m1.3s
+[0m[1mTest Summary:                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Functor device adaptation keeps the backend | [32m  26  [39m[36m   26  [39m[0m1.3s
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/cuda_conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+rank-dependent conditional branches on device arrays | [32m 171  [39m[36m  171  [39m[0m13.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+rank-dependent conditional branches on device arrays | [32m 171  [39m[36m  171  [39m[0m13.7s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied device parameter reduces once and keeps identity | [32m  11  [39m[36m   11  [39m[0m1.0s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied device parameter reduces once and keeps identity | [32m  11  [39m[36m   11  [39m[0m1.0s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested device traversal excludes non-trainable arrays | [32m  12  [39m[36m   12  [39m[0m1.4s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested device traversal excludes non-trainable arrays | [32m  12  [39m[36m   12  [39m[0m1.4s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose gradients pair in parent space on device arrays | [32m   8  [39m[36m    8  [39m[0m2.3s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose gradients pair in parent space on device arrays | [32m   8  [39m[36m    8  [39m[0m2.3s
+[0m[1mTest Summary:                                       | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+device freeze and thaw preserve values and protocol | [32m  10  [39m[36m   10  [39m[0m0.6s
+[0m[1mTest Summary:                                       | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+device freeze and thaw preserve values and protocol | [32m  10  [39m[36m   10  [39m[0m0.6s
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m0.8s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m0.8s
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_loss_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                                                             | [22m[0m[1mTest Summary:                                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN through train! rejects every rank and issues only the vote | [32m  13  [39m[36m   13  [39m[0m14.0s
+
+asymmetric NaN through train! rejects every rank and issues only the vote | [32m  13  [39m[36m   13  [39m[0m14.0s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m
+every-rank NaN rejection matches a native Adam shadow | [32m  14  [39m[36m[1mTotal  [22m[39m[36m   14  [39m[0m0.6s[0m[1mTime[22m
+every-rank NaN rejection matches a native Adam shadow | 
+[32m  14  [39m[36m   14  [39m[0m0.7s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+manual trainstep! loop stops every rank at the injected batch | [32m   9  [39m[36m    9  [39m[0m1.0s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+manual trainstep! loop stops every rank at the injected batch | [32m   9  [39m[36m    9  [39m[0m1.0s
+[0m[1mTest Summary:                                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! asymmetric rejection returns no result | [32m  10  [39m[36m   10  [39m[0m0.2s
+[0m[1mTest Summary:                                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! asymmetric rejection returns no result | [32m  10  [39m[36m   10  [39m[0m0.2s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+finite scalar with non-finite auxiliary output still steps | [32m   8  [39m[36m    8  [39m[0m0.6s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+finite scalar with non-finite auxiliary output still steps | [32m   8  [39m[36m    8  [39m[0m0.6s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-finite first element of an auxiliary tuple rejects | [32m   9  [39m[36m    9  [39m[0m1.0s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-finite first element of an auxiliary tuple rejects | [32m   9  [39m[36m    9  [39m[0m1.0s
+[37mno trainable parameters still votes exactly once per step: [39m[37mno trainable parameters still votes exactly once per step: [39m[91m[1mLog Test Failed[22m[39m at [39m[1m/home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_loss_distributedtest.jl:303[22m
+[91m[1mLog Test Failed[22m[39m at [39m[1m/home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_loss_distributedtest.jl:303[22m
+  Expression: begin
+      Expression: begin
+    Flux.setup(DistributedUtils.DistributedOptimizer(rec, Optimisers.Adam(ETA)), model)
+end
+Flux.setup(DistributedUtils.DistributedOptimizer(rec, Optimisers.Adam(ETA)), model)
+end
+  Log Pattern: (:warn, r"setup found no trainable parameters")
+  Captured Logs: 
+  Log Pattern: (:warn, r"setup found no trainable parameters")
+  Captured Logs: 
+    LogRecord(Warn,     LogRecord(Warn, "trainable(x) should now return a NamedTuple with the field names, not a Tuple", Optimisers, :interface, :Optimisers_a9b7ca35, "/home/picazio/.julia/packages/Optimisers/tMaaf/src/interface.jl", 194, "trainable(x) should now return a NamedTuple with the field names, not a Tuple", Optimisers, :interface, :Optimisers_a9b7ca35, "/home/picazio/.julia/packages/Optimisers/tMaaf/src/interface.jl", 194, Base.Pairs(:maxlog => 3))
+    LogRecord(Warn, "setup found no trainable parameters in this model", Optimisers, :interface, :Optimisers_9c5f950c, "/home/picazio/.julia/packages/Optimisers/tMaaf/src/interface.jl", 33, Base.Pairs(:maxlog => 3))
+    LogRecord(Warn, "setup found no trainable parameters in this model", Optimisers, :interface, :Optimisers_9c5f950c, "/home/picazio/.julia/packages/Optimisers/tMaaf/src/interface.jl", 33, Base.Pairs{Symbol, Union{}, Nothing, @NamedTuple{}}())
+Base.Pairs{Symbol, Union{}, Nothing, @NamedTuple{}}())
+
+Stacktrace:
+ [1] [0m[1mrecord[22m[0m[1m([22m[90mts[39m::[0mTest.DefaultTestSet, [90mt[39m::[0mTest.LogTestFailure[0m[1m)[22m
+[90m   @[39m [35mTest[39m [90m~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/[39m[90m[4mlogging.jl:166[24m[39m
+ [2] top-level scope
+[90m   @[39m [90m~/projects/flux-integration/test/ext_distributed/[39m[90m[4mnonfinite_loss_distributedtest.jl:300[24m[39m
+ [3] [0m[1mmacro expansion[22m
+[90m   @[39m [90m~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/[39m[90m[4mTest.jl:1777[24m[39m[90m [inlined][39m
+ [4] [0m[1mmacro expansion[22m
+[90m   @[39m [90m~/projects/flux-integration/test/ext_distributed/[39m[90m[4mnonfinite_loss_distributedtest.jl:303[24m[39m[90m [inlined][39m
+
+Stacktrace:
+ [1] [0m[1mrecord[22m[0m[1m([22m[90mts[39m::[0mTest.DefaultTestSet, [90mt[39m::[0mTest.LogTestFailure[0m[1m)[22m
+[90m   @[39m [35mTest[39m [90m~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/[39m[90m[4mlogging.jl:166[24m[39m
+ [2] top-level scope
+[90m   @[39m [90m~/projects/flux-integration/test/ext_distributed/[39m[90m[4mnonfinite_loss_distributedtest.jl:300[24m[39m
+ [3] [0m[1mmacro expansion[22m
+[90m   @[39m [90m~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/[39m[90m[4mTest.jl:1777[24m[39m[90m [inlined][39m
+ [4] [0m[1mmacro expansion[22m
+[90m   @[39m [90m~/projects/flux-integration/test/ext_distributed/[39m[90m[4mnonfinite_loss_distributedtest.jl:303[24m[39m[90m [inlined][39m
+[0m[1mTest Summary:                                             | [22m[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[91m[1mFail  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters still votes exactly once per step | [32m   9  [39m[91m   1  [39m[36m   10  [39m[0m5.1s
+[32m[1mPass  [22m[39m[91m[1mFail  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters still votes exactly once per step | [32m   9  [39m[91m   1  [39m[36m   10  [39m[0m5.1s
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0x648a2262b57e14d2, 0x6522100feee00f04, 0x673a96b89ba4232a, 0x79d891c2bf1fc9fa, 0xed014080c6317786)
+0x32d794ad2aa32d1f, 0x09cc0907f5636782, 0x0d52708195859644, 0x026b63aa3b69e238, 0xa3c79bf4964e8281)
+[91m[1mERROR: [22m[39m[91m[1mERROR: [22m[39mLoadError: LoadError: [91mSome tests did not pass: 9 passed, 1 failed, 0 errored, 0 broken.[39m
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_loss_distributedtest.jl:299
+[91mSome tests did not pass: 9 passed, 1 failed, 0 errored, 0 broken.[39m
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_loss_distributedtest.jl:299
+nonfinite_loss_distributedtest.jl: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/runtests.jl:70
+  Expression: proc.exitcode == 0
+   Evaluated: 1 == 0
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/runtests.jl:70 [inlined]
+ [3] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1866 [inlined]
+ [4] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/runtests.jl:36 [inlined]
+ [5] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [6] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/runtests.jl:36 [inlined]
+ [7] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [8] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/runtests.jl:32
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.2s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied leaves survive synchronization and subsequent updates | [32m 160  [39m[36m  160  [39m[0m3.1s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied leaves survive synchronization and subsequent updates | [32m 160  [39m[36m  160  [39m[0m3.1s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronization requires rank-consistent rule and frozen configuration | [32m 288  [39m[36m  288  [39m[0m0.7s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronization requires rank-consistent rule and frozen configuration | [32m 288  [39m[36m  288  [39m[0m0.7s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+wrapped synchronization retains Adam scalar state | [32m  32  [39m[36m   32  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+wrapped synchronization retains Adam scalar state | [32m  32  [39m[36m   32  [39m[0m0.5s
+Test Summary:                           | Pass  Fail  Total     Time
+Distributed                             |    7     1      8  2m34.6s
+  Backend: mpi                          |    7     1      8  2m34.5s
+    common_distributedtest.jl           |    1            1     6.2s
+    conditional_distributedtest.jl      |    1            1  1m03.7s
+    cuda_conditional_distributedtest.jl |    1            1    24.6s
+    data_distributedtest.jl             |    1            1     6.5s
+    nonfinite_loss_distributedtest.jl   |          1      1    29.9s
+    optimizer_distributedtest.jl        |    1            1     8.5s
+    reduce_distributedtest.jl           |    1            1     3.5s
+    synchronized_distributedtest.jl     |    1            1    11.5s
+RNG of the outermost testset: Random.Xoshiro(0x075ebacc34da2f31, 0x726187823ef762b8, 0x5b51612ead64ef0b, 0x043a532646ad1ad8, 0x44b27d484374be78)
+ERROR: LoadError: Some tests did not pass: 7 passed, 1 failed, 0 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/runtests.jl:31

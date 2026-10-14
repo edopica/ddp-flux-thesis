@@ -1,0 +1,102 @@
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=0
+GUARD_PROBE_READY rank=1
+COLLECTIVE_BEGIN rank=0 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=1
+COLLECTIVE_BEGIN rank=0 number=2 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_END rank=0 number=2
+COLLECTIVE_BEGIN rank=0 number=3 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=3
+COLLECTIVE_BEGIN rank=0 number=4 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=0 number=4
+COLLECTIVE_BEGIN rank=0 number=5 op=avg eltype=Float32 len=4 buftype=device
+COLLECTIVE_END rank=0 number=5
+COLLECTIVE_BEGIN rank=1 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=1 number=1
+COLLECTIVE_BEGIN rank=1 number=2 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_END rank=1 number=2
+COLLECTIVE_BEGIN rank=1 number=3 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=1 number=3
+COLLECTIVE_BEGIN rank=1 number=4 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=1 number=4
+COLLECTIVE_BEGIN rank=1 number=5 op=avg eltype=Float32 len=4 buftype=device
+COLLECTIVE_END rank=1 number=5
+STEP_STATE_OK rank=0 step=1 ok=true
+STEP_STATE_OK rank=1 step=1 ok=true
+STEP_STATE_DETAIL rank=0 step=1 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+COLLECTIVE_BEGIN rank=0 number=6 op=avg eltype=Float32 len=1 buftype=host
+STEP_STATE_DETAIL rank=1 step=1 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+COLLECTIVE_BEGIN rank=1 number=6 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=6
+COLLECTIVE_END rank=1 number=6
+COLLECTIVE_BEGIN rank=0 number=7 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_BEGIN rank=1 number=7 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_END rank=0 number=7
+COLLECTIVE_END rank=1 number=7
+COLLECTIVE_BEGIN rank=0 number=8 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_BEGIN rank=1 number=8 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=8
+COLLECTIVE_END rank=1 number=8
+COLLECTIVE_BEGIN rank=0 number=9 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_BEGIN rank=1 number=9 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=0 number=9
+COLLECTIVE_END rank=1 number=9
+COLLECTIVE_BEGIN rank=1 number=10 op=avg eltype=Float32 len=4 buftype=device
+COLLECTIVE_BEGIN rank=0 number=10 op=avg eltype=Float32 len=4 buftype=device
+COLLECTIVE_END rank=0 number=10
+COLLECTIVE_END rank=1 number=10
+STEP_STATE_OK rank=0 step=2 ok=true
+STEP_STATE_DETAIL rank=0 step=2 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+COLLECTIVE_BEGIN rank=0 number=11 op=avg eltype=Float32 len=1 buftype=host
+STEP_STATE_OK rank=1 step=2 ok=true
+STEP_STATE_DETAIL rank=1 step=2 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+COLLECTIVE_BEGIN rank=1 number=11 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=11
+COLLECTIVE_END rank=1 number=11
+COLLECTIVE_BEGIN rank=0 number=12 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_BEGIN rank=1 number=12 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_END rank=1 number=12
+COLLECTIVE_END rank=0 number=12
+COLLECTIVE_BEGIN rank=0 number=13 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_BEGIN rank=1 number=13 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=13
+COLLECTIVE_END rank=1 number=13
+COLLECTIVE_BEGIN rank=1 number=14 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_BEGIN rank=0 number=14 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=1 number=14
+COLLECTIVE_END rank=0 number=14
+STEP_STATE_OK rank=1 step=3 ok=true
+STEP_STATE_DETAIL rank=1 step=3 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+STEP_STATE_OK rank=0 step=3 ok=true
+STEP_STATE_DETAIL rank=0 step=3 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+ABSENCE_FROZEN rank=0 ok=true
+ABSENCE_FROZEN rank=1 ok=true
+COLLECTIVE_BEGIN rank=1 number=15 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=0 number=15 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=15
+COLLECTIVE_END rank=1 number=15
+COLLECTIVE_BEGIN rank=1 number=16 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_BEGIN rank=0 number=16 op=avg eltype=Float32 len=3 buftype=host
+COLLECTIVE_END rank=0 number=16
+COLLECTIVE_END rank=1 number=16
+COLLECTIVE_BEGIN rank=1 number=17 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_BEGIN rank=0 number=17 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=17
+COLLECTIVE_END rank=1 number=17
+COLLECTIVE_BEGIN rank=1 number=18 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_BEGIN rank=0 number=18 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=0 number=18
+COLLECTIVE_END rank=1 number=18
+COLLECTIVE_BEGIN rank=1 number=19 op=avg eltype=Float32 len=4 buftype=device
+COLLECTIVE_BEGIN rank=0 number=19 op=avg eltype=Float32 len=4 buftype=device
+COLLECTIVE_END rank=0 number=19
+COLLECTIVE_END rank=1 number=19
+STEP_STATE_OK rank=0 step=4 ok=true
+STEP_STATE_DETAIL rank=0 step=4 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+REACTIVATED rank=0 ok=true
+CASE_RESULT rank=0 case=healthy status=PASS
+STEP_STATE_OK rank=1 step=4 ok=true
+STEP_STATE_DETAIL rank=1 step=4 param_maxdiff=0.0 state_maxdiff=0.0 counters_ok=true
+REACTIVATED rank=1 ok=true
+CASE_RESULT rank=1 case=healthy status=PASS

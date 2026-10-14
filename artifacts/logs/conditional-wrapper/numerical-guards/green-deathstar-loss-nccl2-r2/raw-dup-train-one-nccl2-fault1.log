@@ -1,0 +1,8 @@
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=1
+GUARD_PROBE_READY rank=0
+UNTESTED rank=0 reason="Duplicated route unavailable: Duplicated/Enzyme eager route is not exercised under CUDA/NCCL: the availability check exceeded the startup watchdog (420 s) in the green-deathstar-loss-nccl2 attempt; MPI exercises this route"
+CASE_RESULT rank=0 case=dup-train-one status=UNTESTED reason="Duplicated route unavailable: Duplicated/Enzyme eager route is not exercised under CUDA/NCCL: the availability check exceeded the startup watchdog (420 s) in the green-deathstar-loss-nccl2 attempt; MPI exercises this route"
+UNTESTED rank=1 reason="Duplicated route unavailable: Duplicated/Enzyme eager route is not exercised under CUDA/NCCL: the availability check exceeded the startup watchdog (420 s) in the green-deathstar-loss-nccl2 attempt; MPI exercises this route"
+CASE_RESULT rank=1 case=dup-train-one status=UNTESTED reason="Duplicated route unavailable: Duplicated/Enzyme eager route is not exercised under CUDA/NCCL: the availability check exceeded the startup watchdog (420 s) in the green-deathstar-loss-nccl2 attempt; MPI exercises this route"

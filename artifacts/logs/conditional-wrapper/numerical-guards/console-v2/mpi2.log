@@ -1,0 +1,65 @@
+Executing on deathstar:  NUMERICAL_GUARD_PHASE=green julia --startup-file=no --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl --group loss --ranks 2 --backend mpi --outdir artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2
+DB-1/DB-4 numerical-guard check (group=loss)
+probe       : /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl
+project     : /home/picazio/projects/flux-integration/test
+backend     : mpi, ranks: 2
+output dir  : /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2
+phase       : green
+watchdogs   : startup=420.0 s, execution=120.0 s
+cases       : 13
+
+=== case: train-one backend=mpi ranks=2 fault=0 value=nan ===
+fatal: not a git repository (or any of the parent directories): .git
+    log=raw-train-one-mpi2-fault0.log timeout=none exitcode=0 elapsed=23.2s
+    verdict=PASS
+
+=== case: train-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-train-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.4s
+    verdict=PASS
+
+=== case: train-one-inf backend=mpi ranks=2 fault=1 value=inf ===
+    log=raw-train-one-inf-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: train-one-ninf backend=mpi ranks=2 fault=1 value=ninf ===
+    log=raw-train-one-ninf-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.4s
+    verdict=PASS
+
+=== case: loop-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-loop-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: loop-withgradient-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-loop-withgradient-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: train-all backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-train-all-mpi2.log timeout=none exitcode=0 elapsed=23.0s
+    verdict=PASS
+
+=== case: aux-nonfinite-ok backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-aux-nonfinite-ok-mpi2.log timeout=none exitcode=0 elapsed=22.4s
+    verdict=PASS
+
+=== case: aux-nan-first backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-aux-nan-first-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.8s
+    verdict=PASS
+
+=== case: no-trainable backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-no-trainable-mpi2-fault1.log timeout=none exitcode=0 elapsed=19.1s
+    verdict=PASS
+
+=== case: recover-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-recover-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=23.0s
+    verdict=PASS
+
+=== case: healthy backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-healthy-mpi2.log timeout=none exitcode=0 elapsed=36.0s
+    verdict=PASS
+
+=== case: dup-train-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-dup-train-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=56.2s
+    verdict=PASS
+
+summary: PASS=13 FAIL=0 UNTESTED=0
+artifacts: /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/summary.tsv

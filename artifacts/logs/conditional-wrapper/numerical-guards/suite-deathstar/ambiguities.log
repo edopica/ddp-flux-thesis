@@ -1,0 +1,3 @@
+Executing on deathstar:  julia --startup-file=no --project=../flux-integration/test -e 'using Test, Flux; a = Test.detect_ambiguities(Flux.DistributedUtils; recursive=false); @info :ambiguities count=length(a); foreach(println, a); exit(isempty(a) ? 0 : 1)'
+┌ Info: ambiguities
+└   count = 0

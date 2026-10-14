@@ -1,0 +1,45 @@
+Executing on deathstar:  NUMERICAL_GUARD_PHASE=green julia --startup-file=no --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl --group loss --ranks 4 --backend mpi --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4
+DB-1/DB-4 numerical-guard check (group=loss)
+probe       : /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl
+project     : /home/picazio/projects/flux-integration/test
+backend     : mpi, ranks: 4
+output dir  : /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4
+phase       : green
+watchdogs   : startup=420.0 s, execution=120.0 s
+cases       : 8
+fatal: not a git repository (or any of the parent directories): .git
+
+=== case: train-one backend=mpi ranks=4 fault=0 value=nan ===
+    log=raw-train-one-mpi4-fault0.log timeout=none exitcode=0 elapsed=24.4s
+    verdict=PASS
+
+=== case: train-one backend=mpi ranks=4 fault=2 value=nan ===
+    log=raw-train-one-mpi4-fault2.log timeout=none exitcode=0 elapsed=24.8s
+    verdict=PASS
+
+=== case: train-one-inf backend=mpi ranks=4 fault=3 value=inf ===
+    log=raw-train-one-inf-mpi4-fault3.log timeout=none exitcode=0 elapsed=24.4s
+    verdict=PASS
+
+=== case: loop-one backend=mpi ranks=4 fault=3 value=nan ===
+    log=raw-loop-one-mpi4-fault3.log timeout=none exitcode=0 elapsed=25.6s
+    verdict=PASS
+
+=== case: aux-nan-first backend=mpi ranks=4 fault=2 value=nan ===
+    log=raw-aux-nan-first-mpi4-fault2.log timeout=none exitcode=0 elapsed=25.6s
+    verdict=PASS
+
+=== case: no-trainable backend=mpi ranks=4 fault=2 value=nan ===
+    log=raw-no-trainable-mpi4-fault2.log timeout=none exitcode=0 elapsed=20.4s
+    verdict=PASS
+
+=== case: recover-one backend=mpi ranks=4 fault=3 value=nan ===
+    log=raw-recover-one-mpi4-fault3.log timeout=none exitcode=0 elapsed=26.0s
+    verdict=PASS
+
+=== case: healthy backend=mpi ranks=4 fault=-1 value=nan ===
+    log=raw-healthy-mpi4.log timeout=none exitcode=0 elapsed=22.4s
+    verdict=PASS
+
+summary: PASS=8 FAIL=0 UNTESTED=0
+artifacts: /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/summary.tsv

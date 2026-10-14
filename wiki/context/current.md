@@ -1,5 +1,149 @@
 # Current context
 
+## DB-1/DB-4 independent review closed — 2026-10-14
+
+R1, R2, and the NamedTuple coverage gap are closed.
+The final exact-argv cleanup passed the independent local selftest:
+`SELFTEST_CLEANUP PASS prefix_ok=true metachar_ok=true final_empty=true`.
+All five hashes match the recorded final campaign. The green3 summaries support the reported MPI and NCCL results.
+No blocking findings remain within the documented eager-path scope.
+
+Details: [final review](../../reports/conditional-graph-db1-db4-review.md#final-review-verdict--2026-10-14),
+[independent closure command](../devlog/02-conditional-graph/2026-10-14-db1-db4-v2-review.md#final-closure-after-the-exact-argv-correction).
+NCCL `Duplicated` remains untested. DB-3 and combined acceptance remain pending.
+
+**Exact next action:** decide whether to implement the separate DB-3 guard before combined `--group all` acceptance.
+
+## DB-1/DB-4 R1 round-2 cleanup fix complete — 2026-10-14
+
+R1 is closed: the v2 cleanup interpolated the campaign token into an unbounded
+regular expression, so `campA` also selected `campA-rerun` and `camp.1` also
+selected `campX1` (reproduced with the real `campaign_pids()`). Round 2 removes
+regex/pgrep/pkill matching: `campaign_pids(token)` scans
+`/proc/<pid>/cmdline`, requires the probe filename as a separate argv element,
+and requires the exact adjacent pair `("--campaign", token)`, so cleanup is
+prefix- and metacharacter-safe. Operator-supplied `NUMERICAL_GUARD_CAMPAIGN`
+values must be unique across concurrent runs (default `<pid>-<time_ns>` is
+unique).
+
+- Re-gates on `deathstar` with the final driver (v3): harness `green3-*` mpi2
+  13/13, mpi4 8/8, nccl2 12 PASS + 1 UNTESTED (`dup-train-one`); healthy
+  markers all true (mpi2 8 `STEP_STATE_OK` + 2 `ABSENCE_FROZEN` + 2
+  `REACTIVATED`; mpi4 16/4/4; nccl2 8/2/2); 0 `Precompiling packages...` lines
+  in every v3 log.
+- Suite v2 (mpi2 8/8, mpi4 8/8, nccl2 16/16; single-process `train` 137/137;
+  0 ambiguities) remains authoritative because the test file is unchanged.
+- Extended selftest (`selftest-cleanup-deathstar-v2.log`) PASS with
+  `prefix_ok=true metachar_ok=true final_empty=true` on four real idle Julia
+  children (prefix, regex-metacharacter, and wildcard-collision tokens).
+- Fresh concurrency check (`cleanup-concurrency-deathstar/`): campB 13/13 PASS;
+  campA (`healthy`, 1 s execution watchdog, token `campA`) timed out after
+  37.7 s with both ranks at `GUARD_PROBE_READY`; no leftover processes; GPUs
+  idle.
+- Remaining: DB-3 not implemented (`--group gradient|all` prints
+  `GROUP_UNAVAILABLE`, exit 2), so the combined Phase D acceptance is pending;
+  the Duplicated eager route under NCCL is untested; the contract is eager-path
+  only and forward-pass side effects are not rolled back.
+- Evidence:
+  [COMMANDS.md v3](../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#v3-review-response-round-2-2026-10-13),
+  [selftest log](../../artifacts/logs/conditional-wrapper/numerical-guards/selftest-cleanup-deathstar-v2.log),
+  [concurrency](../../artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/),
+  [devlog R1 round 2](../devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md#review-response-r1-round-2),
+  [audit 002 resolution](../audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md#resolution-2026-10-13).
+
+**Exact next action:** decide whether to implement the DB-3 gradient guard
+(separate plan) before the combined `--group all` acceptance.
+
+## DB-1/DB-4 review response (v2) complete — 2026-10-13
+
+The external review's two P2 harness issues and one coverage gap are fixed and
+re-gated with no Flux source change; the v1 counts remain valid for the cases
+that ran. Report:
+[DB-1/DB-4 review](../../reports/conditional-graph-db1-db4-review.md).
+
+- R1 (cleanup isolation): driver cleanup is campaign-token-scoped
+  (`reap_campaign`, `--campaign TOKEN`, `--selftest-cleanup`); the selftest and
+  a concurrent campA/campB check prove that one campaign cannot kill another's
+  children.
+- R2 (conditional healthy gate): `healthy` now runs four rank-distinct
+  conditional eager `train!` steps with per-step parameter and full Adam-leaf
+  state comparison against a native reference (`STEP_STATE_OK`,
+  `ABSENCE_FROZEN`, `REACTIVATED`), at 2 and 4 MPI ranks and 2 NCCL ranks.
+- Coverage: `nonfinite_loss_distributedtest.jl` gained a NamedTuple-loss
+  testset (now 9 testsets).
+- GREEN on `deathstar` (v2): harness mpi2 13/13, mpi4 8/8, nccl2 12 PASS + 1
+  UNTESTED (`dup-train-one`); suite v2 mpi2 8/8, mpi4 8/8, nccl2 16/16;
+  0 `Precompiling packages...` lines; deathstar left clean.
+- Remaining: DB-3 not implemented (`--group gradient|all` prints
+  `GROUP_UNAVAILABLE`, exit 2), so the combined Phase D acceptance is pending;
+  the Duplicated eager route under NCCL is untested; the contract is eager-path
+  only and forward-pass side effects are not rolled back.
+- Evidence:
+  [COMMANDS.md v2](../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#v2-review-response-campaign-2026-10-13),
+  [devlog review response](../devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md#review-response-second-pass),
+  [failure note](../failures/2026-10-13-db1-db4-healthy-probe-fielderror.md),
+  [audit 002 resolution](../audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md#resolution-2026-10-13).
+
+**Exact next action:** decide whether to implement the DB-3 gradient guard
+(separate plan) before the combined `--group all` acceptance.
+
+## DB-1/DB-4 coordinated non-finite-loss fix accepted — 2026-10-13
+
+The coordinated non-finite-loss rejection is implemented and gate-accepted
+([ADR-0008](../decisions/ADR-0008-coordinated-nonfinite-loss-rejection.md)).
+The private hook `Flux.Train._loss_update_allowed` runs in `_eager_step!` after
+`withgradient` and before `_update!`; the `DistributedOptimizerState`
+specialization votes with one host `Float32` 0/1 `avg` allreduce (threshold
+`> 0`) and raises `DomainError` on every rank before the presence and gradient
+collectives. No commit; Flux HEAD stays `55171e65`. The review-response v2
+re-gate is recorded in the section above.
+
+- New device-generic regression
+  `test/ext_distributed/nonfinite_loss_distributedtest.jl` (9 testsets after
+  the v2 NamedTuple addition) plus
+  14 lines in `test/train.jl` and a `NEWS.md` entry.
+- GREEN on `deathstar` (v1 campaign; re-gated in the v2 section above): harness
+  loss mpi2 13/13, mpi4 8/8 (one invalid rank of
+  four), nccl2 12 PASS + 1 UNTESTED (`dup-train-one`); dedicated suite mpi2 8/8
+  and mpi4 8/8 files, nccl2 16/16 (MPI + NCCL passes); single-process `train`
+  137/137; 0 ambiguities; 0 `Precompiling packages...` lines.
+- Remaining coverage: DB-3 not implemented (`--group gradient|all` prints
+  `GROUP_UNAVAILABLE`, exit 2), so the combined Phase D acceptance is pending;
+  the Duplicated eager route under NCCL is untested; the contract is eager-path
+  only and forward-pass side effects are not rolled back.
+- Evidence: [COMMANDS.md](../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md),
+  [devlog](../devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md),
+  [failure note](../failures/2026-10-13-db1-db4-nccl-dup-and-testfile.md),
+  [audit 002 resolution](../audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md#resolution-2026-10-13).
+
+**Exact next action:** decide whether to implement the DB-3 gradient guard
+(separate plan) before the combined `--group all` acceptance.
+
+## Numerical-safeguard implementation plans — 2026-10-13
+
+The user requested detailed plans for both numerical safeguards after the initial scope discussion.
+
+- [DB-1/DB-4 plan](../../reports/conditional-graph-db1-db4-fix-plan.md): a shared eager-training hook coordinates loss rejection before update collectives.
+- [DB-3 plan](../../reports/conditional-graph-db3-fix-plan.md): a post-reduction gradient check coordinates rejection before Optimisers.jl changes parameters or state.
+
+Both plans specify RED-first tests, CPU gates, focused NCCL gates, error semantics, and documentation requirements.
+The proposed gradient check is mandatory. Its overhead remains unmeasured.
+The plans distinguish optimizer-update preservation from forward-pass side effects.
+Implementation and runtime acceptance remain pending.
+
+**Exact next action:** record the Flux worktree diff, then write the DB-1/DB-4 ADR and bounded asymmetric-loss success regression.
+
+## Deferred-behavior scope discussion — 2026-10-13
+
+The user and tutor want important, bounded fixes, with other work tracked through GitHub issues.
+The initial recommendation groups DB-1 and DB-4 into one coordinated non-finite-loss fix.
+DB-3 remains a separate decision because gradient checks add device reductions and synchronization.
+Accepted configuration and checkpoint contracts remain distinct from defects.
+This recommendation is provisional. The user has not selected the final scope.
+Details: [scope discussion](../devlog/02-conditional-graph/2026-10-13-deferred-behavior-triage.md).
+
+**Exact next action:** agree on the DB-1/DB-4 error policy and whether DB-3 enters the immediate fix batch.
+
 ## Wiki reorganized by project scope — 2026-10-07
 
 The flat `wiki/devlog/` (76 entries) and `wiki/audits/` (3 reports) folders are

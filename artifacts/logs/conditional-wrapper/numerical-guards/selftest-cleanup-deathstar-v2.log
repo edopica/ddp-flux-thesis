@@ -1,0 +1,2 @@
+Executing on deathstar:  julia --startup-file=no --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl --selftest-cleanup
+SELFTEST_CLEANUP PASS prefix_ok=true metachar_ok=true final_empty=true t1=selftestA-585549 pids1=585589 killed1=585589 t2=selftestA-585549-rerun pids2=585593 killed2=585593 t3=selftest.585549 pids3=585594 killed3=585594 t4=selftestX585549 pids4=585595 killed4=585595

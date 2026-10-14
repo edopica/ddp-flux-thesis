@@ -1,0 +1,33 @@
+fatal: not a git repository (or any of the parent directories): .git
+DB-1/DB-4 numerical-guard check (group=loss)
+probe       : /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl
+project     : /home/picazio/projects/flux-integration/test
+backend     : mpi, ranks: 2
+output dir  : /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA
+phase       : green
+watchdogs   : startup=420.0 s, execution=1.0 s
+cases       : 1
+
+=== case: healthy backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-healthy-mpi2.log timeout=execution exitcode=0 elapsed=40.3s
+    verdict=FAIL
+      - watchdog timeout (execution) after 40.3s
+      - missing CASE_RESULT rank=0
+      - missing CASE_RESULT rank=1
+      - rank 0: expected 19 collectives, got 0
+      - rank 1: expected 19 collectives, got 0
+      - rank 0: missing STEP_STATE_OK step=1
+      - rank 0: missing STEP_STATE_OK step=2
+      - rank 0: missing STEP_STATE_OK step=3
+      - rank 0: missing STEP_STATE_OK step=4
+      - rank 1: missing STEP_STATE_OK step=1
+      - rank 1: missing STEP_STATE_OK step=2
+      - rank 1: missing STEP_STATE_OK step=3
+      - rank 1: missing STEP_STATE_OK step=4
+      - rank 0: missing ABSENCE_FROZEN
+      - rank 0: missing REACTIVATED
+      - rank 1: missing ABSENCE_FROZEN
+      - rank 1: missing REACTIVATED
+
+summary: PASS=0 FAIL=1 UNTESTED=0
+artifacts: /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA/summary.tsv

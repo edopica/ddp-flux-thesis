@@ -1,0 +1,14 @@
+case	backend	ranks	fault_rank	fault_value	verdict	reason
+train-one	nccl	2	0	nan	PASS	
+train-one	nccl	2	1	nan	PASS	
+train-one-inf	nccl	2	1	inf	PASS	
+train-one-ninf	nccl	2	1	ninf	PASS	
+loop-one	nccl	2	1	nan	PASS	
+loop-withgradient-one	nccl	2	1	nan	PASS	
+train-all	nccl	2	-1	nan	PASS	
+aux-nonfinite-ok	nccl	2	-1	nan	PASS	
+aux-nan-first	nccl	2	1	nan	PASS	
+no-trainable	nccl	2	1	nan	PASS	
+recover-one	nccl	2	1	nan	PASS	
+healthy	nccl	2	-1	nan	FAIL	no GUARD_PROBE_READY on all 2 ranks; rank 0 error: FieldError: type CUDACore.CuArray has no field `u`, available fields: `data`, `maxsize`, `offset`, `dims`; rank 1 error: FieldError: type CUDACore.CuArray has no field `u`, available fields: `data`, `maxsize`, `offset`, `dims`; rank 0 CASE_RESULT status=FAIL; rank 1 CASE_RESULT status=FAIL; rank 0: expected 19 collectives, got 0; rank 1: expected 19 collectives, got 0; rank 0: missing STEP_STATE_OK step=1; rank 0: missing STEP_STATE_OK step=2; rank 0: missing STEP_STATE_OK step=3; rank 0: missing STEP_STATE_OK step=4; rank 1: missing STEP_STATE_OK step=1; rank 1: missing STEP_STATE_OK step=2; rank 1: missing STEP_STATE_OK step=3; rank 1: missing STEP_STATE_OK step=4; rank 0: missing ABSENCE_FROZEN; rank 0: missing REACTIVATED; rank 1: missing ABSENCE_FROZEN; rank 1: missing REACTIVATED; child exit code 1
+dup-train-one	nccl	2	1	nan	UNTESTED	

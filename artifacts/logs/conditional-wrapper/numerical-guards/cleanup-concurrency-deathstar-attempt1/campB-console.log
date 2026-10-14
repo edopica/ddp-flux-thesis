@@ -1,0 +1,84 @@
+fatal: not a git repository (or any of the parent directories): .git
+DB-1/DB-4 numerical-guard check (group=loss)
+probe       : /home/picazio/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl
+project     : /home/picazio/projects/flux-integration/test
+backend     : mpi, ranks: 2
+output dir  : /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB
+phase       : green
+watchdogs   : startup=420.0 s, execution=120.0 s
+cases       : 13
+
+=== case: train-one backend=mpi ranks=2 fault=0 value=nan ===
+    log=raw-train-one-mpi2-fault0.log timeout=none exitcode=0 elapsed=23.6s
+    verdict=PASS
+
+=== case: train-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-train-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: train-one-inf backend=mpi ranks=2 fault=1 value=inf ===
+    log=raw-train-one-inf-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.4s
+    verdict=PASS
+
+=== case: train-one-ninf backend=mpi ranks=2 fault=1 value=ninf ===
+    log=raw-train-one-ninf-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: loop-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-loop-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: loop-withgradient-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-loop-withgradient-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=22.6s
+    verdict=PASS
+
+=== case: train-all backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-train-all-mpi2.log timeout=none exitcode=0 elapsed=23.2s
+    verdict=PASS
+
+=== case: aux-nonfinite-ok backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-aux-nonfinite-ok-mpi2.log timeout=none exitcode=0 elapsed=22.8s
+    verdict=PASS
+
+=== case: aux-nan-first backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-aux-nan-first-mpi2-fault1.log timeout=none exitcode=0 elapsed=23.0s
+    verdict=PASS
+
+=== case: no-trainable backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-no-trainable-mpi2-fault1.log timeout=none exitcode=0 elapsed=19.1s
+    verdict=PASS
+
+=== case: recover-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-recover-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=23.2s
+    verdict=PASS
+
+=== case: healthy backend=mpi ranks=2 fault=-1 value=nan ===
+    log=raw-healthy-mpi2.log timeout=none exitcode=1 elapsed=23.2s
+    verdict=FAIL
+      - no GUARD_PROBE_READY on all 2 ranks
+      - rank 0 error: FieldError: type Array has no field `u`, available fields: `ref`, `size`
+      - rank 1 error: FieldError: type Array has no field `u`, available fields: `ref`, `size`
+      - rank 0 CASE_RESULT status=FAIL
+      - rank 1 CASE_RESULT status=FAIL
+      - rank 0: expected 19 collectives, got 0
+      - rank 1: expected 19 collectives, got 0
+      - rank 0: missing STEP_STATE_OK step=1
+      - rank 0: missing STEP_STATE_OK step=2
+      - rank 0: missing STEP_STATE_OK step=3
+      - rank 0: missing STEP_STATE_OK step=4
+      - rank 1: missing STEP_STATE_OK step=1
+      - rank 1: missing STEP_STATE_OK step=2
+      - rank 1: missing STEP_STATE_OK step=3
+      - rank 1: missing STEP_STATE_OK step=4
+      - rank 0: missing ABSENCE_FROZEN
+      - rank 0: missing REACTIVATED
+      - rank 1: missing ABSENCE_FROZEN
+      - rank 1: missing REACTIVATED
+      - child exit code 1
+
+=== case: dup-train-one backend=mpi ranks=2 fault=1 value=nan ===
+    log=raw-dup-train-one-mpi2-fault1.log timeout=none exitcode=0 elapsed=56.8s
+    verdict=PASS
+
+summary: PASS=12 FAIL=1 UNTESTED=0
+artifacts: /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/summary.tsv
