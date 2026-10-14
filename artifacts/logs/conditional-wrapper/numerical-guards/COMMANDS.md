@@ -425,3 +425,364 @@ v3 review response round 2:
   line: MPICH Hydra tears down its ranks when the driver kills the launcher, so
   the final reap found no survivors. The token-scoped kill is proven by
   `--selftest-cleanup`; see the failure note.
+
+## DB-3 campaign (2026-10-14, deathstar)
+
+DB-3 post-reduction non-finite-gradient rejection for the conditional wrapper.
+Plan: `reports/conditional-graph-db3-fix-plan.md`. Decision:
+[ADR-0009](../../../../wiki/decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md).
+The v1-v3 loss sections above remain the historical record for DB-1/DB-4; this
+section records the DB-3 source change and gates. Every failing-then-fixed run
+is retained on disk; nothing was deleted or rewritten.
+
+Collective-count rule encoded by the updated test files and helpers: every
+nonempty update (eager or explicit) with `np > 0` gains exactly one trailing
+host `Float32` length-1 `avg` collective (the gradient vote); `np == 0` stays
+zero; a loss-rejected step keeps its single loss vote; gradient-rejected steps
+count as full steps.
+
+### Source identity (DB-3)
+
+| Item | Baseline | Final |
+|---|---|---|
+| Flux worktree HEAD | file baselines below (pre-DB-3) | `314aef2022333fa8f37035ed10cdc8e2360fa475` (dirty; DB-3 changes uncommitted) |
+| `src/distributed/public_api.jl` md5 | `e4ed1f8d4e2aed25d99654ad05d54919` | `d21c73f8885b35ae8558a0f0d4e43196` |
+| `ext/FluxMPINCCLExt/FluxMPINCCLExt.jl` md5 | `330999cee29c78f7ecebe6e7e2610c13` | `841c662047cbe86cd082ceeb226b6231` |
+| `NEWS.md` md5 | - | `83e69bb91cc5edd110c7de9af2b0b87a` |
+| `test/ext_distributed/conditional_distributedtest.jl` md5 | `c26ef49b070bf2c446b827c64cc313c0` | `54a3f8da8d677c35e5de3ed34130e34a` |
+| `test/ext_distributed/cuda_conditional_distributedtest.jl` md5 | `dabdaddb77301d93f83707c1c930bc6f` | `c470cc3f3e4370b4d8b6404077684987` |
+| `test/ext_distributed/nonfinite_loss_distributedtest.jl` md5 | `b8d861fb0967d525eab6e0a7973b1bea` | `0e2680635752bc4f9ed168376458e470` |
+| `test/ext_distributed/nonfinite_gradient_distributedtest.jl` md5 | n/a | `06eef21d92c78ca85f718b325ddbe8c6` (new, 848 lines, 15 testsets) |
+| Driver `scripts/checks/conditional_graph_numerical_guard_check.jl` md5 | `49c7e0aacdb48661f044231b1fc6c5f1` | `9dba4ae76367e58f12467f180a42381f` |
+| Probe `scripts/checks/conditional_graph_numerical_guard_probe.jl` md5 | `e5d3dd019e833e83d3c6707f9fbf7485` | `ce16af4ab7932c5eb746f7b141e37f1c` |
+| `scripts/examples/conditional_graph/common.jl` md5 | - | `2ec29fb283cf45e3e33c684e454e2422` |
+| `scripts/checks/conditional_deadlock_check.jl` md5 | - | `467498a568ead33d0915d1b66a00d43f` |
+| `scripts/checks/conditional_deadlock_probe.jl` md5 | - | `86945681c0f8c57ec6da8d79c1fdf11c` |
+| `notebook/phase_k_workflow_helpers.jl` md5 | - | `cbca216033752b9fa2abf827257d5183` |
+
+Thesis HEAD for the final harness: `0ea21f79b20092ead8ca07f33f34f372a4ee3e70`.
+Local toolchain: Julia 1.12.6, MPICH Hydra 5.0.1, Flux 0.16.11, Optimisers
+0.4.9, MPI 0.20.27. Remote (deathstar): Julia 1.12.6; CUDA 6.2.2, NCCL 0.1.3,
+cuDNN entry 6.2.2, Flux 0.16.11, Optimisers 0.4.9, MPI 0.20.27.
+
+### Sync and precompile (deathstar)
+
+```
+rsync -az --delete --exclude-from='.rsyncignore' --exclude='artifacts/' \
+  . deathstar:~/projects/ddp-flux-thesis/
+rsync -az --delete --exclude='.git' --exclude='Manifest.toml' \
+  --exclude='test/Manifest.toml' ../flux-integration deathstar:~/projects/
+scripts/remote/run.sh deathstar "make precompile-all FLUX_REPO_PATH=../flux-integration"
+```
+
+### RED evidence (deathstar, pre-fix production)
+
+Gradient harness mpi2:
+
+```
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=red julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group gradient --ranks 2 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2"
+```
+
+Focused test mpi2:
+
+```
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 2 \
+  julia --project=../flux-integration/test --startup-file=no \
+  ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+```
+
+Result: `red-deathstar-gradient-mpi2-v2/` `PASS=1 FAIL=18`; the single PASS is
+`grad-no-trainable` (a no-regression case that passes RED by design). Focused
+first testset `7 pass / 7 fail / 1 error` in
+`red-deathstar-focused-mpi2/console.log`; the run aborts at the first failing
+testset. The superseded v1 run `red-deathstar-gradient-mpi2/` is retained
+(probe `MethodError`; see the [failure note](../../../../wiki/failures/2026-10-14-db3-green-attempt1-harness-fixes.md)).
+
+### GREEN gates (deathstar)
+
+Gradient harness:
+
+```
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group gradient --ranks 2 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2"
+
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group gradient --ranks 4 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4"
+
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group gradient --ranks 2 --backend nccl \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2"
+```
+
+Focused test:
+
+```
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 2 \
+  julia --project=../flux-integration/test --startup-file=no \
+  ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 4 \
+  julia --project=../flux-integration/test --startup-file=no \
+  ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=nccl ~/.julia/bin/mpiexecjl -n 2 \
+  julia --project=../flux-integration/test --startup-file=no \
+  ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+```
+
+Loss-group regression:
+
+```
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group loss --ranks 2 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2"
+
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group loss --ranks 4 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4"
+```
+
+Combined `--group all` (Phase D):
+
+```
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group all --ranks 2 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2"
+
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group all --ranks 4 --backend mpi \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4"
+
+scripts/remote/run.sh deathstar "NUMERICAL_GUARD_PHASE=green julia --startup-file=no \
+  --project=../flux-integration/test scripts/checks/conditional_graph_numerical_guard_check.jl \
+  --group all --ranks 2 --backend nccl \
+  --outdir artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2"
+```
+
+Dedicated suite:
+
+```
+scripts/remote/run.sh deathstar "JULIA_MPI_TEST_NPROCS=2 FLUX_TEST_DISTRIBUTED_NCCL=false \
+  FLUX_TEST_DISTRIBUTED_TIMEOUT=900 julia --startup-file=no \
+  --project=../flux-integration/test ../flux-integration/test/ext_distributed/runtests.jl"
+
+scripts/remote/run.sh deathstar "JULIA_MPI_TEST_NPROCS=4 FLUX_TEST_DISTRIBUTED_NCCL=false \
+  FLUX_TEST_DISTRIBUTED_TIMEOUT=900 julia --startup-file=no \
+  --project=../flux-integration/test ../flux-integration/test/ext_distributed/runtests.jl"
+
+scripts/remote/run.sh deathstar "JULIA_MPI_TEST_NPROCS=2 FLUX_TEST_DISTRIBUTED_NCCL=true \
+  FLUX_TEST_DISTRIBUTED_TIMEOUT=900 julia --startup-file=no \
+  --project=../flux-integration/test ../flux-integration/test/ext_distributed/runtests.jl"
+```
+
+Single-process `train` group:
+
+```
+scripts/remote/run.sh deathstar "FLUX_TEST_REACTANT=false julia --startup-file=no \
+  --project=../flux-integration/test ../flux-integration/test/runtests.jl train"
+```
+
+Deadlock regression:
+
+```
+scripts/remote/run.sh deathstar "make verify-conditional-deadlock FLUX_REPO_PATH=../flux-integration"
+```
+
+Phase K toy demo (mpi 2 and 4):
+
+```
+scripts/remote/run.sh deathstar "julia --startup-file=no --project=../flux-integration/test \
+  scripts/checks/conditional_graph_demo_check.jl \
+  --root artifacts/logs/conditional-wrapper/demo/db3-toy-2026-10-14-mpi \
+  --backend mpi --ranks 2,4"
+```
+
+Ambiguities:
+
+```
+scripts/remote/run.sh deathstar 'julia --startup-file=no --project=../flux-integration/test \
+  -e "...detect_ambiguities(Flux.DistributedUtils; recursive=false)..."'
+```
+
+### Results
+
+| Gate | Result |
+|---|---|
+| Gradient harness mpi2 | 19/19 PASS (`green-deathstar-gradient-mpi2/`) |
+| Gradient harness mpi4 | 8/8 PASS (`green-deathstar-gradient-mpi4/`) |
+| Gradient harness nccl2 | 17 PASS + 2 UNTESTED (`grad-overflow`, `grad-tied-overflow`; `green-deathstar-gradient-nccl2/`) |
+| Focused test mpi2 / mpi4 / nccl2 | exit 0 (`green-deathstar-gradient-focused-{mpi2,mpi4,nccl2}/console.log`) |
+| Loss-group regression mpi2 / mpi4 | 13/13 / 8/8 PASS (`green-deathstar-loss-db3-mpi2/`, `-mpi4/`) |
+| Combined `--group all` mpi2 | 32/32 PASS (`green-deathstar-all-mpi2/`) |
+| Combined `--group all` mpi4 | 16/16 PASS (`green-deathstar-all-mpi4/`) |
+| Combined `--group all` nccl2 | 29 PASS + 3 UNTESTED (`dup-train-one`, `grad-overflow`, `grad-tied-overflow`; `green-deathstar-all-nccl2/`) |
+| Dedicated suite mpi2 | 9/9 files PASS, 2m53.8s (`suite-deathstar-db3/mpi2.log`) |
+| Dedicated suite mpi4 | 9/9 files PASS, 3m09.9s (`suite-deathstar-db3/mpi4.log`) |
+| Dedicated suite nccl2 (MPI + NCCL passes) | 18/18 PASS, 7m37.9s (`suite-deathstar-db3/nccl2.log`) |
+| Single-process `train` group | 137/137 PASS (`suite-deathstar-db3/train.log`) |
+| `detect_ambiguities(Flux.DistributedUtils; recursive=false)` | 0 |
+| Deadlock regression | 246/246 PASS (`deadlock-check-db3.log`) |
+| Phase K toy demo mpi 2,4 | 13/13 PASS (`artifacts/logs/conditional-wrapper/demo/db3-toy-2026-10-14-mpi/`) |
+| `Precompiling packages...` lines | 0 in every suite log |
+| Full-suite mpi2 attempt 1 | FAIL in `conditional_distributedtest.jl` (mock `all` ambiguity); retained (`suite-deathstar-db3/mpi2-attempt1.log`) |
+
+Deathstar was left clean after the campaign (no `julia`/`mpiexec`, GPUs idle).
+
+### Artifact map (DB-3)
+
+- `red-deathstar-gradient-mpi2-v2/`: final RED gradient harness artifacts.
+- `red-deathstar-gradient-mpi2/`: superseded v1 RED run (probe `MethodError`).
+- `red-deathstar-focused-mpi2/`: first RED focused-test console.
+- `green-deathstar-gradient-mpi2/`, `green-deathstar-gradient-mpi4/`,
+  `green-deathstar-gradient-nccl2/`: GREEN gradient harness artifacts.
+- `green-deathstar-gradient-focused-mpi2/`, `-mpi4/`, `-nccl2/`: focused-test
+  consoles.
+- `green-deathstar-loss-db3-mpi2/`, `green-deathstar-loss-db3-mpi4/`:
+  loss-group regression under the DB-3 source.
+- `green-deathstar-all-mpi2/`, `green-deathstar-all-mpi4/`,
+  `green-deathstar-all-nccl2/`: combined Phase D acceptance (loss + gradient
+  case tables). The nccl2 run continued through an SSH disconnect; the result
+  was verified from its completed `summary.tsv`.
+- `suite-deathstar-db3/`: suite (`mpi2.log`, `mpi4.log`, `nccl2.log`), train
+  regressions (`train.log`), and the failed first attempt
+  (`mpi2-attempt1.log`).
+- `deadlock-check-db3.log`: deadlock regression.
+- `artifacts/logs/conditional-wrapper/demo/db3-toy-2026-10-14-mpi/`: Phase K
+  toy demo after the `common.jl` trace-check update.
+
+### Harness/test defects fixed during this campaign
+
+Six harness or test defects were found and fixed; none is a production defect.
+Full record:
+[2026-10-14-db3-green-attempt1-harness-fixes.md](../../../../wiki/failures/2026-10-14-db3-green-attempt1-harness-fixes.md).
+Summary: probe `run_grad_no_trainable` arity (`data_range(1:3)`),
+`CorruptBackend` arming (`arm::Ref{Bool}`), `grad-audit-zero` expected schedule,
+`grad-update-both`/`grad-caller` fault rank (-1 -> 0), focused-test healthy
+reference `(a = ga, c = nothing)`, and the `DeviceLikeArray`
+`Base.all(f::Function, x::DeviceLikeArray) = all(f, x.data)` override.
+
+## DB-3 review response campaign (2026-10-14, deathstar)
+
+Response to the [DB-3 review](../../../../reports/conditional-graph-db3-review.md):
+R1 thesis protocol pin, R2 focused healthy reference, R3 contract docs. The old
+hashes in the DB-3 campaign section above remain the DB-3 campaign record; the
+new hashes below describe the response state. Production guard code did not
+change; no commit was made.
+
+### Source identity (DB-3 review response)
+
+| Item | Before response | After response |
+|---|---|---|
+| `notebook/phase_k_workflow_helpers.jl` md5 | `cbca216033752b9fa2abf827257d5183` | `b570d0777109a41eee5bb1be3b4d53d5` |
+| `scripts/checks/phase_k_collective_protocol_check.jl` md5 | n/a | `923b7f49c20fa763a0e4727d27191331` (new) |
+| `test/ext_distributed/nonfinite_gradient_distributedtest.jl` md5 | `06eef21d92c78ca85f718b325ddbe8c6` | `b0566261df12deb00cd69fc6d99220e9` (862 lines) |
+| `src/distributed/public_api.jl` md5 | `d21c73f8885b35ae8558a0f0d4e43196` | `48ea1fcd3c0629d1773b91ae9d6f1677` |
+| `ext/FluxMPINCCLExt/FluxMPINCCLExt.jl` md5 | `841c662047cbe86cd082ceeb226b6231` | `3bca62aa63f2b1d18e2f7f4eb630d221` |
+| `NEWS.md` md5 | `83e69bb91cc5edd110c7de9af2b0b87a` | `f9cd8bf52caf18a99d0b2b76cb13ee2b` |
+
+The `src/distributed/public_api.jl`, `ext/FluxMPINCCLExt/FluxMPINCCLExt.jl`,
+and `NEWS.md` changes are docstrings/comments/prose only; no executable line
+changed (verified by reverting the prose edits and reproducing the DB-3 campaign
+md5s). The corrected content: the all-rank gradient-validity vote, coordinated
+`DomainError` before any optimizer update, preservation guarantee, nonempty-plan
+rule, and scalar CUDA device-to-host validity transfer.
+
+### Sync and precompile (deathstar)
+
+```
+rsync -az --delete --exclude-from='.rsyncignore' --exclude='artifacts/' . deathstar:~/projects/ddp-flux-thesis/
+rsync -az --delete --exclude='.git' --exclude='Manifest.toml' --exclude='test/Manifest.toml' ../flux-integration deathstar:~/projects/
+scripts/remote/run.sh deathstar "make precompile-all FLUX_REPO_PATH=../flux-integration"
+```
+
+The thesis sync excludes `artifacts/`, so remote-only artifacts survive. The
+first R1 run failed on an incomplete remote 4-rank tutorial bundle; the two
+missing files (local sizes `trajectory.jls` 148521848 bytes,
+`validation-train.tsv` 108911 bytes) were uploaded without `--delete`.
+
+### R1 protocol acceptance (deathstar)
+
+```
+scripts/remote/run.sh deathstar "julia --startup-file=no scripts/checks/phase_k_collective_protocol_check.jl"
+```
+
+Exit 0:
+
+```
+PHASE_K_PROTOCOL tutorial-2rank PASS
+PHASE_K_PROTOCOL tutorial-4rank PASS
+PHASE_K_PROTOCOL db3-toy-mpi2 PASS
+PHASE_K_PROTOCOL guarded-pinned-legacy-5/7 PASS
+PHASE_K_PROTOCOL guarded-without-protocol PASS
+PHASE_K_PROTOCOL tutorial-2rank-pinned-guarded-6/8 PASS
+PHASE_K_PROTOCOL_SUMMARY PASS
+```
+
+The guarded checks ran against the real DB-3 guarded artifacts
+`artifacts/logs/conditional-wrapper/demo/db3-toy-2026-10-14-mpi` (mpi2, 16 steps,
+6/8 traces with the trailing vote); the negatives prove a guarded trace pinned
+legacy, a missing pin, and a legacy trace pinned guarded all throw. The first
+run also failed on the one-dimensional `(1,)` shape capture; both first-run
+failures and their fixes are in the
+[failure note](../../../../wiki/failures/2026-10-14-db3-review-response-r1-shape-and-artifacts.md)
+(the failed console is transcribed there because the local log was overwritten
+by the successful rerun).
+
+### R2 focused test (deathstar)
+
+```
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 2 julia --project=../flux-integration/test --startup-file=no ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 4 julia --project=../flux-integration/test --startup-file=no ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+
+scripts/remote/run.sh deathstar "FLUX_TEST_DISTRIBUTED_BACKEND=nccl ~/.julia/bin/mpiexecjl -n 2 julia --project=../flux-integration/test --startup-file=no ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl"
+```
+
+| Run | Result |
+|---|---|
+| mpi2 | exit 0; healthy testset 59/59 per rank |
+| mpi4 (4 ranks) | exit 0; healthy testset 59/59 per rank |
+| nccl2 (`allowscalar(false)`) | exit 0; healthy testset 59/59 per rank |
+
+RED control: a temporary copy `red_weighting.jl` with the old
+`ga = local_ga ./ tworkers` failed the healthy testset: 53 pass / 6 fail / 59
+per rank, exit 1, at the model-`a` comparison and both `a`-moment comparisons.
+The temp copy was deleted; the real file md5 is
+`b0566261df12deb00cd69fc6d99220e9` locally and remotely.
+
+### Results
+
+| Gate | Result |
+|---|---|
+| R1 protocol check | exit 0; `PHASE_K_PROTOCOL_SUMMARY PASS` |
+| R2 focused mpi2 / mpi4 / nccl2 | exit 0; healthy 59/59 per rank on each |
+| R2 RED control mpi2 | 53 pass / 6 fail / 59 per rank, exit 1 |
+| `Precompiling packages...` lines | 0 in every gate log |
+
+Deathstar was left clean (no `julia`/`mpiexec`, GPUs idle 6/6/16 MiB); the RED
+temp file was removed.
+
+### Artifact map (DB-3 review response)
+
+All under
+`artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/`:
+
+- `r1-protocol-check.log`: final R1 acceptance run (the local log was
+  overwritten by the successful rerun).
+- `focused-mpi2.log`, `focused-mpi4.log`, `focused-nccl2.log`: R2 GREEN runs.
+- `red-mpi2-old-weighting.log`: R2 RED control.
+
+Full response record:
+[devlog](../../../../wiki/devlog/02-conditional-graph/2026-10-14-db3-review-response.md).

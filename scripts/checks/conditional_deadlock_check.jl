@@ -62,6 +62,7 @@ end
 
 # Independent analytical protocol: fields are trunk, a, b, c, all length four.
 # Each rank contributes its local gradient or zero. The mean divides by ALL ranks.
+# The trailing gradient-validity vote is appended after the gradient entries.
 function expected_trace(mode, rank)
     active = mode == "control" ? [true, true, true, true] :
              mode == "deadlock" ? [true, rank == 0, rank == 0, rank == 1] :
@@ -77,6 +78,9 @@ function expected_trace(mode, rank)
                          input=fill(active[i] ? gradients[i] : 0.0, 4),
                          output=fill(gradients[i] * global_presence[i], 4)))
     end
+    # Gradient-validity vote: host Float32 length-1 flag, valid (0) on every rank.
+    # The probe classifies collectives by dtype, so this one logs as "presence".
+    push!(expected, (kind="presence", dtype="Float32", input=[0.0], output=[0.0]))
     return expected
 end
 

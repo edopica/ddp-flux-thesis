@@ -1,0 +1,22 @@
+GRAD_INVALID rank=1 item=2 mode=zero-residual-sqrt buffer=v
+GRAD_INVALID rank=0 item=2 mode=zero-residual-sqrt buffer=v
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=1
+GUARD_PROBE_READY rank=0
+COLLECTIVE_BEGIN rank=1 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=0 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=1
+COLLECTIVE_BEGIN rank=0 number=2 op=avg eltype=Float64 len=0 buftype=host
+COLLECTIVE_END rank=0 number=2
+EMPTY_VALID rank=0 ok=true
+CASE_RESULT rank=0 case=grad-empty status=PASS
+COLLECTIVE_END rank=1 number=1
+COLLECTIVE_BEGIN rank=1 number=2 op=avg eltype=Float64 len=0 buftype=host
+COLLECTIVE_END rank=1 number=2
+EMPTY_VALID rank=1 ok=true
+CASE_RESULT rank=1 case=grad-empty status=PASS

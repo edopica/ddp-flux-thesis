@@ -1,0 +1,8 @@
+Executing on deathstar:  julia --startup-file=no scripts/checks/phase_k_collective_protocol_check.jl
+PHASE_K_PROTOCOL tutorial-2rank PASS
+PHASE_K_PROTOCOL tutorial-4rank PASS
+PHASE_K_PROTOCOL db3-toy-mpi2 PASS
+PHASE_K_PROTOCOL guarded-pinned-legacy-5/7 PASS
+PHASE_K_PROTOCOL guarded-without-protocol PASS
+PHASE_K_PROTOCOL tutorial-2rank-pinned-guarded-6/8 PASS
+PHASE_K_PROTOCOL_SUMMARY PASS

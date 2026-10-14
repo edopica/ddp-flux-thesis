@@ -1,0 +1,33 @@
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=0
+GUARD_PROBE_READY rank=1
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+STATE_EMPTY=true rank=0
+STATE_EMPTY=true rank=1
+COLLECTIVE_BEGIN rank=0 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=1 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=1
+COLLECTIVE_END rank=1 number=1
+COLLECTIVE_BEGIN rank=0 number=2 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=1 number=2 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=2
+COLLECTIVE_END rank=1 number=2
+COLLECTIVE_BEGIN rank=0 number=3 op=avg eltype=Float32 len=1 buftype=host
+LOSS_INVALID rank=1 item=3 value=NaN
+COLLECTIVE_END rank=0 number=3
+REJECTED rank=0 caught=DomainError
+STEPS_EXECUTED rank=0 completed=2
+CASE_RESULT rank=0 case=no-trainable status=PASS
+COLLECTIVE_BEGIN rank=1 number=3 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=1 number=3
+REJECTED rank=1 caught=DomainError
+STEPS_EXECUTED rank=1 completed=2
+CASE_RESULT rank=1 case=no-trainable status=PASS

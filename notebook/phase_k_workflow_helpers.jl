@@ -73,6 +73,8 @@ const PHASE_K_BUNDLES = Dict(
         gpu = "NVIDIA A100-SXM-64GB",
         backend = "nccl",
         ranks = 4,
+        # Pre-DB-3 evidence: presence + 2 trunk gradients + 2 per present head.
+        collective_protocol = "legacy-5/7",
         label = "k2-leonardo-nccl4",
         run_root = joinpath(PHASE_K_ROOT, "demo", "k2-2026-10-05-leonardo-nccl4"),
         prepared = joinpath(PHASE_K_ROOT, "demo", "k2-2026-10-05-deathstar-mpi", "prepared"),
@@ -92,6 +94,8 @@ const PHASE_K_BUNDLES = Dict(
         gpu = "NVIDIA TITAN RTX",
         backend = "nccl",
         ranks = 2,
+        # Pre-DB-3 evidence: presence + 2 trunk gradients + 2 per present head.
+        collective_protocol = "legacy-5/7",
         label = "k2-deathstar-nccl2",
         run_root = joinpath(PHASE_K_ROOT, "demo", "k2-2026-10-05-deathstar-nccl2"),
         prepared = joinpath(PHASE_K_ROOT, "demo", "k2-2026-10-05-deathstar-mpi", "prepared"),
@@ -102,6 +106,28 @@ const PHASE_K_BUNDLES = Dict(
         timeout = 5400,
     ),
 )
+
+# Collective protocol identity. Historical pre-DB-3 campaigns use the 5/7
+# protocol (presence + 2 trunk gradients + 2 per globally present head).
+# Guarded campaigns (DB-3) add the trailing host `Float32` length-1 `avg`
+# gradient-validity vote and use the 6/8 protocol. The protocols are never
+# inferred from record counts: every bundle must pin its protocol explicitly.
+const COLLECTIVE_PROTOCOLS = Dict(
+    "legacy-5/7" => (name = "5/7", base = 3, vote_required = false),
+    "guarded-6/8" => (name = "6/8", base = 4, vote_required = true),
+)
+
+function collective_protocol(bundle)
+    name = get(bundle, :collective_protocol, nothing)
+    name === nothing && error(
+        "bundle $(bundle.key) does not declare collective_protocol; historical " *
+        "bundles pin \"legacy-5/7\" and post-DB-3 bundles pin \"guarded-6/8\"")
+    protocol = get(COLLECTIVE_PROTOCOLS, name, nothing)
+    protocol === nothing && error(
+        "bundle $(bundle.key): unknown collective protocol $(repr(name)); known: " *
+        join(sort(collect(keys(COLLECTIVE_PROTOCOLS))), ", "))
+    return protocol
+end
 
 function resolve_bundle(key::AbstractString)
     haskey(PHASE_K_BUNDLES, key) || error(
@@ -337,6 +363,12 @@ function parse_flag_vector(text)
     body = strip(m.captures[1])
     isempty(body) && return Float32[]
     return parse.(Float32, split(body, ","))
+end
+
+# The console prints shapes as `(1,)`, `(16, 2)`, so the captured text keeps
+# the trailing comma of one-dimensional shapes; parse the actual dimensions.
+function shape_dims(text)
+    return [parse(Int, strip(dim)) for dim in split(text, ',') if !isempty(strip(dim))]
 end
 
 function parse_collectives(path)
@@ -624,13 +656,16 @@ function learning_rate_summary(data::BundleData)
         ranks = sort(collect(ddp_ranks)), ddp_records, reference_records)
 end
 
-function expected_collectives(record)
+function expected_collectives(record, protocol)
     present = (record.present_a ? 1 : 0) + (record.present_b ? 1 : 0)
     present in (1, 2) || error("step $(record.step): $(present) present tasks")
-    return 3 + 2 * present
+    # `base` is presence + 2 trunk gradients, plus the guarded protocol's
+    # trailing host gradient-validity vote; 2 per globally present head.
+    return protocol.base + 2 * present
 end
 
 function collective_summary(data::BundleData)
+    protocol = collective_protocol(data.bundle)
     rows = Vector{Vector{Any}}()
     checks = String[]
     observed = Dict{Tuple{String,Int,Int},Int}()
@@ -639,11 +674,24 @@ function collective_summary(data::BundleData)
         observed[key] = get(observed, key, 0) + 1
     end
     for record in data.steps
-        expected = expected_collectives(record)
+        expected = expected_collectives(record, protocol)
         seen = get(observed, (record.mode, record.step, record.rank), 0)
         expected == record.collectives == seen || error(
             "$(record.mode) step $(record.step) rank $(record.rank): expected $(expected) " *
             "collectives, metrics record $(record.collectives), console $(seen)")
+        # The guarded protocol ends every trace with the host gradient-validity
+        # vote; the legacy protocol never emits it (the exact count rejects it).
+        if protocol.vote_required
+            entries = [entry for entry in data.collectives
+                       if entry.mode == record.mode && entry.step == record.step &&
+                          entry.rank == record.rank]
+            vote = entries[findmax(entry -> entry.order, entries)[2]]
+            vote.buftype == "Vector{Float32}" && shape_dims(vote.shape) == [1] && vote.avg &&
+                vote.local_flags === nothing && vote.global_flags === nothing || error(
+                "$(record.mode) step $(record.step) rank $(record.rank): trailing collective " *
+                "is $(vote.buftype) shape ($(vote.shape)), expected the trailing host " *
+                "Float32 length-1 avg gradient-validity vote")
+        end
     end
     for mode in ("train", "resume")
         counts = Dict{Int,Int}()
@@ -651,8 +699,11 @@ function collective_summary(data::BundleData)
             counts[record.collectives] = get(counts, record.collectives, 0) + 1
         end
         for count in sort(collect(keys(counts)))
-            push!(rows, [mode, count, counts[count],
-                count == 7 ? "both tasks present" : "one task globally absent"])
+            label = count == protocol.base + 4 ? "both tasks present" :
+                count == protocol.base + 2 ? "one task globally absent" :
+                error("$(mode): collective count $(count) is outside the " *
+                      "$(protocol.name) protocol")
+            push!(rows, [mode, count, counts[count], label])
         end
     end
     # The first collective of every step is the CPU presence reduction.
@@ -690,11 +741,13 @@ function collective_summary(data::BundleData)
         "$(flag_mismatches) presence-reduction flag averages disagree with the console")
     push!(checks, "presence reduction is one CPU Vector{Float32} average, first in every step")
     push!(checks, "order 1 precedes every gradient reduction (orders 2..n are contiguous)")
-    push!(checks, "observed collectives per rank equal the 5/7 protocol on every step")
+    push!(checks, "observed collectives per rank equal the $(protocol.name) protocol on every step")
+    protocol.vote_required && push!(checks,
+        "the final collective of every step is the host Float32 length-1 avg gradient vote")
     push!(checks, "global presence flags equal the rank mean of the local flags")
     if all(endswith(entry.buftype, "CuArray{Float32, 2, CUDACore.DeviceMemory}") ||
            endswith(entry.buftype, "CuArray{Float32, 1, CUDACore.DeviceMemory}") ||
-           entry.order == 1
+           entry.buftype == "Vector{Float32}"
            for entry in data.collectives)
         push!(checks, "every gradient reduction uses a CUDA buffer (NCCL transport)")
     end

@@ -1,5 +1,105 @@
 # Current context
 
+## DB-3 independent review closed — 2026-10-14
+
+R1, R2, and R3 are closed. No blocking findings remain within the reviewed scope.
+Both historical tutorial summaries passed an independent local rerun.
+All six corrected file hashes match the response campaign, and Flux `git diff --check` passed.
+The inspected remote logs support the guarded protocol checks, focused MPI/NCCL results, and old-weighting RED control.
+
+Details: [final review](../../reports/conditional-graph-db3-review.md#independent-closure-review--2026-10-14).
+The earlier local MPI environment failure remains separate from acceptance. No remote commands or commits occurred during closure.
+
+**Exact next action:** decide whether to commit the reviewed DB-3 change set and prepare the upstream review.
+
+## DB-3 review response complete — 2026-10-14
+
+All three findings of [the DB-3 review](../../reports/conditional-graph-db3-review.md)
+are corrected and gate-verified on `deathstar`. Production guard code did not
+change; no commit was made (the worktrees remain dirty by project convention).
+
+- R1 (thesis): `notebook/phase_k_workflow_helpers.jl` pins the collective
+  protocol per bundle (`legacy-5/7` base 3 no vote, `guarded-6/8` base 4 with the
+  trailing host `Float32` length-1 `avg` gradient-validity vote); a missing or
+  unknown pin throws. The new `scripts/checks/phase_k_collective_protocol_check.jl`
+  passed on deathstar: both tutorials, the guarded DB-3 toy bundle, and three
+  negative controls, `PHASE_K_PROTOCOL_SUMMARY PASS`, exit 0. Log:
+  `artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/r1-protocol-check.log`.
+- R2 (Flux, test only): `test/ext_distributed/nonfinite_gradient_distributedtest.jl`
+  now uses a nonzero `a` target and the correct step-3 weighting, and asserts
+  nonzero `a` moments before the absence step. Healthy testset 59/59 per rank at
+  mpi2, mpi4, and nccl2 (exit 0); the old-weighting RED control fails 6 of 59 per
+  rank. Logs under
+  `artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/`.
+- R3 (Flux, docs only): wrapper docstrings, `NEWS.md`, the NCCL extension
+  comment, and the ADR-0009 implementation summary now state the all-rank vote,
+  coordinated `DomainError`, preservation guarantee, nonempty-plan rule, and
+  scalar device-to-host transfer consistently; no executable line changed.
+
+Evidence:
+[devlog](../devlog/02-conditional-graph/2026-10-14-db3-review-response.md),
+[COMMANDS.md](../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#db-3-review-response-campaign-2026-10-14-deathstar),
+[failure note](../failures/2026-10-14-db3-review-response-r1-shape-and-artifacts.md),
+[ADR-0009](../decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md).
+
+**Exact next action:** Review the combined DB-3 diff against the corrected hashes, then decide on committing the DB-3 change set and updating the upstream PR/review.
+
+## DB-3 independent review — 2026-10-14
+
+The review requests corrections for two P2 findings and one P3 documentation finding.
+[Report](../../reports/conditional-graph-db3-review.md): both saved tutorials fail under the new collective-count expectation.
+The focused healthy reference also has incorrect step-3 weighting, hidden by zero gradients.
+Public contract documentation needs corrections.
+
+The inspected production guard follows the planned boundary. Production and focused-test hashes match the campaign.
+The independent local MPI attempt failed during precompilation, before tests, with a CUDA dependency `KeyError`.
+Evidence and commands: [devlog](../devlog/02-conditional-graph/2026-10-14-db3-review.md) and [failure record](../failures/2026-10-14-db3-review-local-environment.md).
+
+**Exact next action:** none remains from this review; the review-response section above records the corrections and deathstar gates.
+
+## DB-3 gradient rejection implemented and gate-accepted — 2026-10-14
+
+The post-reduction non-finite-gradient guard is implemented and gate-accepted
+([ADR-0009](../decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md)).
+`_sync_gradients` scans every globally present reduced buffer with
+`_reduced_buf_finite` and casts one all-rank validity vote through the existing
+`_any_rank_invalid` helper, after the complete reduction loop and before
+`_build!`; `np > 0` always votes (including the all-gradients-absent case) and
+`np == 0` keeps zero collectives. The NCCL extension overrides the scan for
+`CuArray`: it synchronizes the CUDA stream and device-reduces. Rejection raises
+`DomainError(nothing, _NONFINITE_GRADIENT_ERROR)` on every rank with "non-finite
+synchronized gradient" and "No optimizer update occurred". No commit; the
+`flux-integration` worktree is dirty on HEAD
+`314aef2022333fa8f37035ed10cdc8e2360fa475`.
+
+- GREEN on deathstar: gradient harness mpi2 19/19, mpi4 8/8, nccl2 17 PASS +
+  2 UNTESTED (the native overflow fixtures are MPI-only; the controlled
+  injection covers the device path); focused `nonfinite_gradient_distributedtest.jl`
+  exit 0 at mpi2, mpi4, and nccl2; loss-group regression mpi2 13/13 and mpi4
+  8/8; combined `--group all` (Phase D) mpi2 32/32, mpi4 16/16, nccl2 29 PASS +
+  3 UNTESTED (`dup-train-one`, `grad-overflow`, `grad-tied-overflow`); full
+  suite 9/9 files at mpi2 (2m53.8s) and mpi4 (3m09.9s), 18/18 at nccl2
+  (7m37.9s, MPI + NCCL); single-process `train` 137/137; 0 ambiguities;
+  deadlock regression 246/246; Phase K toy demo 13/13 at mpi 2 and 4; 0
+  `Precompiling packages...` lines.
+- RED retained: gradient harness mpi2 18 FAIL + 1 PASS (`grad-no-trainable` is
+  a no-regression case); focused test mpi2 first testset 7 pass / 7 fail /
+  1 error. The superseded v1 RED run and the failed first suite attempt are
+  retained.
+- New regression: `test/ext_distributed/nonfinite_gradient_distributedtest.jl`
+  (848 lines, 15 testsets). The updated conditional and CUDA conditional test
+  files, the driver, the deadlock check, and the Phase K helpers encode the
+  extra trailing host `Float32` length-1 `avg` gradient vote per nonempty
+  update; `NEWS.md` records the rejection.
+- Harness/test defects found and fixed (all fixed; none production):
+  [failure note](../failures/2026-10-14-db3-green-attempt1-harness-fixes.md).
+- Evidence:
+  [COMMANDS.md DB-3 campaign](../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#db-3-campaign-2026-10-14-deathstar),
+  [devlog](../devlog/02-conditional-graph/2026-10-14-db3-gradient-rejection.md),
+  [audit 002 resolution](../audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md#43-db-3--finite-loss-with-non-finite-gradient-silent-corruption).
+
+**Exact next action:** Review the DB-3 working-tree diff and evidence, then decide on committing to flux-integration and preparing the upstream contribution/review.
+
 ## DB-1/DB-4 independent review closed — 2026-10-14
 
 R1, R2, and the NamedTuple coverage gap are closed.

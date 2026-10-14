@@ -1,0 +1,219 @@
+Executing on deathstar:  cp ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl ../flux-integration/test/ext_distributed/red_weighting.jl && sed -i 's|ga = step == 3 ? local_ga : local_ga ./ tworkers|ga = local_ga ./ tworkers|' ../flux-integration/test/ext_distributed/red_weighting.jl && grep -n 'ga = local_ga ./ tworkers' ../flux-integration/test/ext_distributed/red_weighting.jl && FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 2 julia --project=../flux-integration/test --startup-file=no ../flux-integration/test/ext_distributed/red_weighting.jl
+738:        ga = local_ga ./ tworkers
+Test Summary:                                                          | Test Summary:                                                          | Pass  Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state | Pass    17     17  Total  10.5s
+ Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |   17     17  10.5s
+Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact |   17     17  0.5s
+Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact |   17     17  0.5s
+Test Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule |   17     17  4.0s
+Test Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule |   17     17  4.0s
+Test Summary:                                                   | Pass  Total  Time
+positive and negative Inf gradients reject with exact snapshots |   26     26  0.0s
+Test Summary:                                                   | Pass  Total  Time
+positive and negative Inf gradients reject with exact snapshots |   26     26  0.0s
+Test Summary:                                                               | Pass  Total  Time
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21     21  0.3s
+Test Summary:                                                               | Pass  Total  Time
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21     21  0.3s
+Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16     16  0.3s
+Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16     16  0.3s
+Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30     30  0.4s
+Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30     30  0.4s
+Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19     19  0.2s
+Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19     19  0.2s
+Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  0.2s
+Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  0.2s
+Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21  0.0s
+Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21  0.0s
+Test Summary:                                                             | Pass  Total  Time
+no trainable parameters: eager keeps only the vote, explicit stays silent |    8      8  0.9s
+Test Summary:                                                             | Pass  Total  Time
+no trainable parameters: eager keeps only the vote, explicit stays silent |    8      8  0.9s
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.3s
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.3s
+healthy conditional reference over four steps with absence and reactivation: healthy conditional reference over four steps with absence and reactivation: Test Failed at Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:755
+  Expression: ≈(to_host(model.a), ref.a, atol = NUMERIC_ATOL)
+   Evaluated: [1.298215244033766, 1.298215244033766, 1.298215244033766, 1.298215244033766] ≈ [1.2951287442605488, 1.2951287442605488, 1.2951287442605488, 1.2951287442605488] (atol=1.0e-8)/home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:755
+  Expression: ≈(to_host(model.a), ref.a, atol = NUMERIC_ATOL)
+   Evaluated: [1.298215244033766, 1.298215244033766, 1.298215244033766, 1.298215244033766] ≈ [1.2951287442605488, 1.2951287442605488, 1.2951287442605488, 1.2951287442605488] (atol=1.0e-8)
+
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:755 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:755 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:757
+  Expression: ≈(to_host(state.tree.a.state[1]), to_host(ref_state.a.state[1]), atol = NUMERIC_ATOL)
+   Evaluated: [-0.13673748492612806, -0.13673748492612806, -0.13673748492612806, -0.13673748492612806] ≈ [-0.10661874255306403, -0.10661874255306403, -0.10661874255306403, -0.10661874255306403] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:757 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:758
+  Expression: ≈(to_host(state.tree.a.state[2]), to_host(ref_state.a.state[2]), atol = NUMERIC_ATOL)
+   Evaluated: [0.0007721957084524023, 0.0007721957084524023, 0.0007721957084524023, 0.0007721957084524023] ≈ [0.000500054115811901, 0.000500054115811901, 0.000500054115811901, 0.000500054115811901] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:758 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:757
+  Expression: ≈(to_host(state.tree.a.state[1]), to_host(ref_state.a.state[1]), atol = NUMERIC_ATOL)
+   Evaluated: [-0.13673748492612806, -0.13673748492612806, -0.13673748492612806, -0.13673748492612806] ≈ [-0.10661874255306403, -0.10661874255306403, -0.10661874255306403, -0.10661874255306403] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:757 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:758
+  Expression: ≈(to_host(state.tree.a.state[2]), to_host(ref_state.a.state[2]), atol = NUMERIC_ATOL)
+   Evaluated: [0.0007721957084524023, 0.0007721957084524023, 0.0007721957084524023, 0.0007721957084524023] ≈ [0.000500054115811901, 0.000500054115811901, 0.000500054115811901, 0.000500054115811901] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:758 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivationhealthy conditional reference over four steps with absence and reactivation: : Test FailedTest Failed at  at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:755
+/home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:755
+  Expression: ≈(to_host(model.a), ref.a, atol = NUMERIC_ATOL)
+   Evaluated: [1.3905845052594976, 1.3905845052594976, 1.3905845052594976, 1.3905845052594976] ≈ [1.3870845975601922, 1.3870845975601922, 1.3870845975601922, 1.3870845975601922] (atol=1.0e-8)  Expression: ≈(to_host(model.a), ref.a, atol = NUMERIC_ATOL)
+   Evaluated: 
+[1.3905845052594976, 1.3905845052594976, 1.3905845052594976, 1.3905845052594976] ≈ [1.3870845975601922, 1.3870845975601922, 1.3870845975601922, 1.3870845975601922] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @
+Stacktrace:
+ [1] top-level scope 
+   @~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2]  macro expansion
+   @~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] macro expansion ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777
+   @ [inlined]
+ [3] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+  ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:755 [inlined][3] macro expansion
+
+ [4]   @ macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:755 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:757
+  Expression: ≈(to_host(state.tree.a.state[1]), to_host(ref_state.a.state[1]), atol = NUMERIC_ATOL)
+   Evaluated: healthy conditional reference over four steps with absence and reactivation[-0.14324221203013865, -0.14324221203013865, -0.14324221203013865, -0.14324221203013865] ≈ [-0.11644399387170273, -0.11644399387170273, -0.11644399387170273, -0.11644399387170273] (atol=1.0e-8)
+: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:757
+  Expression: ≈(to_host(state.tree.a.state[1]), to_host(ref_state.a.state[1]), atol = NUMERIC_ATOL)
+   Evaluated: [-0.14324221203013865, -0.14324221203013865, -0.14324221203013865, -0.14324221203013865] ≈ [-0.11644399387170273, -0.11644399387170273, -0.11644399387170273, -0.11644399387170273] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/
+Stacktrace:
+red_weighting.jl:704
+  [1] top-level scope[2] macro expansion
+
+   @   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704 ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ 
+ [2] [3] macro expansion
+macro expansion
+   @   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:757 [inlined]
+ Test.jl:1777 [inlined]
+ [3][4] macro expansion
+   @ macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:757Test.jl:680 [inlined]
+ [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:758
+  Expression: ≈(to_host(state.tree.a.state[2]), to_host(ref_state.a.state[2]), atol = NUMERIC_ATOL)
+   Evaluated: [0.0008121406004843025, 0.0008121406004843025, 0.0008121406004843025, 0.0008121406004843025] ≈ [0.0005415262931243487, 0.0005415262931243487, 0.0005415262931243487, 0.0005415262931243487] (atol=1.0e-8)
+healthy conditional reference over four steps with absence and reactivation: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:758
+  Expression: ≈(to_host(state.tree.a.state[2]), to_host(ref_state.a.state[2]), atol = NUMERIC_ATOL)
+   Evaluated: [0.0008121406004843025, 0.0008121406004843025, 0.0008121406004843025, 0.0008121406004843025] ≈ [0.0005415262931243487, 0.0005415262931243487, 0.0005415262931243487, 0.0005415262931243487] (atol=1.0e-8)
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704
+ [2] 
+Stacktrace:macro expansion
+   @
+ [1] top-level scope
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+  [3] macro expansion
+~/projects/flux-integration/test/ext_distributed/red_weighting.jl:704   @
+ [2]  ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:758macro expansion
+   @ [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined][3] macro expansion
+
+   @ ~/projects/flux-integration/test/ext_distributed/red_weighting.jl:758 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+Test Summary:                                                               | Pass  Fail  Total  Time
+healthy conditional reference over four steps with absence and reactivation |   53     6     59  3.4s
+Test Summary:                                                               | Pass  Fail  Total  Time
+healthy conditional reference over four steps with absence and reactivation |   53     6     59  3.4s
+RNG of the outermost testset: Random.Xoshiro(RNG of the outermost testset: Random.Xoshiro(0xee956021aef1c289, 0xe0a4edd6c2f22007, 0x2dc54a795c75049a, 0x21cab6c40e852dab, 0x61e99d612bb5794d)
+0xb9771182e0a7af10, 0x252abae77dba1a68, 0xcc19b15d403c41fd, 0xf62069486e7187e8, 0xe05a9a06a01dff91)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 53 passed, 6 failed, 0 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:703
+Some tests did not pass: 53 passed, 6 failed, 0 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/red_weighting.jl:703
+[91m[1m┌ [22m[39m[91m[1mError: [22m[39mThe MPI process failed
+[91m[1m│ [22m[39m  proc = Process(setenv(`[4m/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/bin/mpiexec[24m [4m-n[24m [4m2[24m [4mjulia[24m [4m--startup-file=no[24m [4m../flux-integration/test/ext_distributed/red_weighting.jl[24m`,["PATH=/home/picazio/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/bin:/home/picazio/.julia/artifacts/110c1594febf9d894b6e4a30b3eeca0fa435f04f/bin:/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/bin:/home/picazio/.juliaup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/aime-ml-containers", "JULIA_PROJECT=/home/picazio/projects/flux-integration/test", "XDG_SESSION_CLASS=user", "PWD=/home/picazio/projects/ddp-flux-thesis", "LC_TELEPHONE=de_DE.UTF-8", "XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop", "SHELL=/bin/bash", "SSH_CONNECTION=172.30.2.180 42778 10.1.60.14 22", "LD_LIBRARY_PATH=/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/picazio/.julia/artifacts/5acd766faaca59c3c1f3cfa67e2bf6dcf1e3e883/lib:/home/picazio/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/lib:/home/picazio/.julia/artifacts/f36f3fe2fef57e1f6dc8a55991543cf71bfa6ce0/lib:/home/picazio/.julia/artifacts/110c1594febf9d894b6e4a30b3eeca0fa435f04f/lib:/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/lib:/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib", "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"  …  "_=/home/picazio/.julia/bin/mpiexecjl", "OPENBLAS_DEFAULT_NUM_THREADS=1", "UCX_MEMTYPE_CACHE=no", "USER=picazio", "LC_TIME=de_DE.UTF-8", "LC_NUMERIC=de_DE.UTF-8", "UCX_ERROR_SIGNALS=SIGILL,SIGBUS,SIGFPE", "HOME=/home/picazio", "OPENBLAS_MAIN_FREE=1", "LC_MEASUREMENT=de_DE.UTF-8"]), ProcessExited(1))
+[91m[1m└ [22m[39m[90m@ Main none:7[39m

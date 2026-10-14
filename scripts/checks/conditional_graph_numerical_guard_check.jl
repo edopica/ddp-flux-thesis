@@ -1,5 +1,5 @@
 # ==============================================================================
-# Driver for the DB-1/DB-4 numerical-guard success regression.
+# Driver for the DB-1/DB-4 loss and DB-3 gradient numerical-guard regressions.
 # ==============================================================================
 #
 # Runs `conditional_graph_numerical_guard_probe.jl` under mpiexec per case,
@@ -7,7 +7,9 @@
 # interleaved stdout+stderr log under the requested outdir, validates every
 # rank's collective trace by ordinal and metadata against the scenario's
 # explicit expected stage schedule, and writes `summary.tsv` and `metadata.md`.
-# Only this parent writes shared files; the children only print markers.
+# Only this parent writes shared files; the children only print markers. The
+# probe is group-agnostic: `--group` selects the driver's case table, its
+# expected schedules, and its metadata only.
 #
 # Usage (from the thesis workspace):
 #   julia --startup-file=no --project=../flux-integration/test \
@@ -15,8 +17,21 @@
 #       --group loss --ranks 2 --backend mpi \
 #       --outdir artifacts/logs/conditional-wrapper/numerical-guards/loss-mpi2
 #
-# `--group gradient|all` is not implemented (DB-3 is a separate plan) and prints
-# GROUP_UNAVAILABLE, then exits 2. Only the `loss` group is implemented.
+# `--group` (default loss) selects the case table:
+#   loss      DB-1/DB-4 coordinated non-finite-loss rejection
+#   gradient  DB-3 synchronized-gradient rejection
+#   all       loss cases followed by gradient cases in one campaign
+#
+# Frozen post-fix collective protocol: every nonempty `_sync_gradients` runs one
+# extra host Float32 len-1 `avg` collective (the "gradient vote") after the
+# presence and gradient reductions; `np == 0` keeps zero collectives. On a
+# gradient rejection every rank completes the full schedule (eager: loss vote ->
+# presence -> P reductions -> gradient vote; explicit: presence -> P reductions
+# -> gradient vote) before throwing. Loss-rejected eager steps issue only the
+# loss vote. The gradient vote is metadata-identical to the loss vote (and to
+# the presence vector when np == 1), so `:vote`, `:presence` and `:gradvote` are
+# classified by ordinal within the explicit expected schedule, never by dtype
+# or length alone.
 #
 # Optional flags:
 #   --case NAME          run only matching case names
@@ -229,12 +244,8 @@ const BACKEND = get(OPTS, "backend", "mpi")
 const OUTDIR = abspath(get(OPTS, "outdir", "artifacts/logs/conditional-wrapper/numerical-guards"))
 const CASE_FILTER = get(OPTS, "case", nothing)
 
-if GROUP != "loss"
-    println("GROUP_UNAVAILABLE group=$GROUP reason=\"DB-3 gradient guard is not implemented " *
-            "(separate plan reports/conditional-graph-db3-fix-plan.md)\"")
-    exit(2)
-end
-
+GROUP in ("loss", "gradient", "all") ||
+    error("--group must be loss, gradient or all; got $(repr(GROUP))")
 BACKEND in ("mpi", "nccl") || error("--backend must be mpi or nccl; got $(repr(BACKEND))")
 
 const PROBE = joinpath(@__DIR__, PROBE_BASENAME)
@@ -246,55 +257,117 @@ const PHASE = get(ENV, "NUMERICAL_GUARD_PHASE", "green")
 const CAMPAIGN = get(ENV, "NUMERICAL_GUARD_CAMPAIGN", "$(getpid())-$(time_ns())")
 
 # ------------------------------------------------------------------
-# Case table. Each entry is (case, fault_rank, fault_value); fault_rank = -1
-# means no rank-local fault (all-rank or no-fault scenario).
+# Case tables. Each entry is (case, fault_rank, fault_value); fault_rank = -1
+# means no rank-local fault (all-rank or no-fault scenario). `--group` selects
+# the loss table, the gradient table, or their concatenation (`all`). NCCL
+# reuses the MPI tables; the overflow cases stay listed because the probe
+# reports them UNTESTED under NCCL (the average arithmetic differs), never
+# silently skipped.
 # ------------------------------------------------------------------
 
-case_table(ranks) = ranks == 2 ? [
-    ("train-one", 0, "nan"),
-    ("train-one", 1, "nan"),
-    ("train-one-inf", 1, "inf"),
-    ("train-one-ninf", 1, "ninf"),
-    ("loop-one", 1, "nan"),
-    ("loop-withgradient-one", 1, "nan"),
-    ("train-all", -1, "nan"),
-    ("aux-nonfinite-ok", -1, "nan"),
-    ("aux-nan-first", 1, "nan"),
-    ("no-trainable", 1, "nan"),
-    ("recover-one", 1, "nan"),
-    ("healthy", -1, "nan"),
-    ("dup-train-one", 1, "nan"),
-] : ranks == 4 ? [
-    ("train-one", 0, "nan"),
-    ("train-one", 2, "nan"),
-    ("train-one-inf", 3, "inf"),
-    ("loop-one", 3, "nan"),
-    ("aux-nan-first", 2, "nan"),
-    ("no-trainable", 2, "nan"),
-    ("recover-one", 3, "nan"),
-    ("healthy", -1, "nan"),
-] : error("no case table for --ranks $ranks (supported: 2, 4)")
+function loss_case_table(ranks)
+    ranks == 2 && return [
+        ("train-one", 0, "nan"),
+        ("train-one", 1, "nan"),
+        ("train-one-inf", 1, "inf"),
+        ("train-one-ninf", 1, "ninf"),
+        ("loop-one", 1, "nan"),
+        ("loop-withgradient-one", 1, "nan"),
+        ("train-all", -1, "nan"),
+        ("aux-nonfinite-ok", -1, "nan"),
+        ("aux-nan-first", 1, "nan"),
+        ("no-trainable", 1, "nan"),
+        ("recover-one", 1, "nan"),
+        ("healthy", -1, "nan"),
+        ("dup-train-one", 1, "nan"),
+    ]
+    ranks == 4 && return [
+        ("train-one", 0, "nan"),
+        ("train-one", 2, "nan"),
+        ("train-one-inf", 3, "inf"),
+        ("loop-one", 3, "nan"),
+        ("aux-nan-first", 2, "nan"),
+        ("no-trainable", 2, "nan"),
+        ("recover-one", 3, "nan"),
+        ("healthy", -1, "nan"),
+    ]
+    error("no loss case table for --ranks $ranks (supported: 2, 4)")
+end
+
+function gradient_case_table(ranks)
+    ranks == 2 && return [
+        ("grad-train-one", 0, "nan"),
+        ("grad-train-one", 1, "nan"),
+        ("grad-audit-zero", 1, "nan"),
+        ("grad-late", 1, "nan"),
+        ("grad-inf", 1, "inf"),
+        ("grad-ninf", 1, "ninf"),
+        ("grad-update-both", 0, "nan"),
+        ("grad-overflow", -1, "inf"),
+        ("grad-tied-overflow", -1, "inf"),
+        ("grad-asym-vote", -1, "nan"),
+        ("grad-caller", 0, "nan"),
+        ("grad-conditional-absence", 0, "nan"),
+        ("grad-absent-history", -1, "nan"),
+        ("grad-all-absent", -1, "nan"),
+        ("grad-no-trainable", -1, "nan"),
+        ("grad-empty", -1, "nan"),
+        ("grad-frozen", 1, "nan"),
+        ("grad-recover", 1, "nan"),
+        ("grad-healthy", -1, "nan"),
+    ]
+    ranks == 4 && return [
+        ("grad-train-one", 2, "nan"),
+        ("grad-late", 3, "nan"),
+        ("grad-inf", 3, "inf"),
+        ("grad-asym-vote", -1, "nan"),
+        ("grad-conditional-absence", 2, "nan"),
+        ("grad-recover", 3, "nan"),
+        ("grad-healthy", -1, "nan"),
+        ("grad-tied-overflow", -1, "inf"),
+    ]
+    error("no gradient case table for --ranks $ranks (supported: 2, 4)")
+end
+
+function case_table(ranks)
+    GROUP == "loss" && return loss_case_table(ranks)
+    GROUP == "gradient" && return gradient_case_table(ranks)
+    return vcat(loss_case_table(ranks), gradient_case_table(ranks))
+end
 
 # ------------------------------------------------------------------
 # Expected collective schedules. Classification is driven by the scenario's
-# explicit stage schedule, never by dtype or length alone: the loss vote (len
-# 1), the presence vector (len np) and the gradient buffers (model-shaped) can
-# share a dtype and even a length. GuardModel has np = 2 canonical gradient
-# buffers: tied a/b (len 2) and independent c (len 3). CondModel (healthy) has
-# np = 3: w (len 2), u (len 3) and v (len 4).
+# explicit stage schedule, never by dtype or length alone: the loss vote, the
+# gradient vote (both host Float32 len 1) and the presence vector (len np) can
+# share a dtype and even a length. `:vote`, `:presence` and `:gradvote` are
+# therefore told apart only by ordinal within the expected schedule. GuardModel
+# has np = 2 canonical gradient buffers: tied a/b (len 2) and independent c
+# (len 3). CondModel has np = 3: w (len 2), u (len 3) and v (len 4).
 # ------------------------------------------------------------------
 
 const NP_GUARD = 2
 const NP_COND = 3
 
+# Eager and explicit GuardModel steps. A valid step is presence -> P gradient
+# reductions -> gradient vote; the eager path adds the leading loss vote.
+const EAGER_STEP = [:vote, :presence, :grad_a, :grad_c, :gradvote]
+const EXPLICIT_STEP = [:presence, :grad_a, :grad_c, :gradvote]
+# Eager and explicit CondModel steps. `COND_ABSENT` omits the globally absent
+# v reduction but still runs the gradient vote.
+const COND_FULL = [:vote, :presence, :grad_w, :grad_u, :grad_v, :gradvote]
+const COND_ABSENT = [:vote, :presence, :grad_w, :grad_u, :gradvote]
+const COND_EXPLICIT = [:presence, :grad_w, :grad_u, :grad_v, :gradvote]
+
 function step_stages(np)
     np == 0 && return [:vote]
-    return [:vote, :presence, :grad_a, :grad_c]
+    return EAGER_STEP
 end
 
 function case_np(case)
-    case == "healthy" && return NP_COND
-    case == "no-trainable" && return 0
+    case in ("healthy", "grad-conditional-absence", "grad-absent-history", "grad-healthy") &&
+        return NP_COND
+    case in ("no-trainable", "grad-no-trainable") && return 0
+    case == "grad-empty" && return 1
     return NP_GUARD
 end
 
@@ -302,9 +375,43 @@ function expected_stages(case)
     if case == "healthy"
         # Steps 1 and 2 reduce U and V (globally present); step 3 is globally
         # absent for V; step 4 reactivates V.
-        full = [:vote, :presence, :grad_w, :grad_u, :grad_v]
-        absent = [:vote, :presence, :grad_w, :grad_u]
-        return vcat(full, full, absent, full)
+        return vcat(COND_FULL, COND_FULL, COND_ABSENT, COND_FULL)
+    elseif case == "grad-train-one" || case == "grad-late"
+        # Two valid eager steps, then a rejected third that still completes the
+        # full schedule before throwing.
+        return vcat(EAGER_STEP, EAGER_STEP, EAGER_STEP)
+    elseif case == "grad-audit-zero"
+        # The audit 002 reproducer: steps 1 and 2 are ordinary valid steps
+        # (the tied buffer and `c` reduce). At step 3 the loss uses only the
+        # tied buffer, so `c` is absent and the zero-residual sqrt poisons only
+        # grad_a before the vote.
+        audit_step = [:vote, :presence, :grad_a, :gradvote]
+        return vcat(EAGER_STEP, EAGER_STEP, audit_step)
+    elseif case in ("grad-inf", "grad-ninf", "grad-update-both", "grad-overflow",
+                    "grad-tied-overflow", "grad-asym-vote", "grad-caller")
+        # Explicit updates: every step reduces then votes; the third rejects.
+        return vcat(EXPLICIT_STEP, EXPLICIT_STEP, EXPLICIT_STEP)
+    elseif case == "grad-conditional-absence"
+        return vcat(COND_EXPLICIT, COND_EXPLICIT)
+    elseif case == "grad-absent-history" || case == "grad-healthy"
+        # Globally present steps 1, 2 and 4; v is globally absent at step 3.
+        return vcat(COND_FULL, COND_FULL, COND_ABSENT, COND_FULL)
+    elseif case == "grad-all-absent"
+        # All gradients globally absent: presence and gradient vote only.
+        return vcat(EXPLICIT_STEP, EXPLICIT_STEP, [:presence, :gradvote])
+    elseif case == "grad-no-trainable"
+        # No canonical buffers: the wrapper runs zero collectives, so only the
+        # eager loss vote per step.
+        return [:vote, :vote, :vote]
+    elseif case == "grad-empty"
+        # One empty canonical buffer (len 0): vacuously valid, but still one
+        # presence exchange and one gradient vote.
+        return [:presence, :grad_e, :gradvote]
+    elseif case == "grad-frozen"
+        return vcat(EXPLICIT_STEP, EXPLICIT_STEP)
+    elseif case == "grad-recover"
+        # One invalid eager step rejects mid-run; the next full step recovers.
+        return vcat(EAGER_STEP, EAGER_STEP, EAGER_STEP, EAGER_STEP)
     end
     step = step_stages(case_np(case))
     if case == "aux-nonfinite-ok"
@@ -312,20 +419,24 @@ function expected_stages(case)
     elseif case == "recover-one"
         return vcat(step, step, [:vote], step)
     else
-        # All remaining loss-group cases reject at item 3 after two valid steps.
+        # All remaining loss-group cases reject at item 3 after two valid steps;
+        # a loss-rejected eager step issues only the loss vote.
         return vcat(step, step, [:vote])
     end
 end
 
+const GRAD_STAGES = (:grad_a, :grad_c, :grad_w, :grad_u, :grad_v, :grad_e)
+
 function stage_meta(stage, np)
     op = "avg"
-    eltype_s = stage in (:vote, :presence) ? "Float32" :
+    eltype_s = stage in (:vote, :presence, :gradvote) ? "Float32" :
                (BACKEND == "nccl" ? "Float32" : "Float64")
-    len = stage === :vote ? 1 : stage === :presence ? np :
+    len = stage in (:vote, :gradvote) ? 1 : stage === :presence ? np :
           stage === :grad_a ? 2 : stage === :grad_c ? 3 :
-          stage === :grad_w ? 2 : stage === :grad_u ? 3 : 4
-    bt = stage in (:grad_a, :grad_c, :grad_w, :grad_u, :grad_v) &&
-         BACKEND == "nccl" ? "device" : "host"
+          stage === :grad_w ? 2 : stage === :grad_u ? 3 :
+          stage === :grad_v ? 4 : stage === :grad_e ? 0 :
+          error("unknown stage $(repr(stage))")
+    bt = stage in GRAD_STAGES && BACKEND == "nccl" ? "device" : "host"
     return (; op, eltype=eltype_s, len, buftype=bt)
 end
 
@@ -549,7 +660,8 @@ function evaluate(run)
         append!(problems, ["rank $r: $p" for p in check_trace(output, r, expected, np)])
     end
 
-    run.case == "healthy" && append!(problems, healthy_problems(output))
+    run.case in ("healthy", "grad-absent-history", "grad-healthy") &&
+        append!(problems, healthy_problems(output))
 
     if run.timeout == :none && run.exitcode != 0
         push!(problems, "child exit code $(run.exitcode)")
@@ -588,7 +700,7 @@ function main_body()
     selected = CASE_FILTER === nothing ? table : filter(spec -> spec[1] == CASE_FILTER, table)
     isempty(selected) && error("--case $(repr(CASE_FILTER)) matched no cases for ranks=$RANKS")
 
-    println("DB-1/DB-4 numerical-guard check (group=$GROUP)")
+    println("DB-1/DB-4/DB-3 numerical-guard check (group=$GROUP)")
     println("probe       : $PROBE")
     println("project     : $PROJECT_DIR")
     println("backend     : $BACKEND, ranks: $RANKS")
@@ -634,11 +746,12 @@ function main_body()
     # metadata.md
     metadata_path = joinpath(OUTDIR, "metadata.md")
     open(metadata_path, "w") do io
-        println(io, "# DB-1/DB-4 numerical-guard check metadata")
+        println(io, "# DB-1/DB-4/DB-3 numerical-guard check metadata")
         println(io)
         println(io, "- date: $(Dates.format(now(), "yyyy-mm-dd HH:MM:SS"))")
         println(io, "- phase: $PHASE")
-        println(io, "- group: $GROUP (loss only; DB-3 gradient guard is a separate plan)")
+        println(io, "- group: $GROUP (loss = DB-1/DB-4 loss vote; gradient = DB-3 gradient vote; " *
+                    "all = loss cases followed by gradient cases in one campaign)")
         println(io, "- backend: $BACKEND")
         println(io, "- ranks: $RANKS")
         println(io, "- outdir: $OUTDIR")
@@ -649,6 +762,22 @@ function main_body()
         println(io, "- startup watchdog: $STARTUP_TIMEOUT s (NUMERICAL_GUARD_STARTUP_TIMEOUT)")
         println(io, "- execution watchdog: $EXECUTION_TIMEOUT s (NUMERICAL_GUARD_EXECUTION_TIMEOUT)")
         println(io, "- timeout semantics: a timeout always fails the case, even with plausible markers")
+        println(io, "- gradient vote: every nonempty `_sync_gradients` runs one extra host Float32 " *
+                    "len-1 `avg` collective after the presence and gradient reductions; `np == 0` " *
+                    "keeps zero collectives")
+        println(io, "- rejected steps: every rank completes the full expected schedule before " *
+                    "throwing (eager: loss vote -> presence -> P reductions -> gradient vote; " *
+                    "explicit: presence -> P reductions -> gradient vote); a loss-rejected eager " *
+                    "step issues only the loss vote")
+        println(io, "- classification: `:vote`, `:presence` and `:gradvote` are metadata-identical " *
+                    "(host Float32 len 1; `:presence` when np == 1), so stages are classified by " *
+                    "ordinal within the explicit expected schedule")
+        println(io, "- schedules: eager GuardModel = vote, presence, grad_a, grad_c, gradvote; " *
+                    "explicit GuardModel = presence, grad_a, grad_c, gradvote; explicit CondModel = " *
+                    "presence, grad_w, grad_u, grad_v, gradvote; eager CondModel = vote, presence, " *
+                    "grad_w, grad_u, grad_v, gradvote, or without grad_v when v is globally absent; " *
+                    "no-trainable = one loss vote per eager step and zero wrapper collectives; " *
+                    "empty buffer = presence, grad_e (len 0), gradvote")
         println(io)
         println(io, "## Cases")
         println(io)

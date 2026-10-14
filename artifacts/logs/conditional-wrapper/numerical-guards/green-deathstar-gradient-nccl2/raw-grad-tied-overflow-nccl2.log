@@ -1,0 +1,12 @@
+GRAD_INVALID rank=0 item=2 mode=zero-residual-sqrt buffer=v
+GRAD_INVALID rank=1 item=2 mode=zero-residual-sqrt buffer=v
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=0
+GUARD_PROBE_READY rank=1
+CASE_RESULT rank=0 case=grad-tied-overflow status=UNTESTED reason="Float32/NCCL average arithmetic differs; post-reduction branch covered by grad-asym-vote controlled injection"
+CASE_RESULT rank=1 case=grad-tied-overflow status=UNTESTED reason="Float32/NCCL average arithmetic differs; post-reduction branch covered by grad-asym-vote controlled injection"

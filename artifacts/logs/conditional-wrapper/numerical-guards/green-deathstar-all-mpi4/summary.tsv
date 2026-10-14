@@ -1,0 +1,17 @@
+case	backend	ranks	fault_rank	fault_value	verdict	reason
+train-one	mpi	4	0	nan	PASS	
+train-one	mpi	4	2	nan	PASS	
+train-one-inf	mpi	4	3	inf	PASS	
+loop-one	mpi	4	3	nan	PASS	
+aux-nan-first	mpi	4	2	nan	PASS	
+no-trainable	mpi	4	2	nan	PASS	
+recover-one	mpi	4	3	nan	PASS	
+healthy	mpi	4	-1	nan	PASS	
+grad-train-one	mpi	4	2	nan	PASS	
+grad-late	mpi	4	3	nan	PASS	
+grad-inf	mpi	4	3	inf	PASS	
+grad-asym-vote	mpi	4	-1	nan	PASS	
+grad-conditional-absence	mpi	4	2	nan	PASS	
+grad-recover	mpi	4	3	nan	PASS	
+grad-healthy	mpi	4	-1	nan	PASS	
+grad-tied-overflow	mpi	4	-1	inf	PASS	

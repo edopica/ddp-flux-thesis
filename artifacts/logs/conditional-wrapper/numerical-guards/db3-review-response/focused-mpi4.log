@@ -1,0 +1,121 @@
+Executing on deathstar:  FLUX_TEST_DISTRIBUTED_BACKEND=mpi ~/.julia/bin/mpiexecjl -n 4 julia --project=../flux-integration/test --startup-file=no ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl
+Test Summary:                                                          | Test Summary:                                                          | Test Summary:                                                          | Test Summary:                                                          | Pass  Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |   17     17  11.9s
+Pass  Total   Time
+Pass  Total  asymmetric NaN explicit update! rejects everywhere and preserves state |   17   Time
+   17  11.5s
+asymmetric NaN explicit update! rejects everywhere and preserves state |   17     17  11.9s
+Pass  Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |   17     17  11.9s
+Test Summary:                                                         | Pass  Total  Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact | Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact |   17  Time
+non-mutating update rejects before returning and leaves inputs intact |   17     17  0.5s  17     17  0.5s
+   17  0.5s
+
+Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact |   17     17  0.5s
+Test Summary:                                                            | Pass  Total  TimeTest Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule |   17  Test Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule | Test Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule | 
+real-AD zero-residual reproducer rejects after a complete eager schedule |   17     17  4.4s
+   17  4.4s
+  17     17  4.4s
+  17     17  4.4s
+Test Summary:                                                   | Pass  Total  Time
+positive and negative Inf gradients reject with exact snapshots | Test Summary:                                                   | Pass  Total  Time
+positive and negative Inf gradients reject with exact snapshots |   26     26  Test Summary:                                                   | Pass  Total  Time
+positive and negative Inf gradients reject with exact snapshots |   26     26  Test Summary:                                                   | Pass  Total  Time
+positive and negative Inf gradients reject with exact snapshots |   26     26  0.0s
+0.0s
+0.0s
+  26     26  0.0s
+Test Summary:                                                               | Pass  Total  Time
+Test Summary:                                                               | Pass  Total  Time
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21  Test Summary:                                                               | Pass  Total  TimeTest Summary:                                                               | Pass  Total  late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21     21  0.3s
+   21  0.3s
+
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21     21  Time
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged | 0.3s
+  21     21  0.3s
+Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks tooTest Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16     16  Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16   |   16     16  0.3s
+0.3s
+   16  0.3s
+Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16     16  0.3s
+Test Summary:                                                 | Pass  Total  Time
+Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30  Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30  Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30  tied caller gradients stay aliased and unchanged on rejection |   30     30  0.4s
+   30  0.4s
+   30  0.4s
+   30  0.4s
+Test Summary:                                                          | Pass  Total  Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere | Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19  Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19     19  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19     19  0.2s  19     19  0.2s
+   19  0.2s
+0.2s
+
+Test Summary:                                                            | Pass  Total  Time
+Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19  globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  0.2s
+0.2s
+   19  0.2s
+Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  0.2s
+Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradientsTest Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21  Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21  Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21   |   21     21  0.0s
+0.0s
+0.0s
+0.0s
+Test Summary:                                                             | Pass  Test Summary:                                                             | Pass  Total  Test Summary:                                                             | Pass  Test Summary:                                                             | Pass  Total  Total  Time
+no trainable parameters: eager keeps only the vote, explicit stays silentTime
+no trainable parameters: eager keeps only the vote, explicit stays silent | Total  TimeTime
+no trainable parameters: eager keeps only the vote, explicit stays silent |    8      8     8      8  
+no trainable parameters: eager keeps only the vote, explicit stays silent |  |    8      8  1.0s
+1.0s
+   8      8  1.0s
+1.0s
+Test Summary:                                                   | Pass  Total  Time
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.3s
+0.3s
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.3s
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.3s
+Test Summary:                                                               | Pass  Total  Test Summary:                                                               | Pass  Total  Time
+healthy conditional reference over four steps with absence and reactivation |   59  Test Summary:                                                               | Pass  Total  Time
+healthy conditional reference over four steps with absence and reactivation |   59  Test Summary:                                                               | Pass  Total  Time
+healthy conditional reference over four steps with absence and reactivation | Time
+healthy conditional reference over four steps with absence and reactivation |   59     59  1.8s
+   59  1.8s
+   59  1.8s
+  59     59  1.8s
+Test Summary:                                                     | Pass  Total  TimeTest Summary:                                                     | Pass  Total  Time
+catch-and-continue: rejected update is omitted from the reference |   11  Test Summary:                                                     | Pass  Total  Time
+catch-and-continue: rejected update is omitted from the reference |   11  
+catch-and-continue: rejected update is omitted from the reference |   11     11  0.0s
+   11  0.0s
+Test Summary:                                                     |    11  0.0s
+Pass  Total  Time
+catch-and-continue: rejected update is omitted from the reference |   11     11  0.0s
+Test Summary:                                        | Pass  Total  Time
+native MPI sum overflow rejects before the optimizer | Test Summary:                                        | Pass  Total  Time
+native MPI sum overflow rejects before the optimizer |   15     15  Test Summary:                                        | Pass  Total  Time
+native MPI sum overflow rejects before the optimizer |   15  Test Summary:                                        | Pass  Total  Time
+native MPI sum overflow rejects before the optimizer |   15     15  0.0s
+0.0s
+   15  0.0s
+  15     15  0.0s

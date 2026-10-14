@@ -1,0 +1,42 @@
+GRAD_INVALID rank=1 item=2 mode=zero-residual-sqrt buffer=v
+GRAD_INVALID rank=0 item=2 mode=zero-residual-sqrt buffer=v
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=0
+GUARD_PROBE_READY rank=1
+COLLECTIVE_BEGIN rank=0 number=1 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=1
+COLLECTIVE_BEGIN rank=0 number=2 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_BEGIN rank=1 number=1 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=1 number=1
+COLLECTIVE_BEGIN rank=1 number=2 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_END rank=1 number=2
+COLLECTIVE_BEGIN rank=1 number=3 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=0 number=2
+COLLECTIVE_BEGIN rank=0 number=3 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=0 number=3
+COLLECTIVE_END rank=1 number=3
+FROZEN_VALID rank=0 ok=true
+FROZEN_VALID rank=1 ok=true
+COLLECTIVE_BEGIN rank=0 number=4 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=4
+COLLECTIVE_BEGIN rank=0 number=5 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_BEGIN rank=1 number=4 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=1 number=4
+COLLECTIVE_BEGIN rank=1 number=5 op=avg eltype=Float64 len=2 buftype=host
+COLLECTIVE_END rank=1 number=5
+COLLECTIVE_BEGIN rank=1 number=6 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=1 number=6
+COLLECTIVE_END rank=0 number=5
+COLLECTIVE_BEGIN rank=0 number=6 op=avg eltype=Float64 len=3 buftype=host
+COLLECTIVE_END rank=0 number=6
+UPDATE_RETURNED rank=0
+FROZEN_REJECTED rank=0 ok=false
+UPDATE_RETURNED rank=1
+FROZEN_REJECTED rank=1 ok=false
+CASE_RESULT rank=0 case=grad-frozen status=FAIL reason="frozen_valid=true caught=false snapshot=false"
+CASE_RESULT rank=1 case=grad-frozen status=FAIL reason="frozen_valid=true caught=false snapshot=false"

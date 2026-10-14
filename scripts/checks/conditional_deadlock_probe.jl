@@ -8,14 +8,17 @@
 # Modes (first positional argument, default "deadlock"):
 #
 #   deadlock    rank 0 uses (trunk, a, b); rank 1 uses (trunk, c)
-#               -> one presence reduction, then trunk, a, b, c on both ranks.
+#               -> one presence reduction, then trunk, a, b, c on both ranks,
+#                  then the trailing gradient-validity vote.
 #
 #   corruption  rank 0 uses (trunk, a); rank 1 uses (trunk, b)
-#               -> one presence reduction, then trunk, a, b on both ranks.
+#               -> one presence reduction, then trunk, a, b on both ranks,
+#                  then the trailing gradient-validity vote.
 #                  The globally absent c remains unchanged.
 #
 #   control     every rank uses (trunk, a, b, c)
-#               -> one presence reduction, then trunk, a, b, c on both ranks.
+#               -> one presence reduction, then trunk, a, b, c on both ranks,
+#                  then the trailing gradient-validity vote.
 #
 # The script prints machine-readable markers so the driver
 # (`conditional_deadlock_check.jl`) can detect a hang without waiting for a

@@ -210,6 +210,20 @@ tolerances; (c) backlog A2 adds a rank-consistent gradient check, tested with
 this probe. Workaround: validate losses/gradients for the intended workload or
 add an application-level finite check before `update!`.
 
+> **Resolution (2026-10-14): DB-3 closed.** Implemented and gate-accepted by
+> [ADR-0009](../../decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md).
+> `_sync_gradients` scans every globally present reduced buffer with
+> `_reduced_buf_finite` and casts one all-rank validity vote through the
+> existing `_any_rank_invalid` helper, after the complete reduction loop and
+> before `_build!`; the NCCL extension synchronizes the CUDA stream before the
+> device reduction. Any non-finite synchronized gradient raises `DomainError`
+> on every rank before the inner optimizer, and a rejected step leaves
+> parameters and optimizer state unchanged. Evidence:
+> [fix devlog](../../devlog/02-conditional-graph/2026-10-14-db3-gradient-rejection.md)
+> and [COMMANDS.md, DB-3 campaign](../../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#db-3-campaign-2026-10-14-deathstar).
+> The original recommendation and workaround above are preserved as the pre-fix
+> characterization.
+
 ### 4.4 DB-4 — Manual `trainstep!` loop: shifted gradient pairing, then deadlock
 
 **Mechanism.** `trainstep!` returns without throwing on a non-finite loss
@@ -466,6 +480,14 @@ demonstration:
 >   `train!`), and checking each returned loss is too late: the non-finite rank
 >   proceeds to the next iteration while its peers block in the skipped step.
 >   The manual loop now raises `DomainError` on the injected step.
+>
+> **Correction (2026-10-14).** The DB-3 row above records a pre-fix workaround
+> and is superseded by
+> [ADR-0009](../../decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md):
+> the distributed wrapper now rejects a non-finite synchronized gradient on
+> every rank before the inner optimizer, so the application-level finiteness
+> check before `update!` is no longer required for the supported distributed
+> paths.
 
 These are conditions for deferral, not an acceptance decision. The user must
 approve which limitations the demonstration carries.
@@ -485,6 +507,13 @@ Suggested order; each item is RED-first with the named acceptance test.
 - **A2 (DB-3, high).** Rank-consistent non-finite-gradient handling. Acceptance:
   the `grad-nonfinite` probe must not produce non-finite parameters or state on
   any rank.
+  **Addressed (2026-10-14):**
+  [ADR-0009](../../decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md)
+  implements the post-reduction scan and the all-rank vote; the new gradient
+  harness and `test/ext_distributed/nonfinite_gradient_distributedtest.jl`
+  establish rejection with parameters and optimizer state unchanged
+  ([devlog](../../devlog/02-conditional-graph/2026-10-14-db3-gradient-rejection.md),
+  [COMMANDS.md](../../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#db-3-campaign-2026-10-14-deathstar)).
 - **A3 (DB-4, high).** Manual-loop step-pairing protection or a documented
   coordinated-stop helper. Acceptance: the `step-desync` probe must not match
   the shifted-pairing reference and must not hang.
@@ -602,6 +631,18 @@ DB-3 remains open under
 combined acceptance is pending. DB-10 is now partially covered: the DB-1/DB-4
 rejection is exercised under native CUDA/NCCL at 2 ranks, while the Duplicated
 eager route under NCCL remains untested and DB-3 GPU behavior remains open.
+
+> **DB-3 resolution (2026-10-14).** DB-3 is closed by
+> [ADR-0009](../../decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md):
+> the post-reduction gradient scan and the all-rank vote reject a non-finite
+> synchronized gradient on every rank before the inner optimizer, and the
+> rejected step leaves parameters and optimizer state unchanged. The section 4.3
+> resolution note and the A2 backlog item above record the details and evidence
+> ([devlog](../../devlog/02-conditional-graph/2026-10-14-db3-gradient-rejection.md),
+> [COMMANDS.md](../../../artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md#db-3-campaign-2026-10-14-deathstar)).
+> DB-3 GPU behavior is now exercised under native CUDA/NCCL at 2 ranks: the two
+> native overflow fixtures are UNTESTED on NCCL (MPI-only), and the controlled
+> injection covers the post-reduction device path.
 
 > **Review-response note (2026-10-13, later the same day).** The harness was
 > hardened after external review

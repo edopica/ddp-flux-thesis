@@ -1,0 +1,20 @@
+case	backend	ranks	fault_rank	fault_value	verdict	reason
+grad-train-one	nccl	2	0	nan	PASS	
+grad-train-one	nccl	2	1	nan	PASS	
+grad-audit-zero	nccl	2	1	nan	PASS	
+grad-late	nccl	2	1	nan	PASS	
+grad-inf	nccl	2	1	inf	PASS	
+grad-ninf	nccl	2	1	ninf	PASS	
+grad-update-both	nccl	2	0	nan	PASS	
+grad-overflow	nccl	2	-1	inf	UNTESTED	
+grad-tied-overflow	nccl	2	-1	inf	UNTESTED	
+grad-asym-vote	nccl	2	-1	nan	PASS	
+grad-caller	nccl	2	0	nan	PASS	
+grad-conditional-absence	nccl	2	0	nan	PASS	
+grad-absent-history	nccl	2	-1	nan	PASS	
+grad-all-absent	nccl	2	-1	nan	PASS	
+grad-no-trainable	nccl	2	-1	nan	PASS	
+grad-empty	nccl	2	-1	nan	PASS	
+grad-frozen	nccl	2	1	nan	PASS	
+grad-recover	nccl	2	1	nan	PASS	
+grad-healthy	nccl	2	-1	nan	PASS	

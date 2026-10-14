@@ -1,0 +1,245 @@
+asymmetric NaN explicit update! rejects everywhere and preserves stateasymmetric NaN explicit update! rejects everywhere and preserves state: : Test Failed at Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:181
+  Expression: length(rec.log) == 6
+   Evaluated: 4 == 6
+/home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:181
+  Expression: length(rec.log) == 6
+   Evaluated: 4 == 6
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:181 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:181 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:145
+  Expression: caught isa DomainError
+   Evaluated: nothing isa DomainError
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:145
+  Expression: caught isa DomainError
+   Evaluated: nothing isa DomainError
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] 
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] check_gradient_rejection(caught::Nothing)
+   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:145
+ [3] top-level scope
+check_gradient_rejection(caught::Nothing)
+   @   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4]  ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:145macro expansion
+   @
+ [3] top-level scope
+ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/   @Test.jl:1777 [inlined]
+ [5] macro expansion
+ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+   @ [4] macro expansion
+ ~/projects/flux-integration/test/ext_distributed/   @nonfinite_gradient_distributedtest.jl:193 [inlined]
+ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at  ~/projects/flux-integration/test/ext_distributed//home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:197
+nonfinite_gradient_distributedtest.jl:193 [inlined]
+  Expression: length(rec.log) == log0 + 3
+   Evaluated: 6 == 7
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:197
+  Expression: length(rec.log) == log0 + 3
+   Evaluated: 6 == 7
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [2] macro expansion
+   @
+Stacktrace:
+ [1]  ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/top-level scope
+   @Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157 
+ [2] ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:197 [inlined]
+macro expansion
+   @ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/ [inlined]
+ [3] Test.jl:680 [inlined]
+macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:197 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: asymmetric NaN explicit update! rejects everywhere and preserves state: Error During Test at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:200
+Error During Test at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:200
+  Test threw exception
+  Test threw exception
+  Expression: rec.log[log0 + 3] == vote_entry()
+  Expression: rec.log[log0 + 3] == vote_entry()
+  BoundsError: attempt to access 6-element Vector{Tuple{DataType, Int64}} at index [7]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Tuple{DataType, Int64}}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Tuple{DataType, Int64}}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:200 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+  BoundsError: attempt to access 6-element Vector{Tuple{DataType, Int64}} at index [7]
+  Stacktrace:
+   [1] throw_boundserror(A::Vector{Tuple{DataType, Int64}}, I::Tuple{Int64})
+     @ Base ./essentials.jl:15
+   [2] getindex(A::Vector{Tuple{DataType, Int64}}, i::Int64)
+     @ Base ./essentials.jl:919
+   [3] top-level scope
+     @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+   [4] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+   [5] macro expansion
+     @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:200 [inlined]
+   [6] macro expansion
+     @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:677 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:202
+  Expression: to_host(model.c) == snap_c
+   Evaluated: [NaN, 1.2951287474397004, 1.2951287474397004, 1.2951287474397004] == [1.1988125783408332, 1.1988125783408332, 1.1988125783408332, 1.1988125783408332]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:202 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:202
+  Expression: to_host(model.c) == snap_c
+   Evaluated: [NaN, 1.2951287474397004, 1.2951287474397004, 1.2951287474397004] == [1.1988125783408332, 1.1988125783408332, 1.1988125783408332, 1.1988125783408332]
+
+Stacktrace:
+ [1] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [2] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [3] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:202 [inlined]
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:116
+  Expression: to_host(leaf.state[1]) == snap[1]
+   Evaluated: [NaN, -0.2132374845118333, -0.2132374845118333, -0.2132374845118333] == [-0.17000000019999995, -0.17000000019999995, -0.17000000019999995, -0.17000000019999995]
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:116
+  Expression: to_host(leaf.state[1]) == snap[1]
+   Evaluated: [NaN, -0.2132374845118333, -0.2132374845118333, -0.2132374845118333] == [-0.17000000019999995, -0.17000000019999995, -0.17000000019999995, -0.17000000019999995]
+check_leaf(leaf::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, snap::Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}})
+   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:116
+ [3] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:203 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:117
+  Expression: to_host(leaf.state[2]) == snap[2]
+   Evaluated: [NaN, 0.002000216455059589, 0.002000216455059589, 0.002000216455059589] == [0.0016390000032000015, 0.0016390000032000015, 0.0016390000032000015, 0.0016390000032000015]
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] 
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] check_leaf(leaf::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, snap::Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}})
+   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:117
+ [3] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @check_leaf(leaf::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, snap::Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}) ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:203
+   @  [inlined]
+Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:116
+ [3] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:203 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:117
+  Expression: to_host(leaf.state[2]) == snap[2]
+   Evaluated: [NaN, 0.002000216455059589, 0.002000216455059589, 0.002000216455059589] == [0.0016390000032000015, 0.0016390000032000015, 0.0016390000032000015, 0.0016390000032000015]
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] check_leaf(leaf::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, snap::Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}})
+   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:117
+ [3] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:203 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:118
+  Expression: leaf.state[3] == snap[3]
+   Evaluated: (0.6561000000000001, 0.996005996001) == (0.7290000000000001, 0.997002999)
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] check_leaf(leaf::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, snap::Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}})
+   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:118
+ [3] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:203 [inlined]
+asymmetric NaN explicit update! rejects everywhere and preserves state: Test Failed at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:118
+  Expression: leaf.state[3] == snap[3]
+   Evaluated: (0.6561000000000001, 0.996005996001) == (0.7290000000000001, 0.997002999)
+
+Stacktrace:
+ [1] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:680 [inlined]
+ [2] check_leaf(leaf::Optimisers.Leaf{Adam{Float64, Tuple{Float64, Float64}, Float64}, Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}}}, snap::Tuple{Vector{Float64}, Vector{Float64}, Tuple{Float64, Float64}})
+   @ Main ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:118
+ [3] top-level scope
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:157
+ [4] macro expansion
+   @ ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Test/src/Test.jl:1777 [inlined]
+ [5] macro expansion
+   @ ~/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:203 [inlined]
+Test Summary:                                                          | Pass  Fail  Error  Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |    7     7      1     15  13.2s
+Test Summary:                                                          | Pass  Fail  Error  Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |    7     7      1     15  13.2s
+RNG of the outermost testset: Random.Xoshiro(0x7fcfeae8e40cf54d, 0x0c2f87097595e8a1, 0x2415a13444edc9e0, 0xdca090a72cf56696, 0x612e9a9cd8296eaa)
+RNG of the outermost testset: Random.Xoshiro(0x1fa1580cb55507a5, 0xe2f95965b859b08c, 0x613b9b328c9f6cdf, 0xc2d9d592eaa4ab39, 0x02ac433f07ffe833)
+ERROR: ERROR: LoadError: LoadError: Some tests did not pass: 7 passed, 7 failed, 1 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:156
+Some tests did not pass: 7 passed, 7 failed, 1 errored, 0 broken.
+in expression starting at /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl:156
+[91m[1m┌ [22m[39m[91m[1mError: [22m[39mThe MPI process failed
+[91m[1m│ [22m[39m  proc = Process(setenv(`[4m/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/bin/mpiexec[24m [4m-n[24m [4m2[24m [4mjulia[24m [4m--startup-file=no[24m [4m../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl[24m`,["PATH=/home/picazio/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/bin:/home/picazio/.julia/artifacts/110c1594febf9d894b6e4a30b3eeca0fa435f04f/bin:/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/bin:/home/picazio/.juliaup/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/opt/aime-ml-containers", "JULIA_PROJECT=/home/picazio/projects/flux-integration/test", "XDG_SESSION_CLASS=user", "PWD=/home/picazio/projects/ddp-flux-thesis", "LC_TELEPHONE=de_DE.UTF-8", "XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop", "SHELL=/bin/bash", "SSH_CONNECTION=172.30.2.178 54258 10.1.60.14 22", "LD_LIBRARY_PATH=/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/picazio/.julia/artifacts/5acd766faaca59c3c1f3cfa67e2bf6dcf1e3e883/lib:/home/picazio/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/lib:/home/picazio/.julia/artifacts/f36f3fe2fef57e1f6dc8a55991543cf71bfa6ce0/lib:/home/picazio/.julia/artifacts/110c1594febf9d894b6e4a30b3eeca0fa435f04f/lib:/home/picazio/.julia/artifacts/1a3503e280039bd45ad4bfc9f5343a76c0574d67/lib:/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib", "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus"  …  "_=/home/picazio/.julia/bin/mpiexecjl", "OPENBLAS_DEFAULT_NUM_THREADS=1", "UCX_MEMTYPE_CACHE=no", "USER=picazio", "LC_TIME=de_DE.UTF-8", "LC_NUMERIC=de_DE.UTF-8", "UCX_ERROR_SIGNALS=SIGILL,SIGBUS,SIGFPE", "HOME=/home/picazio", "OPENBLAS_MAIN_FREE=1", "LC_MEASUREMENT=de_DE.UTF-8"]), ProcessExited(1))
+[91m[1m└ [22m[39m[90m@ Main none:7[39m

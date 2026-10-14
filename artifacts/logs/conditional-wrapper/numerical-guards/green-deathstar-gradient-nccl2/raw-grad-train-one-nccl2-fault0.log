@@ -1,0 +1,79 @@
+GRAD_INVALID rank=1 item=2 mode=zero-residual-sqrt buffer=v
+GRAD_INVALID rank=0 item=2 mode=zero-residual-sqrt buffer=v
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=1
+GUARD_PROBE_READY rank=0
+COLLECTIVE_BEGIN rank=1 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=0 number=1 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=1
+COLLECTIVE_BEGIN rank=0 number=2 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=2
+COLLECTIVE_BEGIN rank=0 number=3 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=1 number=1
+COLLECTIVE_BEGIN rank=1 number=2 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=1 number=2
+COLLECTIVE_BEGIN rank=1 number=3 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=3
+COLLECTIVE_END rank=1 number=3
+COLLECTIVE_BEGIN rank=1 number=4 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_BEGIN rank=0 number=4 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=0 number=4
+COLLECTIVE_END rank=1 number=4
+COLLECTIVE_BEGIN rank=0 number=5 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=1 number=5 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=5
+COLLECTIVE_END rank=1 number=5
+COLLECTIVE_BEGIN rank=1 number=6 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=0 number=6 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=6
+COLLECTIVE_END rank=1 number=6
+COLLECTIVE_BEGIN rank=0 number=7 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_BEGIN rank=1 number=7 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=7
+COLLECTIVE_END rank=1 number=7
+COLLECTIVE_BEGIN rank=0 number=8 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_BEGIN rank=1 number=8 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=8
+COLLECTIVE_END rank=1 number=8
+COLLECTIVE_BEGIN rank=0 number=9 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_BEGIN rank=1 number=9 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=0 number=9
+COLLECTIVE_END rank=1 number=9
+COLLECTIVE_BEGIN rank=0 number=10 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=1 number=10 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=1 number=10
+COLLECTIVE_END rank=0 number=10
+GRAD_INVALID rank=0 item=3 mode=zero-residual-sqrt buffer=c
+COLLECTIVE_BEGIN rank=0 number=11 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=0 number=11
+COLLECTIVE_BEGIN rank=1 number=11 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=1 number=11
+COLLECTIVE_BEGIN rank=0 number=12 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_BEGIN rank=1 number=12 op=avg eltype=Float32 len=2 buftype=host
+COLLECTIVE_END rank=0 number=12
+COLLECTIVE_END rank=1 number=12
+COLLECTIVE_BEGIN rank=1 number=13 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_BEGIN rank=0 number=13 op=avg eltype=Float32 len=2 buftype=device
+COLLECTIVE_END rank=0 number=13
+COLLECTIVE_END rank=1 number=13
+COLLECTIVE_BEGIN rank=0 number=14 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_BEGIN rank=1 number=14 op=avg eltype=Float32 len=3 buftype=device
+COLLECTIVE_END rank=0 number=14
+COLLECTIVE_END rank=1 number=14
+COLLECTIVE_BEGIN rank=0 number=15 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_BEGIN rank=1 number=15 op=avg eltype=Float32 len=1 buftype=host
+COLLECTIVE_END rank=1 number=15
+COLLECTIVE_END rank=0 number=15
+REJECTED rank=1 caught=DomainError
+REJECTED rank=0 caught=DomainError
+STEPS_EXECUTED rank=1 completed=2
+STEPS_EXECUTED rank=0 completed=2
+SNAPSHOT_OK rank=1 ok=true moments_nonzero=true tied=true
+CASE_RESULT rank=1 case=grad-train-one status=PASS
+SNAPSHOT_OK rank=0 ok=true moments_nonzero=true tied=true
+CASE_RESULT rank=0 case=grad-train-one status=PASS

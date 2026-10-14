@@ -181,8 +181,11 @@ diagnostic_comm(backend::Flux.NCCLBackend) = backend.mpi_backend.comm
 # Expected wrapper protocol for the three-Dense two-head model.
 # ---------------------------------------------------------------------------
 
+# One presence reduction, two gradient reductions for the trunk, two per
+# globally present head, and the trailing gradient-validity vote (the demo
+# model always has trainable parameters, so the vote is always issued).
 function expected_collective_count(present_a::Bool, present_b::Bool)
-    return 1 + 2 + 2 * present_a + 2 * present_b
+    return 1 + 1 + 2 + 2 * present_a + 2 * present_b
 end
 
 function expected_buffer_shapes(model, present_a::Bool, present_b::Bool)
@@ -239,6 +242,16 @@ function check_collective_trace(step_log, model, step::Int, rank::Int,
             "has buffer type $(entry.buftype), expected a " *
             (on_gpu ? "device array" : "host Array"))
     end
+
+    # The trailing gradient-validity vote is the last collective: a host
+    # Float32 length-1 flag reduced with avg after all gradient reductions.
+    vote_entry = step_log[n_expected]
+    ensure(vote_entry.buftype === Vector{Float32},
+        "step $step rank $rank: gradient-vote buffer type $(vote_entry.buftype) is not " *
+        "host Vector{Float32}")
+    ensure(vote_entry.size == (1,),
+        "step $step rank $rank: gradient-vote buffer size $(vote_entry.size) != (1,)")
+    ensure(vote_entry.avg, "step $step rank $rank: gradient-vote reduction is not avg")
     return nothing
 end
 

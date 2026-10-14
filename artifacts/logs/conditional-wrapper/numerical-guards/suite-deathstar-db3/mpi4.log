@@ -1,0 +1,552 @@
+[0m[1mTest Summary:                                         | [22m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m12.3s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m12.3s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m12.3s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+equal-shaped conditional branches do not cross-reduce | [32m   5  [39m[36m    5  [39m[0m12.3s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+canonical traversal order for reversed named trainable | [32m  10  [39m[36m   10  [39m[0m1.3s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+canonical traversal order for reversed named trainable | [32m  10  [39m[36m   10  [39m[0m1.3s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+canonical traversal order for reversed named trainable | [32m  10  [39m[36m   10  [39m[0m1.3s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+canonical traversal order for reversed named trainable | [32m  10  [39m[36m   10  [39m[0m1.3s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+equal-valued isbits occurrences stay independent | [32m  11  [39m[36m   11  [39m[0m0.5s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.3s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.3s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.3s
+[0m[1mTest Summary:                                                | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+explicit occurrence mapping for mixed tied/isbits parameters | [32m  38  [39m[36m   38  [39m[0m2.3s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m   16  [39m[0m0.6s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m   16  [39m[0m0.6s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m   16  [39m[0m0.6s
+[0m[1mTest Summary:                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+CPU presence metadata for device-like parameters | [32m  16  [39m[36m   16  [39m[0m0.6s
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mtrainable(x) should now return a NamedTuple with the field names, not a Tuple
+[33m[1m└ [22m[39m[90m@ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:194[39m
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | [32m  20  [39m[36m   20  [39m[0m1.4s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | [32m  20  [39m[36m   20  [39m[0m1.4s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | [32m  20  [39m[36m   20  [39m[0m1.4s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection matches native setup | [32m  20  [39m[36m   20  [39m[0m1.4s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[36m   30  [39m[0m1.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[36m   30  [39m[0m1.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[36m   30  [39m[0m1.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+legacy tuple trainable selection persists across updates | [32m  30  [39m[36m   30  [39m[0m1.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m14.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m14.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m14.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+BatchNorm running statistics stay excluded | [32m   6  [39m[36m    6  [39m[0m14.3s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | [32m  16  [39m[36m   16  [39m[0m3.9s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | [32m  16  [39m[36m   16  [39m[0m3.9s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | [32m  16  [39m[36m   16  [39m[0m3.9s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose and adjoint gradients pair in parent space | [32m  16  [39m[36m   16  [39m[0m3.9s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | [32m  11  [39m[36m   11  [39m[0m0.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | [32m  11  [39m[36m   11  [39m[0m0.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | [32m  11  [39m[36m   11  [39m[0m0.6s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+caller gradients stay unchanged on both update paths | [32m  11  [39m[36m   11  [39m[0m0.6s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.2s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update! propagates immutable model returns and keeps wrapper identity | [32m   9  [39m[36m    9  [39m[0m1.2s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.4s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.4s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.4s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+update returns a fresh wrapper without mutating inputs | [32m  15  [39m[36m   15  [39m[0m0.4s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameters keep Adam state after active steps | [32m  16  [39m[36m   16  [39m[0m2.8s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameters keep Adam state after active steps | [32m  16  [39m[36m   16  [39m[0m2.8s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameters keep Adam state after active steps | [32m  16  [39m[36m   16  [39m[0m2.8s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent parameters keep Adam state after active steps | [32m  16  [39m[36m   16  [39m[0m2.8s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty trainable model performs no collectives | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [32m  20  [39m[36m   20  [39m[0m1.1s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [32m  20  [39m[36m   20  [39m[0m1.1s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [32m  20  [39m[36m   20  [39m[0m1.1s
+[0m[1mTest Summary:                                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+array containers keep their shape during reconstruction | [32m  20  [39m[36m   20  [39m[0m1.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real AD conditional branches average over multiple steps | [32m  11  [39m[36m   11  [39m[0m0.2s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real AD conditional branches average over multiple steps | [32m  11  [39m[36m   11  [39m[0m0.2s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real AD conditional branches average over multiple steps | [32m  11  [39m[36m   11  [39m[0m0.2s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real AD conditional branches average over multiple steps | [32m  11  [39m[36m   11  [39m[0m0.2s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | [32m   9  [39m[36m    9  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | [32m   9  [39m[36m    9  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | [32m   9  [39m[36m    9  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Adam matches an independent global-mean reference | [32m   9  [39m[36m    9  [39m[0m0.5s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | [32m  13  [39m[36m   13  [39m[0m0.7s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | [32m  13  [39m[36m   13  [39m[0m0.7s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | [32m  13  [39m[36m   13  [39m[0m0.7s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameters through real AD | [32m  13  [39m[36m   13  [39m[0m0.7s
+[0m[1mTest Summary:                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose with real AD | [32m   5  [39m[36m    5  [39m[0m1.4s
+[0m[1mTest Summary:                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose with real AD | [32m   5  [39m[36m    5  [39m[0m1.4s
+[0m[1mTest Summary:                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose with real AD | [32m   5  [39m[36m    5  [39m[0m1.4s
+[0m[1mTest Summary:                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied parameter through a transpose with real AD | [32m   5  [39m[36m    5  [39m[0m1.4s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   5  [39m[36m    5  [39m[0m0.9s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   5  [39m[36m    5  [39m[0m0.9s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   5  [39m[36m    5  [39m[0m0.9s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+isbits parameters (FillArrays) sync independently | [32m   5  [39m[36m    5  [39m[0m1.0s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [32m   2  [39m[36m    2  [39m[0m0.1s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [32m   2  [39m[36m    2  [39m[0m0.1s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [32m   2  [39m[36m    2  [39m[0m0.1s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+higher-order gradients rejected | [32m   2  [39m[36m    2  [39m[0m0.1s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Chain tuple-gradient diagnostic | [32m   5  [39m[36m    5  [39m[0m2.6s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Chain tuple-gradient diagnostic | [32m   5  [39m[36m    5  [39m[0m2.6s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Chain tuple-gradient diagnostic | [32m   5  [39m[36m    5  [39m[0m2.6s
+[0m[1mTest Summary:                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Chain tuple-gradient diagnostic | [32m   5  [39m[36m    5  [39m[0m2.6s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Enzyme Duplicated model setup and update | [32m   5  [39m[36m    5  [39m[0m0.1s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+collective count protocol with real AD | [32m   4  [39m[36m    4  [39m[0m0.8s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+collective count protocol with real AD | [32m   4  [39m[36m    4  [39m[0m0.8s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+collective count protocol with real AD | [32m   4  [39m[36m    4  [39m[0m0.8s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+collective count protocol with real AD | [32m   4  [39m[36m    4  [39m[0m0.8s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train! with DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m1.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train! with DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m1.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train! with DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m1.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Flux.train! with DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m1.1s
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2)       [90m# 6 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×3 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/projects/flux-integration/src/layers/stateless.jl:18[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2)       [90m# 6 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×3 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/projects/flux-integration/src/layers/stateless.jl:18[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2)       [90m# 6 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×3 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/projects/flux-integration/src/layers/stateless.jl:18[39m
+[33m[1m┌ [22m[39m[33m[1mWarning: [22m[39mLayer with Float32 parameters got Float64 input.
+[33m[1m│ [22m[39m  The input will be converted, but any earlier layers may be very slow.
+[33m[1m│ [22m[39m  layer = Dense(2 => 2)       [90m# 6 parameters[39m
+[33m[1m│ [22m[39m  summary(x) = "2×3 Matrix{Float64}"
+[33m[1m└ [22m[39m[90m@ Flux ~/projects/flux-integration/src/layers/stateless.jl:18[39m
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   2  [39m[36m    2  [39m[0m6.5s
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   2  [39m[36m    2  [39m[0m6.5s
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   2  [39m[36m    2  [39m[0m6.5s
+[0m[1mTest Summary:                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested model (Chain of custom layer and Dense) | [32m   2  [39m[36m    2  [39m[0m6.5s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m0.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m0.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m0.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronize!! on DistributedOptimizerState | [32m   3  [39m[36m    3  [39m[0m0.3s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m  11  [39m[36m   11  [39m[0m0.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m  11  [39m[36m   11  [39m[0m0.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m  11  [39m[36m   11  [39m[0m0.1s
+[0m[1mTest Summary:                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+adjust / adjust! on wrapped state and rule | [32m  11  [39m[36m   11  [39m[0m0.1s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+freeze! and thaw! preserve wrapper state and collectives | [32m  31  [39m[36m   31  [39m[0m0.4s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+freeze! and thaw! preserve wrapper state and collectives | [32m  31  [39m[36m   31  [39m[0m0.4s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+freeze! and thaw! preserve wrapper state and collectives | [32m  31  [39m[36m   31  [39m[0m0.4s
+[0m[1mTest Summary:                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+freeze! and thaw! preserve wrapper state and collectives | [32m  31  [39m[36m   31  [39m[0m0.4s
+[0m[1mTest Summary:                               | [22m[0m[1mTest Summary:                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m[1mTest Summary:                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Functor device adaptation keeps the backend | [32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Functor device adaptation keeps the backend | Functor device adaptation keeps the backend | [32m  26  [39m[36m   26  [39m[32m  26  [39m[36m   26  [39m[0m1.4s[32m  26  [39m[36m   26  [39m[0m1.4s
+
+[0m1.4s
+[0m[1mTest Summary:                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+Functor device adaptation keeps the backend | [32m  26  [39m[36m   26  [39m[0m1.4s
+[0m[1mTest Summary:                                        | [22m[0m[1mTest Summary:                                        | [22m[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[0m[1mTest Summary:                                        | [22m
+
+rank-dependent conditional branches on device arrays | rank-dependent conditional branches on device arrays | [32m 171  [39m[32m 171  [39m[36m  171  [39m[36m  171  [39m[0m14.6s
+[0m14.6s
+
+rank-dependent conditional branches on device arrays | [32m 171  [39m[36m  171  [39m[0m14.7s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+rank-dependent conditional branches on device arrays | [32m 171  [39m[36m  171  [39m[0m14.7s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied device parameter reduces once and keeps identity | [32m  11  [39m[36m   11  [39m[0m1.1s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                         | [22m[0m[1mTest Summary:                                         | [22m[0m[1mTime[22m
+tied device parameter reduces once and keeps identity | [32m  11  [39m[36m   11  [39m[0m1.1s
+[32m[1mPass  [22m[39m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTime[22m
+
+tied device parameter reduces once and keeps identity | [32m  11  [39mtied device parameter reduces once and keeps identity | [32m  11  [39m[36m   11  [39m[36m   11  [39m[0m1.1s
+[0m1.1s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTime[22m
+nested device traversal excludes non-trainable arrays
+nested device traversal excludes non-trainable arrays |  | [32m  12  [39m[32m  12  [39m[36m   12  [39m[36m   12  [39m[0m1.5s
+[0m1.5s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested device traversal excludes non-trainable arrays | [32m  12  [39m[36m   12  [39m[0m1.6s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+nested device traversal excludes non-trainable arrays | [32m  12  [39m[36m   12  [39m[0m1.5s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose gradients pair in parent space on device arrays | [32m   8  [39m[36m    8  [39m[0m2.4s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose gradients pair in parent space on device arrays | [32m   8  [39m[36m    8  [39m[0m2.4s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose gradients pair in parent space on device arrays | [32m   8  [39m[36m    8  [39m[0m2.4s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+transpose gradients pair in parent space on device arrays | [32m   8  [39m[36m    8  [39m[0m2.4s
+[0m[1mTest Summary:                                       | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTest Summary:                                       | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+device freeze and thaw preserve values and protocol | [32m  10  [39m[0m[1mTest Summary:                                       | [22m[32m[1mPass  [22m[39m[0m[1mTest Summary:                                       | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+device freeze and thaw preserve values and protocol | [32m  10  [39m[36m   10  [39m
+device freeze and thaw preserve values and protocol | [32m  10  [39m[36m   10  [39m[0m0.7s
+[36m   10  [39m[0m0.7s
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m0.7s
+device freeze and thaw preserve values and protocol | [32m  10  [39m[36m   10  [39m[0m0.7s
+[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.3s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.3s
+
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m1.3s
+[0m[1mTest Summary:                           | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedDataContainer cyclic padding | [32m  51  [39m[36m   51  [39m[0m0.9s
+[0m[1mTest Summary:                                                          | [22m[0m[1mTest Summary:                                                          | [22m[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN explicit update! rejects everywhere and preserves state | [32m  17  [39m[36m   17  [39m[0m12.4s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN explicit update! rejects everywhere and preserves state | [32m  17  [39m[36m   17  [39m[0m12.4s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN explicit update! rejects everywhere and preserves state | [32m  17  [39m[36m   17  [39m[0m12.4s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN explicit update! rejects everywhere and preserves state | [32m  17  [39m[36m   17  [39m[0m12.0s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-mutating update rejects before returning and leaves inputs intact | [32m  17  [39m[36m   17  [39m[0m0.5s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-mutating update rejects before returning and leaves inputs intact | [32m  17  [39m[36m   17  [39m[0m0.6s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-mutating update rejects before returning and leaves inputs intact | [32m  17  [39m[36m   17  [39m[0m0.5s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-mutating update rejects before returning and leaves inputs intact | [32m  17  [39m[36m   17  [39m[0m0.5s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real-AD zero-residual reproducer rejects after a complete eager schedule | [32m  17  [39m[36m   17  [39m[0m4.5s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real-AD zero-residual reproducer rejects after a complete eager schedule | [32m  17  [39m[36m   17  [39m[0m4.5s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real-AD zero-residual reproducer rejects after a complete eager schedule | [32m  17  [39m[36m   17  [39m[0m4.5s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+real-AD zero-residual reproducer rejects after a complete eager schedule | [32m  17  [39m[36m   17  [39m[0m4.5s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+positive and negative Inf gradients reject with exact snapshots | [32m  26  [39m[36m   26  [39m[0m0.0s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+positive and negative Inf gradients reject with exact snapshots | [32m  26  [39m[36m   26  [39m[0m0.0s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+positive and negative Inf gradients reject with exact snapshots | [32m  26  [39m[36m   26  [39m[0m0.0s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+positive and negative Inf gradients reject with exact snapshots | [32m  26  [39m[36m   26  [39m[0m0.0s
+[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged | [32m  21  [39m[36m   21  [39m[0m0.3s
+[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged | [32m  21  [39m[36m   21  [39m[0m0.3s
+[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged | [32m  21  [39m[36m   21  [39m[0m0.3s
+[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged | [32m  21  [39m[36m   21  [39m[0m0.3s
+[0m[1mTest Summary:                                                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+controlled post-reduction injection rejects finite-local ranks too | [32m  16  [39m[36m   16  [39m[0m0.3s
+[0m[1mTest Summary:                                                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+controlled post-reduction injection rejects finite-local ranks too | [32m  16  [39m[36m   16  [39m[0m0.3s
+[0m[1mTest Summary:                                                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+controlled post-reduction injection rejects finite-local ranks too | [32m  16  [39m[36m   16  [39m[0m0.3s
+[0m[1mTest Summary:                                                      | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+controlled post-reduction injection rejects finite-local ranks too | [32m  16  [39m[36m   16  [39m[0m0.3s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied caller gradients stay aliased and unchanged on rejection | [32m  30  [39m[36m   30  [39m[0m0.4s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied caller gradients stay aliased and unchanged on rejection | [32m  30  [39m[36m   30  [39m[0m0.4s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied caller gradients stay aliased and unchanged on rejection | [32m  30  [39m[36m   30  [39m[0m0.4s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied caller gradients stay aliased and unchanged on rejection | [32m  30  [39m[36m   30  [39m[0m0.4s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[0m[1mTime[22m
+rank-distinct conditional absence with a remote NaN rejects everywhere | [32m  19  [39m[0m[1mTest Summary:                                                          | [22m
+rank-distinct conditional absence with a remote NaN rejects everywhere | [32m  19  [39m[36m   19  [39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+rank-distinct conditional absence with a remote NaN rejects everywhere[36m   19  [39m[0m0.2s
+[0m0.2s
+ | [32m  19  [39m[36m   19  [39m[32m[1mPass  [22m[39m[0m0.2s
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+rank-distinct conditional absence with a remote NaN rejects everywhere | [32m  19  [39m[36m   19  [39m[0m0.2s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent leaf keeps nonzero Adam state and the gradient vote runs | [32m  19  [39m[36m   19  [39m[0m0.2s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent leaf keeps nonzero Adam state and the gradient vote runs | [32m  19  [39m[36m   19  [39m[0m0.2s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent leaf keeps nonzero Adam state and the gradient vote runs | [32m  19  [39m[36m   19  [39m[0m0.2s
+[0m[1mTest Summary:                                                            | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+globally absent leaf keeps nonzero Adam state and the gradient vote runs | [32m  19  [39m[36m   19  [39m[0m0.2s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+frozen present leaf still reduces and still rejects invalid gradients | [32m  21  [39m[36m   21  [39m[0m0.0s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+frozen present leaf still reduces and still rejects invalid gradients | [32m  21  [39m[36m   21  [39m[0m0.0s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+frozen present leaf still reduces and still rejects invalid gradients | [32m  21  [39m[36m   21  [39m[0m0.0s
+[0m[1mTest Summary:                                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+frozen present leaf still reduces and still rejects invalid gradients | [32m  21  [39m[36m   21  [39m[0m0.0s
+[0m[1mTest Summary:                                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters: eager keeps only the vote, explicit stays silent | [32m   8  [39m[36m    8  [39m[0m1.1s
+[0m[1mTest Summary:                                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters: eager keeps only the vote, explicit stays silent | [32m   8  [39m[36m    8  [39m[0m1.1s
+[0m[1mTest Summary:                                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters: eager keeps only the vote, explicit stays silent | [32m   8  [39m[36m    8  [39m[0m1.1s
+[0m[1mTest Summary:                                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters: eager keeps only the vote, explicit stays silent | [32m   8  [39m[36m    8  [39m[0m1.1s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty numeric buffer reduces cleanly without spurious rejection | [32m   8  [39m[36m    8  [39m[0m0.3s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty numeric buffer reduces cleanly without spurious rejection | [32m   8  [39m[36m    8  [39m[0m0.3s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty numeric buffer reduces cleanly without spurious rejection | [32m   8  [39m[36m    8  [39m[0m0.3s
+[0m[1mTest Summary:                                                   | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+empty numeric buffer reduces cleanly without spurious rejection | [32m   8  [39m[36m    8  [39m[0m0.3s
+[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+healthy conditional reference over four steps with absence and reactivation | [32m  57  [39m[36m   57  [39m[0m1.9s
+[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+healthy conditional reference over four steps with absence and reactivation | [32m  57  [39m[36m   57  [39m[0m1.9s
+[0m[1mTest Summary:                                                               | [22m[0m[1mTest Summary:                                                               | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+healthy conditional reference over four steps with absence and reactivation[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+ | [32m  57  [39m[36m   57  [39m[0m1.9s
+healthy conditional reference over four steps with absence and reactivation | [32m  57  [39m[36m   57  [39m[0m1.9s
+[0m[1mTest Summary:                                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+catch-and-continue: rejected update is omitted from the reference | [32m  11  [39m[36m   11  [39m[0m0.0s
+[0m[1mTest Summary:                                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+catch-and-continue: rejected update is omitted from the reference | [32m  11  [39m[36m   11  [39m[0m0.0s
+[0m[1mTest Summary:                                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+catch-and-continue: rejected update is omitted from the reference | [32m  11  [39m[36m   11  [39m[0m0.0s
+[0m[1mTest Summary:                                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+catch-and-continue: rejected update is omitted from the reference | [32m  11  [39m[36m   11  [39m[0m0.0s
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+[0m[1mTest Summary:                                        | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+native MPI sum overflow rejects before the optimizer | [32m  15  [39m[36m   15  [39m[0m0.0s[0m[1mTest Summary:                                        | [22mnative MPI sum overflow rejects before the optimizer | [32m  15  [39m[36m   15  [39m[0m[1mTime[22m
+native MPI sum overflow rejects before the optimizer | 
+[0m0.0s
+[32m  15  [39m[36m   15  [39m[32m[1mPass  [22m[39m[0m0.0s
+[36m[1mTotal  [22m[39m[0m[1mTime[22m
+native MPI sum overflow rejects before the optimizer | [32m  15  [39m[36m   15  [39m[0m0.0s
+[0m[1mTest Summary:                                                             | [22m[0m[1mTest Summary:                                                             | [22m[0m[1mTest Summary:                                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN through train! rejects every rank and issues only the vote | [32m  13  [39m[36m   13  [39m[0m16.3s
+
+asymmetric NaN through train! rejects every rank and issues only the vote | [32m  13  [39m[36m   13  [39m[0m16.3s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m[0m[1mTest Summary:                                                             | [22m
+asymmetric NaN through train! rejects every rank and issues only the vote | [32m  13  [39m[36m   13  [39m[0m16.2s
+[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1m Time[22m
+asymmetric NaN through train! rejects every rank and issues only the vote | [32m  13  [39m[36m   13  [39m[0m16.0s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+every-rank NaN rejection matches a native Adam shadow | [32m  14  [39m[36m   14  [39m[0m0.8s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+every-rank NaN rejection matches a native Adam shadow | [32m  14  [39m[36m   14  [39m[0m0.8s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+every-rank NaN rejection matches a native Adam shadow | [32m  14  [39m[36m   14  [39m[0m0.8s
+[0m[1mTest Summary:                                         | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+every-rank NaN rejection matches a native Adam shadow | [32m  14  [39m[36m   14  [39m[0m0.8s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+manual trainstep! loop stops every rank at the injected batch | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+manual trainstep! loop stops every rank at the injected batch | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+manual trainstep! loop stops every rank at the injected batch | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+manual trainstep! loop stops every rank at the injected batch | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! asymmetric rejection returns no result | [32m  10  [39m[36m   10  [39m[0m0.3s
+[0m[1mTest Summary:                                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! asymmetric rejection returns no result | [32m  10  [39m[36m   10  [39m[0m0.3s
+[0m[1mTest Summary:                                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! asymmetric rejection returns no result | [32m  10  [39m[36m   10  [39m[0m0.3s
+[0m[1mTest Summary:                                                  | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! asymmetric rejection returns no result | [32m  10  [39m[36m   10  [39m[0m0.3s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+finite scalar with non-finite auxiliary output still steps | [32m   8  [39m[36m    8  [39m[0m0.7s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+finite scalar with non-finite auxiliary output still steps | [32m   8  [39m[36m    8  [39m[0m0.7s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+finite scalar with non-finite auxiliary output still steps | [32m   8  [39m[36m    8  [39m[0m0.7s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+finite scalar with non-finite auxiliary output still steps | [32m   8  [39m[36m    8  [39m[0m0.7s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-finite first element of an auxiliary tuple rejects | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-finite first element of an auxiliary tuple rejects | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-finite first element of an auxiliary tuple rejects | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+non-finite first element of an auxiliary tuple rejects | [32m   9  [39m[36m    9  [39m[0m1.1s
+[0m[1mTest Summary:                                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! NamedTuple loss returns results and rejects poisoning | [32m  19  [39m[36m   19  [39m[0m0.7s
+[0m[1mTest Summary:                                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! NamedTuple loss returns results and rejects poisoning | [32m  19  [39m[36m   19  [39m[0m0.7s
+[0m[1mTest Summary:                                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! NamedTuple loss returns results and rejects poisoning | [32m  19  [39m[36m   19  [39m[0m0.7s
+[0m[1mTest Summary:                                                                 | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+trainstep_withgradient! NamedTuple loss returns results and rejects poisoning | [32m  19  [39m[36m   19  [39m[0m0.7s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters still votes exactly once per step | [32m  10  [39m[36m   10  [39m[0m1.1s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters still votes exactly once per step | [32m  10  [39m[36m   10  [39m[0m1.1s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters still votes exactly once per step | [32m  10  [39m[36m   10  [39m[0m1.1s
+[0m[1mTest Summary:                                             | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+no trainable parameters still votes exactly once per step | [32m  10  [39m[36m   10  [39m[0m1.1s
+[0m[1mTest Summary:                                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+known-good step after a rejection matches a reference without it | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+known-good step after a rejection matches a reference without it | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+known-good step after a rejection matches a reference without it | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                                                    | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+known-good step after a rejection matches a reference without it | [32m   9  [39m[36m    9  [39m[0m0.3s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.2s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[0m[1mTest Summary:                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+DistributedOptimizer composition guard | [32m   6  [39m[36m    6  [39m[0m0.3s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied leaves survive synchronization and subsequent updates | [32m 160  [39m[36m  160  [39m[0m3.6s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied leaves survive synchronization and subsequent updates | [32m 160  [39m[36m  160  [39m[0m3.9s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied leaves survive synchronization and subsequent updates | [32m 160  [39m[36m  160  [39m[0m3.9s
+[0m[1mTest Summary:                                              | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+tied leaves survive synchronization and subsequent updates | [32m 160  [39m[36m  160  [39m[0m3.9s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronization requires rank-consistent rule and frozen configuration | [32m 288  [39m[36m  288  [39m[0m0.9s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronization requires rank-consistent rule and frozen configuration | [32m 288  [39m[36m  288  [39m[0m0.9s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronization requires rank-consistent rule and frozen configuration | [32m 288  [39m[36m  288  [39m[0m0.9s
+[0m[1mTest Summary:                                                          | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+synchronization requires rank-consistent rule and frozen configuration | [32m 288  [39m[36m  288  [39m[0m1.0s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+wrapped synchronization retains Adam scalar state | [32m  32  [39m[36m   32  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+wrapped synchronization retains Adam scalar state | [32m  32  [39m[36m   32  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+wrapped synchronization retains Adam scalar state | [32m  32  [39m[36m   32  [39m[0m0.5s
+[0m[1mTest Summary:                                     | [22m[32m[1mPass  [22m[39m[36m[1mTotal  [22m[39m[0m[1mTime[22m
+wrapped synchronization retains Adam scalar state | [32m  32  [39m[36m   32  [39m[0m0.5s
+[ Info: Running Distributed Tests with 4 processes
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/common_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/cuda_conditional_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/data_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/nonfinite_loss_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/optimizer_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/reduce_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+[ Info: Running /home/picazio/projects/flux-integration/test/ext_distributed/synchronized_distributedtest.jl with mpi backend (env FLUX_TEST_DISTRIBUTED_BACKEND=mpi)
+Test Summary: | Pass  Total     Time
+Distributed   |    9      9  3m09.9s

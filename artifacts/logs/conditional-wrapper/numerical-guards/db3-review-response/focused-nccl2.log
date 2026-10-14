@@ -1,0 +1,59 @@
+Executing on deathstar:  FLUX_TEST_DISTRIBUTED_BACKEND=nccl ~/.julia/bin/mpiexecjl -n 2 julia --project=../flux-integration/test --startup-file=no ../flux-integration/test/ext_distributed/nonfinite_gradient_distributedtest.jl
+Test Summary:                                                          | Pass  Test Summary:                                                          | Pass  Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |   17     17  27.6s
+Total   Time
+asymmetric NaN explicit update! rejects everywhere and preserves state |   17     17  27.7s
+Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact |   17     17  0.8s
+Test Summary:                                                         | Pass  Total  Time
+non-mutating update rejects before returning and leaves inputs intact |   17     17  0.8s
+Test Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule |   17     17  8.8s
+Test Summary:                                                            | Pass  Total  Time
+real-AD zero-residual reproducer rejects after a complete eager schedule |   17     17  8.8s
+Test Summary:                                                   | Pass  Test Summary:                                                   | Pass  Total  TimeTotal  Time
+positive and negative Inf gradients reject with exact snapshots | 
+positive and negative Inf gradients reject with exact snapshots |   26    26     26     26  0.0s0.0s
+
+Test Summary:                                                               | Pass  Total  Time
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21     21  0.3s
+Test Summary:                                                               | Pass  Total  Time
+late-buffer NaN rejects and leaves earlier parameters and moments unchanged |   21     21  0.3s
+Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16     16  0.4s
+Test Summary:                                                      | Pass  Total  Time
+controlled post-reduction injection rejects finite-local ranks too |   16     16  0.4s
+Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30     30  0.6s
+Test Summary:                                                 | Pass  Total  Time
+tied caller gradients stay aliased and unchanged on rejection |   30     30  0.6s
+Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19     19  0.2s
+Test Summary:                                                          | Pass  Total  Time
+rank-distinct conditional absence with a remote NaN rejects everywhere |   19     19  0.2s
+Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  0.2s
+Test Summary:                                                            | Pass  Total  Time
+globally absent leaf keeps nonzero Adam state and the gradient vote runs |   19     19  0.2s
+Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21  0.0s
+Test Summary:                                                         | Pass  Total  Time
+frozen present leaf still reduces and still rejects invalid gradients |   21     21  0.0s
+Test Summary:                                                             | Pass  Total  Time
+no trainable parameters: eager keeps only the vote, explicit stays silent |    8      8  1.0s
+Test Summary:                                                             | Pass  Total  Time
+no trainable parameters: eager keeps only the vote, explicit stays silent |    8      8  1.0s
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.6s
+Test Summary:                                                   | Pass  Total  Time
+empty numeric buffer reduces cleanly without spurious rejection |    8      8  0.6s
+Test Summary:                                                               | Pass  Total  Time
+healthy conditional reference over four steps with absence and reactivation |   59     59  2.3s
+Test Summary:                                                               | Pass  Total  Time
+healthy conditional reference over four steps with absence and reactivation |   59     59  2.3s
+Test Summary:                                                     | Pass  Total  Time
+catch-and-continue: rejected update is omitted from the reference |   11     11  0.3s
+Test Summary:                                                     | Pass  Total  Time
+catch-and-continue: rejected update is omitted from the reference |   11     11  0.3s
+[ Info: DB-3 native overflow fixture is MPI-only; on NCCL the post-reduction rejection is covered by the controlled injection in the 'controlled post-reduction injection' testset.
+[ Info: DB-3 native overflow fixture is MPI-only; on NCCL the post-reduction rejection is covered by the controlled injection in the 'controlled post-reduction injection' testset.

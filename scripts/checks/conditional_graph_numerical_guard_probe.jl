@@ -1,12 +1,25 @@
 # ==============================================================================
-# DB-1/DB-4 numerical-guard probe (child process, runs under mpiexec)
+# DB-1/DB-4/DB-3 numerical-guard probe (child process, runs under mpiexec)
 # ==============================================================================
 #
-# RED-first success regression for coordinated non-finite-loss rejection on the
-# eager distributed training paths (`train!`, `trainstep!`,
-# `trainstep_withgradient!`). The expected behavior is defined by
-# `reports/conditional-graph-db1-db4-fix-plan.md` sections 2-4. This probe fails
-# on the unmodified source and must pass after the DB-1/DB-4 fix.
+# RED-first success regression for coordinated non-finite rejection at two
+# boundaries:
+#
+# - DB-1/DB-4 (loss): a non-finite scalar loss on any rank rejects the eager
+#   distributed training step (`train!`, `trainstep!`,
+#   `trainstep_withgradient!`) on every rank. Defined by
+#   `reports/conditional-graph-db1-db4-fix-plan.md` sections 2-4.
+# - DB-3 (gradient): a finite loss with a non-finite synchronized gradient
+#   rejects the shared wrapper update on every rank before the inner optimizer
+#   runs. Defined by `reports/conditional-graph-db3-fix-plan.md` sections 2-5.
+#
+# The gradient cases keep the scalar loss finite and poison only a gradient, so
+# the loss vote passes and the post-reduction gradient vote must reject. Every
+# rejection case performs valid updates first (nonzero Adam moments), snapshots
+# every trainable parameter, the complete Adam leaf state, and tied identity
+# before the poisoned step, and asserts exact post-rejection equality.
+#
+# This probe fails on the unmodified source and must pass after the fixes.
 #
 # The probe never writes files: every marker goes to stdout (flushed) and the
 # parent driver (`conditional_graph_numerical_guard_check.jl`) owns all shared
@@ -259,6 +272,22 @@ end
 
 moments_nonzero(snap) = any(!iszero, snap.sa[1]) && any(!iszero, snap.sc[1])
 
+# CondModel snapshot used by the DB-3 conditional-absence case: every
+# parameter and the complete Adam leaf state of w, u, and v.
+function cond_snapshot(model, state)
+    tree = tree_of(state)
+    return (;
+        w=copy(Array(model.w)), u=copy(Array(model.u)), v=copy(Array(model.v)),
+        sw=leaf_state_snapshot(tree.w), su=leaf_state_snapshot(tree.u),
+        sv=leaf_state_snapshot(tree.v))
+end
+
+function cond_snap_equal(a, b)
+    return isequal(a.w, b.w) && isequal(a.u, b.u) && isequal(a.v, b.v) &&
+           leaf_snap_equal(a.sw, b.sw) && leaf_snap_equal(a.su, b.su) &&
+           leaf_snap_equal(a.sv, b.sv)
+end
+
 # Host-side diff for the healthy per-step reference comparison. Device
 # buffers are converted once; nothing is read element-by-element on device.
 function maxdiff(x, y)
@@ -316,6 +345,31 @@ end
 
 quiet_backend() = TraceBackend(BACKEND, RANK, Ref(0), true)
 trace_backend() = TraceBackend(BACKEND, RANK, Ref(0), false)
+
+# DB-3 controlled injection: wraps the real backend, runs the real collective
+# first, then injects a non-finite value into the reduced buffer on one rank.
+# The injection happens after the reduction and before the production guard
+# inspects the buffer, so it exercises the coordinated vote exactly as a real
+# non-finite reduction result would. Only isolated gradient buffers (length
+# C_LEN, element type ARR_T) are targeted; the presence vector (length np) and
+# the votes (length 1) never match. The write is a device broadcast, so no host
+# copy or scalar indexing is involved under NCCL.
+struct CorruptBackend{B} <: Flux.AbstractFluxDistributedBackend
+    inner::B
+    rank::Int
+    corrupt_rank::Int
+    count::Base.RefValue{Int}
+    arm::Base.RefValue{Bool}
+end
+
+function Flux.DistributedUtils.allreduce!(b::CorruptBackend, buf, op)
+    result = Flux.DistributedUtils.allreduce!(b.inner, buf, op)
+    if b.arm[] && b.rank == b.corrupt_rank && length(buf) == C_LEN && eltype(buf) == ARR_T
+        buf[1:1] .= ARR_T(NaN)
+        b.count[] += 1
+    end
+    return result
+end
 
 function make_state(model; backend=trace_backend())
     return Flux.setup(
@@ -741,6 +795,490 @@ function run_dup_train_one(; fault_rank, fault_value)
 end
 
 # ------------------------------------------------------------------
+# DB-3 gradient cases
+#
+# Every case keeps the scalar loss finite and poisons only a gradient, so the
+# DB-1/DB-4 loss vote passes and the post-reduction gradient guard must reject.
+# Rejection assertions use exact snapshot equality (parameters, complete Adam
+# leaf state, tied identity) captured before the poisoned step.
+# ------------------------------------------------------------------
+
+# Constant array equal to the current parameter values, copied outside AD.
+like_parameter(x) = todev(Array(x))
+
+# Eager GuardModel loss: finite everywhere, with a zero-residual sqrt on `c` at
+# the fault item. The constant target equals the current `c` values, so the
+# forward value is 0.0 (finite) and the c gradient is NaN.
+function grad_case_loss(ctx, m, i, x)
+    ctx.evals += 1
+    ctx.last_item = i
+    if i == 3
+        snapshot_here(ctx, m, i)
+        xd = todev(x)
+        base = sum(abs2, m.a .- xd) + sum(abs2, m.b .- (xd .+ 1))
+        xt = like_parameter(m.c)
+        RANK == ctx.fault_rank || (xt = xt .+ 1)
+        RANK == ctx.fault_rank &&
+            marker("GRAD_INVALID rank=$RANK item=$i mode=zero-residual-sqrt buffer=c")
+        return base + sqrt(sum(abs2, m.c .- xt))
+    end
+    return loss_guard(m, x)
+end
+
+# Audit 002 reproducer: the zero-residual sqrt on the tied buffer only.
+function audit_zero_loss(ctx, m, i, x)
+    ctx.evals += 1
+    ctx.last_item = i
+    if i == 3
+        snapshot_here(ctx, m, i)
+        xr = like_parameter(m.a)
+        RANK == ctx.fault_rank || (xr = xr .+ 1)
+        RANK == ctx.fault_rank &&
+            marker("GRAD_INVALID rank=$RANK item=$i mode=zero-residual-sqrt buffer=tied")
+        return sqrt(sum(abs2, m.a .- xr))
+    end
+    return loss_guard(m, x)
+end
+
+# Shared tail for the eager GuardModel rejections.
+function grad_eager_tail(ctx, model, state, caught)
+    completed = ctx.evals - ((caught || ctx.loss_invalid) ? 1 : 0)
+    marker("STEPS_EXECUTED rank=$RANK completed=$completed")
+    snap = ctx.snap !== nothing && snap_equal(ctx.snap, snapshot(model, state))
+    moments = ctx.snap !== nothing && moments_nonzero(ctx.snap)
+    tied = model.a === model.b && state.tree.a === state.tree.b
+    marker("SNAPSHOT_OK rank=$RANK ok=$snap moments_nonzero=$moments tied=$tied")
+    ok = caught && snap && moments && tied && completed == 2 && ctx.last_item == 3
+    reason = ok ? "" :
+             "caught=$caught snapshot=$snap moments=$moments tied=$tied completed=$completed"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_train(; lossfn, fault_rank, fault_value)
+    model = fresh_model()
+    state = make_state(model)
+    ctx = CaseCtx(state; fault_rank, fault_value)
+    loss = (m, i, x) -> lossfn(ctx, m, i, x)
+
+    caught = false
+    try
+        Flux.train!(loss, model, data_range(1:5), state)
+        marker("TRAIN_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    marker("REJECTED rank=$RANK caught=$(caught ? "DomainError" : "none")")
+    return grad_eager_tail(ctx, model, state, caught)
+end
+
+function run_grad_late(; fault_rank, fault_value)
+    model = fresh_model()
+    state = make_state(model)
+    ctx = CaseCtx(state; fault_rank, fault_value)
+    loss = (m, i, x) -> grad_case_loss(ctx, m, i, x)
+
+    caught = false
+    try
+        Flux.train!(loss, model, data_range(1:5), state)
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    marker("REJECTED rank=$RANK caught=$(caught ? "DomainError" : "none")")
+    # Measure the per-buffer gradients at the (unchanged) pre-fault state: the
+    # early tied buffer must be finite on every rank and the late c buffer must
+    # be the only invalid one.
+    g = Flux.gradient(m -> grad_case_loss(
+        CaseCtx(state; fault_rank, fault_value), m, 3, step_data(3)), model)[1]
+    early_finite = all(isfinite, Array(g.a))
+    late_bad = !all(isfinite, Array(g.c))
+    marker("EARLY_BUFFER_FINITE rank=$RANK ok=$early_finite")
+    marker("LATE_BUFFER_INVALID rank=$RANK ok=$late_bad")
+    completed = ctx.evals - ((caught || ctx.loss_invalid) ? 1 : 0)
+    snap = ctx.snap !== nothing && snap_equal(ctx.snap, snapshot(model, state))
+    marker("SNAPSHOT_OK rank=$RANK ok=$snap")
+    ok = caught && snap && completed == 2 && early_finite && late_bad == (RANK == fault_rank)
+    reason = ok ? "" :
+             "caught=$caught snapshot=$snap completed=$completed " *
+             "early_finite=$early_finite late_bad=$late_bad"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_explicit_value(; value)
+    model = fresh_model()
+    state = make_state(model)
+    for i in 1:2
+        g = Flux.gradient(m -> loss_guard(m, step_data(i)), model)[1]
+        Optimisers.update!(state, model, g)
+    end
+    snap = snapshot(model, state)
+
+    g = Flux.gradient(m -> loss_guard(m, step_data(3)), model)[1]
+    gc = RANK == FAULT_RANK ? fill(ARR_T(value), C_LEN) : g.c
+    RANK == FAULT_RANK && marker("INJECTED rank=$RANK buffer=c value=$value")
+    grad = (a = g.a, b = g.b, c = gc)
+    caller_before = copy(Array(grad.c))
+
+    caught = false
+    try
+        Optimisers.update!(state, model, grad)
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    caller_ok = isequal(caller_before, Array(grad.c))
+    marker("REJECTED rank=$RANK caught=$(caught ? "DomainError" : "none")")
+    marker("SNAPSHOT_OK rank=$RANK ok=$snap_ok caller_ok=$caller_ok")
+    ok = caught && snap_ok && caller_ok
+    reason = ok ? "" : "caught=$caught snapshot=$snap_ok caller=$caller_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_update_both()
+    model = fresh_model()
+    state = make_state(model)
+    g1 = Flux.gradient(m -> loss_guard(m, step_data(1)), model)[1]
+    Optimisers.update!(state, model, g1)
+    g2 = Flux.gradient(m -> loss_guard(m, step_data(2)), model)[1]
+    state, model = Optimisers.update(state, model, g2)
+    marker("UPDATE_VALID rank=$RANK ok=true")
+    snap = snapshot(model, state)
+
+    g3 = Flux.gradient(m -> loss_guard(m, step_data(3)), model)[1]
+    gc = RANK == FAULT_RANK ? fill(ARR_T(NaN), C_LEN) : g3.c
+    grad = (a = g3.a, b = g3.b, c = gc)
+    result = Ref{Any}(nothing)
+    caught = false
+    try
+        result[] = Optimisers.update(state, model, grad)
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    marker("UPDATE_REJECTED rank=$RANK returned=$(result[] !== nothing) caught=$caught")
+    ok = caught && result[] === nothing && snap_ok
+    reason = ok ? "" : "caught=$caught returned=$(result[] !== nothing) snapshot=$snap_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_overflow(; tied::Bool)
+    if BACKEND_NAME == "nccl"
+        return finish_case("UNTESTED";
+            reason="Float32/NCCL average arithmetic differs; post-reduction branch covered " *
+                   "by grad-asym-vote controlled injection")
+    end
+    model = fresh_model()
+    state = make_state(model)
+    for i in 1:2
+        g = Flux.gradient(m -> loss_guard(m, step_data(i)), model)[1]
+        Optimisers.update!(state, model, g)
+    end
+    snap = snapshot(model, state)
+
+    g = Flux.gradient(m -> loss_guard(m, step_data(3)), model)[1]
+    scale = ARR_T(9.1e307)
+    if tied
+        ga = fill(scale, A_LEN)
+        gb = fill(scale, A_LEN)
+        marker("TIED_OPERANDS_FINITE rank=$RANK ok=$(all(isfinite, ga) && all(isfinite, gb))")
+        marker("LOCAL_ACCUM_INF rank=$RANK ok=$(!all(isfinite, ga .+ gb))")
+        grad = (a = ga, b = gb, c = g.c)
+    else
+        gc = fill(scale, C_LEN)
+        marker("OPERANDS_FINITE rank=$RANK ok=$(all(isfinite, gc))")
+        grad = (a = g.a, b = g.b, c = gc)
+    end
+
+    caught = false
+    try
+        Optimisers.update!(state, model, grad)
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    marker("REJECTED rank=$RANK caught=$(caught ? "DomainError" : "none")")
+    marker("SNAPSHOT_OK rank=$RANK ok=$snap_ok")
+    ok = caught && snap_ok
+    reason = ok ? "" : "caught=$caught snapshot=$snap_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_asym_vote()
+    corrupt_rank = RANKS_ARG == 2 ? 0 : 2
+    cback = CorruptBackend(BACKEND, RANK, corrupt_rank, Ref(0), Ref(false))
+    tback = TraceBackend(cback, RANK, Ref(0), false)
+    model = fresh_model()
+    state = make_state(model; backend=tback)
+    for i in 1:2
+        g = Flux.gradient(m -> loss_guard(m, step_data(i)), model)[1]
+        Optimisers.update!(state, model, g)
+    end
+    snap = snapshot(model, state)
+    cback.arm[] = true
+
+    g = Flux.gradient(m -> loss_guard(m, step_data(3)), model)[1]
+    caught = false
+    try
+        Optimisers.update!(state, model, g)
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    injected = cback.count[] > 0
+    marker("INJECTED rank=$RANK value=$injected corrupt_rank=$corrupt_rank")
+    marker("LOCAL_INVALID rank=$RANK value=$injected")
+    marker("VOTE_REJECTED rank=$RANK ok=$(caught && snap_ok)")
+    ok = caught && snap_ok && injected == (RANK == corrupt_rank)
+    reason = ok ? "" : "caught=$caught snapshot=$snap_ok injected=$injected"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_caller()
+    model = fresh_model()
+    state = make_state(model)
+    for i in 1:2
+        g = Flux.gradient(m -> loss_guard(m, step_data(i)), model)[1]
+        Optimisers.update!(state, model, g)
+    end
+    snap = snapshot(model, state)
+
+    ga = fill(ARR_T(0.5), A_LEN)
+    gc = fill(ARR_T(0.25), C_LEN)
+    RANK == FAULT_RANK && (gc[1:1] .= ARR_T(NaN))
+    caller = (a = ga, b = ga, c = gc)
+    before = (copy(Array(caller.a)), copy(Array(caller.b)), copy(Array(caller.c)))
+
+    caught = false
+    try
+        Optimisers.update!(state, model, caller)
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    alias_ok = caller.a === caller.b
+    content_ok = isequal(before[1], Array(caller.a)) &&
+                 isequal(before[2], Array(caller.b)) &&
+                 isequal(before[3], Array(caller.c))
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    marker("CALLER_ALIAS_OK rank=$RANK ok=$alias_ok")
+    marker("CALLER_CONTENT_OK rank=$RANK ok=$content_ok")
+    marker("REJECTED rank=$RANK caught=$(caught ? "DomainError" : "none")")
+    ok = caught && alias_ok && content_ok && snap_ok
+    reason = ok ? "" :
+             "caught=$caught alias=$alias_ok content=$content_ok snapshot=$snap_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function cond_absence_loss(ctx, m, i, x)
+    ctx.evals += 1
+    ctx.last_item = i
+    xd = todev(x)
+    i == 2 && ctx.snap === nothing && (ctx.snap = cond_snapshot(m, ctx.state))
+    if i == 2 && RANK == ctx.fault_rank
+        xt = like_parameter(m.v)
+        marker("GRAD_INVALID rank=$RANK item=$i mode=zero-residual-sqrt buffer=v")
+        return sum(abs2, m.w .- xd) + sqrt(sum(abs2, m.v .- xt))
+    elseif RANK != ctx.fault_rank
+        i == 2 && marker("LOCAL_ABSENT rank=$RANK buffer=v")
+        return sum(abs2, m.w .- xd) + ul(m, x)
+    end
+    return sum(abs2, m.w .- xd) + vl(m, x)
+end
+
+function run_grad_conditional_absence(; fault_rank, fault_value)
+    model = fresh_cond_model()
+    state = make_state(model)
+    ctx = CaseCtx(state; fault_rank, fault_value)
+    loss = (m, i, x) -> cond_absence_loss(ctx, m, i, x)
+
+    # Step 1: valid on every rank. The fault rank exercises v so the buffer is
+    # globally present at every step; the other ranks exercise u only.
+    Optimisers.update!(state, model, Flux.gradient(m -> loss(m, 1, step_data(1)), model)[1])
+    marker("STEP1_OK rank=$RANK")
+
+    # Step 2: the fault rank's v gradient is NaN while v is locally absent on
+    # every other rank, so the invalid contribution arrives through the
+    # reduction.
+    caught = false
+    try
+        Optimisers.update!(state, model, Flux.gradient(m -> loss(m, 2, step_data(2)), model)[1])
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    snap_ok = ctx.snap !== nothing && cond_snap_equal(ctx.snap, cond_snapshot(model, state))
+    marker("REMOTE_INVALID rank=$RANK ok=$(RANK == fault_rank)")
+    marker("LOCAL_ABSENT rank=$RANK ok=$(RANK != fault_rank)")
+    marker("SNAPSHOT_OK rank=$RANK ok=$snap_ok")
+    ok = caught && snap_ok
+    reason = ok ? "" : "caught=$caught snapshot=$snap_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_all_absent()
+    model = fresh_model()
+    state = make_state(model)
+    for i in 1:2
+        g = Flux.gradient(m -> loss_guard(m, step_data(i)), model)[1]
+        Optimisers.update!(state, model, g)
+    end
+    snap = snapshot(model, state)
+    moments = moments_nonzero(snap)
+
+    caught = false
+    try
+        Optimisers.update!(state, model, (a = nothing, b = nothing, c = nothing))
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        caught = true
+        marker("ALL_ABSENT_ERROR rank=$RANK error=$(typeof(e))")
+    end
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    marker("ALL_ABSENT rank=$RANK ok=$(!caught)")
+    marker("SCHEDULE_PRESENCE_VOTE rank=$RANK ok=$(!caught)")
+    marker("SNAPSHOT_OK rank=$RANK ok=$snap_ok moments_nonzero=$moments")
+    ok = !caught && snap_ok && moments
+    reason = ok ? "" : "caught=$caught snapshot=$snap_ok moments=$moments"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_no_trainable()
+    model = EmptyModel()
+    state = make_state(model)
+    ok = true
+    try
+        Flux.train!((m, j, x) -> sum(abs2, todev(x)), model, data_range(1:3), state)
+    catch
+        ok = false
+    end
+    marker("NO_GRAD_COLLECTIVES rank=$RANK ok=$ok")
+    explicit_ok = false
+    try
+        Optimisers.update!(state, model, (;))
+        explicit_ok = true
+    catch
+        explicit_ok = false
+    end
+    marker("EXPLICIT_NOCOLL rank=$RANK ok=$explicit_ok")
+    return finish_case(ok && explicit_ok ? "PASS" : "FAIL";
+        reason=(ok && explicit_ok) ? "" : "eager_ok=$ok explicit_ok=$explicit_ok")
+end
+
+struct EmptyBufModel{T}
+    e::T
+end
+Functors.@functor EmptyBufModel
+
+fresh_empty_buf_model() =
+    EmptyBufModel(BACKEND_NAME == "nccl" ? CUDA.cu(ARR_T[]) : ARR_T[])
+
+function run_grad_empty()
+    model = fresh_empty_buf_model()
+    state = make_state(model)
+    caught = false
+    try
+        Optimisers.update!(state, model, (e = fresh_empty_buf_model().e,))
+    catch e
+        caught = true
+        marker("EMPTY_ERROR rank=$RANK error=$(typeof(e))")
+    end
+    marker("EMPTY_VALID rank=$RANK ok=$(!caught)")
+    return finish_case(!caught ? "PASS" : "FAIL";
+        reason=caught ? "empty numeric buffer raised" : "")
+end
+
+function run_grad_frozen(; fault_rank)
+    model = fresh_model()
+    state = make_state(model)
+    Optimisers.freeze!(state.tree.c)
+
+    g1 = Flux.gradient(m -> loss_guard(m, step_data(1)), model)[1]
+    c_val = copy(Array(model.c))
+    c_snap = leaf_state_snapshot(state.tree.c)
+    Optimisers.update!(state, model, g1)
+    frozen_ok = isequal(copy(Array(model.c)), c_val) &&
+                leaf_snap_equal(leaf_state_snapshot(state.tree.c), c_snap)
+    marker("FROZEN_VALID rank=$RANK ok=$frozen_ok")
+
+    snap = snapshot(model, state)
+    g2 = Flux.gradient(m -> loss_guard(m, step_data(2)), model)[1]
+    gc = RANK == fault_rank ? fill(ARR_T(NaN), C_LEN) : g2.c
+    caught = false
+    try
+        Optimisers.update!(state, model, (a = g2.a, b = g2.b, c = gc))
+        marker("UPDATE_RETURNED rank=$RANK")
+    catch e
+        e isa DomainError || rethrow()
+        caught = true
+    end
+    snap_ok = snap_equal(snap, snapshot(model, state))
+    marker("FROZEN_REJECTED rank=$RANK ok=$(caught && snap_ok)")
+    ok = frozen_ok && caught && snap_ok
+    reason = ok ? "" : "frozen_valid=$frozen_ok caught=$caught snapshot=$snap_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+function run_grad_recover(; fault_rank, fault_value)
+    model = fresh_model()
+    state = make_state(model)
+    ctx = CaseCtx(state; fault_rank, fault_value)
+    loss = (m, i, x) -> grad_case_loss(ctx, m, i, x)
+
+    caught = false
+    completed = 0
+    for i in 1:4
+        try
+            Flux.trainstep!(loss, model, (i, step_data(i)), state)
+            i == 3 || (completed += 1)
+            marker("STEP rank=$RANK i=$i")
+        catch e
+            e isa DomainError || rethrow()
+            i == 3 || rethrow()
+            caught = true
+            marker("REJECTED rank=$RANK caught=DomainError item=$i")
+        end
+    end
+    marker("STEPS_EXECUTED rank=$RANK completed=$completed")
+
+    shadow = fresh_model()
+    sstate = Optimisers.setup(Optimisers.Adam(ETA), shadow)
+    for i in (1, 2, 4)
+        g = Flux.gradient(mm -> loss_guard(mm, step_data(i)), shadow)[1]
+        Optimisers.update!(sstate, shadow, g)
+    end
+
+    tol = BACKEND_NAME == "nccl" ? 1e-6 : 0.0
+    if tol == 0.0
+        match_ok = isequal(Array(model.a), Array(shadow.a)) &&
+                   isequal(Array(model.c), Array(shadow.c))
+    else
+        match_ok = maxdiff(model.a, shadow.a) <= tol && maxdiff(model.c, shadow.c) <= tol
+    end
+    msa = snapshot(model, state).sa
+    ssa = snapshot(shadow, sstate).sa
+    state_ok = tol == 0.0 ? leaf_snap_equal(msa, ssa) : leaf_state_maxdiff(msa, ssa) <= tol
+    counters_ok = msa[3] == ssa[3]
+    marker("RECOVERY_MATCH rank=$RANK ok=$match_ok")
+    marker("COUNTERS_OK rank=$RANK ok=$counters_ok")
+    ok = caught && completed == 3 && match_ok && state_ok && counters_ok
+    reason = ok ? "" :
+             "caught=$caught completed=$completed match=$match_ok state=$state_ok " *
+             "counters=$counters_ok"
+    return finish_case(ok ? "PASS" : "FAIL"; reason)
+end
+
+# ------------------------------------------------------------------
 # Warmup: a throwaway wrapped step with the quiet trace backend and the case's
 # own loss closure type, before READY. The execution watchdog therefore only
 # covers measured work.
@@ -780,6 +1318,64 @@ function warmup()
         Flux.train!(plain_loss(ctx), model, warm, ctx.state)
         snap_equal(snapshot(model, ctx.state), snapshot(model, ctx.state))
         DUP_STATUS[] = dup_route_check()
+    elseif startswith(CASE, "grad-")
+        # DB-3 gradient cases. The warmup only uses finite gradients: a fault
+        # here would throw after the production guard exists and would fail the
+        # case before the measured phase. The faulting closures still compile
+        # because the same branches execute with a nonzero residual.
+        model = fresh_model()
+        state = make_state(model; backend=quiet_backend())
+        ctx = CaseCtx(state; fault_rank=-99, fault_value=ARR_T(NaN))
+        Flux.train!((m, i, x) -> grad_case_loss(ctx, m, i, x), model, warm, state)
+        g = Flux.gradient(m -> loss_guard(m, step_data(1)), model)[1]
+        Optimisers.update!(state, model, g)
+        g2 = Flux.gradient(m -> loss_guard(m, step_data(2)), model)[1]
+        Optimisers.update!(state, model, (a = copy(g2.a), b = copy(g2.b), c = copy(g2.c)))
+        Optimisers.freeze!(state.tree.c)
+        all(isfinite, model.a)
+        snap_equal(snapshot(model, state), snapshot(model, state))
+
+        # CondModel explicit + eager paths, including the zero-residual sqrt
+        # gradient (compiled through `Flux.gradient` without updating).
+        cmodel = fresh_cond_model()
+        cstate = make_state(cmodel; backend=quiet_backend())
+        cctx = CaseCtx(cstate; fault_rank=RANK, fault_value=ARR_T(NaN))
+        Flux.gradient(m -> cond_absence_loss(cctx, m, 2, step_data(2)), cmodel)
+        fgrad = Flux.gradient(m -> (sum(abs2, m.w .- todev(step_data(1))) +
+                                    ul(m, step_data(1))), cmodel)[1]
+        Optimisers.update!(cstate, cmodel, fgrad)
+
+        # Healthy conditional reference paths.
+        hmodel = fresh_cond_model()
+        hstate = make_state(hmodel; backend=quiet_backend())
+        Flux.train!(cond_loss, hmodel, [(i, step_data(i)) for i in 1:4], hstate)
+        href = fresh_cond_ref()
+        href_state = Optimisers.setup(Optimisers.Adam(ETA), href)
+        for i in 1:4
+            hg = Flux.gradient(mm -> ARR_T(1 / RANKS_ARG) * sum(
+                cond_local_loss(mm, r, i, step_data(i)) for r in 0:(RANKS_ARG - 1)), href)[1]
+            Optimisers.update!(href_state, href, hg)
+        end
+        cond_state_diff(hmodel, hstate, href, href_state)
+        leaf_state_snapshot(tree_of(hstate).v)
+
+        # No-trainable and empty-buffer paths.
+        emodel = EmptyModel()
+        estate = make_state(emodel; backend=quiet_backend())
+        Flux.train!((m, i, x) -> sum(abs2, todev(x)), emodel, warm, estate)
+        Optimisers.update!(estate, emodel, (;))
+        bmodel = fresh_empty_buf_model()
+        bstate = make_state(bmodel; backend=quiet_backend())
+        Optimisers.update!(bstate, bmodel, (e = fresh_empty_buf_model().e,))
+
+        # Corruption wrapper (corrupt_rank = -1: no injection).
+        cback = CorruptBackend(BACKEND, RANK, -1, Ref(0), Ref(true))
+        tback = TraceBackend(cback, RANK, Ref(0), true)
+        kmodel = fresh_model()
+        kstate = make_state(kmodel; backend=tback)
+        kg = Flux.gradient(m -> loss_guard(m, step_data(1)), kmodel)[1]
+        Optimisers.update!(kstate, kmodel, kg)
+        snap_equal(snapshot(kmodel, kstate), snapshot(kmodel, kstate))
     else
         model = fresh_model()
         ctx = CaseCtx(make_state(model; backend=quiet_backend()); fault_rank=-99,
@@ -816,6 +1412,43 @@ function run_case()
         return run_healthy()
     elseif CASE == "dup-train-one"
         return run_dup_train_one(; fault_rank=FAULT_RANK, fault_value=scalar_fault())
+    elseif CASE == "grad-train-one"
+        return run_grad_train(; lossfn=grad_case_loss, fault_rank=FAULT_RANK,
+            fault_value=scalar_fault())
+    elseif CASE == "grad-audit-zero"
+        return run_grad_train(; lossfn=audit_zero_loss, fault_rank=FAULT_RANK,
+            fault_value=scalar_fault())
+    elseif CASE == "grad-late"
+        return run_grad_late(; fault_rank=FAULT_RANK, fault_value=scalar_fault())
+    elseif CASE == "grad-inf"
+        return run_grad_explicit_value(; value=Inf)
+    elseif CASE == "grad-ninf"
+        return run_grad_explicit_value(; value=-Inf)
+    elseif CASE == "grad-update-both"
+        return run_grad_update_both()
+    elseif CASE == "grad-overflow"
+        return run_grad_overflow(; tied=false)
+    elseif CASE == "grad-tied-overflow"
+        return run_grad_overflow(; tied=true)
+    elseif CASE == "grad-asym-vote"
+        return run_grad_asym_vote()
+    elseif CASE == "grad-caller"
+        return run_grad_caller()
+    elseif CASE == "grad-conditional-absence"
+        return run_grad_conditional_absence(; fault_rank=FAULT_RANK,
+            fault_value=scalar_fault())
+    elseif CASE == "grad-absent-history" || CASE == "grad-healthy"
+        return run_healthy()
+    elseif CASE == "grad-all-absent"
+        return run_grad_all_absent()
+    elseif CASE == "grad-no-trainable"
+        return run_grad_no_trainable()
+    elseif CASE == "grad-empty"
+        return run_grad_empty()
+    elseif CASE == "grad-frozen"
+        return run_grad_frozen(; fault_rank=FAULT_RANK)
+    elseif CASE == "grad-recover"
+        return run_grad_recover(; fault_rank=FAULT_RANK, fault_value=scalar_fault())
     else
         error("unknown --case $(repr(CASE))")
     end

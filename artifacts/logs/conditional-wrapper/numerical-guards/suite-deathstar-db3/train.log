@@ -1,0 +1,14 @@
+Running 1 tests using 1 parallel jobs. To change the number of jobs, specify the `--jobs=N` argument to the tests, or set the `PTR_NUM_JOBS` environment variable.
+               │   Test   │ ──────────────── CPU ──────────────── │
+Test  (Worker) │ time (s) │ GC (s) │ GC % │ Alloc (MB) │ RSS (MB) │
+train      (1) │   175.77 │   8.22 │  4.7 │   39982.99 │  1903.69 │
+
+Output generated during execution of 'train':
+┌ [ Info: ignore this warning, just testing an upgrade path:
+│ ┌ Warning: explicit `update!(opt, model, grad)` wants the gradient for the model alone,
+│ │ not the whole tuple from `gradient(m -> loss(m, x, y), model)`. You probably want `grads[1]`.
+└ └ @ Flux ~/projects/flux-integration/src/layers/basic.jl:87
+
+Test Summary: | Pass  Total     Time
+  Overall     |  137    137  3m17.4s
+    SUCCESS

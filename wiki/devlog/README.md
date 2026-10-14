@@ -54,6 +54,10 @@ bring-up and remote-tooling entries (Phase J/K support) are in scope 2.
 
 ## Scope 2 — Conditional graph
 
+- [2026-10-14](02-conditional-graph/2026-10-14-db3-review-response.md) — DB-3 review response complete: R1 pins the collective protocol per bundle (5/7 legacy, 6/8 guarded with the trailing vote) and passes on deathstar; R2 corrects the focused healthy reference (59/59 per rank GREEN, old-weighting RED control); R3 corrects the public contract documentation with no executable line changed.
+
+- [2026-10-14](02-conditional-graph/2026-10-14-db3-gradient-rejection.md) — DB-3 post-reduction non-finite-gradient rejection implemented and gate-accepted (ADR-0009); RED retained, GREEN at 2/4 MPI ranks and 2 NCCL ranks; harness/test defects fixed.
+
 - [2026-10-14 review](02-conditional-graph/2026-10-14-db1-db4-v2-review.md) — R2 and NamedTuple coverage closed. R1 was closed in round 2 by exact-argv campaign matching and the extended isolation selftest ([fix devlog](02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md#review-response-r1-round-2), `green3` re-gates).
 
 - [2026-10-13 review](02-conditional-graph/2026-10-13-db1-db4-review.md) — DB-1/DB-4 production hook matches the plan; the two P2 harness/coverage corrections are implemented and re-gated in the fix devlog's review response (v2).

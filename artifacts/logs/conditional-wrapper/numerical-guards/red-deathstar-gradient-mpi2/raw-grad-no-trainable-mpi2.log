@@ -1,0 +1,78 @@
+GRAD_INVALID rank=0 item=2 mode=zero-residual-sqrt buffer=v
+GRAD_INVALID rank=1 item=2 mode=zero-residual-sqrt buffer=v
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+VERSIONS julia=1.12.6 flux=0.16.11 mpi=0.20.27 optimisers=0.4.9
+GUARD_PROBE_READY rank=1
+GUARD_PROBE_READY rank=0
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+┌ Warning: setup found no trainable parameters in this model
+└ @ Optimisers ~/.julia/packages/Optimisers/tMaaf/src/interface.jl:33
+CASE_RESULT rank=1 case=grad-no-trainable status=FAIL error="MethodError: no method matching (::var'#run_grad_no_trainable##0#run_grad_no_trainable##1')(::EmptyModel, ::Int64) The function `#run_grad_no_trainable##0` exists, but no method is defined for this combination of argument types.  Closest candidates are:   (::var'#run_grad_no_trainable##0#run_grad_no_trainable##1')(::Any, ::Any, !Matched::Any)    @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1159 "
+CASE_RESULT rank=0 case=grad-no-trainable status=FAIL error="MethodError: no method matching (::var'#run_grad_no_trainable##0#run_grad_no_trainable##1')(::EmptyModel, ::Int64) The function `#run_grad_no_trainable##0` exists, but no method is defined for this combination of argument types.  Closest candidates are:   (::var'#run_grad_no_trainable##0#run_grad_no_trainable##1')(::Any, ::Any, !Matched::Any)    @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1159 "
+MethodError: no method matching (::var"#run_grad_no_trainable##0#run_grad_no_trainable##1")(::EmptyModel, ::Int64)
+The function `#run_grad_no_trainable##0` exists, but no method is defined for this combination of argument types.MethodError: no method matching (::var"#run_grad_no_trainable##0#run_grad_no_trainable##1")(::EmptyModel, ::Int64)
+The function `#run_grad_no_trainable##0` exists, but no method is defined for this combination of argument types.
+
+Closest candidates are:
+  (::var"#run_grad_no_trainable##0#run_grad_no_trainable##1")(::Any, ::Any, !Matched::Any)
+   @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1159
+
+
+Closest candidates are:
+  (::var"#run_grad_no_trainable##0#run_grad_no_trainable##1")(::Any, ::Any, !Matched::Any)
+   @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1159
+
+Stacktrace:
+  [1] macro expansion
+    @ ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:-1 [inlined]
+  [2] _pullback(::Zygote.Context{false}, ::var"#run_grad_no_trainable##0#run_grad_no_trainable##1", ::EmptyModel, ::Int64)
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:87
+  [3] _apply(::Function, ::Vararg{Any})
+    @ Core ./boot.jl:1019
+  [4] adjoint
+    @ ~/.julia/packages/Zygote/dywlZ/src/lib/lib.jl:211 [inlined]
+  [5] _pullback
+    @ ~/.julia/packages/ZygoteRules/fKghs/src/adjoint.jl:68 [inlined]
+  [6] #_eager_step!##0
+    @ ~/projects/flux-integration/src/train.jl:386 [inlined]
+  [7] _pullback(ctx::Zygote.Context{false}, f::Flux.Train.var"#_eager_step!##0#_eager_step!##1"{var"#run_grad_no_trainable##0#run_grad_no_trainable##1", Tuple{Int64}}, args::EmptyModel)
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:0
+  [8] pullback(f::Function, cx::Zygote.Context{false}, args::EmptyModel)
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:99
+  [9] pullback
+    @ ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:97 [inlined]
+ [10] withgradient(f::Function, args::EmptyModel)
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface.jl:214
+ [11] withgradient(f::Flux.Train.var"#_eager_step!##0#_eager_step!##1"{var"#run_grad_no_trainable##0#run_grad_no_trainable##1", Tuple{Int64}}, adtype::AutoZygote, x::EmptyModel)
+    @ Flux ~/projects/flux-integration/src/gradient.jl:232
+ [12] _eager_step!(loss::var"#run_grad_no_trainable##0#run_grad_no_trainable##1", adtype::AutoZygote, model::EmptyModel, batch::Tuple{Int64}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{}})
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:386
+ [13] _trainstep!(loss::Function, adtype::AutoZygote, on_reactant::Bool, model::EmptyModel, batch::Tuple{Int64}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{}})
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:346
+ [14] trainstep!
+    @ ~/projects/flux-integration/src/train.jl:340 [inlined]
+ [15] trainstep!(loss::Function, model::EmptyModel, batch::Tuple{Int64}, opt_state::Flux.DistributedUtils.DistributedOptimizerState{TraceBackend{MPIBackend{MPI.Comm}}, @NamedTuple{}})
+    @ Flux.Train ~/projects/flux-integration/src/train.jl:332
+ [16] run_grad_no_trainable()
+    @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1159
+ [17] run_case()
+    @ Main ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1442
+ [18] top-level scope
+    @ ~/projects/ddp-flux-thesis/scripts/checks/conditional_graph_numerical_guard_probe.jl:1461
+ [19] include(mod::Module, _path::String)
+    @ Base ./Base.jl:306
+ [20] exec_options(opts::Base.JLOptions)
+    @ Base ./client.jl:317
+ [21] _start()
+    @ Base ./client.jl:550
+Stacktrace:
+  [1] macro expansion
+    @ ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:-1 [inlined]
+  [2] _pullback(::Zygote.Context{false}, ::var"#run_grad_no_trainable##0#run_grad_no_trainable##1", ::EmptyModel, ::Int64)
+    @ Zygote ~/.julia/packages/Zygote/dywlZ/src/compiler/interface2.jl:87
+  [3] Abort(1) on node 0 (rank 0 in comm 0): application called MPI_Abort(MPI_COMM_WORLD, 1) - process 0
