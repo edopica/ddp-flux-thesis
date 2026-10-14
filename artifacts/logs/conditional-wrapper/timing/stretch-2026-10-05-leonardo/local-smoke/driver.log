@@ -1,0 +1,14 @@
+[PASS] correctness-single ranks=1 exit=0 elapsed=41.1s log=/tmp/opencode/phase-k-timing-local/driver/correctness-single/console.log
+[PASS] correctness-ddp    ranks=4 exit=0 elapsed=56.7s log=/tmp/opencode/phase-k-timing-local/driver/correctness-ddp/console.log
+TIMING_CHECK_RESULT source=single-vs-ddp PASS maxabs=2.980232e-08 nbad=0
+TIMING_RANK_DUMP rank=0 equal=true
+TIMING_RANK_DUMP rank=1 equal=true
+TIMING_RANK_DUMP rank=2 equal=true
+TIMING_RANK_DUMP rank=3 equal=true
+[PASS] baseline           ranks=1 exit=0 elapsed=40.6s log=/tmp/opencode/phase-k-timing-local/driver/baseline/console.log
+[PASS] ddp                ranks=4 exit=0 elapsed=60.7s log=/tmp/opencode/phase-k-timing-local/driver/ddp/console.log
+TIMING_SPEEDUP backend=mpi ranks=4 median_single_s=0.287263 median_ddp_slowest_s=0.795622 speedup=0.361055
+Test Summary:                     | Pass  Total     Time
+Phase K timing stretch (mpi, all) |    1      1  3m20.7s
+
+TIMING_STRETCH_SUMMARY backend=mpi ranks=4 speedup=0.361055 status=PASS

@@ -1,0 +1,24 @@
+Phase K timing stretch driver summary
+date	2026-10-05T20:54:02.290
+root	/tmp/opencode/phase-k-timing-local/driver
+prepared	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/prepared/mnist-fashion_prepared.jls
+trajectory	none
+backend	mpi
+device	cpu
+ranks	4
+label	local-smoke
+julia	1.12.6
+project	/home/kurapica/Projects/ddp_flux/flux-integration/test
+steps	4
+warmup	1
+repeats	2
+record_every	2
+check_steps	3
+phase	all
+speedup	0.361055
+command	`/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` --root /tmp/opencode/phase-k-timing-local/driver --prepared artifacts/logs/conditional-wrapper/demo/k2-2026-10-05-deathstar-mpi/prepared/mnist-fashion_prepared.jls --backend mpi --device cpu --ranks 4 --steps 4 --warmup 1 --repeats 2 --record-every 2 --check-steps 3 --phase all --label local-smoke
+job	correctness-single	ranks=1	exit=0	elapsed=41.131	log=/tmp/opencode/phase-k-timing-local/driver/correctness-single/console.log
+job	correctness-ddp	ranks=4	exit=0	elapsed=56.67	log=/tmp/opencode/phase-k-timing-local/driver/correctness-ddp/console.log
+job	baseline	ranks=1	exit=0	elapsed=40.622	log=/tmp/opencode/phase-k-timing-local/driver/baseline/console.log
+job	ddp	ranks=4	exit=0	elapsed=60.688	log=/tmp/opencode/phase-k-timing-local/driver/ddp/console.log
+status	PASS

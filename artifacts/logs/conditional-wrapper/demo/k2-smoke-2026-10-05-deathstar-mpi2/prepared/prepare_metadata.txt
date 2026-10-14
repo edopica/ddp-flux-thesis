@@ -1,0 +1,29 @@
+prepared	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2/prepared/mnist-fashion_prepared.jls
+dataset_digest	b19e4b6354f2048dab98d9c49698fd57db7515171fc14931c0781244ff11d5d8
+loader	official-idx-gzip-v1; Julia Downloads; external gzip
+preprocessing	IDX row-major flatten; Float32(byte)/255; no augmentation
+label_encoding	0:9; onehot row=label+1
+task_mapping	(a = "MNIST digits", b = "Fashion-MNIST clothing")
+seeds	(train = 101, val = 202, init = 303, order = 404, subset = 505)
+command	`/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` prepare --out /home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2/prepared --dataset mnist-fashion --worlds 2 --steps 6 --cache artifacts/logs/conditional-wrapper/demo/k2-cache-2026-10-05 --train-per-task 640 --val-per-task 100
+package	Flux	0.16.11	/home/picazio/projects/flux-integration/src/Flux.jl
+package	Optimisers	0.4.9	/home/picazio/.julia/packages/Optimisers/tMaaf/src/Optimisers.jl
+package	Functors	0.5.3	/home/picazio/.julia/packages/Functors/PfDWx/src/Functors.jl
+package	MPI	0.20.27	/home/picazio/.julia/packages/MPI/E9X9Q/src/MPI.jl
+package	Zygote	0.7.13	/home/picazio/.julia/packages/Zygote/dywlZ/src/Zygote.jl
+source_hash	flux-integration/src/Flux.jl	78710f9b398971609ac86824cb9ce6ab2ce3ab4672139df2142d24d44bacd0ce
+source_hash	flux-integration/src/distributed/public_api.jl	2984210b84e136da9bc9948c3b5928877f1f6c10f870f8db841ad2d4ab6136f0
+source_hash	scripts/checks/conditional_graph_demo_check.jl	2241cb6b1c37ce8ce6f61099797e55bea5b422bcbdbb1b017d4d58843a5da488
+source_hash	scripts/examples/conditional_graph/checkpoint.jl	2993e0cab0aae57642076b5a9689e0fdc07b60e25fcb1a43902b10a7ca0a5b23
+source_hash	scripts/examples/conditional_graph/common.jl	9dfa74ee90c29ccfcac2b102315255791f5ad15d11ba6622e9ed060dd7355f99
+source_hash	scripts/examples/conditional_graph/dataset.jl	1681c7b7a5059267dd805ae3a38f9e48226f9ab5b8c3de521897e4e9da6b4488
+source_hash	scripts/examples/conditional_graph/metrics.jl	74f25667fd48bce2e4e0872793cd54cfeda57878e72e1be55fa2ad34d915b67c
+source_hash	scripts/examples/conditional_graph/model.jl	07de4f0fb5bed36727a49cd89f1f21bc1c198c12515cb1aa0ac32fe9fa9b67f0
+source_hash	scripts/examples/conditional_graph/reference.jl	71ac4a90d3770835a43a14aa310bad840b486be9c1d7d73c7d944a70503f9ff1
+source_hash	scripts/examples/conditional_graph/schedule.jl	9e7bb59e8494ac9dbf26d84643ce144f91e61c22115f22429a699cdb59ce99e3
+source_hash	scripts/examples/conditional_graph_demo.jl	b6e6725d51577e4bde4ac900cfbb7ba59ce156bff0321bd7b94d5a26eb99ce7d
+model_definition_version	1
+optimizer	Adam eta=0.001 beta=(0.9, 0.999)
+schedule_workers	2	digest=684e7430269d2a400709768798fa3e1d82e1db0b363532d5d48afef42feb05ee	steps=6	local_batch=64	global_batch=128
+schedule_task	workers=2	task=a	exposure=384	pool=640	completed_passes=0	partial=384	reused=0
+schedule_task	workers=2	task=b	exposure=384	pool=640	completed_passes=0	partial=384	reused=0

@@ -1,0 +1,14 @@
+Phase K mnist-fashion campaign summary
+date	2026-10-05T14:55:28.047
+root	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2
+backend	mpi
+ranks	[2]
+label	k2-smoke
+julia	1.12.6
+project	/home/picazio/projects/flux-integration/test
+steps	6
+command	`/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/picazio/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no` --root artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2 --dataset mnist-fashion --backend mpi --ranks 2 --steps 6 --train-per-task 640 --val-per-task 100 --cache artifacts/logs/conditional-wrapper/demo/k2-cache-2026-10-05 --timeout 900 --label k2-smoke
+job	prepared	ranks=1	exit=0	elapsed=17.081	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2/prepared/console.log
+job	mpi2-train	ranks=2	exit=0	elapsed=49.172	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2/mpi2-train/console.log
+job	mpi2-resume	ranks=2	exit=1	elapsed=18.064	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2/mpi2-resume/console.log
+status	FAIL

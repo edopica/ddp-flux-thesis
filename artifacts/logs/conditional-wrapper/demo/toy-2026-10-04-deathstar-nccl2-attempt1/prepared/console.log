@@ -1,0 +1,1 @@
+DEMO_PREPARE_DONE path=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-deathstar-nccl2/prepared/toy_prepared.jls dataset_digest=55a8204c50f7f5fe03f046cb39490e9f641f262c6723c40cc90e1108eddf6ee0 worlds=[2, 4] model_version=1

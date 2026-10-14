@@ -1,0 +1,1 @@
+step	cycle	present_a	present_b	counts_a	counts_b	loss_ref	loss_local_rank0	peer_param_maxerr	peer_mom1_maxerr	peer_mom2_maxerr	peer_beta_exact	val_a_loss	val_a_acc	val_b_loss	val_b_acc

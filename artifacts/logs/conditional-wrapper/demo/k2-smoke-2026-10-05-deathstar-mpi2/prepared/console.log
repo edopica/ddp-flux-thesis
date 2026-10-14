@@ -1,0 +1,1 @@
+DEMO_PREPARE_DONE path=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/k2-smoke-2026-10-05-deathstar-mpi2/prepared/mnist-fashion_prepared.jls dataset_digest=b19e4b6354f2048dab98d9c49698fd57db7515171fc14931c0781244ff11d5d8 worlds=[2] model_version=1

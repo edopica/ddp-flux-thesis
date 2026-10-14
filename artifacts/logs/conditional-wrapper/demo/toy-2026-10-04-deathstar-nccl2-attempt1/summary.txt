@@ -1,0 +1,11 @@
+Phase K toy campaign summary
+date	2026-10-04T23:37:39.634
+root	/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-deathstar-nccl2
+backend	nccl
+ranks	[2]
+label	toy-deathstar-nccl2
+julia	1.12.6
+project	/home/picazio/projects/flux-integration/test
+job	prepared	ranks=1	exit=0	elapsed=9.535	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-deathstar-nccl2/prepared/console.log
+job	nccl2-train	ranks=2	exit=1	elapsed=55.693	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-deathstar-nccl2/nccl2-train/console.log
+job	nccl2-resume	ranks=2	exit=1	elapsed=19.571	log=/home/picazio/projects/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-deathstar-nccl2/nccl2-resume/console.log

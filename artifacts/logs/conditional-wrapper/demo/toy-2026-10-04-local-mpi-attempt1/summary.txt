@@ -1,0 +1,13 @@
+Phase K toy campaign summary
+date	2026-10-04T23:33:17.262
+root	/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi
+backend	mpi
+ranks	[2, 4]
+label	toy-local-mpi
+julia	1.12.6
+project	/home/kurapica/Projects/ddp_flux/flux-integration/test
+job	prepared	ranks=1	exit=0	elapsed=11.039	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/prepared/console.log
+job	mpi2-train	ranks=2	exit=0	elapsed=52.66	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/mpi2-train/console.log
+job	mpi2-resume	ranks=2	exit=0	elapsed=50.653	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/mpi2-resume/console.log
+job	mpi4-train	ranks=4	exit=0	elapsed=65.197	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/mpi4-train/console.log
+job	mpi4-resume	ranks=4	exit=0	elapsed=63.189	log=/home/kurapica/Projects/ddp_flux/ddp-flux-thesis/artifacts/logs/conditional-wrapper/demo/toy-2026-10-04-local-mpi/mpi4-resume/console.log

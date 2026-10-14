@@ -1,0 +1,38 @@
+ERROR: ERROR: LoadError: LoadError: checkpoint payload does not match the one the trajectory was saved from
+Stacktrace:
+ [1] error(s::String)
+   @ Base ./error.jl:44
+ [2] ensure
+   @ ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph/common.jl:36 [inlined]
+ [3] main_resume(opts::Dict{String, String}, flags::Set{String})
+   @ Main ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:894
+ [4] main()
+   @ Main ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:974
+ [5] top-level scope
+   @ ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:981
+ [6] include(mod::Module, _path::String)
+   @ Base ./Base.jl:306
+ [7] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:317
+ [8] _start()
+   @ Base ./client.jl:550
+in expression starting at /home/picazio/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:981
+checkpoint payload does not match the one the trajectory was saved from
+Stacktrace:
+ [1] error(s::String)
+   @ Base ./error.jl:44
+ [2] ensure
+   @ ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph/common.jl:36 [inlined]
+ [3] main_resume(opts::Dict{String, String}, flags::Set{String})
+   @ Main ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:894
+ [4] main()
+   @ Main ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:974
+ [5] top-level scope
+   @ ~/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:981
+ [6] include(mod::Module, _path::String)
+   @ Base ./Base.jl:306
+ [7] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:317
+ [8] _start()
+   @ Base ./client.jl:550
+in expression starting at /home/picazio/projects/ddp-flux-thesis/scripts/examples/conditional_graph_demo.jl:981
