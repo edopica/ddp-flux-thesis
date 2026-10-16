@@ -7,11 +7,14 @@ kept in place; the indexes below list them newest-first within each scope.
 |---|---|---|---|
 | 1. PR #2694 | 2026-07-02 → 2026-09-16 | [`01-pr2694/`](01-pr2694/) | C0–C8 upstream DDP work: audit, reference loop, launch, model sync, data sharding, gradient/optimizer sync, end-to-end example, correctness battery; M0/M1 integration spike; PS1–PS8 PR #2694 salvage; Windows routing fix; early remote and documentation tooling of that era |
 | 2. Conditional graph | 2026-09-14 → present | [`02-conditional-graph/`](02-conditional-graph/) | Conditional-graph onboarding; `DistributedOptimizerState` wrapper Phases A–K; native CUDA/NCCL validation; Leonardo bring-up; timing stretch; notebooks; implementation and deferred-behavior reports |
+| 3. Static-network GPU scaling | 2026-10-15 → present | [`03-static-scaling/`](03-static-scaling/) | Tiny ImageNet-200/PyTorch benchmark environment setup for the static-network Flux-vs-PyTorch scaling proposal; the 2026-10-15 scaling-discussion entries remain in scope 2 |
 
 An entry belongs to the scope of the work it records, not to the date alone.
 Remote/infrastructure entries follow the project they supported: the
 2026-09-03 precompile experiment (C8/PR testing) is in scope 1; the Leonardo
 bring-up and remote-tooling entries (Phase J/K support) are in scope 2.
+The 2026-10-15 scaling-discussion entries (proposal drafting) remain in scope
+2; scope 3 starts with the benchmark environment setup.
 
 ## Scope 1 — PR #2694 (upstream DDP)
 
@@ -106,3 +109,11 @@ bring-up and remote-tooling entries (Phase J/K support) are in scope 2.
 - [2026-09-16](02-conditional-graph/2026-09-16-conditional-wrapper-plan.md) — Approved wrapper implementation plan.
 - [2026-09-14](02-conditional-graph/2026-09-14-conditional-graph-optimisers-notebook.md) — Optimisers.jl tutorial notebook.
 - [2026-09-14](02-conditional-graph/2026-09-14-conditional-graph-onboarding.md) — Onboarding: report, deadlock/corruption detector, notebook.
+
+## Scope 3 — Static-network GPU scaling
+
+- [2026-10-16](03-static-scaling/2026-10-16-od1-od5-od6-recorded.md) — OD-1, OD-5, OD-6 recorded: architecture/initialization frozen at 11,271,432 parameters, per-channel training-split normalization statistics, saved-augmentation triples; Phase 2 unblocked.
+- [2026-10-16](03-static-scaling/2026-10-16-phase1-review-response.md) — Phase 1 review response: R1-R4 corrected in the specification and config; focused acceptance probes pass and reproduce exactly under independent verification.
+- [2026-10-16](03-static-scaling/2026-10-16-phase1-review.md) — Phase 1 shared-specification review: four defects (classifier axes, kernel orientation, AdamW constructor, beta-power mapping); local probes and source evidence.
+- [2026-10-15](03-static-scaling/2026-10-15-phase1-shared-specification.md) — Phase 1 shared specification drafted: config, readable spec, and open-decision table; independent verification of parameter counts and source pins.
+- [2026-10-15](03-static-scaling/2026-10-15-leonardo-benchmark-env-setup.md) — Leonardo benchmark environment setup (not run): PyTorch 2.9.1+cu126 venv and Tiny ImageNet-200 verified; environment smoke PASS; no test, benchmark, or training ran.

@@ -1,0 +1,4 @@
+R1 dense_weight=(200, 512) grad_shape=(200, 512) no_transpose=true
+R2 crosscor_output=Float32[178.0, 283.0, 388.0, 493.0, 199.0, 304.0, 409.0, 514.0, 220.0, 325.0, 430.0, 535.0, 241.0, 346.0, 451.0, 556.0]
+R2 pytorch_semantics_reference=Float32[178.0, 283.0, 388.0, 493.0, 199.0, 304.0, 409.0, 514.0, 220.0, 325.0, 430.0, 535.0, 241.0, 346.0, 451.0, 556.0]
+R2 crosscor_matches=true plain_conv_differs=true reversed_conv_matches=true grad_shape=(3, 2, 1, 1)

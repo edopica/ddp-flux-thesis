@@ -1,0 +1,6 @@
+R3 decay_rule=AdamW(eta=0.001, beta=(0.9, 0.999), lambda=0.0001, epsilon=1.0e-8, couple=true)
+R3 no_decay_rule=AdamW(eta=0.001, beta=(0.9, 0.999), lambda=0.0, epsilon=1.0e-8, couple=true)
+R3 mixed_constructor=MethodError
+R4 s=0 beta_power=(0.9f0, 0.999f0)
+R4 s=1 beta_power=(0.80999994f0, 0.99800104f0) s=2 beta_power=(0.7289999f0, 0.9970031f0)
+R4 stored=beta^(s+1)=true reconstruction_repeated_multiplication_exact=true continuation_from_exchanged_state_exact=true

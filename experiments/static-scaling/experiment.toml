@@ -1,0 +1,249 @@
+# Static-network GPU scaling: shared machine-readable specification (Phase 1 draft).
+#
+# Companion documents in this directory:
+#   specification.md   - readable specification with rationale and citations
+#   open-decisions.md  - decisions that still need a recorded decision
+#
+# Format: TOML. Readable by the Julia standard library TOML and Python 3.11 tomllib.
+# Value status:
+#   "recorded"          - fixed by an existing project document or measurement
+#   "proposed"          - draft default, awaiting the recorded decision in open-decisions.md
+#   "pending_phase_N"   - cannot be fixed before that phase; the rule is fixed now
+
+schema_version = 1
+name = "static-scaling"
+created = "2026-10-15"
+status = "draft-phase-1; review R1-R4 corrected 2026-10-16"
+documentation = "specification.md"
+
+[experiment]
+scope = "static-network training, fixed global batch, strong scaling"
+frameworks = ["flux", "pytorch"]
+gpu_counts = [1, 2, 4]
+dataset = "tiny-imagenet-200"
+precision = "fp32"
+tf32 = "disabled in both frameworks"
+global_batch_proposed = 512
+global_batch_fallback = 256
+global_batch_note = "provisional; Phase 5 memory pilot selects the final value"
+
+[matrix]
+# One row per configuration. Global work is identical in every row.
+configs = [
+  { framework = "flux",    gpus = 1, processes = 1, local_batch_proposed = 512 },
+  { framework = "flux",    gpus = 2, processes = 2, local_batch_proposed = 256 },
+  { framework = "flux",    gpus = 4, processes = 4, local_batch_proposed = 128 },
+  { framework = "pytorch", gpus = 1, processes = 1, local_batch_proposed = 512 },
+  { framework = "pytorch", gpus = 2, processes = 2, local_batch_proposed = 256 },
+  { framework = "pytorch", gpus = 4, processes = 4, local_batch_proposed = 128 },
+]
+local_batch_b512 = [512, 256, 128]
+local_batch_b256 = [256, 128, 64]
+
+[dataset]
+name = "tiny-imagenet-200"
+root_leonardo = "/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200"
+source_url = "https://cs231n.stanford.edu/tiny-imagenet-200.zip"
+archive_sha256 = "6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821"
+archive_bytes = 248100043
+classes = 200
+train_images = 100000
+val_images = 10000
+test_images = 10000
+image_shape_chw = [3, 64, 64]
+class_order = "index = position in wnids.txt (0-based in the shared format)"
+val_layout = "official flat layout: val/images/*.JPEG plus val/val_annotations.txt"
+test_split = "not used"
+checks_recorded = "2026-10-15 setup: all layout, count, and checksum checks passed"
+
+[data_pipeline]
+decode = "each JPEG is decoded exactly once at dataset preparation with one canonical decoder; both frameworks read the saved uint8 arrays"
+normalization_status = "recorded 2026-10-16 (OD-5)"
+normalization_rule = "x = (x_uint8 / 255 - mean_c) / std_c, per-channel, applied in float32 with the same constants for training and validation"
+normalization_constants = "recorded method: per-channel RGB mean and population standard deviation computed once from all 100,000 original training images using the canonical decoded uint8 data scaled to [0,1]; computed before augmentation, padding, and epoch tail dropping; population std over all training pixels per channel with float64 accumulation; validation and test images are never used; numeric values are generated and frozen in the fixture manifest in Phase 2"
+train_augmentation_status = "recorded 2026-10-16 (OD-6)"
+train_augmentation = [
+  "zero-padding of 4 pixels on each side (64x64 -> 72x72)",
+  "uniformly sampled 64x64 crop with zero-based offsets crop_top, crop_left in 0..8, sampled independently per axis",
+  "horizontal flip with probability 0.5",
+]
+val_augmentation = "none (no crop, no flip, no resize); conversion to float32, division by 255, and normalization only"
+augmentation_record = "recorded: (crop_top, crop_left, flip) per (epoch, sample_id); zero-based offsets 0..8; identical for both frameworks; independent of rank and loader worker"
+augmentation_application = "decisions are saved data, not re-drawn per framework: padding, crop, and flip are applied to the decoded uint8 image; then float32 conversion, division by 255, and normalization; both frameworks replay the same record"
+epoch_permutation = "one saved global permutation per epoch, shared by all ranks and all configurations"
+batch_assembly = "global batches are formed from the epoch permutation before rank sharding"
+shard_rule = "equal, nonoverlapping contiguous shards of each global batch, rank r takes shard r"
+tail_policy = "drop the same final 160 images of every epoch permutation in every configuration"
+samples_per_epoch = 99840
+updates_per_epoch_b512 = 195
+updates_per_epoch_b256 = 390
+loader_independence = "the sample schedule and augmentation replay must not depend on rank or loader worker count"
+
+[model]
+name = "Tiny ImageNet ResNet-18, small-image stem, GroupNorm-32"
+status = "recorded 2026-10-16 (OD-1)"
+input = "RGB 64x64; serialized as NCHW; Flux permutes to WHCN at load"
+stem = "3x3 conv, 64 channels, stride 1, padding 1, no bias; then GroupNorm(32); then ReLU; no initial max-pool"
+stage_1 = "2 BasicBlocks, 64 channels, stride 1, no projection"
+stage_2 = "2 BasicBlocks, 128 channels; first block stride 2 with a 1x1 projection"
+stage_3 = "2 BasicBlocks, 256 channels; first block stride 2 with a 1x1 projection"
+stage_4 = "2 BasicBlocks, 512 channels; first block stride 2 with a 1x1 projection"
+basic_block = "conv3x3(stride) -> GN -> ReLU -> conv3x3(stride 1) -> GN -> residual add -> ReLU; all convolutions bias-free"
+normalization = "affine GroupNorm, 32 groups, eps 1e-5, gamma initialized to 1, beta initialized to 0"
+normalization_placement = "stem output, both residual convolutions of every block, and every projection path"
+projection = "1x1 convolution, no bias, followed by GroupNorm(32); projection output added to the block residual before ReLU"
+spatial_padding = "all 3x3 convolutions padding 1; all 1x1 convolutions padding 0"
+pooling = "global spatial average"
+conv_algorithm = "Flux.CrossCor for every convolution (cross-correlation, matches PyTorch Conv2d); Flux.Conv is not used"
+classifier = "linear 512 -> 200 with bias"
+initial_parameters = "recorded 2026-10-16 (OD-1): one canonical saved bundle is the source of truth and is loaded by both frameworks; framework default initializers are never used at load; recipe: convolution weights Kaiming-normal fan_out with ReLU gain; classifier weight and bias use the PyTorch Linear defaults; GN gamma=1, beta=0; the bundle is generated once with a recorded generator, generator version, and seed; bundle hash, recipe, generator, version, and seed are recorded in the fixture manifest"
+trainable_parameters = 11271432
+trainable_arrays = 62
+trainable_arrays_note = "20 convolution weights + 40 GroupNorm affine arrays (20 layers x gamma/beta) + 2 classifier arrays"
+
+[loss]
+name = "mean-reduced cross-entropy"
+input = "raw logits (no softmax before the loss)"
+shared_labels = "int64, 0-based class indices in the shared format"
+julia_conversion = "add 1 at load, then build one-hot rows with onehotbatch(y, 1:200)"
+python_conversion = "use the shared 0-based labels directly with CrossEntropyLoss"
+reduction = "sum over the local batch divided by the local batch size"
+gradient_equivalence = "equal local batch sizes make the averaged gradient equal the global-batch mean-loss gradient"
+
+[optimizer]
+name = "AdamW with decoupled weight decay"
+status = "proposed"
+flux_config = "Optimisers.AdamW(; eta = eta, beta = (0.9, 0.999), lambda = wd, epsilon = 1e-8, couple = true); the all-keyword form is required (the positional constructor accepts only couple as a keyword); couple = true matches PyTorch AdamW"
+pytorch_config = "torch.optim.AdamW(params, lr = eta, betas = (0.9, 0.999), eps = 1e-8, weight_decay = wd)"
+equations = "m = b1*m + (1-b1)*g; v = b2*v + (1-b2)*g^2; mhat = m/(1-b1^t); vhat = v/(1-b2^t); dx = mhat/(sqrt(vhat) + eps); x = x - eta*(dx + lambda*x)"
+epsilon_placement = "outside the square root, added to sqrt(vhat)"
+bias_correction = true
+learning_rate = 1.0e-3
+betas = [0.9, 0.999]
+eps = 1.0e-8
+weight_decay = 1.0e-4
+decay_group = "convolution weights and the classifier weight"
+no_decay_group = "all GroupNorm gamma/beta arrays and the classifier bias"
+pytorch_group_realization = "weight_decay applies only to parameters with ndim >= 2 (equivalent for this architecture)"
+flux_group_realization = "Optimisers rule tree built by Functors traversal; AdamW with lambda = 0 for 1-D arrays; per-leaf lambda is asserted in Phase 3"
+amsgrad = false
+gradient_clipping = "none"
+maximize = false
+
+[schedule]
+status = "proposed"
+definition = "a function of the global optimizer update index t = 1..T; identical in both frameworks; the schedule does not scale with GPU count"
+warmup_rule = "linear from 0 to eta_max: eta_t = eta_max * t / W for t = 1..W"
+decay_rule = "cosine from eta_max to 0: eta_t = eta_max * 0.5 * (1 + cos(pi * (t - W) / (T - W))) for t = W+1..T"
+warmup_epochs_proposed = 5
+warmup_updates_b512 = 975
+warmup_updates_b256 = 1950
+learning_curve_epochs_proposed = 50
+learning_curve_updates_b512 = 9750
+learning_curve_updates_b256 = 19500
+throughput_updates = "pending_phase_6: one fixed K giving the fastest configuration tens of seconds of work"
+throughput_schedule_usage = "throughput runs execute updates 1..K of the same schedule"
+
+[training_contract]
+flux_entry_point = "explicit: Zygote.withgradient for AD, then Optimisers.update! on the DistributedOptimizerState (communication outside AD)"
+flux_entry_point_status = "proposed; confirm in Phase 3"
+flux_single_gpu_entry_point = "Zygote.withgradient, then Optimisers.update! on an ordinary Optimisers state"
+pytorch_entry_point = "loss.backward() then optimizer.step() inside the DDP wrapper"
+gradient_averaging = "g = sum_r(g_r) / world_size, applied exactly once by the framework"
+flux_averaging_mechanism = "DistributedUtils.avg allreduce: MPI sums then divides by world size; NCCL avg is native"
+pytorch_averaging_mechanism = "native DDP gradient averaging"
+flux_guards = "post-reduction non-finite gradient scan with one all-rank vote and coordinated DomainError before the optimizer step (ADR-0009); the loss vote of ADR-0008 runs only on the eager Flux.train!/trainstep! path and is not invoked by the explicit path"
+pytorch_guards = "none; native DDP behavior only"
+flux_collectives_per_update = "1 presence allreduce + 62 gradient avg allreduces + 1 gradient-validity vote = 64 collectives per update (explicit path)"
+flux_eager_path_note = "the eager Flux.train! path adds one loss-validity vote per step (65 collectives); it is not the selected entry point"
+pytorch_ddp_config = "find_unused_parameters = False, static_graph = False, default bucketing and overlap retained, gradient_as_bucket_view left at default"
+rank_writes = "rank 0 is the only rank that writes shared artifacts; rank-local diagnostics use per-rank files"
+device_transfers = "all guard metadata is host Float32 by design; no silent array device-to-host copies are allowed in any rank's training path"
+
+[shared_format]
+status = "proposed"
+container = "one .npz bundle per fixture set plus one JSON manifest"
+npz_producer_python = "numpy.savez"
+npz_consumer_python = "numpy.load"
+npz_producer_julia = "NPZ.jl"
+arrays = "floats in float32; raw decoded images in uint8; labels and step counters in int64"
+canonical_layout = "PyTorch-native: images NCHW; convolution kernels (out, in, kh, kw); linear weights (out, in); all C-order"
+flux_conversion = "images: permutedims(x, (4, 3, 2, 1)) to WHCN (self-inverse on export); convolution kernels: permutedims(w, (4, 3, 2, 1)) to (kw, kh, in, out) used with Flux.CrossCor (cross-correlation, reproduces PyTorch Conv2d; Flux.Conv would need both spatial axes reversed and is not used); linear weights: no transpose, the classifier Dense(512 => 200) already stores (out, in) = (200, 512); gradients and moments follow the array layout and use the same rules; asserted against fixtures in Phase 2 including an asymmetric kernel"
+parameter_names = "manifest maps each shared array name to the model path in both frameworks"
+optimizer_state_mapping = "per leaf: m (exp_avg), v (exp_avg_sq), and one int64 completed-update counter s compared exactly; PyTorch state['step'] == s; Flux stores the beta-power pair instead of a counter: initialized to beta before the first update, after s completed updates it equals beta .^ (s+1) up to float32 rounding (evolved by repeated multiplication); continuation reconstructs it by starting from beta and multiplying by beta exactly s times in float32"
+manifest_fields = ["producer", "creation date", "source hashes", "array entries with name, dtype, shape, layout, and sha256 of raw C-order bytes"]
+integrity = "sha256 of each array's raw C-order bytes; the archive file bytes are not required to be reproducible"
+
+[resources]
+status = "proposed"
+node = "one Leonardo boost_usr_prod node: 4x A100-SXM-64GB (driver 535.274.02), 32 Xeon Platinum 8358 cores"
+total_cpu_budget_cores = 32
+cpus_per_task_1gpu = 32
+cpus_per_task_2gpu = 16
+cpus_per_task_4gpu = 8
+compute_threads_per_rank = 1
+compute_threads_env = "JULIA_NUM_THREADS=1, OMP_NUM_THREADS=1, torch.set_num_threads(1)"
+dataloader_workers_per_rank = 4
+affinity_policy = "Slurm default binding for --cpus-per-task; no manual pinning in the first campaign; Phase 6 records the srun --cpu-bind=verbose result"
+gpu_visibility = "--gres=gpu:4 for every configuration; all four GPUs stay visible to every rank"
+device_mapping = "Flux rank r uses device mod1(r + 2, ndevices) (observed [1, 2, 3, 0] for four ranks); PyTorch mirrors the same mapping; single-GPU runs use device 0"
+qos = "boost_qos_dbg for pilots (30 min cap); boost_qos_bprod for long runs"
+mpi_launch = "srun --mpi=pmi2 (MPICH via PMI2); salloc stays on the login node; use srun --chdir instead of cd && srun"
+
+[memory]
+status = "proposed"
+gpu_capacity_bytes = 68719476736
+capacity_gib = 64
+required_margin = "peak device memory used by the process must stay at or below 80% of capacity (at least 20% free, at least 12.8 GiB)"
+pytorch_counters = "torch.cuda.max_memory_allocated, torch.cuda.max_memory_reserved; device-level via torch.cuda.mem_get_info or nvidia-smi process delta"
+julia_counters = "CUDA.used_memory, CUDA.cached_memory, CUDA.pool_status; device-level via nvidia-smi process delta"
+missing_counter_policy = "record an unavailable counter as unavailable; never substitute a different counter silently"
+staging_memory = "device staging memory is measured and reported separately from model and optimizer memory"
+pilot_sequence = "one GPU first; then two and four GPUs; if the margin fails at batch 512, the complete matrix repeats at batch 256"
+
+[sources]
+status = "recorded on 2026-10-15; re-verify before every remote run"
+flux_worktree = "/home/kurapica/Projects/ddp_flux/flux-integration"
+flux_branch = "ddp/integration-m1-spike"
+flux_head = "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e"
+flux_worktree_state = "clean; no tracked modifications, no untracked files"
+flux_diff_sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+flux_untracked_sha256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+flux_patch_identity_command = "git -C <worktree> diff HEAD | sha256sum; git -C <worktree> ls-files --others --exclude-standard | sort | sha256sum"
+flux_guard_hashes_verified = "public_api.jl, FluxMPINCCLExt.jl, and the DB-3 test file match the ADR-0009 corrected md5 table; train.jl and FluxMPIExt.jl have no ADR hash rows and are pinned only by the sha256 values below (FluxMPIExt.jl corroborated by the 2026-10-05 K1/K2 devlog)"
+flux_public_api_sha256 = "4204fd5b524d571b81f909cb3b3ef600636a119969a19f1f9cc6cb5c64910ac9"
+flux_train_sha256 = "eecb4fba729c331a4972a90c410abf8ad00b2ac771dab9687bb56611dadf1fa2"
+flux_mpi_ext_sha256 = "24dca3c3b9472b75579abffebe245a72026f376eb5c4d2d15c5208d03ae96766"
+flux_mpi_nccl_ext_sha256 = "a0b1f27362f0c3721d639d837d003951c62b7c75b6792cf19f6a7b7dfceebccd"
+julia_version = "1.12.6"
+julia_remote_path = "/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6"
+julia_depot_remote = "/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot"
+julia_project = "flux-integration/test/Project.toml (workspace root manifest)"
+project_toml_test_sha256 = "13970e0a9b8595595ce63a9e05d69de0b381fff86d16f774c4e0d04d8bb38853"
+project_toml_root_sha256 = "e950f5d92f42024f8c54faf484d01a56a06d4647e1ab1f6782c4aeef62e3104b"
+manifest_remote_sha256 = "4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837"
+manifest_local_sha256 = "4f0582cf0272a0c94e4ca57536f6df90d86dc53de53c5d0c2feae262dadd8bed"
+manifest_local_note = "local copy is stale and lacks CUDA/NCCL/cuDNN; do not use it for benchmark runs"
+manifest_julia_version = "1.12.6"
+manifest_project_hash = "08d133fc70a2984bd1fbca44162175104c7ae379"
+python_venv = "/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling"
+python_version = "3.11.17"
+python_freeze_remote = "/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/requirements-freeze.txt"
+python_freeze_record = "artifacts/logs/leonardo/2026-10-15-pytorch-env-freeze.txt"
+python_freeze_record_sha256 = "cd39f2829c56037a3c68d05299f6d823f4ec603d7422c5d377104fc48d8c7532"
+torch = "2.9.1+cu126"
+torchvision = "0.24.1+cu126"
+numpy = "2.4.6"
+pillow = "12.3.0"
+pytorch_nccl = "2.27.5"
+pytorch_cudnn = "9.10.2.21"
+triton = "3.5.1"
+remote_flux_state = "WARNING: the Leonardo copy ~/projects/flux-integration is a pre-guard snapshot (verified 2026-10-15); sync f7b4520c and re-precompile on a compute node before any benchmark run"
+
+[tolerances]
+status = "proposed; cross-framework values are calibrated in Phase 3 before acceptance runs"
+comparison_rule = "elementwise |a - b| <= atol + rtol * max(|a|, |b|)"
+same_framework = { atol = 2.0e-6, rtol = 1.0e-5, basis = "existing project standard (Phase K, C8 matrix); applies to DDP vs single-GPU reference and to rank replicas" }
+cross_framework = { atol = 1.0e-5, rtol = 1.0e-4, basis = "provisional; must be calibrated on frozen fixtures before Phase 3 acceptance and then frozen in this file" }
+categories = ["logits", "loss", "gradients", "updated parameters", "optimizer moments m and v", "step counters"]
+calibration_rule = "a revision of a tolerance requires a documented numerical cause (kernel or reduction-order difference), recorded in this file before the acceptance evidence is generated"

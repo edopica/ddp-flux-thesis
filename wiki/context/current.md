@@ -1,5 +1,120 @@
 # Current context
 
+## OD-1, OD-5, OD-6 recorded; Phase 2 unblocked — 2026-10-16
+
+The supervisor recorded the three Phase 2-blocking decisions in [open-decisions.md](../../experiments/static-scaling/open-decisions.md) (decision record dated 2026-10-16):
+OD-1 freezes the small-image ResNet-18 (3x3 stride-1 stem, no max-pool, GroupNorm-32 eps 1e-5, biased 200-class classifier) at 11,271,432 trainable parameters across 62 arrays, with Kaiming-normal `fan_out`/ReLU convolution init, PyTorch `Linear` defaults for the classifier, GN `gamma = 1`/`beta = 0`, and one canonical initial bundle with recorded generator, version, and seed loaded by both frameworks.
+OD-5 fixes per-channel RGB population mean and standard deviation from all 100,000 original training images (decoded uint8 scaled to [0,1], float64 accumulation, before augmentation/padding/tail drop; validation and test images excluded); float32 constants frozen in the fixture manifest.
+OD-6 fixes the training transforms: zero-pad 4 per side, uniform 64x64 crop (zero-based `crop_top`/`crop_left` in `0..8`, independent), horizontal flip p=0.5; `(crop_top, crop_left, flip)` saved per (epoch, sample_id); padding/crop/flip on uint8, then float32, /255, normalize; validation uses conversion and normalization only.
+`specification.md`, `experiment.toml`, and `open-decisions.md` are updated and consistent; the TOML parses. Numeric normalization constants and the parameter bundle are generated in Phase 2.
+Details: [devlog](../devlog/03-static-scaling/2026-10-16-od1-od5-od6-recorded.md).
+
+**Exact next action:** implement Phase 2 (plan section 4): dataset adapters, saved epoch permutations and augmentation records, normalization statistics and the canonical initial bundle, and the shared `.npz`+manifest correctness fixtures (including the review's rectangular-linear and asymmetric-kernel cases); PyTorch-side generation needs the pinned Leonardo venv, so sync `f7b4520c` and precompile on a compute node first.
+
+## Phase 1 review independently closed — 2026-10-16
+
+The reviewer inspected the corrected specification, configuration, and both probe scripts.
+Both local probe reruns exited 0 and reproduced the saved printed output.
+R1–R4 are closed in the [review report](../../reports/static-scaling-phase1-review.md).
+The experiment decisions remain pending. Actual PyTorch numerical comparisons remain Phase 2/3 work.
+
+**Exact next action:** record OD-1, OD-5, and OD-6 before generating Phase 2 fixtures.
+
+## Phase 1 review response complete — 2026-10-16
+
+All four review findings are corrected in `experiments/static-scaling/specification.md` and `experiment.toml`.
+R1: no classifier transpose (`Dense(512 => 200)`, weight `(200, 512)`).
+R2: convolutions use `Flux.CrossCor` with `permutedims(w, (4, 3, 2, 1))`; no kernel reversal; self-inverse export.
+R3: the all-keyword `Optimisers.AdamW(; eta, beta, lambda, epsilon, couple = true)` constructor is documented.
+R4: the shared counter is completed updates `s`; Flux stores `beta^(s+1)` and continuation reconstructs it by repeated float32 multiplication.
+Focused acceptance probes pass with exit 0 (`experiments/static-scaling/probes/`, logs in `artifacts/logs/static-scaling/2026-10-16-review-response/`), including a manual PyTorch-semantics cross-correlation reference with an asymmetric kernel.
+No GPU, remote, or training run; no commit.
+Details: [response devlog](../devlog/03-static-scaling/2026-10-16-phase1-review-response.md).
+
+**Exact next action:** record OD-1, OD-5, and OD-6 (they block Phase 2), then generate the Phase 2 shared fixtures under the corrected conversion rules.
+
+## Phase 1 review: changes required — 2026-10-16
+
+The [review](../../reports/static-scaling-phase1-review.md) identifies four contract defects in the shared specification and configuration.
+R1 corrects the classifier transpose. R2 requires an explicit convolution kernel-orientation rule.
+R3 corrects the AdamW constructor. R4 corrects the stored beta-power exponent relative to completed updates.
+Local Optimisers 0.4.9 and NNlib 0.9.45 probes support the findings.
+The specification remains unchanged pending corrections. No remote execution or training occurred.
+Commands and evidence: [devlog](../devlog/03-static-scaling/2026-10-16-phase1-review.md).
+
+**Exact next action:** correct R1–R4 in the specification and configuration before generating Phase 2 fixtures.
+
+## Phase 1 shared specification drafted — 2026-10-15
+
+Phase 1 of the [static scaling plan](../../temp/static-graph-gpu-scaling-implementation-phases.md) is drafted as documentation in `experiments/static-scaling/`: a readable [specification](../../experiments/static-scaling/specification.md), a machine-readable [config](../../experiments/static-scaling/experiment.toml) (Julia TOML and Python 3.11 tomllib), and an [open-decision table](../../experiments/static-scaling/open-decisions.md) with 13 decisions and proposed defaults.
+The contract records the architecture (11,271,432 parameters, 62 trainable arrays), the data schedule (99,840 samples per epoch, 160-image tail dropped, 195/390 updates per epoch), AdamW equations and grouping, the schedule by global update, the shared `.npz` plus manifest fixture format, the fixed 32-core CPU policy, the 20%-free memory margin, tolerances, and the explicit Flux entry point (64 guard collectives per update).
+Source pin: `flux-integration` is clean at `f7b4520c` with both guards committed; the Leonardo copy is a pre-guard snapshot and must be re-synced and precompiled before any run. The local manifest is stale.
+An independent verification subagent passed all nine checks; one wording defect was found and fixed. No training, no remote execution, no Flux change, no commit.
+
+Details: [devlog](../devlog/03-static-scaling/2026-10-15-phase1-shared-specification.md).
+
+**Exact next action:** record the open decisions (at minimum OD-3, OD-5, OD-6, OD-10, OD-11), then implement Phase 2: data adapters, saved epoch permutations and augmentation records, and shared correctness fixtures.
+
+## Static-network implementation phases — 2026-10-15
+
+The [implementation plan](../../temp/static-graph-gpu-scaling-implementation-phases.md) defines nine phases after the completed Leonardo environment preparation.
+The phases cover the shared specification, data fixtures, single-GPU training, DDP correctness, memory selection, timing, repeated measurements, learning curves, and reporting.
+The final batch follows the memory pilot. GroupNorm and AdamW remain selected, with exact hyperparameters still open.
+This session produced documentation only. No training or remote execution occurred.
+
+**Exact next action:** write the Phase 1 shared specification and configuration draft, with remaining decisions listed explicitly.
+
+## Leonardo benchmark environment ready — 2026-10-15
+
+The static-network scaling benchmark environment is prepared on Leonardo; no experiment has run.
+The PyTorch venv (torch 2.9.1+cu126, torchvision 0.24.1+cu126, CPython 3.11.17) and Tiny ImageNet-200 are staged on `$WORK`.
+Compute-node verification PASS (`ENV_VERIFY=PASS`, one A100, single-kernel environment smoke); the dataset passed every checksum, layout, and count check.
+Reusable setup, verification, and dataset scripts are in `scripts/remote/leonardo/`.
+No test, benchmark, or training ran; no model or training code was written.
+
+Details: [devlog](../devlog/03-static-scaling/2026-10-15-leonardo-benchmark-env-setup.md),
+[Leonardo context](../context/leonardo.md),
+[proposal draft](../../reports/static-graph-gpu-scaling-proposal-detailed.md) (discussion draft, no experiment).
+
+**Exact next action:** write the shared experiment specification and the training code for both frameworks once the supervisor confirms the open decisions (AdamW hyperparameters and the batch size via the later memory pilot); the environment is ready but no model/training code exists yet and no experiment has run.
+
+## Conditional MoE and PyTorch explanation — 2026-10-15
+
+Source inspection and primary documentation support the supervisor answers about unused MoE parameters and PyTorch DDP.
+The wrapper handles local absence, global absence, and reactivation with a fixed parameter structure.
+This contract does not establish learned-router MoE or expert-parallel acceptance.
+PyTorch DDP also distinguishes local and global absence. Its standard reducer uses autograd hooks and gradient buckets.
+The comparison pins PyTorch documentation and reducer source to version 2.8.0 for reproducible claims.
+Details: [discussion record](../devlog/02-conditional-graph/2026-10-15-moe-pytorch-conditional-graphs.md).
+
+**Exact next action:** clarify whether the supervisor means temporary expert inactivity, token dropping, or structural expert removal.
+
+## Static-network scaling proposal drafted — 2026-10-15
+
+The user narrowed the proposal to static networks, eager PyTorch, and fixed-global-batch scaling on Leonardo.
+Tiny ImageNet-200 is the intended dataset. This remains a drafting phase for supervisor discussion.
+The [draft report](../../reports/static-graph-gpu-scaling-proposal.md) identifies documented small-image ResNet-18 recipes and explains the BatchNorm tradeoff.
+The supervisor-facing version is now a 1–2 page Italian proposal; the extended drafting version is preserved at `reports/static-graph-gpu-scaling-proposal-detailed.md`.
+The proposal now uses global batch 512 as the primary candidate (local 512/256/128 at one/two/four GPUs), with 256 as the memory-pilot fallback; supervisor feedback approved GroupNorm and selected AdamW, so the reference SGD settings no longer transfer.
+It proposes GroupNorm as an explicit adaptation and calculates parameter, optimizer, input, and activation-storage estimates.
+The activation scenarios are uncalibrated assumptions, not measured peak-memory bounds.
+No training, remote execution, or implementation occurred. Batch size and training duration remain proposals, and the exact AdamW hyperparameters are still open.
+
+**Exact next action:** align the short Italian proposal with AdamW, then confirm the single-GPU batch with the memory pilot.
+
+## GPU scaling experiment discussion — 2026-10-15
+
+The user proposes Flux/PyTorch comparisons on Leonardo at one, two, and four GPUs, with static and conditional networks.
+The dataset name remains ambiguous: confirm whether “tiny-images” means Tiny ImageNet-200.
+The recommendation is fixed-global-batch strong scaling first, followed by fixed-local-batch throughput scaling.
+Both frameworks need the same data, model equations, initial parameters, optimizer semantics, and global routing schedule.
+Conditional correctness checks must cover locally absent gradients, globally absent gradients, and reactivation after Adam history.
+The latest numerical guards require a fresh Flux baseline. Historical October 6 timings describe an earlier implementation.
+This discussion establishes no new performance result or approved experiment configuration.
+Details: [discussion record](../devlog/02-conditional-graph/2026-10-15-gpu-scaling-discussion.md).
+
+**Exact next action:** confirm the dataset identity, then specify the model pair and rank-independent global batch/routing schedule.
+
 ## DB-3 independent review closed — 2026-10-14
 
 R1, R2, and R3 are closed. No blocking findings remain within the reviewed scope.
