@@ -1,0 +1,384 @@
+==============================================================
+Tiny ImageNet-200 setup - Leonardo login node
+Session start (UTC): 2026-10-15T15:02:34Z
+Local repo: /home/kurapica/Projects/ddp_flux/ddp-flux-thesis
+==============================================================
+--- staging command 1: ssh leonardo 'mkdir -p ~/leonardo-setup'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+--- staging command 2: ssh leonardo 'cat > ~/leonardo-setup/download-tiny-imagenet.sh' < scripts/remote/leonardo/download-tiny-imagenet.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+--- staged file check
+local  sha256: f0c8a78e7a815aea3fc1f2add5dc89f1de9ec34b13f5ec3d425e1057ff195818
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+remote sha256: f0c8a78e7a815aea3fc1f2add5dc89f1de9ec34b13f5ec3d425e1057ff195818
+
+--- FIRST RUN (UTC): 2026-10-15T15:02:52Z
+--- command: ssh leonardo 'bash ~/leonardo-setup/download-tiny-imagenet.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+[2026-10-15T15:02:53Z] == tiny-imagenet-200 setup ==
+[2026-10-15T15:02:53Z] url           : https://cs231n.stanford.edu/tiny-imagenet-200.zip
+[2026-10-15T15:02:53Z] zip           : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+[2026-10-15T15:02:53Z] extract dir   : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+[2026-10-15T15:02:53Z] metadata      : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200-metadata.md
+[2026-10-15T15:02:53Z] recorded sha  : <none>
+[2026-10-15T15:02:53Z] expected size : 248100043 bytes
+[2026-10-15T15:02:53Z] zip not present; starting download
+[2026-10-15T15:02:53Z] download attempt 1: curl -fL --retry 3 --retry-delay 5 -C - -o /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.part https://cs231n.stanford.edu/tiny-imagenet-200.zip
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0  236M    0  192k    0     0   133k      0  0:30:10  0:00:01  0:30:09  133k  4  236M    4 10.0M    0     0  4283k      0  0:00:56  0:00:02  0:00:54 4281k  9  236M    9 21.5M    0     0  6284k      0  0:00:38  0:00:03  0:00:35 6282k 12  236M   12 30.4M    0     0  6999k      0  0:00:34  0:00:04  0:00:30 6999k 16  236M   16 39.9M    0     0  7570k      0  0:00:32  0:00:05  0:00:27 8322k 21  236M   21 51.4M    0     0  8103k      0  0:00:29  0:00:06  0:00:23 10.1M 26  236M   26 61.6M    0     0  8473k      0  0:00:28  0:00:07  0:00:21 10.2M 30  236M   30 72.0M    0     0  8791k      0  0:00:27  0:00:08  0:00:19 10.3M 34  236M   34 82.5M    0     0  8896k      0  0:00:27  0:00:09  0:00:18 10.3M 37  236M   37 87.8M    0     0  8610k      0  0:00:28  0:00:10  0:00:18 9724k 39  236M   39 93.6M    0     0  8418k      0  0:00:28  0:00:11  0:00:17 8836k 42  236M   42 99.5M    0     0  8218k      0  0:00:29  0:00:12  0:00:17 7835k 45  236M   45  106M    0     0  8119k      0  0:00:29  0:00:13  0:00:16 6999k 47  236M   47  111M    0     0  7942k      0  0:00:30  0:00:14  0:00:16 6103k 49  236M   49  117M    0     0  7751k      0  0:00:31  0:00:15  0:00:16 5971k 51  236M   51  122M    0     0  7612k      0  0:00:31  0:00:16  0:00:15 5788k 53  236M   53  127M    0     0  7486k      0  0:00:32  0:00:17  0:00:15 5672k 56  236M   56  133M    0     0  7388k      0  0:00:32  0:00:18  0:00:14 5438k 58  236M   58  137M    0     0  7249k      0  0:00:33  0:00:19  0:00:14 5245k 59  236M   59  140M    0     0  7043k      0  0:00:34  0:00:20  0:00:14 4813k 60  236M   60  142M    0     0  6827k      0  0:00:35  0:00:21  0:00:14 4238k 61  236M   61  145M    0     0  6626k      0  0:00:36  0:00:22  0:00:14 3638k 62  236M   62  147M    0     0  6453k      0  0:00:37  0:00:23  0:00:14 2949k 63  236M   63  150M    0     0  6300k      0  0:00:38  0:00:24  0:00:14 2599k 64  236M   64  152M    0     0  6149k      0  0:00:39  0:00:25  0:00:14 2503k 65  236M   65  155M    0     0  6017k      0  0:00:40  0:00:26  0:00:14 2539k 66  236M   66  157M    0     0  5887k      0  0:00:41  0:00:27  0:00:14 2586k 67  236M   67  160M    0     0  5771k      0  0:00:41  0:00:28  0:00:13 2590k 68  236M   68  162M    0     0  5675k      0  0:00:42  0:00:29  0:00:13 2628k 70  236M   70  165M    0     0  5576k      0  0:00:43  0:00:30  0:00:13 2699k 71  236M   71  168M    0     0  5505k      0  0:00:44  0:00:31  0:00:13 2806k 72  236M   72  172M    0     0  5455k      0  0:00:44  0:00:32  0:00:12 3078k 74  236M   74  176M    0     0  5409k      0  0:00:44  0:00:33  0:00:11 3363k 76  236M   76  181M    0     0  5394k      0  0:00:44  0:00:34  0:00:10 3746k 79  236M   79  187M    0     0  5415k      0  0:00:44  0:00:35  0:00:09 4422k 81  236M   81  193M    0     0  5443k      0  0:00:44  0:00:36  0:00:08 5059k 85  236M   85  201M    0     0  5515k      0  0:00:43  0:00:37  0:00:06 5905k 89  236M   89  211M    0     0  5635k      0  0:00:42  0:00:38  0:00:04 7163k 92  236M   92  219M    0     0  5690k      0  0:00:42  0:00:39  0:00:03 7716k 96  236M   96  227M    0     0  5762k      0  0:00:42  0:00:40  0:00:02 8227k100  236M  100  236M    0     0  5853k      0  0:00:41  0:00:41 --:--:-- 8872k
+[2026-10-15T15:03:35Z] downloaded: 248100043 bytes, sha256=6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+[2026-10-15T15:03:35Z] [DONE] download: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip (atomic rename from .part)
+[2026-10-15T15:03:35Z] zip integrity: unzip -tq /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+No errors detected in compressed data of /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.
+[2026-10-15T15:03:37Z] [DONE] zip integrity: OK (No errors detected in compressed data of /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.)
+[2026-10-15T15:03:37Z] extracting: unzip -q -o /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip -d /leonardo_work/IscrC_UNMASKED/epicazio/datasets
+[2026-10-15T15:08:27Z] [DONE] extract: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+[2026-10-15T15:08:27Z] == verification ==
+  OK   wnids.txt lines                                200
+  OK   wnids.txt unique entries                       200
+  OK   words.txt class lines (>= 200)                 82114
+  OK   train class directories                        200
+  OK   train JPEG images                              100000
+  OK   train images per class (min/max)               500/500
+  OK   train *_boxes.txt files                        200
+  OK   all wnids.txt entries present under train/     yes
+  OK   val JPEG images                                10000
+  OK   val_annotations.txt lines                      10000
+  OK   annotated filenames present under val/images   10000
+  OK   val classes in annotations                     200
+  OK   val images per class (min)                     50
+  OK   val images per class (max)                     50
+  OK   val images per class (min/max)                 50/50
+  OK   test JPEG images                               10000
+[2026-10-15T15:08:35Z] [DONE] verify: all checks passed
+6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821  /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+[2026-10-15T15:08:35Z] zip byte size (stat -c %s): 248100043
+[2026-10-15T15:09:18Z] du -sh zip: 237M (248100043 bytes apparent)
+[2026-10-15T15:09:18Z] du -sh extracted: 76M (249024074 bytes apparent)
+[2026-10-15T15:09:19Z] published MD5 cross-check: MATCH (actual=90528d7ca1a48142e341f4ef8d21d0de published=90528d7ca1a48142e341f4ef8d21d0de)
+
+================== TINY IMAGENET-200 VERIFICATION SUMMARY ==================
+zip path       : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+zip byte size  : 248100043 (du -sh 237M, du -sb 248100043 B)
+zip SHA-256    : 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+published MD5  : MATCH
+extract path   : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+extract size   : du -sh 76M (du -sb 249024074 B)
+unzip -t       : OK
+train          : 100000 JPEG in 200 classes (min/max per class 500/500), 200 *_boxes.txt
+val            : 10000 JPEG, 10000 annotation lines, 200 classes (min/max per class 50/50)
+test           : 10000 JPEG
+wnids.txt      : 200 lines
+words.txt      : 82114 lines
+============================================================================
+TINY_IMAGENET_OK train=100000 val=10000 test=10000 classes=200
+[2026-10-15T15:09:19Z] [DONE] metadata: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200-metadata.md
+[2026-10-15T15:09:19Z] ALL DONE
+
+--- STRUCTURE INSPECTION (UTC): 2026-10-15T15:09:34Z
+--- command: ssh leonardo 'ls -la $WORK/epicazio/datasets $WORK/epicazio/datasets/downloads; wc -l words.txt; ...'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+--- datasets dir:
+total 17
+drwxr-xr-x.  4 epicazio interactive 4096 Oct 15 17:09 .
+drwxr-xr-x. 10 epicazio interactive 4096 Oct 15 17:02 ..
+drwxr-xr-x.  2 epicazio interactive 4096 Oct 15 17:03 downloads
+drwxrwxr-x.  5 epicazio interactive 4096 Feb  9  2015 tiny-imagenet-200
+-rw-r--r--.  1 epicazio interactive 3133 Oct 15 17:09 tiny-imagenet-200-metadata.md
+--- downloads dir:
+total 242300
+drwxr-xr-x. 2 epicazio interactive      4096 Oct 15 17:03 .
+drwxr-xr-x. 4 epicazio interactive      4096 Oct 15 17:09 ..
+-rw-r--r--. 1 epicazio interactive 248100043 Oct 15 17:03 tiny-imagenet-200.zip
+--- words.txt:
+82114 /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200/words.txt
+--- words.txt first field unique count:
+82115
+--- words.txt head:
+n00001740	entity
+n00001930	physical entity
+n00002137	abstraction, abstract entity
+--- wnids.txt missing from words.txt first field count:
+0
+--- extract top level:
+test
+train
+val
+wnids.txt
+words.txt
+--- test/images sample:
+test_0.JPEG
+test_1000.JPEG
+test_1001.JPEG
+--- train sample class:
+n01443537
+n01629819
+n01641577
+images
+n01443537_boxes.txt
+
+--- SECOND RUN - IDEMPOTENCY CHECK (UTC): 2026-10-15T15:09:47Z
+--- command: ssh leonardo 'bash ~/leonardo-setup/download-tiny-imagenet.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+[2026-10-15T15:09:49Z] == tiny-imagenet-200 setup ==
+[2026-10-15T15:09:49Z] url           : https://cs231n.stanford.edu/tiny-imagenet-200.zip
+[2026-10-15T15:09:49Z] zip           : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+[2026-10-15T15:09:49Z] extract dir   : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+[2026-10-15T15:09:49Z] metadata      : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200-metadata.md
+[2026-10-15T15:09:49Z] recorded sha  : 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+[2026-10-15T15:09:49Z] expected size : 248100043 bytes
+[2026-10-15T15:09:50Z] [DONE] download: skipped (existing zip sha256 matches recorded 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821)
+[2026-10-15T15:09:50Z] zip integrity: unzip -tq /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+No errors detected in compressed data of /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.
+[2026-10-15T15:09:52Z] [DONE] zip integrity: OK (No errors detected in compressed data of /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.)
+[2026-10-15T15:09:52Z] [DONE] extract: skipped (sentinel present: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200/wnids.txt)
+[2026-10-15T15:09:52Z] == verification ==
+  OK   wnids.txt lines                                200
+  OK   wnids.txt unique entries                       200
+  OK   words.txt class lines (>= 200)                 82114
+  OK   train class directories                        200
+  OK   train JPEG images                              100000
+  OK   train images per class (min/max)               500/500
+  OK   train *_boxes.txt files                        200
+  OK   all wnids.txt entries present under train/     yes
+  OK   val JPEG images                                10000
+  OK   val_annotations.txt lines                      10000
+  OK   annotated filenames present under val/images   10000
+  OK   val classes in annotations                     200
+  OK   val images per class (min)                     50
+  OK   val images per class (max)                     50
+  OK   val images per class (min/max)                 50/50
+  OK   test JPEG images                               10000
+[2026-10-15T15:10:00Z] [DONE] verify: all checks passed
+6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821  /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+[2026-10-15T15:10:00Z] zip byte size (stat -c %s): 248100043
+[2026-10-15T15:10:57Z] du -sh zip: 237M (248100043 bytes apparent)
+[2026-10-15T15:10:57Z] du -sh extracted: 76M (249024074 bytes apparent)
+[2026-10-15T15:10:58Z] published MD5 cross-check: MATCH (actual=90528d7ca1a48142e341f4ef8d21d0de published=90528d7ca1a48142e341f4ef8d21d0de)
+
+================== TINY IMAGENET-200 VERIFICATION SUMMARY ==================
+zip path       : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+zip byte size  : 248100043 (du -sh 237M, du -sb 248100043 B)
+zip SHA-256    : 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+published MD5  : MATCH
+extract path   : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+extract size   : du -sh 76M (du -sb 249024074 B)
+unzip -t       : OK
+train          : 100000 JPEG in 200 classes (min/max per class 500/500), 200 *_boxes.txt
+val            : 10000 JPEG, 10000 annotation lines, 200 classes (min/max per class 50/50)
+test           : 10000 JPEG
+wnids.txt      : 200 lines
+words.txt      : 82114 lines
+============================================================================
+TINY_IMAGENET_OK train=100000 val=10000 test=10000 classes=200
+[2026-10-15T15:10:58Z] metadata already exists; left untouched: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200-metadata.md
+[2026-10-15T15:10:58Z] ALL DONE
+--- second run exit code: 0
+
+--- remote metadata file (UTC): 2026-10-15T15:10:58Z
+--- command: ssh leonardo 'cat $WORK/epicazio/datasets/tiny-imagenet-200-metadata.md'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+# Tiny ImageNet-200 dataset metadata
+
+- Dataset: Tiny ImageNet-200 (Stanford CS231n)
+- URL: https://cs231n.stanford.edu/tiny-imagenet-200.zip
+- Downloaded (UTC): 2026-10-15T15:09:19Z
+- Archive: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+- Archive byte size: 248100043
+- SHA-256: 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+- SHA-256 source: self-computed on the Leonardo login node (the official CS231n page publishes no checksum)
+- Published MD5 cross-check: MATCH (community-reported MD5 `90528d7ca1a48142e341f4ef8d21d0de`, actual `90528d7ca1a48142e341f4ef8d21d0de`)
+- Extracted to: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+- Disk usage: archive `du -sh` 237M (248100043 B apparent); extracted `du -sh` 76M (249024074 B apparent)
+- Last verified (UTC): 2026-10-15T15:09:19Z
+
+## Verified counts (all checks passed, `unzip -t` OK)
+
+| Item | Expected | Observed |
+|---|---|---|
+| wnids.txt lines | 200 | 200 |
+| words.txt lines | >= 200 | 82114 |
+| train class directories | 200 | 200 |
+| train JPEG images | 100000 | 100000 |
+| train JPEG per class (min/max) | 500/500 | 500/500 |
+| train *_boxes.txt files | 200 | 200 |
+| val JPEG images | 10000 | 10000 |
+| val_annotations.txt lines | 10000 | 10000 |
+| annotated files present under val/images | 10000 | 10000 |
+| val classes in annotations | 200 | 200 |
+| val JPEG per class (min/max) | 50/50 | 50/50 |
+| test JPEG images | 10000 | 10000 |
+
+## Commands used
+
+Staging from the thesis repo root (local machine):
+
+    ssh leonardo 'mkdir -p ~/leonardo-setup'
+    ssh leonardo 'cat > ~/leonardo-setup/download-tiny-imagenet.sh' < scripts/remote/leonardo/download-tiny-imagenet.sh
+
+Execution (Leonardo login node):
+
+    ssh leonardo 'bash ~/leonardo-setup/download-tiny-imagenet.sh'
+
+Key commands inside the script (first run):
+
+    curl -fL --retry 3 --retry-delay 5 -C - -o /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.part https://cs231n.stanford.edu/tiny-imagenet-200.zip
+    mv -f /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.part /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    unzip -tq /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    unzip -q -o /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip -d /leonardo_work/IscrC_UNMASKED/epicazio/datasets
+    sha256sum /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    stat -c %s /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    du -sh /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+    du -sh /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+
+Idempotency: a re-run skips the download when `sha256sum /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip` equals the
+recorded SHA-256 above and skips extraction when `/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200/wnids.txt` exists; the
+verification always re-runs.
+--- metadata cat exit code: 0
+
+--- SCRIPT REVISION: metadata timestamp now derives from archive mtime; metadata regenerated each run (UTC): 2026-10-15T15:11:43Z
+--- restaging: ssh leonardo 'cat > ~/leonardo-setup/download-tiny-imagenet.sh' < scripts/remote/leonardo/download-tiny-imagenet.sh
+local  sha256: ddc524c2560e673ac4e09cbf8213513a816a601ceb7481e7d4aaa8a28fa5e4f8
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+remote sha256: ddc524c2560e673ac4e09cbf8213513a816a601ceb7481e7d4aaa8a28fa5e4f8
+
+--- THIRD RUN - metadata regeneration (UTC): 2026-10-15T15:11:49Z
+--- command: ssh leonardo 'bash ~/leonardo-setup/download-tiny-imagenet.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+[2026-10-15T15:11:53Z] == tiny-imagenet-200 setup ==
+[2026-10-15T15:11:53Z] url           : https://cs231n.stanford.edu/tiny-imagenet-200.zip
+[2026-10-15T15:11:53Z] zip           : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+[2026-10-15T15:11:53Z] extract dir   : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+[2026-10-15T15:11:53Z] metadata      : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200-metadata.md
+[2026-10-15T15:11:53Z] recorded sha  : 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+[2026-10-15T15:11:53Z] expected size : 248100043 bytes
+[2026-10-15T15:11:54Z] [DONE] download: skipped (existing zip sha256 matches recorded 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821)
+[2026-10-15T15:11:54Z] zip integrity: unzip -tq /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+No errors detected in compressed data of /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.
+[2026-10-15T15:11:56Z] [DONE] zip integrity: OK (No errors detected in compressed data of /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.)
+[2026-10-15T15:11:56Z] [DONE] extract: skipped (sentinel present: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200/wnids.txt)
+[2026-10-15T15:11:56Z] == verification ==
+  OK   wnids.txt lines                                200
+  OK   wnids.txt unique entries                       200
+  OK   words.txt class lines (>= 200)                 82114
+  OK   train class directories                        200
+  OK   train JPEG images                              100000
+  OK   train images per class (min/max)               500/500
+  OK   train *_boxes.txt files                        200
+  OK   all wnids.txt entries present under train/     yes
+  OK   val JPEG images                                10000
+  OK   val_annotations.txt lines                      10000
+  OK   annotated filenames present under val/images   10000
+  OK   val classes in annotations                     200
+  OK   val images per class (min)                     50
+  OK   val images per class (max)                     50
+  OK   val images per class (min/max)                 50/50
+  OK   test JPEG images                               10000
+[2026-10-15T15:12:04Z] [DONE] verify: all checks passed
+6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821  /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+[2026-10-15T15:12:05Z] zip byte size (stat -c %s): 248100043
+[2026-10-15T15:13:00Z] du -sh zip: 237M (248100043 bytes apparent)
+[2026-10-15T15:13:00Z] du -sh extracted: 76M (249024074 bytes apparent)
+[2026-10-15T15:13:01Z] published MD5 cross-check: MATCH (actual=90528d7ca1a48142e341f4ef8d21d0de published=90528d7ca1a48142e341f4ef8d21d0de)
+
+================== TINY IMAGENET-200 VERIFICATION SUMMARY ==================
+zip path       : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+zip byte size  : 248100043 (du -sh 237M, du -sb 248100043 B)
+zip SHA-256    : 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+published MD5  : MATCH
+extract path   : /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+extract size   : du -sh 76M (du -sb 249024074 B)
+unzip -t       : OK
+train          : 100000 JPEG in 200 classes (min/max per class 500/500), 200 *_boxes.txt
+val            : 10000 JPEG, 10000 annotation lines, 200 classes (min/max per class 50/50)
+test           : 10000 JPEG
+wnids.txt      : 200 lines
+words.txt      : 82114 lines
+============================================================================
+TINY_IMAGENET_OK train=100000 val=10000 test=10000 classes=200
+[2026-10-15T15:13:01Z] [DONE] metadata: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200-metadata.md
+[2026-10-15T15:13:01Z] ALL DONE
+--- third run exit code: 0
+
+--- corrected remote metadata file (UTC): 2026-10-15T15:13:01Z
+--- archive mtime check: stat -c %Y zip -> 1792076614
+2026-10-15T15:03:34Z
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+# Tiny ImageNet-200 dataset metadata
+
+- Dataset: Tiny ImageNet-200 (Stanford CS231n)
+- URL: https://cs231n.stanford.edu/tiny-imagenet-200.zip
+- Downloaded (UTC): 2026-10-15T15:03:34Z
+- Archive: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+- Archive byte size: 248100043
+- SHA-256: 6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821
+- SHA-256 source: self-computed on the Leonardo login node (the official CS231n page publishes no checksum)
+- Published MD5 cross-check: MATCH (community-reported MD5 `90528d7ca1a48142e341f4ef8d21d0de`, actual `90528d7ca1a48142e341f4ef8d21d0de`)
+- Extracted to: /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+- Disk usage: archive `du -sh` 237M (248100043 B apparent); extracted `du -sh` 76M (249024074 B apparent)
+- Last verified (UTC): 2026-10-15T15:13:01Z
+
+## Verified counts (all checks passed, `unzip -t` OK)
+
+| Item | Expected | Observed |
+|---|---|---|
+| wnids.txt lines | 200 | 200 |
+| words.txt lines | >= 200 | 82114 |
+| train class directories | 200 | 200 |
+| train JPEG images | 100000 | 100000 |
+| train JPEG per class (min/max) | 500/500 | 500/500 |
+| train *_boxes.txt files | 200 | 200 |
+| val JPEG images | 10000 | 10000 |
+| val_annotations.txt lines | 10000 | 10000 |
+| annotated files present under val/images | 10000 | 10000 |
+| val classes in annotations | 200 | 200 |
+| val JPEG per class (min/max) | 50/50 | 50/50 |
+| test JPEG images | 10000 | 10000 |
+
+## Commands used
+
+Staging from the thesis repo root (local machine):
+
+    ssh leonardo 'mkdir -p ~/leonardo-setup'
+    ssh leonardo 'cat > ~/leonardo-setup/download-tiny-imagenet.sh' < scripts/remote/leonardo/download-tiny-imagenet.sh
+
+Execution (Leonardo login node):
+
+    ssh leonardo 'bash ~/leonardo-setup/download-tiny-imagenet.sh'
+
+Key commands inside the script (first run):
+
+    curl -fL --retry 3 --retry-delay 5 -C - -o /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.part https://cs231n.stanford.edu/tiny-imagenet-200.zip
+    mv -f /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip.part /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    unzip -tq /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    unzip -q -o /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip -d /leonardo_work/IscrC_UNMASKED/epicazio/datasets
+    sha256sum /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    stat -c %s /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+    du -sh /leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+    du -sh /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip
+
+Idempotency: a re-run skips the download when `sha256sum /leonardo_work/IscrC_UNMASKED/epicazio/datasets/downloads/tiny-imagenet-200.zip` equals the
+recorded SHA-256 above and skips extraction when `/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200/wnids.txt` exists; the
+verification always re-runs.
+--- metadata cat exit code: 0

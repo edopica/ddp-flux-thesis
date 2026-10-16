@@ -73,6 +73,7 @@ Chronological development log entries for each checkpoint and milestone, grouped
 
 - **[01-pr2694/](devlog/01-pr2694/)** — C0–C8 upstream DDP work, M0/M1 integration spike, PS1–PS8 PR #2694 salvage, Windows routing fix.
 - **[02-conditional-graph/](devlog/02-conditional-graph/)** — conditional-graph onboarding, wrapper Phases A–K, native CUDA/NCCL validation, timing, notebooks.
+- **[03-static-scaling/](devlog/03-static-scaling/)** — static-network GPU scaling: Tiny ImageNet-200/PyTorch benchmark environment setup.
 
 Complete dated index: **[devlog/README.md](devlog/README.md)**.
 
