@@ -1,0 +1,7 @@
+# Extracted unchanged from runtime-versions.txt (job 60959396, lrdn0125).
+4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837  /leonardo/home/userexternal/epicazio/projects/flux-integration/Manifest.toml
+e950f5d92f42024f8c54faf484d01a56a06d4647e1ab1f6782c4aeef62e3104b  /leonardo/home/userexternal/epicazio/projects/flux-integration/Project.toml
+13970e0a9b8595595ce63a9e05d69de0b381fff86d16f774c4e0d04d8bb38853  /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+c8077e0c6504adedfdce5a35dd1a2ba6bde057fc45ee9bd7ba1edbd35ee23874  scripts/static_scaling/julia-env/Manifest.toml
+6e75702e0e98a6fe3a3c253a278be827f771295d950dee67eae38367bb8f032d  scripts/static_scaling/julia-env/Project.toml
+cd39f2829c56037a3c68d05299f6d823f4ec603d7422c5d377104fc48d8c7532  /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/requirements-freeze.txt

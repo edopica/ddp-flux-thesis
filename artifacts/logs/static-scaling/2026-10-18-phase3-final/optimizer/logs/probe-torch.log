@@ -1,0 +1,7 @@
+PROBE_TORCH training_path leaves=62 decay=21 nodecay=41 rule_meta_ok=True
+PROBE_TORCH schedule t1=1.0256410256410257e-06 tW=0.001 tW1=0.0009999999679560902 tT=0.0 rejection_ok=True
+PROBE_TORCH case=main leaf=decay lambda=0.0001 m_nonzero=True v_nonzero=True x_final=[0.9947509765625, -0.49837496876716614, 0.2523820996284485]
+PROBE_TORCH case=main leaf=nodecay lambda=0.0 m_nonzero=True v_nonzero=True x_final=[1.9990718364715576, -1.4947540760040283, 0.7222511768341064]
+PROBE_TORCH case=tiny leaf=decay lambda=0.0001 m_nonzero=True v_nonzero=True x_final=[0.9994248747825623, -0.9999952912330627, 0.4989979863166809]
+PROBE_TORCH case=tiny leaf=nodecay lambda=0.0 m_nonzero=True v_nonzero=True x_final=[2.001326084136963, -1.500003457069397, 0.7502495050430298]
+PROBE_TORCH WROTE /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/probe_torch.json /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/probe_torch_arrays.npz

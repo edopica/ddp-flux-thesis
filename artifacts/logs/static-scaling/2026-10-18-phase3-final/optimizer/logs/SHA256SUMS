@@ -1,0 +1,8 @@
+a0a08e0822a50e2bd866fc448f5727ab044169c5c07b2fa0dd7cfb63f6acd3de  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/probe_flux.json
+9790ab9fafe420c9d9ea5f202404dc613e6647d3aef34c533357663c80179087  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/probe_flux_arrays.npz
+1ca4455560806a3a31ba6c928b428493ec683ec423d1b2b8ba2cb7f5e013332e  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/probe_torch.json
+77e195bc4332954f5a0ef1336b4eb1d7a0bebec3651dcab6913fbb5b402c19b0  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/probe_torch_arrays.npz
+6d3716517903a3c9dc49327bae5c6510fe5e2fc7166323c92e7fc53bd3ac7431  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/comparison.json
+3783c3442dcd129c0ca9d745bfd0387aebe53cffb7aff66547b604bb3cfef1c0  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/logs/comparator.log
+c220a6e391a7ef9715267bcdb266e5452d8f784e1b33f62757c9c43297904cfc  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/logs/probe-flux.log
+352cf7ca160a132b141cbeecdfbcf743e38cb14a3f7a5324efcd4ce8353fcdeb  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase3-final/optimizer/logs/probe-torch.log

@@ -1,0 +1,54 @@
+# Missing items, invalid-provenance flags, and value caveats
+
+1. REMOTE GIT IDENTITY UNAVAILABLE.
+   ~/projects/ddp-flux-thesis and ~/projects/flux-integration on Leonardo are
+   rsynced trees without .git (both "fatal: not a git repository", exit 128).
+   Therefore `git -C ... rev-parse HEAD`, `git diff HEAD | sha256sum`, and the
+   untracked-list hash cannot be computed remotely. See 00_git_probe.txt.
+   The historical identities in 05_attempt3_launch_command.txt and in
+   logs/remote-check.log are caller-supplied values, not remote git output.
+
+2. FALSE-POSITIVE EMPTY-DIFF HASH.
+   The remote `git diff HEAD | sha256sum` pipeline printed
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 with git
+   exit 129. That is the SHA-256 of empty input, not a valid clean-diff result.
+   The same value appears as the historical FLUX_STATE_SHA256; that historical
+   value was computed on the local flux worktree, which is clean at f7b4520c
+   (verified locally in this session).
+
+3. MISSING ~/projects/flux-integration/test/Manifest.toml (remote).
+   The file is also absent in the local flux worktree. The Flux checker loads
+   $THESIS/scripts/static_scaling/julia-env plus the flux test project, whose
+   packages resolve from ~/projects/flux-integration/Manifest.toml (present,
+   SHA-256 4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837).
+
+4. CURRENT LOCAL THESIS STATE != HISTORICAL SOURCE STATE.
+   Historical SOURCE_STATE_SHA256 = 82623bbb516a981d6c795792d1433521d25a8ee3bbcc44a2b66f6f4631a452b9.
+   Current local state (same recipe, excluding artifacts/) = fe176b0c6e444fd32324603ed223430b2e60df143aebc49e483b770b39d219a6,
+   because reports/handoff/devlog files were added after job 60885091.
+   Do not reuse the historical state hash for future runs.
+   Local HEAD is still 3088f61020137912af32d9c969e87ea9ae2a71c3 (same as SOURCE_COMMIT).
+
+5. cuDNN.jl version() PARSER.
+   cuDNN.cudnnGetVersion() returns 92600 (cuDNN 9.26.0). cuDNN.version() prints
+   92.60.0 because the package divides by 1000 instead of 10000 for 9.x.
+   Authoritative package record: CUDNN_jll 9.26.0+0 (Manifest).
+   PyTorch uses a different bundled cuDNN: 9.10.2.21 (torch.backends.cudnn.version=91002).
+   The Julia and PyTorch stacks therefore do not share one cuDNN library.
+
+6. CUDA.jl-REPORTED RUNTIME/DRIVER VALUES.
+   CUDA.jl 6.2.2 reports runtime_version=12.9.0 and driver_version=13.3.0.
+   nvidia-smi reports driver 535.274.02. Record both; nvidia-smi is authoritative
+   for the host driver, and CUDA.jl's values describe its runtime/stub view.
+
+7. MANIFEST NULL FIELD (INTENTIONAL).
+   The only null/empty/unknown scalar in phase3_reference_manifest.json is
+   optimizer.gradient_clipping = null, meaning no gradient clipping. All other
+   string fields are non-empty and none is "unknown".
+   Keys named created_utc/torch_cuda/reference_file_sha256 in the check log are
+   checker labels; the manifest stores them as created/torch_version/cuda_version/
+   reference_file.sha256.
+
+8. IMMUTABILITY IS BEST EFFORT.
+   chmod -R a-w prevents ordinary writes/removal but is not filesystem
+   immutability and can be reversed by the owner. Recorded for honesty.

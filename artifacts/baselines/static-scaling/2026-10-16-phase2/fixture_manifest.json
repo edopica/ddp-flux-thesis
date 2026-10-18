@@ -1,0 +1,404 @@
+{
+  "producer": "scripts/static_scaling/make_fixtures.py",
+  "created": "2026-10-16T21:35:10Z",
+  "synthetic": false,
+  "source_commit": "3088f61020137912af32d9c969e87ea9ae2a71c3",
+  "source_state_sha256": "4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1",
+  "generator": "torch autograd (matmul, torch.nn.functional.conv2d) on CPU float32 tensors",
+  "generator_version": "2.9.1+cu126",
+  "schema": "flat arrays list; name = '<npz file>::<array name>'; sha256 = sha256 of arr.tobytes(order=\"C\"); files entry carries the npz byte hash",
+  "seed_rule": "torch.Generator(device='cpu').manual_seed(20261016 + 900 + i) per random source array; index i: linear.weight=0, linear.bias=1, linear.x=2, kernel.a_weight=3, kernel.a_x=4, kernel.b_weight=5, kernel.b_x=6; values are torch.randn(shape, generator=g, dtype=torch.float32); y and gradients are torch autograd results of sum(y)",
+  "files": [
+    {
+      "path": "data_fixture.npz",
+      "bytes": 1821284,
+      "sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3"
+    },
+    {
+      "path": "schedule_fixture.npz",
+      "bytes": 3797486,
+      "sha256": "aba66a8ef7bbc82fc81db8cd629092b917cd7d85efafed82553f853c45352662"
+    },
+    {
+      "path": "linear_fixture.npz",
+      "bytes": 2238,
+      "sha256": "8efa5278981b2b11842d2a701b6f81789c976e033a678a0322e961ecd8f1fa2d"
+    },
+    {
+      "path": "kernel_fixture.npz",
+      "bytes": 7114,
+      "sha256": "3b3795f6c6ff2ec68198a645cc65f4ba97e0b6438da61e6cfd2ad564ff441f3d"
+    }
+  ],
+  "arrays": [
+    {
+      "name": "data_fixture.npz::decoded_train_images",
+      "dtype": "uint8",
+      "shape": [
+        12,
+        3,
+        64,
+        64
+      ],
+      "layout": "nchw_uint8",
+      "sha256": "5bc76b0baa915e60967661f3a1161457011761e30a39d0215f9f5fa715f1897e"
+    },
+    {
+      "name": "data_fixture.npz::train_labels",
+      "dtype": "int64",
+      "shape": [
+        12
+      ],
+      "layout": "int64_vector",
+      "sha256": "ffe075149247ebcf2f607c7fa9d950c7acb17f41592b28230808244fe0aa3e02"
+    },
+    {
+      "name": "data_fixture.npz::augmentation",
+      "dtype": "uint8",
+      "shape": [
+        2,
+        12,
+        3
+      ],
+      "layout": "epoch_sample_top_left_flip_uint8",
+      "sha256": "7d0d293d4e9e956a43efa0b27312cdc2fb655878c76679a3bb4a62326ad8bab7"
+    },
+    {
+      "name": "data_fixture.npz::train_transformed_ref",
+      "dtype": "float32",
+      "shape": [
+        2,
+        12,
+        3,
+        64,
+        64
+      ],
+      "layout": "nchw_float32_normalized",
+      "sha256": "cb99368d356451a567a4b9287b7be3c4a7d0e94ff1b81825631425cfa081553a"
+    },
+    {
+      "name": "data_fixture.npz::decoded_val_images",
+      "dtype": "uint8",
+      "shape": [
+        8,
+        3,
+        64,
+        64
+      ],
+      "layout": "nchw_uint8",
+      "sha256": "c97098bdb0723e03f9187d6d2cf0dcde18b3f7b734dff25793d524e53aacf2ce"
+    },
+    {
+      "name": "data_fixture.npz::val_labels",
+      "dtype": "int64",
+      "shape": [
+        8
+      ],
+      "layout": "int64_vector",
+      "sha256": "80c54707dca258c78ec3e786b2266381275a5b14718769cb68b354cbeee3b689"
+    },
+    {
+      "name": "data_fixture.npz::val_transformed_ref",
+      "dtype": "float32",
+      "shape": [
+        8,
+        3,
+        64,
+        64
+      ],
+      "layout": "nchw_float32_normalized",
+      "sha256": "88bd1dfeae15307e911b6fed7c62f652d0497ead3facd25fff434587a5ff8246"
+    },
+    {
+      "name": "data_fixture.npz::normalization_mean",
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "layout": "float32_channel_constants",
+      "sha256": "4609812484cb2cee829ea07a06afe981ca22cc6432e0ca48900f8b922953d5df"
+    },
+    {
+      "name": "data_fixture.npz::normalization_std",
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "layout": "float32_channel_constants",
+      "sha256": "6b4bf9c3d133bc1d9bbbe8c6874f219e41f37946dc0c748e358532ed10b55153"
+    },
+    {
+      "name": "schedule_fixture.npz::epoch0_permutation",
+      "dtype": "int64",
+      "shape": [
+        100000
+      ],
+      "layout": "int64_vector",
+      "sha256": "f4ba0bea5ebf1972ab831b3effe9fd6aa34cd81a2c1bdd0cda22e8eed4e2f4c9"
+    },
+    {
+      "name": "schedule_fixture.npz::augmentation_epochs01",
+      "dtype": "uint8",
+      "shape": [
+        2,
+        100000,
+        3
+      ],
+      "layout": "epoch_sample_top_left_flip_uint8",
+      "sha256": "937aa5d27365805bedd8d0754aea934eb90b6ae919471ae73c89d74fbc155f7a"
+    },
+    {
+      "name": "schedule_fixture.npz::rank_ids_R1",
+      "dtype": "int64",
+      "shape": [
+        99840
+      ],
+      "layout": "int64_rank_sequence",
+      "sha256": "f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335"
+    },
+    {
+      "name": "schedule_fixture.npz::rank_ids_R2",
+      "dtype": "int64",
+      "shape": [
+        2,
+        49920
+      ],
+      "layout": "int64_rank_sequences",
+      "sha256": "c4e73ffd538edb2e114f2aaca602ef7aad8d57c054717da76600859aed509fb7"
+    },
+    {
+      "name": "schedule_fixture.npz::rank_ids_R4",
+      "dtype": "int64",
+      "shape": [
+        4,
+        24960
+      ],
+      "layout": "int64_rank_sequences",
+      "sha256": "873abf22fb7f9a854792d18c012986e95e876d728d5fb73aacc5d50a37649718"
+    },
+    {
+      "name": "linear_fixture.npz::weight",
+      "dtype": "float32",
+      "shape": [
+        3,
+        7
+      ],
+      "layout": "linear_out_in",
+      "sha256": "7cdad87ccf775f0bca585430f4a827c3429e1d7c7b2ab15eb8ae6cf8b085bd66"
+    },
+    {
+      "name": "linear_fixture.npz::bias",
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "layout": "linear_bias",
+      "sha256": "16098d9d2f18b7c9d009d3b1ef6e67aaf8c8dc0173d5e29df3b8001aaa5fb374"
+    },
+    {
+      "name": "linear_fixture.npz::x",
+      "dtype": "float32",
+      "shape": [
+        7,
+        5
+      ],
+      "layout": "linear_input_in_batch",
+      "sha256": "a51da1f8bf9a686c1e62d870307ce69ed589d4f3905235324eadf1f2cfbfe6a2"
+    },
+    {
+      "name": "linear_fixture.npz::y",
+      "dtype": "float32",
+      "shape": [
+        3,
+        5
+      ],
+      "layout": "linear_output_out_batch",
+      "sha256": "8a6633dc18f79953efeeea8b389031092082b39c8b4fcebba7ac786083e588da"
+    },
+    {
+      "name": "linear_fixture.npz::x_grad",
+      "dtype": "float32",
+      "shape": [
+        7,
+        5
+      ],
+      "layout": "linear_input_in_batch",
+      "sha256": "50113bcac8d5849ba172899d506886226ebb612ddd16b4173e5050f8d5f44b63"
+    },
+    {
+      "name": "linear_fixture.npz::w_grad",
+      "dtype": "float32",
+      "shape": [
+        3,
+        7
+      ],
+      "layout": "linear_out_in",
+      "sha256": "4cb758d055f8b9b87b8c79e32c4f1c4ee814985f2442d8d65c9a718511e358ca"
+    },
+    {
+      "name": "linear_fixture.npz::b_grad",
+      "dtype": "float32",
+      "shape": [
+        3
+      ],
+      "layout": "linear_bias",
+      "sha256": "36e617898bf9daabd3ad2aac1be3efacc75dce858697eb9c0311976bff2a9c2f"
+    },
+    {
+      "name": "kernel_fixture.npz::a_weight",
+      "dtype": "float32",
+      "shape": [
+        3,
+        2,
+        2,
+        3
+      ],
+      "layout": "conv_kernel_out_in_kh_kw",
+      "sha256": "3643d0bd415c1b5bda41e5fee2356a32bc792f506f79f25ad9e610a6ba422a35"
+    },
+    {
+      "name": "kernel_fixture.npz::a_x",
+      "dtype": "float32",
+      "shape": [
+        2,
+        2,
+        5,
+        6
+      ],
+      "layout": "nchw_float32",
+      "sha256": "a4942bce2d5e03c2d5c66199f77d9c8c56991251cd1578226485790ff86da306"
+    },
+    {
+      "name": "kernel_fixture.npz::a_y",
+      "dtype": "float32",
+      "shape": [
+        2,
+        3,
+        4,
+        4
+      ],
+      "layout": "nchw_float32",
+      "sha256": "6f967b89d4e85d41cbc347ea958af1d17084e32bd858df2c0fa3b0c587f36467"
+    },
+    {
+      "name": "kernel_fixture.npz::a_x_grad",
+      "dtype": "float32",
+      "shape": [
+        2,
+        2,
+        5,
+        6
+      ],
+      "layout": "nchw_float32",
+      "sha256": "76a754741b879d373561af0a3147e823d6595a3db8fcbb3ece3b360e8fc81fbe"
+    },
+    {
+      "name": "kernel_fixture.npz::a_w_grad",
+      "dtype": "float32",
+      "shape": [
+        3,
+        2,
+        2,
+        3
+      ],
+      "layout": "conv_kernel_out_in_kh_kw",
+      "sha256": "0f2415f7c6ae6350df8ab01170354ceea006ab50a5fde8272480056696bcaf2a"
+    },
+    {
+      "name": "kernel_fixture.npz::a_stride",
+      "dtype": "int64",
+      "shape": [
+        2
+      ],
+      "layout": "int64_pair",
+      "sha256": "814dd7b9784d57c15b9c2972e9b4fd6cf7e164f8162a934bdb2452a413dab1f7"
+    },
+    {
+      "name": "kernel_fixture.npz::a_padding",
+      "dtype": "int64",
+      "shape": [
+        2
+      ],
+      "layout": "int64_pair",
+      "sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb"
+    },
+    {
+      "name": "kernel_fixture.npz::b_weight",
+      "dtype": "float32",
+      "shape": [
+        2,
+        3,
+        2,
+        3
+      ],
+      "layout": "conv_kernel_out_in_kh_kw",
+      "sha256": "0bdae7c8812cdf497807069b6c6f0a7af0f813709f98f0ead591fb327946cdf9"
+    },
+    {
+      "name": "kernel_fixture.npz::b_x",
+      "dtype": "float32",
+      "shape": [
+        1,
+        3,
+        9,
+        7
+      ],
+      "layout": "nchw_float32",
+      "sha256": "c06671f7740ace8d19a4b321b66c597daf8a72ed62562f65ed609563461d8569"
+    },
+    {
+      "name": "kernel_fixture.npz::b_y",
+      "dtype": "float32",
+      "shape": [
+        1,
+        2,
+        5,
+        4
+      ],
+      "layout": "nchw_float32",
+      "sha256": "7d87233ca76ddf4fb875dc1fc07d1da7d43883572c75927e299f8c445681a7b0"
+    },
+    {
+      "name": "kernel_fixture.npz::b_x_grad",
+      "dtype": "float32",
+      "shape": [
+        1,
+        3,
+        9,
+        7
+      ],
+      "layout": "nchw_float32",
+      "sha256": "c8d7a8f65e8d44808af99908c8e3857d9eb541e796f2beb4fd6f233d05c3e0da"
+    },
+    {
+      "name": "kernel_fixture.npz::b_w_grad",
+      "dtype": "float32",
+      "shape": [
+        2,
+        3,
+        2,
+        3
+      ],
+      "layout": "conv_kernel_out_in_kh_kw",
+      "sha256": "ab3c701958303f4e9f5074140b985ca956dba3369cbb5ca513954fc034f7e231"
+    },
+    {
+      "name": "kernel_fixture.npz::b_stride",
+      "dtype": "int64",
+      "shape": [
+        2
+      ],
+      "layout": "int64_pair",
+      "sha256": "fa7c63f601691b958793c6d5ebe2ec4456e1a35b2b448b4f3e55cd1f86787673"
+    },
+    {
+      "name": "kernel_fixture.npz::b_padding",
+      "dtype": "int64",
+      "shape": [
+        2
+      ],
+      "layout": "int64_pair",
+      "sha256": "814dd7b9784d57c15b9c2972e9b4fd6cf7e164f8162a934bdb2452a413dab1f7"
+    }
+  ]
+}

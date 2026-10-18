@@ -1,0 +1,31 @@
+# Compute-node environment probe (Phase 3 attempt-3 evidence preservation)
+utc=2026-10-17T17:46:35Z
+host=lrdn0252.leonardo.local
+SLURM_JOB_ID=60892511
+CUDA_VISIBLE_DEVICES=0
+--- nvidia-smi ---
+0, NVIDIA A100-SXM-64GB, 535.274.02, 65536 MiB, 8.0
+--- python/torch runtime ---
+python=3.11.17
+numpy=2.4.6
+torch=2.9.1+cu126
+torchvision=0.24.1+cu126
+torch.version.cuda=12.6
+torch.version.cudnn=None
+torch.backends.cudnn.version=91002
+torch.cuda.nccl.version=(2, 27, 5)
+torch.cuda.is_available=True
+device0=NVIDIA A100-SXM-64GB
+capability=(8, 0)
+cudnn.allow_tf32=True
+cuda.matmul.allow_tf32=False
+float32_matmul_precision=highest
+--- julia runtime ---
+CUDA.jl_version=6.2.2
+cuDNN.jl_version=6.2.2
+CUDA.runtime_version=12.9.0
+CUDA.driver_version=13.3.0
+cuDNN.library_version=92.60.0
+CUDA.math_mode=DEFAULT_MATH
+cuDNN.math_mode=CUDNN_TENSOR_OP_MATH
+--- probe exit=0 ---

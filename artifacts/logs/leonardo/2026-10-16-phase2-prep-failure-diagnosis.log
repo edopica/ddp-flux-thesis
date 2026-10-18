@@ -1,0 +1,65 @@
+=== Phase 2 prep failure diagnosis — 2026-10-16T17:01:58+02:00 ===
+
+--- remote log dir does not exist (prep script never ran) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/': No such file or directory
+---
+tail: cannot open '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/remote-prep.log' for reading: No such file or directory
+
+--- sacct record of failed job 60729163 ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+JobID           JobName      State ExitCode               Start                 End        NodeList 
+------------ ---------- ---------- -------- ------------------- ------------------- --------------- 
+60729163     interacti+     FAILED     13:0 2026-10-16T17:00:31 2026-10-16T17:00:33        lrdn2229 
+60729163.ex+     extern  COMPLETED      0:0 2026-10-16T17:00:31 2026-10-16T17:00:33        lrdn2229 
+60729163.0          env     FAILED     13:0 2026-10-16T17:00:32 2026-10-16T17:00:32        lrdn2229 
+
+--- culprit: $WORK/epicazio/tools/uv/env (mode 644, non-executable) shadowing env via PATH ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+drwxr-xr-x. 2 epicazio interactive 4096 Oct 15 17:02 /leonardo_work/IscrC_UNMASKED/epicazio/tools/uv
+-rw-r--r--. 1 epicazio interactive  390 Oct 15 17:02 /leonardo_work/IscrC_UNMASKED/epicazio/tools/uv/env
+/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv/env: POSIX shell script, ASCII text executable
+---login PATH---
+/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv:/leonardo/home/userexternal/epicazio/.local/bin:/leonardo/home/userexternal/epicazio/bin:/cineca/bin:/leonardo/prod/opt/tools/cintools/1.0/none/bin:/leonardo/prod/spack/03/install/0.19/linux-rhel8-icelake/gcc-8.5.0/environment-modules-5.2.0-rz47odw4phlhzhhbz7b65nv5s5othgmi/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+---rc sourcing---
+/leonardo/home/userexternal/epicazio/.bashrc:20:. "/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv/env"
+/leonardo/home/userexternal/epicazio/.bash_profile:10:. "/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv/env"
+/leonardo/home/userexternal/epicazio/.profile:2:. "/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv/env"
+
+--- contents of the uv env activation script ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+#!/bin/sh
+# add binaries to PATH if they aren't added yet
+# affix colons on either side of $PATH to simplify matching
+case ":${PATH}:" in
+    *:"/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv":*)
+        ;;
+    *)
+        # Prepending path in case a system-installed binary needs to be overridden
+        export PATH="/leonardo_work/IscrC_UNMASKED/epicazio/tools/uv:$PATH"
+        ;;
+esac
+
+--- bash -l resolution of env (skips non-executable file; srun did not) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+env is /usr/bin/env
+---
+/usr/bin/env
+
+--- phase-2 target dirs still absent after failure ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+ls: cannot access '/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared': No such file or directory
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2': No such file or directory
+

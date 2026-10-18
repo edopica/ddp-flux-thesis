@@ -1,0 +1,27 @@
+{
+  "mean": [
+    0.4802369475364685,
+    0.4480670392513275,
+    0.39750364422798157
+  ],
+  "std": [
+    0.2764364182949066,
+    0.2688632905483246,
+    0.28158992528915405
+  ],
+  "pixel_count_per_channel": 409600000,
+  "dtype": "float32",
+  "method": "per-channel RGB mean and population standard deviation (divide by N) from all 100000 original training images, decoded once with PIL Image.open(path).convert('RGB'), scaled to [0,1], float64 accumulation, computed before augmentation/padding/tail dropping; validation and test images never used; mean = S/N; std = sqrt(max(0, E[x^2] - mean^2)); constants stored as float32",
+  "reduction": "per-image float64 channel sums and sums-of-squares accumulated sequentially in canonical train order (wnids.txt order, sorted filenames); no parallel reduction",
+  "decimal_mean_f64": [
+    0.4802369434455384,
+    0.4480670369274678,
+    0.39750364210898775
+  ],
+  "decimal_std_f64": [
+    0.2764364260187383,
+    0.2688632762749305,
+    0.2815899252967984
+  ],
+  "canonical_train_order": "classes in wnids.txt order (class index = 0-based position), then files sorted with Python sorted() (Unicode code point order) inside train/<wnid>/images/ filtered to *.jpeg/*.JPEG case-insensitively"
+}

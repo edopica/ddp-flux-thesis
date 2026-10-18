@@ -1,0 +1,153 @@
+=== CHECK retry-5 2026-10-16T23:36:11+02:00 ===
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 bash scripts/remote/leonardo/run-phase2-check.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 60758839
+salloc: job 60758839 queued and waiting for resources
+salloc: job 60758839 has been allocated resources
+salloc: Granted job allocation 60758839
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0011 are ready for job
+=== run-phase2-check: START ===
+utc=2026-10-16T21:36:45Z host=lrdn0011.leonardo.local
+SLURM_JOB_ID=60758839 SLURM_JOB_NODELIST=lrdn0011
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+JULIA_BIN=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+--- versions ---
+python 3.11.17 numpy 2.4.6 pillow 12.3.0 torch 2.9.1+cu126
+julia version 1.12.6
+=== 1/2 check_dataset.py ===
+CHECK data.counts PASS train=(100000,)/(100000, 3, 64, 64) val=(10000,)/(10000, 3, 64, 64) labels=int64/int64
+CHECK data.label_range_0_199 PASS train_min=0 train_max=199 val_min=0 val_max=199
+CHECK data.train_histogram_500_per_class PASS min=500 max=500 classes=200
+CHECK data.val_histogram_50_per_class PASS min=50 max=50 classes=200
+CHECK data.class_coverage_200 PASS unique=200
+CHECK data.class_wnids_copy PASS byte-identical wnids.txt
+CHECK data.train_listing_500_per_class PASS sum=100000
+CHECK data.train_label_blocks_by_wnid_order PASS labels follow wnids.txt order with sorted files
+CHECK data.annotation_mapping PASS val_files=10000 annotations=10000 mismatches=0
+CHECK stats.recompute_mean_std_vs_json PASS max_abs_delta_mean=4.09092621e-09 max_abs_delta_std=1.42733934e-08 tol=2e-07
+CHECK stats.pixel_count_per_channel PASS json=409600000 recomputed=409600000 expected=409600000
+CHECK schedule.permutations_shape PASS shape=(50, 100000) dtype=int64
+CHECK schedule.permutations_valid PASS checked_rows=50 bad_rows=none
+CHECK schedule.augmentation_ranges PASS shape=(50, 100000, 3) dtype=uint8 top_max=8 left_max=8 flip_max=1
+CHECK schedule.regenerated_epochs_0_1_bitwise PASS perm0=True perm1=True aug0=True aug1=True
+CHECK schedule.epoch_independence PASS epoch 0 unchanged after regenerating epoch 49
+CHECK schedule.epoch_ids_b512 PASS samples=99840 updates=195
+CHECK schedule.updates_b512 PASS updates=195
+CHECK schedule.epoch_ids_b256 PASS samples=99840 updates=390
+CHECK schedule.updates_b256 PASS updates=390
+CHECK schedule.tail_160_same_set PASS tail_size=160 same_set=True
+CHECK schedule.shards_b512_R1 PASS sizes=[99840] order_matches_epoch_ids=True
+CHECK schedule.shards_b512_R2 PASS sizes=[49920, 49920] order_matches_epoch_ids=True
+CHECK schedule.shards_b512_R4 PASS sizes=[24960, 24960, 24960, 24960] order_matches_epoch_ids=True
+CHECK schedule.shards_b256_R1 PASS sizes=[99840] order_matches_epoch_ids=True
+CHECK schedule.shards_b256_R2 PASS sizes=[49920, 49920] order_matches_epoch_ids=True
+CHECK schedule.shards_b256_R4 PASS sizes=[24960, 24960, 24960, 24960] order_matches_epoch_ids=True
+CHECK schedule.rank_independence_transform_R2 PASS transform(global)[rank r] == transform(shard r) bitwise
+CHECK schedule.rank_independence_transform_R4 PASS transform(global)[rank r] == transform(shard r) bitwise
+CHECK bundle.name_set PASS n=62 missing=none extra=none
+CHECK bundle.shapes PASS mismatches=none
+CHECK bundle.dtypes_float32 PASS mismatches=none
+CHECK bundle.element_count PASS total=11271432 want=11271432
+CHECK bundle.gn_initial_values PASS weights1=True biases0=True arrays=4/4
+CHECK bundle.classifier_shapes PASS weight=(200, 512) bias=(200,)
+CHECK bundle.manifest_entries PASS n_entries=62 order_matches_traversal=True
+CHECK bundle.manifest_sha256 PASS checked=62 sha_mismatch=none meta_mismatch=none
+CHECK bundle.bundle_hash PASS recomputed=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23 recorded=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23 rule="concat C-order bytes, manifest order"
+CHECK fixtures.manifest_present PASS synthetic=False
+CHECK fixtures.file_sha256 PASS files=4
+CHECK fixtures.data_fixture.npz PASS arrays=9 extra=none missing=none bad=none
+CHECK fixtures.schedule_fixture.npz PASS arrays=5 extra=none missing=none bad=none
+CHECK fixtures.linear_fixture.npz PASS arrays=7 extra=none missing=none bad=none
+CHECK fixtures.kernel_fixture.npz PASS arrays=14 extra=none missing=none bad=none
+CHECK data_fixture.contract PASS bad=none
+CHECK data_fixture.decoded_train_images PASS ids=[0, 1, 2, 63, 64, 199, 200, 999, 5000, 49999, 99998, 99999]
+CHECK data_fixture.train_labels PASS
+CHECK data_fixture.augmentation PASS epochs=[0,1]
+CHECK data_fixture.train_transformed_ref PASS bitwise replay from PREP
+CHECK data_fixture.decoded_val_images PASS ids=[0, 1, 2, 5000, 9999, 27, 4108, 7777]
+CHECK data_fixture.val_labels PASS
+CHECK data_fixture.val_transformed_ref PASS bitwise replay from PREP
+CHECK data_fixture.normalization_constants PASS mean/std equal stats.json float32
+CHECK schedule_fixture.contract PASS bad=none
+CHECK schedule_fixture.epoch0_permutation PASS
+CHECK schedule_fixture.augmentation_epochs01 PASS
+CHECK schedule_fixture.rank_ids_R1 PASS batch=512 world=1
+CHECK schedule_fixture.rank_ids_R2 PASS batch=512 world=2
+CHECK schedule_fixture.rank_ids_R4 PASS batch=512 world=4
+PHASE2_DATASET_CHECK PASS
+
+real	0m11.432s
+user	0m5.747s
+sys	0m3.858s
+=== 2/2 check_fixtures_data.jl ===
+Precompiling packages...
+   3753.1 ms  ✓ ZipFile
+   5091.5 ms  ✓ FileIO
+   1454.7 ms  ✓ NPZ
+  3 dependencies successfully precompiled in 14 seconds. 27 already precompiled.
+CHECK data.contract.decoded_train_images PASS
+CHECK data.contract.train_labels PASS
+CHECK data.contract.augmentation PASS
+CHECK data.contract.train_transformed_ref PASS
+CHECK data.contract.decoded_val_images PASS
+CHECK data.contract.val_labels PASS
+CHECK data.contract.val_transformed_ref PASS
+CHECK data.contract.normalization_mean PASS
+CHECK data.contract.normalization_std PASS
+CHECK labels.train_range_0_199 PASS n=12
+CHECK labels.train_julia_conversion_1_200 PASS
+CHECK labels.val_range_0_199 PASS n=8
+CHECK labels.val_julia_conversion_1_200 PASS
+CHECK transform.train_epoch0 PASS
+CHECK transform.train_epoch1 PASS
+CHECK transform.val PASS
+CHECK schedule.contract.epoch0_permutation PASS
+CHECK schedule.contract.augmentation_epochs01 PASS
+CHECK schedule.contract.rank_ids_R1 PASS
+CHECK schedule.contract.rank_ids_R2 PASS
+CHECK schedule.contract.rank_ids_R4 PASS
+CHECK schedule.permutation_is_0_to_99999 PASS n=100000
+CHECK schedule.augmentation_ranges PASS top/left in 0..8, flip in 0..1, n=600000
+CHECK schedule.rank_sequence_R1 PASS n=99840
+CHECK schedule.rank_sequence_R2 PASS n=49920 per rank
+CHECK schedule.rank_sequence_R4 PASS n=24960 per rank
+CHECK schedule.rank_coverage_R2 PASS ranks cover 99840 ids
+CHECK schedule.rank_coverage_R4 PASS ranks cover 99840 ids
+CHECK tail.arithmetic PASS 100000-99840=160 99840/512=195 99840/256=390
+CHECK tail.same_set_all_configs PASS dropped512=160 dropped256=160 same_set=true
+CHECK bundle.name_set PASS n=62 missing=none extra=none
+CHECK bundle.shapes PASS n_checked=62 mismatches=none
+CHECK bundle.dtypes_float32 PASS n_checked=62 mismatches=none
+CHECK bundle.element_count PASS total=11271432 want=11271432
+CHECK bundle.gn_initial_values PASS weights==1 (4 arrays) biases==0 (4 arrays)
+CHECK bundle.classifier_shapes PASS weight=(200, 512) bias=(200,)
+CHECK bundle.manifest_entries PASS n_entries=62 duplicates=none extra=none
+CHECK bundle.manifest_sha256 PASS n_checked=62 missing=none mismatch=none
+CHECK bundle.manifest_metadata PASS mismatches=none
+CHECK bundle.bundle_hash PASS recomputed rule=sha256(concat C-order bytes, manifest order)
+CHECK normalization.stats_json PASS mean==fixture std==fixture
+PHASE2_JULIA_DATA_CHECK PASS
+
+real	0m45.926s
+user	0m16.520s
+sys	0m1.665s
+=== summary ===
+python_check_exit=0 julia_check_exit=0
+PHASE2_REMOTE_CHECK PASS
+NEXT (bring evidence home): scp leonardo:/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/remote-check.log artifacts/logs/static-scaling/2026-10-16-phase2/
+=== run-phase2-check: EXIT 0 (log: /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/remote-check.log) ===
+salloc: Relinquishing job allocation 60758839
+salloc: Job allocation 60758839 has been revoked.
+CHECK_EXIT=0
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+JobID           JobName      State ExitCode               Start                 End        NodeList    Elapsed 
+------------ ---------- ---------- -------- ------------------- ------------------- --------------- ---------- 
+60758839     interacti+  COMPLETED      0:0 2026-10-16T23:36:39 2026-10-16T23:38:54        lrdn0011   00:02:15 
+60758839.ex+     extern  COMPLETED      0:0 2026-10-16T23:36:39 2026-10-16T23:38:54        lrdn0011   00:02:15 
+60758839.0         bash  COMPLETED      0:0 2026-10-16T23:36:45 2026-10-16T23:38:54        lrdn0011   00:02:09 

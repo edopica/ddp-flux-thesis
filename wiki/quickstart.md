@@ -1,5 +1,9 @@
 # Wiki Quickstart
 
+Static-network GPU scaling **Phase 3 is accepted (2026-10-18)**. The final matched single-GPU Flux/PyTorch run (driver job `60956582`, `lrdn0165`, exit 0) passed `PHASE3_REFERENCE PASS`, `PHASE3_REFERENCE_CHECK PASS`, `PHASE3_FLUX_CHECK PASS`, and `PHASE3_REMOTE_CHECK PASS` under the frozen rule: base `atol=1e-5`/`rtol=1e-4` plus only `grads.u1 atol=1e-3`, `grads.u3 atol=2e-3`, and `m.u3 atol=2e-4`, each with `rtol=1e-4`. All 32 cuDNN choices are `CUDNN_FMA_MATH(3)` with no fallback; the reference is 337/337 exact-equal to the preserved attempt-3 archive; the independent NumPy checker passes; remote/local SHA-256 matches 15/15 ([results](../artifacts/logs/static-scaling/2026-10-18-phase3-final/RESULTS.md), [provenance](../artifacts/logs/static-scaling/2026-10-18-phase3-final/PROVENANCE.md), [review response](../reports/static-scaling-phase3-review-response.md)).
+The precision cause was stock `PEDANTIC_MATH -> CUDNN_DEFAULT_MATH` (TF32 permitted) plus cuDNN.jl 6.2.2's Float32 autotuner math-type skip; explicit `CUDNN_FMA_MATH` and the FMA-aware chooser in `scripts/static_scaling/precision.jl` corrected it. Focused probes on the final snapshot pass: precision regression `60954547` (`PHASE3_PRECISION_REGRESSION PASS`) and optimizer/schedule probe `60955690` (`PHASE3_OPTIMIZER_PROBE PASS`, 34/34 negative controls rejected); precompile `60954207` printed `FLUX_PRECOMPILE_OK`. The hardened Phase 2 remote prerequisite remains PASS on job `60951247` (113 checks, exit 0; [evidence](../artifacts/logs/static-scaling/2026-10-18-phase2-hardened-recheck/PROVENANCE.md)).
+Benchmarks are **not** part of Phase 3. Next action: if `ssh leonardo true` still returns `Permission denied (publickey,...)`, restore Leonardo SSH access first ([failure](failures/2026-10-17-leonardo-ssh-publickey.md)); then start Phase 4 distributed correctness at two and four ranks per `temp/static-graph-gpu-scaling-implementation-phases.md` section 6. See [current.md](context/current.md) and the [final-acceptance devlog](devlog/03-static-scaling/2026-10-18-phase3-final-acceptance.md).
+
 Phase K complete on deathstar and Leonardo (2026-10-05): the K2 task-conditioned MNIST/Fashion-MNIST presentation passes CPU/MPI at 2 and 4 ranks (13/13 driver cells) and CUDA/NCCL at 2 ranks (6/6) on deathstar, plus the K2 smoke (8/8) and K1 toy regression (8/8).
 The Leonardo 4-rank NCCL cells now PASS: K1 toy root `k1-2026-10-05-leonardo-nccl4` (8/8) and K2 root `k2-2026-10-05-leonardo-nccl4` (6/6), all driver exit 0 with `PHASE_K_SUMMARY ... backend=nccl ranks=4 PASS`.
 Per-step comparison against an independent native reference, ordered collective traces, fresh-process continuation, and the DDP/reference learning-curve and learning-rate figures all pass (41 PNGs plus `figures-metadata.txt` in `reports/figures/phase-k-k2/`); one checkpoint-digest defect was found, fixed, and pinned by regression. No Flux source changed.
@@ -10,9 +14,9 @@ Earlier phases are summarized in [current.md](context/current.md) and the [devlo
 
 Flux.jl DDP Thesis — a thesis-control workspace for stabilizing, testing, documenting, and evaluating Distributed Data Parallel training in Flux.jl.
 
-**Current checkpoint:** Phase K required acceptance matrix complete (2026-10-05): deathstar K2 CPU/MPI at 2 and 4 ranks (13/13) and native CUDA/NCCL at 2 ranks (6/6); Leonardo 4-rank CUDA/NCCL K1 `k1-2026-10-05-leonardo-nccl4` (8/8) and K2 `k2-2026-10-05-leonardo-nccl4` (6/6) PASS, driver exit 0; 41 figures in `reports/figures/phase-k-k2/`. The optional post-Phase K live timing stretch is complete and corrected (training-only 1.888594, total 1.397335; historical instrumented 1.480203 superseded; `reports/conditional-graph-phase-k-timing-stretch.md`). The deferred-behavior report is complete (`wiki/audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md`). Flux has uncommitted changes on `55171e65`.
+**Current checkpoint (conditional graph):** Phase K required acceptance matrix complete (2026-10-05): deathstar K2 CPU/MPI at 2 and 4 ranks (13/13) and native CUDA/NCCL at 2 ranks (6/6); Leonardo 4-rank CUDA/NCCL K1 `k1-2026-10-05-leonardo-nccl4` (8/8) and K2 `k2-2026-10-05-leonardo-nccl4` (6/6) PASS, driver exit 0; 41 figures in `reports/figures/phase-k-k2/`. The optional post-Phase K live timing stretch is complete and corrected (training-only 1.888594, total 1.397335; historical instrumented 1.480203 superseded; `reports/conditional-graph-phase-k-timing-stretch.md`). The deferred-behavior report is complete (`wiki/audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md`). Flux has uncommitted changes on `55171e65`.
 **Active implementation branch:** `ddp/integration-m1-spike` at `55171e65` (`../flux-integration` worktree, not pushed).
-**Next action:** implement `notebook/conditional_graph_benchmark.ipynb` from the corrected `artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/` artifacts (two-notebook plan implementation item 6).
+**Next action (conditional graph):** implement `notebook/conditional_graph_benchmark.ipynb` from the corrected `artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/` artifacts (two-notebook plan implementation item 6).
 
 ## Repository overview
 
@@ -73,7 +77,7 @@ Chronological development log entries for each checkpoint and milestone, grouped
 
 - **[01-pr2694/](devlog/01-pr2694/)** — C0–C8 upstream DDP work, M0/M1 integration spike, PS1–PS8 PR #2694 salvage, Windows routing fix.
 - **[02-conditional-graph/](devlog/02-conditional-graph/)** — conditional-graph onboarding, wrapper Phases A–K, native CUDA/NCCL validation, timing, notebooks.
-- **[03-static-scaling/](devlog/03-static-scaling/)** — static-network GPU scaling: Tiny ImageNet-200/PyTorch benchmark environment setup.
+- **[03-static-scaling/](devlog/03-static-scaling/)** — static-network GPU scaling: Tiny ImageNet-200/PyTorch benchmark environment setup; Phase 2 data, schedule, bundle, and fixture pipeline (complete and verified; acceptance checks hardened 2026-10-17).
 
 Complete dated index: **[devlog/README.md](devlog/README.md)**.
 
@@ -84,7 +88,7 @@ Codebase audit notes, grouped by project scope. Complete index: **[audits/README
 - **[02-conditional-graph/](audits/02-conditional-graph/)** — Phase H compatibility audit (001) and deferred-behavior audit (002).
 
 ### Failures
-Post-mortem analysis of significant failures encountered during development. All records live in **[failures/](failures/)**; the [template](failures/0000-template.md) is `0000-template.md`. Recent records cover the conditional detector, the Phase H defects, the NCCL harness, Leonardo artifact prefetch, and the Phase K campaigns.
+Post-mortem analysis of significant failures encountered during development. All records live in **[failures/](failures/)**; the [template](failures/0000-template.md) is `0000-template.md`. Recent records cover the conditional detector, the Phase H defects, the NCCL harness, Leonardo artifact prefetch, the Phase K campaigns, the static-scaling Phase 2 prep failures (Leonardo env token/QoS, `std64` masked exit, linear-fixture bias), and the 2026-10-17 Leonardo SSH publickey blocker.
 
 ### Templates
 Templates for new documentation entries.

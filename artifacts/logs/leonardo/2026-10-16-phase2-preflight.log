@@ -1,0 +1,59 @@
+=== Phase 2 preflight — 2026-10-16T16:53:24+02:00 ===
+
+--- git status --porcelain=v1 ---
+?? artifacts/logs/leonardo/2026-10-16-phase2-preflight.log
+?? scripts/remote/leonardo/run-phase2-check.sh
+?? scripts/remote/leonardo/run-phase2-prep.sh
+?? scripts/static_scaling/
+
+--- git rev-parse HEAD ---
+3088f61020137912af32d9c969e87ea9ae2a71c3
+
+--- source state hash (exact recipe) ---
+COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3
+STATE=cb303e19a3a4a5c1f3c12e531441f255333670d50d0409d5fc8b5c64c8454b6d
+
+
+--- ssh leonardo: hostname; squeue -u epicazio; sinfo -p boost_usr_prod -o "%C %t" | head -5 ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+login02.leonardo.local
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+CPUS(A/I/O/T) STATE
+0/96/0/96 comp
+921/903/0/1824 mix-
+0/32/0/32 plnd
+32/0/0/32 alloc*
+
+--- ssh leonardo: target dirs (prep dir, remote fixture dir, dataset) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+ls: cannot access '/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared': No such file or directory
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2': No such file or directory
+test
+train
+val
+wnids.txt
+words.txt
+
+--- ssh leonardo: venv python versions ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+3.11.17 2.4.6 12.3.0 2.9.1+cu126
+
+--- ssh leonardo: df -h /leonardo_work/IscrC_UNMASKED ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   62G  963G   6% /leonardo_work
+
+
+--- source state hash: OFFICIAL run of the exact recipe (the earlier value was computed while this log was partially written; superseded) ---
+OFFICIAL_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3
+OFFICIAL_STATE=caa7f00edd351a0f3e44094ed6441e096175fcddcc1255cf154a359954e7aa4a
+SUPERSEDED_FIRST_STATE=cb303e19a3a4a5c1f3c12e531441f255333670d50d0409d5fc8b5c64c8454b6d (computed while this log was partially written)
+
+--- verdict: both target dirs absent (prep dir: No such file or directory; remote fixture dir: No such file or directory) -> proceeding ---

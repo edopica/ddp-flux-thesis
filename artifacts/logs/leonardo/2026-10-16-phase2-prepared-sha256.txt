@@ -1,0 +1,59 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510  train_images.npy
+fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79  train_labels.npy
+5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46  val_images.npy
+631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487  val_labels.npy
+a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b  class_wnids.txt
+7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd  permutations.npy
+9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b  augmentation.npy
+6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc  stats.json
+a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317  initial_bundle.npz
+ac90ab58ad7278e2ae934a690ae04209ddb7887c2746cb0072c0916c8bf2fbc2  initial_bundle.manifest.json
+805b94bf92f74af1900db881abfbae91c6d04bf8806d9c046130b850e031b75b  dataset_manifest.json
+275cf49def70f92c146a5e9ea06ac66614cad0fb55352d3099602317c56c2f88  schedule_manifest.json
+---
+total 1418684
+-rw-r--r--. 1 epicazio interactive   15000128 Oct 16 23:24 augmentation.npy
+-rw-r--r--. 1 epicazio interactive       2000 Oct 16 23:00 class_wnids.txt
+-rw-r--r--. 1 epicazio interactive       4288 Oct 16 23:24 dataset_manifest.json
+-rw-r--r--. 1 epicazio interactive      16437 Oct 16 23:24 initial_bundle.manifest.json
+-rw-r--r--. 1 epicazio interactive   45103060 Oct 16 23:24 initial_bundle.npz
+-rw-r--r--. 1 epicazio interactive   40000128 Oct 16 23:24 permutations.npy
+-rw-r--r--. 1 epicazio interactive       1773 Oct 16 23:24 schedule_manifest.json
+-rw-r--r--. 1 epicazio interactive       1238 Oct 16 23:24 stats.json
+-rw-r--r--. 1 epicazio interactive 1228800128 Oct 16 23:21 train_images.npy
+-rw-r--r--. 1 epicazio interactive     800128 Oct 16 23:21 train_labels.npy
+-rw-r--r--. 1 epicazio interactive  122880128 Oct 16 23:24 val_images.npy
+-rw-r--r--. 1 epicazio interactive      80128 Oct 16 23:24 val_labels.npy
+=== retry-5 2026-10-16T23:39:06+02:00 ===
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510  train_images.npy
+fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79  train_labels.npy
+5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46  val_images.npy
+631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487  val_labels.npy
+a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b  class_wnids.txt
+7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd  permutations.npy
+9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b  augmentation.npy
+6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc  stats.json
+a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317  initial_bundle.npz
+4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571  initial_bundle.manifest.json
+584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a  dataset_manifest.json
+0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295  schedule_manifest.json
+--- ls -lA ---
+total 1418684
+-rw-r--r--. 1 epicazio interactive   15000128 Oct 16 23:35 augmentation.npy
+-rw-r--r--. 1 epicazio interactive       2000 Oct 16 23:33 class_wnids.txt
+-rw-r--r--. 1 epicazio interactive       4288 Oct 16 23:34 dataset_manifest.json
+-rw-r--r--. 1 epicazio interactive      16437 Oct 16 23:35 initial_bundle.manifest.json
+-rw-r--r--. 1 epicazio interactive   45103060 Oct 16 23:35 initial_bundle.npz
+-rw-r--r--. 1 epicazio interactive   40000128 Oct 16 23:35 permutations.npy
+-rw-r--r--. 1 epicazio interactive       1773 Oct 16 23:35 schedule_manifest.json
+-rw-r--r--. 1 epicazio interactive       1238 Oct 16 23:34 stats.json
+-rw-r--r--. 1 epicazio interactive 1228800128 Oct 16 23:34 train_images.npy
+-rw-r--r--. 1 epicazio interactive     800128 Oct 16 23:34 train_labels.npy
+-rw-r--r--. 1 epicazio interactive  122880128 Oct 16 23:34 val_images.npy
+-rw-r--r--. 1 epicazio interactive      80128 Oct 16 23:34 val_labels.npy

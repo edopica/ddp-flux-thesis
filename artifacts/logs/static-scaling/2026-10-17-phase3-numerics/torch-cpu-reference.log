@@ -1,0 +1,33 @@
+CHECK backend.tf32_disabled PASS cuda_matmul_allow_tf32=False cudnn_allow_tf32=False float32_matmul_precision='highest'
+CHECK backend.cudnn_deterministic PASS deterministic=True benchmark=False
+CHECK backend.cuda_available PASS device=cpu
+CHECK model.parameter_count PASS count=11271432 want=11271432
+CHECK model.array_count PASS count=62 want=62
+CHECK model.parameter_names PASS names=62 bundle_names=62
+CHECK bundle.names_shapes PASS arrays=62 elements=11271432
+CHECK bundle.load_exact PASS mismatched=0 max_abs_diff=0.0
+CHECK model.device PASS device=cpu
+CHECK optimizer.param_groups PASS decay=21 no_decay=41
+CHECK optimizer.group_membership PASS decay=20 conv weights + classifier.weight; no_decay=20 GN weight + 20 GN bias + classifier.bias
+CHECK optimizer.adamw_config PASS betas=(0.9, 0.999) eps=1e-08 weight_decay=(1e-04, 0.0) amsgrad=False
+CHECK optimizer.initial_zero_state PASS state_entries=0 grads_none=True
+CHECK schedule.warmup_eta PASS W=975 T=9750 eta.u1=1.0256410256410257e-06 eta.u2=2.0512820512820513e-06 eta.u3=3.076923076923077e-06
+CHECK fixture.non_synthetic PASS synthetic=False
+CHECK fixture.manifest_sha256 PASS data_fixture.npz=6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3 recorded=6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3
+CHECK fixture.data_contract PASS refs=float32/(2, 12, 3, 64, 64) labels=int64/(12,)
+CHECK fixture.labels_range PASS min=0 max=199
+CHECK fixture.update_protocol PASS u1=train_transformed_ref[0] u2=train_transformed_ref[1] u3=train_transformed_ref[0]
+CHECK activations.u1.keys PASS keys=11 names=11
+CHECK activations.u1.shapes PASS mismatches=none
+CHECK grads.u1.all_present PASS arrays=62 want=62
+CHECK optimizer.step.u1 PASS state_step=[1] params=62
+CHECK optimizer.step.u2 PASS state_step=[2] params=62
+CHECK grads.u3.all_present PASS arrays=62 want=62
+CHECK optimizer.step.u3 PASS state_step=[3] params=62
+CHECK optimizer.final_step PASS state_step=[3] params=62
+CHECK inputs.u1_equals_u3 PASS u1/u3 share train_transformed_ref[0] and train_labels
+CHECK state.u3_arrays PASS arrays=337
+CHECK reference.arrays PASS arrays=337 dtype_shape_sha256=true
+CHECK reference.manifest PASS path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-numerics/torch_cpu_reference/phase3_reference_manifest.json arrays=337
+CHECK reference.write PASS npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-numerics/torch_cpu_reference/phase3_reference.npz manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-numerics/torch_cpu_reference/phase3_reference_manifest.json
+PHASE3_REFERENCE PASS checks=32 failed=0

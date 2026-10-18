@@ -1,0 +1,50 @@
+{
+  "producer": "scripts/static_scaling/make_schedule.py",
+  "created": "2026-10-16T21:35:04Z",
+  "synthetic": false,
+  "source_commit": "3088f61020137912af32d9c969e87ea9ae2a71c3",
+  "source_state_sha256": "4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1",
+  "generator": {
+    "library": "numpy",
+    "version": "2.4.6",
+    "bit_generator": "PCG64",
+    "seeding": "numpy.random.SeedSequence([ROOT_SCHEDULE, domain, epoch])"
+  },
+  "root_seed": 20261016,
+  "domains": {
+    "1": "permutations",
+    "2": "augmentation"
+  },
+  "scheme": "permutation: Generator(PCG64(SeedSequence([20261016, 1, epoch]))).permutation(100000); augmentation: Generator(PCG64(SeedSequence([20261016, 2, epoch]))), then for id in 0..99999 ascending three scalar draws: crop_top = gen.integers(0, 9), crop_left = gen.integers(0, 9), flip = gen.integers(0, 2)",
+  "epochs": 50,
+  "extension_rule": "an epoch beyond the stored range is generated independently with the same SeedSequence([20261016, DOMAIN, epoch]); adding a later epoch never changes the stream or the rows of an earlier epoch",
+  "schedule_invariants": {
+    "samples_per_epoch": 99840,
+    "tail_size": 160,
+    "updates_per_epoch_b512": 195,
+    "updates_per_epoch_b256": 390
+  },
+  "files": [
+    {
+      "path": "permutations.npy",
+      "dtype": "int64",
+      "shape": [
+        50,
+        100000
+      ],
+      "layout": "epoch_major_sample_id",
+      "sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd"
+    },
+    {
+      "path": "augmentation.npy",
+      "dtype": "uint8",
+      "shape": [
+        50,
+        100000,
+        3
+      ],
+      "layout": "epoch_sample_top_left_flip",
+      "sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b"
+    }
+  ]
+}

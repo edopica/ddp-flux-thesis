@@ -1,0 +1,89 @@
+{
+  "checks": 69,
+  "failures": [],
+  "metrics": {
+    "cross.main.decay.flux_vs_pytorch.x_final": {
+      "bound_max": 5.9737548828125e-07,
+      "max_abs": 5.960464477539063e-08,
+      "max_ratio": 0.26351460336005894,
+      "violations": 0
+    },
+    "cross.main.nodecay.flux_vs_pytorch.x_final": {
+      "bound_max": 1.0995359182357787e-06,
+      "max_abs": 1.1920928955078125e-07,
+      "max_ratio": 0.25851802011492525,
+      "violations": 0
+    },
+    "cross.tiny.decay.flux_vs_pytorch.x_final": {
+      "bound_max": 5.999976456165314e-07,
+      "max_abs": 5.960464477539063e-08,
+      "max_ratio": 0.09938870381387056,
+      "violations": 0
+    },
+    "cross.tiny.nodecay.flux_vs_pytorch.x_final": {
+      "bound_max": 1.1006630420684812e-06,
+      "max_abs": 0.0,
+      "max_ratio": 0.0,
+      "violations": 0
+    },
+    "flux.main.decay.x_final": {
+      "bound_max": 5.973755187100365e-07,
+      "max_abs": 6.116889827989525e-08,
+      "max_ratio": 0.2704302319593278,
+      "violations": 0
+    },
+    "flux.main.nodecay.x_final": {
+      "bound_max": 1.0995359182357787e-06,
+      "max_abs": 1.0732421429349159e-07,
+      "max_ratio": 0.23274397065947094,
+      "violations": 0
+    },
+    "flux.tiny.decay.x_final": {
+      "bound_max": 5.999976740169481e-07,
+      "max_abs": 5.6800833481140955e-08,
+      "max_ratio": 0.09466842279714656,
+      "violations": 0
+    },
+    "flux.tiny.nodecay.x_final": {
+      "bound_max": 1.100663095634378e-06,
+      "max_abs": 1.0713179365851033e-07,
+      "max_ratio": 0.09733386545204721,
+      "violations": 0
+    },
+    "pytorch.main.decay.x_final": {
+      "bound_max": 5.973755186188416e-07,
+      "max_abs": 6.067518332208977e-08,
+      "max_ratio": 0.10156958467660919,
+      "violations": 0
+    },
+    "pytorch.main.nodecay.x_final": {
+      "bound_max": 1.0995359182357787e-06,
+      "max_abs": 5.382743495374598e-08,
+      "max_ratio": 0.06352241391938454,
+      "violations": 0
+    },
+    "pytorch.tiny.decay.x_final": {
+      "bound_max": 5.999976740169448e-07,
+      "max_abs": 6.031652866056447e-08,
+      "max_ratio": 0.10314775251771272,
+      "violations": 0
+    },
+    "pytorch.tiny.nodecay.x_final": {
+      "bound_max": 1.1006630956426578e-06,
+      "max_abs": 1.0714835285696722e-07,
+      "max_ratio": 0.09734891019890622,
+      "violations": 0
+    }
+  },
+  "negative_controls": 34,
+  "pass": true,
+  "rejected": 34,
+  "tolerance": {
+    "atol": 1e-07,
+    "moment_rtol": 5e-05,
+    "note": "probe-specific; not the Phase 3 acceptance rule",
+    "rtol": 5e-07,
+    "schedule_atol": 1e-15,
+    "schedule_rtol": 1e-09
+  }
+}

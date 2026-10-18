@@ -1,0 +1,13 @@
+# Compute-node cuDNN math-mode mapping probe
+utc=2026-10-17T17:51:19Z
+host=lrdn0042.leonardo.local
+SLURM_JOB_ID=60893401
+cudnnGetVersion_raw=92600
+cuDNN.version()=92.60.0
+cuDNN.math_mode(PEDANTIC_MATH)=CUDNN_DEFAULT_MATH
+cuDNN.math_mode(DEFAULT_MATH)=CUDNN_TENSOR_OP_MATH
+cuDNN.math_mode(FAST_MATH)=CUDNN_TENSOR_OP_MATH_ALLOW_CONVERSION
+after_CUDA.math_mode!(PEDANTIC_MATH): CUDA.math_mode()=PEDANTIC_MATH
+after_CUDA.math_mode!(PEDANTIC_MATH): cuDNN.math_mode()=CUDNN_DEFAULT_MATH
+after_CUDA.math_mode!(PEDANTIC_MATH): CUDA.math_precision()=TensorFloat32
+--- probe exit=0 ---

@@ -1,0 +1,42 @@
+=== Phase 2 prep failure #2: dbg QoS 30-min timeout — 2026-10-16T17:38:29+02:00 ===
+
+Job: 60729410 on lrdn3102 (retry with bash-prefix workaround; env-shadowing fixed).
+Timeout message (verbatim from run):
+salloc: Job 60729410 has exceeded its time limit and its allocation has been revoked.
+srun: Job step aborted: Waiting up to 182 seconds for job step to finish.
+[2026-10-16T17:37:26.017] error: *** STEP 60729410.0 ON lrdn3102 CANCELLED AT 2026-10-16T17:37:26 DUE TO TIME LIMIT ***
+srun: error: lrdn3102: task 0: Terminated
+RETRY_EXIT=143
+
+--- sacct record ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+JobID           JobName      State ExitCode               Start                 End        NodeList 
+------------ ---------- ---------- -------- ------------------- ------------------- --------------- 
+60729410     interacti+    TIMEOUT      0:0 2026-10-16T17:04:10 2026-10-16T17:37:26        lrdn3102 
+60729410.ex+     extern  COMPLETED      0:0 2026-10-16T17:04:10 2026-10-16T17:37:27        lrdn3102 
+60729410.0         bash  CANCELLED     0:15 2026-10-16T17:04:11 2026-10-16T17:37:27        lrdn3102 
+
+--- partial $PREP left by the cancelled job (non-empty; rerun guard would refuse without FORCE=1) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+total 1062096
+drwxr-xr-x.  2 epicazio interactive       4096 Oct 16 17:05 .
+drwxr-xr-x. 11 epicazio interactive       4096 Oct 16 17:05 ..
+-rw-r--r--.  1 epicazio interactive       2000 Oct 16 17:05 class_wnids.txt
+-rw-r--r--.  1 epicazio interactive 1228800128 Oct 16 17:37 train_images.npy
+
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2': No such file or directory
+
+--- remote-prep.log tail ---
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+
+--- documented remedy (from run-phase2-prep.sh header) ---
+boost_qos_dbg caps at 30 min; if time runs out use QOS=boost_qos_bprod TIME=01:00:00 as prefixes on scripts/remote/run.sh.
+Observed pace: 80000/100000 train decodes in ~33 min -> full step 1 ~41 min > 30 min cap.

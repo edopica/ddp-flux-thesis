@@ -1,0 +1,21 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 bash scripts/remote/leonardo/diagnose-phase3.sh --device cuda
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 60887065
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0339 are ready for job
+DEVICE cuda math_mode=PEDANTIC_MATH precision=TensorFloat32
+LOGITS max_abs=0.000553548336 max_rel=0.103501543 violations=1670
+act.stem.gn            max_abs=9.53674316e-07 max_rel=0.00627016657 violations=0 
+act.stem               max_abs=9.53674316e-07 max_rel=0.00627016657 violations=0 
+act.stage1.block0      max_abs=3.81469727e-06 max_rel=1 violations=0 
+act.stage1.block1      max_abs=6.55651093e-06 max_rel=0.391891892 violations=0 
+act.stage2.block0      max_abs=0.00417542458 max_rel=1 violations=616769 
+act.stage2.block1      max_abs=0.00675058365 max_rel=1 violations=864972 
+act.stage3.block0      max_abs=0.00569462776 max_rel=1 violations=346553 
+act.stage3.block1      max_abs=0.0068590641 max_rel=1 violations=460153 
+act.stage4.block0      max_abs=0.00664567947 max_rel=1 violations=179821 
+act.stage4.block1      max_abs=0.00764757395 max_rel=1 violations=233331 
+act.pooled             max_abs=0.00131082535 max_rel=0.105929641 violations=4339 
+salloc: Relinquishing job allocation 60887065

@@ -1,0 +1,13 @@
+R3 decay_rule=AdamW(eta=0.001, beta=(0.9, 0.999), lambda=0.0001, epsilon=1.0e-8, couple=true)
+R3 no_decay_rule=AdamW(eta=0.001, beta=(0.9, 0.999), lambda=0.0, epsilon=1.0e-8, couple=true)
+R3 mixed_constructor=MethodError
+R4 s=0 beta_power=(0.9f0, 0.999f0)
+R4 s=1 beta_power=(0.80999994f0, 0.99800104f0) s=2 beta_power=(0.7289999f0, 0.9970031f0)
+R4 stored=beta^(s+1)=true reconstruction_repeated_multiplication_exact=true continuation_from_exchanged_state_exact=true
+PROBE_FLUX training_path leaves=62 decay=21 nodecay=41 rule_meta_ok=true
+PROBE_FLUX schedule t1=1.0256410256410257e-6 tW=0.001 tW1=0.0009999999679560902 tT=0.0 rejection_ok=true
+PROBE_FLUX case=main leaf=decay lambda=0.0001 m_nonzero=true v_nonzero=true x_final=[0.9947509765625, -0.49837493896484375, 0.2523820400238037]
+PROBE_FLUX case=main leaf=nodecay lambda=0.0 m_nonzero=true v_nonzero=true x_final=[1.9990718364715576, -1.4947540760040283, 0.722251296043396]
+PROBE_FLUX case=tiny leaf=decay lambda=0.0001 m_nonzero=true v_nonzero=true x_final=[0.999424934387207, -0.9999952912330627, 0.4989980161190033]
+PROBE_FLUX case=tiny leaf=nodecay lambda=0.0 m_nonzero=true v_nonzero=true x_final=[2.001326084136963, -1.500003457069397, 0.7502495050430298]
+PROBE_FLUX WROTE /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-step4/probe_flux.json /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-step4/probe_flux_arrays.npz

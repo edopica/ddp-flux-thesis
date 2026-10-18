@@ -1,0 +1,10 @@
+FLUX_STAGE2_CONFIG precision=current cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv1=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv2=CUDNN_DEFAULT_MATH(0) cudnn_effective_proj=CUDNN_DEFAULT_MATH(0) cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+FLUX_STAGE2 conv1  max_abs=0.0035725832 max_rel=1.99545726 violations=1225601
+FLUX_STAGE2 gn1    max_abs=0.00313663483 max_rel=1.99900427 violations=1211268
+FLUX_STAGE2 relu1  max_abs=0.00313663483 max_rel=1 violations=606879
+FLUX_STAGE2 conv2  max_abs=0.00364590809 max_rel=1.99393233 violations=1316175
+FLUX_STAGE2 gn2    max_abs=0.00470265746 max_rel=1.97619279 violations=1319635
+FLUX_STAGE2 proj   max_abs=0 max_rel=0 violations=0
+FLUX_STAGE2 pgn    max_abs=9.53674316e-07 max_rel=0.0226530446 violations=0
+FLUX_STAGE2 total  max_abs=0.00470268726 max_rel=1.99276411 violations=1234163
+FLUX_STAGE2 out    max_abs=0.00413501263 max_rel=1 violations=616389

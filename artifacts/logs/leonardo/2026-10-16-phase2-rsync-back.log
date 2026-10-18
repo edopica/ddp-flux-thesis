@@ -1,0 +1,67 @@
+=== RSYNC-BACK retry-5 2026-10-16T23:39:35+02:00 ===
+--- fixtures dir ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+receiving incremental file list
+./
+data_fixture.npz
+fixture_manifest.json
+kernel_fixture.npz
+linear_fixture.npz
+schedule_fixture.npz
+
+sent 122 bytes  received 2,201,948 bytes  338,780.00 bytes/sec
+total size is 5,638,765  speedup is 2.56
+--- remote logs dir ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+receiving incremental file list
+./
+remote-check.log
+
+sent 47 bytes  received 2,549 bytes  1,038.40 bytes/sec
+total size is 17,109  speedup is 6.59
+--- prepared manifests ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+receiving incremental file list
+dataset_manifest.json
+initial_bundle.manifest.json
+schedule_manifest.json
+stats.json
+
+sent 100 bytes  received 6,204 bytes  2,521.60 bytes/sec
+total size is 23,736  speedup is 3.77
+--- add initial_bundle.npz (for local hashing, original STEP 5) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+receiving incremental file list
+initial_bundle.npz
+
+sent 43 bytes  received 41,747,844 bytes  2,693,412.06 bytes/sec
+total size is 45,103,060  speedup is 1.08
+=== local fixture listing retry-5 2026-10-16T23:40:25+02:00 ===
+total 49564
+-rw-r--r-- 1 kurapica kurapica  1821284 Oct 16 23:35 data_fixture.npz
+-rw-r--r-- 1 kurapica kurapica    10643 Oct 16 23:35 fixture_manifest.json
+-rw-r--r-- 1 kurapica kurapica 45103060 Oct 16 23:35 initial_bundle.npz
+-rw-r--r-- 1 kurapica kurapica     7114 Oct 16 23:35 kernel_fixture.npz
+-rw-r--r-- 1 kurapica kurapica     2238 Oct 16 23:35 linear_fixture.npz
+-rw-r--r-- 1 kurapica kurapica  3797486 Oct 16 23:35 schedule_fixture.npz
+=== sha256 (all npz) ===
+6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3  artifacts/baselines/static-scaling/2026-10-16-phase2/data_fixture.npz
+a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317  artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+3b3795f6c6ff2ec68198a645cc65f4ba97e0b6438da61e6cfd2ad564ff441f3d  artifacts/baselines/static-scaling/2026-10-16-phase2/kernel_fixture.npz
+8efa5278981b2b11842d2a701b6f81789c976e033a678a0322e961ecd8f1fa2d  artifacts/baselines/static-scaling/2026-10-16-phase2/linear_fixture.npz
+aba66a8ef7bbc82fc81db8cd629092b917cd7d85efafed82553f853c45352662  artifacts/baselines/static-scaling/2026-10-16-phase2/schedule_fixture.npz
+51448d5905c5dfd9a47b945d96102d19ea55073fbfe9f249fd268cca03455a65  artifacts/baselines/static-scaling/2026-10-16-phase2/fixture_manifest.json
+3ed1406e76de6fc1b7a36a654a0ad872d9c7ee4c84ed28daea5a8532101531d1  artifacts/logs/static-scaling/2026-10-16-phase2/remote-prep.log
+961cf0bfd2db5a7f2bef3ea3a6f92a49d02c278d7d49a96e0a9e41ae6e5e196a  artifacts/logs/static-scaling/2026-10-16-phase2/remote-check.log
+584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a  artifacts/logs/static-scaling/2026-10-16-phase2/prepared-manifests/dataset_manifest.json
+4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571  artifacts/logs/static-scaling/2026-10-16-phase2/prepared-manifests/initial_bundle.manifest.json
+0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295  artifacts/logs/static-scaling/2026-10-16-phase2/prepared-manifests/schedule_manifest.json
+6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc  artifacts/logs/static-scaling/2026-10-16-phase2/prepared-manifests/stats.json

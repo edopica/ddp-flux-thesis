@@ -1,0 +1,37 @@
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+JobID           JobName      State ExitCode               Start                 End        NodeList    Elapsed 
+------------ ---------- ---------- -------- ------------------- ------------------- --------------- ---------- 
+60755769     interacti+     FAILED      1:0 2026-10-16T22:59:11 2026-10-16T23:24:45        lrdn0018   00:25:34 
+60755769.ex+     extern  COMPLETED      0:0 2026-10-16T22:59:11 2026-10-16T23:24:45        lrdn0018   00:25:34 
+60755769.0         bash     FAILED      1:0 2026-10-16T22:59:16 2026-10-16T23:24:45        lrdn0018   00:25:29 
+--- PREP dir:
+total 1418684
+-rw-r--r--. 1 epicazio interactive   15000128 Oct 16 23:24 augmentation.npy
+-rw-r--r--. 1 epicazio interactive       2000 Oct 16 23:00 class_wnids.txt
+-rw-r--r--. 1 epicazio interactive       4288 Oct 16 23:24 dataset_manifest.json
+-rw-r--r--. 1 epicazio interactive      16437 Oct 16 23:24 initial_bundle.manifest.json
+-rw-r--r--. 1 epicazio interactive   45103060 Oct 16 23:24 initial_bundle.npz
+-rw-r--r--. 1 epicazio interactive   40000128 Oct 16 23:24 permutations.npy
+-rw-r--r--. 1 epicazio interactive       1773 Oct 16 23:24 schedule_manifest.json
+-rw-r--r--. 1 epicazio interactive       1238 Oct 16 23:24 stats.json
+-rw-r--r--. 1 epicazio interactive 1228800128 Oct 16 23:21 train_images.npy
+-rw-r--r--. 1 epicazio interactive     800128 Oct 16 23:21 train_labels.npy
+-rw-r--r--. 1 epicazio interactive  122880128 Oct 16 23:24 val_images.npy
+-rw-r--r--. 1 epicazio interactive      80128 Oct 16 23:24 val_labels.npy
+--- FIX dir:
+total 0
+--- remote logs:
+total 8
+drwxr-xr-x. 2 epicazio interactive 4096 Oct 16 22:58 prepared-manifests
+-rw-r--r--. 1 epicazio interactive 3682 Oct 16 23:24 remote-prep.log
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+receiving incremental file list
+./
+remote-prep.log
+
+sent 47 bytes  received 1,571 bytes  359.56 bytes/sec
+total size is 3,682  speedup is 2.28

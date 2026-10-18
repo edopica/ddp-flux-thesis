@@ -1,0 +1,52 @@
+# Phase 3 Step 3b cuDNN algorithm evidence (full model)
+# source: artifacts/logs/static-scaling/2026-10-17-phase3-step3b/2026-10-17-phase3-step3b.log
+
+## Every chosen algorithm
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0645119995 memory=0 shape=64x64x3x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.160768002 memory=410880 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.205824003 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.171008006 memory=1639936 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0552960001 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.24064 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.180224001 memory=6555648 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0563200004 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.254976004 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.30003199 memory=26218496 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0552960001 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.288767993 memory=0 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0768000036 memory=0 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.181247994 memory=0 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=4 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.179199994 memory=6554624 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0798719972 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.186368003 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=4 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.174079999 memory=1638912 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0757760033 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.241664007 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=4 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.161791995 memory=409856 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0829439983 memory=0 shape=64x64x3x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.40448001 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.24064 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=5 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.254976004 memory=30670848 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.088064 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.216064006 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=5 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.165887997 memory=23592960 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0829439983 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.220159993 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=5 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.160768002 memory=44826624 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0768000036 memory=0 shape=16x16x256x12
+
+## Summary and acceptance line
+PHASE3_CUDNN_ALGO_SUMMARY choices=32 fma=32 fallback=0 enabled=true
+CHECK cudnn.fma_algo_selection PASS choices=32 fma=32 fallback=0 fallback_algo_0_1=true categories_pass=false rule="all choices math_type=CUDNN_FMA_MATH and fallback=false; fallback allowed only for successful non-tensor-core algo 0/1 when all acceptance categories pass; tensor-op candidates never pass"
+
+## Unique candidate math types (from PRECISION_ALGO_CANDIDATES)
+math_type=3
+
+## Chosen algorithm counts by kind
+      7 bwd_data algo=0
+      3 bwd_data algo=4
+      2 bwd_filter algo=0
+      6 bwd_filter algo=3
+      3 bwd_filter algo=5
+      7 fwd algo=0
+      4 fwd algo=6

@@ -1,0 +1,41 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 bash scripts/remote/leonardo/run-phase3-precision-regression.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 60900440
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn2176 are ready for job
+=== run-phase3-precision-regression: START ===
+utc=2026-10-17T18:51:14Z host=lrdn2176.leonardo.local
+SLURM_JOB_ID=60900440 SLURM_JOB_NODELIST=lrdn2176
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+CHECK=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_precision_math.jl
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-step2-precision
+LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-step2-precision/logs
+RUNNER=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-julia-phase3.sh
+=== PRECISION_REGRESSION_CASE fma START utc=2026-10-17T18:51:14Z ===
+CHECK_PRECISION_MATH_CONFIG mode=fma cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_FMA_MATH(3) cudnn_effective_conv1=CUDNN_FMA_MATH(3) cudnn_effective_conv2=CUDNN_FMA_MATH(3) cudnn_effective_proj=CUDNN_FMA_MATH(3) cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+CHECK_PRECISION_MATH_CONFIG_CHECK requested=CUDNN_FMA_MATH(3) expected=CUDNN_FMA_MATH(3) PASS
+CHECK_PRECISION_MATH_BACKEND algo_fwd=1 algo_data=1 algo_filter=1 fwd_ws=7296 data_ws=0 filter_ws=590992
+CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=5.998539e-07 max_abs=8.698975e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_fixed_dx        rel_l2=2.103432e-07 max_abs=1.475017e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_fixed_dw        rel_l2=1.121881e-06 max_abs=1.011678e-03 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM classifier_matmul    rel_l2=1.107716e-07 max_abs=4.209593e-07 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH PASS
+PRECISION_REGRESSION_CASE fma COMPLETE exit=0 log=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-step2-precision/logs/fma.log
+=== PRECISION_REGRESSION_CASE current START utc=2026-10-17T18:51:56Z ===
+CHECK_PRECISION_MATH_CONFIG mode=current cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv1=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv2=CUDNN_DEFAULT_MATH(0) cudnn_effective_proj=CUDNN_DEFAULT_MATH(0) cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+CHECK_PRECISION_MATH_MODE mode=current note="negative control; a conv discrepancy is expected"
+CHECK_PRECISION_MATH_CONFIG_CHECK requested=CUDNN_DEFAULT_MATH(0) expected=CUDNN_DEFAULT_MATH(0) PASS
+CHECK_PRECISION_MATH_BACKEND algo_fwd=1 algo_data=1 algo_filter=1 fwd_ws=6881296 data_ws=13172752 filter_ws=14942352
+CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=2.932134e-04 max_abs=1.600785e-03 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM conv_fixed_dx        rel_l2=2.928844e-04 max_abs=1.434166e-03 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM conv_fixed_dw        rel_l2=2.930009e-04 max_abs=1.480980e-01 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM classifier_matmul    rel_l2=1.107716e-07 max_abs=4.209593e-07 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH FAIL
+PRECISION_REGRESSION_CASE current COMPLETE exit=1 log=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-step2-precision/logs/current.log
+=== summary ===
+PRECISION_REGRESSION_CHECK fma PASS exit=0
+PRECISION_REGRESSION_CHECK current PASS exit=1 conv_fail="CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=2.932134e-04 max_abs=1.600785e-03 bound=1.0e-04 FAIL"
+PHASE3_PRECISION_REGRESSION PASS
+salloc: Relinquishing job allocation 60900440

@@ -1,0 +1,37 @@
+Probe-specific rule: |a-b| <= 1e-07 + 5e-07 * max(|a|,|b|)
+Moment supplementary relative rule: |a-b| <= 5e-05 * max(|a|,|b|)
+Cases: 3 updates; m/v are captured after 2 updates, before the measured 3rd update.
+
+framework case  leaf     x_final_maxabs    ratio  viol x_steps_maxabs    ratio   m_ratio   v_ratio
+flux     main  decay    6.116890e-08    0.270     0 6.116890e-08    0.270     0.005     0.259
+flux     main  nodecay  1.073242e-07    0.233     0 1.073242e-07    0.233     0.006     0.259
+flux     tiny  decay    5.680083e-08    0.095     0 5.680083e-08    0.095     0.016     0.259
+flux     tiny  nodecay  1.071318e-07    0.097     0 1.071318e-07    0.097     0.016     0.259
+pytorch  main  decay    6.067518e-08    0.102     0 6.067518e-08    0.102     0.002     0.002
+pytorch  main  nodecay  5.382743e-08    0.064     0 5.382743e-08    0.064     0.001     0.002
+pytorch  tiny  decay    6.031653e-08    0.103     0 6.031653e-08    0.103     0.004     0.001
+pytorch  tiny  nodecay  1.071484e-07    0.097     0 1.071484e-07    0.097     0.004     0.001
+
+Cross-framework x_final, Flux vs PyTorch:
+main  decay    max_abs=5.960464e-08 ratio=0.264 violations=0
+main  nodecay  max_abs=1.192093e-07 ratio=0.259 violations=0
+tiny  decay    max_abs=5.960464e-08 ratio=0.099 violations=0
+tiny  nodecay  max_abs=0.000000e+00 ratio=0.000 violations=0
+
+Final parameter values:
+main  decay    oracle=[0.994751037420073, -0.4983749970691919, 0.252382101192702]
+main  decay    flux  =[0.9947509765625, -0.49837493896484375, 0.2523820400238037]
+main  decay    torch =[0.9947509765625, -0.49837496876716614, 0.2523820996284485]
+main  nodecay  oracle=[1.9990718245501413, -1.494754022358983, 0.7222511887191817]
+main  nodecay  flux  =[1.9990718364715576, -1.4947540760040283, 0.722251296043396]
+main  nodecay  torch =[1.9990718364715576, -1.4947540760040283, 0.7222511768341064]
+tiny  decay    oracle=[0.9994249350967676, -0.9999953480338962, 0.49899802239248575]
+tiny  decay    flux  =[0.999424934387207, -0.9999952912330627, 0.4989980161190033]
+tiny  decay    torch =[0.9994248747825623, -0.9999952912330627, 0.4989979863166809]
+tiny  nodecay  oracle=[2.0013261912687565, -1.500003424102367, 0.7502495072418546]
+tiny  nodecay  flux  =[2.001326084136963, -1.500003457069397, 0.7502495050430298]
+tiny  nodecay  torch =[2.001326084136963, -1.500003457069397, 0.7502495050430298]
+
+Schedule boundary values:
+flux     t=1 1.0256410256410257e-06  t=W 0.001  t=W+1 0.0009999999679560902  t=T 0.0  reject_0=True reject_T+1=True
+pytorch  t=1 1.0256410256410257e-06  t=W 0.001  t=W+1 0.0009999999679560902  t=T 0.0  reject_0=True reject_T+1=True

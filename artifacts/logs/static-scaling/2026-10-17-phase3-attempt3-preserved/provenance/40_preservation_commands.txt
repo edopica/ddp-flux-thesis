@@ -1,0 +1,60 @@
+# Preservation commands and timestamps
+
+Preservation performed 2026-10-17, UTC 17:45-18:00 (login01 + compute jobs).
+Remote evidence root:
+  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-attempt3
+
+## Read-only inspection (login node)
+
+ssh leonardo 'ls -la ~/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-17-phase3/'
+ssh leonardo 'ls -la ~/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-17-phase3/'
+ssh leonardo 'cd ~/projects/ddp-flux-thesis && stat -c "%n|%s|%y|%a|%U:%G" <four evidence files>'
+ssh leonardo 'cd ~/projects/ddp-flux-thesis && sha256sum <four evidence files>'
+ssh leonardo 'git -C ~/projects/ddp-flux-thesis rev-parse HEAD'          # fails: not a git repository
+ssh leonardo 'git -C ~/projects/flux-integration rev-parse HEAD'         # fails: not a git repository
+ssh leonardo 'sha256sum <Phase 3 source files, manifests>'
+ssh leonardo 'ls -d $WORK/epicazio/julia-depot/packages/{CUDA,cuDNN,CUDNN_jll}/*/'
+
+## Copy into the immutable run directory (login node)
+
+EVID=$WORK/epicazio/static-scaling-evidence/2026-10-17-phase3-attempt3
+mkdir -p "$EVID/reference" "$EVID/diag" "$EVID/logs" "$EVID/provenance"
+cp -p ~/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-17-phase3/phase3_reference.npz "$EVID/reference/"
+cp -p ~/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-17-phase3/phase3_reference_manifest.json "$EVID/reference/"
+cp -p ~/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-17-phase3/stage2_diag.npz "$EVID/diag/"
+cp -p ~/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-17-phase3/remote-check.log "$EVID/logs/"
+
+## Local logs uploaded into the evidence bundle (scp, no --delete)
+
+scp artifacts/logs/leonardo/2026-10-17-phase3-remote-attempt3.log \
+    artifacts/logs/leonardo/2026-10-17-phase3-diagnose-gpu.log \
+    artifacts/logs/leonardo/2026-10-17-phase3-diagnose-stage2.log \
+    artifacts/logs/leonardo/2026-10-17-phase3-diagnose-stage2-cpu.log \
+    leonardo:$EVID/logs/
+
+## Compute-node probes (scripts/remote/run.sh; no login-node Julia)
+
+NTASKS=1 CPUS_PER_TASK=8 GRES=gpu:1 TIME=00:10:00 \
+  scripts/remote/run.sh leonardo \
+  "srun --mpi=pmi2 -n1 -c8 bash $EVID/provenance/compute_probe.sh"
+# job 60892511, node lrdn0252 -> provenance/environment_probe.txt
+
+NTASKS=1 CPUS_PER_TASK=8 GRES=gpu:1 TIME=00:05:00 \
+  scripts/remote/run.sh leonardo \
+  "srun --mpi=pmi2 -n1 -c8 bash $EVID/provenance/math_mode_probe.sh"
+# job 60893401, node lrdn0042 -> provenance/environment_probe_math_mode.txt
+
+## Hashes and immutability (login node)
+
+cd "$EVID"
+sha256sum reference/* diag/* logs/* provenance/* > SHA256SUMS
+sha256sum -c SHA256SUMS
+chmod -R a-w "$EVID"    # best effort; owner can chmod back
+
+## Not done (by explicit instruction)
+
+- No scripts/remote/sync_code.sh and no rsync --delete toward Leonardo.
+- No rerun of make_phase3_reference.py.
+- No modification of remote source files.
+- No full Phase 3 driver rerun.
+- No commits.

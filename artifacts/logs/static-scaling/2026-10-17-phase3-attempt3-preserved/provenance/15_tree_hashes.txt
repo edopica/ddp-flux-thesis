@@ -1,0 +1,10 @@
+# Preservation-time tree-content hashes (NOT the historical run-time state)
+# utc=2026-10-17T17:46:09Z
+# Recipe A (thesis source tree, excludes artifacts/ and .git):
+#   find . -path ./artifacts -prune -o -path ./.git -prune -o -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum
+thesis_source_tree_sha256=e6bdf241324ae3334ce398c80e0b60b85951a7fcd952eb379e2b2739ff650994
+# Recipe B (flux worktree, excludes .git):
+#   (cd FLUX && find . -path ./.git -prune -o -type f -print0 | sort -z | xargs -0 sha256sum | sha256sum)
+flux_worktree_sha256=44b3a5b51fdb08c5c22815e0121a923d4468817c44ab7c828c839ba13ac1effd
+# NOTE: these hashes include files created after job 60885091 (stage-2 diagnostics).
+# They identify the remote tree at preservation time only.

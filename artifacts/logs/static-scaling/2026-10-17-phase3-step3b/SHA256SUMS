@@ -1,0 +1,15 @@
+d9985934156c91404a7d02563de63e07b631fcf028859202b3ee6104882effca  artifacts/baselines/static-scaling/2026-10-17-phase3-step3b/phase3_reference_manifest.json
+97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783  artifacts/baselines/static-scaling/2026-10-17-phase3-step3b/phase3_reference.npz
+698d2da7d103f11e8a1b96718dd9d947376574434a0e5efde89d39371aa99a5c  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/2026-10-17-phase3-step3b.log
+153c68c75d306ed8604744ee49abba512c7dfeb6408ec2da847784aa85c79239  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/2026-10-17-phase3-step3b-precision-regression.log
+b9eeaff7f88ba3b628e146980bcff47de2271f065d8bc05bcbd5a8135d9a6330  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/2026-10-17-phase3-step3b-precompile.log
+b529eb45ecf11993cb72da9e92b8e58f5dde899894d710407eb10c9c1b2cf943  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/algorithm-choices.txt
+5aee402ac12d158beeb6eb0abca65b92ec820cd492b4b9a7dd3efebc61b1a2c9  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/COMMANDS.md
+9a3677a16489dcbe662c992b7e5a86a570de2e44daf6888adb9862e88dba0cec  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/local-reference-check.log
+1691ccf6d779b9bf031e53f8eb07e2c5fe050f26de9145da76a4136feab0c983  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/precision/current.log
+0b4215b216f3d9c5166952e68c8b86fa691eaeea67b360f244cf938b7aebd05b  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/precision/fma.log
+f8f9fcfdf35fd8591dc10e19b1f8ae3c429ded07b1f4227abddd7b152361ebdc  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/precision-regression-summary.txt
+bd3e7d42365389347d25cec9ab7f65e675d2983484b46048c9e1c2ecd35ad609  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/PROVENANCE.md
+000e6485246519881ed6fc2be2f7fb8f6f4fed28f50fb5b1525177cbb3adeb7b  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/reference-comparison.txt
+b4cc21f8ba39242ad1f43b50200d641328c6e45b354a994ede035a61ae15bc14  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/remote-check.log
+f94a315ff343efa7966c26a7c36a77ca3078968bbf7f404d2ae20323e98b683e  artifacts/logs/static-scaling/2026-10-17-phase3-step3b/RESULTS.md

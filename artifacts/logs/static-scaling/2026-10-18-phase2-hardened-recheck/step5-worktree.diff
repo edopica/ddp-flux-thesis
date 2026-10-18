@@ -1,0 +1,240 @@
+diff --git i/experiments/static-scaling/experiment.toml w/experiments/static-scaling/experiment.toml
+index 3d662a2..043185a 100644
+--- i/experiments/static-scaling/experiment.toml
++++ w/experiments/static-scaling/experiment.toml
+@@ -112,7 +112,7 @@ gradient_equivalence = "equal local batch sizes make the averaged gradient equal
+ 
+ [optimizer]
+ name = "AdamW with decoupled weight decay"
+-status = "proposed"
++status = "recorded 2026-10-18 (OD-2, OD-3; user-approved)"
+ flux_config = "Optimisers.AdamW(; eta = eta, beta = (0.9, 0.999), lambda = wd, epsilon = 1e-8, couple = true); the all-keyword form is required (the positional constructor accepts only couple as a keyword); couple = true matches PyTorch AdamW"
+ pytorch_config = "torch.optim.AdamW(params, lr = eta, betas = (0.9, 0.999), eps = 1e-8, weight_decay = wd)"
+ equations = "m = b1*m + (1-b1)*g; v = b2*v + (1-b2)*g^2; mhat = m/(1-b1^t); vhat = v/(1-b2^t); dx = mhat/(sqrt(vhat) + eps); x = x - eta*(dx + lambda*x)"
+@@ -131,14 +131,14 @@ gradient_clipping = "none"
+ maximize = false
+ 
+ [schedule]
+-status = "proposed"
++status = "recorded 2026-10-18 (OD-4; user-approved)"
+ definition = "a function of the global optimizer update index t = 1..T; identical in both frameworks; the schedule does not scale with GPU count"
+ warmup_rule = "linear from 0 to eta_max: eta_t = eta_max * t / W for t = 1..W"
+ decay_rule = "cosine from eta_max to 0: eta_t = eta_max * 0.5 * (1 + cos(pi * (t - W) / (T - W))) for t = W+1..T"
+-warmup_epochs_proposed = 5
++warmup_epochs = 5
+ warmup_updates_b512 = 975
+ warmup_updates_b256 = 1950
+-learning_curve_epochs_proposed = 50
++learning_curve_epochs = 50
+ learning_curve_updates_b512 = 9750
+ learning_curve_updates_b256 = 19500
+ throughput_updates = "pending_phase_6: one fixed K giving the fastest configuration tens of seconds of work"
+@@ -146,7 +146,7 @@ throughput_schedule_usage = "throughput runs execute updates 1..K of the same sc
+ 
+ [training_contract]
+ flux_entry_point = "explicit: Zygote.withgradient for AD, then Optimisers.update! on the DistributedOptimizerState (communication outside AD)"
+-flux_entry_point_status = "proposed; confirm in Phase 3"
++flux_entry_point_status = "recorded 2026-10-18 (OD-11; user-approved); implementation matches the explicit path"
+ flux_single_gpu_entry_point = "Zygote.withgradient, then Optimisers.update! on an ordinary Optimisers state"
+ pytorch_entry_point = "loss.backward() then optimizer.step() inside the DDP wrapper"
+ gradient_averaging = "g = sum_r(g_r) / world_size, applied exactly once by the framework"
+@@ -241,9 +241,28 @@ triton = "3.5.1"
+ remote_flux_state = "WARNING: the Leonardo copy ~/projects/flux-integration is a pre-guard snapshot (verified 2026-10-15); sync f7b4520c and re-precompile on a compute node before any benchmark run"
+ 
+ [tolerances]
+-status = "proposed; cross-framework values are calibrated in Phase 3 before acceptance runs"
++status = "recorded 2026-10-17 (OD-10 calibration revision; base rule plus three frozen backward-category floors)"
+ comparison_rule = "elementwise |a - b| <= atol + rtol * max(|a|, |b|)"
+ same_framework = { atol = 2.0e-6, rtol = 1.0e-5, basis = "existing project standard (Phase K, C8 matrix); applies to DDP vs single-GPU reference and to rank replicas" }
+-cross_framework = { atol = 1.0e-5, rtol = 1.0e-4, basis = "provisional; must be calibrated on frozen fixtures before Phase 3 acceptance and then frozen in this file" }
++cross_framework = { atol = 1.0e-5, rtol = 1.0e-4, basis = "recorded 2026-10-17: base rule for every category except the three phase3 backward categories below; frozen before the Step 3c acceptance run" }
+ categories = ["logits", "loss", "gradients", "updated parameters", "optimizer moments m and v", "step counters"]
++calibration_evidence = [
++  "artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md",
++  "same-framework PyTorch CPU-vs-GPU control (PyTorch CPU reference job 60912525, node lrdn3450; Flux CPU checker job 60912664): grads.u1 3.021732e-4 / 14,365 violations, grads.u3 4.099458e-4 / 128,170, m.u3 5.057361e-5 / 1,137; this control fails the base rule on exactly the same three categories as Flux, with the same worst leaves",
++]
+ calibration_rule = "a revision of a tolerance requires a documented numerical cause (kernel or reduction-order difference), recorded in this file before the acceptance evidence is generated"
++
++[tolerances.category_overrides."phase3.grads.u1"]
++atol = 1.0e-3
++rtol = 1.0e-4
++basis = "PyTorch CPU-vs-GPU same-framework control fails the base rule at 3.021732e-4 with 14,365 violations; four-comparison Flux/PyTorch envelope max 4.126653e-4; >=2.42x margin; per-leaf relative L2 stays supplementary"
++
++[tolerances.category_overrides."phase3.grads.u3"]
++atol = 2.0e-3
++rtol = 1.0e-4
++basis = "PyTorch CPU-vs-GPU same-framework control fails the base rule at 4.099458e-4 with 128,170 violations; four-comparison Flux/PyTorch envelope max 7.480253e-4; >=2.67x margin; per-leaf relative L2 stays supplementary"
++
++[tolerances.category_overrides."phase3.m.u3"]
++atol = 2.0e-4
++rtol = 1.0e-4
++basis = "PyTorch CPU-vs-GPU same-framework control fails the base rule at 5.057361e-5 with 1,137 violations; four-comparison Flux/PyTorch envelope max 9.655068e-5; >=2.07x margin; per-leaf relative L2 stays supplementary"
+diff --git i/experiments/static-scaling/open-decisions.md w/experiments/static-scaling/open-decisions.md
+index 178df56..f942ed4 100644
+--- i/experiments/static-scaling/open-decisions.md
++++ w/experiments/static-scaling/open-decisions.md
+@@ -1,24 +1,24 @@
+ # Open decisions: static-network GPU scaling (Phase 1)
+ 
+-Date: 2026-10-15 (OD-1, OD-5, OD-6 recorded 2026-10-16)
+-Status: OD-1, OD-5, and OD-6 are recorded (see the decision record); the remaining items still need a recorded decision before the phase they block.
+-Proposed defaults live in [experiment.toml](experiment.toml) and [specification.md](specification.md); this file tracks what is not yet frozen.
++Date: 2026-10-15 (OD-1, OD-5, OD-6 recorded 2026-10-16; OD-10 recorded 2026-10-17; OD-2, OD-3, OD-4, OD-11 recorded 2026-10-18)
++Status: OD-1, OD-2, OD-3, OD-4, OD-5, OD-6, OD-10, and OD-11 are recorded (see the decision record); OD-7, OD-8, OD-9, OD-12, and OD-13 remain open and need a recorded decision before the phase they block.
++Values for recorded decisions are fixed; proposed defaults for the open decisions live in [experiment.toml](experiment.toml) and [specification.md](specification.md), and this file tracks what is not yet frozen.
+ 
+ ## Decision table
+ 
+-| ID | Decision | Proposed default | Why it matters | Blocks |
++| ID | Decision | Value (recorded) or proposed default | Why it matters | Blocks |
+ |---|---|---|---|---|
+ | OD-1 | Architecture confirmation — **recorded 2026-10-16** | Small-image ResNet-18, 3x3 stride-1 stem, no max-pool, GroupNorm-32 eps 1e-5, biased 200-class classifier, 11,271,432 parameters | Any change alters gradients, memory, and measured work | Phase 2, 3 |
+-| OD-2 | AdamW hyperparameters | `lr = 1e-3`, `wd = 1e-4`, `betas = (0.9, 0.999)`, `eps = 1e-8` | Sets the learning dynamics for all six configurations | Phase 3, 8 |
+-| OD-3 | Weight-decay exclusions | No decay for GroupNorm `gamma`/`beta` and classifier bias; decay only for conv and classifier weights | Couples to optimization quality and to the PyTorch/Flux group implementations | Phase 3 |
+-| OD-4 | LR schedule and learning-curve budget | Linear warm-up over 5 epochs, cosine to 0 over a 50-epoch budget (`T` = 9,750 at batch 512, 19,500 at 256) | Fixes the training budget and every schedule position | Phase 3, 8 |
++| OD-2 | AdamW hyperparameters — **recorded 2026-10-18** | `lr = 1e-3`, `wd = 1e-4`, `betas = (0.9, 0.999)`, `eps = 1e-8` | Sets the learning dynamics for all six configurations | Phase 3, 8 |
++| OD-3 | Weight-decay exclusions — **recorded 2026-10-18** | No decay for GroupNorm `gamma`/`beta` and classifier bias (41 leaves); decay only for conv and classifier weights (21 leaves) | Couples to optimization quality and to the PyTorch/Flux group implementations | Phase 3 |
++| OD-4 | LR schedule and learning-curve budget — **recorded 2026-10-18** | Linear warm-up over 5 epochs, cosine to 0 over a 50-epoch budget, indexed by global update (`W` = 975, `T` = 9,750 at batch 512; `W` = 1,950, `T` = 19,500 at 256) | Fixes the training budget and every schedule position | Phase 3, 8 |
+ | OD-5 | Input normalization constants — **recorded 2026-10-16** | Per-channel RGB population mean and standard deviation from all 100,000 original training images (decoded uint8 scaled to [0,1], float64 accumulation), computed before augmentation, padding, and tail dropping; float32 constants frozen in the fixture manifest | Changes effective conditioning of the first layers | Phase 2 |
+ | OD-6 | Augmentation set — **recorded 2026-10-16** | Zero-padding of 4 per side, uniformly sampled 64x64 crop (zero-based offsets 0..8, independent), horizontal flip p=0.5; `(crop_top, crop_left, flip)` saved per (epoch, sample_id) | Affects accuracy trajectory and end-to-end timing; the saved-decision mechanism itself is fixed | Phase 2 |
+ | OD-7 | Final global batch | 512, fallback 256 if the memory pilot fails the margin | Batch is the fixed-work unit of the whole comparison | Phase 5 |
+ | OD-8 | Memory margin | Peak process memory at most 80% of 64 GiB (at least 12.8 GiB free) | Defines pass/fail for the memory pilot | Phase 5 |
+ | OD-9 | End-to-end timing excludes JPEG decode | Decoded uint8 arrays are prepared once with one canonical decoder and consumed by both frameworks | Removes decoder differences but narrows the meaning of "end-to-end" | Phase 6 |
+-| OD-10 | Cross-framework tolerance | Provisional `atol = 1e-5`, `rtol = 1e-4`, calibrated on frozen fixtures in Phase 3 | Defines cross-framework acceptance; too loose hides defects, too tight blocks acceptance | Phase 3 |
+-| OD-11 | Flux entry point | Explicit `Zygote.withgradient` + `Optimisers.update!` (64 collectives/update; the eager path adds a loss vote, 65) | Changes the measured work and which guard runs | Phase 3, 6 |
++| OD-10 | Cross-framework tolerance — **recorded 2026-10-17** | Base `atol = 1e-5`, `rtol = 1e-4` for all categories except three frozen backward floors: `grads.u1 atol = 1e-3`, `grads.u3 atol = 2e-3`, `m.u3 atol = 2e-4`, each with `rtol = 1e-4`; calibrated on the frozen fixtures and same-framework PyTorch CPU-vs-GPU control | Defines cross-framework acceptance; too loose hides defects, too tight blocks acceptance | Phase 3 |
++| OD-11 | Flux entry point — **recorded 2026-10-18** | Explicit `Zygote.withgradient` + `Optimisers.update!` (64 collectives/update; the eager path adds a loss vote, 65) | Changes the measured work and which guard runs | Phase 3, 6 |
+ | OD-12 | Throughput update count `K` | Chosen in Phase 6: tens of seconds of work for the fastest configuration | Must be identical in all configurations | Phase 6 |
+ | OD-13 | CPU/thread/worker policy | 32 CPUs per job total, 1 compute thread per rank, 4 loader workers per rank, Slurm default affinity | Required for interpreting end-to-end scaling and avoiding oversubscription | Phase 6, 7 |
+ 
+@@ -26,9 +26,9 @@ Proposed defaults live in [experiment.toml](experiment.toml) and [specification.
+ 
+ **OD-1.** The architecture follows the detailed proposal and is fully specified in the spec. The parameter count 11,271,432 was independently recomputed (convolution 11,159,232 + GroupNorm 9,600 + classifier 102,600) and equals the proposal's formula applied to TorchVision ResNet-18. **Recorded 2026-10-16:** GroupNorm-32 and the removed max-pool are confirmed, and the initial-parameter recipe is confirmed (Kaiming-normal `fan_out` with ReLU gain, PyTorch `Linear` defaults for the classifier, GN `gamma = 1`/`beta = 0`). One canonical bundle is generated once with a recorded generator, generator version, and seed, and both frameworks load that same bundle; the bundle hash and recipe are recorded in the Phase 2 fixture manifest.
+ 
+-**OD-2/OD-3.** The proposal's original TorchVision recipe (SGD momentum 0.9, lr 0.2, wd 1e-4) does not transfer to AdamW. The proposed AdamW values are a new, documented choice; both frameworks use the identical rule. Verified library facts: Optimisers 0.4.9 `AdamW` with the default `couple = true` implements `x = x - eta*(dx + lambda*x)` exactly like `torch.optim.AdamW`; `OptimiserChain(Adam, WeightDecay)` is **not** equivalent and must not be substituted. Weight-decay exclusions follow standard practice and map to `ndim >= 2` on the PyTorch side.
++**OD-2/OD-3.** **Recorded 2026-10-18 (user):** AdamW with `lr = 1e-3`, `wd = 1e-4`, `betas = (0.9, 0.999)`, `eps = 1e-8`; decay applies to the 20 convolution weights and the classifier weight (21 leaves, `lambda = 1e-4`), and no decay applies to the 40 GroupNorm `gamma`/`beta` arrays and the classifier bias (41 leaves, `lambda = 0`). The proposal's original TorchVision recipe (SGD momentum 0.9, lr 0.2, wd 1e-4) does not transfer to AdamW, so these are a new, documented choice; both frameworks use the identical rule. Verified library facts: Optimisers 0.4.9 `AdamW` with the default `couple = true` implements `x = x - eta*(dx + lambda*x)` exactly like `torch.optim.AdamW`; `OptimiserChain(Adam, WeightDecay)` is **not** equivalent and must not be substituted. Weight-decay exclusions follow standard practice and map to `ndim >= 2` on the PyTorch side and to a Functors-compatible rule tree on the Flux side. The Step 4 probe (job `60948431`) asserts the 21/41 membership and the per-leaf `lambda` values in both frameworks.
+ 
+-**OD-4.** The schedule is defined by global update index (equations in the spec), not by wall-clock or rank. The 50-epoch budget is a proposed learning-curve budget; the published BatchNorm/SGD numbers of the reference recipe are context only and are not acceptance thresholds for GroupNorm/AdamW.
++**OD-4.** **Recorded 2026-10-18 (user):** 5 warm-up epochs and a 50-epoch learning-curve budget, indexed by global update: `W = 975`, `T = 9,750` at batch 512; the batch-256 alternate `W = 1,950`, `T = 19,500` remains available for the Phase 5 batch decision. The schedule is defined by global update index (equations in the spec), not by wall-clock or rank. The published BatchNorm/SGD numbers of the reference recipe are context only and are not acceptance thresholds for GroupNorm/AdamW. The Step 4 probe checks the boundaries at `1`, `W`, `W+1`, and `T`.
+ 
+ **OD-5/OD-6.** The proposal requires "matching preprocessing and augmentation decisions, indexed by sample and epoch rather than rank". The mechanism is fixed now: one saved decision record per (epoch, global sample index), replayed by both frameworks. **Recorded 2026-10-16:** the training transform set is zero-padding of 4 per side, then a uniformly sampled 64x64 crop (zero-based `crop_top`/`crop_left` in `0..8`, sampled independently), then a horizontal flip at probability 0.5; the `(crop_top, crop_left, flip)` triple is saved per (epoch, sample_id). The normalization constants are per-channel RGB population mean and standard deviation computed once from all 100,000 original training images, on the canonical decoded uint8 data scaled to [0,1], before augmentation, padding, and epoch tail dropping, with float64 accumulation; validation and test images are never used. The constants are frozen as float32 values in the fixture manifest and applied identically by both frameworks. A different seed does not produce matching augmentation across frameworks; the saved record does.
+ 
+@@ -36,9 +36,9 @@ Proposed defaults live in [experiment.toml](experiment.toml) and [specification.
+ 
+ **OD-9.** JPEG decode once, at preparation time, removes PIL-versus-Julia decoder differences and allows exact decoded-input equality tests. The cost is that the end-to-end view measures augmentation and host-to-device staging but not raw JPEG decode. Both frameworks are treated identically, and the limitation must be stated in the final report.
+ 
+-**OD-10.** Same-framework tolerances stay at the project standard (2e-6 / 1e-5). Cross-framework values must be calibrated on the frozen fixtures before any Phase 3 acceptance run and then frozen in the config; changing a tolerance later requires a documented numerical cause.
++**OD-10.** Same-framework tolerances stay at the project standard (2e-6 / 1e-5). **Recorded 2026-10-17:** the cross-framework rule keeps the elementwise form `|a - b| <= atol + rtol * max(|a|, |b|)` and the base `atol = 1e-5`, `rtol = 1e-4` for every category except `phase3.grads.u1` (`atol = 1e-3`), `phase3.grads.u3` (`atol = 2e-3`), and `phase3.m.u3` (`atol = 2e-4`); all three overrides keep `rtol = 1e-4`. The basis is the same-framework PyTorch CPU-vs-GPU control on identical generator, fixture, bundle, updates, and provenance: it fails the base rule on exactly these three backward categories at 3.021732e-4 / 14,365 violations, 4.099458e-4 / 128,170, and 5.057361e-5 / 1,137, with the same worst leaves. The four-comparison Flux/PyTorch envelope maxima are 4.126653e-4, 7.480253e-4, and 9.655068e-5, so each new floor has at least 2x margin (2.42x, 2.67x, 2.07x). Per-leaf relative L2 remains supplementary and does not replace the elementwise rule. Evidence: [`artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md`](../../artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md). Any later tolerance change again requires a documented numerical cause.
+ 
+-**OD-11.** The explicit path is the project's established benchmark path (Phase K driver), keeps communication outside AD, and keeps the ADR-0009 gradient guard inside the timed workload. The eager `Flux.train!` path additionally runs the ADR-0008 loss vote; if the project prefers the fullest guard contract in the benchmark, choose the eager path instead and record 65 collectives per update.
++**OD-11.** **Recorded 2026-10-18 (user):** explicit two-phase training — `Zygote.withgradient` for differentiation, then `Optimisers.update!` on `DistributedOptimizerState`; all communication happens outside AD. The explicit path is the project's established benchmark path (Phase K driver), keeps communication outside AD, and keeps the ADR-0009 gradient guard inside the timed workload. It uses 64 collectives per update: 1 presence allreduce + 62 gradient allreduces + 1 gradient-validity vote. The eager `Flux.train!` path additionally runs the ADR-0008 loss vote (65 collectives) and is not selected.
+ 
+ **OD-12/OD-13.** The phases document requires one fixed update count for timing and a fixed total CPU budget with recorded worker and thread counts. The proposed policy keeps total CPU at 32 cores for every configuration and one compute thread per rank; the pilot and the timing dry run record the effective thread and affinity settings.
+ 
+@@ -51,3 +51,17 @@ When a decision is made, add a row here and update the affected files.
+ | 2026-10-16 | OD-1 | Small-image ResNet-18 as specified (3x3 stride-1 stem, no initial max-pool, affine GroupNorm-32 eps 1e-5, biased 200-class classifier) frozen at 11,271,432 trainable parameters across 62 arrays; convolution weights Kaiming-normal `fan_out` with ReLU gain; classifier weight and bias use the PyTorch `Linear` defaults; GN `gamma = 1`, `beta = 0`; one canonical bundle with recorded generator, version, and seed loaded by both frameworks | supervisor | specification.md, experiment.toml |
+ | 2026-10-16 | OD-5 | Per-channel RGB population mean and standard deviation from all 100,000 original training images, canonical decoded uint8 scaled to [0,1], float64 accumulation, computed before augmentation, padding, and epoch tail dropping; float32 constants and the calculation method frozen in the fixture manifest; validation and test images excluded; the same rule applies to training and validation | supervisor | specification.md, experiment.toml |
+ | 2026-10-16 | OD-6 | Zero-padding of 4 per side, then a uniformly sampled 64x64 crop (zero-based `crop_top`/`crop_left` in `0..8`, sampled independently), then a horizontal flip with probability 0.5; `(crop_top, crop_left, flip)` saved per (epoch, sample_id), independent of rank and loader worker; padding/crop/flip applied to decoded uint8, then float32 conversion, division by 255, and normalization; validation uses conversion and normalization only | supervisor | specification.md, experiment.toml |
++| 2026-10-17 | OD-10 | Elementwise rule `|a - b| <= atol + rtol * max(|a|, |b|)`; base `atol = 1e-5`, `rtol = 1e-4`; only `phase3.grads.u1` (`atol = 1e-3`), `phase3.grads.u3` (`atol = 2e-3`), and `phase3.m.u3` (`atol = 2e-4`) overridden, each with `rtol = 1e-4`; rationale: same-framework PyTorch CPU-vs-GPU control fails the base rule on the same three categories with the same worst leaves, envelope margins >=2x, per-leaf relative L2 supplementary | user | specification.md, experiment.toml, check_phase3_flux.jl |
++| 2026-10-18 | OD-2 | AdamW with `lr = 1e-3`, `wd = 1e-4`, `betas = (0.9, 0.999)`, `eps = 1e-8`; decoupled decay through the same learning-rate factor; bias correction on; both frameworks use the identical rule | user | specification.md, experiment.toml |
++| 2026-10-18 | OD-3 | Decay only on the 20 convolution weights and the classifier weight (21 leaves, `lambda = 1e-4`); no decay on the 40 GroupNorm `gamma`/`beta` arrays and the classifier bias (41 leaves, `lambda = 0`); PyTorch uses `ndim >= 2`, Flux uses a Functors-compatible rule tree | user | specification.md, experiment.toml |
++| 2026-10-18 | OD-4 | Linear warm-up over 5 epochs and cosine decay to zero over a 50-epoch budget, indexed by global update `t`; batch 512 uses `W = 975`, `T = 9,750`; the batch-256 alternate `W = 1,950`, `T = 19,500` remains available for Phase 5 | user | specification.md, experiment.toml |
++| 2026-10-18 | OD-11 | Explicit `Zygote.withgradient` + `Optimisers.update!` on `DistributedOptimizerState`; communication outside AD; 64 collectives per update on the explicit path (1 presence + 62 gradient averages + 1 gradient-validity vote); the eager path adds the ADR-0008 loss vote (65) and is not selected | user | specification.md, experiment.toml |
++
++The 2026-10-18 rows were approved by the user in the Phase 3 Step 5
++instruction. They match the configuration already exercised by the Step 3c
++acceptance run (job `60942933`) and the Step 4 optimizer-contract probe (job
++`60948431`: 21 decay leaves with `lambda = 1e-4`, 41 no-decay leaves with
++`lambda = 0`, `beta = (0.9, 0.999)`, `epsilon = 1e-8`, `couple = true`;
++schedule boundaries `W = 975`, `T = 9,750`). No numeric value changed relative
++to the configuration used in those runs. OD-7, OD-8, OD-9, OD-12, and OD-13
++remain open with their proposed defaults unchanged.
+diff --git i/experiments/static-scaling/specification.md w/experiments/static-scaling/specification.md
+index f65d7f3..e5eef86 100644
+--- i/experiments/static-scaling/specification.md
++++ w/experiments/static-scaling/specification.md
+@@ -1,7 +1,7 @@
+ # Static-network GPU scaling: shared experiment specification (Phase 1)
+ 
+-Date: 2026-10-15 (review findings R1-R4 corrected 2026-10-16; OD-1, OD-5, OD-6 recorded 2026-10-16)
+-Status: architecture, initialization, normalization, and augmentation are recorded; values still marked *proposed* await the remaining recorded decisions in [open-decisions.md](open-decisions.md).
++Date: 2026-10-15 (review findings R1-R4 corrected 2026-10-16; OD-1, OD-5, OD-6 recorded 2026-10-16; OD-10 recorded 2026-10-17; OD-2, OD-3, OD-4, OD-11 recorded 2026-10-18)
++Status: architecture, initialization, normalization, augmentation, optimizer, schedule, cross-framework tolerance, and Flux entry point are recorded. OD-7, OD-8, OD-9, OD-12, and OD-13 remain proposed in [open-decisions.md](open-decisions.md).
+ Review: [Phase 1 implementation review](../../reports/static-scaling-phase1-review.md); R1 (classifier axis), R2 (kernel orientation), R3 (AdamW constructor), R4 (beta-power mapping) corrected in both companions.
+ Scope: define one workload that the Flux and PyTorch implementations can each reproduce.
+ 
+@@ -175,7 +175,7 @@ Library realization, verified against the pinned sources:
+ | Flux | `Optimisers.AdamW(; eta, beta = (0.9, 0.999), lambda, epsilon, couple = true)`; the all-keyword form is required (the positional constructor accepts only `couple` as a keyword and raises `MethodError`); `couple = true` yields exactly the equations above | Optimisers 0.4.9 (manifest git-tree `b6a586b5`), `src/rules.jl`, `AdamW.apply!` |
+ | PyTorch | `torch.optim.AdamW(params, lr, betas, eps, weight_decay)` | PyTorch 2.9 docs |
+ 
+-Defaults together: `eta = 1e-3`, `beta = (0.9, 0.999)`, `eps = 1e-8`, `lambda = 1e-4` (all proposed).
++Defaults together: `eta = 1e-3`, `beta = (0.9, 0.999)`, `eps = 1e-8`, `lambda = 1e-4` (recorded 2026-10-18 as OD-2; user-approved).
+ The Flux `Adam` rule alone is not used; `OptimiserChain(Adam, WeightDecay)` is not equivalent to `AdamW` and must not be substituted.
+ 
+ ### 6.2 Parameter groups
+@@ -185,6 +185,8 @@ The Flux `Adam` rule alone is not used; `OptimiserChain(Adam, WeightDecay)` is n
+ | Decay | 20 convolution weights, classifier weight | `lambda = 1e-4` |
+ | No decay | 40 GroupNorm `gamma`/`beta` arrays, classifier bias | `lambda = 0` |
+ 
++Recorded 2026-10-18 (OD-3; user-approved): the decay group has 21 leaves and the no-decay group 41 leaves, with `lambda = 1e-4` and `lambda = 0` respectively.
++
+ PyTorch realization: `weight_decay` applies only to parameters with `ndim >= 2` (equivalent for this architecture).
+ Flux realization: an Optimisers rule tree built with Functors-compatible traversal, assigning `AdamW(lambda = 0)` to the 1-D arrays.
+ Phase 3 must assert group membership and per-leaf `lambda`; library defaults alone do not establish this.
+@@ -196,7 +198,7 @@ Identical in both frameworks; it does not scale with GPU count.
+ - Warm-up: linear from 0 to `eta_max` over the first `W` updates: `eta_t = eta_max * t / W`.
+ - Decay: cosine from `eta_max` to 0 over updates `W+1 .. T`: `eta_t = eta_max * 0.5 * (1 + cos(pi * (t - W) / (T - W)))`.
+ 
+-Proposed values: 5 warm-up epochs and a 50-epoch learning-curve budget, hence:
++Recorded values (2026-10-18, OD-4; user-approved): 5 warm-up epochs and a 50-epoch learning-curve budget, hence:
+ 
+ | Global batch | `W` (5 epochs) | `T` (50 epochs) |
+ |---|---:|---:|
+@@ -298,7 +300,7 @@ The commit `f7b4520c` implements the ADR-0009 post-reduction gradient guard; its
+ 
+ ### 10.4 Flux training entry point and guard behavior
+ 
+-Selected entry point (proposed): explicit two-phase training — `Zygote.withgradient` for differentiation, then `Optimisers.update!` on the distributed state. All communication happens inside the wrapper after AD; no collective runs inside the differentiated region.
++Selected entry point (recorded 2026-10-18, OD-11; user-approved): explicit two-phase training — `Zygote.withgradient` for differentiation, then `Optimisers.update!` on the distributed state. All communication happens inside the wrapper after AD; no collective runs inside the differentiated region.
+ 
+ Actual guard behavior on this path (verified against source):
+ 
+@@ -329,7 +331,25 @@ Rule: elementwise `|a - b| <= atol + rtol * max(|a|, |b|)`.
+ | Comparison class | atol | rtol | Basis |
+ |---|---:|---:|---|
+ | Same framework: DDP vs single-GPU reference; rank replicas | 2.0e-6 | 1.0e-5 | existing project standard (Phase K, C8 matrix) |
+-| Cross framework: Flux vs PyTorch on shared fixtures | 1.0e-5 | 1.0e-4 | provisional; calibrated in Phase 3 on frozen fixtures before acceptance runs |
++| Cross framework: Flux vs PyTorch on shared fixtures (base rule) | 1.0e-5 | 1.0e-4 | recorded 2026-10-17 (OD-10); applies to every category except the three overrides below |
++| Cross framework, `phase3.grads.u1` (frozen override) | 1.0e-3 | 1.0e-4 | PyTorch CPU-vs-GPU same-framework control fails the base rule at 3.021732e-4 (14,365 violations); four-comparison envelope max 4.126653e-4; >=2.42x margin |
++| Cross framework, `phase3.grads.u3` (frozen override) | 2.0e-3 | 1.0e-4 | same-framework control 4.099458e-4 (128,170 violations); envelope max 7.480253e-4; >=2.67x margin |
++| Cross framework, `phase3.m.u3` (frozen override) | 2.0e-4 | 1.0e-4 | same-framework control 5.057361e-5 (1,137 violations); envelope max 9.655068e-5; >=2.07x margin |
++
++OD-10 was recorded on 2026-10-17. The three overrides apply only to
++`phase3.grads.u1`, `phase3.grads.u3`, and `phase3.m.u3`; all other
++categories remain at the base `1e-5` / `1e-4`. The calibration evidence is
++[`artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md`](../../artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md).
++The decisive control is the same-framework PyTorch CPU-vs-GPU comparison
++with identical generator, fixture, bundle, updates, and provenance: it
++fails the base rule on exactly these three backward categories, with the
++same worst leaves. The maximum Flux residual is within 1.63x of that
++same-framework envelope, and each new absolute floor has at least 2x margin
++over the observed envelope. The residual is ordinary FP32 convolution and
++reduction-order variation between valid backends, not a TF32/FMA policy or
++model-math difference. Per-leaf relative L2 stays a supplementary
++diagnostic and does not replace the elementwise rule; zero/nonzero gradient
++checks remain unchanged.
+ 
+ Categories covered: logits, loss, gradients, updated parameters, optimizer moments `m` and `v`, step counters.
+ Integer counters are compared exactly; the tolerances above apply only to floating-point arrays.
+@@ -338,8 +358,9 @@ Acceptance evidence includes multiple optimizer updates, covering nonzero moment
+ 
+ ## 12. Open decisions and change control
+ 
+-The remaining decisions, their proposed defaults, and their blocking phases are in [open-decisions.md](open-decisions.md): exact AdamW hyperparameters and groups, learning-curve budget, final batch, memory margin, throughput update count, tolerance calibration, and the JPEG-decode exclusion from the end-to-end view.
+-OD-1, OD-5, and OD-6 were recorded on 2026-10-16; their values appear in sections 3 and 4 and in the companion config.
++The open decisions, their proposed defaults, and their blocking phases are in [open-decisions.md](open-decisions.md): final batch (OD-7), memory margin (OD-8), JPEG-decode exclusion from the end-to-end view (OD-9), throughput update count (OD-12), and the CPU/thread/worker policy (OD-13).
++OD-1, OD-5, and OD-6 were recorded on 2026-10-16; OD-10 on 2026-10-17; OD-2, OD-3, OD-4, and OD-11 on 2026-10-18. Their values appear in sections 3, 4, 6, 10.4, and 11 and in the companion config.
++OD-7, OD-8, OD-9, OD-12, and OD-13 remain open.
+ 
+ Change rule: a change to any value in [experiment.toml](experiment.toml) that can affect gradients, sample exposure, or measured work requires an update of this specification and, where acceptance evidence already exists, renewed correctness checks.
+ 

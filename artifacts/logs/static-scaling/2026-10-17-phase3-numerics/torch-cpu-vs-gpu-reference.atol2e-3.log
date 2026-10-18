@@ -1,0 +1,109 @@
+COMPARE_CONFIG rule=|a-b| <= atol + rtol*max(|a|,|b|) atol=0.002 rtol=0.0001
+COMPARE_INPUT role=ref path=artifacts/baselines/static-scaling/2026-10-17-phase3-attempt3-preserved/phase3_reference.npz bytes=299701312 sha256=97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783 arrays=337
+COMPARE_INPUT role=cand path=artifacts/baselines/static-scaling/2026-10-17-phase3-numerics/phase3_reference.npz bytes=299701312 sha256=a7ff467b0e1d216a6d006e8ae576a97694e4a654d481bdec86b06e269a1217b3 arrays=337
+COMPARE_ARRAY_SET ref_arrays=337 cand_arrays=337 missing_in_cand=[] extra_in_cand=[]
+COMPARE_CATEGORY category=eta arrays=3 leaves_l2=3 missing=0 elements=3 max_abs=0.000000e+00 max_rel=0.000000e+00 violations=0 max_ratio=0.000000e+00 worst_array=- aggregate_ref_l2=3.837597e-06 aggregate_cand_l2=3.837597e-06 aggregate_diff_l2=0.000000e+00 aggregate_rel_l2=0.000000e+00
+COMPARE_LEAF_L2_SUMMARY category=eta leaves=3 max_rel_l2=0.000000e+00 worst_leaf=eta.u1 zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=eta rank=1 leaf=eta.u1 rel_l2=0.000000e+00
+COMPARE_LEAF_L2_WORST category=eta rank=2 leaf=eta.u2 rel_l2=0.000000e+00
+COMPARE_LEAF_L2_WORST category=eta rank=3 leaf=eta.u3 rel_l2=0.000000e+00
+COMPARE_CATEGORY category=loss arrays=3 leaves_l2=3 missing=0 elements=3 max_abs=4.768372e-07 max_rel=8.584973e-08 violations=0 max_ratio=1.865975e-04 worst_array=loss.u2 aggregate_ref_l2=9.660250e+00 aggregate_cand_l2=9.660250e+00 aggregate_diff_l2=4.768372e-07 aggregate_rel_l2=4.936075e-08
+COMPARE_LEAF_L2_SUMMARY category=loss leaves=3 max_rel_l2=8.584973e-08 worst_leaf=loss.u2 zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=loss rank=1 leaf=loss.u2 rel_l2=8.584973e-08
+COMPARE_LEAF_L2_WORST category=loss rank=2 leaf=loss.u1 rel_l2=0.000000e+00
+COMPARE_LEAF_L2_WORST category=loss rank=3 leaf=loss.u3 rel_l2=0.000000e+00
+COMPARE_CATEGORY category=logits arrays=3 leaves_l2=3 missing=0 elements=7200 max_abs=2.235174e-06 max_rel=5.847653e-03 violations=0 max_ratio=1.107349e-03 worst_array=logits.u3 aggregate_ref_l2=5.457303e+01 aggregate_cand_l2=5.457303e+01 aggregate_diff_l2=3.353206e-05 aggregate_rel_l2=6.144438e-07
+COMPARE_LEAF_L2_SUMMARY category=logits leaves=3 max_rel_l2=9.038754e-07 worst_leaf=logits.u3 zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=logits rank=1 leaf=logits.u3 rel_l2=9.038754e-07
+COMPARE_LEAF_L2_WORST category=logits rank=2 leaf=logits.u2 rel_l2=4.744056e-07
+COMPARE_LEAF_L2_WORST category=logits rank=3 leaf=logits.u1 rel_l2=2.997971e-07
+COMPARE_CATEGORY category=activations arrays=11 leaves_l2=11 missing=0 elements=18094080 max_abs=1.764297e-05 max_rel=1.000000e+00 violations=0 max_ratio=7.877014e-03 worst_array=act.stage4.block1 aggregate_ref_l2=4.691221e+03 aggregate_cand_l2=4.691221e+03 aggregate_diff_l2=3.382134e-03 aggregate_rel_l2=7.209496e-07
+COMPARE_LEAF_L2_SUMMARY category=activations leaves=11 max_rel_l2=1.549527e-06 worst_leaf=act.stage4.block1 zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=activations rank=1 leaf=act.stage4.block1 rel_l2=1.549527e-06
+COMPARE_LEAF_L2_WORST category=activations rank=2 leaf=act.stage4.block0 rel_l2=1.537304e-06
+COMPARE_LEAF_L2_WORST category=activations rank=3 leaf=act.stage3.block1 rel_l2=1.230464e-06
+COMPARE_LEAF_L2_WORST category=activations rank=4 leaf=act.stage3.block0 rel_l2=1.161959e-06
+COMPARE_LEAF_L2_WORST category=activations rank=5 leaf=act.stage2.block1 rel_l2=8.927569e-07
+COMPARE_LEAF_L2_WORST category=activations rank=6 leaf=act.stage2.block0 rel_l2=7.881032e-07
+COMPARE_LEAF_L2_WORST category=activations rank=7 leaf=act.stage1.block1 rel_l2=5.652006e-07
+COMPARE_LEAF_L2_WORST category=activations rank=8 leaf=act.stage1.block0 rel_l2=4.157675e-07
+COMPARE_LEAF_L2_WORST category=activations rank=9 leaf=act.pooled rel_l2=2.555829e-07
+COMPARE_LEAF_L2_WORST category=activations rank=10 leaf=act.stem.gn rel_l2=1.446596e-07
+COMPARE_CATEGORY category=grads.u1 arrays=62 leaves_l2=62 missing=0 elements=11271432 max_abs=3.021732e-04 max_rel=1.961892e+00 violations=0 max_ratio=1.505891e-01 worst_array=grad.u1.stem.conv.weight aggregate_ref_l2=2.332547e+01 aggregate_cand_l2=2.332548e+01 aggregate_diff_l2=3.504574e-03 aggregate_rel_l2=1.502467e-04
+COMPARE_LEAF_L2_SUMMARY category=grads.u1 leaves=62 max_rel_l2=1.839324e-03 worst_leaf=grad.u1.stage1.block0.conv1.weight zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=1 leaf=grad.u1.stage1.block0.conv1.weight rel_l2=1.839324e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=2 leaf=grad.u1.stage1.block0.conv2.weight rel_l2=1.766511e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=3 leaf=grad.u1.stage1.block0.gn1.weight rel_l2=1.700593e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=4 leaf=grad.u1.stem.conv.weight rel_l2=1.696078e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=5 leaf=grad.u1.stage1.block0.gn1.bias rel_l2=1.655595e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=6 leaf=grad.u1.stage1.block1.conv1.weight rel_l2=1.502525e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=7 leaf=grad.u1.stem.gn.bias rel_l2=1.403261e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=8 leaf=grad.u1.stage1.block0.gn2.weight rel_l2=1.273640e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=9 leaf=grad.u1.stage1.block0.gn2.bias rel_l2=1.242755e-03
+COMPARE_LEAF_L2_WORST category=grads.u1 rank=10 leaf=grad.u1.stage1.block1.conv2.weight rel_l2=1.181674e-03
+COMPARE_CATEGORY category=grads.u3 arrays=62 leaves_l2=62 missing=0 elements=11271432 max_abs=4.099458e-04 max_rel=1.998572e+00 violations=0 max_ratio=2.045812e-01 worst_array=grad.u3.stem.conv.weight aggregate_ref_l2=2.327076e+01 aggregate_cand_l2=2.327054e+01 aggregate_diff_l2=9.905130e-03 aggregate_rel_l2=4.256470e-04
+COMPARE_LEAF_L2_SUMMARY category=grads.u3 leaves=62 max_rel_l2=3.636289e-03 worst_leaf=grad.u3.stage1.block1.conv1.weight zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=1 leaf=grad.u3.stage1.block1.conv1.weight rel_l2=3.636289e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=2 leaf=grad.u3.stage1.block0.gn2.weight rel_l2=3.386247e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=3 leaf=grad.u3.stage1.block0.conv1.weight rel_l2=3.290681e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=4 leaf=grad.u3.stage1.block0.conv2.weight rel_l2=3.233874e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=5 leaf=grad.u3.stage1.block1.gn1.weight rel_l2=3.193217e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=6 leaf=grad.u3.stage1.block1.conv2.weight rel_l2=3.188590e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=7 leaf=grad.u3.stem.conv.weight rel_l2=3.030375e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=8 leaf=grad.u3.stage1.block1.gn2.weight rel_l2=2.860660e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=9 leaf=grad.u3.stage1.block1.gn1.bias rel_l2=2.678603e-03
+COMPARE_LEAF_L2_WORST category=grads.u3 rank=10 leaf=grad.u3.stage2.block0.conv1.weight rel_l2=2.604859e-03
+COMPARE_CATEGORY category=params.u3 arrays=62 leaves_l2=62 missing=0 elements=11271432 max_abs=2.624467e-06 max_rel=9.444920e-01 violations=0 max_ratio=1.310633e-03 worst_array=param.u3.stage3.block1.conv1.weight aggregate_ref_l2=1.120287e+02 aggregate_cand_l2=1.120287e+02 aggregate_diff_l2=2.707607e-05 aggregate_rel_l2=2.416886e-07
+COMPARE_LEAF_L2_SUMMARY category=params.u3 leaves=62 max_rel_l2=3.398208e-03 worst_leaf=param.u3.stem.gn.bias zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=params.u3 rank=1 leaf=param.u3.stem.gn.bias rel_l2=3.398208e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=2 leaf=param.u3.stage1.block1.gn1.bias rel_l2=3.062514e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=3 leaf=param.u3.stage1.block0.gn1.bias rel_l2=2.149048e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=4 leaf=param.u3.stage2.block0.gn2.bias rel_l2=1.698370e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=5 leaf=param.u3.stage2.block0.proj_gn.bias rel_l2=1.698370e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=6 leaf=param.u3.stage1.block0.gn2.bias rel_l2=1.494647e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=7 leaf=param.u3.stage2.block1.gn1.bias rel_l2=1.374253e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=8 leaf=param.u3.stage2.block0.gn1.bias rel_l2=1.341661e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=9 leaf=param.u3.stage3.block1.gn1.bias rel_l2=1.032523e-03
+COMPARE_LEAF_L2_WORST category=params.u3 rank=10 leaf=param.u3.stage3.block0.gn1.bias rel_l2=8.828075e-04
+COMPARE_CATEGORY category=m.u3 arrays=62 leaves_l2=62 missing=0 elements=11271432 max_abs=5.057361e-05 max_rel=1.998181e+00 violations=0 max_ratio=2.528381e-02 worst_array=m.u3.stem.conv.weight aggregate_ref_l2=6.292063e+00 aggregate_cand_l2=6.292057e+00 aggregate_diff_l2=1.237662e-03 aggregate_rel_l2=1.967020e-04
+COMPARE_LEAF_L2_SUMMARY category=m.u3 leaves=62 max_rel_l2=2.296527e-03 worst_leaf=m.u3.stage1.block0.conv1.weight zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=m.u3 rank=1 leaf=m.u3.stage1.block0.conv1.weight rel_l2=2.296527e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=2 leaf=m.u3.stage1.block0.gn1.bias rel_l2=2.063256e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=3 leaf=m.u3.stage1.block1.conv1.weight rel_l2=1.926197e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=4 leaf=m.u3.stem.conv.weight rel_l2=1.905567e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=5 leaf=m.u3.stage1.block0.conv2.weight rel_l2=1.841510e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=6 leaf=m.u3.stem.gn.bias rel_l2=1.765726e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=7 leaf=m.u3.stage1.block0.gn2.weight rel_l2=1.761699e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=8 leaf=m.u3.stem.gn.weight rel_l2=1.669577e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=9 leaf=m.u3.stage1.block1.conv2.weight rel_l2=1.564876e-03
+COMPARE_LEAF_L2_WORST category=m.u3 rank=10 leaf=m.u3.stage1.block0.gn1.weight rel_l2=1.493599e-03
+COMPARE_CATEGORY category=v.u3 arrays=62 leaves_l2=62 missing=0 elements=11271432 max_abs=6.893606e-08 max_rel=1.000000e+00 violations=0 max_ratio=3.446797e-05 worst_array=v.u3.stem.conv.weight aggregate_ref_l2=5.090130e-02 aggregate_cand_l2=5.090130e-02 aggregate_diff_l2=4.655080e-07 aggregate_rel_l2=9.145306e-06
+COMPARE_LEAF_L2_SUMMARY category=v.u3 leaves=62 max_rel_l2=2.115951e-03 worst_leaf=v.u3.stage1.block0.conv1.weight zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=v.u3 rank=1 leaf=v.u3.stage1.block0.conv1.weight rel_l2=2.115951e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=2 leaf=v.u3.stage1.block0.gn1.bias rel_l2=2.100281e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=3 leaf=v.u3.stage1.block1.conv1.weight rel_l2=2.036365e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=4 leaf=v.u3.stage1.block0.conv2.weight rel_l2=1.997619e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=5 leaf=v.u3.stem.conv.weight rel_l2=1.903632e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=6 leaf=v.u3.stage1.block0.gn1.weight rel_l2=1.724032e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=7 leaf=v.u3.stem.gn.bias rel_l2=1.697959e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=8 leaf=v.u3.stage1.block0.gn2.weight rel_l2=1.578532e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=9 leaf=v.u3.stage1.block1.conv2.weight rel_l2=1.453472e-03
+COMPARE_LEAF_L2_WORST category=v.u3 rank=10 leaf=v.u3.stage1.block0.gn2.bias rel_l2=1.433849e-03
+COMPARE_CATEGORY category=step arrays=1 leaves_l2=1 missing=0 elements=1 max_abs=0.000000e+00 max_rel=0.000000e+00 violations=0 max_ratio=0.000000e+00 worst_array=- aggregate_ref_l2=3.000000e+00 aggregate_cand_l2=3.000000e+00 aggregate_diff_l2=0.000000e+00 aggregate_rel_l2=0.000000e+00
+COMPARE_LEAF_L2_SUMMARY category=step leaves=1 max_rel_l2=0.000000e+00 worst_leaf=step.u3 zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=step rank=1 leaf=step.u3 rel_l2=0.000000e+00
+COMPARE_CATEGORY category=param_increment.u3 arrays=62 leaves_l2=62 missing=0 elements=11271432 max_abs=2.624467e-06 max_rel=2.000000e+00 violations=0 max_ratio=1.312233e-03 worst_array=delta.u3.stage3.block1.conv1.weight aggregate_ref_l2=1.910385e-02 aggregate_cand_l2=1.910385e-02 aggregate_diff_l2=2.707607e-05 aggregate_rel_l2=1.417310e-03
+COMPARE_LEAF_L2_SUMMARY category=param_increment.u3 leaves=62 max_rel_l2=1.204467e-02 worst_leaf=delta.u3.stage1.block0.conv1.weight zero_ref_nonzero_candidate=0 nonzero_ref_zero_candidate=0 below_floor=0
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=1 leaf=delta.u3.stage1.block0.conv1.weight rel_l2=1.204467e-02
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=2 leaf=delta.u3.stage1.block1.conv1.weight rel_l2=1.116465e-02
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=3 leaf=delta.u3.stage1.block0.conv2.weight rel_l2=9.938696e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=4 leaf=delta.u3.stage1.block1.conv2.weight rel_l2=9.893009e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=5 leaf=delta.u3.stage2.block0.conv1.weight rel_l2=8.022506e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=6 leaf=delta.u3.stage2.block0.proj.weight rel_l2=7.533811e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=7 leaf=delta.u3.stage1.block0.gn1.weight rel_l2=7.503144e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=8 leaf=delta.u3.stage3.block0.proj_gn.weight rel_l2=4.391112e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=9 leaf=delta.u3.stage2.block0.gn1.weight rel_l2=4.333394e-03
+COMPARE_LEAF_L2_WORST category=param_increment.u3 rank=10 leaf=delta.u3.stage1.block0.gn2.weight rel_l2=4.212419e-03
+COMPARE_BUNDLE path=artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz sha256=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 arrays=62
+COMPARE_TOTAL categories=11 violations=0 max_abs=4.099458e-04
+COMPARE_RESULT PASS

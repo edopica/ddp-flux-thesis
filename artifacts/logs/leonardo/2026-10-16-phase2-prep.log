@@ -1,0 +1,364 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis env SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=caa7f00edd351a0f3e44094ed6441e096175fcddcc1255cf154a359954e7aa4a bash scripts/remote/leonardo/run-phase2-prep.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 60729163
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn2229 are ready for job
+[2026-10-16T17:00:32.630] error: execve(): /leonardo_work/IscrC_UNMASKED/epicazio/tools/uv/env: Permission denied
+srun: error: lrdn2229: task 0: Exited with exit code 13
+salloc: Relinquishing job allocation 60729163
+PIPELINE_EXIT=13
+
+===== RETRY after env-shadowing failure — 2026-10-16T17:04:02+02:00 =====
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3
+SOURCE_STATE_SHA256=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172
+retry command: NTASKS=1 CPUS_PER_TASK=8 GRES=gpu:1 bash scripts/remote/run.sh leonardo "srun --mpi=pmi2 -n1 -c8 --chdir=\$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=<commit> SOURCE_STATE_SHA256=<state> bash scripts/remote/leonardo/run-phase2-prep.sh'"
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172 bash scripts/remote/leonardo/run-phase2-prep.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 60729410
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn3102 are ready for job
+=== run-phase2-prep: START ===
+utc=2026-10-16T15:04:12Z host=lrdn3102.leonardo.local
+SLURM_JOB_ID=60729410 SLURM_JOB_NODELIST=lrdn3102
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+VENV_PY=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+DATASET_ROOT=/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FORCE=0
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172
+--- python/torch versions ---
+python 3.11.17
+numpy 2.4.6 pillow 12.3.0
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+--- disk (target /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   62G  963G   6% /leonardo_work
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+DATASET_PREP train_decoded=30000
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+salloc: Job 60729410 has exceeded its time limit and its allocation has been revoked.
+srun: Job step aborted: Waiting up to 182 seconds for job step to finish.
+[2026-10-16T17:37:26.017] error: *** STEP 60729410.0 ON lrdn3102 CANCELLED AT 2026-10-16T17:37:26 DUE TO TIME LIMIT ***
+srun: error: lrdn3102: task 0: Terminated
+RETRY_EXIT=143
+
+===== RETRY-2 (bprod) pre-run confirmation — 2026-10-16T17:40:20+02:00 =====
+COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 (expect 3088f61020137912af32d9c969e87ea9ae2a71c3)
+STATE=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172 (expect f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172)
+--- $PREP contents (expect exactly class_wnids.txt + truncated train_images.npy) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+total 1062096
+drwxr-xr-x.  2 epicazio interactive       4096 Oct 16 17:05 .
+drwxr-xr-x. 11 epicazio interactive       4096 Oct 16 17:05 ..
+-rw-r--r--.  1 epicazio interactive       2000 Oct 16 17:05 class_wnids.txt
+-rw-r--r--.  1 epicazio interactive 1228800128 Oct 16 17:37 train_images.npy
+---FIX---
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2': No such file or directory
+--- scheduled jobs ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+
+===== RETRY-2 (bprod, FORCE=1) — 2026-10-16T17:40:57+02:00 =====
+command: QOS=boost_qos_bprod TIME=02:00:00 NTASKS=1 CPUS_PER_TASK=8 GRES=gpu:1 bash scripts/remote/run.sh leonardo "srun --mpi=pmi2 -n1 -c8 --chdir=\$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f610... SOURCE_STATE_SHA256=f8574e36... FORCE=1 bash scripts/remote/leonardo/run-phase2-prep.sh'"
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_bprod -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=02:00:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172 FORCE=1 bash scripts/remote/leonardo/run-phase2-prep.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: error: QOSMinCpuNotSatisfied
+salloc: error: Job submit/allocate failed: Job violates accounting/QOS policy (job submit limit, user's size and/or time limits)
+RETRY2_EXIT=1
+
+===== RETRY-2 (bprod) submit rejected: QOSMinCpuNotSatisfied — 2026-10-16T17:41:16+02:00 =====
+verbatim: salloc: error: QOSMinCpuNotSatisfied
+salloc: error: Job submit/allocate failed: Job violates accounting/QOS policy (job submit limit, user size and/or time limits)
+
+--- QoS policy (boost_qos_bprod and all QOSes) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+Unknown field 'minnodes'
+
+--- associations for user epicazio ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+Account|Partition|QOS|MaxCPUs|MaxNodes|MaxWall|
+iscrc_unmasked||boost_qos_bprod,boost_qos_dbg,boost_qos_lprod,normal||||
+
+--- remaining $PREP (unchanged) ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+total 1062096
+drwxr-xr-x.  2 epicazio interactive       4096 Oct 16 17:05 .
+drwxr-xr-x. 11 epicazio interactive       4096 Oct 16 17:05 ..
+-rw-r--r--.  1 epicazio interactive       2000 Oct 16 17:05 class_wnids.txt
+-rw-r--r--.  1 epicazio interactive 1228800128 Oct 16 17:37 train_images.npy
+
+--- QoS policy conclusion (hard error: bprod demands >=65 nodes; lprod has no MinTRES) ---
+boost_qos_bprod MinTRES: cpu=2080,gres/gpu=260,mem=31280G,node=65  (MaxWall 1-00:00:00)
+boost_qos_lprod MinTRES: (none)  MaxWall 4-00:00:00  MaxTRES node=8
+boost_qos_dbg   MinTRES: (none)  MaxWall 00:30:00   MaxTRES node=8
+partition boost_usr_prod: AllowQos=ALL, MaxTime=1-00:00:00, MinNodes=0
+No job was created by the rejected submit; no allocation consumed; $PREP unchanged.
+Awaiting authorization for QOS=boost_qos_lprod (no MinTRES) before resuming STEP 3.
+
+===== RETRY-3 (lprod, FORCE=1) — 2026-10-16T17:43:17+02:00 =====
+COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3
+STATE=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172
+command: QOS=boost_qos_lprod TIME=02:00:00 NTASKS=1 CPUS_PER_TASK=8 GRES=gpu:1 bash scripts/remote/run.sh leonardo "srun --mpi=pmi2 -n1 -c8 --chdir=\$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=$COMMIT SOURCE_STATE_SHA256=$STATE FORCE=1 bash scripts/remote/leonardo/run-phase2-prep.sh'"
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_lprod -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=02:00:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172 FORCE=1 bash scripts/remote/leonardo/run-phase2-prep.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 60731702
+salloc: job 60731702 queued and waiting for resources
+salloc: job 60731702 has been allocated resources
+salloc: Granted job allocation 60731702
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn3432 are ready for job
+=== run-phase2-prep: START ===
+utc=2026-10-16T15:43:25Z host=lrdn3432.leonardo.local
+SLURM_JOB_ID=60731702 SLURM_JOB_NODELIST=lrdn3432
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+VENV_PY=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+DATASET_ROOT=/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FORCE=1
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172
+--- python/torch versions ---
+python 3.11.17
+numpy 2.4.6 pillow 12.3.0
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+--- disk (target /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   63G  962G   7% /leonardo_work
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+=== PREP retry-4 lprod-fixed 2026-10-16T22:58:59+02:00 ===
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_lprod -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=02:00:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=3e9ba4d8013ec67383454d86d39ec0caaae2616e43cc5ea4cc963843d6e72561 FORCE=1 bash scripts/remote/leonardo/run-phase2-prep.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 60755769
+salloc: job 60755769 queued and waiting for resources
+salloc: job 60755769 has been allocated resources
+salloc: Granted job allocation 60755769
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0018 are ready for job
+=== run-phase2-prep: START ===
+utc=2026-10-16T20:59:16Z host=lrdn0018.leonardo.local
+SLURM_JOB_ID=60755769 SLURM_JOB_NODELIST=lrdn0018
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+VENV_PY=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+DATASET_ROOT=/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FORCE=1
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=3e9ba4d8013ec67383454d86d39ec0caaae2616e43cc5ea4cc963843d6e72561
+--- python/torch versions ---
+python 3.11.17
+numpy 2.4.6 pillow 12.3.0
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+--- disk (target /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   63G  962G   7% /leonardo_work
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+DATASET_PREP train_decoded=30000
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+DATASET_PREP train_decoded=90000
+DATASET_PREP train_decoded=100000
+DATASET_PREP train_mean=[0.48023695 0.44806704 0.39750364]
+DATASET_PREP train_std=[0.27643642 0.2688633  0.28158993]
+DATASET_PREP val_decoded=5000
+DATASET_PREP val_decoded=10000
+DATASET_PREP containers_train=[('JPEG', 100000)] containers_val=[('JPEG', 10000)]
+DATASET_PREP wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/dataset_manifest.json files=6 pixel_count_per_channel=409600000
+DATASET_PREP DONE
+
+real	23m52.511s
+user	0m27.448s
+sys	0m19.109s
+=== 2/4 make_schedule ===
+SCHEDULE generated_epochs=5
+SCHEDULE generated_epochs=10
+SCHEDULE generated_epochs=15
+SCHEDULE generated_epochs=20
+SCHEDULE generated_epochs=25
+SCHEDULE generated_epochs=30
+SCHEDULE generated_epochs=35
+SCHEDULE generated_epochs=40
+SCHEDULE generated_epochs=45
+SCHEDULE generated_epochs=50
+SCHEDULE wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/schedule_manifest.json epochs=50
+SCHEDULE DONE
+
+real	0m22.419s
+user	0m22.262s
+sys	0m0.096s
+=== 3/4 make_initial_bundle ===
+BUNDLE wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.npz arrays=62
+BUNDLE elements=11271432 bundle_hash=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+BUNDLE verified name_set=true per_array_sha256=true bundle_hash=true torch=2.9.1+cu126 numpy=2.4.6
+BUNDLE DONE
+
+real	0m11.433s
+user	0m2.146s
+sys	0m0.509s
+=== 4/4 make_fixtures ===
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py", line 655, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py", line 631, in main
+    linear = build_linear_fixture_torch()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py", line 212, in build_linear_fixture_torch
+    y = w @ x + b
+        ~~~~~~^~~
+RuntimeError: The size of tensor a (5) must match the size of tensor b (3) at non-singleton dimension 1
+PHASE2_PREP FAIL (step exited non-zero, see log)
+
+real	0m2.364s
+user	0m1.875s
+sys	0m0.325s
+=== run-phase2-prep: EXIT 1 (log: /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/remote-prep.log) ===
+srun: error: lrdn0018: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 60755769
+salloc: Job allocation 60755769 has been revoked.
+PREP_EXIT=1
+=== PREP retry-5 lprod-fixed2 2026-10-16T23:32:47+02:00 ===
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_lprod -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=02:00:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1 FORCE=1 bash scripts/remote/leonardo/run-phase2-prep.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 60758615
+salloc: job 60758615 queued and waiting for resources
+salloc: job 60758615 has been allocated resources
+salloc: Granted job allocation 60758615
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0018 are ready for job
+=== run-phase2-prep: START ===
+utc=2026-10-16T21:33:21Z host=lrdn0018.leonardo.local
+SLURM_JOB_ID=60758615 SLURM_JOB_NODELIST=lrdn0018
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+VENV_PY=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+DATASET_ROOT=/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FORCE=1
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1
+--- python/torch versions ---
+python 3.11.17
+numpy 2.4.6 pillow 12.3.0
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+--- disk (target /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   63G  962G   7% /leonardo_work
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+DATASET_PREP train_decoded=30000
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+Read from remote host login.leonardo.cineca.it: Connection reset by peer
+client_loop: send disconnect: Broken pipe
+PREP_EXIT=255
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+JobID           JobName      State ExitCode               Start                 End        NodeList    Elapsed 
+------------ ---------- ---------- -------- ------------------- ------------------- --------------- ---------- 
+60758615     interacti+    RUNNING      0:0 2026-10-16T23:33:16             Unknown        lrdn0018   00:01:40 
+60758615.ex+     extern    RUNNING      0:0 2026-10-16T23:33:16             Unknown        lrdn0018   00:01:40 
+60758615.0         bash    RUNNING      0:0 2026-10-16T23:33:21             Unknown        lrdn0018   00:01:35 
+---
+             JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+          60758615 boost_usr interact epicazio  R       1:40      1 lrdn0018
+---
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+DATASET_PREP train_decoded=30000
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+DATASET_PREP train_decoded=90000
+DATASET_PREP train_decoded=100000
+DATASET_PREP train_mean=[0.48023695 0.44806704 0.39750364]
+DATASET_PREP train_std=[0.27643642 0.2688633  0.28158993]
+DATASET_PREP val_decoded=5000
+DATASET_PREP val_decoded=10000
+DATASET_PREP containers_train=[('JPEG', 100000)] containers_val=[('JPEG', 10000)]
+DATASET_PREP wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/dataset_manifest.json files=6 pixel_count_per_channel=409600000
+DATASET_PREP DONE
+
+real	1m18.382s
+user	0m25.861s
+sys	0m15.645s
+=== 2/4 make_schedule ===
+SCHEDULE generated_epochs=5
+SCHEDULE generated_epochs=10
+SCHEDULE generated_epochs=15
+SCHEDULE generated_epochs=20
+SCHEDULE generated_epochs=25
+SCHEDULE generated_epochs=30
+--- poll 1 2026-10-16T23:35:13+02:00 ---
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+60758615      COMPLETED      0:0 
+=== run-phase2-prep: DONE ===
+NEXT (same allocation, compute node): bash scripts/remote/leonardo/run-phase2-check.sh
+NEXT (bring evidence home): scp leonardo:/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/remote-prep.log artifacts/logs/static-scaling/2026-10-16-phase2/
+NEXT (bring fixtures home): scp -r leonardo:/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/ artifacts/baselines/static-scaling/
+state=[COMPLETED]
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+receiving incremental file list
+remote-prep.log
+JobID           JobName      State ExitCode               Start                 End        NodeList    Elapsed 
+------------ ---------- ---------- -------- ------------------- ------------------- --------------- ---------- 
+60758615     interacti+  COMPLETED      0:0 2026-10-16T23:33:16 2026-10-16T23:35:11        lrdn0018   00:01:55 
+60758615.ex+     extern  COMPLETED      0:0 2026-10-16T23:33:16 2026-10-16T23:35:11        lrdn0018   00:01:55 
+60758615.0         bash  COMPLETED      0:0 2026-10-16T23:33:21 2026-10-16T23:35:11        lrdn0018   00:01:50 
+
+sent 79 bytes  received 907 bytes  219.11 bytes/sec
+total size is 9,333  speedup is 9.47

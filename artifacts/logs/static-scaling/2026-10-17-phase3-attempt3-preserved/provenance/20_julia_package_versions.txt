@@ -1,0 +1,31 @@
+# Julia package versions from the Flux test project Manifest
+# Manifest SHA-256: 4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837
+julia=julia version 1.12.6
+## CUDA
+deps = ["CUDACore", "CUDATools", "Reexport", "cuBLAS", "cuFFT", "cuRAND", "cuSOLVER", "cuSPARSE"]
+git-tree-sha1 = "6b7605ef4d1bfc851f6743c278eb01842b3ebb99"
+version = "6.2.2"
+## cuDNN
+deps = ["BFloat16s", "CEnum", "CUDACore", "CUDA_Runtime_Discovery", "CUDNN_jll"]
+git-tree-sha1 = "3088fc2d690f847891d2110d8bc91aa86b9a18e3"
+version = "6.2.2"
+## CUDNN_jll
+deps = ["Artifacts", "CUDA_Runtime_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "TOML"]
+git-tree-sha1 = "a98b6d326aab729353d707507162804b6d256a3e"
+version = "9.26.0+0"
+## NCCL
+deps = ["CEnum", "CUDA", "CUDACore", "GPUToolbox", "NCCL_jll"]
+git-tree-sha1 = "587b4c66afd1a8278b26b0ab3c432c80d7b94916"
+version = "0.1.3"
+## NCCL_jll
+deps = ["Artifacts", "CUDA_Runtime_jll", "CompilerSupportLibraries_jll", "JLLWrappers", "Libdl", "TOML"]
+git-tree-sha1 = "56985866091efda320a1fab5ffb0b77ecc9fca71"
+version = "2.30.7+0"
+## CUDA_Runtime_jll
+deps = ["Artifacts", "CUDA_Driver_jll", "JLLWrappers", "LazyArtifacts", "Libdl", "TOML"]
+git-tree-sha1 = "2e0352eb2a8321e46e1de54059bed9be8fd9391c"
+version = "0.23.0+1"
+## installed package source directories
+/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDA/nBYpB/
+/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/cuDNN/0SFve/
+/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/CUDNN_jll/t4cqg/

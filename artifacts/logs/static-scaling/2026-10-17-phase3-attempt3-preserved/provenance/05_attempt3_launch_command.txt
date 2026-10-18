@@ -1,0 +1,7 @@
+# Historical outer launch command for Phase 3 attempt 3 (job 60885091)
+# Extracted verbatim from line 1 of the local driver log:
+#   artifacts/logs/leonardo/2026-10-17-phase3-remote-attempt3.log
+# Local log SHA-256: 3325a3575c9be7ec08748e76b29a48c3328b538c3ede8630b88535276751a4bf
+# The log copy in this directory has the same SHA-256 (see SHA256SUMS).
+#
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=82623bbb516a981d6c795792d1433521d25a8ee3bbcc44a2b66f6f4631a452b9 FLUX_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e FLUX_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bash scripts/remote/leonardo/run-phase3-check.sh'

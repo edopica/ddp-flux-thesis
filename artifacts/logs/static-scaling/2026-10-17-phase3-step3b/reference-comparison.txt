@@ -1,0 +1,7 @@
+new_arrays 337 old_arrays 337
+missing_in_new []
+extra_in_new []
+exact_equal 337 of 337
+differing 0
+max_abs_difference 0.0
+REFERENCE_COMPARISON PASS

@@ -1,5 +1,534 @@
 # Current context
 
+## Phase 3 acceptance choices reviewed — 2026-10-18
+
+The [acceptance review](../../reports/static-scaling-phase3-acceptance-review.md) supports the recorded Phase 3 acceptance.
+Fresh local checks passed all 30 evidence hashes, 29 source hashes, and the independent 337-array reference check.
+The review found two reuse defects in `precision.jl`: non-FMA fallback candidates can return, and supported package versions are not enforced.
+The final run used no fallback, so its acceptance remains valid.
+The benchmark needs an explicit decision on deterministic PyTorch versus timing-based Flux algorithm selection.
+The calibrated tolerances remain specific to the cross-framework fixture, not automatic Phase 4 DDP tolerances.
+
+**Exact next action:** make strict-FMA selection fail closed and enforce supported package versions, then run focused regressions before Phase 4 GPU acceptance.
+
+## Phase 3 accepted — 2026-10-18
+
+Static-scaling Phase 3 is **accepted**. The final matched single-GPU
+Flux/PyTorch correctness run passed the frozen FP32/TF32-off contract and the
+frozen OD-10 rule on the final source snapshot.
+
+| Item | Value |
+|---|---|
+| Final driver | job `60956582`, node `lrdn0165`, UTC `2026-10-18T01:25:21Z`, exit 0 |
+| Precompile | job `60954207`, node `lrdn3362`, `FLUX_PRECOMPILE_OK` |
+| Precision regression | job `60954547`, node `lrdn2211`, `PHASE3_PRECISION_REGRESSION PASS` |
+| Optimizer probe | job `60955690`, node `lrdn0279`, `PHASE3_OPTIMIZER_PROBE PASS` (69 checks, 34/34 controls rejected) |
+| Source identity | thesis `3088f61020137912af32d9c969e87ea9ae2a71c3`, state `4a28adb1...`; Flux `f7b4520c4bd307c67bbc5ac92a1c68493eccff6e`, state `e3b0c442...` (clean) |
+
+All four required summaries PASS: `PHASE3_REFERENCE PASS`,
+`PHASE3_REFERENCE_CHECK PASS`, `PHASE3_FLUX_CHECK PASS`,
+`PHASE3_REMOTE_CHECK PASS`. No later log contains
+`Precompiling packages...`.
+
+| Category | Status | max abs diff | violations |
+|---|---|---:|---:|
+| eta | PASS | 0 | 0 |
+| activations | PASS | 1.56164169e-5 | 0 |
+| logits | PASS | 2.2649765e-6 | 0 |
+| loss | PASS | 4.76837158e-7 | 0 |
+| grads.u1 | PASS | 3.02568078e-4 | 0 |
+| grads.u3 | PASS | 6.21065497e-4 | 0 |
+| params.u3 | PASS | 5.93136065e-6 | 0 |
+| m.u3 | PASS | 7.2401017e-5 | 0 |
+| v.u3 | PASS | 2.32830644e-7 | 0 |
+| beta_power.u3 | PASS | 0 | 0 |
+| step | PASS | ref 3 = Flux 3 | 0 |
+
+All 32 cuDNN choices are `CUDNN_FMA_MATH(3)` with `fallback=0`
+(`PHASE3_CUDNN_ALGO_SUMMARY choices=32 fma=32 fallback=0`). The rule printed
+by the checker is the frozen base `1e-5`/`1e-4` plus only
+`grads.u1 atol=1e-3`, `grads.u3 atol=2e-3`, and `m.u3 atol=2e-4`, each with
+`rtol=1e-4`. The final reference is byte-identical to the preserved attempt-3
+reference (337/337 exact, max diff `0.0`); the independent NumPy checker
+passes locally (`PHASE3_REFERENCE_CHECK PASS arrays=337`), remote/local
+SHA-256 matches 15/15, and `sha256sum -c` passes.
+
+Precision cause and correction: stock cuDNN.jl maps
+`PEDANTIC_MATH -> CUDNN_DEFAULT_MATH` (TF32 permitted), and cuDNN.jl 6.2.2's
+Float32 autotuner skips the math-type check. The isolated stage-2 convolution
+reproduced the failure; explicit `CUDNN_FMA_MATH` removed it. The reusable
+`scripts/static_scaling/precision.jl` now installs an FMA-aware
+`math_mode`/chooser and clears the algorithm caches. The residual backward
+differences are ordinary FP32 algorithm rounding, covered by the frozen OD-10
+floors with at least 2x margin.
+
+Evidence: [results](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/RESULTS.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/COMMANDS.md),
+[provenance](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/PROVENANCE.md),
+[SHA-256 comparison](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/SHA256-COMPARISON.txt),
+[review response](../../reports/static-scaling-phase3-review-response.md),
+[devlog](../devlog/03-static-scaling/2026-10-18-phase3-final-acceptance.md).
+The hardened Phase 2 prerequisite remains
+[`60951247`](../../artifacts/logs/static-scaling/2026-10-18-phase2-hardened-recheck/PROVENANCE.md).
+
+Benchmarks are **not** part of Phase 3. **Exact next action:** if
+`ssh leonardo true` still returns `Permission denied (publickey,...)`, restore
+Leonardo SSH access first (see the [failure record](../failures/2026-10-17-leonardo-ssh-publickey.md));
+then start Phase 4, distributed correctness at two and four ranks, per
+`temp/static-graph-gpu-scaling-implementation-phases.md` section 6.
+
+## Phase 3 Step 5 complete: hardened Phase 2 re-check PASS, decisions frozen — 2026-10-18 (historical; superseded by acceptance above)
+
+The hardened Phase 2 checkers ran against the real Leonardo `$PREP` and
+fixtures for the first time after the R1-R3 hardening. Job `60951247`
+(`lrdn0171`, `boost_qos_dbg`, 1 node, 1 task, 8 CPUs, `--gres=none`,
+`COMPLETED 0:0`, elapsed `00:00:56`, UTC start `2026-10-18T00:44:27Z`)
+printed `PHASE2_DATASET_CHECK PASS` (66 CHECK lines), `PHASE2_JULIA_DATA_CHECK
+PASS` (47 CHECK lines), `python_check_exit=0 julia_check_exit=0`, and
+`PHASE2_REMOTE_CHECK PASS`; driver exit 0. Total 113 PASS, 0 FAIL, 0 SKIP.
+The hardened gates exercised the real manifests (`required=6 listed=6`,
+`checked=2`), regenerated all 50 schedule epochs bitwise in 21.21 s, checked
+20/20 GroupNorm arrays, and validated 35/35 fixture array hashes. Inputs were
+not modified; checker hashes on the remote tree equal the local hardened
+sources. Evidence:
+[results/provenance](../../artifacts/logs/static-scaling/2026-10-18-phase2-hardened-recheck/PROVENANCE.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-18-phase2-hardened-recheck/COMMANDS.md),
+[`SHA256SUMS`](../../artifacts/logs/static-scaling/2026-10-18-phase2-hardened-recheck/SHA256SUMS),
+[devlog](../devlog/03-static-scaling/2026-10-18-phase3-step5-decisions.md).
+This closes the Phase 2 remote prerequisite for Phase 3.
+
+OD-2, OD-3, OD-4, and OD-11 are now recorded with user authority (OD-10 was
+recorded 2026-10-17): AdamW `lr=1e-3`, `wd=1e-4`, `betas=(0.9,0.999)`,
+`eps=1e-8`; decay only on the 21 convolution/classifier-weight leaves
+(`lambda=1e-4`), no decay on the 41 GroupNorm/bias leaves (`lambda=0`); 5
+warm-up epochs and a 50-epoch budget indexed by global update (`W=975`,
+`T=9750` at batch 512; `W=1950`, `T=19500` alternate for Phase 5); explicit
+`Zygote.withgradient` + `Optimisers.update!` with communication outside AD
+(64 collectives per update). `open-decisions.md`, `specification.md`, and
+`experiment.toml` are consistent; both Python `tomllib` and Julia `TOML`
+parse the config. OD-7, OD-8, OD-9, OD-12, and OD-13 remain open with
+unchanged proposed defaults.
+
+Phase 3 status at this checkpoint: Steps 1-4 complete; Step 3c acceptance
+PASS under the recorded OD-10 rule (job `60942933`); Step 5 complete.
+Step 6 subsequently passed on 2026-10-18; see the acceptance section above.
+
+**Exact next action (historical; completed in the acceptance section above):**
+execute Step 6 of the Phase 3 handoff: sync the final source snapshot,
+precompile on a Leonardo compute node, run
+`scripts/remote/leonardo/run-phase3-check.sh` in a fresh `OUT`/`LOG_DIR`,
+require all four PASS summaries and driver exit 0, then copy the reference,
+manifest, logs, runtime records, and probe results home and run the
+independent NumPy checker against the copied reference.
+
+## Phase 3 Step 4 optimizer-contract probe PASS — 2026-10-17
+
+The compact cross-framework probe passes on Leonardo (job `60948431`,
+`lrdn0171`; CPU-only, 1 node, 8 CPUs, `--gres=none`). It asserts the real
+training-path AdamW configuration (Flux 62 leaves = 21 decay with
+`lambda=1e-4` / 41 no-decay with `lambda=0`; PyTorch two groups 21/41 with
+`weight_decay=1e-4`/`0.0`), runs three-update controlled sequences with
+nonzero `m`/`v` at probe `eta=1e-2`, includes `1e-9`/`1e-12` gradients for
+epsilon placement, and checks the schedule at `1`, `W`, `W+1`, and `T` plus
+out-of-range rejection.
+
+Result: `PHASE3_OPTIMIZER_PROBE PASS`; 69 checks; 34/34 negative controls
+rejected (omitted update, wrong decay scale `1e-3`, omitted decay, decay on
+the no-decay leaf, wrong epsilon placement, wrong bias correction, warm-up
+formula at `W+1`; weakest ratio 5.10). Flux/PyTorch/oracle final-update
+maximum absolute differences are `5.38e-08..1.07e-07`; the cross-framework
+maximum is `1.19e-07`. Schedule values are `eta(1)=1.0256410256410257e-06`,
+`eta(W)=1e-3`, `eta(W+1)=9.9999996795609018e-04`, `eta(T)=0`; both frameworks
+reject `t=0` and `t=T+1`. The probe rule `1e-7 + 5e-7*max(|a|,|b|)` is
+probe-specific; the Phase 3 acceptance rule is untouched. The existing
+optimizer probe is included unchanged, so its constructor and beta-power
+checks still run. No training code, schedule, precision policy, tolerance,
+or Flux source changed; no commit.
+
+Evidence:
+[results](../../artifacts/logs/static-scaling/2026-10-17-phase3-step4/RESULTS.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-17-phase3-step4/COMMANDS.md),
+[provenance](../../artifacts/logs/static-scaling/2026-10-17-phase3-step4/PROVENANCE.md),
+[controlled cases](../../artifacts/logs/static-scaling/2026-10-17-phase3-step4/controlled-cases.txt),
+[devlog](../devlog/03-static-scaling/2026-10-17-phase3-step4-optimizer-probe.md).
+
+**Exact next action:** run Step 5 of the Phase 3 handoff: locate evidence
+for the hardened Phase 2 remote re-check against the real `$PREP`; if it is
+absent, run `scripts/remote/leonardo/run-phase2-check.sh` with the corrected
+checkers. Then finish the decision record for OD-2, OD-3, OD-4, and OD-11
+(OD-10 is already recorded 2026-10-17) in `open-decisions.md`,
+`specification.md`, and `experiment.toml`, asking the user for approval where
+a decision still requires authority. Do not start Step 6 yet.
+
+## Phase 3 Step 3c acceptance PASS under recorded OD-10 rule — 2026-10-17
+
+The user approved the OD-10 revision from the numerical calibration. The
+elementwise rule stays `|a - b| <= atol + rtol * max(|a|, |b|)` with the base
+`atol = 1e-5`, `rtol = 1e-4`. Only three backward categories override the
+absolute floor with the same `rtol = 1e-4`:
+
+| Category | atol | rtol |
+|---|---:|---:|
+| `phase3.grads.u1` | 1e-3 | 1e-4 |
+| `phase3.grads.u3` | 2e-3 | 1e-4 |
+| `phase3.m.u3` | 2e-4 | 1e-4 |
+
+`check_phase3_flux.jl` now has matching CLI defaults
+(`--grads-u1-atol`, `--grads-u3-atol`, `--m-u3-atol`), validates them,
+prints `PHASE3_FLUX_CHECK_CONFIG` and `PHASE3_ACCEPTANCE_RULE`, and applies
+them only to the three named categories. `experiment.toml`,
+`specification.md` section 11, and `open-decisions.md` (OD-10 recorded
+2026-10-17) are consistent. OD-2/3/4/11 remain open. Step 3b is superseded
+by the approved calibration, not by a silent tolerance change.
+
+Precompile job `60941770` (`lrdn2500`, `FLUX_PRECOMPILE_OK`). Full driver
+job `60942933` (`lrdn0129`) ran in a new root
+`$WORK/epicazio/static-scaling-evidence/2026-10-17-phase3-step3c/` with no
+`ATOL`, `RTOL`, or category override. All four summaries PASS and the
+driver exits 0:
+
+| Category | Status | max_abs | violations |
+|---|---|---:|---:|
+| eta | PASS | 0 | 0 |
+| activations | PASS | 1.56164169e-5 | 0 |
+| logits | PASS | 1.66893005e-6 | 0 |
+| loss | PASS | 4.76837158e-7 | 0 |
+| grads.u1 | PASS | 3.02597880e-4 | 0 |
+| grads.u3 | PASS | 5.43192029e-4 | 0 |
+| params.u3 | PASS | 4.77582216e-6 | 0 |
+| m.u3 | PASS | 6.515719e-5 | 0 |
+| v.u3 | PASS | 2.32830644e-7 | 0 |
+| beta_power.u3 | PASS | 0 | 0 |
+| step | PASS | ref 3 = Flux 3 | 0 |
+
+All 32 cuDNN choices are `CUDNN_FMA_MATH(3)` with `fallback=false`; all 225
+candidate math types are FMA. Per-leaf relative L2 (supplementary):
+`grads.u1` 1.998759e-3, `grads.u3` 4.288785e-3, `m.u3` 2.571253e-3; no
+zero/nonzero disagreements. The new reference is again byte-identical to
+the preserved attempt-3 reference (`97e5007c...`), 337/337 arrays
+exact-equal; the independent NumPy checker passes locally.
+
+Evidence: [results](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3c/RESULTS.md),
+[provenance](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3c/PROVENANCE.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3c/COMMANDS.md),
+[algorithm choices](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3c/algorithm-choices.txt),
+[devlog](../devlog/03-static-scaling/2026-10-17-phase3-step3c-od10-acceptance.md).
+
+**Exact next action (completed; see the Step 4 section above):** run Step 4
+of the Phase 3 handoff: compact cross-framework optimizer-contract probe
+(decay/no-decay leaves, nonzero moments, tiny-gradient epsilon placement,
+negative controls) and schedule boundary checks at `1`, `W`, `W+1`, and `T`.
+
+## Phase 3 numerical calibration: independent-backend FP32 envelope — 2026-10-17
+
+The backward residual is ordinary FP32 algorithm/reduction variation, not an
+outlier that suggests a Flux backward defect. A new PyTorch CPU reference
+(job `60912525`, node `lrdn3450`) was generated with the same generator,
+fixture, bundle, three updates, and provenance as the preserved GPU reference
+(`phase3_reference.npz` SHA-256 `a7ff467b...`, manifest `device="cpu"`). The
+full Flux checker ran on CPU against the preserved PyTorch GPU reference and
+against the new CPU reference (job `60912664`, node `lrdn3450`).
+
+| Comparison | grads.u1 | grads.u3 | m.u3 |
+|---|---:|---:|---:|
+| PyTorch CPU vs PyTorch GPU (same generator) | 3.021732e-4 / 14,365 violations / 1.84e-3 leaf L2 | 4.099458e-4 / 128,170 / 3.64e-3 | 5.057361e-5 / 1,137 / 2.30e-3 |
+| Flux CPU vs PyTorch GPU | 4.126653e-4 / 32,212 / 2.55e-3 | 7.480253e-4 / 102,364 / 4.22e-3 | 7.226411e-5 / 946 / 2.39e-3 |
+| Flux GPU vs PyTorch GPU (Step 3b) | 3.025942e-4 / 18,248 / 2.00e-3 | 6.672032e-4 / 105,443 / 4.54e-3 | 6.584823e-5 / 1,304 / 2.62e-3 |
+| Flux CPU vs PyTorch CPU | 2.731457e-4 / 42,530 / 2.82e-3 | 6.272923e-4 / 156,257 / 4.58e-3 | 9.655068e-5 / 1,438 / 2.84e-3 |
+
+Forward, logits, loss, final parameters, `v`, beta powers, and the step counter
+pass in the Flux runs. The same-framework CPU/GPU control reproduces the
+gradient/moment failures with the same worst leaves, and the Flux GPU residual
+is within ~1.6x of that envelope. The CPU path does not use cuDNN, so the FMA
+policy is not the cause.
+
+Proposed but **not applied**: keep `rtol=1e-4` and raise only the absolute
+floor — `grads.u1 atol=1e-3`, `grads.u3 atol=2e-3`, `m.u3 atol=2e-4` — each
+with ≥2x margin over the four-comparison envelope; all other categories stay
+at `1e-5`/`1e-4`. The user must approve before any specification, config, or
+checker change.
+
+Evidence: [results](../../artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-17-phase3-numerics/COMMANDS.md),
+[provenance](../../artifacts/logs/static-scaling/2026-10-17-phase3-numerics/PROVENANCE.md),
+[devlog](../devlog/03-static-scaling/2026-10-17-phase3-numerics-calibration.md).
+
+**Exact next action:** user decision on the three category floors. If approved,
+update OD-10 plus the specification, `experiment.toml`, and checker
+consistently, then rerun the full driver in a fresh root and require all four
+summaries to PASS. If rejected, force a deterministic/direct backward
+algorithm family and repeat the full comparison without changing tolerances.
+Do not start Steps 4–6 before that decision.
+
+## Phase 3 Step 3b: FMA chooser fixed, backward residual FAIL — 2026-10-17
+
+Completion instructions: [Phase 3 handoff](../../temp/static-graph-gpu-scaling-phase3-handoff.md).
+
+`scripts/static_scaling/precision.jl` now installs its cuDNN overrides
+at module load: the FMA-aware `math_mode(::CUDACore.MathMode)` mapping
+and more-specific `cudnnConvolutionAlgoPerfChoose` methods for
+forward/backward-data/backward-filter. With FMA enabled and an FMA
+descriptor, the chooser requires `ps.mathType == CUDNN_FMA_MATH` and
+does not apply cuDNN.jl's Float32 skip. `configure_precision!` clears
+the three cuDNN algorithm perf caches (keys omit the math type) and
+verifies they are empty. `check_phase3_flux.jl` records every choice as
+`PHASE3_CUDNN_ALGO` / `PHASE3_CUDNN_ALGO_SUMMARY` and enforces
+`CHECK cudnn.fma_algo_selection`; `check_precision_math.jl` adds an
+autotuned `Flux.CrossCor` NNlib-path item.
+
+Focused regression PASS: job `60910394` on `lrdn0365`,
+`PHASE3_PRECISION_REGRESSION PASS`; the NNlib item chose `algo=0`,
+`CUDNN_FMA_MATH(3)`, `fallback=false`, `rel_l2=4.248559e-7`; the
+`--mode current` fixed-algorithm control still fails at `≈2.93e-4`.
+
+Full comparison (precompile `60909956` on `lrdn0034`; driver `60910786`
+on `lrdn0001`; new root
+`$WORK/epicazio/static-scaling-evidence/2026-10-17-phase3-step3b/`;
+unchanged `atol=1e-5`, `rtol=1e-4`): all 32 choices are
+`CUDNN_FMA_MATH(3)` with `fallback=false`, and every candidate math type
+is `3`. The forward path now passes; three gradient categories still
+fail:
+
+| Category | Result | max_abs | violations |
+|---|---|---:|---:|
+| activations | PASS | 1.56164169e-5 | 0 |
+| logits | PASS | 1.66893005e-6 | 0 |
+| loss | PASS | 4.76837158e-7 | 0 |
+| grads.u1 | FAIL | 3.02594155e-4 | 18,248 |
+| grads.u3 | FAIL | 6.67203218e-4 | 105,443 |
+| params.u3 | PASS | 4.77582216e-6 | 0 |
+| m.u3 | FAIL | 6.58482313e-5 | 1,304 |
+| v.u3 | PASS | 2.32830644e-7 | 0 |
+| eta, beta_power.u3, step | PASS | 0 | 0 |
+
+Chosen algorithms: forward 0/6, backward data 0/4, backward filter
+0/3/5 (FFT-tiling/Winograd/legacy direct). The residual is consistent
+with FP32 backward-algorithm rounding against the PyTorch deterministic
+reference (cuDNN 9.10.2.21), not TF32. The new reference is again
+337/337 exact-equal to the preserved attempt-3 reference and the
+independent NumPy checker passes. No tolerance, model-math, optimizer,
+or Flux change; no commit.
+
+Evidence: [provenance](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3b/PROVENANCE.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3b/COMMANDS.md),
+[results](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3b/RESULTS.md),
+[algorithm choices](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3b/algorithm-choices.txt),
+[devlog](../devlog/03-static-scaling/2026-10-17-phase3-step3b-fma-algo-chooser.md),
+[Step 3 failure](../failures/2026-10-17-phase3-step3-fma-full-model.md).
+
+**Exact next action:** user decision required before Step 4. Either
+(1) restrict backward algorithm selection to deterministic/direct
+algorithms that match the PyTorch reference, or (2) justify a
+cross-framework tolerance revision numerically. Then rerun the full
+driver in a fresh root and require all four summaries to PASS. Do not
+widen tolerances or pin algorithms without that decision.
+
+## Phase 3 Step 3 full comparison FAIL — precision enforcement gap — 2026-10-17
+
+Completion instructions: [Phase 3 handoff](../../temp/static-graph-gpu-scaling-phase3-handoff.md).
+
+Step 3 ran the complete three-update comparison in a new evidence root on
+Leonardo (driver job `60904928`, node `lrdn0125`; precompile `60904055`,
+`lrdn3183`). The new PyTorch reference is array-for-array identical to the
+preserved attempt-3 reference (337/337 exact, maximum difference 0.0), and
+the independent NumPy checker passes. The Flux comparison does **not** pass
+with unchanged `atol=1e-5`, `rtol=1e-4`:
+
+| Category | max_abs | violations | Result |
+|---|---:|---:|---|
+| activations | 7.64757395e-3 | 2,705,938 | FAIL |
+| logits | 5.64932823e-4 | 4,981 | FAIL |
+| grads.u1 | 5.24188578e-3 | 3,842,324 | FAIL |
+| grads.u3 | 7.48962909e-3 | 3,906,482 | FAIL |
+| params.u3 | 1.1857599e-5 | 5 | FAIL |
+| m.u3 | 1.47970638e-3 | 721,437 | FAIL |
+| eta, loss, v.u3, beta_power.u3, step | — | 0 | PASS |
+
+The checker printed requested and effective `CUDNN_FMA_MATH(3)`, but the
+full-model forward output is exactly the pre-FMA TF32 run (same per-array
+activation violation counts and maximum as job `60887065`). The FMA
+descriptor did not change the executed kernels. The evidence is consistent
+with cuDNN.jl 6.2.2's Float32 autotuner ignoring the reported math type
+(`skipMathTypeCheck = dtype == Float32`): the isolated stage-2 experiment
+happened to select FMA-compatible algorithms; the full run selected
+TF32-capable ones. This is not ordinary FP32 reduction-order noise and not
+an optimizer/model-math defect; loss, eta, beta powers, step, and `v.u3`
+pass, and the forward already fails.
+
+Per-leaf relative-L2 summaries (supplementary only): worst leaves are
+`grad.u1.stage1.block1.conv1.weight` (4.897306e-2),
+`grad.u3.stage1.block1.conv1.weight` (5.608752e-2),
+`param.u3.stage1.block1.gn1.bias` (1.148905e-1),
+`m.u3.stage1.block1.conv1.weight` (3.943915e-2),
+`v.u3.stem.conv.weight` (5.166543e-2), and
+`delta.u3.stage1.block1.gn1.bias` (1.148905e-1); no zero/nonzero
+disagreements or below-floor norms.
+
+OD-2, OD-3, OD-4, OD-10, and OD-11 remain open. The hardened Phase 2 remote
+re-check still lacks evidence. No Flux source change, no commit, and no
+tolerance, model-math, optimizer, or precision-config change.
+
+Evidence:
+[provenance](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3/PROVENANCE.md),
+[commands](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3/COMMANDS.md),
+[results](../../artifacts/logs/static-scaling/2026-10-17-phase3-step3/RESULTS.md),
+[devlog](../devlog/03-static-scaling/2026-10-17-phase3-step3-full-comparison-fail.md),
+[failure](../failures/2026-10-17-phase3-step3-fma-full-model.md).
+
+**Exact next action (executed as Step 3b; see the section above):** do
+not start Step 4. Enforce FMA-compatible algorithm selection for the
+full-model convolution forward and backward in the reusable precision
+path (pin algorithms or make the Float32 chooser honor
+`ps.mathType == CUDNN_FMA_MATH`), add a full-forward regression, and
+rerun Step 3 in a fresh `OUT`/`LOG_DIR` with unchanged tolerances.
+
+## Phase 3 Step 2 precision experiment and focused regression PASS — 2026-10-17
+
+Completion instructions: [Phase 3 handoff](../../temp/static-graph-gpu-scaling-phase3-handoff.md).
+The user prefers a bounded precision diagnosis and justified numerical acceptance, followed by progress toward benchmarks.
+The handoff does not require bitwise equality or a universal `1e-6` threshold.
+
+The controlled stage-2 experiment resolved the GPU discrepancy. Three fresh
+Julia processes compared the stock cuDNN mapping
+(`PEDANTIC_MATH -> CUDNN_DEFAULT_MATH`, TF32 permitted) with an explicit
+`PEDANTIC_MATH -> CUDNN_FMA_MATH` mapping, against the unchanged PyTorch
+`stage2_diag.npz` and the unchanged `atol=1e-5` / `rtol=1e-4` rule:
+
+| Case | conv1 | conv2 | proj |
+|---|---|---|---|
+| cuda current | 3.5725832e-3, 1,225,601 violations | 3.64590809e-3, 1,316,175 | 0 |
+| cuda FMA | 0, 0 | 1.90734863e-6, 0 | 0 |
+| CPU control | 7.62939453e-6, 0 | 5.48362732e-6, 0 | 0 |
+
+Requested/effective math types were `CUDNN_DEFAULT_MATH(0)` for current and
+`CUDNN_FMA_MATH(3)` for FMA on conv1/conv2/proj; cuBLAS stayed
+`PEDANTIC_MATH`. cuDNN library 9.26.0 (parser prints `92.60.0`). FMA removes
+the failure; the current case retains it. Experiment job 60896936 on
+`lrdn0102` printed `PHASE3_PRECISION_EXPERIMENT PASS`.
+
+cuDNN's autotuner selects algorithms by timing, so the failing convolution can
+move between conv1 and conv2 (observed on job 60896513), and a synthetic
+high-level test can select FP32 Winograd in both modes. The regression therefore
+pins `IMPLICIT_PRECOMP_GEMM` / `BWD_DATA|FILTER_ALGO_1`, which separates FMA
+(~1e-7..1e-6) from current (~2.9e-4) deterministically. Job 60900440 on
+`lrdn2176` printed `PHASE3_PRECISION_REGRESSION PASS`.
+
+The reusable path is `scripts/static_scaling/precision.jl`
+(`configure_precision!`), wired into `check_phase3_flux.jl` and
+`diagnose_phase3_flux.jl`; `model_flux.jl` docstrings require GPU runners to
+reuse it before GPU work. No Flux source changed, no commit, no tolerance
+change. Full Phase 3 acceptance still requires the Step 3 three-update
+comparison; the earlier full-run failure (job 60885091) remains historical
+evidence.
+
+Leonardo access worked for this campaign. The hardened Phase 2 remote re-check
+against the real PREP still lacks evidence in the inspected logs. OD-2, OD-3,
+OD-4, OD-10, and OD-11 remain open.
+
+Details: [experiment provenance](../../artifacts/logs/static-scaling/2026-10-17-phase3-step2-precision/PROVENANCE.md),
+[devlog](../devlog/03-static-scaling/2026-10-17-phase3-step2-precision-experiment.md),
+[failure history](../failures/2026-10-17-phase3-step2-precision-regression-attempts.md),
+[prior review](../../reports/static-scaling-phase3-review.md).
+
+**Exact next action:** run Step 3, the complete three-update Flux comparison
+with `configure_precision!(fma=true)` and unchanged tolerances, in a new output
+directory; retain per-category maxima, violation counts, and relative L2.
+
+## Phase 2 acceptance checks corrected and independently verified — 2026-10-17
+
+Original-reviewer follow-up: R1–R3 are closed locally after source inspection and a fresh six-case harness run.
+Canonical Julia acceptance passed 81 checks. The real-PREP remote re-check remains pending.
+The [review](../../reports/static-scaling-phase2-review.md) now records this closure.
+
+The [implementation review](../../reports/static-scaling-phase2-review.md) found three P2 acceptance gaps (R1-R3): prepared-file hashes were not enforced, Julia ignored fixture integrity hashes, and both GroupNorm checks covered only 4 of 20 layers. All three are corrected and independently verified in the [response report](../../reports/static-scaling-phase2-review-response.md); the findings concerned acceptance coverage, not demonstrated corruption of the canonical artifacts.
+
+- R1: `check_dataset.py` enforces `dataset_manifest.json` and `schedule_manifest.json` before semantic checks (`prep.dataset_manifest_present`, `prep.dataset_file_set`, `prep.dataset_files_sha256_bytes`, `prep.schedule_manifest_present`, `prep.schedule_file_set`, `prep.schedule_files_sha256_bytes`), regenerates all 50 schedule epochs bitwise (`schedule.regenerated_all_epochs_bitwise`, about 29 s locally), and compares the regenerated epoch 49.
+- R2: `check_fixtures_data.jl` enforces `fixture_manifest.json` before numerical checks (4 files, 35 arrays, dtype/shape/C-order SHA-256: `fixtures.manifest_present`, `fixtures.file_set`, `fixtures.file_sha256_bytes`, `fixtures.array_set`, `fixtures.array_metadata`, `fixtures.array_sha256`); `check_all.jl` inherits the gate.
+- R3: both checkers select all 40 GroupNorm arrays (20 weights, 20 biases) and fail `bundle.gn_initial_values` on count or value drift.
+
+Positive reruns: `selftest_local.py` five groups PASS; local `check_all.jl` 81/81 PASS, exit 0 (47 data + 34 operator; was 75); Python positive 63 CHECK lines (62 PASS plus the usual local `--dataset-root` SKIP). The new [negative harness](../../scripts/static_scaling/negative_tests_local.py) ends `NEGTEST PASS`: the epoch-49 valid-range mutation is rejected by `prep.schedule_files_sha256_bytes FAIL`, the in-range label mutation by `fixtures.file_sha256_bytes FAIL`, and the self-consistent residual GroupNorm mutation by `bundle.gn_initial_values FAIL` in both checkers while `bundle.manifest_sha256` and `bundle.bundle_hash` PASS. With self-consistent schedule hashes, `schedule.regenerated_all_epochs_bitwise FAIL bad_epochs=['49']` (and `schedule.epoch_independence FAIL`) still rejects. Canonical artifacts are unchanged (`initial_bundle.npz` sha256 `a790b03c...`; all four fixture files match their manifest).
+
+Residual limitations: a fully self-consistent rewrite of `data_fixture.npz` plus `fixture_manifest.json` still passes the local Julia-only check because Julia has no PREP reference; the Python PREP cross-check catches it (`data_fixture.train_labels FAIL`), and the remote combined acceptance runs Python first. A self-consistent dataset-image rewrite is bounded by the manifest hashes, global statistics, and sampled fixtures.
+
+Remote re-check on the real `$PREP` was not run: `ssh leonardo` failed on 2026-10-17 with `epicazio@login.leonardo.cineca.it: Permission denied (publickey,gssapi-keyex,gssapi-with-mic)`. The local agent has no identities and the on-disk `~/.ssh/id_ed25519` (`SHA256:TDVaBv4y...`) is rejected by the server. This is an access/ops blocker, not a code result; the remote re-check is the first step once SSH is restored ([failure](../failures/2026-10-17-leonardo-ssh-publickey.md)).
+
+**Exact next action:** restore Leonardo SSH access, then re-run `scripts/remote/leonardo/run-phase2-check.sh` on the real `$PREP`/fixtures with the hardened checkers (sync first), then proceed to Phase 3 per `temp/static-graph-gpu-scaling-implementation-phases.md`.
+
+Details: [acceptance-fix devlog](../devlog/03-static-scaling/2026-10-17-phase2-acceptance-fixes.md), [prior review devlog](../devlog/03-static-scaling/2026-10-17-phase2-implementation-review.md).
+
+## Phase 2 complete and independently verified — 2026-10-16 (historical; acceptance hardened 2026-10-17, see above)
+
+Static-network GPU scaling Phase 2 is complete: the canonical decoded dataset,
+50-epoch schedule, normalization statistics, 62-array initial bundle, and the
+four shared correctness fixtures were generated on Leonardo and passed remote,
+local, and independent acceptance. Generation-time provenance: thesis HEAD
+`3088f61020137912af32d9c969e87ea9ae2a71c3`, source state
+`4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1` (recipe:
+`git diff HEAD` + sha256 of sorted untracked non-artifacts files; later
+comment-only edits move the tree hash, so the state is generation-time
+provenance). The canonical bundle is 11,271,432 float32 parameters in 62
+arrays with `bundle_hash=a7632ca9...`, reproduced identically by local torch
+2.14.1+cpu and remote torch 2.9.1+cu126; `initial_bundle.npz` sha256
+`a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317`.
+
+Remote acceptance: prep job 60758615 (`lrdn0018`, lprod, COMPLETED 0:0,
+00:01:55) and check job 60758839 (`lrdn0011`, dbg, COMPLETED 0:0, 00:02:15),
+with `PHASE2_DATASET_CHECK PASS`, `PHASE2_JULIA_DATA_CHECK PASS`,
+`PHASE2_REMOTE_CHECK PASS`; the prepared dataset lives at
+`/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/`, fixtures at
+`artifacts/baselines/static-scaling/2026-10-16-phase2/`. Local acceptance on
+the copied real fixtures: `PHASE2_JULIA_DATA_CHECK PASS` +
+`PHASE2_JULIA_OPERATOR_CHECK PASS` (75 checks, exit 0; the remote check job is
+NPZ-only and does not run the Flux operator check). Independent verification:
+[report](../../reports/static-scaling-phase2-verification.md), overall PASS,
+all four adversarial perturbations caught; D1 was an error in the verification
+prompt's rank-rule wording (artifacts match the documented per-512-batch
+sharding bitwise), D2 was a stale `COMMANDS.md` note, now corrected.
+
+Full command/hash/job record:
+[COMMANDS.md](../../artifacts/logs/static-scaling/2026-10-16-phase2/COMMANDS.md).
+Campaign record and failure history:
+[2026-10-16-phase2-artifacts-complete](../devlog/03-static-scaling/2026-10-16-phase2-artifacts-complete.md),
+[env-token/QoS failure](../failures/2026-10-16-phase2-prep-leonardo-env-and-qos.md),
+[`std64`/masked-exit failure](../failures/2026-10-16-phase2-prep-std64-nameerror-masked-exit.md),
+[linear-fixture failure](../failures/2026-10-16-phase2-prep-make-fixtures-linear-broadcast.md).
+
+**Exact next action (historical; superseded by the 2026-10-17 section above):**
+Phase 3 (training-side consumption / single-GPU baseline per
+`temp/static-graph-gpu-scaling-implementation-phases.md`): sync
+`flux-integration` `f7b4520c` to Leonardo (manual rsync, protect manifests),
+resolve on the login node, precompile on a compute node under
+`boost_qos_lprod`, then run the remote operator check.
+
+## Phase 2 prep retry-4: steps 1-3 PASS, fixtures blocked — 2026-10-16 (historical; resolved in retry-5, see above)
+
+Leonardo prep job 60755769 (`$WORK` target, node `lrdn0018`, `boost_qos_lprod`,
+elapsed 00:25:34, FAILED 1:0) ran the synced commit
+`3088f61020137912af32d9c969e87ea9ae2a71c3` (state
+`3e9ba4d8013ec67383454d86d39ec0caaae2616e43cc5ea4cc963843d6e72561`) with
+`FORCE=1`. The two local fixes took effect: `DATASET_PREP DONE` with
+`train_mean=[0.48023695 0.44806704 0.39750364]`,
+`train_std=[0.27643642 0.2688633  0.28158993]`,
+`containers_train=[('JPEG', 100000)] containers_val=[('JPEG', 10000)]`;
+`SCHEDULE epochs=50 DONE`; `BUNDLE arrays=62` verified with
+`bundle_hash=a7632ca9...`. Step 4/4 `make_fixtures` then FAILED with
+`RuntimeError: The size of tensor a (5) must match the size of tensor b (3)`
+at `make_fixtures.py:212` (`y = w @ x + b`): the fixture bias is `(3,)` but
+must broadcast to `(3, 5)`. The fixed prep driver aborted with
+`PHASE2_PREP FAIL` and exit 1 (no more masked success).
+The fixture directory is empty and the acceptance check, copy-back, and
+COMMANDS.md were not run; no code was changed. Prepared dataset hashes:
+`artifacts/logs/leonardo/2026-10-16-phase2-prepared-sha256.txt`
+(`initial_bundle.npz` = `a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317`).
+Details: [failure record](../failures/2026-10-16-phase2-prep-make-fixtures-linear-broadcast.md),
+[devlog](../devlog/03-static-scaling/2026-10-16-phase2-prep-retry4-make-fixtures-bug.md).
+
+**Exact next action (historical; completed in retry-5):** correct the
+linear-fixture bias broadcasting in `scripts/static_scaling/make_fixtures.py`
+(`build_linear_fixture_torch` line 210-212; also audit
+`build_kernel_fixture_torch`, never exercised), sync, and re-run prep step 4/4
+on Leonardo.
+
 ## OD-1, OD-5, OD-6 recorded; Phase 2 unblocked — 2026-10-16
 
 The supervisor recorded the three Phase 2-blocking decisions in [open-decisions.md](../../experiments/static-scaling/open-decisions.md) (decision record dated 2026-10-16):

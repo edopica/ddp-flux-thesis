@@ -1,0 +1,122 @@
+{
+  "producer": "scripts/static_scaling/prepare_dataset.py",
+  "created": "2026-10-16T21:34:41Z",
+  "synthetic": false,
+  "source_commit": "3088f61020137912af32d9c969e87ea9ae2a71c3",
+  "source_state_sha256": "4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1",
+  "dataset": {
+    "name": "tiny-imagenet-200",
+    "root": "/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200",
+    "classes": 200,
+    "train_images": 100000,
+    "val_images": 10000,
+    "image_shape_chw": [
+      3,
+      64,
+      64
+    ],
+    "source_url": "https://cs231n.stanford.edu/tiny-imagenet-200.zip",
+    "expected_archive_sha256": "6198c8ae015e2b3e007c7841da39ec069199b9aa3bfa943a462022fe5e43c821",
+    "archive_note": "archive bytes are verified at download time (2026-10-15 record); this run re-verified layout and counts only"
+  },
+  "decoder": {
+    "identity": "PIL.Image.open(path).convert('RGB')",
+    "library": "Pillow",
+    "version": "12.3.0",
+    "formats_train": {
+      "JPEG": 100000
+    },
+    "formats_val": {
+      "JPEG": 10000
+    },
+    "note": "detected container formats are recorded in formats_train/formats_val; PIL.Image.open sniffs the container, so the .JPEG extension is not authoritative"
+  },
+  "generator": {
+    "library": "numpy",
+    "version": "2.4.6",
+    "module": "scripts/static_scaling/prepare_dataset.py"
+  },
+  "canonical_train_order": "classes in wnids.txt order (class index = 0-based position), then files sorted with Python sorted() (Unicode code point order) inside train/<wnid>/images/ filtered to *.jpeg/*.JPEG case-insensitively",
+  "canonical_val_order": "sorted filenames (Python sorted(), Unicode code point order) in val/images/, label from val/val_annotations.txt",
+  "stats": {
+    "mean": [
+      0.4802369475364685,
+      0.4480670392513275,
+      0.39750364422798157
+    ],
+    "std": [
+      0.2764364182949066,
+      0.2688632905483246,
+      0.28158992528915405
+    ],
+    "pixel_count_per_channel": 409600000,
+    "dtype": "float32",
+    "method": "per-channel RGB mean and population standard deviation (divide by N) from all 100000 original training images, decoded once with PIL Image.open(path).convert('RGB'), scaled to [0,1], float64 accumulation, computed before augmentation/padding/tail dropping; validation and test images never used; mean = S/N; std = sqrt(max(0, E[x^2] - mean^2)); constants stored as float32",
+    "reduction": "per-image float64 channel sums and sums-of-squares accumulated sequentially in canonical train order (wnids.txt order, sorted filenames); no parallel reduction",
+    "decimal_mean_f64": [
+      0.4802369434455384,
+      0.4480670369274678,
+      0.39750364210898775
+    ],
+    "decimal_std_f64": [
+      0.2764364260187383,
+      0.2688632762749305,
+      0.2815899252967984
+    ],
+    "canonical_train_order": "classes in wnids.txt order (class index = 0-based position), then files sorted with Python sorted() (Unicode code point order) inside train/<wnid>/images/ filtered to *.jpeg/*.JPEG case-insensitively"
+  },
+  "files": [
+    {
+      "path": "train_images.npy",
+      "bytes": 1228800128,
+      "sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "dtype": "uint8",
+      "shape": [
+        100000,
+        3,
+        64,
+        64
+      ]
+    },
+    {
+      "path": "train_labels.npy",
+      "bytes": 800128,
+      "sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "dtype": "int64",
+      "shape": [
+        100000
+      ]
+    },
+    {
+      "path": "val_images.npy",
+      "bytes": 122880128,
+      "sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "dtype": "uint8",
+      "shape": [
+        10000,
+        3,
+        64,
+        64
+      ]
+    },
+    {
+      "path": "val_labels.npy",
+      "bytes": 80128,
+      "sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "dtype": "int64",
+      "shape": [
+        10000
+      ]
+    },
+    {
+      "path": "class_wnids.txt",
+      "bytes": 2000,
+      "sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b"
+    },
+    {
+      "path": "stats.json",
+      "bytes": 1238,
+      "sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc"
+    }
+  ]
+}

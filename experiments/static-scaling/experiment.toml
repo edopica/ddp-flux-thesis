@@ -112,7 +112,7 @@ gradient_equivalence = "equal local batch sizes make the averaged gradient equal
 
 [optimizer]
 name = "AdamW with decoupled weight decay"
-status = "proposed"
+status = "recorded 2026-10-18 (OD-2, OD-3; user-approved)"
 flux_config = "Optimisers.AdamW(; eta = eta, beta = (0.9, 0.999), lambda = wd, epsilon = 1e-8, couple = true); the all-keyword form is required (the positional constructor accepts only couple as a keyword); couple = true matches PyTorch AdamW"
 pytorch_config = "torch.optim.AdamW(params, lr = eta, betas = (0.9, 0.999), eps = 1e-8, weight_decay = wd)"
 equations = "m = b1*m + (1-b1)*g; v = b2*v + (1-b2)*g^2; mhat = m/(1-b1^t); vhat = v/(1-b2^t); dx = mhat/(sqrt(vhat) + eps); x = x - eta*(dx + lambda*x)"
@@ -131,14 +131,14 @@ gradient_clipping = "none"
 maximize = false
 
 [schedule]
-status = "proposed"
+status = "recorded 2026-10-18 (OD-4; user-approved)"
 definition = "a function of the global optimizer update index t = 1..T; identical in both frameworks; the schedule does not scale with GPU count"
 warmup_rule = "linear from 0 to eta_max: eta_t = eta_max * t / W for t = 1..W"
 decay_rule = "cosine from eta_max to 0: eta_t = eta_max * 0.5 * (1 + cos(pi * (t - W) / (T - W))) for t = W+1..T"
-warmup_epochs_proposed = 5
+warmup_epochs = 5
 warmup_updates_b512 = 975
 warmup_updates_b256 = 1950
-learning_curve_epochs_proposed = 50
+learning_curve_epochs = 50
 learning_curve_updates_b512 = 9750
 learning_curve_updates_b256 = 19500
 throughput_updates = "pending_phase_6: one fixed K giving the fastest configuration tens of seconds of work"
@@ -146,7 +146,7 @@ throughput_schedule_usage = "throughput runs execute updates 1..K of the same sc
 
 [training_contract]
 flux_entry_point = "explicit: Zygote.withgradient for AD, then Optimisers.update! on the DistributedOptimizerState (communication outside AD)"
-flux_entry_point_status = "proposed; confirm in Phase 3"
+flux_entry_point_status = "recorded 2026-10-18 (OD-11; user-approved); implementation matches the explicit path"
 flux_single_gpu_entry_point = "Zygote.withgradient, then Optimisers.update! on an ordinary Optimisers state"
 pytorch_entry_point = "loss.backward() then optimizer.step() inside the DDP wrapper"
 gradient_averaging = "g = sum_r(g_r) / world_size, applied exactly once by the framework"
@@ -241,9 +241,28 @@ triton = "3.5.1"
 remote_flux_state = "WARNING: the Leonardo copy ~/projects/flux-integration is a pre-guard snapshot (verified 2026-10-15); sync f7b4520c and re-precompile on a compute node before any benchmark run"
 
 [tolerances]
-status = "proposed; cross-framework values are calibrated in Phase 3 before acceptance runs"
+status = "recorded 2026-10-17 (OD-10 calibration revision; base rule plus three frozen backward-category floors)"
 comparison_rule = "elementwise |a - b| <= atol + rtol * max(|a|, |b|)"
 same_framework = { atol = 2.0e-6, rtol = 1.0e-5, basis = "existing project standard (Phase K, C8 matrix); applies to DDP vs single-GPU reference and to rank replicas" }
-cross_framework = { atol = 1.0e-5, rtol = 1.0e-4, basis = "provisional; must be calibrated on frozen fixtures before Phase 3 acceptance and then frozen in this file" }
+cross_framework = { atol = 1.0e-5, rtol = 1.0e-4, basis = "recorded 2026-10-17: base rule for every category except the three phase3 backward categories below; frozen before the Step 3c acceptance run" }
 categories = ["logits", "loss", "gradients", "updated parameters", "optimizer moments m and v", "step counters"]
+calibration_evidence = [
+  "artifacts/logs/static-scaling/2026-10-17-phase3-numerics/RESULTS.md",
+  "same-framework PyTorch CPU-vs-GPU control (PyTorch CPU reference job 60912525, node lrdn3450; Flux CPU checker job 60912664): grads.u1 3.021732e-4 / 14,365 violations, grads.u3 4.099458e-4 / 128,170, m.u3 5.057361e-5 / 1,137; this control fails the base rule on exactly the same three categories as Flux, with the same worst leaves",
+]
 calibration_rule = "a revision of a tolerance requires a documented numerical cause (kernel or reduction-order difference), recorded in this file before the acceptance evidence is generated"
+
+[tolerances.category_overrides."phase3.grads.u1"]
+atol = 1.0e-3
+rtol = 1.0e-4
+basis = "PyTorch CPU-vs-GPU same-framework control fails the base rule at 3.021732e-4 with 14,365 violations; four-comparison Flux/PyTorch envelope max 4.126653e-4; >=2.42x margin; per-leaf relative L2 stays supplementary"
+
+[tolerances.category_overrides."phase3.grads.u3"]
+atol = 2.0e-3
+rtol = 1.0e-4
+basis = "PyTorch CPU-vs-GPU same-framework control fails the base rule at 4.099458e-4 with 128,170 violations; four-comparison Flux/PyTorch envelope max 7.480253e-4; >=2.67x margin; per-leaf relative L2 stays supplementary"
+
+[tolerances.category_overrides."phase3.m.u3"]
+atol = 2.0e-4
+rtol = 1.0e-4
+basis = "PyTorch CPU-vs-GPU same-framework control fails the base rule at 5.057361e-5 with 1,137 violations; four-comparison Flux/PyTorch envelope max 9.655068e-5; >=2.07x margin; per-leaf relative L2 stays supplementary"

@@ -1,0 +1,22 @@
+42b33dc3d6753c08f1e55064b1fc864668f6f67782a0da713a43c3e70de62bf5  remote-check.log
+3c9867cdae5ae784bc54fad8ffde227ab78176353201214f705111c498e259b7  local-console.log
+0fccb5133f6be0bbeaf8d04ff83b094848e5dbf4ff4aae79b19114c2a2eb9665  PROVENANCE.md
+aa18755b9ec7b0d45140ca657bec6e79e013f39b8fdc7f6efdf0f1f179112e36  COMMANDS.md
+98cfc39b5176874fb16b224ae9a6797b04a992a22d8d8e730f8befc3d33c0bcc  STEP5-CHANGES.md
+86dc02d7f69e7dfe7afbf2a48f5472e4c5ff7cfa625ea11d6748d7fecbd031a4  step5-worktree.diff
+# Source checkers (local == remote at run time)
+# ee3f10b248ff9a6075f5e828e030096bf5b6f46b5d30a608dcfd5e16b464f038  scripts/static_scaling/check_dataset.py
+# 8135a2417c271b811bc39b2f32a8f800d14475764b60348351637629af07abda  scripts/static_scaling/check_fixtures_data.jl
+# 62f3c64d7a2bb9ca28133545ec5303140458660ca3784823be56238aa82febeb  scripts/static_scaling/check_all.jl
+# 2fe3690912a029053012714c59452966932e4aadd6c970d53a3b307141f633d7  scripts/remote/leonardo/run-phase2-check.sh
+# PREP and fixtures (read-only inputs)
+# a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317  $PREP/initial_bundle.npz
+# 4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571  $PREP/initial_bundle.manifest.json
+# 584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a  $PREP/dataset_manifest.json
+# 0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295  $PREP/schedule_manifest.json
+# 6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc  $PREP/stats.json
+# 6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3  $FIX/data_fixture.npz
+# aba66a8ef7bbc82fc81db8cd629092b917cd7d85efafed82553f853c45352662  $FIX/schedule_fixture.npz
+# 8efa5278981b2b11842d2a701b6f81789c976e033a678a0322e961ecd8f1fa2d  $FIX/linear_fixture.npz
+# 3b3795f6c6ff2ec68198a645cc65f4ba97e0b6438da61e6cfd2ad564ff441f3d  $FIX/kernel_fixture.npz
+# 51448d5905c5dfd9a47b945d96102d19ea55073fbfe9f249fd268cca03455a65  $FIX/fixture_manifest.json

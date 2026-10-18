@@ -1,0 +1,199 @@
+{
+  "schema": "static-scaling-phase3-attempt3-preservation-v1",
+  "generated_utc": "2026-10-17T17:58:48Z",
+  "historical_run": {
+    "job_id": "60885091",
+    "node": "lrdn0084.leonardo.local",
+    "driver_start_utc": "2026-10-17T16:59:54Z",
+    "reference_created_utc": "2026-10-17T17:02:14Z",
+    "remote_check_log_end_utc": "2026-10-17T17:07:58Z",
+    "qos": "boost_qos_dbg",
+    "atol": 1e-05,
+    "rtol": 0.0001,
+    "result": "PHASE3_REMOTE_CHECK FAIL (exit 1)",
+    "reference_generator": "PASS checks=32",
+    "independent_reference_check": "PASS arrays=337",
+    "flux_fail_categories": [
+      "phase3.activations",
+      "phase3.logits",
+      "phase3.grads.u1",
+      "phase3.grads.u3",
+      "phase3.params.u3",
+      "phase3.m.u3"
+    ],
+    "flux_pass_categories": [
+      "phase3.loss",
+      "phase3.v.u3",
+      "phase3.eta",
+      "phase3.beta_power.u3",
+      "phase3.step"
+    ],
+    "stage2_diag_job_id": "60887764",
+    "stage2_diag_node": "lrdn0339"
+  },
+  "locations": {
+    "remote_evidence_root": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-attempt3",
+    "local_baselines": "artifacts/baselines/static-scaling/2026-10-17-phase3-attempt3-preserved",
+    "local_logs": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved"
+  },
+  "historical_source_identity": {
+    "source_commit": "3088f61020137912af32d9c969e87ea9ae2a71c3",
+    "source_state_sha256": "82623bbb516a981d6c795792d1433521d25a8ee3bbcc44a2b66f6f4631a452b9",
+    "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+    "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "flux_state_sha256_note": "SHA-256 of empty input; Flux worktree clean relative to FLUX_COMMIT",
+    "origin": "line 1 of artifacts/logs/leonardo/2026-10-17-phase3-remote-attempt3.log (caller-supplied)"
+  },
+  "remote_git_inspection": {
+    "thesis_rev_parse_head": null,
+    "thesis_rev_parse_exit": 128,
+    "thesis_error": "fatal: not a git repository (or any parent up to mount point /)",
+    "flux_rev_parse_head": null,
+    "flux_rev_parse_exit": 128,
+    "flux_error": "fatal: not a git repository (or any parent up to mount point /)",
+    "note": "Both remote trees were synced without .git; git-derived provenance is unavailable remotely. Empty-input hashes printed by failed pipelines are invalid."
+  },
+  "local_corroboration": {
+    "thesis_head": "3088f61020137912af32d9c969e87ea9ae2a71c3",
+    "thesis_diff_head_sha256": "a96456534d1d467c649bc813291f8d3070a924f035743db546321b05ea0df8bc",
+    "thesis_untracked_list_sha256": "31a7967fc7c63b1820e43e6b7c2891a2751b0c6ab1e890b1a4d20f02ab484815",
+    "thesis_full_state_sha256_current": "fe176b0c6e444fd32324603ed223430b2e60df143aebc49e483b770b39d219a6",
+    "thesis_full_state_recipe": "{ git diff HEAD; git ls-files --others --exclude-standard | grep -v '^artifacts/' | sort | xargs -r sha256sum; } | sha256sum",
+    "thesis_state_note": "Current state differs from historical 82623bbb... because documentation was added after job 60885091; historical state is not reconstructible from the current tree.",
+    "flux_head": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+    "flux_status_porcelain_lines": 0,
+    "flux_diff_head_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "flux_untracked_list_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "executed_source_files": {
+    "scripts/remote/leonardo/run-phase3-check.sh": "f52c454de1ecbadaa45a7c7be9556ab59ab0628d99269e3d0a0ad2abc5432f6b",
+    "scripts/static_scaling/make_phase3_reference.py": "0a9a2645f2bf0bd66e94e1351d3538e050a8261dee451c77dd4b7b282cdab21d",
+    "scripts/static_scaling/check_phase3_reference.py": "85297025dfd9b2222e2ecbae6c5bdca80f0e724f80b680fcdc67fa6653723515",
+    "scripts/static_scaling/check_phase3_flux.jl": "c45b8a2e6f4bfbcb1c69c6e6debd60e4f5333a8675b884ffaf4d5d299d1c5e65",
+    "scripts/static_scaling/model_flux.jl": "f187ba8929246bbf4c56d8fad726ed23668d4e4f4ed06f107f1b8cf4d96f8ea5",
+    "scripts/static_scaling/model_torch.py": "77ac48e815b58948ab64b16938d988cae35f4719f084c25432703f6ffadfdf76",
+    "scripts/static_scaling/diagnose_phase3_flux_stage2.jl": "57c32f42041daab933495b12aa90fa3d6852e350497160b7c468ea7640a96d3b",
+    "scripts/static_scaling/diagnose_phase3_torch_stage2.py": "cb37fc124b7dab1ffcd43ed0f02fa56dc2f425333980c5f30ea67fd89ea26e97",
+    "scripts/remote/leonardo/run-julia-phase3.sh": "43841338e8fad8cb00dc192bed30860c05e9380ba91ba2ab9a8751f643ef6314",
+    "scripts/remote/leonardo/diagnose-phase3.sh": "f9bf5485992e4fae4408922ddc6d635145796b86a8bc38823c897b0c31f97211",
+    "scripts/remote/leonardo/diagnose-phase3-stage2.sh": "e247b0f17b834e85bac1127e9c848331f5c40128194e5e3b4822b2b5aeeea7c9"
+  },
+  "preservation_time_tree_hashes": {
+    "thesis_source_tree_excludes_artifacts_and_git": "e6bdf241324ae3334ce398c80e0b60b85951a7fcd952eb379e2b2739ff650994",
+    "flux_worktree_excludes_git": "44b3a5b51fdb08c5c22815e0121a923d4468817c44ab7c828c839ba13ac1effd",
+    "note": "Preservation-time tree contents, not the historical run-time state."
+  },
+  "environment": {
+    "julia_version": "1.12.6",
+    "manifest_sha256": {
+      "thesis_scripts_static_scaling_julia_env": "c8077e0c6504adedfdce5a35dd1a2ba6bde057fc45ee9bd7ba1edbd35ee23874",
+      "flux_root": "4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837",
+      "flux_test": null,
+      "flux_test_note": "MISSING remotely and locally"
+    },
+    "flux_test_project_sha256": "13970e0a9b8595595ce63a9e05d69de0b381fff86d16f774c4e0d04d8bb38853",
+    "julia_packages": {
+      "CUDA_jl": "6.2.2",
+      "cuDNN_jl": "6.2.2",
+      "CUDNN_jll": "9.26.0+0",
+      "NCCL_jl": "0.1.3",
+      "NCCL_jll": "2.30.7+0"
+    },
+    "julia_cuda_runtime_version": "12.9.0",
+    "julia_cuda_driver_version_reported": "13.3.0",
+    "cudnn_get_version_raw": 92600,
+    "cudnn_library_version": "9.26.0",
+    "cudnn_jl_version_printed": "92.60.0",
+    "cudnn_jl_version_note": "cuDNN.jl parser divides by 1000; raw 92600 is cuDNN 9.26.0",
+    "python_venv_freeze_sha256": "cd39f2829c56037a3c68d05299f6d823f4ec603d7422c5d377104fc48d8c7532",
+    "python": "3.11.17",
+    "numpy": "2.4.6",
+    "torch": "2.9.1+cu126",
+    "torchvision": "0.24.1+cu126",
+    "torch_cuda_runtime": "12.6",
+    "torch_cudnn": "9.10.2.21",
+    "torch_cudnn_version_int": 91002,
+    "torch_nccl": "2.27.5",
+    "gpu": {
+      "model": "NVIDIA A100-SXM-64GB",
+      "memory_mib": 65536,
+      "compute_capability": [8, 0],
+      "driver_version_nvidia_smi": "535.274.02",
+      "probe_job": "60892511",
+      "probe_node": "lrdn0252"
+    }
+  },
+  "cudnn_math_mode": {
+    "checker_setting": "CUDA.math_mode!(CUDA.PEDANTIC_MATH) at scripts/static_scaling/check_phase3_flux.jl:368",
+    "mapping_source_path": "/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/cuDNN/0SFve/src/cuDNN.jl",
+    "mapping_source_lines": "50-61",
+    "mapping_source_sha256": "86a54c6d299e68382b2b68e462f9e7fcbae504ba9a91db7d82d9caf383351119",
+    "package_version": "6.2.2",
+    "mapping": {
+      "PEDANTIC_MATH": "CUDNN_DEFAULT_MATH",
+      "DEFAULT_MATH": "CUDNN_TENSOR_OP_MATH",
+      "FAST_MATH": "CUDNN_TENSOR_OP_MATH_ALLOW_CONVERSION"
+    },
+    "probe_after_setting_pedantic": {
+      "CUDA_math_mode": "PEDANTIC_MATH",
+      "cuDNN_math_mode": "CUDNN_DEFAULT_MATH",
+      "CUDA_math_precision": "TensorFloat32"
+    },
+    "probe_job": "60893401",
+    "probe_node": "lrdn0042"
+  },
+  "preserved_files": [
+    {"remote_path": "reference/phase3_reference.npz", "bytes": 299701312, "sha256": "97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783", "local_path": "artifacts/baselines/static-scaling/2026-10-17-phase3-attempt3-preserved/phase3_reference.npz", "match": true},
+    {"remote_path": "reference/phase3_reference_manifest.json", "bytes": 95759, "sha256": "2416e5557eb696e499a553fd1866d49c1c529a5fb778541df2f009825689f64d", "local_path": "artifacts/baselines/static-scaling/2026-10-17-phase3-attempt3-preserved/phase3_reference_manifest.json", "match": true},
+    {"remote_path": "diag/stage2_diag.npz", "bytes": 56625286, "sha256": "a5dd592d7427ccdfba6a68dd3e8c9985a4466e8f7eca067095e5fc96d11a9b7e", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/diag/stage2_diag.npz", "match": true},
+    {"remote_path": "logs/remote-check.log", "bytes": 44677, "sha256": "c8fe2088dcb8746bf0640e720d72677369f7556435f643ee85d2211ca031d06b", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/logs/remote-check.log", "match": true},
+    {"remote_path": "logs/2026-10-17-phase3-remote-attempt3.log", "bytes": 19845, "sha256": "3325a3575c9be7ec08748e76b29a48c3328b538c3ede8630b88535276751a4bf", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/logs/2026-10-17-phase3-remote-attempt3.log", "match": true},
+    {"remote_path": "logs/2026-10-17-phase3-diagnose-gpu.log", "bytes": 1790, "sha256": "ae17a23e18f7665209342045b041f0745b452f96f718dc3072e37c796b831d72", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/logs/2026-10-17-phase3-diagnose-gpu.log", "match": true},
+    {"remote_path": "logs/2026-10-17-phase3-diagnose-stage2.log", "bytes": 2376, "sha256": "65b2ff78b1ac966342b9b2afc337accc8e18654a13587c72d7bbe472e4636bf0", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/logs/2026-10-17-phase3-diagnose-stage2.log", "match": true},
+    {"remote_path": "logs/2026-10-17-phase3-diagnose-stage2-cpu.log", "bytes": 2003, "sha256": "6cbbc3d99072c9aef8c9350607e9c0ec984f952fa24b4836a4c488e2aea5ab6d", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/logs/2026-10-17-phase3-diagnose-stage2-cpu.log", "match": true},
+    {"remote_path": "provenance/00_git_probe.txt", "bytes": 2370, "sha256": "b774db1c03d28717b3c469a77612c65777665a51333b3756aab072c98d468cc7", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/00_git_probe.txt", "match": true},
+    {"remote_path": "provenance/05_attempt3_launch_command.txt", "bytes": 1100, "sha256": "3f002a04fdd4f504aabbf3c8da112ba9a7b0bb762bbc3f477c721440ec51a9ad", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/05_attempt3_launch_command.txt", "match": true},
+    {"remote_path": "provenance/10_source_files_sha256.txt", "bytes": 2485, "sha256": "8086f6c7ea238546312bdf87a383aed7e17528ad041bbe6c5cc6fad5cb616d8a", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/10_source_files_sha256.txt", "match": true},
+    {"remote_path": "provenance/15_tree_hashes.txt", "bytes": 757, "sha256": "c3c0c34770be71d650f870a2b2f21d790a935b0f37edd856da793303e0bcb8af", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/15_tree_hashes.txt", "match": true},
+    {"remote_path": "provenance/20_julia_package_versions.txt", "bytes": 1502, "sha256": "4eb104ba91c61e3f1ab3109a16e67515ece9f4e08aa7648b18957518ff14a056", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/20_julia_package_versions.txt", "match": true},
+    {"remote_path": "provenance/30_cudnn-math-mode.txt", "bytes": 1423, "sha256": "1848a0b8964cba70ad22b175ae785ac7cd3be4018b4258eb2444a088b60a109c", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/30_cudnn-math-mode.txt", "match": true},
+    {"remote_path": "provenance/40_preservation_commands.txt", "bytes": 3010, "sha256": "c58966f6f6a0c13061b60612710bb7e532a49081b98b618580bfe97a56bb9e33", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/40_preservation_commands.txt", "match": true},
+    {"remote_path": "provenance/50_missing_and_flags.txt", "bytes": 3190, "sha256": "c3b029fc1d98d47311f4d84c552ae5f0e4babfe2756af06cd6d268480486ce7a", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/50_missing_and_flags.txt", "match": true},
+    {"remote_path": "provenance/compute_probe.sh", "bytes": 2144, "sha256": "6c3a314991fd9baad126e9c793b14b292543614812c84d84f9aa90d6372cb318", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/compute_probe.sh", "match": true},
+    {"remote_path": "provenance/environment_probe.txt", "bytes": 861, "sha256": "10f54a074cd3609af4085840d7d4afcf2997e613ac95f91579e56dc6503aa59e", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/environment_probe.txt", "match": true},
+    {"remote_path": "provenance/environment_probe_math_mode.txt", "bytes": 576, "sha256": "38118e64501d668e5b662ae2e6d498273f34ada016510e57d307e1d0fb0273aa", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/environment_probe_math_mode.txt", "match": true},
+    {"remote_path": "provenance/flux-root-Manifest.toml", "bytes": 93222, "sha256": "4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/flux-root-Manifest.toml", "match": true},
+    {"remote_path": "provenance/flux-test-Project.toml", "bytes": 1509, "sha256": "13970e0a9b8595595ce63a9e05d69de0b381fff86d16f774c4e0d04d8bb38853", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/flux-test-Project.toml", "match": true},
+    {"remote_path": "provenance/julia-env-Manifest.toml", "bytes": 4669, "sha256": "c8077e0c6504adedfdce5a35dd1a2ba6bde057fc45ee9bd7ba1edbd35ee23874", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/julia-env-Manifest.toml", "match": true},
+    {"remote_path": "provenance/math_mode_probe.sh", "bytes": 1171, "sha256": "1c8a36463b9a98fcb416681b63ee6a67861415204d31a0cf25d908b315f41959", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/math_mode_probe.sh", "match": true},
+    {"remote_path": "provenance/venv-requirements-freeze.txt", "bytes": 668, "sha256": "cd39f2829c56037a3c68d05299f6d823f4ec603d7422c5d377104fc48d8c7532", "local_path": "artifacts/logs/static-scaling/2026-10-17-phase3-attempt3-preserved/provenance/venv-requirements-freeze.txt", "match": true}
+  ],
+  "local_reopen_verification": {
+    "reference_npz": {
+      "array_count": 337,
+      "total_elements": 74900851,
+      "dtypes": ["float32", "float64", "int64"],
+      "status": "reopened"
+    },
+    "stage2_diag_npz": {
+      "array_count": 9,
+      "names": ["conv1", "gn1", "relu1", "conv2", "gn2", "proj", "pgn", "total", "out"],
+      "shape_each": [12, 128, 32, 32],
+      "dtype": "float32",
+      "status": "reopened"
+    }
+  },
+  "missing_blocked_flagged": [
+    "Remote thesis and flux trees have no .git; git provenance commands fail (exit 128).",
+    "Remote git diff pipelines print the empty-input hash e3b0c44... with a failing exit code; invalid.",
+    "~/projects/flux-integration/test/Manifest.toml is missing remotely and locally.",
+    "Current local thesis state fe176b0c... differs from historical 82623bbb...; historical state not reconstructible.",
+    "cuDNN.jl version() prints 92.60.0 for raw 92600; authoritative CUDNN_jll is 9.26.0+0.",
+    "Julia uses cuDNN 9.26.0; PyTorch uses cuDNN 9.10.2.21.",
+    "CUDA.jl reports runtime 12.9.0 and driver 13.3.0; nvidia-smi reports host driver 535.274.02.",
+    "Manifest optimizer.gradient_clipping is null intentionally (no clipping); no other null/empty/unknown provenance values.",
+    "Remote chmod -R a-w is best-effort, not filesystem immutability.",
+    "PROVENANCE.md and PROVENANCE.json are covered by the final remote SHA256SUMS, not by the 24-file comparison above."
+  ],
+  "exact_next_action": "Step 2 of temp/static-graph-gpu-scaling-phase3-handoff.md: on a Leonardo compute node, compare the isolated stage-2 convolution under the current math type and explicit CUDNN_FMA_MATH with identical saved inputs/weights and fresh processes; record requested/effective math types and the discrepancy against the unchanged PyTorch reference. Do not run the full Phase 3 driver until that comparison is recorded."
+}

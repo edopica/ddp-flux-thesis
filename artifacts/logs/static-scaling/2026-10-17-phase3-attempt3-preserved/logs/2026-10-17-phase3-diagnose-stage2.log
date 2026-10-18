@@ -1,0 +1,27 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 bash scripts/remote/leonardo/diagnose-phase3-stage2.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 60887764
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0339 are ready for job
+TORCH_STAGE2 conv1  shape=(12, 128, 32, 32) max_abs=12.4652061 mean_abs=0.992904902
+TORCH_STAGE2 gn1    shape=(12, 128, 32, 32) max_abs=7.69877243 mean_abs=0.759410739
+TORCH_STAGE2 relu1  shape=(12, 128, 32, 32) max_abs=7.69877243 mean_abs=0.379705369
+TORCH_STAGE2 conv2  shape=(12, 128, 32, 32) max_abs=7.20300388 mean_abs=0.738027453
+TORCH_STAGE2 gn2    shape=(12, 128, 32, 32) max_abs=6.93673849 mean_abs=0.778618097
+TORCH_STAGE2 proj   shape=(12, 128, 32, 32) max_abs=10.7621469 mean_abs=1.06007898
+TORCH_STAGE2 pgn    shape=(12, 128, 32, 32) max_abs=7.16482306 mean_abs=0.763274074
+TORCH_STAGE2 total  shape=(12, 128, 32, 32) max_abs=10.8048258 mean_abs=1.10905218
+TORCH_STAGE2 out    shape=(12, 128, 32, 32) max_abs=9.3298521 mean_abs=0.554526091
+TORCH_STAGE2_SAVED /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-17-phase3/stage2_diag.npz
+FLUX_STAGE2 conv1  max_abs=0.0035725832 max_rel=1.99545726 violations=1225601
+FLUX_STAGE2 gn1    max_abs=0.00313663483 max_rel=1.99900427 violations=1211268
+FLUX_STAGE2 relu1  max_abs=0.00313663483 max_rel=1 violations=606879
+FLUX_STAGE2 conv2  max_abs=0.00364590809 max_rel=1.99393233 violations=1316175
+FLUX_STAGE2 gn2    max_abs=0.00470265746 max_rel=1.97619279 violations=1319635
+FLUX_STAGE2 proj   max_abs=0 max_rel=0 violations=0
+FLUX_STAGE2 pgn    max_abs=9.53674316e-07 max_rel=0.0226530446 violations=0
+FLUX_STAGE2 total  max_abs=0.00470268726 max_rel=1.99276411 violations=1234163
+FLUX_STAGE2 out    max_abs=0.00413501263 max_rel=1 violations=616389
+salloc: Relinquishing job allocation 60887764

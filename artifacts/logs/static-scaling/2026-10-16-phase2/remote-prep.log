@@ -1,0 +1,185 @@
+=== run-phase2-prep: START ===
+utc=2026-10-16T20:59:16Z host=lrdn0018.leonardo.local
+SLURM_JOB_ID=60755769 SLURM_JOB_NODELIST=lrdn0018
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+VENV_PY=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+DATASET_ROOT=/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FORCE=1
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=3e9ba4d8013ec67383454d86d39ec0caaae2616e43cc5ea4cc963843d6e72561
+--- python/torch versions ---
+python 3.11.17
+numpy 2.4.6 pillow 12.3.0
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+--- disk (target /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   63G  962G   7% /leonardo_work
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+DATASET_PREP train_decoded=30000
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+DATASET_PREP train_decoded=90000
+DATASET_PREP train_decoded=100000
+DATASET_PREP train_mean=[0.48023695 0.44806704 0.39750364]
+DATASET_PREP train_std=[0.27643642 0.2688633  0.28158993]
+DATASET_PREP val_decoded=5000
+DATASET_PREP val_decoded=10000
+DATASET_PREP containers_train=[('JPEG', 100000)] containers_val=[('JPEG', 10000)]
+DATASET_PREP wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/dataset_manifest.json files=6 pixel_count_per_channel=409600000
+DATASET_PREP DONE
+
+real	23m52.511s
+user	0m27.448s
+sys	0m19.109s
+=== 2/4 make_schedule ===
+SCHEDULE generated_epochs=5
+SCHEDULE generated_epochs=10
+SCHEDULE generated_epochs=15
+SCHEDULE generated_epochs=20
+SCHEDULE generated_epochs=25
+SCHEDULE generated_epochs=30
+SCHEDULE generated_epochs=35
+SCHEDULE generated_epochs=40
+SCHEDULE generated_epochs=45
+SCHEDULE generated_epochs=50
+SCHEDULE wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/schedule_manifest.json epochs=50
+SCHEDULE DONE
+
+real	0m22.419s
+user	0m22.262s
+sys	0m0.096s
+=== 3/4 make_initial_bundle ===
+BUNDLE wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.npz arrays=62
+BUNDLE elements=11271432 bundle_hash=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+BUNDLE verified name_set=true per_array_sha256=true bundle_hash=true torch=2.9.1+cu126 numpy=2.4.6
+BUNDLE DONE
+
+real	0m11.433s
+user	0m2.146s
+sys	0m0.509s
+=== 4/4 make_fixtures ===
+Traceback (most recent call last):
+  File "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py", line 655, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py", line 631, in main
+    linear = build_linear_fixture_torch()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py", line 212, in build_linear_fixture_torch
+    y = w @ x + b
+        ~~~~~~^~~
+RuntimeError: The size of tensor a (5) must match the size of tensor b (3) at non-singleton dimension 1
+PHASE2_PREP FAIL (step exited non-zero, see log)
+
+real	0m2.364s
+user	0m1.875s
+sys	0m0.325s
+=== run-phase2-prep: START ===
+utc=2026-10-16T21:33:21Z host=lrdn0018.leonardo.local
+SLURM_JOB_ID=60758615 SLURM_JOB_NODELIST=lrdn0018
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+VENV_PY=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+DATASET_ROOT=/leonardo_work/IscrC_UNMASKED/epicazio/datasets/tiny-imagenet-200
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FORCE=1
+SOURCE_COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 SOURCE_STATE_SHA256=4d4fd2ac75f192c049d0c7eedfcdf4c1daf83ece770e66ff7bf181d76b651ad1
+--- python/torch versions ---
+python 3.11.17
+numpy 2.4.6 pillow 12.3.0
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+--- disk (target /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   63G  962G   7% /leonardo_work
+=== 1/4 prepare_dataset ===
+DATASET_PREP decoder=PIL.Image.open.convert(RGB) pillow_version=12.3.0
+DATASET_PREP train_decoded=10000
+DATASET_PREP train_decoded=20000
+DATASET_PREP train_decoded=30000
+DATASET_PREP train_decoded=40000
+DATASET_PREP train_decoded=50000
+DATASET_PREP train_decoded=60000
+DATASET_PREP train_decoded=70000
+DATASET_PREP train_decoded=80000
+DATASET_PREP train_decoded=90000
+DATASET_PREP train_decoded=100000
+DATASET_PREP train_mean=[0.48023695 0.44806704 0.39750364]
+DATASET_PREP train_std=[0.27643642 0.2688633  0.28158993]
+DATASET_PREP val_decoded=5000
+DATASET_PREP val_decoded=10000
+DATASET_PREP containers_train=[('JPEG', 100000)] containers_val=[('JPEG', 10000)]
+DATASET_PREP wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/dataset_manifest.json files=6 pixel_count_per_channel=409600000
+DATASET_PREP DONE
+
+real	1m18.382s
+user	0m25.861s
+sys	0m15.645s
+=== 2/4 make_schedule ===
+SCHEDULE generated_epochs=5
+SCHEDULE generated_epochs=10
+SCHEDULE generated_epochs=15
+SCHEDULE generated_epochs=20
+SCHEDULE generated_epochs=25
+SCHEDULE generated_epochs=30
+SCHEDULE generated_epochs=35
+SCHEDULE generated_epochs=40
+SCHEDULE generated_epochs=45
+SCHEDULE generated_epochs=50
+SCHEDULE wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/schedule_manifest.json epochs=50
+SCHEDULE DONE
+
+real	0m22.600s
+user	0m23.063s
+sys	0m0.118s
+=== 3/4 make_initial_bundle ===
+BUNDLE wrote /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.npz arrays=62
+BUNDLE elements=11271432 bundle_hash=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+BUNDLE verified name_set=true per_array_sha256=true bundle_hash=true torch=2.9.1+cu126 numpy=2.4.6
+BUNDLE DONE
+
+real	0m2.432s
+user	0m2.153s
+sys	0m0.494s
+=== 4/4 make_fixtures ===
+FIXTURES wrote /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/data_fixture.npz arrays=9
+FIXTURES wrote /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/schedule_fixture.npz arrays=5
+FIXTURES wrote /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/linear_fixture.npz arrays=7
+FIXTURES wrote /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/kernel_fixture.npz arrays=14
+FIXTURES wrote /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/fixture_manifest.json arrays_total=35
+FIXTURES verified files=4 arrays=35 sha256=true
+FIXTURES DONE synthetic=False
+
+real	0m4.544s
+user	0m2.044s
+sys	0m0.427s
+=== outputs ===
+total 1392730
+-rw-r--r-- 1 epicazio interactive   15000128 Oct 16 23:35 augmentation.npy
+-rw-r--r-- 1 epicazio interactive       2000 Oct 16 23:33 class_wnids.txt
+-rw-r--r-- 1 epicazio interactive       4288 Oct 16 23:34 dataset_manifest.json
+-rw-r--r-- 1 epicazio interactive      16437 Oct 16 23:35 initial_bundle.manifest.json
+-rw-r--r-- 1 epicazio interactive   45103060 Oct 16 23:35 initial_bundle.npz
+-rw-r--r-- 1 epicazio interactive   40000128 Oct 16 23:35 permutations.npy
+-rw-r--r-- 1 epicazio interactive       1773 Oct 16 23:35 schedule_manifest.json
+-rw-r--r-- 1 epicazio interactive       1238 Oct 16 23:34 stats.json
+-rw-r--r-- 1 epicazio interactive 1228800128 Oct 16 23:34 train_images.npy
+-rw-r--r-- 1 epicazio interactive     800128 Oct 16 23:34 train_labels.npy
+-rw-r--r-- 1 epicazio interactive  122880128 Oct 16 23:34 val_images.npy
+-rw-r--r-- 1 epicazio interactive      80128 Oct 16 23:34 val_labels.npy
+total 4098
+-rw-r--r-- 1 epicazio interactive 1821284 Oct 16 23:35 data_fixture.npz
+-rw-r--r-- 1 epicazio interactive   10643 Oct 16 23:35 fixture_manifest.json
+-rw-r--r-- 1 epicazio interactive    7114 Oct 16 23:35 kernel_fixture.npz
+-rw-r--r-- 1 epicazio interactive    2238 Oct 16 23:35 linear_fixture.npz
+-rw-r--r-- 1 epicazio interactive 3797486 Oct 16 23:35 schedule_fixture.npz
+=== run-phase2-prep: DONE ===
+NEXT (same allocation, compute node): bash scripts/remote/leonardo/run-phase2-check.sh
+NEXT (bring evidence home): scp leonardo:/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-16-phase2/remote-prep.log artifacts/logs/static-scaling/2026-10-16-phase2/
+NEXT (bring fixtures home): scp -r leonardo:/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/ artifacts/baselines/static-scaling/

@@ -1,0 +1,18 @@
+# Source files used by Phase 3 attempt 3 (remote paths, preservation-time hashes)
+# utc=2026-10-17T17:46:09Z
+# Format: sha256  bytes  mtime  path
+f52c454de1ecbadaa45a7c7be9556ab59ab0628d99269e3d0a0ad2abc5432f6b  11300  2026-10-17 18:08:16.000000000 +0200  scripts/remote/leonardo/run-phase3-check.sh
+0a9a2645f2bf0bd66e94e1351d3538e050a8261dee451c77dd4b7b282cdab21d  27817  2026-10-17 18:06:02.000000000 +0200  scripts/static_scaling/make_phase3_reference.py
+85297025dfd9b2222e2ecbae6c5bdca80f0e724f80b680fcdc67fa6653723515  45961  2026-10-17 18:53:29.000000000 +0200  scripts/static_scaling/check_phase3_reference.py
+c45b8a2e6f4bfbcb1c69c6e6debd60e4f5333a8675b884ffaf4d5d299d1c5e65  33654  2026-10-17 18:59:41.000000000 +0200  scripts/static_scaling/check_phase3_flux.jl
+57c32f42041daab933495b12aa90fa3d6852e350497160b7c468ea7640a96d3b  1939  2026-10-17 19:15:35.000000000 +0200  scripts/static_scaling/diagnose_phase3_flux_stage2.jl
+cb37fc124b7dab1ffcd43ed0f02fa56dc2f425333980c5f30ea67fd89ea26e97  1708  2026-10-17 19:15:35.000000000 +0200  scripts/static_scaling/diagnose_phase3_torch_stage2.py
+f187ba8929246bbf4c56d8fad726ed23668d4e4f4ed06f107f1b8cf4d96f8ea5  19549  2026-10-17 18:25:10.000000000 +0200  scripts/static_scaling/model_flux.jl
+77ac48e815b58948ab64b16938d988cae35f4719f084c25432703f6ffadfdf76  20119  2026-10-17 18:06:10.000000000 +0200  scripts/static_scaling/model_torch.py
+43841338e8fad8cb00dc192bed30860c05e9380ba91ba2ab9a8751f643ef6314  606  2026-10-17 19:19:08.000000000 +0200  scripts/remote/leonardo/run-julia-phase3.sh
+f9bf5485992e4fae4408922ddc6d635145796b86a8bc38823c897b0c31f97211  647  2026-10-17 19:08:54.000000000 +0200  scripts/remote/leonardo/diagnose-phase3.sh
+e247b0f17b834e85bac1127e9c848331f5c40128194e5e3b4822b2b5aeeea7c9  1216  2026-10-17 19:15:35.000000000 +0200  scripts/remote/leonardo/diagnose-phase3-stage2.sh
+c8077e0c6504adedfdce5a35dd1a2ba6bde057fc45ee9bd7ba1edbd35ee23874  4669  2026-10-16 16:59:43.000000000 +0200  scripts/static_scaling/julia-env/Manifest.toml
+13970e0a9b8595595ce63a9e05d69de0b381fff86d16f774c4e0d04d8bb38853  1509  2026-10-04 16:49:37.000000000 +0200  /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+4c4eaf77633c493d8463a1a57236197423a8995f92f92eff00879475fdce5837  93222  2026-10-04 18:40:05.000000000 +0200  /leonardo/home/userexternal/epicazio/projects/flux-integration/Manifest.toml
+MISSING  -  -  /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml

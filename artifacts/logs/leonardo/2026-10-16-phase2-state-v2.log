@@ -1,0 +1,4 @@
+=== Phase 2 source state hash v2 (artifacts excluded) — 2026-10-16T17:03:55+02:00 ===
+RECIPE: STATE=$( { git diff HEAD; git ls-files --others --exclude-standard | grep -v '^artifacts/' | sort | xargs -r sha256sum; } | sha256sum | cut -d' ' -f1 )
+COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3
+STATE=f8574e3623e014da9aeca13eb06bf71e7e65223f46485ac140b5c0768b981172

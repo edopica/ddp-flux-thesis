@@ -1,0 +1,12 @@
+CHECK_PRECISION_MATH_CONFIG mode=current cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv1=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv2=CUDNN_DEFAULT_MATH(0) cudnn_effective_proj=CUDNN_DEFAULT_MATH(0) cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+CHECK_PRECISION_MATH_MODE mode=current note="negative control; a conv discrepancy is expected"
+CHECK_PRECISION_MATH_CONFIG_CHECK requested=CUDNN_DEFAULT_MATH(0) expected=CUDNN_DEFAULT_MATH(0) PASS
+CHECK_PRECISION_MATH_BACKEND algo_fwd=1 algo_data=1 algo_filter=1 fwd_ws=6881296 data_ws=13172752 filter_ws=14942352
+CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=2.932134e-04 max_abs=1.600785e-03 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM conv_fixed_dx        rel_l2=2.928844e-04 max_abs=1.434166e-03 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM conv_fixed_dw        rel_l2=2.930009e-04 max_abs=1.480980e-01 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM classifier_matmul    rel_l2=1.107716e-07 max_abs=4.209593e-07 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_nnlib_fwd       rel_l2=4.248559e-07 max_abs=5.245658e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ALGO kind=fwd algo=0 math_type=CUDNN_DEFAULT_MATH(0) fallback=false time=0.088064 memory=0 shape=32x32x64x12
+CHECK_PRECISION_MATH_NNLIB_DIAG mode=current nnlib_ok=true choices=1 note="diagnostic only; fixed-algo negative control decides"
+CHECK_PRECISION_MATH FAIL

@@ -1,0 +1,9 @@
+new artifacts/baselines/static-scaling/2026-10-17-phase3-step3/phase3_reference.npz
+preserved artifacts/baselines/static-scaling/2026-10-17-phase3-attempt3-preserved/phase3_reference.npz
+new_arrays 337 preserved_arrays 337
+missing_in_new []
+extra_in_new []
+exact_equal_arrays 337 of 337
+shape_dtype_mismatches 0
+differing_arrays 0
+max_abs_over_all_differing 0.000000000e+00

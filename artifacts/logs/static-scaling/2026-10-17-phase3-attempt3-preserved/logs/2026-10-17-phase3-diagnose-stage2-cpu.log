@@ -1,0 +1,18 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 bash scripts/remote/leonardo/run-julia-phase3.sh scripts/static_scaling/diagnose_phase3_flux_stage2.jl --fixture-dir $HOME/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle $HOME/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --reference $HOME/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-17-phase3/phase3_reference.npz --diag $HOME/projects/ddp-flux-thesis/artifacts/logs/static-scaling/2026-10-17-phase3/stage2_diag.npz --device cpu
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 60888250
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn2086 are ready for job
+FLUX_STAGE2 conv1  max_abs=7.62939453e-06 max_rel=0.130006154 violations=0
+FLUX_STAGE2 gn1    max_abs=6.67572021e-06 max_rel=0.0860725948 violations=0
+FLUX_STAGE2 relu1  max_abs=5.7220459e-06 max_rel=0.0860725948 violations=0
+FLUX_STAGE2 conv2  max_abs=5.48362732e-06 max_rel=0.869565217 violations=0
+FLUX_STAGE2 gn2    max_abs=5.48362732e-06 max_rel=0.123233563 violations=0
+FLUX_STAGE2 proj   max_abs=0 max_rel=0 violations=0
+FLUX_STAGE2 pgn    max_abs=1.90734863e-06 max_rel=0.10040486 violations=0
+FLUX_STAGE2 total  max_abs=5.48362732e-06 max_rel=0.36 violations=0
+FLUX_STAGE2 out    max_abs=5.48362732e-06 max_rel=0.340160643 violations=0
+salloc: Relinquishing job allocation 60888250
+salloc: Job allocation 60888250 has been revoked.

@@ -1,0 +1,1411 @@
+Syncing to leonardo:~/projects...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+Syncing ddp_flux...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+ddp_flux/
+ddp_flux/.JuliaFormatter.toml
+ddp_flux/.gitattributes
+ddp_flux/.gitignore
+ddp_flux/.mailmap
+ddp_flux/AGENTS.md
+ddp_flux/CITATION.bib
+ddp_flux/CONTRIBUTING.md
+ddp_flux/LICENSE.md
+ddp_flux/Manifest.toml
+ddp_flux/NEWS.md
+ddp_flux/Project.toml
+ddp_flux/README.md
+ddp_flux/.buildkite/
+ddp_flux/.buildkite/pipeline.yml
+ddp_flux/.fluxbot/
+ddp_flux/.fluxbot/Manifest.toml
+ddp_flux/.fluxbot/Project.toml
+ddp_flux/.githooks/
+ddp_flux/.githooks/pre-commit
+ddp_flux/.github/
+ddp_flux/.github/FUNDING.yml
+ddp_flux/.github/dependabot.yml
+ddp_flux/.github/pull_request_template.md
+ddp_flux/.github/workflows/
+ddp_flux/.github/workflows/CompatHelper.yml
+ddp_flux/.github/workflows/Downstream.yml
+ddp_flux/.github/workflows/JuliaFormatter.yml
+ddp_flux/.github/workflows/TagBot.yml
+ddp_flux/.github/workflows/ci.yml
+ddp_flux/.github/workflows/clean_preview.yml
+ddp_flux/.github/workflows/distributed_ci.yml
+ddp_flux/.github/workflows/fluxbot.yml
+ddp_flux/.github/workflows/pr_comment.yml
+ddp_flux/dev/
+ddp_flux/dev/Project.toml
+ddp_flux/dev/flux_format.jl
+ddp_flux/dev/setup.jl
+ddp_flux/docs/
+ddp_flux/docs/Project.toml
+ddp_flux/docs/make.jl
+ddp_flux/docs/old_tutorials/
+ddp_flux/docs/old_tutorials/2021-02-07-convnet.md
+ddp_flux/docs/old_tutorials/2021-10-08-dcgan-mnist.md
+ddp_flux/docs/old_tutorials/2021-10-14-vanilla-gan.md
+ddp_flux/docs/old_tutorials/2024-04-10-blitz.md
+ddp_flux/docs/old_tutorials/2024-04-10-mlp.md
+ddp_flux/docs/old_tutorials/README.md
+ddp_flux/docs/src/
+ddp_flux/docs/src/ecosystem.md
+ddp_flux/docs/src/index.md
+ddp_flux/docs/src/assets/
+ddp_flux/docs/src/assets/flux.css
+ddp_flux/docs/src/assets/logo-dark.png
+ddp_flux/docs/src/assets/logo.png
+ddp_flux/docs/src/assets/rnn-basic.png
+ddp_flux/docs/src/assets/zygote-crop.png
+ddp_flux/docs/src/assets/2021-10-08-dcgan-mnist/
+ddp_flux/docs/src/assets/2021-10-08-dcgan-mnist/cat_gan.png
+ddp_flux/docs/src/assets/2021-10-08-dcgan-mnist/output.gif
+ddp_flux/docs/src/assets/quickstart/
+ddp_flux/docs/src/assets/quickstart/loss.png
+ddp_flux/docs/src/assets/quickstart/oneminute.png
+ddp_flux/docs/src/guide/
+ddp_flux/docs/src/guide/distributed.md
+ddp_flux/docs/src/guide/gpu.md
+ddp_flux/docs/src/guide/performance.md
+ddp_flux/docs/src/guide/saving.md
+ddp_flux/docs/src/guide/models/
+ddp_flux/docs/src/guide/models/basics.md
+ddp_flux/docs/src/guide/models/overview.md
+ddp_flux/docs/src/guide/models/quickstart.md
+ddp_flux/docs/src/guide/models/recurrence.md
+ddp_flux/docs/src/guide/training/
+ddp_flux/docs/src/guide/training/training.md
+ddp_flux/docs/src/reference/
+ddp_flux/docs/src/reference/destructure.md
+ddp_flux/docs/src/reference/outputsize.md
+ddp_flux/docs/src/reference/utilities.md
+ddp_flux/docs/src/reference/data/
+ddp_flux/docs/src/reference/data/mldatadevices.md
+ddp_flux/docs/src/reference/data/mlutils.md
+ddp_flux/docs/src/reference/data/onehot.md
+ddp_flux/docs/src/reference/models/
+ddp_flux/docs/src/reference/models/activation.md
+ddp_flux/docs/src/reference/models/functors.md
+ddp_flux/docs/src/reference/models/layers.md
+ddp_flux/docs/src/reference/models/losses.md
+ddp_flux/docs/src/reference/models/nnlib.md
+ddp_flux/docs/src/reference/training/
+ddp_flux/docs/src/reference/training/callbacks.md
+ddp_flux/docs/src/reference/training/gradients.md
+ddp_flux/docs/src/reference/training/optimisers.md
+ddp_flux/docs/src/reference/training/reference.md
+ddp_flux/docs/src/tutorials/
+ddp_flux/docs/src/tutorials/custom_layers.md
+ddp_flux/docs/src/tutorials/linear_regression.md
+ddp_flux/docs/src/tutorials/logistic_regression.md
+ddp_flux/docs/src/tutorials/model_zoo.md
+ddp_flux/ext/
+ddp_flux/ext/FluxCUDAExt.jl
+ddp_flux/ext/FluxEnzymeExt.jl
+ddp_flux/ext/FluxFiniteDifferencesExt.jl
+ddp_flux/ext/FluxMooncakeExt.jl
+ddp_flux/ext/FluxAMDGPUExt/
+ddp_flux/ext/FluxAMDGPUExt/FluxAMDGPUExt.jl
+ddp_flux/ext/FluxAMDGPUExt/batchnorm.jl
+ddp_flux/ext/FluxAMDGPUExt/conv.jl
+ddp_flux/ext/FluxAMDGPUExt/functor.jl
+ddp_flux/ext/FluxCUDAcuDNNExt/
+ddp_flux/ext/FluxCUDAcuDNNExt/FluxCUDAcuDNNExt.jl
+ddp_flux/ext/FluxMPIExt/
+ddp_flux/ext/FluxMPIExt/FluxMPIExt.jl
+ddp_flux/ext/FluxMPINCCLExt/
+ddp_flux/ext/FluxMPINCCLExt/FluxMPINCCLExt.jl
+ddp_flux/paper/
+ddp_flux/paper/paper.bib
+ddp_flux/paper/paper.md
+ddp_flux/perf/
+ddp_flux/perf/Project.toml
+ddp_flux/perf/bench_utils.jl
+ddp_flux/perf/conv.jl
+ddp_flux/perf/dense.jl
+ddp_flux/perf/recurrent.jl
+ddp_flux/perf/runbenchmarks.jl
+ddp_flux/perf/vgg.jl
+ddp_flux/src/
+ddp_flux/src/Flux.jl
+ddp_flux/src/deprecations.jl
+ddp_flux/src/devices.jl
+ddp_flux/src/functor.jl
+ddp_flux/src/gradient.jl
+ddp_flux/src/loading.jl
+ddp_flux/src/outputsize.jl
+ddp_flux/src/train.jl
+ddp_flux/src/utils.jl
+ddp_flux/src/distributed/
+ddp_flux/src/distributed/backend.jl
+ddp_flux/src/distributed/public_api.jl
+ddp_flux/src/layers/
+ddp_flux/src/layers/attention.jl
+ddp_flux/src/layers/basic.jl
+ddp_flux/src/layers/conv.jl
+ddp_flux/src/layers/macro.jl
+ddp_flux/src/layers/normalise.jl
+ddp_flux/src/layers/recurrent.jl
+ddp_flux/src/layers/show.jl
+ddp_flux/src/layers/stateless.jl
+ddp_flux/src/layers/upsample.jl
+ddp_flux/src/losses/
+ddp_flux/src/losses/Losses.jl
+ddp_flux/src/losses/functions.jl
+ddp_flux/src/losses/utils.jl
+ddp_flux/src/optimise/
+ddp_flux/src/optimise/Optimise.jl
+ddp_flux/src/optimise/optimisers.jl
+ddp_flux/src/optimise/train.jl
+ddp_flux/test/
+ddp_flux/test/Project.toml
+ddp_flux/test/ctc.jl
+ddp_flux/test/data.jl
+ddp_flux/test/deprecations.jl
+ddp_flux/test/ext_mooncake.jl
+ddp_flux/test/functors.jl
+ddp_flux/test/gradient.jl
+ddp_flux/test/loading.jl
+ddp_flux/test/losses.jl
+ddp_flux/test/outputsize.jl
+ddp_flux/test/runtests.jl
+ddp_flux/test/test_module.jl
+ddp_flux/test/tracker.jl
+ddp_flux/test/train.jl
+ddp_flux/test/utils.jl
+ddp_flux/test/ext_amdgpu/
+ddp_flux/test/ext_amdgpu/basic.jl
+ddp_flux/test/ext_amdgpu/get_devices.jl
+ddp_flux/test/ext_amdgpu/normalization.jl
+ddp_flux/test/ext_amdgpu/recurrent.jl
+ddp_flux/test/ext_cuda/
+ddp_flux/test/ext_cuda/ctc.jl
+ddp_flux/test/ext_cuda/cuda.jl
+ddp_flux/test/ext_cuda/cudnn.jl
+ddp_flux/test/ext_cuda/get_devices.jl
+ddp_flux/test/ext_cuda/layers.jl
+ddp_flux/test/ext_cuda/losses.jl
+ddp_flux/test/ext_cuda/normalization.jl
+ddp_flux/test/ext_cuda/recurrent.jl
+ddp_flux/test/ext_cuda/utils.jl
+ddp_flux/test/ext_distributed/
+ddp_flux/test/ext_distributed/common_distributedtest.jl
+ddp_flux/test/ext_distributed/data_distributedtest.jl
+ddp_flux/test/ext_distributed/end_to_end_distributedtest.jl
+ddp_flux/test/ext_distributed/helper.jl
+ddp_flux/test/ext_distributed/optimizer_distributedtest.jl
+ddp_flux/test/ext_distributed/reduce_distributedtest.jl
+ddp_flux/test/ext_distributed/runtests.jl
+ddp_flux/test/ext_distributed/synchronized_distributedtest.jl
+ddp_flux/test/ext_distributed/unused_parameters_distributedtest.jl
+ddp_flux/test/ext_enzyme/
+ddp_flux/test/ext_enzyme/enzyme.jl
+ddp_flux/test/ext_metal/
+ddp_flux/test/ext_metal/metal.jl
+ddp_flux/test/ext_reactant/
+ddp_flux/test/ext_reactant/reactant.jl
+ddp_flux/test/ext_reactant/test_utils_reactant.jl
+ddp_flux/test/layers/
+ddp_flux/test/layers/attention.jl
+ddp_flux/test/layers/basic.jl
+ddp_flux/test/layers/conv.jl
+ddp_flux/test/layers/macro.jl
+ddp_flux/test/layers/normalisation.jl
+ddp_flux/test/layers/recurrent.jl
+ddp_flux/test/layers/show.jl
+ddp_flux/test/layers/stateless.jl
+ddp_flux/test/layers/upsample.jl
+ddp_flux/test/test_common/
+ddp_flux/test/test_common/gpu_recurrent.jl
+ddp_flux/test/test_common/normalization.jl
+
+sent 1,246,836 bytes  received 3,584 bytes  227,349.09 bytes/sec
+total size is 3,049,973  speedup is 2.44
+Syncing ddp-flux-thesis...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+./
+.gitignore
+AGENTS.md
+README.md
+artifacts/logs/
+artifacts/logs/conditional-wrapper/
+artifacts/logs/conditional-wrapper/deferred/
+artifacts/logs/conditional-wrapper/deferred/check-summary-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/deferred-metadata.md
+artifacts/logs/conditional-wrapper/deferred/raw-config-eta-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-config-frozen-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-control-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-early-stop-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-grad-nonfinite-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-nan-loss-all-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-nan-loss-hang-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/deferred/raw-step-desync-mpi2-2026-10-06.log
+artifacts/logs/conditional-wrapper/demo/
+artifacts/logs/conditional-wrapper/demo/CAMPAIGN-2026-10-05-leonardo-k2.md
+artifacts/logs/conditional-wrapper/notebook/
+artifacts/logs/conditional-wrapper/notebook/2026-10-06/
+artifacts/logs/conditional-wrapper/notebook/2026-10-06/COMMANDS.md
+artifacts/logs/conditional-wrapper/notebook/2026-10-06/workflow-2rank-executed.ipynb
+artifacts/logs/conditional-wrapper/notebook/2026-10-06/workflow-2rank.html
+artifacts/logs/conditional-wrapper/notebook/2026-10-06/workflow-4rank.html
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/summary.txt
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-resume/
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-resume/command.txt
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-resume/console.log
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-train/
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-train/command.txt
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2-train/console.log
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/resume/
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/resume/learning-rate-resume.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/resume/metadata.txt
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/resume/metrics-resume.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/resume/predictions-resume.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/resume/validation-resume.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/checkpoint-step2.jls
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/learning-rate-train.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/metadata.txt
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/metrics-train.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/predictions-train.tsv
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/trajectory.jls
+artifacts/logs/conditional-wrapper/notebook/tutorial-2rank-20261006-1710769/mpi2/train/validation-train.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/
+artifacts/logs/conditional-wrapper/numerical-guards/COMMANDS.md
+artifacts/logs/conditional-wrapper/numerical-guards/baseline-metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/selftest-cleanup-deathstar-v2.log
+artifacts/logs/conditional-wrapper/numerical-guards/selftest-cleanup-deathstar.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campA-console.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB-console.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campA/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campA/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campA/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campA/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt1/campB/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campA-console.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB-console.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campA/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campA/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campA/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campA/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar-attempt2/campB/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA-console.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB-console.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campA/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/cleanup-concurrency-deathstar/campB/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/console-v2/
+artifacts/logs/conditional-wrapper/numerical-guards/console-v2/mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/console-v2/mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/console-v2/nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/console/
+artifacts/logs/conditional-wrapper/numerical-guards/console/green-deathstar-loss-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/console/green-deathstar-loss-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/console/green-deathstar-loss-nccl2-r2.log
+artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/
+artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/focused-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/focused-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/focused-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/r1-protocol-check.log
+artifacts/logs/conditional-wrapper/numerical-guards/db3-review-response/red-mpi2-old-weighting.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-absent-history-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-all-absent-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-asym-vote-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-audit-zero-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-caller-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-conditional-absence-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-empty-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-frozen-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-late-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-no-trainable-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-recover-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-tied-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-grad-update-both-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-aux-nan-first-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-asym-vote-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-conditional-absence-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-late-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-recover-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-tied-overflow-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-grad-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-loop-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-no-trainable-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-recover-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-train-one-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-train-one-mpi4-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/raw-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-aux-nan-first-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-aux-nonfinite-ok-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-dup-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-absent-history-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-all-absent-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-asym-vote-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-audit-zero-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-caller-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-conditional-absence-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-empty-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-frozen-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-late-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-no-trainable-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-overflow-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-recover-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-tied-overflow-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-grad-update-both-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-loop-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-loop-withgradient-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-no-trainable-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-recover-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-train-all-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-train-one-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/raw-train-one-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-all-nccl2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-focused-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-focused-mpi2/console.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-focused-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-focused-mpi4/console.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-focused-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-focused-nccl2/console.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-absent-history-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-all-absent-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-asym-vote-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-audit-zero-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-caller-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-caller-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-conditional-absence-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-empty-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-frozen-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-late-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-no-trainable-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-recover-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-tied-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-update-both-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/raw-grad-update-both-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-asym-vote-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-conditional-absence-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-late-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-recover-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-tied-overflow-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/raw-grad-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-absent-history-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-all-absent-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-asym-vote-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-audit-zero-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-caller-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-conditional-absence-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-empty-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-frozen-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-late-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-no-trainable-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-overflow-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-recover-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-tied-overflow-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/raw-grad-update-both-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-gradient-nccl2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-aux-nan-first-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-loop-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-no-trainable-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-recover-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-train-one-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-train-one-mpi4-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/raw-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-db3-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-aux-nan-first-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-loop-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-no-trainable-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-recover-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-train-one-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-train-one-mpi4-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/raw-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-aux-nan-first-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-aux-nonfinite-ok-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-dup-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-loop-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-loop-withgradient-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-no-trainable-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-recover-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-train-all-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-train-one-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/raw-train-one-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2-r2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-aux-nan-first-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-aux-nonfinite-ok-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-dup-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-loop-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-loop-withgradient-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-no-trainable-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-recover-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-train-all-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-train-one-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/raw-train-one-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green-deathstar-loss-nccl2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-aux-nan-first-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-loop-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-no-trainable-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-recover-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-train-one-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-train-one-mpi4-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/raw-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-aux-nan-first-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-aux-nonfinite-ok-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-dup-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-loop-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-loop-withgradient-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-no-trainable-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-recover-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-train-all-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-train-one-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/raw-train-one-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-attempt1-healthy-bug-deathstar-loss-nccl2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-aux-nan-first-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-loop-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-no-trainable-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-recover-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-train-one-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-train-one-mpi4-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/raw-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-aux-nan-first-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-aux-nonfinite-ok-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-dup-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-loop-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-loop-withgradient-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-no-trainable-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-recover-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-train-all-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-train-one-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/raw-train-one-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green2-deathstar-loss-nccl2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-aux-nan-first-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-healthy-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-loop-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-no-trainable-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-recover-one-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-train-one-inf-mpi4-fault3.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-train-one-mpi4-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/raw-train-one-mpi4-fault2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-mpi4/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-aux-nan-first-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-aux-nonfinite-ok-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-dup-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-healthy-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-loop-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-loop-withgradient-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-no-trainable-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-recover-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-train-all-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-train-one-inf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-train-one-nccl2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-train-one-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/raw-train-one-ninf-nccl2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/green3-deathstar-loss-nccl2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-focused-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-focused-mpi2/console.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-absent-history-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-all-absent-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-asym-vote-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-audit-zero-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-caller-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-conditional-absence-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-empty-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-frozen-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-late-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-no-trainable-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-recover-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-tied-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/raw-grad-update-both-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2-v2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-absent-history-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-all-absent-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-asym-vote-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-audit-zero-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-caller-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-conditional-absence-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-empty-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-frozen-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-late-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-no-trainable-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-recover-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-tied-overflow-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/raw-grad-update-both-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-deathstar-gradient-mpi2/summary.tsv
+deleting temp/docker_ci_rebuild/v3b-restore.log
+deleting temp/docker_ci_rebuild/v3b-mpiexec-print.log
+deleting temp/docker_ci_rebuild/v3a-restore.log
+deleting temp/docker_ci_rebuild/v3-2rank-plain-harness.log
+deleting temp/docker_ci_rebuild/v2b-prefs-cmd.log
+deleting temp/docker_ci_rebuild/v2b-mpiexec-print.log
+deleting temp/docker_ci_rebuild/v2b-cmdpref-4rank-cpuset-harness.log
+deleting temp/docker_ci_rebuild/v2-cmdpref-4rank-cpuset-harness.log
+deleting temp/docker_ci_rebuild/v1-prefs-cmd.log
+deleting temp/docker_ci_rebuild/v1-mpiexec-print.log
+deleting temp/docker_ci_rebuild/provision-system.log
+deleting temp/docker_ci_rebuild/prov3-baseline-mpiexec-print.log
+deleting temp/docker_ci_rebuild/prov2-install_mpiexecjl.log
+deleting temp/docker_ci_rebuild/prov1-use_system_binary.log
+deleting temp/docker_ci_rebuild/prov0-instantiate.log
+deleting temp/docker_ci_rebuild/diag-container-parseall.log
+deleting temp/docker_ci_rebuild/corrupt-tail-evidence.txt
+deleting temp/docker_ci_rebuild/RESULTS.md
+deleting temp/docker_ci_rebuild/P4-baseline-mpiexec-print.log
+deleting temp/docker_ci_rebuild/P3-2rank-smoke.log
+deleting temp/docker_ci_rebuild/P2b-mpiexecjl-verify.log
+deleting temp/docker_ci_rebuild/P2-install_mpiexecjl.log
+deleting temp/docker_ci_rebuild/P1-instantiate.log
+deleting temp/docker_ci_rebuild/
+deleting temp/docker_ci_fix/podman/topo-gen.c
+deleting temp/docker_ci_fix/podman/topo-2c4t.xml
+deleting temp/docker_ci_fix/podman/save_image.sh
+deleting temp/docker_ci_fix/podman/runbook-4rank-probe.log
+deleting temp/docker_ci_fix/podman/runbook-2rank-prep3.log
+deleting temp/docker_ci_fix/podman/runbook-2rank-prep2.log
+deleting temp/docker_ci_fix/podman/runbook-2rank-prep1.log
+deleting temp/docker_ci_fix/podman/runbook-2rank-harness.log
+deleting temp/docker_ci_fix/podman/podman-wrapper-restore-prefs.log
+deleting temp/docker_ci_fix/podman/podman-wrapper-4rank-prefs.log
+deleting temp/docker_ci_fix/podman/podman-wrapper-4rank-harness.log
+deleting temp/docker_ci_fix/podman/podman-phase7-SUMMARY.md
+deleting temp/docker_ci_fix/podman/podman-phase7-08-restore.log
+deleting temp/docker_ci_fix/podman/podman-phase7-07-mpi_edge-suite.log
+deleting temp/docker_ci_fix/podman/podman-phase7-06-mpi_edge-probe.log
+deleting temp/docker_ci_fix/podman/podman-phase7-05-mpi_edge-setup.log
+deleting temp/docker_ci_fix/podman/podman-phase7-04-mpi_fast-suite.log
+deleting temp/docker_ci_fix/podman/podman-phase7-03-mpi_fast-mpiexecjl.log
+deleting temp/docker_ci_fix/podman/podman-phase7-02-mpi_fast-instantiate.log
+deleting temp/docker_ci_fix/podman/podman-phase7-01-mpi_fast-setup.log
+deleting temp/docker_ci_fix/podman/podman-phase7-00-rsync.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-timeout900-05-restore-plain-prefs.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-timeout900-04-mpi_edge-suite.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-timeout900-03-mpi_edge-hwthread-prefs.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-timeout900-02-mpi_fast-suite.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-timeout900-01-mpi_fast-plain-prefs.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-08-restore.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-07-mpi_edge-suite.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-06-mpi_edge-probe.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-05-mpi_edge-setup.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-04-mpi_fast-suite.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-03-mpi_fast-mpiexecjl.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-02-mpi_fast-instantiate.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-01-mpi_fast-setup.log
+deleting temp/docker_ci_fix/podman/podman-c64f695f-00-rsync.log
+deleting temp/docker_ci_fix/podman/podman-R5-restore-prefs.log
+deleting temp/docker_ci_fix/podman/podman-R4-3-CI-4rank-cpuset.log
+deleting temp/docker_ci_fix/podman/podman-R4-2-probe.log
+deleting temp/docker_ci_fix/podman/podman-R4-1-cmd-prefs-config.log
+deleting temp/docker_ci_fix/podman/podman-R3-control-2rank-cpuset.log
+deleting temp/docker_ci_fix/podman/podman-R3-0-restore-plain-prefs.log
+deleting temp/docker_ci_fix/podman/podman-R2b-3-positive-4rank-cpuset.log
+deleting temp/docker_ci_fix/podman/podman-R2b-2-mpi-identity.log
+deleting temp/docker_ci_fix/podman/podman-R2b-1-cmd-prefs-config.log
+deleting temp/docker_ci_fix/podman/podman-R1a-negative-4rank-cpuset.log
+deleting temp/docker_ci_fix/podman/podman-R1a-literal-outside-taskset-4rank.log
+deleting temp/docker_ci_fix/podman/podman-R0d-hwloc-topo-emulation.log
+deleting temp/docker_ci_fix/podman/podman-R0c-cpuset-unavailable.log
+deleting temp/docker_ci_fix/podman/podman-R0b-topology-inside-taskset.log
+deleting temp/docker_ci_fix/podman/podman-R0-topology-cpuset.log
+deleting temp/docker_ci_fix/podman/export_depot.sh
+deleting temp/docker_ci_fix/podman/
+deleting temp/docker_ci_fix/run4-use_system_binary.log
+deleting temp/docker_ci_fix/run4-use_jll_binary.log
+deleting temp/docker_ci_fix/run4-mpich-jll-2rank-harness.log
+deleting temp/docker_ci_fix/run4-mpi-identity-jll.log
+deleting temp/docker_ci_fix/run3-control-2rank-harness.log
+deleting temp/docker_ci_fix/run2-wrapper-setup.sh
+deleting temp/docker_ci_fix/run2-hwthread-wrapper-harness.log
+deleting temp/docker_ci_fix/run1-diag-cpuset-harness.log
+deleting temp/docker_ci_fix/run1-child-common-cpuset-stderr.log
+deleting temp/docker_ci_fix/r2b-4-prefs-restore.log
+deleting temp/docker_ci_fix/r2b-3-cmd-4rank-harness.log
+deleting temp/docker_ci_fix/r2b-2-mpi-identity.log
+deleting temp/docker_ci_fix/r2b-1-cmd-prefs-config.log
+deleting temp/docker_ci_fix/RESULTS.md
+deleting temp/docker_ci_fix/RESULTS-podman.md
+deleting temp/docker_ci_fix/LocalPreferences.toml.pre-R4.bak
+deleting temp/docker_ci_fix/
+deleting temp/docker_ci_cmdpref/v3b-mpiexec-print.log
+deleting temp/docker_ci_cmdpref/v3a-restore.log
+deleting temp/docker_ci_cmdpref/v3-2rank-plain-harness.log
+deleting temp/docker_ci_cmdpref/v2-cmdpref-4rank-cpuset-harness.log
+deleting temp/docker_ci_cmdpref/v1-prefs-cmd.log
+deleting temp/docker_ci_cmdpref/v1-mpiexec-print.log
+deleting temp/docker_ci_cmdpref/RESULTS.md
+deleting temp/docker_ci_cmdpref/
+deleting temp/docker_ci/run-4rank-harness.log
+deleting temp/docker_ci/run-4rank-cpuset-harness.log
+deleting temp/docker_ci/run-2rank-harness.log
+deleting temp/docker_ci/image-id.txt
+deleting temp/docker_ci/cpuset-slot-probe.log
+deleting temp/docker_ci/cpuset-slot-bracket.log
+deleting temp/docker_ci/child-data-stderr.log
+deleting temp/docker_ci/child-common-stderr.log
+deleting temp/docker_ci/child-common-cpuset-stderr.log
+deleting temp/docker_ci/build-verify.log
+deleting temp/docker_ci/RESULTS.md
+deleting temp/docker_ci/P4-env-probe.log
+deleting temp/docker_ci/Dockerfile
+deleting temp/docker_ci/
+deleting temp/ci-full-logs-32582844912/step-logs/MPI DDP Sharding & Asymmetry (4 Ranks)/system.txt
+deleting temp/ci-full-logs-32582844912/step-logs/MPI DDP Sharding & Asymmetry (4 Ranks)/
+deleting temp/ci-full-logs-32582844912/step-logs/MPI DDP Correctness (2 Ranks)/system.txt
+deleting temp/ci-full-logs-32582844912/step-logs/MPI DDP Correctness (2 Ranks)/
+deleting temp/ci-full-logs-32582844912/step-logs/1_MPI DDP Sharding & Asymmetry (4 Ranks).txt
+deleting temp/ci-full-logs-32582844912/step-logs/0_clean.txt
+deleting temp/ci-full-logs-32582844912/step-logs/0_MPI DDP Correctness (2 Ranks).txt
+deleting temp/ci-full-logs-32582844912/step-logs/
+deleting temp/ci-full-logs-32582844912/raw-job-log-with-escapes.bin
+deleting temp/ci-full-logs-32582844912/full-job.log
+deleting temp/ci-full-logs-32582844912/
+deleting temp/pre_push_report_2694.md
+deleting temp/pr_salvage_plan.md
+deleting temp/pr_diff_analysis.md
+deleting temp/pr_comments.md
+deleting temp/pmi-guardrails-report.md
+deleting temp/phase_k_k2_review.md
+deleting temp/phase_k_k2_readiness.jl
+deleting temp/phase_k_k2_leonardo_handoff.md
+deleting temp/phase_k_k2_interface.md
+deleting temp/phase_k_k2_baseline.md
+deleting temp/phaseJ_handoff.md
+deleting temp/functors_tutorial.jl
+deleting temp/distributed_tests_failure.txt
+deleting temp/conditional_graphs_and_testing_guide.md
+deleting temp/conditional_graph_wrapper_implementation_plan.md
+deleting temp/conditional_graph_phase_k_prompt.md
+deleting temp/conditional_graph_deferred_behaviors_prompt.md
+deleting temp/check_gpu.jl
+deleting temp/c8-implementation-status-2026-07-30.md
+deleting temp/c6b_plan.md
+deleting temp/backup_cg_plan.md
+deleting temp/2026-09-15-pr2694-windows-distributed-routing-failure.md
+deleting wiki/audits/001-conditional-wrapper-compatibility.md
+deleting wiki/audits/000-current-flux-distributed.md
+deleting wiki/devlog/20260729-c8-matrix-and-harness.md
+deleting wiki/devlog/20260729-branch-cleanup.md
+deleting wiki/devlog/20260728-c7-fixes.md
+deleting wiki/devlog/20260722-c7-end-to-end.md
+deleting wiki/devlog/20260716-wiki-rename.md
+deleting wiki/devlog/20260716-c6b-hpc-tests.md
+deleting wiki/devlog/20260715-conditional-testing.md
+deleting wiki/devlog/20260714-openwiki-manual-update.md
+deleting wiki/devlog/20260713-c5-c6-grad-sync.md
+deleting wiki/devlog/20260713-c4-data-sharding.md
+deleting wiki/devlog/20260711-c3-sync-model.md
+deleting wiki/devlog/20260709-ssh-refactor.md
+deleting wiki/devlog/20260709-deathstar.md
+deleting wiki/devlog/20260709-c2-launch.md
+deleting wiki/devlog/2026-10-05-phase-k-visualization-plan.md
+deleting wiki/devlog/2026-10-05-phase-k-k2-readiness.md
+deleting wiki/devlog/2026-10-05-phase-k-k2-mnist-implementation.md
+deleting wiki/devlog/2026-10-04-leonardo-node-readiness.md
+deleting wiki/devlog/2026-10-04-leonardo-bringup-4rank-nccl.md
+deleting wiki/devlog/2026-10-04-conditional-wrapper-phase-k-toy-implementation.md
+deleting wiki/devlog/2026-10-04-conditional-wrapper-phase-k-prompt.md
+deleting wiki/devlog/2026-10-04-conditional-wrapper-phase-j-native-gpu.md
+deleting wiki/devlog/2026-10-04-conditional-wrapper-phase-j-native-gpu-attempt.md
+deleting wiki/devlog/2026-10-02-conditional-wrapper-phase-i-planning.md
+deleting wiki/devlog/2026-10-02-conditional-wrapper-phase-h-review.md
+deleting wiki/devlog/2026-10-01-conditional-wrapper-phase-h-compatibility.md
+deleting wiki/devlog/2026-09-30-remote-tooling-bocconi-rename.md
+deleting wiki/devlog/2026-09-30-conditional-wrapper-phase-g-detector.md
+deleting wiki/devlog/2026-09-30-conditional-wrapper-phase-f-cpu-mpi-gates.md
+deleting wiki/devlog/2026-09-30-conditional-wrapper-phase-e-m11-battery.md
+deleting wiki/devlog/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md
+deleting wiki/devlog/2026-09-29-conditional-wrapper-phase-d4-legacy-trainable.md
+deleting wiki/devlog/2026-09-29-conditional-wrapper-phase-d3-cpu-presence-metadata.md
+deleting wiki/devlog/2026-09-28-conditional-wrapper-phase-d2-occurrence-plan.md
+deleting wiki/devlog/2026-09-28-conditional-wrapper-phase-d1-canonical-traversal.md
+deleting wiki/devlog/2026-09-22-supervisor-meeting-report.md
+deleting wiki/devlog/2026-09-21-conditional-graph-report-italian.md
+deleting wiki/devlog/2026-09-17-conditional-wrapper-phase-d-plan-revision.md
+deleting wiki/devlog/2026-09-17-conditional-wrapper-phase-c-wrapper-boundary.md
+deleting wiki/devlog/2026-09-17-conditional-wrapper-phase-c-review-followup.md
+deleting wiki/devlog/2026-09-16-pr2694-windows-routing-fix.md
+deleting wiki/devlog/2026-09-16-conditional-wrapper-plan.md
+deleting wiki/devlog/2026-09-16-conditional-wrapper-phase-b-red-test.md
+deleting wiki/devlog/2026-09-16-conditional-wrapper-phase-a-baseline.md
+deleting wiki/devlog/2026-09-14-conditional-graph-optimisers-notebook.md
+deleting wiki/devlog/2026-09-14-conditional-graph-onboarding.md
+deleting wiki/devlog/2026-09-10-rootless-podman-ci-parity.md
+deleting wiki/devlog/2026-09-10-pr2694-salvage-phase7-verification.md
+deleting wiki/devlog/2026-09-10-pr2694-salvage-phase6-docs-consistency.md
+deleting wiki/devlog/2026-09-10-pr2694-review-fixes.md
+deleting wiki/devlog/2026-09-09-pr2694-salvage-phases-1-2.md
+deleting wiki/devlog/2026-09-09-pr2694-salvage-phase5-polish-carlo-tests.md
+deleting wiki/devlog/2026-09-09-pr2694-salvage-phase4-cyclic-data-padding.md
+deleting wiki/devlog/2026-09-09-pr2694-salvage-phase3b-pmi-guardrail.md
+deleting wiki/devlog/2026-09-09-pr2694-salvage-phase3a-launcher-guard-tests.md
+deleting wiki/devlog/2026-09-08-m1.1-corrective-spike.md
+deleting wiki/devlog/2026-09-08-m0-m1-integration-spike.md
+deleting wiki/devlog/2026-09-03-precompile-experiment.md
+deleting wiki/devlog/2026-08-17-pr2694-restore.md
+deleting wiki/devlog/2026-08-01.md
+deleting wiki/devlog/2026-07-31.md
+deleting wiki/devlog/2026-07-30.md
+deleting wiki/devlog/2026-07-10.md
+deleting wiki/devlog/2026-07-07.md
+deleting wiki/devlog/2026-07-07-remote.md
+deleting wiki/devlog/2026-07-05.md
+deleting wiki/devlog/2026-07-02.md
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/metadata.md
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-aux-nan-first-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-aux-nonfinite-ok-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-dup-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-healthy-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-loop-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-loop-withgradient-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-no-trainable-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-recover-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-train-all-mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-train-one-inf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-train-one-mpi2-fault0.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-train-one-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/raw-train-one-ninf-mpi2-fault1.log
+artifacts/logs/conditional-wrapper/numerical-guards/red-local-loss-mpi2/summary.tsv
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-db3/
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-db3/mpi2-attempt1.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-db3/mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-db3/mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-db3/nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-db3/train.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-v2/
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-v2/mpi2.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-v2/mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar-v2/nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/ambiguities.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/suite-mpi2-attempt1-dup-warning-failure.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/suite-mpi2-r2.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/suite-mpi4.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/suite-nccl2.log
+artifacts/logs/conditional-wrapper/numerical-guards/suite-deathstar/train-regressions.log
+artifacts/logs/conditional-wrapper/timing/
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/CAMPAIGN.md
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/viewer-live.log
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/local-smoke/
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/local-smoke/driver.log
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/local-smoke/summary.txt
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/viewer/
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-05-leonardo/viewer/timing-live.png
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/
+artifacts/logs/conditional-wrapper/timing/stretch-2026-10-06-leonardo/CAMPAIGN.md
+artifacts/logs/leonardo/
+artifacts/logs/leonardo/2026-10-05-k1-leonardo-nccl4.log
+artifacts/logs/leonardo/2026-10-05-k2-leonardo-nccl4.log
+artifacts/logs/leonardo/2026-10-05-timing-baseline.log
+artifacts/logs/leonardo/2026-10-05-timing-correctness.log
+artifacts/logs/leonardo/2026-10-05-timing-ddp.log
+artifacts/logs/leonardo/2026-10-05-timing-gpucheck.log
+artifacts/logs/leonardo/2026-10-05-timing-sync.log
+artifacts/logs/leonardo/2026-10-06-timing-correctness-r2.log
+artifacts/logs/leonardo/2026-10-06-timing-r2.log
+artifacts/logs/leonardo/2026-10-15-pytorch-env-freeze.txt
+artifacts/logs/leonardo/2026-10-15-pytorch-env-setup.log
+artifacts/logs/leonardo/2026-10-15-tiny-imagenet-setup.log
+artifacts/logs/leonardo/2026-10-16-phase2-preflight.log
+artifacts/logs/leonardo/2026-10-16-phase2-sync.log
+artifacts/logs/pr2694-salvage/phase7/
+artifacts/logs/pr2694-salvage/phase7/mpi-config.log
+artifacts/logs/static-scaling/
+artifacts/logs/static-scaling/2026-10-16-review-response/
+artifacts/logs/static-scaling/2026-10-16-review-response/probe_optimizer_contract.log
+artifacts/logs/static-scaling/2026-10-16-review-response/probe_tensor_layout.log
+experiments/
+experiments/static-scaling/
+experiments/static-scaling/experiment.toml
+experiments/static-scaling/open-decisions.md
+experiments/static-scaling/specification.md
+experiments/static-scaling/probes/
+experiments/static-scaling/probes/probe_optimizer_contract.jl
+experiments/static-scaling/probes/probe_tensor_layout.jl
+notebook/
+notebook/conditional_graph_distributed_workflow.ipynb
+notebook/ddp_mnist_quickstart.ipynb
+notebook/phase_k_workflow_helpers.jl
+notebook/env/
+notebook/env/Project.toml
+notebook/figures/
+notebook/figures/conditional_graph_distributed_workflow/
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/figures-metadata.txt
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-collectives.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-continuation.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-discrepancy.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-exposure.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-learning-rate.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-predictions-task-a.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-predictions-task-b.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-schedule.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-validation-accuracy.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-validation-difference.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/nccl2-validation-loss.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/network/
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/network/figures-metadata.txt
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/network/phase-k-k2-network.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-2rank/network/phase-k-k2-routing.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/figures-metadata.txt
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-collectives.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-continuation.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-discrepancy.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-exposure.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-learning-rate.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-predictions-task-a.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-predictions-task-b.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-schedule.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-validation-accuracy.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-validation-difference.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/nccl4-validation-loss.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/network/
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/network/figures-metadata.txt
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/network/phase-k-k2-network.png
+notebook/figures/conditional_graph_distributed_workflow/tutorial-4rank/network/phase-k-k2-routing.png
+scripts/
+scripts/checks/
+scripts/checks/conditional_deadlock_check.jl
+scripts/checks/conditional_deadlock_probe.jl
+scripts/checks/conditional_graph_deferred_check.jl
+scripts/checks/conditional_graph_deferred_probe.jl
+scripts/checks/conditional_graph_numerical_guard_check.jl
+scripts/checks/conditional_graph_numerical_guard_probe.jl
+scripts/checks/phase_k_collective_protocol_check.jl
+scripts/examples/
+scripts/examples/ddp_mnist_quickstart.jl
+scripts/examples/conditional_graph/common.jl
+scripts/plots/
+scripts/plots/README.md
+scripts/plots/plot_phase_k_demo.py
+scripts/plots/plot_phase_k_network.py
+scripts/plots/plot_phase_k_timing.py
+scripts/plots/requirements-phase-k.txt
+scripts/plots/__pycache__/
+scripts/plots/__pycache__/plot_phase_k_network.cpython-314.pyc
+scripts/plots/__pycache__/plot_phase_k_timing.cpython-314.pyc
+scripts/podman/README.md
+scripts/remote/sync_code.sh
+scripts/remote/leonardo/
+scripts/remote/leonardo/download-tiny-imagenet.sh
+scripts/remote/leonardo/requirements-pytorch-scaling.txt
+scripts/remote/leonardo/run-phase2-check.sh
+scripts/remote/leonardo/run-phase2-prep.sh
+scripts/remote/leonardo/setup-pytorch-env.sh
+scripts/remote/leonardo/verify-pytorch-env.py
+scripts/static_scaling/
+scripts/static_scaling/check_all.jl
+scripts/static_scaling/check_dataset.py
+scripts/static_scaling/check_fixtures_data.jl
+scripts/static_scaling/check_fixtures_operators.jl
+scripts/static_scaling/dataset_adapter.py
+scripts/static_scaling/make_fixtures.py
+scripts/static_scaling/make_initial_bundle.py
+scripts/static_scaling/make_schedule.py
+scripts/static_scaling/prepare_dataset.py
+scripts/static_scaling/replay.jl
+scripts/static_scaling/selftest_local.py
+scripts/static_scaling/__pycache__/
+scripts/static_scaling/__pycache__/dataset_adapter.cpython-314.pyc
+scripts/static_scaling/__pycache__/prepare_dataset.cpython-314.pyc
+scripts/static_scaling/julia-env/
+scripts/static_scaling/julia-env/Project.toml
+temp/
+temp/static-graph-gpu-scaling-implementation-phases.md
+temp/archive/
+temp/archive/conditional-graph-db1-db4-fix-plan.md
+temp/archive/conditional-graph-db1-db4-review.md
+temp/archive/conditional-graph-db3-fix-plan.md
+temp/archive/conditional-graph-db3-review.md
+temp/archive/conditional-graph-implementation.md
+temp/archive/conditional-graph-phase-k-notebook-plan.md
+temp/archive/conditional-graph-phase-k-review.md
+temp/archive/conditional-graph-phase-k-timing-stretch.md
+temp/archive/conditional-graph-phase-k.md
+wiki/quickstart.md
+wiki/audits/
+wiki/audits/README.md
+wiki/audits/01-pr2694/
+wiki/audits/01-pr2694/000-current-flux-distributed.md
+wiki/audits/02-conditional-graph/
+wiki/audits/02-conditional-graph/001-conditional-wrapper-compatibility.md
+wiki/audits/02-conditional-graph/002-conditional-wrapper-deferred-behaviors.md
+wiki/context/bocconi.md
+wiki/context/current.md
+wiki/context/leonardo.md
+wiki/context/remote-nodes.md
+wiki/decisions/
+wiki/decisions/ADR-0001-repo-layout.md
+wiki/decisions/ADR-0003-mpi-pmi-guardrails.md
+wiki/decisions/ADR-0004-scripts-reorganization.md
+wiki/decisions/ADR-0005-precompile-compute-only.md
+wiki/decisions/ADR-0008-coordinated-nonfinite-loss-rejection.md
+wiki/decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md
+wiki/devlog/
+wiki/devlog/README.md
+wiki/devlog/01-pr2694/
+wiki/devlog/01-pr2694/2026-07-02.md
+wiki/devlog/01-pr2694/2026-07-05.md
+wiki/devlog/01-pr2694/2026-07-07-remote.md
+wiki/devlog/01-pr2694/2026-07-07.md
+wiki/devlog/01-pr2694/2026-07-10.md
+wiki/devlog/01-pr2694/2026-07-30.md
+wiki/devlog/01-pr2694/2026-07-31.md
+wiki/devlog/01-pr2694/2026-08-01.md
+wiki/devlog/01-pr2694/2026-08-17-pr2694-restore.md
+wiki/devlog/01-pr2694/2026-09-03-precompile-experiment.md
+wiki/devlog/01-pr2694/2026-09-08-m0-m1-integration-spike.md
+wiki/devlog/01-pr2694/2026-09-08-m1.1-corrective-spike.md
+wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase3a-launcher-guard-tests.md
+wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase3b-pmi-guardrail.md
+wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase4-cyclic-data-padding.md
+wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phase5-polish-carlo-tests.md
+wiki/devlog/01-pr2694/2026-09-09-pr2694-salvage-phases-1-2.md
+wiki/devlog/01-pr2694/2026-09-10-pr2694-review-fixes.md
+wiki/devlog/01-pr2694/2026-09-10-pr2694-salvage-phase6-docs-consistency.md
+wiki/devlog/01-pr2694/2026-09-10-pr2694-salvage-phase7-verification.md
+wiki/devlog/01-pr2694/2026-09-10-rootless-podman-ci-parity.md
+wiki/devlog/01-pr2694/2026-09-16-pr2694-windows-routing-fix.md
+wiki/devlog/01-pr2694/20260709-c2-launch.md
+wiki/devlog/01-pr2694/20260709-deathstar.md
+wiki/devlog/01-pr2694/20260709-ssh-refactor.md
+wiki/devlog/01-pr2694/20260711-c3-sync-model.md
+wiki/devlog/01-pr2694/20260713-c4-data-sharding.md
+wiki/devlog/01-pr2694/20260713-c5-c6-grad-sync.md
+wiki/devlog/01-pr2694/20260714-openwiki-manual-update.md
+wiki/devlog/01-pr2694/20260715-conditional-testing.md
+wiki/devlog/01-pr2694/20260716-c6b-hpc-tests.md
+wiki/devlog/01-pr2694/20260716-wiki-rename.md
+wiki/devlog/01-pr2694/20260722-c7-end-to-end.md
+wiki/devlog/01-pr2694/20260728-c7-fixes.md
+wiki/devlog/01-pr2694/20260729-branch-cleanup.md
+wiki/devlog/01-pr2694/20260729-c8-matrix-and-harness.md
+wiki/devlog/02-conditional-graph/
+wiki/devlog/02-conditional-graph/2026-09-14-conditional-graph-onboarding.md
+wiki/devlog/02-conditional-graph/2026-09-14-conditional-graph-optimisers-notebook.md
+wiki/devlog/02-conditional-graph/2026-09-16-conditional-wrapper-phase-a-baseline.md
+wiki/devlog/02-conditional-graph/2026-09-16-conditional-wrapper-phase-b-red-test.md
+wiki/devlog/02-conditional-graph/2026-09-16-conditional-wrapper-plan.md
+wiki/devlog/02-conditional-graph/2026-09-17-conditional-wrapper-phase-c-review-followup.md
+wiki/devlog/02-conditional-graph/2026-09-17-conditional-wrapper-phase-c-wrapper-boundary.md
+wiki/devlog/02-conditional-graph/2026-09-17-conditional-wrapper-phase-d-plan-revision.md
+wiki/devlog/02-conditional-graph/2026-09-21-conditional-graph-report-italian.md
+wiki/devlog/02-conditional-graph/2026-09-22-supervisor-meeting-report.md
+wiki/devlog/02-conditional-graph/2026-09-28-conditional-wrapper-phase-d1-canonical-traversal.md
+wiki/devlog/02-conditional-graph/2026-09-28-conditional-wrapper-phase-d2-occurrence-plan.md
+wiki/devlog/02-conditional-graph/2026-09-29-conditional-wrapper-phase-d3-cpu-presence-metadata.md
+wiki/devlog/02-conditional-graph/2026-09-29-conditional-wrapper-phase-d4-legacy-trainable.md
+wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-d5-regression-gate.md
+wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-e-m11-battery.md
+wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-f-cpu-mpi-gates.md
+wiki/devlog/02-conditional-graph/2026-09-30-conditional-wrapper-phase-g-detector.md
+wiki/devlog/02-conditional-graph/2026-09-30-remote-tooling-bocconi-rename.md
+wiki/devlog/02-conditional-graph/2026-10-01-conditional-wrapper-phase-h-compatibility.md
+wiki/devlog/02-conditional-graph/2026-10-02-conditional-wrapper-phase-h-review.md
+wiki/devlog/02-conditional-graph/2026-10-02-conditional-wrapper-phase-i-planning.md
+wiki/devlog/02-conditional-graph/2026-10-04-conditional-wrapper-phase-j-native-gpu-attempt.md
+wiki/devlog/02-conditional-graph/2026-10-04-conditional-wrapper-phase-j-native-gpu.md
+wiki/devlog/02-conditional-graph/2026-10-04-conditional-wrapper-phase-k-prompt.md
+wiki/devlog/02-conditional-graph/2026-10-04-conditional-wrapper-phase-k-toy-implementation.md
+wiki/devlog/02-conditional-graph/2026-10-04-leonardo-bringup-4rank-nccl.md
+wiki/devlog/02-conditional-graph/2026-10-04-leonardo-node-readiness.md
+wiki/devlog/02-conditional-graph/2026-10-05-leonardo-k1-k2-4rank-nccl.md
+wiki/devlog/02-conditional-graph/2026-10-05-phase-k-k2-mnist-implementation.md
+wiki/devlog/02-conditional-graph/2026-10-05-phase-k-k2-readiness.md
+wiki/devlog/02-conditional-graph/2026-10-05-phase-k-timing-stretch.md
+wiki/devlog/02-conditional-graph/2026-10-05-phase-k-visualization-plan.md
+wiki/devlog/02-conditional-graph/2026-10-06-conditional-graph-implementation-report.md
+wiki/devlog/02-conditional-graph/2026-10-06-deferred-behaviors-report.md
+wiki/devlog/02-conditional-graph/2026-10-06-phase-k-network-figure.md
+wiki/devlog/02-conditional-graph/2026-10-06-phase-k-review-notebook.md
+wiki/devlog/02-conditional-graph/2026-10-06-phase-k-two-notebook-plan.md
+wiki/devlog/02-conditional-graph/2026-10-06-phase-k-workflow-notebook-implementation.md
+wiki/devlog/02-conditional-graph/2026-10-06-timing-corrections.md
+wiki/devlog/02-conditional-graph/2026-10-07-wiki-reorganization.md
+wiki/devlog/02-conditional-graph/2026-10-13-db1-db4-coordinated-nonfinite-loss.md
+wiki/devlog/02-conditional-graph/2026-10-13-db1-db4-review.md
+wiki/devlog/02-conditional-graph/2026-10-13-deferred-behavior-triage.md
+wiki/devlog/02-conditional-graph/2026-10-13-numerical-guard-red-harness.md
+wiki/devlog/02-conditional-graph/2026-10-14-db1-db4-v2-review.md
+wiki/devlog/02-conditional-graph/2026-10-14-db3-gradient-rejection.md
+wiki/devlog/02-conditional-graph/2026-10-14-db3-review-response.md
+wiki/devlog/02-conditional-graph/2026-10-14-db3-review.md
+wiki/devlog/02-conditional-graph/2026-10-15-gpu-scaling-discussion.md
+wiki/devlog/02-conditional-graph/2026-10-15-moe-pytorch-conditional-graphs.md
+wiki/devlog/03-static-scaling/
+wiki/devlog/03-static-scaling/2026-10-15-implementation-phases.md
+wiki/devlog/03-static-scaling/2026-10-15-leonardo-benchmark-env-setup.md
+wiki/devlog/03-static-scaling/2026-10-15-phase1-shared-specification.md
+wiki/devlog/03-static-scaling/2026-10-16-od1-od5-od6-recorded.md
+wiki/devlog/03-static-scaling/2026-10-16-phase1-review-response.md
+wiki/devlog/03-static-scaling/2026-10-16-phase1-review.md
+wiki/failures/
+wiki/failures/2026-09-10-main-suite-reactant-instantiation.md
+wiki/failures/2026-10-05-leonardo-k1-k2-nccl4.md
+wiki/failures/2026-10-06-deferred-probe-driver-defects.md
+wiki/failures/2026-10-06-workflow-notebook-helper-defects.md
+wiki/failures/2026-10-13-db1-db4-healthy-probe-fielderror.md
+wiki/failures/2026-10-13-db1-db4-nccl-dup-and-testfile.md
+wiki/failures/2026-10-13-db1-db4-review-local-loading.md
+wiki/failures/2026-10-14-db3-green-attempt1-harness-fixes.md
+wiki/failures/2026-10-14-db3-review-local-environment.md
+wiki/failures/2026-10-14-db3-review-response-r1-shape-and-artifacts.md
+wiki/failures/2026-10-15-research-agent-model-unavailable.md
+wiki/failures/2026-10-16-phase1-review-package-environment.md
+wiki/testing/c8-correctness-matrix.md
+wiki/testing/ci-diagnostics.md
+
+sent 99,968,859 bytes  received 29,819 bytes  2,105,235.33 bytes/sec
+total size is 1,067,563,032  speedup is 10.68
+Sync complete!
+PIPELINE_EXIT=0
+=== SYNC retry-4 2026-10-16T22:58:30+02:00 COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 STATE=3e9ba4d8 ===
+Syncing to leonardo:~/projects...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+Syncing ddp_flux...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+
+sent 6,100 bytes  received 58 bytes  1,368.44 bytes/sec
+total size is 3,049,973  speedup is 495.29
+Syncing ddp-flux-thesis...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+artifacts/baselines/
+artifacts/baselines/static-scaling/
+artifacts/baselines/static-scaling/2026-10-16-phase2/
+deleting artifacts/logs/static-scaling/2026-10-16-phase2/remote-prep.log
+deleting scripts/static_scaling/__pycache__/dataset_adapter.cpython-311.pyc
+artifacts/logs/leonardo/
+artifacts/logs/leonardo/2026-10-16-phase2-instantiate.log
+artifacts/logs/leonardo/2026-10-16-phase2-prep-failure-2-timeout.log
+artifacts/logs/leonardo/2026-10-16-phase2-prep-failure-diagnosis.log
+artifacts/logs/leonardo/2026-10-16-phase2-prep.log
+artifacts/logs/leonardo/2026-10-16-phase2-state-v2.log
+artifacts/logs/leonardo/2026-10-16-phase2-state-v3.log
+artifacts/logs/leonardo/2026-10-16-phase2-sync.log
+artifacts/logs/static-scaling/
+artifacts/logs/static-scaling/2026-10-16-phase2/
+artifacts/logs/static-scaling/2026-10-16-phase2/prepared-manifests/
+scripts/remote/leonardo/run-phase2-prep.sh
+scripts/static_scaling/prepare_dataset.py
+scripts/static_scaling/__pycache__/
+scripts/static_scaling/__pycache__/check_dataset.cpython-314.pyc
+scripts/static_scaling/__pycache__/dataset_adapter.cpython-314.pyc
+scripts/static_scaling/__pycache__/make_fixtures.cpython-314.pyc
+scripts/static_scaling/__pycache__/make_initial_bundle.cpython-314.pyc
+scripts/static_scaling/__pycache__/make_schedule.cpython-314.pyc
+scripts/static_scaling/__pycache__/prepare_dataset.cpython-314.pyc
+scripts/static_scaling/__pycache__/selftest_local.cpython-314.pyc
+scripts/static_scaling/julia-env/
+
+sent 131,394 bytes  received 2,054 bytes  15,699.76 bytes/sec
+total size is 1,067,815,690  speedup is 8,001.74
+Sync complete!
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+157:    std64 = np.sqrt(np.maximum(var64, 0.0))
+114:  trap 'echo "PHASE2_PREP FAIL (step exited non-zero, see log)"' ERR
+-rw-r--r--. 1 epicazio interactive 4669 Oct 16 16:59 /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Manifest.toml
+=== SYNC retry-5 2026-10-16T23:32:21+02:00 COMMIT=3088f61020137912af32d9c969e87ea9ae2a71c3 STATE=4d4fd2ac ===
+Syncing to leonardo:~/projects...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+Syncing ddp_flux...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+
+sent 6,100 bytes  received 58 bytes  947.38 bytes/sec
+total size is 3,049,973  speedup is 495.29
+Syncing ddp-flux-thesis...
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+sending incremental file list
+README.md
+deleting scripts/static_scaling/__pycache__/dataset_adapter.cpython-311.pyc
+artifacts/logs/leonardo/
+artifacts/logs/leonardo/2026-10-16-phase2-prep-failure-3-fixtures.log
+artifacts/logs/leonardo/2026-10-16-phase2-prep.log
+artifacts/logs/leonardo/2026-10-16-phase2-prepared-sha256.txt
+artifacts/logs/leonardo/2026-10-16-phase2-state-v4.log
+artifacts/logs/leonardo/2026-10-16-phase2-sync.log
+scripts/static_scaling/make_fixtures.py
+scripts/static_scaling/__pycache__/
+scripts/static_scaling/__pycache__/dataset_adapter.cpython-312.pyc
+wiki/context/current.md
+wiki/devlog/03-static-scaling/
+wiki/devlog/03-static-scaling/2026-10-16-phase2-prep-retry4-make-fixtures-bug.md
+wiki/failures/
+wiki/failures/2026-10-16-phase2-prep-make-fixtures-linear-broadcast.md
+
+sent 76,076 bytes  received 3,571 bytes  31,858.80 bytes/sec
+total size is 1,067,865,462  speedup is 13,407.48
+Sync complete!
+SYNC_EXIT=0
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+212:    y = w @ x + b[:, None]
+304:    y = (w @ x + b[:, None]).astype(np.float32)

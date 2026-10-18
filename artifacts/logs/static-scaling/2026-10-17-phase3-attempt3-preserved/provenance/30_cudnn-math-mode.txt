@@ -1,0 +1,46 @@
+# Installed Julia cuDNN.jl math_mode mapping
+package_path=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/cuDNN/0SFve
+package_version=version = "6.2.2"
+cudnn_jll_version=version = "9.26.0+0"
+cudnn_src=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot/packages/cuDNN/0SFve/src/cuDNN.jl
+cudnn_src_sha256=86a54c6d299e68382b2b68e462f9e7fcbae504ba9a91db7d82d9caf383351119
+base_jl_sha256=ffa3d709d8904b555bbf284a065751d2a5399df3a632bd6611df110d4a227ba4
+--- src/cuDNN.jl lines 46-62 ---
+include("multiheadattn.jl")
+include("normalization.jl")
+
+
+function math_mode(mode=CUDACore.math_mode())
+    if mode == CUDACore.PEDANTIC_MATH
+        # don't use tensor cores.
+        # on A100, only use them for TF32
+        CUDNN_DEFAULT_MATH
+    elseif mode == CUDACore.DEFAULT_MATH
+        # allow tensor core usage
+        CUDNN_TENSOR_OP_MATH
+    elseif mode == CUDACore.FAST_MATH
+        # also downcast inputs
+        CUDNN_TENSOR_OP_MATH_ALLOW_CONVERSION
+    end
+end
+--- src/base.jl lines 1-20 ---
+function cudnnCreate()
+    handle_ref = Ref{cudnnHandle_t}()
+    cudnnCreate(handle_ref)
+    return handle_ref[]
+end
+
+function cudnnGetProperty(property::CUDACore.libraryPropertyType)
+  value_ref = Ref{Cint}()
+  cudnnGetProperty(property, value_ref)
+  value_ref[]
+end
+
+function version()
+  ver = cudnnGetVersion()
+  major, ver = divrem(ver, 1000)
+  minor, patch = divrem(ver, 10)
+
+  VersionNumber(major, minor, patch)
+end
+

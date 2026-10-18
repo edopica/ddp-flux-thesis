@@ -1,0 +1,5 @@
+source_commit='3088f61020137912af32d9c969e87ea9ae2a71c3' ok=True
+source_state_sha256='4a28adb1b031ddacb14aff3bce314d204e693c2d55910cdfe766d5ff33f131fe' ok=True
+flux_commit='f7b4520c4bd307c67bbc5ac92a1c68493eccff6e' ok=True
+flux_state_sha256='e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855' ok=True
+PROVENANCE_CHECK PASS fields=4 bad=[]

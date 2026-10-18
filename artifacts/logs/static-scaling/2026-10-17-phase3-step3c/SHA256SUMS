@@ -1,0 +1,11 @@
+97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783  artifacts/baselines/static-scaling/2026-10-17-phase3-step3c/phase3_reference.npz
+221d185968ed3fb30a7d3a33fa8eb1afabad3719d259a4876765b73d1c78260d  artifacts/baselines/static-scaling/2026-10-17-phase3-step3c/phase3_reference_manifest.json
+7a014ce528f8df08e7517867f04491fee1fc37b4398462510bfcd18d196798d3  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/2026-10-17-phase3-step3c.log
+b7cdc8b059286b986fdefb223bbea2eaa80b29f2ec26226cf66a383e82691f0b  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/2026-10-17-phase3-step3c-precompile.log
+7b86662dce1da7cfd90c473babaac0e72672d3bd59dc094229b997159283b573  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/algorithm-choices.txt
+13325d4d3f3d9a195586622b236a70fd1d8f0f272d5c1878e34641ef1ace1097  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/COMMANDS.md
+51cb08c9c833fb586dd35353b99f0128be54e516e766e91778e476c0e91dd629  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/local-reference-check.log
+91b6495625d5c4957ee899df83da9e1cbe768c38c197c0adf7195c73551562e8  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/PROVENANCE.md
+000e6485246519881ed6fc2be2f7fb8f6f4fed28f50fb5b1525177cbb3adeb7b  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/reference-comparison.txt
+0e3caeddca3f807908eda4367109dbf51a9685d424091fec070d1d0473e3bc73  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/remote-check.log
+e9d88b307597bb762e524fa50cb907524c17a6f365b07f01744ea4c29f777fc8  artifacts/logs/static-scaling/2026-10-17-phase3-step3c/RESULTS.md

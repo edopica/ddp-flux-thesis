@@ -1,0 +1,105 @@
+CASE probe.flux.identity PASS framework=flux
+CASE probe.flux.sensitivity_settings PASS eta=0.01 beta=[0.9, 0.999] eps=1e-08 wd=0.0001
+CASE training_path.flux.parameter_count PASS value=11271432 expected=11271432
+CASE training_path.flux.leaf_count PASS value=62 expected=62
+CASE training_path.flux.group_counts PASS decay=21 nodecay=41 expected=21/41
+CASE training_path.flux.lambda_values PASS decay=[0.0001] nodecay=[0.0]
+CASE training_path.flux.rule_meta PASS eta_max=0.001 beta=[0.9, 0.999] eps=1e-08 wd=0.0001
+CASE training_path.flux.hyperparameters PASS beta=[0.9, 0.999] eps=1e-08 wd=0.0001
+CASE schedule.flux.t1 PASS value=1.0256410256410257e-06 oracle=1.0256410256410257e-06 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.flux.t975 PASS value=0.001 oracle=0.001 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.flux.t976 PASS value=0.00099999996795609018 oracle=0.00099999996795609018 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.flux.t9750 PASS value=0 oracle=0 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.flux.reject_out_of_range PASS t0=True tTplus1=True
+NEGATIVE_CONTROL schedule.flux.warmup_at_W_plus_1 REJECTED max_abs=1.025673e-06 bound_max=1.005005e-07 ratio=10.206 violations=1
+CASE schedule.flux.off_by_one_delta PASS delta=1.026e-06 bound=1.005e-07
+CASE probe.pytorch.identity PASS framework=pytorch
+CASE probe.pytorch.sensitivity_settings PASS eta=0.01 beta=[0.9, 0.999] eps=1e-08 wd=0.0001
+CASE training_path.pytorch.parameter_count PASS value=11271432 expected=11271432
+CASE training_path.pytorch.leaf_count PASS value=62 expected=62
+CASE training_path.pytorch.group_counts PASS decay=21 nodecay=41 expected=21/41
+CASE training_path.pytorch.lambda_values PASS decay=[0.0001] nodecay=[0.0]
+CASE training_path.pytorch.rule_meta PASS eta_max=0.001 beta=[0.9, 0.999] eps=1e-08 wd=0.0001
+CASE training_path.pytorch.hyperparameters PASS beta=[0.9, 0.999] eps=1e-08 wd=0.0001
+CASE schedule.pytorch.t1 PASS value=1.0256410256410257e-06 oracle=1.0256410256410257e-06 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.pytorch.t975 PASS value=0.001 oracle=0.001 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.pytorch.t976 PASS value=0.00099999996795609018 oracle=0.00099999996795609018 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.pytorch.t9750 PASS value=0 oracle=0 absdiff=0.000e+00 bound=1.000e-09
+CASE schedule.pytorch.reject_out_of_range PASS t0=True tTplus1=True
+NEGATIVE_CONTROL schedule.pytorch.warmup_at_W_plus_1 REJECTED max_abs=1.025673e-06 bound_max=1.005005e-07 ratio=10.206 violations=1
+CASE schedule.pytorch.off_by_one_delta PASS delta=1.026e-06 bound=1.005e-07
+CASE legacy_probe.flux.included PASS existing constructor and beta-power @assert checks ran in-process
+CASE optimizer.flux.main.decay.x_final PASS max_abs=6.116890e-08 bound_max=5.973755e-07 ratio=0.270 violations=0
+CASE optimizer.flux.main.decay.x_steps PASS max_abs=6.116890e-08 ratio=0.270 violations=0
+CASE optimizer.flux.main.decay.moments_before_measured PASS m_ratio=0.005 v_ratio=0.259 m_viol=0 v_viol=0
+CASE optimizer.flux.main.decay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.main.decay.beta_power PASS before=[0.7289999127388, 0.9970030784606934] expected=[0.7289999127388, 0.9970030784606934] final=[0.6560999155044556, 0.9960060715675354] expected_final=[0.6560999155044556, 0.9960060715675354]
+CASE cross.main.decay.flux_vs_pytorch.x_final PASS max_abs=5.960464e-08 ratio=0.264 violations=0
+CASE optimizer.pytorch.main.decay.x_final PASS max_abs=6.067518e-08 bound_max=5.973755e-07 ratio=0.102 violations=0
+CASE optimizer.pytorch.main.decay.x_steps PASS max_abs=6.067518e-08 ratio=0.102 violations=0
+CASE optimizer.pytorch.main.decay.moments_before_measured PASS m_ratio=0.002 v_ratio=0.002 m_viol=0 v_viol=0
+CASE optimizer.pytorch.main.decay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.main.nodecay.x_final PASS max_abs=1.073242e-07 bound_max=1.099536e-06 ratio=0.233 violations=0
+CASE optimizer.flux.main.nodecay.x_steps PASS max_abs=1.073242e-07 ratio=0.233 violations=0
+CASE optimizer.flux.main.nodecay.moments_before_measured PASS m_ratio=0.006 v_ratio=0.259 m_viol=0 v_viol=0
+CASE optimizer.flux.main.nodecay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.main.nodecay.beta_power PASS before=[0.7289999127388, 0.9970030784606934] expected=[0.7289999127388, 0.9970030784606934] final=[0.6560999155044556, 0.9960060715675354] expected_final=[0.6560999155044556, 0.9960060715675354]
+CASE cross.main.nodecay.flux_vs_pytorch.x_final PASS max_abs=1.192093e-07 ratio=0.259 violations=0
+CASE optimizer.pytorch.main.nodecay.x_final PASS max_abs=5.382743e-08 bound_max=1.099536e-06 ratio=0.064 violations=0
+CASE optimizer.pytorch.main.nodecay.x_steps PASS max_abs=5.382743e-08 ratio=0.064 violations=0
+CASE optimizer.pytorch.main.nodecay.moments_before_measured PASS m_ratio=0.001 v_ratio=0.002 m_viol=0 v_viol=0
+CASE optimizer.pytorch.main.nodecay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.tiny.decay.x_final PASS max_abs=5.680083e-08 bound_max=5.999977e-07 ratio=0.095 violations=0
+CASE optimizer.flux.tiny.decay.x_steps PASS max_abs=5.680083e-08 ratio=0.095 violations=0
+CASE optimizer.flux.tiny.decay.moments_before_measured PASS m_ratio=0.016 v_ratio=0.259 m_viol=0 v_viol=0
+CASE optimizer.flux.tiny.decay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.tiny.decay.beta_power PASS before=[0.7289999127388, 0.9970030784606934] expected=[0.7289999127388, 0.9970030784606934] final=[0.6560999155044556, 0.9960060715675354] expected_final=[0.6560999155044556, 0.9960060715675354]
+CASE cross.tiny.decay.flux_vs_pytorch.x_final PASS max_abs=5.960464e-08 ratio=0.099 violations=0
+CASE optimizer.pytorch.tiny.decay.x_final PASS max_abs=6.031653e-08 bound_max=5.999977e-07 ratio=0.103 violations=0
+CASE optimizer.pytorch.tiny.decay.x_steps PASS max_abs=6.031653e-08 ratio=0.103 violations=0
+CASE optimizer.pytorch.tiny.decay.moments_before_measured PASS m_ratio=0.004 v_ratio=0.001 m_viol=0 v_viol=0
+CASE optimizer.pytorch.tiny.decay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.tiny.nodecay.x_final PASS max_abs=1.071318e-07 bound_max=1.100663e-06 ratio=0.097 violations=0
+CASE optimizer.flux.tiny.nodecay.x_steps PASS max_abs=1.071318e-07 ratio=0.097 violations=0
+CASE optimizer.flux.tiny.nodecay.moments_before_measured PASS m_ratio=0.016 v_ratio=0.259 m_viol=0 v_viol=0
+CASE optimizer.flux.tiny.nodecay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+CASE optimizer.flux.tiny.nodecay.beta_power PASS before=[0.7289999127388, 0.9970030784606934] expected=[0.7289999127388, 0.9970030784606934] final=[0.6560999155044556, 0.9960060715675354] expected_final=[0.6560999155044556, 0.9960060715675354]
+CASE cross.tiny.nodecay.flux_vs_pytorch.x_final PASS max_abs=0.000000e+00 ratio=0.000 violations=0
+CASE optimizer.pytorch.tiny.nodecay.x_final PASS max_abs=1.071484e-07 bound_max=1.100663e-06 ratio=0.097 violations=0
+CASE optimizer.pytorch.tiny.nodecay.x_steps PASS max_abs=1.071484e-07 ratio=0.097 violations=0
+CASE optimizer.pytorch.tiny.nodecay.moments_before_measured PASS m_ratio=0.004 v_ratio=0.001 m_viol=0 v_viol=0
+CASE optimizer.pytorch.tiny.nodecay.nonzero_moments PASS m_nonzero=True v_nonzero=True
+NEGATIVE_CONTROL optimizer.flux.main.decay.omitted_update REJECTED max_abs=5.249023e-03 bound_max=6.000000e-07 ratio=10531.099 violations=3
+NEGATIVE_CONTROL optimizer.flux.main.decay.wrong_decay_scale_1e-3 REJECTED max_abs=2.680332e-05 bound_max=5.973755e-07 ratio=44.868 violations=3
+NEGATIVE_CONTROL optimizer.flux.main.decay.omitted_decay REJECTED max_abs=3.045796e-06 bound_max=5.973770e-07 ratio=5.099 violations=3
+NEGATIVE_CONTROL optimizer.flux.main.decay.wrong_bias_correction REJECTED max_abs=2.383003e-02 bound_max=5.973755e-07 ratio=100081.596 violations=3
+NEGATIVE_CONTROL optimizer.flux.main.nodecay.omitted_update REJECTED max_abs=2.774870e-02 bound_max=1.100000e-06 ratio=58418.324 violations=3
+NEGATIVE_CONTROL optimizer.flux.main.nodecay.wrong_bias_correction REJECTED max_abs=8.520345e-02 bound_max=1.104347e-06 ratio=184772.748 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.decay.omitted_update REJECTED max_abs=1.001984e-03 bound_max=6.000000e-07 ratio=2862.811 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.decay.wrong_decay_scale_1e-3 REJECTED max_abs=2.698713e-05 bound_max=5.999976e-07 ratio=45.000 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.decay.omitted_decay REJECTED max_abs=3.056796e-06 bound_max=5.999992e-07 ratio=5.095 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.decay.wrong_epsilon_placement REJECTED max_abs=1.000374e-03 bound_max=5.999985e-07 ratio=2858.218 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.decay.wrong_bias_correction REJECTED max_abs=8.699482e-04 bound_max=5.999984e-07 ratio=2486.035 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.nodecay.omitted_update REJECTED max_abs=1.326084e-03 bound_max=1.100663e-06 ratio=1204.805 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.nodecay.wrong_epsilon_placement REJECTED max_abs=1.325937e-03 bound_max=1.100663e-06 ratio=1204.671 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.nodecay.wrong_bias_correction REJECTED max_abs=1.096268e-03 bound_max=1.100663e-06 ratio=996.007 violations=3
+NEGATIVE_CONTROL optimizer.flux.main.nodecay.decay_on_nodecay REJECTED max_abs=5.998469e-06 bound_max=1.099536e-06 ratio=5.455 violations=3
+NEGATIVE_CONTROL optimizer.flux.tiny.nodecay.decay_on_nodecay REJECTED max_abs=5.894633e-06 bound_max=1.100663e-06 ratio=5.356 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.decay.omitted_update REJECTED max_abs=5.249023e-03 bound_max=6.000000e-07 ratio=10531.361 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.decay.wrong_decay_scale_1e-3 REJECTED max_abs=2.680351e-05 bound_max=5.973755e-07 ratio=44.869 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.decay.omitted_decay REJECTED max_abs=3.045614e-06 bound_max=5.973770e-07 ratio=5.098 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.decay.wrong_bias_correction REJECTED max_abs=2.382997e-02 bound_max=5.973755e-07 ratio=100081.344 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.nodecay.omitted_update REJECTED max_abs=2.774882e-02 bound_max=1.100000e-06 ratio=58418.575 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.nodecay.wrong_bias_correction REJECTED max_abs=8.520333e-02 bound_max=1.104347e-06 ratio=184772.513 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.decay.omitted_update REJECTED max_abs=1.002014e-03 bound_max=6.000000e-07 ratio=2862.896 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.decay.wrong_decay_scale_1e-3 REJECTED max_abs=2.694288e-05 bound_max=5.999976e-07 ratio=44.905 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.decay.omitted_decay REJECTED max_abs=3.058995e-06 bound_max=5.999992e-07 ratio=5.101 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.decay.wrong_epsilon_placement REJECTED max_abs=1.000404e-03 bound_max=5.999985e-07 ratio=2858.303 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.decay.wrong_bias_correction REJECTED max_abs=8.699780e-04 bound_max=5.999984e-07 ratio=2486.120 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.nodecay.omitted_update REJECTED max_abs=1.326084e-03 bound_max=1.100663e-06 ratio=1204.805 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.nodecay.wrong_epsilon_placement REJECTED max_abs=1.325937e-03 bound_max=1.100663e-06 ratio=1204.671 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.nodecay.wrong_bias_correction REJECTED max_abs=1.096268e-03 bound_max=1.100663e-06 ratio=996.007 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.main.nodecay.decay_on_nodecay REJECTED max_abs=5.998406e-06 bound_max=1.099536e-06 ratio=5.455 violations=3
+NEGATIVE_CONTROL optimizer.pytorch.tiny.nodecay.decay_on_nodecay REJECTED max_abs=5.894616e-06 bound_max=1.100663e-06 ratio=5.356 violations=3
+SUMMARY checks=69 negative_controls=34 rejected=34 failures=0
+PHASE3_OPTIMIZER_PROBE PASS

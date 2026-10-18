@@ -22,3 +22,9 @@ artifacts/logs/*.trace
 .env
 temp/
 *.jld2
+
+# Generated static-scaling binary artifacts. Manifests, hashes, logs, and
+# provenance are committed; regenerate or fetch the arrays from Leonardo.
+artifacts/**/*.npz
+__pycache__/
+*.pyc

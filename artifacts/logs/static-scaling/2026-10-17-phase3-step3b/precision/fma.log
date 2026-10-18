@@ -1,0 +1,12 @@
+CHECK_PRECISION_MATH_CONFIG mode=fma cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_FMA_MATH(3) cudnn_effective_conv1=CUDNN_FMA_MATH(3) cudnn_effective_conv2=CUDNN_FMA_MATH(3) cudnn_effective_proj=CUDNN_FMA_MATH(3) cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+CHECK_PRECISION_MATH_CONFIG_CHECK requested=CUDNN_FMA_MATH(3) expected=CUDNN_FMA_MATH(3) PASS
+CHECK_PRECISION_MATH_BACKEND algo_fwd=1 algo_data=1 algo_filter=1 fwd_ws=7296 data_ws=0 filter_ws=590992
+CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=5.998539e-07 max_abs=8.698975e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_fixed_dx        rel_l2=2.103432e-07 max_abs=1.475017e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_fixed_dw        rel_l2=1.121881e-06 max_abs=1.011678e-03 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM classifier_matmul    rel_l2=1.107716e-07 max_abs=4.209593e-07 bound=1.0e-04 PASS
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.08396799862384796:memory=0,algo=1:math_type=3:status=0:time=0.0942080020904541:memory=0,algo=2:math_type=3:status=0:time=0.21094399690628052:memory=7077888,algo=5:math_type=3:status=0:time=0.4259839951992035:memory=55705600,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+CHECK_PRECISION_MATH_ITEM conv_nnlib_fwd       rel_l2=4.248559e-07 max_abs=5.245658e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0839679986 memory=0 shape=32x32x64x12
+CHECK_PRECISION_MATH_ALGO_CHOICES choices=1 fma=1 fallback=0 PASS
+CHECK_PRECISION_MATH PASS

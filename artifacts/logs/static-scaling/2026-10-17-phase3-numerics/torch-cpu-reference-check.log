@@ -1,0 +1,49 @@
+CHECK files.present PASS fixture_dir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 reference=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-17-phase3-numerics/torch_cpu_reference/phase3_reference.npz
+CHECK fixture.load PASS arrays=9
+CHECK bundle.load PASS arrays=62
+CHECK reference.load PASS arrays=337
+CHECK manifest.load PASS type=dict
+CHECK reference.expected_array_count PASS n=337 want=337
+CHECK bundle.name_set PASS n=62 want=62 missing=none extra=none
+CHECK bundle.dtypes_shapes PASS n_checked=62 mismatches=none
+CHECK bundle.parameter_count PASS total=11271432 want=11271432
+CHECK manifest.required_fields PASS missing=none
+CHECK manifest.producer PASS producer='scripts/static_scaling/make_phase3_reference.py'
+CHECK manifest.created_utc PASS created='2026-10-17T20:54:36Z'
+CHECK manifest.synthetic_false PASS synthetic=False
+CHECK manifest.schema PASS schema="phase3-reference-v1; arrays entries use raw npz key names; dtype/shape; sha256 = sha256 of np.ascontiguousarray(a).tobytes(order='C'); canonical PyTorch layouts (NCHW images, conv (out,in,kh,kw), linear (out,in))"
+CHECK manifest.provenance PASS bad_type=none source_commit='3088f61020137912af32d9c969e87ea9ae2a71c3' flux_commit='f7b4520c4bd307c67bbc5ac92a1c68493eccff6e'
+CHECK manifest.device PASS device='cpu'
+CHECK manifest.torch_info PASS torch='2.9.1+cu126'
+CHECK manifest.cuda_info PASS device is not CUDA; cuda record optional
+CHECK manifest.tf32_disabled PASS tf32={'cuda_matmul_allow_tf32': False, 'cudnn_allow_tf32': False, 'float32_matmul_precision': 'highest', 'cudnn_deterministic': True, 'cudnn_benchmark': False}
+CHECK manifest.file_sha256 PASS checked=data_fixture.npz<-data_fixture.npz;initial_bundle.npz<-file-sha256;phase3_reference.npz<-reference_file;fixture_manifest.json<-fixture_manifest.json mismatches=none
+CHECK manifest.array_entries PASS n=337 malformed=none duplicates=none
+CHECK manifest.array_set PASS n=337 want=337 missing=none extra=none
+CHECK arrays.actual_set PASS n=337 want=337 missing=none extra=none
+CHECK arrays.metadata PASS n_checked=337 mismatches=none
+CHECK arrays.manifest_metadata PASS n_checked=337 mismatches=none
+CHECK arrays.sha256 PASS n_checked=337 want=337 mismatches=none
+CHECK groups.expected_membership PASS decay=21 no_decay=41 total=62
+CHECK groups.decay PASS source=manifest.optimizer n=21 missing=none extra=none
+CHECK groups.no_decay PASS source=manifest.optimizer n=41 missing=none extra=none
+CHECK model.parameter_count PASS manifest=11271432 computed=11271432 want=11271432
+CHECK model.array_count PASS manifest=62 computed=62 want=62
+CHECK manifest.adamw PASS problems=none
+CHECK manifest.schedule PASS W=975 T=9750 problems=none
+CHECK optimizer.steps PASS steps={'u1': 1, 'u2': 2, 'u3': 3} problems=none
+CHECK fixture.data_contract PASS train_transformed_ref=float32/(2, 12, 3, 64, 64) train_labels=int64/(12,)
+CHECK fixture.input_u1 PASS exact
+CHECK fixture.label_u1 PASS exact
+CHECK fixture.input_u2 PASS exact
+CHECK fixture.label_u2 PASS exact
+CHECK fixture.input_u3 PASS exact
+CHECK fixture.label_u3 PASS exact
+CHECK schedule.eta_u1 PASS value=array([1.02564103e-06]) expected=1.02564103e-06 rtol=1.0e-12
+CHECK schedule.eta_u2 PASS value=array([2.05128205e-06]) expected=2.05128205e-06 rtol=1.0e-12
+CHECK schedule.eta_u3 PASS value=array([3.07692308e-06]) expected=3.07692308e-06 rtol=1.0e-12
+CHECK arrays.finite PASS n_checked=333 nonfinite=none
+CHECK optimizer.moments_nonzero PASS n_zero_m=0 zero_m=none n_zero_v=0 zero_v=none
+CHECK optimizer.v_nonnegative PASS n_negative=0 arrays=none
+CHECK optimizer.step_u3 PASS value=3 dtype=int64 shape=(1,)
+PHASE3_REFERENCE_CHECK PASS arrays=337 atol=1e-05 rtol=0.0001

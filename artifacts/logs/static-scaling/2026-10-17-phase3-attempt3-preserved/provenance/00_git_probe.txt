@@ -1,0 +1,48 @@
+# Preservation-time identity probe (generated on the Leonardo login node)
+utc=2026-10-17T17:45:52Z
+host=login01.leonardo.local
+uname=Linux login01.leonardo.local 4.18.0-477.27.1.el8_8.x86_64 #1 SMP Thu Aug 31 10:29:22 EDT 2023 x86_64 x86_64 x86_64 GNU/Linux
+
+## git -C /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis rev-parse HEAD
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+exit=128
+
+## git -C /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis status --porcelain
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+exit=128
+
+## git -C /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis diff HEAD | sha256sum
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+exit=129
+
+## git -C /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis ls-files --others --exclude-standard | sort | sha256sum
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+exit=128
+
+## ls -ld /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/.git
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/.git': No such file or directory
+exit=2
+
+## git -C /leonardo/home/userexternal/epicazio/projects/flux-integration rev-parse HEAD
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+exit=128
+
+## git -C /leonardo/home/userexternal/epicazio/projects/flux-integration status --porcelain
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+exit=128
+
+## git -C /leonardo/home/userexternal/epicazio/projects/flux-integration diff HEAD | sha256sum
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+exit=129
+
+## git -C /leonardo/home/userexternal/epicazio/projects/flux-integration ls-files --others --exclude-standard | sort | sha256sum
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  -
+exit=128
+
+## ls -ld /leonardo/home/userexternal/epicazio/projects/flux-integration/.git
+ls: cannot access '/leonardo/home/userexternal/epicazio/projects/flux-integration/.git': No such file or directory
+exit=2

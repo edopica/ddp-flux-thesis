@@ -1,0 +1,17 @@
+file                                     status   sha256
+remote-check.log                         MATCH    ab8ad6968632949ecc055220ecb502ba358a465e6865cd169f2535ea66cee9ce
+runtime-versions.txt                     MATCH    22994e7e11d9772d7bbaf0c0ca7b6c389378c4f20b53dc4469f110f9ff735f89
+precision/logs/fma.log                   MATCH    68587f87869362d3dce8bd8a8e5b4f5cf1e776b5b8c5d8b041bfb604c181b054
+precision/logs/current.log               MATCH    cffabdcb881fd3b185088321424afca0251b88355cb92b88268a439c3fbee786
+optimizer/comparison.json                MATCH    6d3716517903a3c9dc49327bae5c6510fe5e2fc7166323c92e7fc53bd3ac7431
+optimizer/probe_flux.json                MATCH    a0a08e0822a50e2bd866fc448f5727ab044169c5c07b2fa0dd7cfb63f6acd3de
+optimizer/probe_flux_arrays.npz          MATCH    9790ab9fafe420c9d9ea5f202404dc613e6647d3aef34c533357663c80179087
+optimizer/probe_torch.json               MATCH    1ca4455560806a3a31ba6c928b428493ec683ec423d1b2b8ba2cb7f5e013332e
+optimizer/probe_torch_arrays.npz         MATCH    77e195bc4332954f5a0ef1336b4eb1d7a0bebec3651dcab6913fbb5b402c19b0
+optimizer/logs/comparator.log            MATCH    3783c3442dcd129c0ca9d745bfd0387aebe53cffb7aff66547b604bb3cfef1c0
+optimizer/logs/probe-flux.log            MATCH    c220a6e391a7ef9715267bcdb266e5452d8f784e1b33f62757c9c43297904cfc
+optimizer/logs/probe-torch.log           MATCH    352cf7ca160a132b141cbeecdfbcf743e38cb14a3f7a5324efcd4ce8353fcdeb
+optimizer/logs/SHA256SUMS                MATCH    7ae7272c1dbea0ac41d50092407020ced8a9910b6766c77fb9cf75e0a271eab2
+phase3_reference.npz                     MATCH    97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783
+phase3_reference_manifest.json           MATCH    5ba6c29f3a6167f4341e8e78b0685cb93a5b76e83575beca8db82d8585753eb7
+SHA256_COMPARISON PASS files=15 mismatches=0
