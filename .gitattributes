@@ -1,0 +1,6 @@
+# Treat generated binaries as binary so git never diffs, merges, or
+# line-ending-converts them.
+*.pdf binary
+*.png binary
+*.npz binary
+*.jld2 binary

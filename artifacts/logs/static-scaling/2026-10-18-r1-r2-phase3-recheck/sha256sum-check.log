@@ -1,0 +1,7 @@
+./local-array-comparison.txt: OK
+./local-reference-check.log: OK
+./logs/remote-check.log: OK
+./reference/phase3_reference_manifest.json: OK
+./reference/phase3_reference.npz: OK
+./remote-SHA256.txt: OK
+./SHA256-COMPARISON.txt: OK

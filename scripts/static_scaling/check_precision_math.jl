@@ -5,6 +5,8 @@ The accepted policy is FP32 with TF32 disabled, realized by
 `StaticScalingPrecision.configure_precision!()` (cuBLAS PEDANTIC_MATH and
 cuDNN `CUDNN_FMA_MATH`). This script checks that policy directly:
 
+* the loaded CUDA.jl and cuDNN.jl package versions are the supported
+  6.2.2 pair (the loaded cuDNN library version is recorded separately);
 * requested cuDNN math type is `CUDNN_FMA_MATH` (`--mode fma`);
 * the effective math type of the memoized stage-2 conv1, conv2, and proj
   descriptors is `CUDNN_FMA_MATH`;
@@ -223,7 +225,10 @@ function main(args)
             "cudnn_effective_conv1=$(math_type_label(effective_conv1)) " *
             "cudnn_effective_conv2=$(math_type_label(effective_conv2)) " *
             "cudnn_effective_proj=$(math_type_label(effective_proj)) " *
-            "cudnn_version=$(cudnn_version()) " *
+            "cuda_package_version=$(cfg.cuda_package_version) " *
+            "cudnn_package_version=$(cfg.cudnn_package_version) " *
+            "cudnn_library_version=$(cfg.cudnn_library_version) " *
+            "cudnn_version=$(cfg.cudnn_version) " *
             "CUDNN_FMA_MATH=$(math_type_label(cuDNN.CUDNN_FMA_MATH))")
     if mode == "current"
         println("CHECK_PRECISION_MATH_MODE mode=current " *
@@ -239,6 +244,15 @@ function main(args)
             "expected=$(math_type_label(expected)) " *
             (config_ok ? "PASS" : "FAIL"))
     ok &= config_ok
+
+    version_ok = cfg.versions_supported === true
+    println("CHECK_PRECISION_MATH_VERSION " *
+            "cuda_package_version=$(cfg.cuda_package_version) " *
+            "cudnn_package_version=$(cfg.cudnn_package_version) " *
+            "cudnn_library_version=$(cfg.cudnn_library_version) " *
+            "versions_supported=$(cfg.versions_supported) " *
+            (version_ok ? "PASS" : "FAIL"))
+    ok &= version_ok
 
     Random.seed!(SEED)
 

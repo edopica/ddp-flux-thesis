@@ -1,0 +1,46 @@
+{
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "config_kind": "single_gpu",
+  "distributed_api": "single_gpu",
+  "fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+  "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+  "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+  "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "framework": "flux",
+  "global_batch": 12,
+  "guard_policy": "not applicable: single-GPU baseline",
+  "hashes": {
+    "beta_power": "37cdacf7951f440da386d3dcdd43fabc82d9814e795e6bd4bb78ea513296ec42",
+    "m": "e30b6cd3134342f7115fe719291f31d1851d40174917c4283aaf849470437fa9",
+    "param": "b19d5d58d09e49d473281ad4c5efb3c42c3c2053acbbed323abf618f13450b1b",
+    "v": "822e6e7eb55c153771d23bdf3b999333e62eff4886133787bfdcbe9b6607a6a7"
+  },
+  "images_per_second": 616.6643995685199,
+  "job": "61450014",
+  "node": "lrdn0667.leonardo.local",
+  "pass_checks": true,
+  "precision": "FP32 strict FMA, TF32 off",
+  "rank_seconds": [
+    0.058378593
+  ],
+  "schema": "static-timing-pilot-v1",
+  "seconds": 0.058378593,
+  "snapshot": false,
+  "source": {
+    "blas_threads": 1,
+    "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+    "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+    "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "host": "lrdn0667.leonardo.local",
+    "julia_threads": 1,
+    "julia_version": "1.12.6",
+    "thesis_commit": "a3786d97f3263cad20b254206f09c095880f624d",
+    "thesis_state_sha256": "336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3"
+  },
+  "timing": "training-only",
+  "update_seconds": 0.019459531,
+  "updates": 3,
+  "warmup": 2,
+  "workload": "alternating-two-fixture-batches",
+  "world_size": 1
+}

@@ -1,0 +1,303 @@
+{
+  "schema": "static-timing-numerics-report-v1",
+  "claim": "descriptive only; no numerical-equivalence acceptance rule applied",
+  "root": "artifacts/logs/static-scaling/2026-10-18-timing-pilot/numerics-61366015",
+  "updates": 300,
+  "records": [
+    {
+      "framework": "flux",
+      "world_size": 1,
+      "arrays": 248
+    },
+    {
+      "framework": "flux",
+      "world_size": 2,
+      "arrays": 248
+    },
+    {
+      "framework": "flux",
+      "world_size": 4,
+      "arrays": 248
+    },
+    {
+      "framework": "pytorch",
+      "world_size": 1,
+      "arrays": 187
+    },
+    {
+      "framework": "pytorch",
+      "world_size": 2,
+      "arrays": 187
+    },
+    {
+      "framework": "pytorch",
+      "world_size": 4,
+      "arrays": 187
+    }
+  ],
+  "comparisons": [
+    {
+      "label": "flux-w2-vs-w1",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.026772540528327227,
+          "rel_l2": 0.0017636058923972953,
+          "worst_leaf": "param.stage1.block0.gn2.bias",
+          "worst_leaf_rel_l2": 0.0786501464954441
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 8.773669833317399e-06,
+          "rel_l2": 0.04472341646751556,
+          "worst_leaf": "m.stem.gn.weight",
+          "worst_leaf_rel_l2": 0.39750770631334087
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.3430602848529816e-05,
+          "rel_l2": 0.0003232265364304734,
+          "worst_leaf": "v.stage1.block1.conv1.weight",
+          "worst_leaf_rel_l2": 0.01971757523282897
+        },
+        {
+          "category": "beta_power",
+          "arrays": 62,
+          "exact_arrays": 62,
+          "max_abs": 0.0,
+          "rel_l2": 0.0,
+          "worst_leaf": "beta_power.classifier.bias",
+          "worst_leaf_rel_l2": 0.0
+        }
+      ],
+      "max_abs": 0.026772540528327227,
+      "rel_l2": 0.0017612270681753878,
+      "exact": false
+    },
+    {
+      "label": "flux-w4-vs-w1",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.030187873635441065,
+          "rel_l2": 0.002235005199907366,
+          "worst_leaf": "param.stage1.block0.gn1.bias",
+          "worst_leaf_rel_l2": 0.07994531748720253
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.0516220413592237e-05,
+          "rel_l2": 0.04849619204510276,
+          "worst_leaf": "m.stem.gn.weight",
+          "worst_leaf_rel_l2": 0.4036359266334127
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.1282041668891907e-05,
+          "rel_l2": 0.00024734290082690683,
+          "worst_leaf": "v.stem.conv.weight",
+          "worst_leaf_rel_l2": 0.020213860682481394
+        },
+        {
+          "category": "beta_power",
+          "arrays": 62,
+          "exact_arrays": 62,
+          "max_abs": 0.0,
+          "rel_l2": 0.0,
+          "worst_leaf": "beta_power.classifier.bias",
+          "worst_leaf_rel_l2": 0.0
+        }
+      ],
+      "max_abs": 0.030187873635441065,
+      "rel_l2": 0.0022319902448223548,
+      "exact": false
+    },
+    {
+      "label": "pytorch-w2-vs-w1",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.024470328353345394,
+          "rel_l2": 0.0022394387073580557,
+          "worst_leaf": "param.stage1.block0.gn1.bias",
+          "worst_leaf_rel_l2": 0.08049276594657502
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.0503747944312636e-05,
+          "rel_l2": 0.047111195904080284,
+          "worst_leaf": "m.stem.gn.weight",
+          "worst_leaf_rel_l2": 0.4129872881760131
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 5.7443976402282715e-06,
+          "rel_l2": 0.00016606278278694342,
+          "worst_leaf": "v.stage1.block1.conv1.weight",
+          "worst_leaf_rel_l2": 0.02036602403094301
+        }
+      ],
+      "max_abs": 0.024470328353345394,
+      "rel_l2": 0.002239435594864863,
+      "exact": false
+    },
+    {
+      "label": "pytorch-w4-vs-w1",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.03327289968729019,
+          "rel_l2": 0.0016719783639140085,
+          "worst_leaf": "param.stage2.block1.gn1.bias",
+          "worst_leaf_rel_l2": 0.06381654067485992
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.4929666576790623e-05,
+          "rel_l2": 0.04105752396722352,
+          "worst_leaf": "m.stem.conv.weight",
+          "worst_leaf_rel_l2": 0.3917067431882027
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 9.598210453987122e-06,
+          "rel_l2": 0.00021765753214784075,
+          "worst_leaf": "v.stem.conv.weight",
+          "worst_leaf_rel_l2": 0.01748331112653123
+        }
+      ],
+      "max_abs": 0.03327289968729019,
+      "rel_l2": 0.0016719762192608499,
+      "exact": false
+    },
+    {
+      "label": "flux-vs-pytorch-w1",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.02963716769590974,
+          "rel_l2": 0.001767340194369711,
+          "worst_leaf": "param.stage1.block0.gn2.bias",
+          "worst_leaf_rel_l2": 0.0835464526394865
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 7.1686580440655234e-06,
+          "rel_l2": 0.043020317005674026,
+          "worst_leaf": "m.stem.gn.weight",
+          "worst_leaf_rel_l2": 0.38047754200049716
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 8.18353146314621e-06,
+          "rel_l2": 0.00019599024869399636,
+          "worst_leaf": "v.stem.conv.weight",
+          "worst_leaf_rel_l2": 0.020437603032681256
+        }
+      ],
+      "max_abs": 0.02963716769590974,
+      "rel_l2": 0.0017673379037088978,
+      "exact": false
+    },
+    {
+      "label": "flux-vs-pytorch-w2",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.02333049848675728,
+          "rel_l2": 0.002255640123837254,
+          "worst_leaf": "param.stage1.block0.gn2.bias",
+          "worst_leaf_rel_l2": 0.07093045545186029
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 9.412986401002854e-06,
+          "rel_l2": 0.04830301931935078,
+          "worst_leaf": "m.stem.conv.weight",
+          "worst_leaf_rel_l2": 0.39495310555345103
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.5972182154655457e-05,
+          "rel_l2": 0.000332742395063965,
+          "worst_leaf": "v.stage1.block0.gn1.bias",
+          "worst_leaf_rel_l2": 0.01940015570314497
+        }
+      ],
+      "max_abs": 0.02333049848675728,
+      "rel_l2": 0.0022556370705256153,
+      "exact": false
+    },
+    {
+      "label": "flux-vs-pytorch-w4",
+      "categories": [
+        {
+          "category": "param",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 0.026655852794647217,
+          "rel_l2": 0.001756529780419757,
+          "worst_leaf": "param.stage2.block1.gn1.bias",
+          "worst_leaf_rel_l2": 0.06608861619276997
+        },
+        {
+          "category": "m",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 1.0516122529224958e-05,
+          "rel_l2": 0.04167291232754871,
+          "worst_leaf": "m.stem.gn.weight",
+          "worst_leaf_rel_l2": 0.42740183808353194
+        },
+        {
+          "category": "v",
+          "arrays": 62,
+          "exact_arrays": 0,
+          "max_abs": 5.7406723499298096e-06,
+          "rel_l2": 0.0001542645207883155,
+          "worst_leaf": "v.stage1.block0.conv1.weight",
+          "worst_leaf_rel_l2": 0.017367903547509025
+        }
+      ],
+      "max_abs": 0.026655852794647217,
+      "rel_l2": 0.0017565274594905957,
+      "exact": false
+    }
+  ]
+}

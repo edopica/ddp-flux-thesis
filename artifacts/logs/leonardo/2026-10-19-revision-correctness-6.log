@@ -1,0 +1,690 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_lprod -N1 --ntasks=1 --cpus-per-task=32 --gres=gpu:4 --time=01:00:00 srun -n1 -c32 --chdir=$HOME/projects/ddp-flux-thesis bash scripts/remote/leonardo/run-static-revision-check.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 61408293
+salloc: job 61408293 queued and waiting for resources
+salloc: job 61408293 has been allocated resources
+salloc: Granted job allocation 61408293
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn1728 are ready for job
+=== run-static-revision-check: START 2026-10-19T12:09:48Z ===
+host=lrdn1728.leonardo.local SLURM_JOB_ID=61408293 SLURM_JOB_NODELIST=lrdn1728
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+FLUX_CURRENT=/leonardo/home/userexternal/epicazio/projects/flux-integration
+FLUX_HISTORICAL=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+REF=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293
+WORLD_SIZES=1 2 4 TOTAL_CPUS=32
+=== STAGE 0 :: preflight ===
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml is absent; the test project resolves from the depot (same as current campaign)
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Manifest.toml is absent; the test project resolves from the depot (same as current campaign)
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-integration is not a git worktree (remote sync excludes .git);
+      recording expected current commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-static-baseline is not a git worktree (remote sync excludes .git);
+      recording expected historical commit 8add0e42b7d9388ff365335152126e5b1e9de657
+=== STAGE a :: source-snapshot START 2026-10-19T12:09:48Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ncp -a "$SCRIPTS/." "$OUT/source/thesis/scripts/static_scaling/"\ncp -a "$DRIVER_PATH" "$OUT/source/thesis/scripts/remote/leonardo/$(basename "$DRIVER_PATH")"\nmkdir -p "$OUT/source/current/scripts/static_scaling" "$OUT/source/historical/scripts/static_scaling"\ncp -a "$SCRIPTS/." "$OUT/source/current/scripts/static_scaling/"\ncp -a "$SCRIPTS/." "$OUT/source/historical/scripts/static_scaling/"\ncp -a "$FLUX_CURRENT/src" "$FLUX_CURRENT/ext" "$OUT/source/current/"\ncp -a "$FLUX_CURRENT/Project.toml" "$OUT/source/current/Project.toml"\ncp -a "$FLUX_CURRENT/Manifest.toml" "$OUT/source/current/Manifest.toml"\ncp -a "$FLUX_HISTORICAL/src" "$FLUX_HISTORICAL/ext" "$OUT/source/historical/"\ncp -a "$FLUX_HISTORICAL/Project.toml" "$OUT/source/historical/Project.toml"\ncp -a "$FLUX_HISTORICAL/Manifest.toml" "$OUT/source/historical/Manifest.toml"\nif [ -f "$FLUX_CURRENT/test/Manifest.toml" ]; then\n  mkdir -p "$OUT/source/current/test"\n  cp -a "$FLUX_CURRENT/test/Manifest.toml" "$OUT/source/current/test/Manifest.toml"\nfi\nif [ -f "$FLUX_HISTORICAL/test/Manifest.toml" ]; then\n  mkdir -p "$OUT/source/historical/test"\n  cp -a "$FLUX_HISTORICAL/test/Manifest.toml" "$OUT/source/historical/test/Manifest.toml"\nfi\nfind "$OUT/source" -type f -not -path "*/__pycache__/*" -print0 \\\n  | sort -z | xargs -0 -r sha256sum > "$OUT/source-sha256.txt"\n' _ 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/a-source-snapshot.log
+=== STAGE a :: source-snapshot END 2026-10-19T12:09:49Z EXIT 0 ===
+=== STAGE current :: ddp-w1 START 2026-10-19T12:09:55Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n1 -c32 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-integration/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 1 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current --distributed-api guarded --source-state-sha256 565eb3c8394a6637e08e8dd3b614ee2eb9f63faefbb0e274a5ffb20a28565be2 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 d88f34526e2856c893b5a981071e5f29f89ff61de3d148830ef6e7095c8bfa76 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-ddp-w1.log
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u1 collectives=64 loss=5.63549805
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u2 collectives=64 loss=5.5543232
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u3 collectives=64 loss=5.54175901
+PHASE4_FLUX_DDP PASS rank=0 world=1 summary=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w1/summary.json
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+=== STAGE current :: ddp-w1 END 2026-10-19T12:15:52Z EXIT 0 ===
+=== STAGE current :: verify-ddp-w1 START 2026-10-19T12:15:52Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -s "$1" || { echo "MISSING rank-0 summary: $1"; exit 1; }\nsha256sum "$1"\nfind "$(dirname "$1")" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w1/summary.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-verify-ddp-w1.log
+72056e0c8043b5ee50029e772ac14af263108288a5a3a84172f5249df63aa425  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w1/summary.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w1/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w1/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w1/summary.json
+=== STAGE current :: verify-ddp-w1 END 2026-10-19T12:15:52Z EXIT 0 ===
+=== STAGE current :: ddp-w2 START 2026-10-19T12:15:52Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n2 -c16 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-integration/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current --distributed-api guarded --source-state-sha256 565eb3c8394a6637e08e8dd3b614ee2eb9f63faefbb0e274a5ffb20a28565be2 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 d88f34526e2856c893b5a981071e5f29f89ff61de3d148830ef6e7095c8bfa76 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-ddp-w2.log
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u1 collectives=64 loss=5.59132242
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u1 collectives=64 loss=5.67967272
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u2 collectives=64 loss=5.54001236
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u2 collectives=64 loss=5.56863356
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u3 collectives=64 loss=5.54112387
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u3 collectives=64 loss=5.54239464
+PHASE4_FLUX_DDP PASS rank=1 world=2 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/rank1.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=0 world=2 summary=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/summary.json
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+=== STAGE current :: ddp-w2 END 2026-10-19T12:18:18Z EXIT 0 ===
+=== STAGE current :: verify-ddp-w2 START 2026-10-19T12:18:18Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -s "$1" || { echo "MISSING rank-0 summary: $1"; exit 1; }\nsha256sum "$1"\nfind "$(dirname "$1")" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/summary.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-verify-ddp-w2.log
+4b7711932f036e93920cdbd454d9aeaf3f14565d286a7994bdb0b577d42bdfb7  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/summary.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/rank1.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/rank1.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w2/summary.json
+=== STAGE current :: verify-ddp-w2 END 2026-10-19T12:18:18Z EXIT 0 ===
+=== STAGE current :: ddp-w4 START 2026-10-19T12:18:18Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n4 -c8 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-integration/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 4 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current --distributed-api guarded --source-state-sha256 565eb3c8394a6637e08e8dd3b614ee2eb9f63faefbb0e274a5ffb20a28565be2 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 d88f34526e2856c893b5a981071e5f29f89ff61de3d148830ef6e7095c8bfa76 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-ddp-w4.log
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u1 collectives=64 loss=5.65138292
+PHASE4_FLUX_DDP_UPDATE rank=3 tag=u1 collectives=64 loss=5.97968912
+PHASE4_FLUX_DDP_UPDATE rank=2 tag=u1 collectives=64 loss=5.20295572
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u1 collectives=64 loss=5.70796204
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u2 collectives=64 loss=5.5876565
+PHASE4_FLUX_DDP_UPDATE rank=3 tag=u2 collectives=64 loss=5.92562342
+PHASE4_FLUX_DDP_UPDATE rank=2 tag=u2 collectives=64 loss=5.15440083
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u2 collectives=64 loss=5.54961157
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u3 collectives=64 loss=5.51492834
+PHASE4_FLUX_DDP_UPDATE rank=3 tag=u3 collectives=64 loss=5.93715477
+PHASE4_FLUX_DDP_UPDATE rank=2 tag=u3 collectives=64 loss=5.14509249
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u3 collectives=64 loss=5.56986094
+PHASE4_FLUX_DDP PASS rank=2 world=4 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank2.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=3 world=4 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank3.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=1 world=4 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank1.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=0 world=4 summary=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/summary.json
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+=== STAGE current :: ddp-w4 END 2026-10-19T12:20:47Z EXIT 0 ===
+=== STAGE current :: verify-ddp-w4 START 2026-10-19T12:20:47Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -s "$1" || { echo "MISSING rank-0 summary: $1"; exit 1; }\nsha256sum "$1"\nfind "$(dirname "$1")" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/summary.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-verify-ddp-w4.log
+3e8b824c0dc77e43d45cbe60da853fe6dce8b3452c735bf17f4e1c2ae517caf2  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/summary.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank1.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank1.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank2.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank2.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank3.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/rank3.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux/w4/summary.json
+=== STAGE current :: verify-ddp-w4 END 2026-10-19T12:20:48Z EXIT 0 ===
+=== STAGE historical :: ddp-w1 START 2026-10-19T12:20:48Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n1 -c32 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 1 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical --distributed-api static --source-state-sha256 565eb3c8394a6637e08e8dd3b614ee2eb9f63faefbb0e274a5ffb20a28565be2 --flux-commit 8add0e42b7d9388ff365335152126e5b1e9de657 --flux-state-sha256 ab7f5d493a2814d52958dacc471f08d2e916c18369b7a5e58d3abc3cb1c97922 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-ddp-w1.log
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u1 collectives=62 loss=5.63549805
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u2 collectives=62 loss=5.5543232
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u3 collectives=62 loss=5.54175949
+PHASE4_FLUX_DDP PASS rank=0 world=1 summary=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w1/summary.json
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+=== STAGE historical :: ddp-w1 END 2026-10-19T12:23:05Z EXIT 0 ===
+=== STAGE historical :: verify-ddp-w1 START 2026-10-19T12:23:05Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -s "$1" || { echo "MISSING rank-0 summary: $1"; exit 1; }\nsha256sum "$1"\nfind "$(dirname "$1")" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w1/summary.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-verify-ddp-w1.log
+a7871a6ba01efee47a2e4fbb1bf4a1bc030d86bc0c3f9af427bf15f59b072474  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w1/summary.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w1/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w1/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w1/summary.json
+=== STAGE historical :: verify-ddp-w1 END 2026-10-19T12:23:05Z EXIT 0 ===
+=== STAGE historical :: ddp-w2 START 2026-10-19T12:23:05Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n2 -c16 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical --distributed-api static --source-state-sha256 565eb3c8394a6637e08e8dd3b614ee2eb9f63faefbb0e274a5ffb20a28565be2 --flux-commit 8add0e42b7d9388ff365335152126e5b1e9de657 --flux-state-sha256 ab7f5d493a2814d52958dacc471f08d2e916c18369b7a5e58d3abc3cb1c97922 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-ddp-w2.log
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u1 collectives=62 loss=5.59132242
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u1 collectives=62 loss=5.67967272
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u2 collectives=62 loss=5.54001236
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u2 collectives=62 loss=5.56863356
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u3 collectives=62 loss=5.54112387
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u3 collectives=62 loss=5.54239464
+PHASE4_FLUX_DDP PASS rank=1 world=2 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/rank1.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=0 world=2 summary=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/summary.json
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+=== STAGE historical :: ddp-w2 END 2026-10-19T12:25:24Z EXIT 0 ===
+=== STAGE historical :: verify-ddp-w2 START 2026-10-19T12:25:24Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -s "$1" || { echo "MISSING rank-0 summary: $1"; exit 1; }\nsha256sum "$1"\nfind "$(dirname "$1")" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/summary.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-verify-ddp-w2.log
+b41b7ff3fae5c2015f82985c4bc7b27a140955af35b9cdaf50cafad2de6b3c0e  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/summary.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/rank1.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/rank1.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w2/summary.json
+=== STAGE historical :: verify-ddp-w2 END 2026-10-19T12:25:24Z EXIT 0 ===
+=== STAGE historical :: ddp-w4 START 2026-10-19T12:25:24Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n4 -c8 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 4 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical --distributed-api static --source-state-sha256 565eb3c8394a6637e08e8dd3b614ee2eb9f63faefbb0e274a5ffb20a28565be2 --flux-commit 8add0e42b7d9388ff365335152126e5b1e9de657 --flux-state-sha256 ab7f5d493a2814d52958dacc471f08d2e916c18369b7a5e58d3abc3cb1c97922 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-ddp-w4.log
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+PHASE4_FLUX_DDP_UPDATE rank=2 tag=u1 collectives=62 loss=5.20295572
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u1 collectives=62 loss=5.65138292
+PHASE4_FLUX_DDP_UPDATE rank=3 tag=u1 collectives=62 loss=5.97968912
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u1 collectives=62 loss=5.70796204
+PHASE4_FLUX_DDP_UPDATE rank=2 tag=u2 collectives=62 loss=5.1544013
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u2 collectives=62 loss=5.58765602
+PHASE4_FLUX_DDP_UPDATE rank=3 tag=u2 collectives=62 loss=5.92562342
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u2 collectives=62 loss=5.54961157
+PHASE4_FLUX_DDP_UPDATE rank=1 tag=u3 collectives=62 loss=5.51492834
+PHASE4_FLUX_DDP_UPDATE rank=2 tag=u3 collectives=62 loss=5.14509344
+PHASE4_FLUX_DDP_UPDATE rank=3 tag=u3 collectives=62 loss=5.93715429
+PHASE4_FLUX_DDP_UPDATE rank=0 tag=u3 collectives=62 loss=5.56986046
+PHASE4_FLUX_DDP PASS rank=2 world=4 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank2.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=3 world=4 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank3.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=1 world=4 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank1.npz
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+PHASE4_FLUX_DDP PASS rank=0 world=4 summary=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/summary.json
+PHASE4_FLUX PASS mode=ddp device=cuda backend=nccl
+=== STAGE historical :: ddp-w4 END 2026-10-19T12:27:46Z EXIT 0 ===
+=== STAGE historical :: verify-ddp-w4 START 2026-10-19T12:27:46Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -s "$1" || { echo "MISSING rank-0 summary: $1"; exit 1; }\nsha256sum "$1"\nfind "$(dirname "$1")" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/summary.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-verify-ddp-w4.log
+83f4d3a4f1430e25c3180c36b70235e164532323cb901699f970a0643b708339  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/summary.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank1.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank1.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank2.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank2.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank3.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/rank3.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux/w4/summary.json
+=== STAGE historical :: verify-ddp-w4 END 2026-10-19T12:27:46Z EXIT 0 ===
+=== STAGE current :: prepare-checkroot START 2026-10-19T12:27:46Z ===
+COMMAND: bash -c $'\nset -euo pipefail\nroot=$1\nflux_ddp=$2\npytorch_ddp=$3\nshard_ref=$4\ntest -d "$flux_ddp" || { echo "MISSING real Flux DDP directory: $flux_ddp"; exit 1; }\ntest -d "$pytorch_ddp" || { echo "MISSING accepted PyTorch DDP directory: $pytorch_ddp"; exit 1; }\ntest -d "$shard_ref" || { echo "MISSING accepted shard-reference directory: $shard_ref"; exit 1; }\nrm -rf "$root"\nmkdir -p "$root/ddp"\nln -s "$flux_ddp" "$root/ddp/flux"\nln -s "$pytorch_ddp" "$root/ddp/pytorch"\nln -s "$shard_ref" "$root/shard_reference"\ntest -d "$root/ddp/flux"\ntest -d "$root/ddp/pytorch"\ntest -d "$root/shard_reference"\nls -l "$root" "$root/ddp"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/shard_reference 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-prepare-checkroot.log
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current:
+total 8
+drwxr-xr-x 2 epicazio interactive 4096 Oct 19 14:27 ddp
+lrwxrwxrwx 1 epicazio interactive   96 Oct 19 14:27 shard_reference -> /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/shard_reference
+
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/ddp:
+total 8
+lrwxrwxrwx 1 epicazio interactive 114 Oct 19 14:27 flux -> /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/current/ddp/flux
+lrwxrwxrwx 1 epicazio interactive  92 Oct 19 14:27 pytorch -> /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch
+=== STAGE current :: prepare-checkroot END 2026-10-19T12:27:46Z EXIT 0 ===
+=== STAGE current :: check START 2026-10-19T12:27:46Z ===
+COMMAND: /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_phase4.py --fp32-absolute-1e3 --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --frameworks flux\,pytorch --flux-reference /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz --pytorch-reference /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference.npz --ddp-root /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/ddp --device cuda --world-sizes 1\,2\,4 --out-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/current --flux-collective-protocol guarded --split-control flux=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/split/flux/cuda/split_control.npz pytorch=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/split/pytorch/cuda/split_control.npz 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-check.log
+PHASE4_ACCEPTANCE_RULE abs(a-b)<1e-3 rtol=0 structural_and_rank_checks=exact
+PHASE4_CATEGORY integrity.fixture PASS max_abs=0 violations=0 files_checked=4 problems=none
+PHASE4_CATEGORY bundle.load PASS max_abs=0 violations=0 arrays=62
+PHASE4_CATEGORY reference.load.flux PASS max_abs=0 violations=0 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference_manifest.json
+PHASE4_CATEGORY reference.load.pytorch PASS max_abs=0 violations=0 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference.npz manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference_manifest.json
+PHASE4_CATEGORY integrity.bundle PASS max_abs=0 violations=0 arrays=62 parameters=11271432 hashes_checked=4 problems=none
+PHASE4_CATEGORY integrity.reference.flux PASS max_abs=0 violations=0 arrays=337 problems=none
+PHASE4_CATEGORY reference.inputs.flux PASS max_abs=0 violations=0 arrays=9
+PHASE4_CATEGORY integrity.reference.pytorch PASS max_abs=0 violations=0 arrays=337 problems=none
+PHASE4_CATEGORY reference.inputs.pytorch PASS max_abs=0 violations=0 arrays=9
+PHASE4_CATEGORY shards.schedule_fixture PASS max_abs=0 violations=0 samples=99840 updates=195 problems=none
+PHASE4_CATEGORY integrity.ddp.flux.w1 PASS max_abs=0 violations=0 arrays_checked=450 hashes_checked=451 problems=none
+PHASE4_CATEGORY updates.flux.w1 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.flux.w1 PASS max_abs=0 violations=0 local=12 problems=none
+PHASE4_CATEGORY replicas.flux.w1 PASS max_abs=0 violations=0 states=param/m/v/beta_power problems=none
+PHASE4_CATEGORY integrity.shard_reference.flux.w1 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/shard_reference/flux/cuda/w1/phase4_reference.npz
+PHASE4_CATEGORY same.flux.w1.grads.u1 PASS max_abs=1.49011612e-07 violations=0 synchronized=sum_r(localgrad)/1 arrays=62
+PHASE4_CATEGORY same.flux.w1.grads.u3 PASS max_abs=0.000634111464 violations=0 synchronized=sum_r(localgrad)/1 arrays=62
+PHASE4_CATEGORY control.shard_vs_full.flux.w1 PASS max_abs=0.000565052032 violations=0 non_gating_batch_split_envelope grads.u1=1.37835741e-07 grads.u2=0 grads.u3=0.000565052032 param.u3=3.43844295e-06 m.u3=6.17278274e-05 v.u3=8.45884642e-08
+PHASE4_CATEGORY oracle.flux.w1 PASS max_abs=2.32678827e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.flux.w1.param.u3 PASS max_abs=3.43844295e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w1.m.u3 PASS max_abs=6.75441697e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w1.v.u3 PASS max_abs=4.97675501e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w1.beta_power.u3 PASS max_abs=0 violations=0 expected=beta^(3+1) arrays=62
+PHASE4_CATEGORY same.flux.w1.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.flux.w1.loss PASS max_abs=4.76837158e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.flux.w1.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.flux.w1.logits.u3 PASS max_abs=1.13248825e-06 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.flux.w1 PASS max_abs=0 violations=0 updates=3 entries_per_update=64 rank_traces=1 problems=none
+PHASE4_CATEGORY integrity.ddp.flux.w2 PASS max_abs=0 violations=0 arrays_checked=900 hashes_checked=902 problems=none
+PHASE4_CATEGORY updates.flux.w2 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.flux.w2 PASS max_abs=0 violations=0 local=6 problems=none
+PHASE4_CATEGORY replicas.flux.w2 PASS max_abs=0 violations=0 states=param/m/v/beta_power problems=none
+PHASE4_CATEGORY integrity.shard_reference.flux.w2 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/shard_reference/flux/cuda/w2/phase4_reference.npz
+PHASE4_CATEGORY same.flux.w2.grads.u1 PASS max_abs=1.43423676e-07 violations=0 synchronized=sum_r(localgrad)/2 arrays=62
+PHASE4_CATEGORY same.flux.w2.grads.u3 PASS max_abs=0.000152748078 violations=0 synchronized=sum_r(localgrad)/2 arrays=62
+PHASE4_CATEGORY control.shard_vs_full.flux.w2 PASS max_abs=0.000718047842 violations=0 non_gating_batch_split_envelope grads.u1=2.38418579e-07 grads.u2=0.000369733199 grads.u3=0.000718047842 param.u3=3.43844295e-06 m.u3=7.69896433e-05 v.u3=9.81126504e-08
+PHASE4_CATEGORY oracle.flux.w2 PASS max_abs=2.32532589e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.flux.w2.param.u3 PASS max_abs=4.76464629e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w2.m.u3 PASS max_abs=2.3804605e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w2.v.u3 PASS max_abs=4.50727384e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w2.beta_power.u3 PASS max_abs=0 violations=0 expected=beta^(3+1) arrays=62
+PHASE4_CATEGORY same.flux.w2.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.flux.w2.loss PASS max_abs=2.38418579e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.flux.w2.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.flux.w2.logits.u3 PASS max_abs=1.1920929e-06 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.flux.w2 PASS max_abs=0 violations=0 updates=3 entries_per_update=64 rank_traces=2 problems=none
+PHASE4_CATEGORY integrity.ddp.flux.w4 PASS max_abs=0 violations=0 arrays_checked=1800 hashes_checked=1804 problems=none
+PHASE4_CATEGORY updates.flux.w4 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.flux.w4 PASS max_abs=0 violations=0 local=3 problems=none
+PHASE4_CATEGORY replicas.flux.w4 PASS max_abs=0 violations=0 states=param/m/v/beta_power problems=none
+PHASE4_CATEGORY integrity.shard_reference.flux.w4 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/shard_reference/flux/cuda/w4/phase4_reference.npz
+PHASE4_CATEGORY same.flux.w4.grads.u1 PASS max_abs=1.49477273e-07 violations=0 synchronized=sum_r(localgrad)/4 arrays=62
+PHASE4_CATEGORY same.flux.w4.grads.u3 PASS max_abs=0.000329559669 violations=0 synchronized=sum_r(localgrad)/4 arrays=62
+PHASE4_CATEGORY control.shard_vs_full.flux.w4 PASS max_abs=0.000608099625 violations=0 non_gating_batch_split_envelope grads.u1=3.57627869e-07 grads.u2=0.000280584209 grads.u3=0.000608099625 param.u3=2.66358256e-06 m.u3=6.06100075e-05 v.u3=9.02073225e-08
+PHASE4_CATEGORY oracle.flux.w4 PASS max_abs=2.32470431e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.flux.w4.param.u3 PASS max_abs=2.66358256e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w4.m.u3 PASS max_abs=3.27695161e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w4.v.u3 PASS max_abs=4.14656824e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w4.beta_power.u3 PASS max_abs=0 violations=0 expected=beta^(3+1) arrays=62
+PHASE4_CATEGORY same.flux.w4.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.flux.w4.loss PASS max_abs=3.57627869e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.flux.w4.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.flux.w4.logits.u3 PASS max_abs=7.74860382e-07 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.flux.w4 PASS max_abs=0 violations=0 updates=3 entries_per_update=64 rank_traces=4 problems=none
+PHASE4_CATEGORY integrity.ddp.pytorch.w1 PASS max_abs=0 violations=0 arrays_checked=389 hashes_checked=390 problems=none
+PHASE4_CATEGORY updates.pytorch.w1 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.pytorch.w1 PASS max_abs=0 violations=0 local=12 problems=none
+PHASE4_CATEGORY replicas.pytorch.w1 PASS max_abs=0 violations=0 states=param/m/v/step problems=none
+PHASE4_CATEGORY integrity.shard_reference.pytorch.w1 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/shard_reference/pytorch/cuda/w1/phase4_reference.npz
+PHASE4_CATEGORY py.syncgrad_replicas.w1 PASS max_abs=0 violations=0 world=1 problems=none
+PHASE4_CATEGORY same.pytorch.w1.grads.u1 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY same.pytorch.w1.grads.u3 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY control.shard_vs_full.pytorch.w1 PASS max_abs=0 violations=0 non_gating_batch_split_envelope grads.u1=0 grads.u2=0 grads.u3=0 param.u3=0 m.u3=0 v.u3=0
+PHASE4_CATEGORY oracle.pytorch.w1 PASS max_abs=1.59117114e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.pytorch.w1.param.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w1.m.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w1.v.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w1.step.u3 PASS max_abs=0 violations=0 actual=3 reference=3
+PHASE4_CATEGORY same.pytorch.w1.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.pytorch.w1.loss PASS max_abs=0 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.pytorch.w1.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.pytorch.w1.logits.u3 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.pytorch.w1 PASS max_abs=0 violations=0 find_unused_parameters=false static_graph=false backend=nccl problems=none
+PHASE4_CATEGORY integrity.ddp.pytorch.w2 PASS max_abs=0 violations=0 arrays_checked=778 hashes_checked=780 problems=none
+PHASE4_CATEGORY updates.pytorch.w2 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.pytorch.w2 PASS max_abs=0 violations=0 local=6 problems=none
+PHASE4_CATEGORY replicas.pytorch.w2 PASS max_abs=0 violations=0 states=param/m/v/step problems=none
+PHASE4_CATEGORY integrity.shard_reference.pytorch.w2 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/shard_reference/pytorch/cuda/w2/phase4_reference.npz
+PHASE4_CATEGORY py.syncgrad_replicas.w2 PASS max_abs=0 violations=0 world=2 problems=none
+PHASE4_CATEGORY same.pytorch.w2.grads.u1 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY same.pytorch.w2.grads.u3 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY control.shard_vs_full.pytorch.w2 PASS max_abs=0.000677028671 violations=0 non_gating_batch_split_envelope grads.u1=0.000266477466 grads.u2=0.000677028671 grads.u3=0.000592095777 param.u3=7.88737088e-06 m.u3=7.05905259e-05 v.u3=1.31500201e-07
+PHASE4_CATEGORY oracle.pytorch.w2 PASS max_abs=1.57734544e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.pytorch.w2.param.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w2.m.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w2.v.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w2.step.u3 PASS max_abs=0 violations=0 actual=3 reference=3
+PHASE4_CATEGORY same.pytorch.w2.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.pytorch.w2.loss PASS max_abs=2.38418579e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.pytorch.w2.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.pytorch.w2.logits.u3 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.pytorch.w2 PASS max_abs=0 violations=0 find_unused_parameters=false static_graph=false backend=nccl problems=none
+PHASE4_CATEGORY integrity.ddp.pytorch.w4 PASS max_abs=0 violations=0 arrays_checked=1556 hashes_checked=1560 problems=none
+PHASE4_CATEGORY updates.pytorch.w4 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.pytorch.w4 PASS max_abs=0 violations=0 local=3 problems=none
+PHASE4_CATEGORY replicas.pytorch.w4 PASS max_abs=0 violations=0 states=param/m/v/step problems=none
+PHASE4_CATEGORY integrity.shard_reference.pytorch.w4 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/current/shard_reference/pytorch/cuda/w4/phase4_reference.npz
+PHASE4_CATEGORY py.syncgrad_replicas.w4 PASS max_abs=0 violations=0 world=4 problems=none
+PHASE4_CATEGORY same.pytorch.w4.grads.u1 PASS max_abs=1.1920929e-07 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY same.pytorch.w4.grads.u3 PASS max_abs=0.000530967489 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY control.shard_vs_full.pytorch.w4 PASS max_abs=0.000506050768 violations=0 non_gating_batch_split_envelope grads.u1=0.00026653707 grads.u2=0.000506050768 grads.u3=0.000364936888 param.u3=7.88737088e-06 m.u3=8.41077417e-05 v.u3=1.0779695e-07
+PHASE4_CATEGORY oracle.pytorch.w4 PASS max_abs=1.58002255e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.pytorch.w4.param.u3 PASS max_abs=7.88737088e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w4.m.u3 PASS max_abs=6.35245815e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w4.v.u3 PASS max_abs=5.9742888e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w4.step.u3 PASS max_abs=0 violations=0 actual=3 reference=3
+PHASE4_CATEGORY same.pytorch.w4.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.pytorch.w4.loss PASS max_abs=3.57627869e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.pytorch.w4.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.pytorch.w4.logits.u3 PASS max_abs=6.55651093e-06 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.pytorch.w4 PASS max_abs=0 violations=0 find_unused_parameters=false static_graph=false backend=nccl problems=none
+PHASE4_CATEGORY cross.ddp.w1.grads.u1 PASS max_abs=0.0003025271 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.grads.u2 PASS max_abs=0.000534215011 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.grads.u3 PASS max_abs=0.00052703172 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.param.u3 PASS max_abs=4.70876694e-06 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.m.u3 PASS max_abs=6.22868538e-05 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.v.u3 PASS max_abs=2.38418579e-07 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w1.logits.u3 PASS max_abs=2.44379044e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w1.loss.u1 PASS max_abs=4.76837158e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w1.loss.u2 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w1.loss.u3 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w1.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w1.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w1.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w1.grads.u1 PASS max_abs=0.0003025271 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.grads.u3 PASS max_abs=0.00052703172 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.param.u3 PASS max_abs=4.70876694e-06 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.m.u3 PASS max_abs=6.22868538e-05 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.v.u3 PASS max_abs=2.38418579e-07 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w1.logits.u3 PASS max_abs=2.44379044e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w1.loss.u1 PASS max_abs=4.76837158e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w1.loss.u2 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w1.loss.u3 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w1.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w1.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w1.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w2.grads.u1 PASS max_abs=6.71101734e-05 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.grads.u2 PASS max_abs=0.000542983413 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.grads.u3 PASS max_abs=0.000310957432 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.param.u3 PASS max_abs=7.88737088e-06 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.m.u3 PASS max_abs=4.55244444e-05 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.v.u3 PASS max_abs=2.38418579e-07 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.logits.u1 PASS max_abs=7.15255737e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w2.logits.u3 PASS max_abs=6.42240047e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w2.loss.u1 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w2.loss.u2 PASS max_abs=2.38418579e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w2.loss.u3 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w2.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w2.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w2.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w2.grads.u1 PASS max_abs=0.000302553177 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.grads.u3 PASS max_abs=0.000709841028 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.param.u3 PASS max_abs=2.82330438e-06 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.m.u3 PASS max_abs=6.61406666e-05 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.v.u3 PASS max_abs=2.32830644e-07 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w2.logits.u3 PASS max_abs=1.66893005e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w2.loss.u1 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w2.loss.u2 PASS max_abs=2.38418579e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w2.loss.u3 PASS max_abs=2.38418579e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w2.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w2.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w2.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w4.grads.u1 PASS max_abs=6.70328736e-05 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.grads.u2 PASS max_abs=0.000242448412 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.grads.u3 PASS max_abs=0.000335354358 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.param.u3 PASS max_abs=2.17370689e-06 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.m.u3 PASS max_abs=3.69979098e-05 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.v.u3 PASS max_abs=2.36555934e-07 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.logits.u1 PASS max_abs=7.15255737e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w4.logits.u3 PASS max_abs=1.07288361e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w4.loss.u1 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w4.loss.u2 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w4.loss.u3 PASS max_abs=3.57627869e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w4.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w4.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w4.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w4.grads.u1 PASS max_abs=0.00030259788 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.grads.u3 PASS max_abs=0.000526823103 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.param.u3 PASS max_abs=4.77582216e-06 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.m.u3 PASS max_abs=6.32051378e-05 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.v.u3 PASS max_abs=2.34693289e-07 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w4.logits.u3 PASS max_abs=1.54972076e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w4.loss.u1 PASS max_abs=1.1920929e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w4.loss.u2 PASS max_abs=1.1920929e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w4.loss.u3 PASS max_abs=1.1920929e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w4.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w4.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w4.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_SPLIT framework=flux update=u1 leaves=62 max_abs_full_vs_halfmean=2.5331974e-07 max_abs_full_vs_half1=1.77880263 max_abs_full_vs_half2=1.77880245
+PHASE4_SPLIT framework=flux update=u3 leaves=62 max_abs_full_vs_halfmean=2.5331974e-07 max_abs_full_vs_half1=1.77880263 max_abs_full_vs_half2=1.77880245
+PHASE4_SPLIT framework=pytorch update=u1 leaves=62 max_abs_full_vs_halfmean=0.000266479328 max_abs_full_vs_half1=1.77880287 max_abs_full_vs_half2=1.77880222
+PHASE4_SPLIT framework=pytorch update=u3 leaves=62 max_abs_full_vs_halfmean=0.000287236646 max_abs_full_vs_half1=1.7845149 max_abs_full_vs_half2=1.78451514
+PHASE4_CHECK PASS categories=202 report=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/current/phase4_report.json
+=== STAGE current :: check END 2026-10-19T12:29:03Z EXIT 0 ===
+=== STAGE current :: check-verdict START 2026-10-19T12:29:03Z ===
+COMMAND: bash -c $'\nset -euo pipefail\nexpected="PHASE4_CHECK PASS categories=202"\nif ! grep -Eq "^PHASE4_CHECK PASS categories=202( |$)" "$1"; then\n  actual=$(grep -E "^PHASE4_CHECK (PASS|FAIL)" "$1" | tail -n 1 || true)\n  [ -n "$actual" ] || actual="<no PHASE4_CHECK line>"\n  echo "EXPECTED: $expected"\n  echo "ACTUAL:   $actual"\n  exit 1\nfi\ntest -s "$2" || { echo "MISSING report $2"; exit 1; }\nsha256sum "$2"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-check.log /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/current/phase4_report.txt 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/current-check-verdict.log
+c51484993fca9602ca03deb3444d756205d1430d4d23c0ff1d80af5af559d9b7  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/current/phase4_report.txt
+=== STAGE current :: check-verdict END 2026-10-19T12:29:03Z EXIT 0 ===
+=== STAGE historical :: prepare-checkroot START 2026-10-19T12:29:03Z ===
+COMMAND: bash -c $'\nset -euo pipefail\nroot=$1\nflux_ddp=$2\npytorch_ddp=$3\nshard_ref=$4\ntest -d "$flux_ddp" || { echo "MISSING real Flux DDP directory: $flux_ddp"; exit 1; }\ntest -d "$pytorch_ddp" || { echo "MISSING accepted PyTorch DDP directory: $pytorch_ddp"; exit 1; }\ntest -d "$shard_ref" || { echo "MISSING accepted shard-reference directory: $shard_ref"; exit 1; }\nrm -rf "$root"\nmkdir -p "$root/ddp"\nln -s "$flux_ddp" "$root/ddp/flux"\nln -s "$pytorch_ddp" "$root/ddp/pytorch"\nln -s "$shard_ref" "$root/shard_reference"\ntest -d "$root/ddp/flux"\ntest -d "$root/ddp/pytorch"\ntest -d "$root/shard_reference"\nls -l "$root" "$root/ddp"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/shard_reference 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-prepare-checkroot.log
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical:
+total 8
+drwxr-xr-x 2 epicazio interactive 4096 Oct 19 14:29 ddp
+lrwxrwxrwx 1 epicazio interactive   96 Oct 19 14:29 shard_reference -> /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/shard_reference
+
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/ddp:
+total 8
+lrwxrwxrwx 1 epicazio interactive 117 Oct 19 14:29 flux -> /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/historical/ddp/flux
+lrwxrwxrwx 1 epicazio interactive  92 Oct 19 14:29 pytorch -> /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch
+=== STAGE historical :: prepare-checkroot END 2026-10-19T12:29:03Z EXIT 0 ===
+=== STAGE historical :: check START 2026-10-19T12:29:03Z ===
+COMMAND: /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_phase4.py --fp32-absolute-1e3 --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --frameworks flux\,pytorch --flux-reference /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz --pytorch-reference /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference.npz --ddp-root /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/ddp --device cuda --world-sizes 1\,2\,4 --out-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/historical --flux-collective-protocol static --split-control flux=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/split/flux/cuda/split_control.npz pytorch=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/split/pytorch/cuda/split_control.npz 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-check.log
+PHASE4_ACCEPTANCE_RULE abs(a-b)<1e-3 rtol=0 structural_and_rank_checks=exact
+PHASE4_CATEGORY integrity.fixture PASS max_abs=0 violations=0 files_checked=4 problems=none
+PHASE4_CATEGORY bundle.load PASS max_abs=0 violations=0 arrays=62
+PHASE4_CATEGORY reference.load.flux PASS max_abs=0 violations=0 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference_manifest.json
+PHASE4_CATEGORY reference.load.pytorch PASS max_abs=0 violations=0 npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference.npz manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference_manifest.json
+PHASE4_CATEGORY integrity.bundle PASS max_abs=0 violations=0 arrays=62 parameters=11271432 hashes_checked=4 problems=none
+PHASE4_CATEGORY integrity.reference.flux PASS max_abs=0 violations=0 arrays=337 problems=none
+PHASE4_CATEGORY reference.inputs.flux PASS max_abs=0 violations=0 arrays=9
+PHASE4_CATEGORY integrity.reference.pytorch PASS max_abs=0 violations=0 arrays=337 problems=none
+PHASE4_CATEGORY reference.inputs.pytorch PASS max_abs=0 violations=0 arrays=9
+PHASE4_CATEGORY shards.schedule_fixture PASS max_abs=0 violations=0 samples=99840 updates=195 problems=none
+PHASE4_CATEGORY integrity.ddp.flux.w1 PASS max_abs=0 violations=0 arrays_checked=450 hashes_checked=451 problems=none
+PHASE4_CATEGORY updates.flux.w1 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.flux.w1 PASS max_abs=0 violations=0 local=12 problems=none
+PHASE4_CATEGORY replicas.flux.w1 PASS max_abs=0 violations=0 states=param/m/v/beta_power problems=none
+PHASE4_CATEGORY integrity.shard_reference.flux.w1 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/shard_reference/flux/cuda/w1/phase4_reference.npz
+PHASE4_CATEGORY same.flux.w1.grads.u1 PASS max_abs=1.56462193e-07 violations=0 synchronized=sum_r(localgrad)/1 arrays=62
+PHASE4_CATEGORY same.flux.w1.grads.u3 PASS max_abs=0.000419136137 violations=0 synchronized=sum_r(localgrad)/1 arrays=62
+PHASE4_CATEGORY control.shard_vs_full.flux.w1 PASS max_abs=0.000565052032 violations=0 non_gating_batch_split_envelope grads.u1=1.37835741e-07 grads.u2=0 grads.u3=0.000565052032 param.u3=3.43844295e-06 m.u3=6.17278274e-05 v.u3=8.45884642e-08
+PHASE4_CATEGORY oracle.flux.w1 PASS max_abs=2.3297593e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.flux.w1.param.u3 PASS max_abs=3.43844295e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w1.m.u3 PASS max_abs=5.77125465e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w1.v.u3 PASS max_abs=7.29778549e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w1.beta_power.u3 PASS max_abs=0 violations=0 expected=beta^(3+1) arrays=62
+PHASE4_CATEGORY same.flux.w1.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.flux.w1.loss PASS max_abs=0 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.flux.w1.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.flux.w1.logits.u3 PASS max_abs=1.50501728e-06 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.flux.w1 PASS max_abs=0 violations=0 updates=3 entries_per_update=62 rank_traces=1 problems=none
+PHASE4_CATEGORY integrity.ddp.flux.w2 PASS max_abs=0 violations=0 arrays_checked=900 hashes_checked=902 problems=none
+PHASE4_CATEGORY updates.flux.w2 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.flux.w2 PASS max_abs=0 violations=0 local=6 problems=none
+PHASE4_CATEGORY replicas.flux.w2 PASS max_abs=0 violations=0 states=param/m/v/beta_power problems=none
+PHASE4_CATEGORY integrity.shard_reference.flux.w2 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/shard_reference/flux/cuda/w2/phase4_reference.npz
+PHASE4_CATEGORY same.flux.w2.grads.u1 PASS max_abs=1.49011612e-07 violations=0 synchronized=sum_r(localgrad)/2 arrays=62
+PHASE4_CATEGORY same.flux.w2.grads.u3 PASS max_abs=0.000245696865 violations=0 synchronized=sum_r(localgrad)/2 arrays=62
+PHASE4_CATEGORY control.shard_vs_full.flux.w2 PASS max_abs=0.000718047842 violations=0 non_gating_batch_split_envelope grads.u1=2.38418579e-07 grads.u2=1.07207452e-05 grads.u3=0.000718047842 param.u3=3.43844295e-06 m.u3=7.69896433e-05 v.u3=9.81126504e-08
+PHASE4_CATEGORY oracle.flux.w2 PASS max_abs=2.3297593e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.flux.w2.param.u3 PASS max_abs=7.04545528e-07 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w2.m.u3 PASS max_abs=2.45701522e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w2.v.u3 PASS max_abs=3.32365744e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w2.beta_power.u3 PASS max_abs=0 violations=0 expected=beta^(3+1) arrays=62
+PHASE4_CATEGORY same.flux.w2.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.flux.w2.loss PASS max_abs=2.38418579e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.flux.w2.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.flux.w2.logits.u3 PASS max_abs=5.96046448e-07 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.flux.w2 PASS max_abs=0 violations=0 updates=3 entries_per_update=62 rank_traces=2 problems=none
+PHASE4_CATEGORY integrity.ddp.flux.w4 PASS max_abs=0 violations=0 arrays_checked=1800 hashes_checked=1804 problems=none
+PHASE4_CATEGORY updates.flux.w4 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.flux.w4 PASS max_abs=0 violations=0 local=3 problems=none
+PHASE4_CATEGORY replicas.flux.w4 PASS max_abs=0 violations=0 states=param/m/v/beta_power problems=none
+PHASE4_CATEGORY integrity.shard_reference.flux.w4 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/shard_reference/flux/cuda/w4/phase4_reference.npz
+PHASE4_CATEGORY same.flux.w4.grads.u1 PASS max_abs=1.1920929e-07 violations=0 synchronized=sum_r(localgrad)/4 arrays=62
+PHASE4_CATEGORY same.flux.w4.grads.u3 PASS max_abs=0.000373698771 violations=0 synchronized=sum_r(localgrad)/4 arrays=62
+PHASE4_CATEGORY control.shard_vs_full.flux.w4 PASS max_abs=0.000608099625 violations=0 non_gating_batch_split_envelope grads.u1=3.57627869e-07 grads.u2=1.07208616e-05 grads.u3=0.000608099625 param.u3=2.66358256e-06 m.u3=6.06100075e-05 v.u3=9.02073225e-08
+PHASE4_CATEGORY oracle.flux.w4 PASS max_abs=2.3040301e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.flux.w4.param.u3 PASS max_abs=3.43844295e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w4.m.u3 PASS max_abs=4.35502734e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w4.v.u3 PASS max_abs=5.56792656e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.flux.w4.beta_power.u3 PASS max_abs=0 violations=0 expected=beta^(3+1) arrays=62
+PHASE4_CATEGORY same.flux.w4.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.flux.w4.loss PASS max_abs=3.57627869e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.flux.w4.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.flux.w4.logits.u3 PASS max_abs=1.07288361e-06 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.flux.w4 PASS max_abs=0 violations=0 updates=3 entries_per_update=62 rank_traces=4 problems=none
+PHASE4_CATEGORY integrity.ddp.pytorch.w1 PASS max_abs=0 violations=0 arrays_checked=389 hashes_checked=390 problems=none
+PHASE4_CATEGORY updates.pytorch.w1 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.pytorch.w1 PASS max_abs=0 violations=0 local=12 problems=none
+PHASE4_CATEGORY replicas.pytorch.w1 PASS max_abs=0 violations=0 states=param/m/v/step problems=none
+PHASE4_CATEGORY integrity.shard_reference.pytorch.w1 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/shard_reference/pytorch/cuda/w1/phase4_reference.npz
+PHASE4_CATEGORY py.syncgrad_replicas.w1 PASS max_abs=0 violations=0 world=1 problems=none
+PHASE4_CATEGORY same.pytorch.w1.grads.u1 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY same.pytorch.w1.grads.u3 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY control.shard_vs_full.pytorch.w1 PASS max_abs=0 violations=0 non_gating_batch_split_envelope grads.u1=0 grads.u2=0 grads.u3=0 param.u3=0 m.u3=0 v.u3=0
+PHASE4_CATEGORY oracle.pytorch.w1 PASS max_abs=1.59117114e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.pytorch.w1.param.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w1.m.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w1.v.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w1.step.u3 PASS max_abs=0 violations=0 actual=3 reference=3
+PHASE4_CATEGORY same.pytorch.w1.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.pytorch.w1.loss PASS max_abs=0 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.pytorch.w1.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.pytorch.w1.logits.u3 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.pytorch.w1 PASS max_abs=0 violations=0 find_unused_parameters=false static_graph=false backend=nccl problems=none
+PHASE4_CATEGORY integrity.ddp.pytorch.w2 PASS max_abs=0 violations=0 arrays_checked=778 hashes_checked=780 problems=none
+PHASE4_CATEGORY updates.pytorch.w2 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.pytorch.w2 PASS max_abs=0 violations=0 local=6 problems=none
+PHASE4_CATEGORY replicas.pytorch.w2 PASS max_abs=0 violations=0 states=param/m/v/step problems=none
+PHASE4_CATEGORY integrity.shard_reference.pytorch.w2 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/shard_reference/pytorch/cuda/w2/phase4_reference.npz
+PHASE4_CATEGORY py.syncgrad_replicas.w2 PASS max_abs=0 violations=0 world=2 problems=none
+PHASE4_CATEGORY same.pytorch.w2.grads.u1 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY same.pytorch.w2.grads.u3 PASS max_abs=0 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY control.shard_vs_full.pytorch.w2 PASS max_abs=0.000677028671 violations=0 non_gating_batch_split_envelope grads.u1=0.000266477466 grads.u2=0.000677028671 grads.u3=0.000592095777 param.u3=7.88737088e-06 m.u3=7.05905259e-05 v.u3=1.31500201e-07
+PHASE4_CATEGORY oracle.pytorch.w2 PASS max_abs=1.57734544e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.pytorch.w2.param.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w2.m.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w2.v.u3 PASS max_abs=0 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w2.step.u3 PASS max_abs=0 violations=0 actual=3 reference=3
+PHASE4_CATEGORY same.pytorch.w2.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.pytorch.w2.loss PASS max_abs=2.38418579e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.pytorch.w2.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.pytorch.w2.logits.u3 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.pytorch.w2 PASS max_abs=0 violations=0 find_unused_parameters=false static_graph=false backend=nccl problems=none
+PHASE4_CATEGORY integrity.ddp.pytorch.w4 PASS max_abs=0 violations=0 arrays_checked=1556 hashes_checked=1560 problems=none
+PHASE4_CATEGORY updates.pytorch.w4 PASS max_abs=0 violations=0 expected=3 problems=none
+PHASE4_CATEGORY shards.global_batch.pytorch.w4 PASS max_abs=0 violations=0 local=3 problems=none
+PHASE4_CATEGORY replicas.pytorch.w4 PASS max_abs=0 violations=0 states=param/m/v/step problems=none
+PHASE4_CATEGORY integrity.shard_reference.pytorch.w4 PASS max_abs=0 violations=0 arrays=337 expected=337 path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/checkroot/historical/shard_reference/pytorch/cuda/w4/phase4_reference.npz
+PHASE4_CATEGORY py.syncgrad_replicas.w4 PASS max_abs=0 violations=0 world=4 problems=none
+PHASE4_CATEGORY same.pytorch.w4.grads.u1 PASS max_abs=1.1920929e-07 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY same.pytorch.w4.grads.u3 PASS max_abs=0.000530967489 violations=0 rank0 native DDP syncgrad arrays=62
+PHASE4_CATEGORY control.shard_vs_full.pytorch.w4 PASS max_abs=0.000506050768 violations=0 non_gating_batch_split_envelope grads.u1=0.00026653707 grads.u2=0.000506050768 grads.u3=0.000364936888 param.u3=7.88737088e-06 m.u3=8.41077417e-05 v.u3=1.0779695e-07
+PHASE4_CATEGORY oracle.pytorch.w4 PASS max_abs=1.58002255e-07 violations=0 float64_decoupled_adamw_updates=3 arrays=186
+PHASE4_CATEGORY same.pytorch.w4.param.u3 PASS max_abs=7.88737088e-06 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w4.m.u3 PASS max_abs=6.35245815e-05 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w4.v.u3 PASS max_abs=5.9742888e-08 violations=0 arrays=62 arrays=62
+PHASE4_CATEGORY same.pytorch.w4.step.u3 PASS max_abs=0 violations=0 actual=3 reference=3
+PHASE4_CATEGORY same.pytorch.w4.eta PASS max_abs=0 violations=0 arrays=6
+PHASE4_CATEGORY same.pytorch.w4.loss PASS max_abs=3.57627869e-07 violations=0 mean_of_rank_local_losses arrays=3
+PHASE4_CATEGORY same.pytorch.w4.logits.u1 PASS max_abs=0 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY same.pytorch.w4.logits.u3 PASS max_abs=6.55651093e-06 violations=0 rank_order_concatenation arrays=1
+PHASE4_CATEGORY protocol.pytorch.w4 PASS max_abs=0 violations=0 find_unused_parameters=false static_graph=false backend=nccl problems=none
+PHASE4_CATEGORY cross.ddp.w1.grads.u1 PASS max_abs=0.000302571803 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.grads.u2 PASS max_abs=0.000526629388 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.grads.u3 PASS max_abs=0.000623358414 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.param.u3 PASS max_abs=4.77954745e-06 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.m.u3 PASS max_abs=7.17882067e-05 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.v.u3 PASS max_abs=2.32830644e-07 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w1.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w1.logits.u3 PASS max_abs=1.96695328e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w1.loss.u1 PASS max_abs=4.76837158e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w1.loss.u2 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w1.loss.u3 PASS max_abs=4.76837158e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w1.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w1.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w1.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w1.grads.u1 PASS max_abs=0.000302571803 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.grads.u3 PASS max_abs=0.000623358414 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.param.u3 PASS max_abs=4.77954745e-06 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.m.u3 PASS max_abs=7.17882067e-05 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.v.u3 PASS max_abs=2.32830644e-07 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w1.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w1.logits.u3 PASS max_abs=1.96695328e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w1.loss.u1 PASS max_abs=4.76837158e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w1.loss.u2 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w1.loss.u3 PASS max_abs=4.76837158e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w1.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w1.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w1.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w2.grads.u1 PASS max_abs=6.71548769e-05 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.grads.u2 PASS max_abs=0.000516358763 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.grads.u3 PASS max_abs=0.000282295048 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.param.u3 PASS max_abs=7.88737088e-06 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.m.u3 PASS max_abs=4.57474962e-05 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.v.u3 PASS max_abs=2.38418579e-07 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w2.logits.u1 PASS max_abs=7.15255737e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w2.logits.u3 PASS max_abs=6.33299351e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w2.loss.u1 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w2.loss.u2 PASS max_abs=2.38418579e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w2.loss.u3 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w2.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w2.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w2.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w2.grads.u1 PASS max_abs=0.000302553177 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.grads.u3 PASS max_abs=0.000566616654 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.param.u3 PASS max_abs=4.77954745e-06 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.m.u3 PASS max_abs=6.06179237e-05 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.v.u3 PASS max_abs=2.32830644e-07 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w2.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w2.logits.u3 PASS max_abs=1.96695328e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w2.loss.u1 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w2.loss.u2 PASS max_abs=2.38418579e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w2.loss.u3 PASS max_abs=2.38418579e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w2.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w2.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w2.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w4.grads.u1 PASS max_abs=6.70799054e-05 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.grads.u2 PASS max_abs=0.000196769834 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.grads.u3 PASS max_abs=0.000339273363 violations=0 flux_offline_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.param.u3 PASS max_abs=3.43844295e-06 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.m.u3 PASS max_abs=4.07230109e-05 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.v.u3 PASS max_abs=2.30967999e-07 violations=0 flux_vs_pytorch_ddp n=11271432
+PHASE4_CATEGORY cross.ddp.w4.logits.u1 PASS max_abs=7.15255737e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w4.logits.u3 PASS max_abs=1.1920929e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.ddp.w4.loss.u1 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w4.loss.u2 PASS max_abs=0 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w4.loss.u3 PASS max_abs=3.57627869e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.ddp.w4.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w4.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.ddp.w4.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w4.grads.u1 PASS max_abs=0.000302568078 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.grads.u3 PASS max_abs=0.000594764948 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.param.u3 PASS max_abs=4.77954745e-06 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.m.u3 PASS max_abs=5.98095357e-05 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.v.u3 PASS max_abs=2.29105353e-07 violations=0 flux_ddp_vs_pytorch_reference n=11271432
+PHASE4_CATEGORY cross.reference.flux.w4.logits.u1 PASS max_abs=7.74860382e-07 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w4.logits.u3 PASS max_abs=1.96695328e-06 violations=0 combined n=2400
+PHASE4_CATEGORY cross.reference.flux.w4.loss.u1 PASS max_abs=1.1920929e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w4.loss.u2 PASS max_abs=1.1920929e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w4.loss.u3 PASS max_abs=1.1920929e-07 violations=0 rank_average n=1
+PHASE4_CATEGORY cross.reference.flux.w4.eta.u1 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w4.eta.u2 PASS max_abs=0 violations=0 n=1
+PHASE4_CATEGORY cross.reference.flux.w4.eta.u3 PASS max_abs=0 violations=0 n=1
+PHASE4_SPLIT framework=flux update=u1 leaves=62 max_abs_full_vs_halfmean=2.5331974e-07 max_abs_full_vs_half1=1.77880263 max_abs_full_vs_half2=1.77880245
+PHASE4_SPLIT framework=flux update=u3 leaves=62 max_abs_full_vs_halfmean=2.5331974e-07 max_abs_full_vs_half1=1.77880263 max_abs_full_vs_half2=1.77880245
+PHASE4_SPLIT framework=pytorch update=u1 leaves=62 max_abs_full_vs_halfmean=0.000266479328 max_abs_full_vs_half1=1.77880287 max_abs_full_vs_half2=1.77880222
+PHASE4_SPLIT framework=pytorch update=u3 leaves=62 max_abs_full_vs_halfmean=0.000287236646 max_abs_full_vs_half1=1.7845149 max_abs_full_vs_half2=1.78451514
+PHASE4_CHECK PASS categories=202 report=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/historical/phase4_report.json
+=== STAGE historical :: check END 2026-10-19T12:30:05Z EXIT 0 ===
+=== STAGE historical :: check-verdict START 2026-10-19T12:30:05Z ===
+COMMAND: bash -c $'\nset -euo pipefail\nexpected="PHASE4_CHECK PASS categories=202"\nif ! grep -Eq "^PHASE4_CHECK PASS categories=202( |$)" "$1"; then\n  actual=$(grep -E "^PHASE4_CHECK (PASS|FAIL)" "$1" | tail -n 1 || true)\n  [ -n "$actual" ] || actual="<no PHASE4_CHECK line>"\n  echo "EXPECTED: $expected"\n  echo "ACTUAL:   $actual"\n  exit 1\nfi\ntest -s "$2" || { echo "MISSING report $2"; exit 1; }\nsha256sum "$2"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-check.log /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/historical/phase4_report.txt 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/historical-check-verdict.log
+28ce8fb64d2b6e5974ed0327c12e8c516cb5b5931740fdded7cc88bd8a534d1b  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/check/historical/phase4_report.txt
+=== STAGE historical :: check-verdict END 2026-10-19T12:30:05Z EXIT 0 ===
+=== summary ===
+STAGE 0 PASS preflight
+STAGE a PASS source snapshot and metadata
+STAGE b PASS current guarded DDP worlds: 1 2 4
+STAGE c PASS historical static DDP worlds: 1 2 4
+STAGE d PASS current PHASE4_CHECK PASS
+STAGE e PASS historical PHASE4_CHECK PASS
+STAGE f PASS no precompilation marker in stage logs
+STATIC_REVISION_CHECK PASS
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293
+=== run-static-revision-check: EXIT 0 (log: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61408293/logs/driver.log) ===
+salloc: Relinquishing job allocation 61408293
+salloc: Job allocation 61408293 has been revoked.

@@ -28,6 +28,14 @@ precompile-flux-test:
 
 precompile-all: precompile precompile-flux-test
 
+precompile-phase4:
+	$(JULIA) --startup-file=no --project=scripts/static_scaling/julia-env -e 'using Pkg; Pkg.instantiate(); Pkg.precompile(); using NPZ'
+	@if [ -d ../flux-integration/test ]; then \
+		$(MPIEXECJL) --project=../flux-integration/test --version >/dev/null; \
+		$(JULIA) --startup-file=no --project=../flux-integration/test -e 'using Pkg; Pkg.precompile()'; \
+		unset JULIA_PROJECT; CUDA_VISIBLE_DEVICES= JULIA_NUM_THREADS=1 JULIA_LOAD_PATH="$$PWD/scripts/static_scaling/julia-env:$$PWD/../flux-integration/test:@stdlib" $(JULIA) --startup-file=no -e 'using Flux, MPI, NPZ, Zygote, Optimisers, Functors, Statistics, Random, LinearAlgebra; println(:PHASE4_STACK_PRECOMPILE_OK)'; \
+	fi
+
 env-gpu:
 	$(JULIA) --project=. scripts/setup/setup_gpu.jl
 

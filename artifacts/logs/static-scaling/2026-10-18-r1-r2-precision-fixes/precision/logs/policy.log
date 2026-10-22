@@ -1,0 +1,12 @@
+CHECK_PRECISION_POLICY case=strict_fma_prefers_fma PASS
+CHECK_PRECISION_POLICY case=strict_fma_rejects_non_fma PASS
+CHECK_PRECISION_POLICY case=strict_fma_rejects_all_failed PASS
+CHECK_PRECISION_POLICY case=stock_float32_selection PASS
+CHECK_PRECISION_POLICY case=versions_supported PASS
+┌ Warning: StaticScalingPrecision: continuing with unsupported package versions because allow_unsupported_versions=true
+│   package_versions = "unsupported CUDA.jl/cuDNN.jl package versions: CUDA.jl=6.2.1 (supported 6.2.2), cuDNN.jl=6.2.2 (supported 6.2.2)"
+│   supported = false
+└ @ Main.StaticScalingPrecision ~/projects/ddp-flux-thesis/scripts/static_scaling/precision.jl:243
+CHECK_PRECISION_POLICY case=versions_unsupported_gate PASS
+CHECK_PRECISION_POLICY case=strict_resolve_never_returns_non_fma PASS
+CHECK_PRECISION_POLICY PASS

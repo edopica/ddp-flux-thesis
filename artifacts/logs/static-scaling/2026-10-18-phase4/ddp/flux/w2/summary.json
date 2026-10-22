@@ -1,0 +1,6139 @@
+{
+  "backend": "nccl",
+  "bundle_array_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "collective_trace": {
+    "u1": {
+      "call_order_entries": [
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 1,
+          "kind": "presence",
+          "layout": null,
+          "name": null,
+          "size": [
+            62
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            3,
+            3,
+            3
+          ],
+          "index": 2,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stem.conv.weight",
+          "size": [
+            3,
+            3,
+            3,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 3,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 4,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 5,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 6,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 7,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 8,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 9,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 10,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 11,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 12,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 13,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 14,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 15,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 16,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            3,
+            3
+          ],
+          "index": 17,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 18,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 19,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 20,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 21,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 22,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            1,
+            1
+          ],
+          "index": 23,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 24,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 25,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 26,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 27,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 28,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 29,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 30,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 31,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            3,
+            3
+          ],
+          "index": 32,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 33,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 34,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 35,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 36,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 37,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            1,
+            1
+          ],
+          "index": 38,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 39,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 40,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 41,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 42,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 43,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 44,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 45,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 46,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            3,
+            3
+          ],
+          "index": 47,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 48,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 49,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 50,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 51,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 52,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "index": 53,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 54,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 55,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 56,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 57,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 58,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 59,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 60,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 61,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200,
+            512
+          ],
+          "index": 62,
+          "kind": "gradient",
+          "layout": "linear_out_in",
+          "name": "classifier.weight",
+          "size": [
+            200,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200
+          ],
+          "index": 63,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "classifier.bias",
+          "size": [
+            200
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 64,
+          "kind": "vote",
+          "layout": null,
+          "name": null,
+          "size": [
+            1
+          ]
+        }
+      ],
+      "count": 64,
+      "entries": [
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 1,
+          "kind": "presence",
+          "layout": null,
+          "name": null,
+          "size": [
+            62
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            3,
+            3,
+            3
+          ],
+          "index": 2,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stem.conv.weight",
+          "size": [
+            3,
+            3,
+            3,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 4,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 3,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 5,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 8,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 7,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 6,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 10,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 9,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 11,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 14,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 13,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 12,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 16,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 15,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            3,
+            3
+          ],
+          "index": 17,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 20,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 19,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 18,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 22,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 21,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 26,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 29,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 28,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 27,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 31,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 30,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            1,
+            1
+          ],
+          "index": 23,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 25,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 24,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            3,
+            3
+          ],
+          "index": 32,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 35,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 34,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 33,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 37,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 36,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 41,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 44,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 43,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 42,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 46,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 45,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            1,
+            1
+          ],
+          "index": 38,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 40,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 39,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            3,
+            3
+          ],
+          "index": 47,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 50,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 49,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 48,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 52,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 51,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 56,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 59,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 58,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 57,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 61,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 60,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "index": 53,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 55,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 54,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200,
+            512
+          ],
+          "index": 62,
+          "kind": "gradient",
+          "layout": "linear_out_in",
+          "name": "classifier.weight",
+          "size": [
+            200,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200
+          ],
+          "index": 63,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "classifier.bias",
+          "size": [
+            200
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 64,
+          "kind": "vote",
+          "layout": null,
+          "name": null,
+          "size": [
+            1
+          ]
+        }
+      ],
+      "gradient_order": "entries: canonical Phase 3 bundle order; call_order_entries: actual wrapper/model functor order",
+      "sha256": "ba636472dbea5db8fc5fcdaa290425db7ca7daa250eb0e197bcc566e47b2c951"
+    },
+    "u2": {
+      "call_order_entries": [
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 1,
+          "kind": "presence",
+          "layout": null,
+          "name": null,
+          "size": [
+            62
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            3,
+            3,
+            3
+          ],
+          "index": 2,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stem.conv.weight",
+          "size": [
+            3,
+            3,
+            3,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 3,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 4,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 5,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 6,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 7,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 8,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 9,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 10,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 11,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 12,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 13,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 14,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 15,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 16,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            3,
+            3
+          ],
+          "index": 17,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 18,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 19,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 20,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 21,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 22,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            1,
+            1
+          ],
+          "index": 23,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 24,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 25,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 26,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 27,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 28,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 29,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 30,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 31,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            3,
+            3
+          ],
+          "index": 32,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 33,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 34,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 35,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 36,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 37,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            1,
+            1
+          ],
+          "index": 38,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 39,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 40,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 41,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 42,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 43,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 44,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 45,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 46,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            3,
+            3
+          ],
+          "index": 47,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 48,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 49,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 50,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 51,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 52,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "index": 53,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 54,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 55,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 56,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 57,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 58,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 59,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 60,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 61,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200,
+            512
+          ],
+          "index": 62,
+          "kind": "gradient",
+          "layout": "linear_out_in",
+          "name": "classifier.weight",
+          "size": [
+            200,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200
+          ],
+          "index": 63,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "classifier.bias",
+          "size": [
+            200
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 64,
+          "kind": "vote",
+          "layout": null,
+          "name": null,
+          "size": [
+            1
+          ]
+        }
+      ],
+      "count": 64,
+      "entries": [
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 1,
+          "kind": "presence",
+          "layout": null,
+          "name": null,
+          "size": [
+            62
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            3,
+            3,
+            3
+          ],
+          "index": 2,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stem.conv.weight",
+          "size": [
+            3,
+            3,
+            3,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 4,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 3,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 5,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 8,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 7,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 6,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 10,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 9,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 11,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 14,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 13,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 12,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 16,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 15,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            3,
+            3
+          ],
+          "index": 17,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 20,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 19,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 18,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 22,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 21,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 26,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 29,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 28,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 27,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 31,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 30,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            1,
+            1
+          ],
+          "index": 23,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 25,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 24,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            3,
+            3
+          ],
+          "index": 32,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 35,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 34,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 33,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 37,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 36,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 41,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 44,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 43,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 42,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 46,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 45,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            1,
+            1
+          ],
+          "index": 38,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 40,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 39,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            3,
+            3
+          ],
+          "index": 47,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 50,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 49,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 48,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 52,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 51,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 56,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 59,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 58,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 57,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 61,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 60,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "index": 53,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 55,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 54,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200,
+            512
+          ],
+          "index": 62,
+          "kind": "gradient",
+          "layout": "linear_out_in",
+          "name": "classifier.weight",
+          "size": [
+            200,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200
+          ],
+          "index": 63,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "classifier.bias",
+          "size": [
+            200
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 64,
+          "kind": "vote",
+          "layout": null,
+          "name": null,
+          "size": [
+            1
+          ]
+        }
+      ],
+      "gradient_order": "entries: canonical Phase 3 bundle order; call_order_entries: actual wrapper/model functor order",
+      "sha256": "ba636472dbea5db8fc5fcdaa290425db7ca7daa250eb0e197bcc566e47b2c951"
+    },
+    "u3": {
+      "call_order_entries": [
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 1,
+          "kind": "presence",
+          "layout": null,
+          "name": null,
+          "size": [
+            62
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            3,
+            3,
+            3
+          ],
+          "index": 2,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stem.conv.weight",
+          "size": [
+            3,
+            3,
+            3,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 3,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 4,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 5,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 6,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 7,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 8,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 9,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 10,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 11,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 12,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 13,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 14,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 15,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 16,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            3,
+            3
+          ],
+          "index": 17,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 18,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 19,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 20,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 21,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 22,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            1,
+            1
+          ],
+          "index": 23,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 24,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 25,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 26,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 27,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 28,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 29,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 30,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 31,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            3,
+            3
+          ],
+          "index": 32,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 33,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 34,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 35,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 36,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 37,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            1,
+            1
+          ],
+          "index": 38,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 39,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 40,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 41,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 42,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 43,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 44,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 45,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 46,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            3,
+            3
+          ],
+          "index": 47,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 48,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 49,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 50,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 51,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 52,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "index": 53,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 54,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 55,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 56,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 57,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 58,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 59,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 60,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 61,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200,
+            512
+          ],
+          "index": 62,
+          "kind": "gradient",
+          "layout": "linear_out_in",
+          "name": "classifier.weight",
+          "size": [
+            200,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200
+          ],
+          "index": 63,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "classifier.bias",
+          "size": [
+            200
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 64,
+          "kind": "vote",
+          "layout": null,
+          "name": null,
+          "size": [
+            1
+          ]
+        }
+      ],
+      "count": 64,
+      "entries": [
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 1,
+          "kind": "presence",
+          "layout": null,
+          "name": null,
+          "size": [
+            62
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            3,
+            3,
+            3
+          ],
+          "index": 2,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stem.conv.weight",
+          "size": [
+            3,
+            3,
+            3,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 4,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 3,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stem.gn.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 5,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 8,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 7,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 6,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 10,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 9,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block0.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 11,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64,
+            64,
+            3,
+            3
+          ],
+          "index": 14,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage1.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            64,
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 13,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 12,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn1.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 16,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.weight",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            64
+          ],
+          "index": 15,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage1.block1.gn2.bias",
+          "size": [
+            64
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            3,
+            3
+          ],
+          "index": 17,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 20,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 19,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 18,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 22,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 21,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 26,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            128,
+            3,
+            3
+          ],
+          "index": 29,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            128,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 28,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 27,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn1.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 31,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 30,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block1.gn2.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128,
+            64,
+            1,
+            1
+          ],
+          "index": 23,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage2.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            64,
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 25,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.weight",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            128
+          ],
+          "index": 24,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage2.block0.proj_gn.bias",
+          "size": [
+            128
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            3,
+            3
+          ],
+          "index": 32,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 35,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 34,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 33,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 37,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 36,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 41,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            256,
+            3,
+            3
+          ],
+          "index": 44,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            256,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 43,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 42,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn1.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 46,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 45,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block1.gn2.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256,
+            128,
+            1,
+            1
+          ],
+          "index": 38,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage3.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            128,
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 40,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.weight",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            256
+          ],
+          "index": 39,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage3.block0.proj_gn.bias",
+          "size": [
+            256
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            3,
+            3
+          ],
+          "index": 47,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv1.weight",
+          "size": [
+            3,
+            3,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 50,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 49,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 48,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 52,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 51,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 56,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv1.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            512,
+            3,
+            3
+          ],
+          "index": 59,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block1.conv2.weight",
+          "size": [
+            3,
+            3,
+            512,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 58,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 57,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn1.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 61,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 60,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block1.gn2.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 4, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512,
+            256,
+            1,
+            1
+          ],
+          "index": 53,
+          "kind": "gradient",
+          "layout": "conv_kernel_out_in_kh_kw",
+          "name": "stage4.block0.proj.weight",
+          "size": [
+            1,
+            1,
+            256,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 55,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.weight",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            512
+          ],
+          "index": 54,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "stage4.block0.proj_gn.bias",
+          "size": [
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 2, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200,
+            512
+          ],
+          "index": 62,
+          "kind": "gradient",
+          "layout": "linear_out_in",
+          "name": "classifier.weight",
+          "size": [
+            200,
+            512
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "CUDACore.CuArray{Float32, 1, CUDACore.DeviceMemory}",
+          "canonical_size": [
+            200
+          ],
+          "index": 63,
+          "kind": "gradient",
+          "layout": "vector",
+          "name": "classifier.bias",
+          "size": [
+            200
+          ]
+        },
+        {
+          "avg": true,
+          "buftype": "Vector{Float32}",
+          "canonical_size": null,
+          "index": 64,
+          "kind": "vote",
+          "layout": null,
+          "name": null,
+          "size": [
+            1
+          ]
+        }
+      ],
+      "gradient_order": "entries: canonical Phase 3 bundle order; call_order_entries: actual wrapper/model functor order",
+      "sha256": "ba636472dbea5db8fc5fcdaa290425db7ca7daa250eb0e197bcc566e47b2c951"
+    }
+  },
+  "created": "2026-10-18T18:29:18Z",
+  "device": "cuda",
+  "framework": "flux",
+  "mode": "ddp",
+  "producer": "scripts/static_scaling/phase4_flux.jl",
+  "rank_files": [
+    "rank0.json",
+    "rank1.json"
+  ],
+  "source": {
+    "blas_threads": 1,
+    "flux_commit": "unavailable",
+    "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+    "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "host": "lrdn0255.leonardo.local",
+    "julia_threads": 1,
+    "julia_version": "1.12.6",
+    "thesis_commit": "unavailable",
+    "thesis_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "updates": 3,
+  "world_size": 2
+}

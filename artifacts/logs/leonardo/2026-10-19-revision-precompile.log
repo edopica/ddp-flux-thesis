@@ -1,0 +1,28 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:4 --time=00:30:00 srun -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'set -euo pipefail; export JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot JULIA_NUM_THREADS=1; echo CURRENT_PRECOMPILE; FLUX_DIR=$HOME/projects/flux-integration bash scripts/remote/leonardo/precompile-phase3.sh; echo HISTORICAL_PRECOMPILE; FLUX_DIR=$HOME/projects/flux-static-baseline bash scripts/remote/leonardo/precompile-phase3.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 61401845
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn1605 are ready for job
+CURRENT_PRECOMPILE
+PREcompile host=lrdn1605.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-integration julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+FLUX_PRECOMPILE_OK
+HISTORICAL_PRECOMPILE
+PREcompile host=lrdn1605.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Project.toml
+Precompiling packages...
+  15184.1 ms  ✓ Flux
+   3473.5 ms  ✓ Flux → FluxFiniteDifferencesExt
+   3534.5 ms  ✓ Flux → FluxCUDAExt
+   4310.2 ms  ✓ Flux → FluxMooncakeExt
+   4307.5 ms  ✓ Mooncake → MooncakeFluxExt
+   4589.9 ms  ✓ Flux → FluxMPIExt
+   5638.6 ms  ✓ Flux → FluxEnzymeExt
+   7042.2 ms  ✓ Flux → FluxMPINCCLExt
+  8 dependencies successfully precompiled in 29 seconds. 296 already precompiled.
+FLUX_PRECOMPILE_OK
+salloc: Relinquishing job allocation 61401845

@@ -1,0 +1,31 @@
+{
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+  "framework": "flux",
+  "global_batch": 12,
+  "hashes": {
+    "beta_power": "2aa64ce8f2a4088814a131fd4c647d3731064816c6f154e4f73a4ad5255787bb",
+    "m": "e6cbb07d03e31eceb4518b9426948c83253a9684b75e913ee2fd13dbcb2a2ef5",
+    "param": "0975181bbc444c4ede4690751b1ec8770f39b377b54a737eeff371f945144637",
+    "v": "d33c6dec39f79cb0acaf6696a2947d09afa60da8a6349437cbdfe3e836daa4b4"
+  },
+  "images_per_second": 644.0288637857859,
+  "job": "61314790",
+  "node": "lrdn3064.leonardo.local",
+  "pass_checks": true,
+  "precision": "FP32 strict FMA, TF32 off",
+  "rank_seconds": [
+    5.589811579,
+    5.589796258,
+    5.589806951,
+    5.589754125
+  ],
+  "schema": "static-timing-pilot-v1",
+  "seconds": 5.589811579,
+  "timing": "training-only",
+  "update_seconds": 0.018632705263333334,
+  "updates": 300,
+  "warmup": 20,
+  "workload": "alternating-two-fixture-batches",
+  "world_size": 4
+}

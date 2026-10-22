@@ -23,19 +23,19 @@ gpu_counts = [1, 2, 4]
 dataset = "tiny-imagenet-200"
 precision = "fp32"
 tf32 = "disabled in both frameworks"
-global_batch_proposed = 512
+global_batch_proposed = 256
 global_batch_fallback = 256
-global_batch_note = "provisional; Phase 5 memory pilot selects the final value"
+global_batch_note = "OD-7 recorded 2026-10-19: user selected 256; no automatic fallback; nine-configuration memory preflight still required"
 
 [matrix]
 # One row per configuration. Global work is identical in every row.
 configs = [
-  { framework = "flux",    gpus = 1, processes = 1, local_batch_proposed = 512 },
-  { framework = "flux",    gpus = 2, processes = 2, local_batch_proposed = 256 },
-  { framework = "flux",    gpus = 4, processes = 4, local_batch_proposed = 128 },
-  { framework = "pytorch", gpus = 1, processes = 1, local_batch_proposed = 512 },
-  { framework = "pytorch", gpus = 2, processes = 2, local_batch_proposed = 256 },
-  { framework = "pytorch", gpus = 4, processes = 4, local_batch_proposed = 128 },
+  { framework = "flux",    gpus = 1, processes = 1, local_batch_proposed = 256 },
+  { framework = "flux",    gpus = 2, processes = 2, local_batch_proposed = 128 },
+  { framework = "flux",    gpus = 4, processes = 4, local_batch_proposed = 64 },
+  { framework = "pytorch", gpus = 1, processes = 1, local_batch_proposed = 256 },
+  { framework = "pytorch", gpus = 2, processes = 2, local_batch_proposed = 128 },
+  { framework = "pytorch", gpus = 4, processes = 4, local_batch_proposed = 64 },
 ]
 local_batch_b512 = [512, 256, 128]
 local_batch_b256 = [256, 128, 64]
@@ -199,7 +199,7 @@ pytorch_counters = "torch.cuda.max_memory_allocated, torch.cuda.max_memory_reser
 julia_counters = "CUDA.used_memory, CUDA.cached_memory, CUDA.pool_status; device-level via nvidia-smi process delta"
 missing_counter_policy = "record an unavailable counter as unavailable; never substitute a different counter silently"
 staging_memory = "device staging memory is measured and reported separately from model and optimizer memory"
-pilot_sequence = "one GPU first; then two and four GPUs; if the margin fails at batch 512, the complete matrix repeats at batch 256"
+pilot_sequence = "batch 256 only, one GPU first then two and four GPUs, current Flux/historical Flux/PyTorch; any failed configuration blocks the campaign"
 
 [sources]
 status = "recorded on 2026-10-15; re-verify before every remote run"
@@ -242,6 +242,7 @@ remote_flux_state = "WARNING: the Leonardo copy ~/projects/flux-integration is a
 
 [tolerances]
 status = "recorded 2026-10-17 (OD-10 calibration revision; base rule plus three frozen backward-category floors)"
+scope_note = "Short-horizon rules only. Phase 4 GPU acceptance uses finite abs(a-b) < 1e-3 with exact structural/rank checks. OD-14 adopts no long-run equivalence threshold."
 comparison_rule = "elementwise |a - b| <= atol + rtol * max(|a|, |b|)"
 same_framework = { atol = 2.0e-6, rtol = 1.0e-5, basis = "existing project standard (Phase K, C8 matrix); applies to DDP vs single-GPU reference and to rank replicas" }
 cross_framework = { atol = 1.0e-5, rtol = 1.0e-4, basis = "recorded 2026-10-17: base rule for every category except the three phase3 backward categories below; frozen before the Step 3c acceptance run" }
@@ -251,6 +252,27 @@ calibration_evidence = [
   "same-framework PyTorch CPU-vs-GPU control (PyTorch CPU reference job 60912525, node lrdn3450; Flux CPU checker job 60912664): grads.u1 3.021732e-4 / 14,365 violations, grads.u3 4.099458e-4 / 128,170, m.u3 5.057361e-5 / 1,137; this control fails the base rule on exactly the same three categories as Flux, with the same worst leaves",
 ]
 calibration_rule = "a revision of a tolerance requires a documented numerical cause (kernel or reduction-order difference), recorded in this file before the acceptance evidence is generated"
+
+[benchmark_policy]
+decision = "OD-14"
+status = "recorded 2026-10-19"
+document = "OD-14-benchmark-acceptance.md"
+claim = "qualified descriptive throughput and strong scaling for the recorded workload"
+precision = "FP32; TF32 disabled in both frameworks"
+flux_algorithm_policy = "strict FMA candidate selection; no determinism filter"
+pytorch_algorithm_policy = "cudnn.deterministic=True; cudnn.benchmark=False; float32_matmul_precision=highest"
+guard_policy = "Flux OD-11 gradient-finiteness guard inside timing; no equivalent PyTorch timed guard"
+deterministic_sensitivity = "required in both frameworks for the final Phase 6 cross-framework report; separate correctness and provenance; not a Phase 5 prerequisite"
+short_horizon_gates = "Phase 3 OD-10 and Phase 4 GPU finite abs(a-b) < 1e-3; exact structural/rank checks; source/runtime linkage required"
+long_run_policy = "descriptive diagnostics on campaign workload and update count; no numerical-equivalence threshold"
+numerical_equivalence_claim = "none"
+diagnostic_requirements = ["matched work and input identity", "finite loss and final parameters/moments", "exact final replica agreement", "exact update counts and consistent beta powers", "complete state snapshots"]
+comparison_groups = ["Flux W2/W4 vs Flux W1", "PyTorch W2/W4 vs PyTorch W1", "Flux vs PyTorch at matching W"]
+diagnostic_metrics = ["max_abs", "relative L2 with declared denominator and zero-norm behavior", "exact-array counts", "worst leaves"]
+stronger_claims = "prospective addendum with references, horizon, metrics, thresholds, independent rationale, and repeated-run treatment; distinct calibration and acceptance evidence"
+training_quality_claim = "none without prospective validation-loss/accuracy criteria, seeds, budget, and statistical treatment"
+provenance = "input/source/launcher hashes; loaded runtime paths and versions; device mapping; effective resources; new identity and relevant correctness checks after changes"
+enforcement_note = "Policy requirements, not a claim of automatic enforcement by current runners"
 
 [tolerances.category_overrides."phase3.grads.u1"]
 atol = 1.0e-3

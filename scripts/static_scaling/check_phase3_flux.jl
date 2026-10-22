@@ -29,17 +29,21 @@ supplementary diagnostics and do not change the acceptance rule.
 
 The model and training path come from `model_flux.jl`; this script only
 drives training and compares arrays. On `--device cuda`, the precision
-policy comes from `precision.jl`: `configure_precision!(fma=true)` sets
-`CUDA.allowscalar(false)`, cuBLAS `PEDANTIC_MATH`, and cuDNN
-`CUDNN_FMA_MATH` before any GPU work, clears the cuDNN algorithm perf
-caches, and the module-load algorithm chooser enforces
-`ps.mathType == CUDNN_FMA_MATH`. After training, every recorded cuDNN
-algorithm choice is printed as `PHASE3_CUDNN_ALGO`, summarized in
+policy comes from `precision.jl`: `configure_precision!(fma=true)` first
+enforces the supported CUDA.jl/cuDNN.jl 6.2.2 package pair and the
+installed override methods, then sets `CUDA.allowscalar(false)`, cuBLAS
+`PEDANTIC_MATH`, and cuDNN `CUDNN_FMA_MATH` before any GPU work, clears
+the cuDNN algorithm perf caches, and the module-load algorithm chooser
+enforces `ps.mathType == CUDNN_FMA_MATH`. Selection is fail-closed: a
+non-FMA candidate raises `PrecisionPolicyError` and no fallback is
+recorded. After training, every recorded cuDNN algorithm choice is
+printed as `PHASE3_CUDNN_ALGO`, summarized in
 `PHASE3_CUDNN_ALGO_SUMMARY`, and accepted by
 `CHECK cudnn.fma_algo_selection`. That check passes only when every
-choice reports `CUDNN_FMA_MATH` and is not a fallback; a fallback is
-tolerated only for a successful non-tensor-core algo 0/1 and only when
-all acceptance categories pass. A TF32/tensor-op candidate never passes.
+choice reports `CUDNN_FMA_MATH` and `fallback=false`; non-FMA and
+fallback choices never pass. The package and library versions are
+recorded in `PHASE3_FLUX_CHECK_CONFIG`, and
+`CHECK cudnn.package_versions_supported` requires the supported pair.
 
 CLI:
   julia --startup-file=no scripts/static_scaling/check_phase3_flux.jl \\
@@ -398,6 +402,10 @@ function configure_cuda!(log::CheckLog)
               "requested=$(math_type_label(cfg.cudnn_requested)) " *
               "effective=$(math_type_label(cfg.cudnn_effective)) " *
               "cudnn_version=$(cfg.cudnn_version)")
+    log_check(log, "cudnn.package_versions_supported", cfg.versions_supported,
+              "cuda_package=$(cfg.cuda_package_version) " *
+              "cudnn_package=$(cfg.cudnn_package_version) " *
+              "cudnn_library=$(cfg.cudnn_library_version)")
     log_check(log, "cudnn.algo_caches_cleared", cfg.caches_cleared,
               "before=$(cfg.caches_before) after=(fwd=0,bwd_data=0,bwd_filter=0)")
     dev = Flux.gpu_device(; force = true)
@@ -407,6 +415,9 @@ function configure_cuda!(log::CheckLog)
             "cuda_math_precision=$(CUDA.math_precision()) " *
             "cudnn_requested=$(math_type_label(cfg.cudnn_requested)) " *
             "cudnn_effective=$(math_type_label(cfg.cudnn_effective)) " *
+            "cuda_package_version=$(cfg.cuda_package_version) " *
+            "cudnn_package_version=$(cfg.cudnn_package_version) " *
+            "cudnn_library_version=$(cfg.cudnn_library_version) " *
             "cudnn_version=$(cfg.cudnn_version)")
     return dev
 end
@@ -423,11 +434,11 @@ end
     check_cudnn_algo_selection(log, device)
 
 Print every recorded cuDNN convolution algorithm choice and enforce the
-accepted FMA policy. A choice passes when it reports `CUDNN_FMA_MATH` and
-is not a fallback. A fallback passes only when its algorithm is a
-successful non-tensor-core algo 0/1 (`math_unknown=false`) **and** every
-acceptance category has already passed. Tensor-op/TF32 candidates never
-pass. On a CPU run there are no cuDNN choices, so the line is SKIP.
+accepted FMA policy. A choice passes only when it reports
+`CUDNN_FMA_MATH` and `fallback=false`. There is no fallback allowance:
+strict-FMA selection throws before a non-FMA fallback can be recorded.
+Tensor-op/TF32 candidates never pass. On a CPU run there are no cuDNN
+choices, so the line is SKIP.
 """
 function check_cudnn_algo_selection(log::CheckLog, device::AbstractString)
     choices = precision_algo_choices()
@@ -444,19 +455,13 @@ function check_cudnn_algo_selection(log::CheckLog, device::AbstractString)
         println("CHECK cudnn.fma_algo_selection SKIP device=$(device) choices=$(n)")
         return true
     end
-    categories_ok = isempty(log.failed)
     all_fma = n > 0 && nfma == n
-    fallback_ok = all(choices) do choice
-        !choice.fallback ||
-            (Int(choice.algo) in (0, 1) && !choice.math_unknown)
-    end
-    ok = all_fma && fallback_ok && (nfallback == 0 || categories_ok)
+    no_fallback = nfallback == 0
+    ok = all_fma && no_fallback
     log_check(log, "cudnn.fma_algo_selection", ok,
               "choices=$(n) fma=$(nfma) fallback=$(nfallback) " *
-              "fallback_algo_0_1=$(fallback_ok) categories_pass=$(categories_ok) " *
               "rule=\"all choices math_type=CUDNN_FMA_MATH and fallback=false; " *
-              "fallback allowed only for successful non-tensor-core algo 0/1 " *
-              "when all acceptance categories pass; tensor-op candidates never pass\"")
+              "non-FMA and fallback choices never pass\"")
     return ok
 end
 
@@ -886,8 +891,8 @@ function run_flux_checks(log::CheckLog, opts::Dict{String,String})
     end
 
     # Algorithm-selection evidence is supplementary to the numerical
-    # categories above, but a non-FMA/tensor-op choice is never accepted.
-    # `log.failed` already contains every acceptance-category result.
+    # categories above. Strict-FMA selection is fail-closed; a non-FMA or
+    # fallback choice is never accepted.
     check_cudnn_algo_selection(log, device)
     return nothing
 end

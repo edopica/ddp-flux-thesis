@@ -1,0 +1,11 @@
+CHECK phase3.eta PASS max_abs_diff=0 max_rel_diff=0 worst=eta.u1 violations=0
+CHECK phase3.activations PASS max_abs_diff=1.56164169e-05 max_rel_diff=1 worst=act.stage4.block1 violations=0
+CHECK phase3.logits PASS max_abs_diff=1.7285347e-06 max_rel_diff=0.00293240016 worst=logits.u3 violations=0
+CHECK phase3.loss PASS max_abs_diff=4.76837158e-07 max_rel_diff=8.46131352e-08 worst=loss.u1 violations=0
+CHECK phase3.grads.u1 PASS max_abs_diff=0.000302582979 max_rel_diff=2 worst=grad.u1.stem.conv.weight violations=0
+CHECK phase3.grads.u3 PASS max_abs_diff=0.000608410686 max_rel_diff=2 worst=grad.u3.stem.conv.weight violations=0
+CHECK phase3.params.u3 PASS max_abs_diff=4.77954745e-06 max_rel_diff=1.43431936 worst=param.u3.stage2.block1.conv1.weight violations=0
+CHECK phase3.m.u3 PASS max_abs_diff=6.32628798e-05 max_rel_diff=2 worst=m.u3.stem.conv.weight violations=0
+CHECK phase3.v.u3 PASS max_abs_diff=2.32830644e-07 max_rel_diff=1 worst=v.u3.classifier.weight violations=0
+CHECK phase3.beta_power.u3 PASS max_abs_diff=0 max_rel_diff=0 worst=beta_power.u3.stem.conv.weight violations=0
+CHECK phase3.step PASS reference_step=3 flux_updates=3 expected=3

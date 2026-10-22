@@ -1,0 +1,102 @@
+{
+  "schema": "static-timing-provenance-v1",
+  "campaign_job": "61314790",
+  "phase4_provenance": "artifacts/logs/static-scaling/2026-10-18-phase4/logs/PROVENANCE.md",
+  "phase4_run": {
+    "job": "61296074",
+    "node": "lrdn0983.leonardo.local",
+    "start_utc": "2026-10-18T19:21:44Z",
+    "end_utc": "2026-10-18T19:25:57Z"
+  },
+  "timing_source_sha256": {
+    "check_all.jl": "62f3c64d7a2bb9ca28133545ec5303140458660ca3784823be56238aa82febeb",
+    "check_dataset.py": "ee3f10b248ff9a6075f5e828e030096bf5b6f46b5d30a608dcfd5e16b464f038",
+    "check_fixtures_data.jl": "8135a2417c271b811bc39b2f32a8f800d14475764b60348351637629af07abda",
+    "check_fixtures_operators.jl": "4f9421548609b7ba4f0047593a2124cc053a381d5f1529049190ce25e98377ee",
+    "check_memory.py": "399563d5316d8f822e76bb2b5321cca75641aff434a47c4438dab692b25d227d",
+    "check_phase3_flux.jl": "43ad641bfaad58f52e5aa2ab1405113dde29b107a27c5e21f8f549d978b985a1",
+    "check_phase3_reference.py": "85297025dfd9b2222e2ecbae6c5bdca80f0e724f80b680fcdc67fa6653723515",
+    "check_phase4.py": "66f48c6eda6bf63011fe1803580fb5a2e22ca759a4515bef960cff60748cd4a6",
+    "check_phase5.py": "183d7d6662332e9dc6d3e676b0cea96252a5eb7d78e98e288082bb08822101a5",
+    "check_precision_math.jl": "dfd28b9f4911b5d7f10558904a146970ef5c3624d51bdd0d55ed5920ca39497e",
+    "check_timing.py": "7e71a7fe2264231a658281ad52c190c1e28467767bb5d142143487b3d45459f7",
+    "compare_reference_arrays.py": "27edd256f917cc8101c3d881d16949695c71f4fac7265eaccb1a8498c44885e5",
+    "dataset_adapter.py": "15205ada4dac120d52ad10f851e43386fd1135ed756e42bd2507f9af7089f855",
+    "diagnose_phase3_flux.jl": "383f1fa02fd11e308292eda3d9e41ac916236b17cd3406e9c370bc64b2e63d16",
+    "diagnose_phase3_flux_stage2.jl": "3316869b7ab18d69b1c7127df85b9c674743a3be25e691052babaa62326536dc",
+    "diagnose_phase3_torch_stage2.py": "cb37fc124b7dab1ffcd43ed0f02fa56dc2f425333980c5f30ea67fd89ea26e97",
+    "make_fixtures.py": "95af202557ff715913617432c473e3b4c4554b994b82602441818ec97e25359b",
+    "make_initial_bundle.py": "1529d738327aa7e2a9764eb0a218a1932f8d330a3cd4e083c2eb9fcd74a47241",
+    "make_phase3_reference.py": "0a9a2645f2bf0bd66e94e1351d3538e050a8261dee451c77dd4b7b282cdab21d",
+    "make_phase5_fixture.py": "1689c99b5de5adeb2ff4b3d037c8059940bc1d8fdab0c9eb8499fd6baebbc269",
+    "make_schedule.py": "653d1709e86707a8ebaba29cb35c0e2064b8dadc136e12a1d16248489acab12b",
+    "memory_flux.jl": "c05943d19414a1a4341e3ae1ad588f1781cf1e22d586d1446a04e508e111017c",
+    "memory_torch.py": "ca3710b2765076b1ed3cc948df0eaacae9612d23224e056786402f90a411da00",
+    "model_flux.jl": "9bc2d752bb7c5543374ed4ed8e107048bec95ec17d5e293a2bade23f0a7055a4",
+    "model_torch.py": "77ac48e815b58948ab64b16938d988cae35f4719f084c25432703f6ffadfdf76",
+    "negative_tests_local.py": "b570933f425a6d555afd066651a8a2b341a211faa2877fc71e128abd9779fe1d",
+    "phase4_common.jl": "30892f68450bcc1cd963b4778b38cba0e893cd28cdf5d0333ad693efdb0826e9",
+    "phase4_flux.jl": "ceb7b710fd934f9baa1775fa713ca2c689bd294a92794af5642a6203b5007400",
+    "phase4_torch.py": "7620d9d1fbef9b714e3afa2ddcb14f98802d7fdae8eed4be1160d4f1368826bf",
+    "precision.jl": "3efd8f4a1b37da847a7bd456138dff86a8dfb927e9cdfb0ebfb64011564c2b81",
+    "prepare_dataset.py": "e0f8e5e58c673dd1e64ad0d0ca34196261e39f21d630ba10dbdceb9c7153065f",
+    "replay.jl": "098cc7ab2072f9c2f7bebe577db26f9a757020de8eb29c80e2f3a1cdbe4ff63e",
+    "selftest_local.py": "e270c774b6cd5d34af55805cdb2c3caf0af832d125b7e2531f7e14eb4a5abad0",
+    "test_precision_policy.jl": "e0aef52ec41a4bf5822793141141522d8b09af166d0fb595df0673d1363141fe",
+    "timing_flux.jl": "53d65a823baad610dfdbc50b316a2fdb4d932d5e4c64164a49bc1909213d9624",
+    "timing_torch.py": "8c7118127f1adbe110f99f420a49cebe43dd85c5213520afe0aa17a8375238ca"
+  },
+  "phase4_source_sha256": {
+    "dataset_adapter.py": "15205ada4dac120d52ad10f851e43386fd1135ed756e42bd2507f9af7089f855",
+    "model_flux.jl": "9bc2d752bb7c5543374ed4ed8e107048bec95ec17d5e293a2bade23f0a7055a4",
+    "model_torch.py": "77ac48e815b58948ab64b16938d988cae35f4719f084c25432703f6ffadfdf76",
+    "phase4_common.jl": "32d85954fdc7eba2b0073106faddde195adb73819c4b85855204bf08cc6351e6",
+    "phase4_torch.py": "75c1905118b0d53b96f48efa1c32fc4cfbe09782aee605f125013391923d2712",
+    "precision.jl": "3efd8f4a1b37da847a7bd456138dff86a8dfb927e9cdfb0ebfb64011564c2b81",
+    "replay.jl": "098cc7ab2072f9c2f7bebe577db26f9a757020de8eb29c80e2f3a1cdbe4ff63e"
+  },
+  "shared_helper_drift": [
+    "phase4_common.jl",
+    "phase4_torch.py"
+  ],
+  "non_loaded_differences": [
+    "check_phase4.py"
+  ],
+  "execution_policy": {
+    "flux": {
+      "precision": "FP32 strict FMA, TF32 off",
+      "cudnn_deterministic": false,
+      "algorithm_selection": "strict FMA candidate filter; no determinism filter",
+      "nonfinite_guard": "inside timed window",
+      "ddp_backend": "NCCL",
+      "single_process_w1": "ordinary training without collectives"
+    },
+    "pytorch": {
+      "precision": {
+        "cuda_matmul_allow_tf32": false,
+        "cudnn_allow_tf32": false,
+        "float32_matmul_precision": "highest",
+        "cudnn_deterministic": true,
+        "cudnn_benchmark": false
+      },
+      "cudnn_deterministic": true,
+      "cudnn_benchmark": false,
+      "algorithm_selection": "deterministic cuDNN",
+      "nonfinite_guard": "outside timed loop",
+      "ddp_backend": "native torch.distributed NCCL"
+    }
+  },
+  "comparison": {
+    "scope": "bounded fixture training-only pilot",
+    "numerical_equivalence": "not established through 300 updates",
+    "replica_agreement": "final state hashes equal within each launched configuration",
+    "cross_framework": "timing comparison only; execution policies differ"
+  },
+  "qualifications": [
+    "TIMING_ARTIFACT_CHECK establishes timing arithmetic, workload identity, input hashes, source-snapshot integrity, and policy metadata only.",
+    "It does not establish numerical equivalence through all 300 measured updates.",
+    "Flux and PyTorch use different convolution algorithm-selection and nonfinite-guard policies; the throughput comparison is descriptive, not a communication-only isolation.",
+    "Flux final state hashes differ across fresh repeats, consistent with non-deterministic algorithm selection; this is not evidence of an incorrect result.",
+    "The timing snapshot phase4_common.jl and phase4_torch.py are not byte-identical to the Phase 4 accepted snapshot; the drift is recorded, not asserted equivalent."
+  ]
+}

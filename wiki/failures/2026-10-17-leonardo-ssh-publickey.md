@@ -2,11 +2,41 @@
 
 Date: 2026-10-17 (recurrence 2026-10-18)
 Scope: static-scaling Phase 2 acceptance re-check; Leonardo sync/re-check
-Status: **RESOLVED for the Phase 2/3 campaign** — access was restored and all
-remote jobs ran. The same rejection returned after the final Phase 3 evidence
-copy; no acceptance evidence was lost.
+Status: **RESOLVED for the campaign — recurring operational drops.** Access
+worked for all required Phase 2/3 jobs; a later publickey rejection did not
+block the campaign because access worked again when needed. No key change was
+recorded or claimed. A separate transient local DNS/network drop occurred
+during the 2026-10-18 recheck; the Slurm job continued and all evidence was
+recovered.
 
-## Update 2026-10-18 (resolution and recurrence)
+## Update 2026-10-19 (recurrence during timing review follow-up)
+
+The SSH publickey rejection recurred during the timing review follow-up. No
+remote job was submitted. The existing campaign `61314790` evidence was
+already local; it is unaffected.
+
+## Update 2026-10-18 (update 2: successful jobs and transient network drops)
+
+The final hardened Phase 3 review-fix campaign completed remotely:
+
+- Precompile job `61187225` (`lrdn0241`): `FLUX_PRECOMPILE_OK`, exit 0.
+- Focused precision regression job `61188854` (`lrdn1845`):
+  `PHASE3_PRECISION_REGRESSION PASS`, exit 0, policy 10/10.
+- Full Phase 3 recheck job `61191281` (`lrdn2911`): all four summaries PASS,
+  exit 0.
+
+The earlier intermediate runs (precompile `61074887`, focused `61077382`,
+full recheck `61091402`) are superseded history.
+
+`ssh -o BatchMode=yes leonardo true` returned exit 0 on 2026-10-18. A transient
+local DNS/network drop occurred at `08:36:52Z` during the intermediate job
+`61091402`. The Slurm job continued, completed `0:0`, and the evidence was
+copied. A separate transient DNS interruption occurred while recovering the
+deathstar ten-case policy log; the log was recovered. These drops are not
+proven to have the same cause as the publickey rejection, and they are not
+evidence that the key was changed or fixed.
+
+## Update 2026-10-18 (earlier resolution and recurrence)
 
 Leonardo access worked for the hardened Phase 2 re-check (job `60951247`) and
 the Phase 3 final campaign: precompile `60954207`, precision regression
@@ -20,8 +50,9 @@ epicazio@login.leonardo.cineca.it: Permission denied (publickey,gssapi-keyex,gss
 At that point the reference NPZ, manifest, logs, probe outputs, runtime record,
 and remote SHA-256 transcript were already local; the remote/local SHA-256
 comparison is 15/15 MATCH. The recurrence is operational only and does not
-change the Phase 3 verdict. If more remote work is needed, restore the key or
-agent as described below and confirm with `ssh leonardo true`.
+change the Phase 3 verdict. If more remote work is needed, check access with
+`ssh leonardo true` first. See update 2 above: access later worked again
+without a recorded key change.
 
 ## Symptom
 

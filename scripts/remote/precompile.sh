@@ -16,3 +16,8 @@ REMOTE_HOST=$1
 # gnode02 are flag-identical; caches are reused across both).
 echo "Triggering precompilation of thesis env + Flux test env on $REMOTE_HOST (compute node, 8 CPUs)..."
 NTASKS=1 CPUS_PER_TASK=8 scripts/remote/run.sh "$REMOTE_HOST" "make precompile-all FLUX_REPO_PATH=../ddp_flux"
+
+if [ "$REMOTE_HOST" = "deathstar" ]; then
+    echo "Precompiling static_scaling/julia-env + ../flux-integration/test on $REMOTE_HOST..."
+    scripts/remote/run.sh "$REMOTE_HOST" "make precompile-phase4"
+fi

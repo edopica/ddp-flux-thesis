@@ -1,0 +1,6 @@
+=== STAGE g :: checker-verdict START 2026-10-18T19:25:57Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ngrep -Eq "^PHASE4_CHECK PASS( |$)" "$1" || { echo "MISSING PHASE4_CHECK PASS in $1"; exit 1; }\ntest -f "$2" || { echo "MISSING report $2"; exit 1; }\ntest -f "$3" || { echo "MISSING report $3"; exit 1; }\nsha256sum "$2" "$3"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/g-phase4-checker.log /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/check/phase4_report.txt /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/check/phase4_report.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/g-checker-verdict.log
+24a5f46fd071955fc02c802d13199d38a08f8d63759a791850c9f76f587f324b  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/check/phase4_report.txt
+7de0106f383743a57ed3be2226493ef2b9ccda407bc7ae549d88e6d20d9e1479  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/check/phase4_report.json
+=== STAGE g :: checker-verdict END 2026-10-18T19:25:57Z EXIT 0 ===

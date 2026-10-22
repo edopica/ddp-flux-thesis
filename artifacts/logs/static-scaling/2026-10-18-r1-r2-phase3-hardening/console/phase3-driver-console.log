@@ -1,0 +1,734 @@
+START_UTC=2026-10-18T12:29:56Z
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/logs SOURCE_COMMIT=a3786d97f3263cad20b254206f09c095880f624d SOURCE_STATE_SHA256=da20dddc8616f2b53b7ab7095ee0e3bc1794bece3916b1806cf83ee725fdf199 FLUX_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e FLUX_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 STATIC_SCALING_PRECISION_LOG_CANDIDATES=1 bash scripts/remote/leonardo/run-phase3-check.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 61191281
+salloc: job 61191281 queued and waiting for resources
+salloc: job 61191281 has been allocated resources
+salloc: Granted job allocation 61191281
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn2911 are ready for job
+=== run-phase3-check: START ===
+utc=2026-10-18T12:30:21Z host=lrdn2911.leonardo.local
+SLURM_JOB_ID=61191281 SLURM_JOB_NODELIST=lrdn2911
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference
+REFERENCE=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz
+REFERENCE_MANIFEST=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json
+LOG_FILE=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/logs/remote-check.log
+DEVICE=cuda FLUX_DIR=/leonardo/home/userexternal/epicazio/projects/flux-integration ATOL=1e-5 RTOL=1e-4
+SOURCE_COMMIT=a3786d97f3263cad20b254206f09c095880f624d SOURCE_STATE_SHA256=da20dddc8616f2b53b7ab7095ee0e3bc1794bece3916b1806cf83ee725fdf199
+FLUX_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e FLUX_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+THESIS_GIT=<no-git>
+FLUX_GIT=<no-git>
+--- versions ---
+python 3.11.17 numpy 2.4.6
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+julia version 1.12.6
+--- reference overwrite policy ---
+generator may overwrite only /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz and /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json; /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/logs/remote-check.log is append-only
+--- disk (/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   71G  954G   7% /leonardo_work
+generator_force_flag=1 generator_args=--fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --out-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference --device cuda --force --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 da20dddc8616f2b53b7ab7095ee0e3bc1794bece3916b1806cf83ee725fdf199 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+=== 1/3 make_phase3_reference.py ===
+CHECK backend.tf32_disabled PASS cuda_matmul_allow_tf32=False cudnn_allow_tf32=False float32_matmul_precision='highest'
+CHECK backend.cudnn_deterministic PASS deterministic=True benchmark=False
+CHECK backend.cuda_available PASS device=cuda:0 name='NVIDIA A100-SXM-64GB' capability=(8, 0)
+CHECK model.parameter_count PASS count=11271432 want=11271432
+CHECK model.array_count PASS count=62 want=62
+CHECK model.parameter_names PASS names=62 bundle_names=62
+CHECK bundle.names_shapes PASS arrays=62 elements=11271432
+CHECK bundle.load_exact PASS mismatched=0 max_abs_diff=0.0
+CHECK model.device PASS device=cuda:0
+CHECK optimizer.param_groups PASS decay=21 no_decay=41
+CHECK optimizer.group_membership PASS decay=20 conv weights + classifier.weight; no_decay=20 GN weight + 20 GN bias + classifier.bias
+CHECK optimizer.adamw_config PASS betas=(0.9, 0.999) eps=1e-08 weight_decay=(1e-04, 0.0) amsgrad=False
+CHECK optimizer.initial_zero_state PASS state_entries=0 grads_none=True
+CHECK schedule.warmup_eta PASS W=975 T=9750 eta.u1=1.0256410256410257e-06 eta.u2=2.0512820512820513e-06 eta.u3=3.076923076923077e-06
+CHECK fixture.non_synthetic PASS synthetic=False
+CHECK fixture.manifest_sha256 PASS data_fixture.npz=6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3 recorded=6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3
+CHECK fixture.data_contract PASS refs=float32/(2, 12, 3, 64, 64) labels=int64/(12,)
+CHECK fixture.labels_range PASS min=0 max=199
+CHECK fixture.update_protocol PASS u1=train_transformed_ref[0] u2=train_transformed_ref[1] u3=train_transformed_ref[0]
+CHECK activations.u1.keys PASS keys=11 names=11
+CHECK activations.u1.shapes PASS mismatches=none
+CHECK grads.u1.all_present PASS arrays=62 want=62
+CHECK optimizer.step.u1 PASS state_step=[1] params=62
+CHECK optimizer.step.u2 PASS state_step=[2] params=62
+CHECK grads.u3.all_present PASS arrays=62 want=62
+CHECK optimizer.step.u3 PASS state_step=[3] params=62
+CHECK optimizer.final_step PASS state_step=[3] params=62
+CHECK inputs.u1_equals_u3 PASS u1/u3 share train_transformed_ref[0] and train_labels
+CHECK state.u3_arrays PASS arrays=337
+CHECK reference.arrays PASS arrays=337 dtype_shape_sha256=true
+CHECK reference.manifest PASS path=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json arrays=337
+CHECK reference.write PASS npz=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json
+PHASE3_REFERENCE PASS checks=32 failed=0
+
+real	0m52.931s
+user	0m4.413s
+sys	0m1.428s
+--- 1/3 make_phase3_reference.py exit=0 ---
+=== 2/3 check_phase3_reference.py ===
+CHECK files.present PASS fixture_dir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 reference=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz
+CHECK fixture.load PASS arrays=9
+CHECK bundle.load PASS arrays=62
+CHECK reference.load PASS arrays=337
+CHECK manifest.load PASS type=dict
+CHECK reference.expected_array_count PASS n=337 want=337
+CHECK bundle.name_set PASS n=62 want=62 missing=none extra=none
+CHECK bundle.dtypes_shapes PASS n_checked=62 mismatches=none
+CHECK bundle.parameter_count PASS total=11271432 want=11271432
+CHECK manifest.required_fields PASS missing=none
+CHECK manifest.producer PASS producer='scripts/static_scaling/make_phase3_reference.py'
+CHECK manifest.created_utc PASS created='2026-10-18T12:32:40Z'
+CHECK manifest.synthetic_false PASS synthetic=False
+CHECK manifest.schema PASS schema="phase3-reference-v1; arrays entries use raw npz key names; dtype/shape; sha256 = sha256 of np.ascontiguousarray(a).tobytes(order='C'); canonical PyTorch layouts (NCHW images, conv (out,in,kh,kw), linear (out,in))"
+CHECK manifest.provenance PASS bad_type=none source_commit='a3786d97f3263cad20b254206f09c095880f624d' flux_commit='f7b4520c4bd307c67bbc5ac92a1c68493eccff6e'
+CHECK manifest.device PASS device='cuda:0'
+CHECK manifest.torch_info PASS torch='2.9.1+cu126'
+CHECK manifest.cuda_info PASS cuda='12.6' runtime.cuda_available=True
+CHECK manifest.tf32_disabled PASS tf32={'cuda_matmul_allow_tf32': False, 'cudnn_allow_tf32': False, 'float32_matmul_precision': 'highest', 'cudnn_deterministic': True, 'cudnn_benchmark': False}
+CHECK manifest.file_sha256 PASS checked=data_fixture.npz<-data_fixture.npz;initial_bundle.npz<-file-sha256;phase3_reference.npz<-reference_file;fixture_manifest.json<-fixture_manifest.json mismatches=none
+CHECK manifest.array_entries PASS n=337 malformed=none duplicates=none
+CHECK manifest.array_set PASS n=337 want=337 missing=none extra=none
+CHECK arrays.actual_set PASS n=337 want=337 missing=none extra=none
+CHECK arrays.metadata PASS n_checked=337 mismatches=none
+CHECK arrays.manifest_metadata PASS n_checked=337 mismatches=none
+CHECK arrays.sha256 PASS n_checked=337 want=337 mismatches=none
+CHECK groups.expected_membership PASS decay=21 no_decay=41 total=62
+CHECK groups.decay PASS source=manifest.optimizer n=21 missing=none extra=none
+CHECK groups.no_decay PASS source=manifest.optimizer n=41 missing=none extra=none
+CHECK model.parameter_count PASS manifest=11271432 computed=11271432 want=11271432
+CHECK model.array_count PASS manifest=62 computed=62 want=62
+CHECK manifest.adamw PASS problems=none
+CHECK manifest.schedule PASS W=975 T=9750 problems=none
+CHECK optimizer.steps PASS steps={'u1': 1, 'u2': 2, 'u3': 3} problems=none
+CHECK fixture.data_contract PASS train_transformed_ref=float32/(2, 12, 3, 64, 64) train_labels=int64/(12,)
+CHECK fixture.input_u1 PASS exact
+CHECK fixture.label_u1 PASS exact
+CHECK fixture.input_u2 PASS exact
+CHECK fixture.label_u2 PASS exact
+CHECK fixture.input_u3 PASS exact
+CHECK fixture.label_u3 PASS exact
+CHECK schedule.eta_u1 PASS value=array([1.02564103e-06]) expected=1.02564103e-06 rtol=1.0e-12
+CHECK schedule.eta_u2 PASS value=array([2.05128205e-06]) expected=2.05128205e-06 rtol=1.0e-12
+CHECK schedule.eta_u3 PASS value=array([3.07692308e-06]) expected=3.07692308e-06 rtol=1.0e-12
+CHECK arrays.finite PASS n_checked=333 nonfinite=none
+CHECK optimizer.moments_nonzero PASS n_zero_m=0 zero_m=none n_zero_v=0 zero_v=none
+CHECK optimizer.v_nonnegative PASS n_negative=0 arrays=none
+CHECK optimizer.step_u3 PASS value=3 dtype=int64 shape=(1,)
+PHASE3_REFERENCE_CHECK PASS arrays=337 atol=1e-05 rtol=0.0001
+
+real	0m1.181s
+user	0m1.589s
+sys	0m0.268s
+--- 2/3 check_phase3_reference.py exit=0 ---
+flux_checker_args=--fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --device cuda --atol 1e-5 --rtol 1e-4 --reference /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz --manifest /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json
+=== 3/3 check_phase3_flux.jl ===
+PHASE3_FLUX_CHECK_CONFIG device=cuda atol=1e-05 rtol=0.0001 grads_u1_atol=0.001 grads_u1_rtol=0.0001 grads_u3_atol=0.002 grads_u3_rtol=0.0001 m_u3_atol=0.0002 m_u3_rtol=0.0001
+PHASE3_ACCEPTANCE_RULE base="|a - b| <= 1.0e-5 + 0.0001 * max(|a|, |b|)" phase3.grads.u1="|a - b| <= 0.001 + 0.0001 * max(|a|, |b|)" phase3.grads.u3="|a - b| <= 0.002 + 0.0001 * max(|a|, |b|)" phase3.m.u3="|a - b| <= 0.0002 + 0.0001 * max(|a|, |b|)" other_categories=base
+PHASE3_FLUX_CHECK_CONFIG fixture_dir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+PHASE3_FLUX_CHECK_CONFIG bundle=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+PHASE3_FLUX_CHECK_CONFIG reference=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz
+PHASE3_FLUX_CHECK_CONFIG manifest=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json
+CHECK files.bundle PASS /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+CHECK files.reference PASS /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz
+CHECK files.manifest PASS /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json
+CHECK manifest.parse PASS /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json
+CHECK model.bundle_names PASS n=62 missing=none extra=none
+CHECK model.bundle_shapes PASS n_checked=62 mismatches=none
+CHECK model.bundle_dtypes PASS n_checked=62 non_float32=none
+CHECK model.array_count PASS n=62 want=62
+CHECK model.parameter_count PASS n=11271432 want=11271432
+CHECK model.load_exact PASS n_checked=62 mismatches=none
+CHECK model.load_bundle_reload PASS n_checked=62 mismatches=none
+CHECK protocol.u1 PASS input_matches_fixture=true labels_match_fixture=true row=1
+CHECK protocol.u2 PASS input_matches_fixture=true labels_match_fixture=true row=2
+CHECK protocol.u3 PASS input_matches_fixture=true labels_match_fixture=true row=1
+CHECK protocol.u3_reuses_u1 PASS input_equal=true labels_equal=true
+CHECK reference.inputs_labels PASS n=6 missing=none invalid=none
+CHECK reference.eta PASS n=3 missing=none invalid=none
+CHECK reference.loss_logits PASS n=6 missing=none invalid=none
+CHECK reference.activations PASS n=11 missing=none invalid=none
+CHECK reference.grad_u1 PASS n=62 missing=none invalid=none
+CHECK reference.grad_u3 PASS n=62 missing=none invalid=none
+CHECK reference.param_u3 PASS n=62 missing=none invalid=none
+CHECK reference.m_u3 PASS n=62 missing=none invalid=none
+CHECK reference.v_u3 PASS n=62 missing=none invalid=none
+CHECK reference.step PASS n=1 missing=none invalid=none
+CHECK reference.array_set PASS n=337 want=337 missing=none extra=none
+CHECK manifest.synthetic PASS value=false
+CHECK manifest.parameter_count PASS got=11271432 want=11271432 key=parameter_count
+CHECK manifest.array_count PASS got=62 want=62 key=parameter_array_count
+CHECK manifest.step_numbers PASS got=[1, 2, 3] want=[1, 2, 3]
+CHECK manifest.array_set PASS n=337 want=337 missing=none extra=none duplicates=none
+CHECK manifest.arrays_present PASS n_checked=337 missing=none
+CHECK manifest.arrays_sha256 PASS n_checked=337 want=337 mismatch=none
+CHECK manifest.arrays_shape PASS n_checked=337 want=337 mismatch=none
+CHECK manifest.arrays_dtype PASS n_checked=337 want=337 mismatch=none
+CHECK manifest.reference_sha256 PASS recorded=97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783 actual=97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783
+CHECK manifest.reference_array_count PASS got=337 actual=337
+CHECK cuda.allowscalar_false PASS CUDA.allowscalar(false); probe scalar index rejected=true
+CHECK cuda.pedantic_math PASS CUDA.math_mode()=PEDANTIC_MATH
+CHECK cudnn.fma_math PASS requested=CUDNN_FMA_MATH(3) effective=CUDNN_FMA_MATH(3) cudnn_version=92.60.0
+CHECK cudnn.package_versions_supported PASS cuda_package=6.2.2 cudnn_package=6.2.2 cudnn_library=92.60.0
+CHECK cudnn.algo_caches_cleared PASS before=(fwd = 0, bwd_data = 0, bwd_filter = 0) after=(fwd=0,bwd_data=0,bwd_filter=0)
+CHECK cuda.device_selected PASS device=CUDADevice{Nothing, Missing}(nothing) (cuDNN loaded=true)
+PHASE3_FLUX_CHECK_CONFIG cuda_math_mode=PEDANTIC_MATH cuda_math_precision=TensorFloat32 cudnn_requested=CUDNN_FMA_MATH(3) cudnn_effective=CUDNN_FMA_MATH(3) cuda_package_version=6.2.2 cudnn_package_version=6.2.2 cudnn_library_version=92.60.0 cudnn_version=92.60.0
+CHECK optimizer.leaf_names PASS n=62 missing=none extra=none
+CHECK optimizer.group_counts PASS decay=21 no_decay=41
+CHECK optimizer.rule_type PASS mismatches=none
+CHECK optimizer.lambda PASS n_checked=62 mismatches=none
+CHECK optimizer.initial_m PASS n_checked=62 mismatches=none
+CHECK optimizer.initial_v PASS n_checked=62 mismatches=none
+CHECK optimizer.initial_beta_power PASS n_checked=62 mismatches=none
+CHECK optimizer.rule_config PASS beta=(0.9, 0.999) epsilon=1.0e-8 couple=true
+CHECK phase3.eta PASS max_abs_diff=0 max_rel_diff=0 worst=eta.u1 violations=0
+PHASE3_MAXABS phase3.eta 0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.060416001826524734:memory=0,algo=6:math_type=3:status=0:time=0.12390399724245071:memory=40960,algo=1:math_type=3:status=0:time=0.17203199863433838:memory=25728,algo=7:math_type=3:status=0:time=0.1955839991569519:memory=39545856,algo=2:math_type=3:status=0:time=0.2017280012369156:memory=0,algo=5:math_type=3:status=0:time=0.31539198756217957:memory=7833600,algo=4:math_type=3:status=4002:time=-1.0:memory=102243072,algo=3:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=6:math_type=3:status=0:time=0.159743994474411:memory=410880,algo=7:math_type=3:status=0:time=0.27852800488471985:memory=76087296,algo=1:math_type=3:status=0:time=0.35225600004196167:memory=25728,algo=0:math_type=3:status=0:time=0.3563520014286041:memory=0,algo=5:math_type=3:status=0:time=0.4710400104522705:memory=31195136,algo=2:math_type=3:status=0:time=0.7557119727134705:memory=113246208,algo=4:math_type=3:status=0:time=2.0889599323272705:memory=647643136,algo=3:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.20684799551963806:memory=0,algo=1:math_type=3:status=0:time=0.24063999950885773:memory=7296,algo=2:math_type=3:status=0:time=0.2979840040206909:memory=28311552,algo=5:math_type=3:status=0:time=0.7403519749641418:memory=55705600,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=6:math_type=3:status=0:time=0.16998399794101715:memory=1639936,algo=7:math_type=3:status=0:time=0.17817600071430206:memory=40108032,algo=1:math_type=3:status=0:time=0.35225600004196167:memory=7296,algo=0:math_type=3:status=0:time=0.3850240111351013:memory=0,algo=2:math_type=3:status=0:time=0.47513601183891296:memory=56623104,algo=5:math_type=3:status=0:time=0.567296028137207:memory=98041856,algo=4:math_type=3:status=0:time=1.2113920450210571:memory=606142464,algo=3:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.05632000043988228:memory=0,algo=1:math_type=3:status=0:time=0.07372800260782242:memory=7296,algo=2:math_type=3:status=0:time=0.44441598653793335:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.24063999950885773:memory=0,algo=1:math_type=3:status=0:time=0.2662400007247925:memory=0,algo=2:math_type=3:status=0:time=0.3112959861755371:memory=14155776,algo=5:math_type=3:status=0:time=1.0362880229949951:memory=182714368,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=6:math_type=3:status=0:time=0.1802240014076233:memory=6555648,algo=7:math_type=3:status=0:time=0.19353599846363068:memory=28311552,algo=0:math_type=3:status=0:time=0.4485119879245758:memory=0,algo=1:math_type=3:status=0:time=0.4638719856739044:memory=0,algo=2:math_type=3:status=0:time=0.5560320019721985:memory=28311552,algo=5:math_type=3:status=0:time=0.7137280106544495:memory=311951360,algo=4:math_type=3:status=4002:time=-1.0:memory=599523328,algo=3:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.055296000093221664:memory=0,algo=1:math_type=3:status=0:time=0.07782399654388428:memory=2688,algo=2:math_type=3:status=0:time=0.419840008020401:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=0:math_type=3:status=0:time=0.26009601354599:memory=0,algo=1:math_type=3:status=0:time=0.27033600211143494:memory=0,algo=2:math_type=3:status=0:time=0.48230400681495667:memory=7077888,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=4002:time=-1.0:memory=610533376,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=6:math_type=3:status=0:time=0.30003198981285095:memory=26218496,algo=7:math_type=3:status=0:time=0.3246079981327057:memory=47185920,algo=0:math_type=3:status=0:time=0.4864000082015991:memory=0,algo=1:math_type=3:status=0:time=0.5140479803085327:memory=0,algo=2:math_type=3:status=0:time=0.9758719801902771:memory=14155776,algo=5:math_type=3:status=4002:time=-1.0:memory=1194328064,algo=4:math_type=3:status=4002:time=-1.0:memory=627572736,algo=3:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=fwd n=8 algo=1:math_type=3:status=0:time=0.058368001133203506:memory=0,algo=0:math_type=3:status=0:time=0.062463998794555664:memory=0,algo=2:math_type=3:status=0:time=0.5120000243186951:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0,algo=7:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.28672000765800476:memory=0,algo=4:math_type=3:status=0:time=0.33484798669815063:memory=26216448,algo=5:math_type=3:status=0:time=0.3399679958820343:memory=47185920,algo=1:math_type=3:status=0:time=0.347135990858078:memory=0,algo=3:math_type=3:status=4002:time=-1.0:memory=1194328064,algo=2:math_type=3:status=4002:time=-1.0:memory=627572736
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.07884799689054489:memory=0,algo=1:math_type=3:status=0:time=0.33587199449539185:memory=0,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.18227200210094452:memory=0,algo=1:math_type=3:status=0:time=0.30822399258613586:memory=0,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=4002:time=-1.0:memory=610533376,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=4:math_type=3:status=0:time=0.17919999361038208:memory=6554624,algo=5:math_type=3:status=0:time=0.19353599846363068:memory=28311552,algo=0:math_type=3:status=0:time=0.2877439856529236:memory=0,algo=1:math_type=3:status=0:time=0.34303998947143555:memory=0,algo=3:math_type=3:status=0:time=0.6901760101318359:memory=311951360,algo=2:math_type=3:status=4002:time=-1.0:memory=599523328
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.0727040022611618:memory=0,algo=1:math_type=3:status=0:time=0.907263994216919:memory=0,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.187391996383667:memory=0,algo=1:math_type=3:status=0:time=0.20684799551963806:memory=0,algo=3:math_type=3:status=0:time=1.0199040174484253:memory=182714368,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=4:math_type=3:status=0:time=0.17612800002098083:memory=1638912,algo=5:math_type=3:status=0:time=0.1802240014076233:memory=40108032,algo=0:math_type=3:status=0:time=0.3051519989967346:memory=0,algo=1:math_type=3:status=0:time=0.5130239725112915:memory=0,algo=3:math_type=3:status=0:time=0.5683199763298035:memory=98041856,algo=2:math_type=3:status=0:time=1.1632640361785889:memory=606142464
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.07577600330114365:memory=0,algo=1:math_type=3:status=0:time=0.8939520120620728:memory=0,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=3:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=0:math_type=3:status=0:time=0.2396160066127777:memory=0,algo=1:math_type=3:status=0:time=0.3235839903354645:memory=0,algo=3:math_type=3:status=0:time=0.7516160011291504:memory=55705600,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_data n=6 algo=4:math_type=3:status=0:time=0.16076800227165222:memory=409856,algo=5:math_type=3:status=0:time=0.27852800488471985:memory=76087296,algo=0:math_type=3:status=0:time=0.4628480076789856:memory=0,algo=3:math_type=3:status=0:time=0.4710400104522705:memory=31195136,algo=1:math_type=3:status=0:time=1.0168319940567017:memory=0,algo=2:math_type=3:status=0:time=2.0152320861816406:memory=647643136
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=0:math_type=3:status=0:time=0.08089599758386612:memory=0,algo=3:math_type=3:status=0:time=0.08908800035715103:memory=0,algo=1:math_type=3:status=0:time=0.4485119879245758:memory=6944,algo=5:math_type=3:status=0:time=0.8171520233154297:memory=29666304,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=2:math_type=3:status=4002:time=-1.0:memory=119611392,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.4034560024738312:memory=0,algo=0:math_type=3:status=0:time=0.4106239974498749:memory=0,algo=1:math_type=3:status=0:time=0.6041600108146667:memory=147760,algo=5:math_type=3:status=0:time=0.7628800272941589:memory=57212928,algo=2:math_type=3:status=0:time=1.8431999683380127:memory=557842432,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.24063999950885773:memory=0,algo=0:math_type=3:status=0:time=0.24985599517822266:memory=0,algo=1:math_type=3:status=0:time=0.4915199875831604:memory=295504,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=5:math_type=3:status=0:time=0.24985599517822266:memory=30670848,algo=3:math_type=3:status=0:time=0.3962880074977875:memory=0,algo=0:math_type=3:status=0:time=0.4044800102710724:memory=0,algo=1:math_type=3:status=0:time=0.5283839702606201:memory=590992,algo=2:math_type=3:status=0:time=1.035264015197754:memory=559939584,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.0870399996638298:memory=0,algo=0:math_type=3:status=0:time=0.09728000313043594:memory=0,algo=1:math_type=3:status=0:time=0.4044800102710724:memory=32848,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.2170879989862442:memory=0,algo=0:math_type=3:status=0:time=0.22323200106620789:memory=0,algo=1:math_type=3:status=0:time=0.3696640133857727:memory=1181968,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=5:math_type=3:status=0:time=0.16486400365829468:memory=23592960,algo=3:math_type=3:status=0:time=0.35942399501800537:memory=0,algo=0:math_type=3:status=0:time=0.3665919899940491:memory=0,algo=1:math_type=3:status=0:time=0.52019202709198:memory=2363920,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=2:math_type=3:status=4002:time=-1.0:memory=573571072,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.08191999793052673:memory=0,algo=0:math_type=3:status=0:time=0.08396799862384796:memory=0,algo=1:math_type=3:status=0:time=0.3184640109539032:memory=0,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.2170879989862442:memory=0,algo=0:math_type=3:status=0:time=0.2252800017595291:memory=0,algo=1:math_type=3:status=0:time=0.24268800020217896:memory=4727824,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=5:math_type=3:status=0:time=0.16076800227165222:memory=44826624,algo=3:math_type=3:status=0:time=0.3819519877433777:memory=0,algo=0:math_type=3:status=0:time=0.3901439905166626:memory=0,algo=1:math_type=3:status=0:time=0.4116480052471161:memory=9455632,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=2:math_type=3:status=4002:time=-1.0:memory=605552640,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+PRECISION_ALGO_CANDIDATES kind=bwd_filter n=7 algo=3:math_type=3:status=0:time=0.07680000364780426:memory=0,algo=0:math_type=3:status=0:time=0.07782399654388428:memory=0,algo=1:math_type=3:status=0:time=0.12595200538635254:memory=525328,algo=2:math_type=3:status=3000:time=-1.0:memory=0,algo=4:math_type=3:status=3000:time=-1.0:memory=0,algo=5:math_type=3:status=3000:time=-1.0:memory=0,algo=6:math_type=3:status=3000:time=-1.0:memory=0
+CHECK phase3.activations PASS max_abs_diff=1.56164169e-05 max_rel_diff=1 worst=act.stage4.block1 violations=0
+PHASE3_MAXABS phase3.activations 1.56164169e-05
+CHECK phase3.logits PASS max_abs_diff=1.7285347e-06 max_rel_diff=0.00293240016 worst=logits.u3 violations=0
+PHASE3_MAXABS phase3.logits 1.7285347e-06
+CHECK phase3.loss PASS max_abs_diff=4.76837158e-07 max_rel_diff=8.46131352e-08 worst=loss.u1 violations=0
+PHASE3_MAXABS phase3.loss 4.76837158e-07
+CHECK phase3.grads.u1 PASS max_abs_diff=0.000302582979 max_rel_diff=2 worst=grad.u1.stem.conv.weight violations=0
+PHASE3_MAXABS phase3.grads.u1 0.000302582979
+CHECK phase3.grads.u3 PASS max_abs_diff=0.000608410686 max_rel_diff=2 worst=grad.u3.stem.conv.weight violations=0
+PHASE3_MAXABS phase3.grads.u3 0.000608410686
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stem.conv.weight ref_l2=1.316371e+00 actual_l2=1.316342e+00 diff_l2=2.272451e-03 rel_l2=1.726299e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stem.gn.weight ref_l2=6.788041e-02 actual_l2=6.788156e-02 diff_l2=7.567460e-05 rel_l2=1.114822e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stem.gn.bias ref_l2=5.961497e-02 actual_l2=5.961085e-02 diff_l2=9.864966e-05 rel_l2=1.654780e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block0.conv1.weight ref_l2=8.271294e-01 actual_l2=8.271849e-01 diff_l2=1.653306e-03 rel_l2=1.998848e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block0.conv2.weight ref_l2=7.122075e-01 actual_l2=7.122371e-01 diff_l2=1.334840e-03 rel_l2=1.874229e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block0.gn1.weight ref_l2=4.375180e-02 actual_l2=4.376262e-02 diff_l2=7.272384e-05 rel_l2=1.662191e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block0.gn1.bias ref_l2=3.863645e-02 actual_l2=3.864027e-02 diff_l2=7.129170e-05 rel_l2=1.845193e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block0.gn2.weight ref_l2=4.091767e-02 actual_l2=4.090464e-02 diff_l2=6.586808e-05 rel_l2=1.609771e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block0.gn2.bias ref_l2=4.528468e-02 actual_l2=4.526896e-02 diff_l2=6.745641e-05 rel_l2=1.489608e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block1.conv1.weight ref_l2=5.510523e-01 actual_l2=5.510770e-01 diff_l2=9.640965e-04 rel_l2=1.749555e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block1.conv2.weight ref_l2=5.756548e-01 actual_l2=5.756983e-01 diff_l2=7.754603e-04 rel_l2=1.347093e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block1.gn1.weight ref_l2=3.213299e-02 actual_l2=3.212739e-02 diff_l2=3.653133e-05 rel_l2=1.136879e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block1.gn1.bias ref_l2=3.084117e-02 actual_l2=3.084436e-02 diff_l2=3.719771e-05 rel_l2=1.206106e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block1.gn2.weight ref_l2=3.075037e-02 actual_l2=3.075799e-02 diff_l2=3.287111e-05 rel_l2=1.068966e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage1.block1.gn2.bias ref_l2=4.522725e-02 actual_l2=4.522690e-02 diff_l2=3.474955e-05 rel_l2=7.683322e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.conv1.weight ref_l2=1.003925e+00 actual_l2=1.003932e+00 diff_l2=1.261584e-03 rel_l2=1.256651e-03
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.conv2.weight ref_l2=1.156989e+00 actual_l2=1.157094e+00 diff_l2=1.089367e-03 rel_l2=9.415535e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.gn1.weight ref_l2=5.114521e-02 actual_l2=5.114139e-02 diff_l2=4.161360e-05 rel_l2=8.136364e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.gn1.bias ref_l2=5.509951e-02 actual_l2=5.509399e-02 diff_l2=4.350065e-05 rel_l2=7.894926e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.gn2.weight ref_l2=7.262139e-02 actual_l2=7.262218e-02 diff_l2=7.860835e-06 rel_l2=1.082441e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.gn2.bias ref_l2=8.152321e-02 actual_l2=8.152566e-02 diff_l2=3.972200e-05 rel_l2=4.872477e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block1.conv1.weight ref_l2=1.196107e+00 actual_l2=1.196107e+00 diff_l2=5.137949e-05 rel_l2=4.295559e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block1.conv2.weight ref_l2=1.514822e+00 actual_l2=1.514819e+00 diff_l2=4.718381e-05 rel_l2=3.114809e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block1.gn1.weight ref_l2=6.891591e-02 actual_l2=6.891596e-02 diff_l2=1.639769e-06 rel_l2=2.379377e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block1.gn1.bias ref_l2=7.807094e-02 actual_l2=7.807096e-02 diff_l2=1.742627e-06 rel_l2=2.232108e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block1.gn2.weight ref_l2=7.048321e-02 actual_l2=7.048301e-02 diff_l2=1.706915e-06 rel_l2=2.421733e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block1.gn2.bias ref_l2=1.014424e-01 actual_l2=1.014422e-01 diff_l2=1.665048e-06 rel_l2=1.641374e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.proj.weight ref_l2=4.631933e-01 actual_l2=4.632040e-01 diff_l2=2.775661e-04 rel_l2=5.992446e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.proj_gn.weight ref_l2=5.683891e-02 actual_l2=5.683815e-02 diff_l2=7.639291e-06 rel_l2=1.344025e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage2.block0.proj_gn.bias ref_l2=8.152321e-02 actual_l2=8.152566e-02 diff_l2=3.972200e-05 rel_l2=4.872477e-04
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.conv1.weight ref_l2=2.913699e+00 actual_l2=2.913695e+00 diff_l2=5.782464e-05 rel_l2=1.984578e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.conv2.weight ref_l2=3.519986e+00 actual_l2=3.519986e+00 diff_l2=5.665258e-05 rel_l2=1.609455e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.gn1.weight ref_l2=1.170173e-01 actual_l2=1.170171e-01 diff_l2=1.595012e-06 rel_l2=1.363056e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.gn1.bias ref_l2=1.297706e-01 actual_l2=1.297705e-01 diff_l2=1.566604e-06 rel_l2=1.207210e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.gn2.weight ref_l2=1.008734e-01 actual_l2=1.008734e-01 diff_l2=2.478447e-06 rel_l2=2.456988e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.gn2.bias ref_l2=1.363732e-01 actual_l2=1.363732e-01 diff_l2=1.917063e-06 rel_l2=1.405748e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block1.conv1.weight ref_l2=3.161365e+00 actual_l2=3.161365e+00 diff_l2=2.295052e-06 rel_l2=7.259686e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block1.conv2.weight ref_l2=4.183483e+00 actual_l2=4.183483e+00 diff_l2=2.736785e-06 rel_l2=6.541881e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block1.gn1.weight ref_l2=1.134419e-01 actual_l2=1.134419e-01 diff_l2=4.052703e-08 rel_l2=3.572494e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block1.gn1.bias ref_l2=1.206545e-01 actual_l2=1.206545e-01 diff_l2=3.167564e-08 rel_l2=2.625318e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block1.gn2.weight ref_l2=1.197383e-01 actual_l2=1.197383e-01 diff_l2=3.342370e-08 rel_l2=2.791396e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block1.gn2.bias ref_l2=1.622504e-01 actual_l2=1.622504e-01 diff_l2=3.059965e-08 rel_l2=1.885952e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.proj.weight ref_l2=1.101313e+00 actual_l2=1.101311e+00 diff_l2=2.249479e-05 rel_l2=2.042543e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.proj_gn.weight ref_l2=1.181167e-01 actual_l2=1.181167e-01 diff_l2=2.476127e-06 rel_l2=2.096339e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage3.block0.proj_gn.bias ref_l2=1.363732e-01 actual_l2=1.363732e-01 diff_l2=1.917063e-06 rel_l2=1.405748e-05
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.conv1.weight ref_l2=6.712848e+00 actual_l2=6.712848e+00 diff_l2=3.724877e-06 rel_l2=5.548878e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.conv2.weight ref_l2=8.293087e+00 actual_l2=8.293087e+00 diff_l2=3.201969e-06 rel_l2=3.861010e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.gn1.weight ref_l2=1.648742e-01 actual_l2=1.648742e-01 diff_l2=4.747952e-08 rel_l2=2.879743e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.gn1.bias ref_l2=1.690467e-01 actual_l2=1.690467e-01 diff_l2=3.515935e-08 rel_l2=2.079860e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.gn2.weight ref_l2=1.985815e-01 actual_l2=1.985815e-01 diff_l2=4.422106e-08 rel_l2=2.226847e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.gn2.bias ref_l2=2.240594e-01 actual_l2=2.240593e-01 diff_l2=3.017857e-08 rel_l2=1.346901e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block1.conv1.weight ref_l2=7.269866e+00 actual_l2=7.269866e+00 diff_l2=2.784469e-06 rel_l2=3.830151e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block1.conv2.weight ref_l2=8.919125e+00 actual_l2=8.919125e+00 diff_l2=3.271497e-06 rel_l2=3.667957e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block1.gn1.weight ref_l2=1.981213e-01 actual_l2=1.981213e-01 diff_l2=4.655878e-08 rel_l2=2.350014e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block1.gn1.bias ref_l2=1.943380e-01 actual_l2=1.943380e-01 diff_l2=3.147490e-08 rel_l2=1.619596e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block1.gn2.weight ref_l2=1.964368e-01 actual_l2=1.964368e-01 diff_l2=4.573858e-08 rel_l2=2.328411e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block1.gn2.bias ref_l2=2.569548e-01 actual_l2=2.569548e-01 diff_l2=3.153755e-08 rel_l2=1.227358e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.proj.weight ref_l2=2.833955e+00 actual_l2=2.833955e+00 diff_l2=1.510972e-06 rel_l2=5.331672e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.proj_gn.weight ref_l2=1.991942e-01 actual_l2=1.991941e-01 diff_l2=3.655226e-08 rel_l2=1.835007e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.stage4.block0.proj_gn.bias ref_l2=2.240594e-01 actual_l2=2.240593e-01 diff_l2=3.017857e-08 rel_l2=1.346901e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.classifier.weight ref_l2=1.514374e+01 actual_l2=1.514374e+01 diff_l2=2.018680e-06 rel_l2=1.333013e-07
+PHASE3_LEAF_L2 category=grads.u1 leaf=grad.u1.classifier.bias ref_l2=6.237207e-01 actual_l2=6.237207e-01 diff_l2=1.093901e-08 rel_l2=1.753832e-08
+PHASE3_LEAF_L2_SUMMARY category=grads.u1 leaves=62 max_rel_l2=1.998848e-03 worst_leaf=grad.u1.stage1.block0.conv1.weight zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=1 leaf=grad.u1.stage1.block0.conv1.weight rel_l2=1.998848e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=2 leaf=grad.u1.stage1.block0.conv2.weight rel_l2=1.874229e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=3 leaf=grad.u1.stage1.block0.gn1.bias rel_l2=1.845193e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=4 leaf=grad.u1.stage1.block1.conv1.weight rel_l2=1.749555e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=5 leaf=grad.u1.stem.conv.weight rel_l2=1.726299e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=6 leaf=grad.u1.stage1.block0.gn1.weight rel_l2=1.662191e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=7 leaf=grad.u1.stem.gn.bias rel_l2=1.654780e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=8 leaf=grad.u1.stage1.block0.gn2.weight rel_l2=1.609771e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=9 leaf=grad.u1.stage1.block0.gn2.bias rel_l2=1.489608e-03
+PHASE3_LEAF_L2_WORST category=grads.u1 rank=10 leaf=grad.u1.stage1.block1.conv2.weight rel_l2=1.347093e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stem.conv.weight ref_l2=1.320629e+00 actual_l2=1.320633e+00 diff_l2=4.438407e-03 rel_l2=3.360829e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stem.gn.weight ref_l2=6.747054e-02 actual_l2=6.745231e-02 diff_l2=2.260926e-04 rel_l2=3.350982e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stem.gn.bias ref_l2=5.866174e-02 actual_l2=5.867185e-02 diff_l2=1.642101e-04 rel_l2=2.799270e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block0.conv1.weight ref_l2=8.250474e-01 actual_l2=8.251189e-01 diff_l2=3.047087e-03 rel_l2=3.693227e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block0.conv2.weight ref_l2=7.058109e-01 actual_l2=7.057129e-01 diff_l2=2.293435e-03 rel_l2=3.249362e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block0.gn1.weight ref_l2=4.350552e-02 actual_l2=4.350722e-02 diff_l2=1.419709e-04 rel_l2=3.263284e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block0.gn1.bias ref_l2=3.902658e-02 actual_l2=3.903679e-02 diff_l2=1.099910e-04 rel_l2=2.818360e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block0.gn2.weight ref_l2=4.010630e-02 actual_l2=4.013316e-02 diff_l2=1.137151e-04 rel_l2=2.835342e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block0.gn2.bias ref_l2=4.519052e-02 actual_l2=4.519711e-02 diff_l2=9.415725e-05 rel_l2=2.083562e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block1.conv1.weight ref_l2=5.458081e-01 actual_l2=5.461838e-01 diff_l2=2.383120e-03 rel_l2=4.366223e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block1.conv2.weight ref_l2=5.707190e-01 actual_l2=5.707987e-01 diff_l2=1.880000e-03 rel_l2=3.294091e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block1.gn1.weight ref_l2=3.210717e-02 actual_l2=3.213067e-02 diff_l2=1.193590e-04 rel_l2=3.717518e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block1.gn1.bias ref_l2=3.034450e-02 actual_l2=3.037517e-02 diff_l2=9.665497e-05 rel_l2=3.185255e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block1.gn2.weight ref_l2=3.052062e-02 actual_l2=3.051627e-02 diff_l2=7.492676e-05 rel_l2=2.454956e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage1.block1.gn2.bias ref_l2=4.581227e-02 actual_l2=4.582015e-02 diff_l2=7.804009e-05 rel_l2=1.703476e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.conv1.weight ref_l2=9.852339e-01 actual_l2=9.854647e-01 diff_l2=3.009076e-03 rel_l2=3.054174e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.conv2.weight ref_l2=1.147904e+00 actual_l2=1.148080e+00 diff_l2=1.702769e-03 rel_l2=1.483372e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.gn1.weight ref_l2=5.100619e-02 actual_l2=5.101773e-02 diff_l2=7.002860e-05 rel_l2=1.372943e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.gn1.bias ref_l2=5.445733e-02 actual_l2=5.447469e-02 diff_l2=1.016660e-04 rel_l2=1.866893e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.gn2.weight ref_l2=7.186043e-02 actual_l2=7.186813e-02 diff_l2=6.451833e-05 rel_l2=8.978283e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.gn2.bias ref_l2=8.107372e-02 actual_l2=8.108419e-02 diff_l2=5.339583e-05 rel_l2=6.586084e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block1.conv1.weight ref_l2=1.195768e+00 actual_l2=1.195839e+00 diff_l2=2.023518e-03 rel_l2=1.692234e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block1.conv2.weight ref_l2=1.504467e+00 actual_l2=1.504362e+00 diff_l2=1.488926e-03 rel_l2=9.896702e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block1.gn1.weight ref_l2=6.832395e-02 actual_l2=6.830852e-02 diff_l2=5.817371e-05 rel_l2=8.514395e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block1.gn1.bias ref_l2=7.814344e-02 actual_l2=7.813478e-02 diff_l2=5.736254e-05 rel_l2=7.340673e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block1.gn2.weight ref_l2=6.996411e-02 actual_l2=6.996525e-02 diff_l2=5.957572e-05 rel_l2=8.515183e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block1.gn2.bias ref_l2=1.010007e-01 actual_l2=1.009959e-01 diff_l2=4.815416e-05 rel_l2=4.767705e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.proj.weight ref_l2=4.591818e-01 actual_l2=4.592559e-01 diff_l2=5.746618e-04 rel_l2=1.251491e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.proj_gn.weight ref_l2=5.514342e-02 actual_l2=5.515876e-02 diff_l2=7.334337e-05 rel_l2=1.330047e-03
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage2.block0.proj_gn.bias ref_l2=8.107372e-02 actual_l2=8.108419e-02 diff_l2=5.339583e-05 rel_l2=6.586084e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.conv1.weight ref_l2=2.888078e+00 actual_l2=2.887903e+00 diff_l2=2.358603e-03 rel_l2=8.166685e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.conv2.weight ref_l2=3.513044e+00 actual_l2=3.512838e+00 diff_l2=2.079527e-03 rel_l2=5.919445e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.gn1.weight ref_l2=1.161867e-01 actual_l2=1.161845e-01 diff_l2=6.094193e-05 rel_l2=5.245172e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.gn1.bias ref_l2=1.288758e-01 actual_l2=1.288676e-01 diff_l2=5.592346e-05 rel_l2=4.339330e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.gn2.weight ref_l2=1.003936e-01 actual_l2=1.003918e-01 diff_l2=5.764165e-05 rel_l2=5.741564e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.gn2.bias ref_l2=1.358110e-01 actual_l2=1.358024e-01 diff_l2=4.880272e-05 rel_l2=3.593430e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block1.conv1.weight ref_l2=3.158445e+00 actual_l2=3.158506e+00 diff_l2=2.719378e-03 rel_l2=8.609862e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block1.conv2.weight ref_l2=4.176547e+00 actual_l2=4.176550e+00 diff_l2=9.278997e-04 rel_l2=2.221691e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block1.gn1.weight ref_l2=1.134929e-01 actual_l2=1.134923e-01 diff_l2=2.588130e-05 rel_l2=2.280432e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block1.gn1.bias ref_l2=1.204648e-01 actual_l2=1.204638e-01 diff_l2=5.220585e-05 rel_l2=4.333703e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block1.gn2.weight ref_l2=1.195972e-01 actual_l2=1.195949e-01 diff_l2=2.626697e-05 rel_l2=2.196286e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block1.gn2.bias ref_l2=1.618971e-01 actual_l2=1.618969e-01 diff_l2=2.796973e-05 rel_l2=1.727624e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.proj.weight ref_l2=1.101429e+00 actual_l2=1.101392e+00 diff_l2=6.969043e-04 rel_l2=6.327274e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.proj_gn.weight ref_l2=1.176574e-01 actual_l2=1.176456e-01 diff_l2=7.108807e-05 rel_l2=6.041953e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage3.block0.proj_gn.bias ref_l2=1.358110e-01 actual_l2=1.358024e-01 diff_l2=4.880272e-05 rel_l2=3.593430e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.conv1.weight ref_l2=6.695822e+00 actual_l2=6.695688e+00 diff_l2=1.471412e-03 rel_l2=2.197508e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.conv2.weight ref_l2=8.254992e+00 actual_l2=8.254905e+00 diff_l2=1.398890e-03 rel_l2=1.694599e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.gn1.weight ref_l2=1.645461e-01 actual_l2=1.645441e-01 diff_l2=3.071503e-05 rel_l2=1.866652e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.gn1.bias ref_l2=1.685939e-01 actual_l2=1.685899e-01 diff_l2=3.063674e-05 rel_l2=1.817192e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.gn2.weight ref_l2=1.976436e-01 actual_l2=1.976425e-01 diff_l2=2.367659e-05 rel_l2=1.197943e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.gn2.bias ref_l2=2.231831e-01 actual_l2=2.231813e-01 diff_l2=2.797550e-05 rel_l2=1.253478e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block1.conv1.weight ref_l2=7.248649e+00 actual_l2=7.248575e+00 diff_l2=1.575697e-03 rel_l2=2.173780e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block1.conv2.weight ref_l2=8.900373e+00 actual_l2=8.900357e+00 diff_l2=1.359396e-03 rel_l2=1.527348e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block1.gn1.weight ref_l2=1.974070e-01 actual_l2=1.974044e-01 diff_l2=2.441861e-05 rel_l2=1.236968e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block1.gn1.bias ref_l2=1.938688e-01 actual_l2=1.938671e-01 diff_l2=3.148999e-05 rel_l2=1.624294e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block1.gn2.weight ref_l2=1.957859e-01 actual_l2=1.957859e-01 diff_l2=1.353418e-07 rel_l2=6.912746e-07
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block1.gn2.bias ref_l2=2.563179e-01 actual_l2=2.563173e-01 diff_l2=2.858184e-05 rel_l2=1.115093e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.proj.weight ref_l2=2.820727e+00 actual_l2=2.820709e+00 diff_l2=4.060465e-04 rel_l2=1.439510e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.proj_gn.weight ref_l2=1.982609e-01 actual_l2=1.982560e-01 diff_l2=2.228109e-05 rel_l2=1.123827e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.stage4.block0.proj_gn.bias ref_l2=2.231831e-01 actual_l2=2.231813e-01 diff_l2=2.797550e-05 rel_l2=1.253478e-04
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.classifier.weight ref_l2=1.512433e+01 actual_l2=1.512433e+01 diff_l2=8.311493e-06 rel_l2=5.495445e-07
+PHASE3_LEAF_L2 category=grads.u3 leaf=grad.u3.classifier.bias ref_l2=6.231560e-01 actual_l2=6.231560e-01 diff_l2=3.412558e-08 rel_l2=5.476250e-08
+PHASE3_LEAF_L2_SUMMARY category=grads.u3 leaves=62 max_rel_l2=4.366223e-03 worst_leaf=grad.u3.stage1.block1.conv1.weight zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=1 leaf=grad.u3.stage1.block1.conv1.weight rel_l2=4.366223e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=2 leaf=grad.u3.stage1.block1.gn1.weight rel_l2=3.717518e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=3 leaf=grad.u3.stage1.block0.conv1.weight rel_l2=3.693227e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=4 leaf=grad.u3.stem.conv.weight rel_l2=3.360829e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=5 leaf=grad.u3.stem.gn.weight rel_l2=3.350982e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=6 leaf=grad.u3.stage1.block1.conv2.weight rel_l2=3.294091e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=7 leaf=grad.u3.stage1.block0.gn1.weight rel_l2=3.263284e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=8 leaf=grad.u3.stage1.block0.conv2.weight rel_l2=3.249362e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=9 leaf=grad.u3.stage1.block1.gn1.bias rel_l2=3.185255e-03
+PHASE3_LEAF_L2_WORST category=grads.u3 rank=10 leaf=grad.u3.stage2.block0.conv1.weight rel_l2=3.054174e-03
+CHECK phase3.params.u3 PASS max_abs_diff=4.77954745e-06 max_rel_diff=1.43431936 worst=param.u3.stage2.block1.conv1.weight violations=0
+PHASE3_MAXABS phase3.params.u3 4.77954745e-06
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stem.conv.weight ref_l2=2.462785e+00 actual_l2=2.462785e+00 diff_l2=7.677128e-07 rel_l2=3.117255e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stem.gn.weight ref_l2=7.999998e+00 actual_l2=7.999998e+00 diff_l2=1.192093e-07 rel_l2=1.490117e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stem.gn.bias ref_l2=3.633539e-05 actual_l2=3.634790e-05 diff_l2=1.505031e-07 rel_l2=4.142051e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block0.conv1.weight ref_l2=1.128077e+01 actual_l2=1.128077e+01 diff_l2=1.003094e-05 rel_l2=8.892070e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block0.conv2.weight ref_l2=1.127503e+01 actual_l2=1.127503e+01 diff_l2=9.805069e-06 rel_l2=8.696269e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block0.gn1.weight ref_l2=7.999998e+00 actual_l2=7.999998e+00 diff_l2=1.976862e-07 rel_l2=2.471079e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block0.gn1.bias ref_l2=3.690542e-05 actual_l2=3.691083e-05 diff_l2=8.879532e-08 rel_l2=2.406024e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block0.gn2.weight ref_l2=8.000003e+00 actual_l2=8.000003e+00 diff_l2=2.064765e-07 rel_l2=2.580956e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block0.gn2.bias ref_l2=3.900684e-05 actual_l2=3.900718e-05 diff_l2=5.108454e-08 rel_l2=1.309630e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block1.conv1.weight ref_l2=1.129652e+01 actual_l2=1.129652e+01 diff_l2=1.104530e-05 rel_l2=9.777609e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block1.conv2.weight ref_l2=1.129416e+01 actual_l2=1.129416e+01 diff_l2=9.690062e-06 rel_l2=8.579710e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block1.gn1.weight ref_l2=7.999998e+00 actual_l2=7.999998e+00 diff_l2=1.976862e-07 rel_l2=2.471079e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block1.gn1.bias ref_l2=3.969985e-05 actual_l2=3.969797e-05 diff_l2=1.087411e-07 rel_l2=2.739080e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block1.gn2.weight ref_l2=8.000004e+00 actual_l2=8.000004e+00 diff_l2=1.332800e-07 rel_l2=1.666000e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage1.block1.gn2.bias ref_l2=4.411012e-05 actual_l2=4.411194e-05 diff_l2=4.230284e-08 rel_l2=9.590280e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.conv1.weight ref_l2=1.133193e+01 actual_l2=1.133193e+01 diff_l2=1.125854e-05 rel_l2=9.935238e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.conv2.weight ref_l2=1.601218e+01 actual_l2=1.601218e+01 diff_l2=8.860309e-06 rel_l2=5.533481e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.gn1.weight ref_l2=1.131371e+01 actual_l2=1.131371e+01 diff_l2=2.308478e-07 rel_l2=2.040425e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.gn1.bias ref_l2=5.725113e-05 actual_l2=5.724422e-05 diff_l2=1.698050e-07 rel_l2=2.965968e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.gn2.weight ref_l2=1.131371e+01 actual_l2=1.131371e+01 diff_l2=2.457562e-07 rel_l2=2.172198e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.gn2.bias ref_l2=6.108718e-05 actual_l2=6.109156e-05 diff_l2=7.590853e-08 rel_l2=1.242626e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block1.conv1.weight ref_l2=1.598185e+01 actual_l2=1.598185e+01 diff_l2=7.418673e-06 rel_l2=4.641937e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block1.conv2.weight ref_l2=1.596771e+01 actual_l2=1.596771e+01 diff_l2=2.663722e-06 rel_l2=1.668193e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block1.gn1.weight ref_l2=1.131371e+01 actual_l2=1.131371e+01 diff_l2=1.332800e-07 rel_l2=1.178040e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block1.gn1.bias ref_l2=6.318370e-05 actual_l2=6.317662e-05 diff_l2=1.512037e-07 rel_l2=2.393080e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block1.gn2.weight ref_l2=1.131371e+01 actual_l2=1.131371e+01 diff_l2=1.460010e-07 rel_l2=1.290479e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block1.gn2.bias ref_l2=6.438873e-05 actual_l2=6.439036e-05 diff_l2=4.730380e-08 rel_l2=7.346596e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.proj.weight ref_l2=1.134832e+01 actual_l2=1.134832e+01 diff_l2=3.547293e-06 rel_l2=3.125830e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.proj_gn.weight ref_l2=1.131372e+01 actual_l2=1.131372e+01 diff_l2=1.032383e-07 rel_l2=9.125052e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage2.block0.proj_gn.bias ref_l2=6.108718e-05 actual_l2=6.109156e-05 diff_l2=7.590853e-08 rel_l2=1.242626e-03
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.conv1.weight ref_l2=1.599991e+01 actual_l2=1.599991e+01 diff_l2=4.311616e-06 rel_l2=2.694775e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.conv2.weight ref_l2=2.262401e+01 actual_l2=2.262401e+01 diff_l2=5.148503e-06 rel_l2=2.275681e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.gn1.weight ref_l2=1.600000e+01 actual_l2=1.600000e+01 diff_l2=2.731428e-07 rel_l2=1.707142e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.gn1.bias ref_l2=9.063809e-05 actual_l2=9.063721e-05 diff_l2=6.550104e-08 rel_l2=7.226657e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.gn2.weight ref_l2=1.600000e+01 actual_l2=1.600000e+01 diff_l2=1.032383e-07 rel_l2=6.452392e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.gn2.bias ref_l2=9.246802e-05 actual_l2=9.247220e-05 diff_l2=8.489765e-08 rel_l2=9.181298e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block1.conv1.weight ref_l2=2.262732e+01 actual_l2=2.262732e+01 diff_l2=5.628317e-06 rel_l2=2.487399e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block1.conv2.weight ref_l2=2.259255e+01 actual_l2=2.259255e+01 diff_l2=5.674896e-06 rel_l2=2.511844e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block1.gn1.weight ref_l2=1.600000e+01 actual_l2=1.600000e+01 diff_l2=2.308478e-07 rel_l2=1.442799e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block1.gn1.bias ref_l2=9.233130e-05 actual_l2=9.233149e-05 diff_l2=8.553953e-08 rel_l2=9.264414e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block1.gn2.weight ref_l2=1.600000e+01 actual_l2=1.600000e+01 diff_l2=1.192093e-07 rel_l2=7.450580e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block1.gn2.bias ref_l2=9.482155e-05 actual_l2=9.482255e-05 diff_l2=7.744661e-08 rel_l2=8.167617e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.proj.weight ref_l2=1.607670e+01 actual_l2=1.607670e+01 diff_l2=9.703222e-07 rel_l2=6.035580e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.proj_gn.weight ref_l2=1.600001e+01 actual_l2=1.600001e+01 diff_l2=2.457562e-07 rel_l2=1.535976e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage3.block0.proj_gn.bias ref_l2=9.246802e-05 actual_l2=9.247220e-05 diff_l2=8.489765e-08 rel_l2=9.181298e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.conv1.weight ref_l2=2.263096e+01 actual_l2=2.263096e+01 diff_l2=4.995119e-06 rel_l2=2.207206e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.conv2.weight ref_l2=3.200059e+01 actual_l2=3.200059e+01 diff_l2=3.635778e-06 rel_l2=1.136160e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.gn1.weight ref_l2=2.262743e+01 actual_l2=2.262743e+01 diff_l2=5.960464e-08 rel_l2=2.634177e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.gn1.bias ref_l2=1.331666e-04 actual_l2=1.331656e-04 diff_l2=1.883012e-08 rel_l2=1.414027e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.gn2.weight ref_l2=2.262742e+01 actual_l2=2.262742e+01 diff_l2=1.192093e-07 rel_l2=5.268356e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.gn2.bias ref_l2=1.342546e-04 actual_l2=1.342530e-04 diff_l2=2.241320e-08 rel_l2=1.669454e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block1.conv1.weight ref_l2=3.200139e+01 actual_l2=3.200139e+01 diff_l2=4.267449e-06 rel_l2=1.333520e-07
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block1.conv2.weight ref_l2=3.200225e+01 actual_l2=3.200225e+01 diff_l2=1.339262e-06 rel_l2=4.184899e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block1.gn1.weight ref_l2=2.262743e+01 actual_l2=2.262743e+01 diff_l2=1.192093e-07 rel_l2=5.268354e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block1.gn1.bias ref_l2=1.351489e-04 actual_l2=1.351482e-04 diff_l2=2.862947e-08 rel_l2=2.118365e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block1.gn2.weight ref_l2=2.262742e+01 actual_l2=2.262742e+01 diff_l2=0.000000e+00 rel_l2=0.000000e+00
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block1.gn2.bias ref_l2=1.383016e-04 actual_l2=1.383009e-04 diff_l2=9.452056e-10 rel_l2=6.834379e-06
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.proj.weight ref_l2=2.260371e+01 actual_l2=2.260371e+01 diff_l2=5.901169e-07 rel_l2=2.610708e-08
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.proj_gn.weight ref_l2=2.262742e+01 actual_l2=2.262742e+01 diff_l2=1.032383e-07 rel_l2=4.562529e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.stage4.block0.proj_gn.bias ref_l2=1.342546e-04 actual_l2=1.342530e-04 diff_l2=2.241320e-08 rel_l2=1.669454e-04
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.classifier.weight ref_l2=8.162594e+00 actual_l2=8.162594e+00 diff_l2=7.741296e-08 rel_l2=9.483868e-09
+PHASE3_LEAF_L2 category=params.u3 leaf=param.u3.classifier.bias ref_l2=3.712585e-01 actual_l2=3.712585e-01 diff_l2=4.318684e-09 rel_l2=1.163255e-08
+PHASE3_LEAF_L2_SUMMARY category=params.u3 leaves=62 max_rel_l2=4.142051e-03 worst_leaf=param.u3.stem.gn.bias zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_LEAF_L2_WORST category=params.u3 rank=1 leaf=param.u3.stem.gn.bias rel_l2=4.142051e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=2 leaf=param.u3.stage2.block0.gn1.bias rel_l2=2.965968e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=3 leaf=param.u3.stage1.block1.gn1.bias rel_l2=2.739080e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=4 leaf=param.u3.stage1.block0.gn1.bias rel_l2=2.406024e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=5 leaf=param.u3.stage2.block1.gn1.bias rel_l2=2.393080e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=6 leaf=param.u3.stage1.block0.gn2.bias rel_l2=1.309630e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=7 leaf=param.u3.stage2.block0.gn2.bias rel_l2=1.242626e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=8 leaf=param.u3.stage2.block0.proj_gn.bias rel_l2=1.242626e-03
+PHASE3_LEAF_L2_WORST category=params.u3 rank=9 leaf=param.u3.stage1.block1.gn2.bias rel_l2=9.590280e-04
+PHASE3_LEAF_L2_WORST category=params.u3 rank=10 leaf=param.u3.stage3.block1.gn1.bias rel_l2=9.264414e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stem.conv.weight ref_l2=1.932762e-04 actual_l2=1.932967e-04 diff_l2=7.677128e-07 rel_l2=3.972102e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stem.gn.weight ref_l2=3.646947e-05 actual_l2=3.648496e-05 diff_l2=1.192093e-07 rel_l2=3.268742e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stem.gn.bias ref_l2=3.633539e-05 actual_l2=3.634790e-05 diff_l2=1.505031e-07 rel_l2=4.142051e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block0.conv1.weight ref_l2=8.773277e-04 actual_l2=8.773154e-04 diff_l2=1.003094e-05 rel_l2=1.143351e-02
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block0.conv2.weight ref_l2=8.799415e-04 actual_l2=8.798494e-04 diff_l2=9.805069e-06 rel_l2=1.114287e-02
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block0.gn1.weight ref_l2=3.971978e-05 actual_l2=3.972671e-05 diff_l2=1.976862e-07 rel_l2=4.977023e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block0.gn1.bias ref_l2=3.690542e-05 actual_l2=3.691083e-05 diff_l2=8.879532e-08 rel_l2=2.406024e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block0.gn2.weight ref_l2=3.743670e-05 actual_l2=3.744163e-05 diff_l2=2.064765e-07 rel_l2=5.515351e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block0.gn2.bias ref_l2=3.900684e-05 actual_l2=3.900718e-05 diff_l2=5.108454e-08 rel_l2=1.309630e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block1.conv1.weight ref_l2=8.773342e-04 actual_l2=8.773964e-04 diff_l2=1.104530e-05 rel_l2=1.258961e-02
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block1.conv2.weight ref_l2=9.171372e-04 actual_l2=9.170221e-04 diff_l2=9.690062e-06 rel_l2=1.056555e-02
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block1.gn1.weight ref_l2=3.848443e-05 actual_l2=3.849685e-05 diff_l2=1.976862e-07 rel_l2=5.136784e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block1.gn1.bias ref_l2=3.969985e-05 actual_l2=3.969797e-05 diff_l2=1.087411e-07 rel_l2=2.739080e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block1.gn2.weight ref_l2=4.123690e-05 actual_l2=4.126329e-05 diff_l2=1.332800e-07 rel_l2=3.232058e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage1.block1.gn2.bias ref_l2=4.411012e-05 actual_l2=4.411194e-05 diff_l2=4.230284e-08 rel_l2=9.590280e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.conv1.weight ref_l2=1.326961e-03 actual_l2=1.327028e-03 diff_l2=1.125854e-05 rel_l2=8.484449e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.conv2.weight ref_l2=1.944407e-03 actual_l2=1.944476e-03 diff_l2=8.860309e-06 rel_l2=4.556818e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.gn1.weight ref_l2=5.835636e-05 actual_l2=5.835164e-05 diff_l2=2.308478e-07 rel_l2=3.955829e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.gn1.bias ref_l2=5.725113e-05 actual_l2=5.724422e-05 diff_l2=1.698050e-07 rel_l2=2.965968e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.gn2.weight ref_l2=5.658393e-05 actual_l2=5.658798e-05 diff_l2=2.457562e-07 rel_l2=4.343216e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.gn2.bias ref_l2=6.108718e-05 actual_l2=6.109156e-05 diff_l2=7.590853e-08 rel_l2=1.242626e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block1.conv1.weight ref_l2=1.950524e-03 actual_l2=1.950440e-03 diff_l2=7.418673e-06 rel_l2=3.803425e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block1.conv2.weight ref_l2=2.045438e-03 actual_l2=2.045440e-03 diff_l2=2.663722e-06 rel_l2=1.302274e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block1.gn1.weight ref_l2=5.939773e-05 actual_l2=5.938992e-05 diff_l2=1.332800e-07 rel_l2=2.243858e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block1.gn1.bias ref_l2=6.318370e-05 actual_l2=6.317662e-05 diff_l2=1.512037e-07 rel_l2=2.393080e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block1.gn2.weight ref_l2=6.193591e-05 actual_l2=6.194400e-05 diff_l2=1.460010e-07 rel_l2=2.357291e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block1.gn2.bias ref_l2=6.438873e-05 actual_l2=6.439036e-05 diff_l2=4.730380e-08 rel_l2=7.346596e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.proj.weight ref_l2=4.660842e-04 actual_l2=4.661209e-04 diff_l2=3.547293e-06 rel_l2=7.610842e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.proj_gn.weight ref_l2=5.893034e-05 actual_l2=5.893206e-05 diff_l2=1.032383e-07 rel_l2=1.751870e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage2.block0.proj_gn.bias ref_l2=6.108718e-05 actual_l2=6.109156e-05 diff_l2=7.590853e-08 rel_l2=1.242626e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.conv1.weight ref_l2=2.961212e-03 actual_l2=2.961170e-03 diff_l2=4.311616e-06 rel_l2=1.456031e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.conv2.weight ref_l2=4.248721e-03 actual_l2=4.248695e-03 diff_l2=5.148503e-06 rel_l2=1.211777e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.gn1.weight ref_l2=8.817866e-05 actual_l2=8.818360e-05 diff_l2=2.731428e-07 rel_l2=3.097607e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.gn1.bias ref_l2=9.063809e-05 actual_l2=9.063721e-05 diff_l2=6.550104e-08 rel_l2=7.226657e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.gn2.weight ref_l2=8.637499e-05 actual_l2=8.637505e-05 diff_l2=1.032383e-07 rel_l2=1.195233e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.gn2.bias ref_l2=9.246802e-05 actual_l2=9.247220e-05 diff_l2=8.489765e-08 rel_l2=9.181298e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block1.conv1.weight ref_l2=4.189244e-03 actual_l2=4.189240e-03 diff_l2=5.628317e-06 rel_l2=1.343516e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block1.conv2.weight ref_l2=4.341536e-03 actual_l2=4.341521e-03 diff_l2=5.674896e-06 rel_l2=1.307117e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block1.gn1.weight ref_l2=9.096423e-05 actual_l2=9.097834e-05 diff_l2=2.308478e-07 rel_l2=2.537787e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block1.gn1.bias ref_l2=9.233130e-05 actual_l2=9.233149e-05 diff_l2=8.553953e-08 rel_l2=9.264414e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block1.gn2.weight ref_l2=9.055562e-05 actual_l2=9.055903e-05 diff_l2=1.192093e-07 rel_l2=1.316421e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block1.gn2.bias ref_l2=9.482155e-05 actual_l2=9.482255e-05 diff_l2=7.744661e-08 rel_l2=8.167617e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.proj.weight ref_l2=1.021167e-03 actual_l2=1.021162e-03 diff_l2=9.703222e-07 rel_l2=9.502089e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.proj_gn.weight ref_l2=8.796913e-05 actual_l2=8.797932e-05 diff_l2=2.457562e-07 rel_l2=2.793665e-03
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage3.block0.proj_gn.bias ref_l2=9.246802e-05 actual_l2=9.247220e-05 diff_l2=8.489765e-08 rel_l2=9.181298e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.conv1.weight ref_l2=6.219110e-03 actual_l2=6.219123e-03 diff_l2=4.995119e-06 rel_l2=8.031887e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.conv2.weight ref_l2=8.820837e-03 actual_l2=8.820792e-03 diff_l2=3.635778e-06 rel_l2=4.121806e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.gn1.weight ref_l2=1.326074e-04 actual_l2=1.326054e-04 diff_l2=5.960464e-08 rel_l2=4.494821e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.gn1.bias ref_l2=1.331666e-04 actual_l2=1.331656e-04 diff_l2=1.883012e-08 rel_l2=1.414027e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.gn2.weight ref_l2=1.283496e-04 actual_l2=1.283553e-04 diff_l2=1.192093e-07 rel_l2=9.287858e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.gn2.bias ref_l2=1.342546e-04 actual_l2=1.342530e-04 diff_l2=2.241320e-08 rel_l2=1.669454e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block1.conv1.weight ref_l2=8.713153e-03 actual_l2=8.713102e-03 diff_l2=4.267449e-06 rel_l2=4.897709e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block1.conv2.weight ref_l2=9.093143e-03 actual_l2=9.093095e-03 diff_l2=1.339262e-06 rel_l2=1.472826e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block1.gn1.weight ref_l2=1.342314e-04 actual_l2=1.342334e-04 diff_l2=1.192093e-07 rel_l2=8.880878e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block1.gn1.bias ref_l2=1.351489e-04 actual_l2=1.351482e-04 diff_l2=2.862947e-08 rel_l2=2.118365e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block1.gn2.weight ref_l2=1.338818e-04 actual_l2=1.338818e-04 diff_l2=0.000000e+00 rel_l2=0.000000e+00
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block1.gn2.bias ref_l2=1.383016e-04 actual_l2=1.383009e-04 diff_l2=9.452056e-10 rel_l2=6.834379e-06
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.proj.weight ref_l2=2.117133e-03 actual_l2=2.117122e-03 diff_l2=5.901169e-07 rel_l2=2.787340e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.proj_gn.weight ref_l2=1.288860e-04 actual_l2=1.288809e-04 diff_l2=1.032383e-07 rel_l2=8.010044e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.stage4.block0.proj_gn.bias ref_l2=1.342546e-04 actual_l2=1.342530e-04 diff_l2=2.241320e-08 rel_l2=1.669454e-04
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.classifier.weight ref_l2=1.966092e-03 actual_l2=1.966083e-03 diff_l2=7.741297e-08 rel_l2=3.937402e-05
+PHASE3_LEAF_L2 category=param_increment.u3 leaf=delta.u3.classifier.bias ref_l2=8.702300e-05 actual_l2=8.702247e-05 diff_l2=4.318684e-09 rel_l2=4.962693e-05
+PHASE3_LEAF_L2_SUMMARY category=param_increment.u3 leaves=62 max_rel_l2=1.258961e-02 worst_leaf=delta.u3.stage1.block1.conv1.weight zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_PARAM_INCREMENT_SUMMARY category=param_increment.u3 leaves=62 max_rel_l2=1.258961e-02 worst_leaf=delta.u3.stage1.block1.conv1.weight zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=1 leaf=delta.u3.stage1.block1.conv1.weight rel_l2=1.258961e-02
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=2 leaf=delta.u3.stage1.block0.conv1.weight rel_l2=1.143351e-02
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=3 leaf=delta.u3.stage1.block0.conv2.weight rel_l2=1.114287e-02
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=4 leaf=delta.u3.stage1.block1.conv2.weight rel_l2=1.056555e-02
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=5 leaf=delta.u3.stage2.block0.conv1.weight rel_l2=8.484449e-03
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=6 leaf=delta.u3.stage2.block0.proj.weight rel_l2=7.610842e-03
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=7 leaf=delta.u3.stage1.block0.gn2.weight rel_l2=5.515351e-03
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=8 leaf=delta.u3.stage1.block1.gn1.weight rel_l2=5.136784e-03
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=9 leaf=delta.u3.stage1.block0.gn1.weight rel_l2=4.977023e-03
+PHASE3_LEAF_L2_WORST category=param_increment.u3 rank=10 leaf=delta.u3.stage2.block0.conv2.weight rel_l2=4.556818e-03
+CHECK phase3.m.u3 PASS max_abs_diff=6.32628798e-05 max_rel_diff=2 worst=m.u3.stem.conv.weight violations=0
+PHASE3_MAXABS phase3.m.u3 6.32628798e-05
+CHECK phase3.v.u3 PASS max_abs_diff=2.32830644e-07 max_rel_diff=1 worst=v.u3.classifier.weight violations=0
+PHASE3_MAXABS phase3.v.u3 2.32830644e-07
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stem.conv.weight ref_l2=2.817618e-01 actual_l2=2.817309e-01 diff_l2=5.955846e-04 rel_l2=2.113788e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stem.gn.weight ref_l2=1.386988e-02 actual_l2=1.387220e-02 diff_l2=2.717214e-05 rel_l2=1.959075e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stem.gn.bias ref_l2=1.305688e-02 actual_l2=1.305964e-02 diff_l2=2.741705e-05 rel_l2=2.099817e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block0.conv1.weight ref_l2=1.793137e-01 actual_l2=1.792988e-01 diff_l2=4.604878e-04 rel_l2=2.568057e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block0.conv2.weight ref_l2=1.526918e-01 actual_l2=1.526762e-01 diff_l2=3.173530e-04 rel_l2=2.078389e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block0.gn1.weight ref_l2=1.020834e-02 actual_l2=1.020885e-02 diff_l2=2.076327e-05 rel_l2=2.033951e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block0.gn1.bias ref_l2=9.104784e-03 actual_l2=9.104593e-03 diff_l2=1.839966e-05 rel_l2=2.020879e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block0.gn2.weight ref_l2=9.368212e-03 actual_l2=9.370775e-03 diff_l2=1.396963e-05 rel_l2=1.491174e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block0.gn2.bias ref_l2=1.066738e-02 actual_l2=1.066720e-02 diff_l2=1.283428e-05 rel_l2=1.203133e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block1.conv1.weight ref_l2=1.204947e-01 actual_l2=1.205226e-01 diff_l2=2.881687e-04 rel_l2=2.391546e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block1.conv2.weight ref_l2=1.348966e-01 actual_l2=1.348971e-01 diff_l2=2.394672e-04 rel_l2=1.775190e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block1.gn1.weight ref_l2=7.837838e-03 actual_l2=7.840334e-03 diff_l2=1.578339e-05 rel_l2=2.013742e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block1.gn1.bias ref_l2=7.447168e-03 actual_l2=7.450545e-03 diff_l2=1.198914e-05 rel_l2=1.609893e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block1.gn2.weight ref_l2=7.554562e-03 actual_l2=7.555509e-03 diff_l2=1.083559e-05 rel_l2=1.434310e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage1.block1.gn2.bias ref_l2=1.162228e-02 actual_l2=1.162319e-02 diff_l2=9.987281e-06 rel_l2=8.593216e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.conv1.weight ref_l2=2.474887e-01 actual_l2=2.475090e-01 diff_l2=3.816781e-04 rel_l2=1.542204e-03
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.conv2.weight ref_l2=2.916369e-01 actual_l2=2.916754e-01 diff_l2=2.497953e-04 rel_l2=8.565287e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.gn1.weight ref_l2=1.297802e-02 actual_l2=1.297977e-02 diff_l2=1.148774e-05 rel_l2=8.851693e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.gn1.bias ref_l2=1.425744e-02 actual_l2=1.425968e-02 diff_l2=1.401794e-05 rel_l2=9.832021e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.gn2.weight ref_l2=1.906283e-02 actual_l2=1.906444e-02 diff_l2=9.600289e-06 rel_l2=5.036130e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.gn2.bias ref_l2=2.126382e-02 actual_l2=2.126589e-02 diff_l2=9.123624e-06 rel_l2=4.290680e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block1.conv1.weight ref_l2=3.113925e-01 actual_l2=3.113853e-01 diff_l2=2.683441e-04 rel_l2=8.617550e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block1.conv2.weight ref_l2=3.992069e-01 actual_l2=3.991924e-01 diff_l2=1.765436e-04 rel_l2=4.422360e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block1.gn1.weight ref_l2=1.794559e-02 actual_l2=1.794346e-02 diff_l2=6.531099e-06 rel_l2=3.639389e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block1.gn1.bias ref_l2=2.051291e-02 actual_l2=2.051138e-02 diff_l2=8.296933e-06 rel_l2=4.044737e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block1.gn2.weight ref_l2=1.836921e-02 actual_l2=1.836869e-02 diff_l2=6.962290e-06 rel_l2=3.790195e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block1.gn2.bias ref_l2=2.700876e-02 actual_l2=2.700852e-02 diff_l2=7.071466e-06 rel_l2=2.618212e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.proj.weight ref_l2=1.184694e-01 actual_l2=1.184786e-01 diff_l2=7.923660e-05 rel_l2=6.688363e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.proj_gn.weight ref_l2=1.416339e-02 actual_l2=1.416501e-02 diff_l2=9.536730e-06 rel_l2=6.733367e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage2.block0.proj_gn.bias ref_l2=2.126382e-02 actual_l2=2.126589e-02 diff_l2=9.123624e-06 rel_l2=4.290680e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.conv1.weight ref_l2=7.719328e-01 actual_l2=7.719046e-01 diff_l2=2.796819e-04 rel_l2=3.623138e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.conv2.weight ref_l2=9.454034e-01 actual_l2=9.453970e-01 diff_l2=2.507961e-04 rel_l2=2.652794e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.gn1.weight ref_l2=3.132436e-02 actual_l2=3.132483e-02 diff_l2=8.048489e-06 rel_l2=2.569402e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.gn1.bias ref_l2=3.450761e-02 actual_l2=3.450694e-02 diff_l2=7.645470e-06 rel_l2=2.215590e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.gn2.weight ref_l2=2.763409e-02 actual_l2=2.763397e-02 diff_l2=6.556871e-06 rel_l2=2.372747e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.gn2.bias ref_l2=3.677912e-02 actual_l2=3.677936e-02 diff_l2=6.833004e-06 rel_l2=1.857849e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block1.conv1.weight ref_l2=8.545879e-01 actual_l2=8.546007e-01 diff_l2=3.083006e-04 rel_l2=3.607594e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block1.conv2.weight ref_l2=1.127465e+00 actual_l2=1.127473e+00 diff_l2=1.565608e-04 rel_l2=1.388609e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block1.gn1.weight ref_l2=3.036782e-02 actual_l2=3.036827e-02 diff_l2=4.894113e-06 rel_l2=1.611612e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block1.gn1.bias ref_l2=3.262290e-02 actual_l2=3.262318e-02 diff_l2=7.146588e-06 rel_l2=2.190666e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block1.gn2.weight ref_l2=3.225512e-02 actual_l2=3.225516e-02 diff_l2=3.993144e-06 rel_l2=1.237988e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block1.gn2.bias ref_l2=4.375315e-02 actual_l2=4.375382e-02 diff_l2=5.708897e-06 rel_l2=1.304797e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.proj.weight ref_l2=2.961350e-01 actual_l2=2.961371e-01 diff_l2=8.540667e-05 rel_l2=2.884045e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.proj_gn.weight ref_l2=3.158827e-02 actual_l2=3.158791e-02 diff_l2=8.285550e-06 rel_l2=2.622983e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage3.block0.proj_gn.bias ref_l2=3.677912e-02 actual_l2=3.677936e-02 diff_l2=6.833004e-06 rel_l2=1.857849e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.conv1.weight ref_l2=1.814141e+00 actual_l2=1.814136e+00 diff_l2=3.198735e-04 rel_l2=1.763223e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.conv2.weight ref_l2=2.242812e+00 actual_l2=2.242804e+00 diff_l2=1.398640e-04 rel_l2=6.236099e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.gn1.weight ref_l2=4.469219e-02 actual_l2=4.469201e-02 diff_l2=3.071333e-06 rel_l2=6.872191e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.gn1.bias ref_l2=4.578828e-02 actual_l2=4.578840e-02 diff_l2=9.319911e-06 rel_l2=2.035436e-04
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.gn2.weight ref_l2=5.383548e-02 actual_l2=5.383537e-02 diff_l2=2.367960e-06 rel_l2=4.398512e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.gn2.bias ref_l2=6.068107e-02 actual_l2=6.068090e-02 diff_l2=2.796897e-06 rel_l2=4.609176e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block1.conv1.weight ref_l2=1.960229e+00 actual_l2=1.960222e+00 diff_l2=1.575552e-04 rel_l2=8.037590e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block1.conv2.weight ref_l2=2.410264e+00 actual_l2=2.410263e+00 diff_l2=1.359407e-04 rel_l2=5.640075e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block1.gn1.weight ref_l2=5.344517e-02 actual_l2=5.344492e-02 diff_l2=2.440048e-06 rel_l2=4.565517e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block1.gn1.bias ref_l2=5.254556e-02 actual_l2=5.254540e-02 diff_l2=3.148150e-06 rel_l2=5.991277e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block1.gn2.weight ref_l2=5.307756e-02 actual_l2=5.307758e-02 diff_l2=2.091425e-08 rel_l2=3.940319e-07
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block1.gn2.bias ref_l2=6.948775e-02 actual_l2=6.948769e-02 diff_l2=2.857687e-06 rel_l2=4.112505e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.proj.weight ref_l2=7.654482e-01 actual_l2=7.654466e-01 diff_l2=4.060012e-05 rel_l2=5.304098e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.proj_gn.weight ref_l2=5.374372e-02 actual_l2=5.374325e-02 diff_l2=2.225481e-06 rel_l2=4.140914e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.stage4.block0.proj_gn.bias ref_l2=6.068107e-02 actual_l2=6.068090e-02 diff_l2=2.796897e-06 rel_l2=4.609176e-05
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.classifier.weight ref_l2=4.097867e+00 actual_l2=4.097867e+00 diff_l2=1.343929e-06 rel_l2=3.279582e-07
+PHASE3_LEAF_L2 category=m.u3 leaf=m.u3.classifier.bias ref_l2=1.689308e-01 actual_l2=1.689308e-01 diff_l2=3.318497e-08 rel_l2=1.964412e-07
+PHASE3_LEAF_L2_SUMMARY category=m.u3 leaves=62 max_rel_l2=2.568057e-03 worst_leaf=m.u3.stage1.block0.conv1.weight zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_LEAF_L2_WORST category=m.u3 rank=1 leaf=m.u3.stage1.block0.conv1.weight rel_l2=2.568057e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=2 leaf=m.u3.stage1.block1.conv1.weight rel_l2=2.391546e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=3 leaf=m.u3.stem.conv.weight rel_l2=2.113788e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=4 leaf=m.u3.stem.gn.bias rel_l2=2.099817e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=5 leaf=m.u3.stage1.block0.conv2.weight rel_l2=2.078389e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=6 leaf=m.u3.stage1.block0.gn1.weight rel_l2=2.033951e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=7 leaf=m.u3.stage1.block0.gn1.bias rel_l2=2.020879e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=8 leaf=m.u3.stage1.block1.gn1.weight rel_l2=2.013742e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=9 leaf=m.u3.stem.gn.weight rel_l2=1.959075e-03
+PHASE3_LEAF_L2_WORST category=m.u3 rank=10 leaf=m.u3.stage1.block1.conv2.weight rel_l2=1.775190e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stem.conv.weight ref_l2=2.279091e-04 actual_l2=2.280279e-04 diff_l2=5.477916e-07 rel_l2=2.403553e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stem.gn.weight ref_l2=2.820476e-06 actual_l2=2.821180e-06 diff_l2=5.048474e-09 rel_l2=1.789937e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stem.gn.bias ref_l2=1.880690e-06 actual_l2=1.881244e-06 diff_l2=4.245150e-09 rel_l2=2.257230e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block0.conv1.weight ref_l2=1.998336e-05 actual_l2=1.997899e-05 diff_l2=4.956440e-08 rel_l2=2.480283e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block0.conv2.weight ref_l2=1.365077e-05 actual_l2=1.364903e-05 diff_l2=2.904961e-08 rel_l2=2.128057e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block0.gn1.weight ref_l2=1.106363e-06 actual_l2=1.106751e-06 diff_l2=2.367078e-09 rel_l2=2.139513e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block0.gn1.bias ref_l2=9.395551e-07 actual_l2=9.392132e-07 diff_l2=1.967159e-09 rel_l2=2.093713e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block0.gn2.weight ref_l2=1.057110e-06 actual_l2=1.057137e-06 diff_l2=2.077313e-09 rel_l2=1.965088e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block0.gn2.bias ref_l2=1.150068e-06 actual_l2=1.149857e-06 diff_l2=1.805738e-09 rel_l2=1.570114e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block1.conv1.weight ref_l2=9.530084e-06 actual_l2=9.535966e-06 diff_l2=2.643844e-08 rel_l2=2.774209e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block1.conv2.weight ref_l2=1.158218e-05 actual_l2=1.158334e-05 diff_l2=1.892461e-08 rel_l2=1.633942e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block1.gn1.weight ref_l2=7.056515e-07 actual_l2=7.057207e-07 diff_l2=1.389444e-09 rel_l2=1.969022e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block1.gn1.bias ref_l2=6.582573e-07 actual_l2=6.584738e-07 diff_l2=1.111046e-09 rel_l2=1.687860e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block1.gn2.weight ref_l2=5.531818e-07 actual_l2=5.531270e-07 diff_l2=9.522871e-10 rel_l2=1.721472e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage1.block1.gn2.bias ref_l2=1.188692e-06 actual_l2=1.188501e-06 diff_l2=1.107581e-09 rel_l2=9.317646e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.conv1.weight ref_l2=2.564054e-05 actual_l2=2.563966e-05 diff_l2=3.335790e-08 rel_l2=1.300983e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.conv2.weight ref_l2=3.018878e-05 actual_l2=3.019776e-05 diff_l2=3.297382e-08 rel_l2=1.092254e-03
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.gn1.weight ref_l2=1.585354e-06 actual_l2=1.585912e-06 diff_l2=1.517623e-09 rel_l2=9.572769e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.gn1.bias ref_l2=1.543625e-06 actual_l2=1.543777e-06 diff_l2=1.367694e-09 rel_l2=8.860278e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.gn2.weight ref_l2=5.545565e-06 actual_l2=5.546416e-06 diff_l2=1.572354e-09 rel_l2=2.835336e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.gn2.bias ref_l2=5.895244e-06 actual_l2=5.896558e-06 diff_l2=2.053124e-09 rel_l2=3.482678e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block1.conv1.weight ref_l2=3.441291e-05 actual_l2=3.441054e-05 diff_l2=2.803890e-08 rel_l2=8.147784e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block1.conv2.weight ref_l2=5.558989e-05 actual_l2=5.558341e-05 diff_l2=2.313608e-08 rel_l2=4.161922e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block1.gn1.weight ref_l2=3.375826e-06 actual_l2=3.374888e-06 diff_l2=1.269391e-09 rel_l2=3.760237e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block1.gn1.bias ref_l2=3.646777e-06 actual_l2=3.646201e-06 diff_l2=1.102753e-09 rel_l2=3.023911e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block1.gn2.weight ref_l2=3.022426e-06 actual_l2=3.022046e-06 diff_l2=1.050713e-09 rel_l2=3.476389e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block1.gn2.bias ref_l2=5.978461e-06 actual_l2=5.978819e-06 diff_l2=1.376038e-09 rel_l2=2.301659e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.proj.weight ref_l2=2.641347e-05 actual_l2=2.641459e-05 diff_l2=1.328094e-08 rel_l2=5.028095e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.proj_gn.weight ref_l2=1.701447e-06 actual_l2=1.701751e-06 diff_l2=1.428095e-09 rel_l2=8.393413e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage2.block0.proj_gn.bias ref_l2=5.895244e-06 actual_l2=5.896558e-06 diff_l2=2.053124e-09 rel_l2=3.482678e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.conv1.weight ref_l2=1.420245e-04 actual_l2=1.420142e-04 diff_l2=5.099761e-08 rel_l2=3.590762e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.conv2.weight ref_l2=1.995754e-04 actual_l2=1.995687e-04 diff_l2=4.632564e-08 rel_l2=2.321209e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.gn1.weight ref_l2=6.998537e-06 actual_l2=6.999203e-06 diff_l2=2.279846e-09 rel_l2=3.257603e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.gn1.bias ref_l2=6.534180e-06 actual_l2=6.533923e-06 diff_l2=1.484177e-09 rel_l2=2.271405e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.gn2.weight ref_l2=6.222879e-06 actual_l2=6.222886e-06 diff_l2=1.299657e-09 rel_l2=2.088513e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.gn2.bias ref_l2=8.534613e-06 actual_l2=8.534677e-06 diff_l2=1.370079e-09 rel_l2=1.605320e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block1.conv1.weight ref_l2=1.768059e-04 actual_l2=1.768102e-04 diff_l2=3.821107e-08 rel_l2=2.161187e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block1.conv2.weight ref_l2=2.597147e-04 actual_l2=2.597165e-04 diff_l2=3.312683e-08 rel_l2=1.275508e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block1.gn1.weight ref_l2=7.231754e-06 actual_l2=7.232270e-06 diff_l2=1.178884e-09 rel_l2=1.630150e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block1.gn1.bias ref_l2=5.775607e-06 actual_l2=5.775732e-06 diff_l2=9.474622e-10 rel_l2=1.640455e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block1.gn2.weight ref_l2=6.678060e-06 actual_l2=6.677961e-06 diff_l2=8.415842e-10 rel_l2=1.260223e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block1.gn2.bias ref_l2=9.192016e-06 actual_l2=9.192157e-06 diff_l2=1.340221e-09 rel_l2=1.458027e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.proj.weight ref_l2=7.225922e-05 actual_l2=7.225853e-05 diff_l2=1.667410e-08 rel_l2=2.307540e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.proj_gn.weight ref_l2=8.648915e-06 actual_l2=8.649838e-06 diff_l2=2.313354e-09 rel_l2=2.674733e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage3.block0.proj_gn.bias ref_l2=8.534613e-06 actual_l2=8.534677e-06 diff_l2=1.370079e-09 rel_l2=1.605320e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.conv1.weight ref_l2=5.467325e-04 actual_l2=5.467131e-04 diff_l2=7.711038e-08 rel_l2=1.410386e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.conv2.weight ref_l2=7.146848e-04 actual_l2=7.146659e-04 diff_l2=3.649937e-08 rel_l2=5.107059e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.gn1.weight ref_l2=1.350274e-05 actual_l2=1.350263e-05 diff_l2=9.046839e-10 rel_l2=6.700001e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.gn1.bias ref_l2=8.976251e-06 actual_l2=8.975990e-06 diff_l2=1.796315e-09 rel_l2=2.001186e-04
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.gn2.weight ref_l2=1.821846e-05 actual_l2=1.821827e-05 diff_l2=7.900720e-10 rel_l2=4.336657e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.gn2.bias ref_l2=1.574647e-05 actual_l2=1.574610e-05 diff_l2=7.183840e-10 rel_l2=4.562191e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block1.conv1.weight ref_l2=4.942246e-04 actual_l2=4.942120e-04 diff_l2=3.579018e-08 rel_l2=7.241683e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block1.conv2.weight ref_l2=5.685897e-04 actual_l2=5.685821e-04 diff_l2=1.294639e-08 rel_l2=2.276930e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block1.gn1.weight ref_l2=1.654854e-05 actual_l2=1.654826e-05 diff_l2=9.047353e-10 rel_l2=5.467159e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block1.gn1.bias ref_l2=1.153142e-05 actual_l2=1.153121e-05 diff_l2=6.857752e-10 rel_l2=5.947012e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block1.gn2.weight ref_l2=1.357646e-05 actual_l2=1.357629e-05 diff_l2=1.750310e-10 rel_l2=1.289224e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block1.gn2.bias ref_l2=1.490077e-05 actual_l2=1.490058e-05 diff_l2=3.856871e-10 rel_l2=2.588370e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.proj.weight ref_l2=2.706081e-04 actual_l2=2.706031e-04 diff_l2=1.266461e-08 rel_l2=4.680057e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.proj_gn.weight ref_l2=2.084433e-05 actual_l2=2.084346e-05 diff_l2=1.104216e-09 rel_l2=5.297440e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.stage4.block0.proj_gn.bias ref_l2=1.574647e-05 actual_l2=1.574610e-05 diff_l2=7.183840e-10 rel_l2=4.562191e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.classifier.weight ref_l2=5.087479e-02 actual_l2=5.087413e-02 diff_l2=6.557143e-07 rel_l2=1.288879e-05
+PHASE3_LEAF_L2 category=v.u3 leaf=v.u3.classifier.bias ref_l2=1.010562e-03 actual_l2=1.010550e-03 diff_l2=1.297049e-08 rel_l2=1.283492e-05
+PHASE3_LEAF_L2_SUMMARY category=v.u3 leaves=62 max_rel_l2=2.774209e-03 worst_leaf=v.u3.stage1.block1.conv1.weight zero_ref_nonzero_actual=0 nonzero_ref_zero_actual=0 below_floor=0
+PHASE3_LEAF_L2_WORST category=v.u3 rank=1 leaf=v.u3.stage1.block1.conv1.weight rel_l2=2.774209e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=2 leaf=v.u3.stage1.block0.conv1.weight rel_l2=2.480283e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=3 leaf=v.u3.stem.conv.weight rel_l2=2.403553e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=4 leaf=v.u3.stem.gn.bias rel_l2=2.257230e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=5 leaf=v.u3.stage1.block0.gn1.weight rel_l2=2.139513e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=6 leaf=v.u3.stage1.block0.conv2.weight rel_l2=2.128057e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=7 leaf=v.u3.stage1.block0.gn1.bias rel_l2=2.093713e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=8 leaf=v.u3.stage1.block1.gn1.weight rel_l2=1.969022e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=9 leaf=v.u3.stage1.block0.gn2.weight rel_l2=1.965088e-03
+PHASE3_LEAF_L2_WORST category=v.u3 rank=10 leaf=v.u3.stem.gn.weight rel_l2=1.789937e-03
+CHECK phase3.beta_power.u3 PASS max_abs_diff=0 max_rel_diff=0 worst=beta_power.u3.stem.conv.weight violations=0
+PHASE3_MAXABS phase3.beta_power.u3 0
+CHECK phase3.step PASS reference_step=3 flux_updates=3 expected=3
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0604160018 memory=0 shape=64x64x3x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.159743994 memory=410880 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.206847996 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.169983998 memory=1639936 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0563200004 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.24064 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.180224001 memory=6555648 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0552960001 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.260096014 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=fwd algo=6 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.30003199 memory=26218496 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=fwd algo=1 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0583680011 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.286720008 memory=0 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0788479969 memory=0 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.182272002 memory=0 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=4 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.179199994 memory=6554624 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0727040023 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.187391996 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=4 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.176128 memory=1638912 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0757760033 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.239616007 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_data algo=4 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.160768002 memory=409856 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0808959976 memory=0 shape=64x64x3x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.403456002 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.24064 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=5 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.249855995 memory=30670848 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0870399997 memory=0 shape=64x64x64x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.217087999 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=5 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.164864004 memory=23592960 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0819199979 memory=0 shape=32x32x128x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.217087999 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=5 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.160768002 memory=44826624 shape=8x8x512x12
+PHASE3_CUDNN_ALGO kind=bwd_filter algo=3 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.0768000036 memory=0 shape=16x16x256x12
+PHASE3_CUDNN_ALGO_SUMMARY choices=32 fma=32 fallback=0 enabled=true
+CHECK cudnn.fma_algo_selection PASS choices=32 fma=32 fallback=0 rule="all choices math_type=CUDNN_FMA_MATH and fallback=false; non-FMA and fallback choices never pass"
+PHASE3_FLUX_CHECK PASS
+
+real	5m23.036s
+user	2m30.246s
+sys	0m4.613s
+--- 3/3 check_phase3_flux.jl exit=0 ---
+=== summary ===
+reference_exit=0 reference_summary=1
+reference_check_exit=0 reference_check_summary=1
+flux_check_exit=0 flux_check_summary=1
+PHASE3_REMOTE_CHECK PASS
+NEXT (bring evidence home): scp leonardo:/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/logs/remote-check.log artifacts/logs/static-scaling/2026-10-17-phase3/
+NEXT (bring artifacts home): scp leonardo:/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference.npz leonardo:/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/reference/phase3_reference_manifest.json artifacts/baselines/static-scaling/2026-10-17-phase3/
+=== run-phase3-check: EXIT 0 (log: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-hardening/logs/remote-check.log) ===
+salloc: Relinquishing job allocation 61191281
+salloc: Job allocation 61191281 has been revoked.
+END_UTC=2026-10-18T12:38:08Z
+PHASE3_HARDENING_DRIVER_EXIT=0

@@ -1,0 +1,15 @@
+START_UTC=2026-10-18T12:20:55Z
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 bash scripts/remote/leonardo/precompile-phase3.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 61187225
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0241 are ready for job
+PREcompile host=lrdn0241.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-integration julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+FLUX_PRECOMPILE_OK
+salloc: Relinquishing job allocation 61187225
+END_UTC=2026-10-18T12:24:36Z
+PRECOMPILE_PHASE3_EXIT=0

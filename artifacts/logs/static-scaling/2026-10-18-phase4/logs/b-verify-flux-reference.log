@@ -1,0 +1,6 @@
+=== STAGE b :: verify-flux-reference START 2026-10-18T18:13:45Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -f "$1"\ntest -f "$2"\nsha256sum "$1" "$2"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.json 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/b-verify-flux-reference.log
+227999c81cdf3807ffb949f6105e2de9aaa62f10b20f251c36f6c93e268e1adb  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz
+cb7a1c47602fd426ca5aa4b415c021faba9a706c44738317095256641c4f9d79  /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.json
+=== STAGE b :: verify-flux-reference END 2026-10-18T18:13:45Z EXIT 0 ===

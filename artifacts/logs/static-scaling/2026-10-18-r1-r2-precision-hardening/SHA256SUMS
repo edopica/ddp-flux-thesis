@@ -1,0 +1,10 @@
+b514aff59c40223509c94aa918e7e355032232c6b6fae1bebd82a4370ba9070e  ./COMMANDS.md
+a4d6bd8219c8b7c455cef8757b26da0f077fbf1e7544960879043e213dd58f2d  ./console/precision-regression-console.log
+d93ecfd647f96fc4a99a39fc927309b1dc09b060b4c9b298d80bd3faee0bfdda  ./console/precompile-phase3.log
+84d03a62d81d3242d9b5207a0a56b54a23b2563226fd7a6c97c1536127965081  ./policy-cases.txt
+6c3b18ac5b3b82f65f3ca48794af51cac10e8425345c343b0af63b9e7aac0c8c  ./precision/logs/current.log
+d20da59c0f11c3690459b52e322a09336147aea2c92e78ad993aa8063e7180b4  ./precision/logs/fma.log
+d0b03ae31a263a65eaf69f53abb3eb94cec23252f1bd8b3c2897d8297525d19e  ./precision/logs/policy.log
+b88a08c93c88f6a7dc6ab4eaf33da68495166c1cfdf03378585ce59d9cb6925c  ./remote-SHA256.txt
+b06f9d23b953385be4d61e167d0e41aabca2ab96b17b25f4b4163603e1ecef78  ./RESULTS.md
+47c4e7c14c06b0e7c1c1da905debe349a7b7f2ddbc2fc3e393e0fa95d6b70d89  ./SHA256-COMPARISON.txt

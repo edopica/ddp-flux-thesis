@@ -1,0 +1,71 @@
+lrdn1233.leonardo.local
+Sun Oct 18 21:21:53 UTC 2026
+Sun Oct 18 23:21:53 2026       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.274.02             Driver Version: 535.274.02   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-SXM-64GB           On  | 00000000:1D:00.0 Off |                    0 |
+| N/A   43C    P0              65W / 477W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-SXM-64GB           On  | 00000000:56:00.0 Off |                    0 |
+| N/A   43C    P0              65W / 479W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A100-SXM-64GB           On  | 00000000:8F:00.0 Off |                    0 |
+| N/A   42C    P0              60W / 465W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   3  NVIDIA A100-SXM-64GB           On  | 00000000:C8:00.0 Off |                    0 |
+| N/A   43C    P0              62W / 460W |      0MiB / 65536MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+PREcompile host=lrdn1233.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-integration julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+FLUX_PRECOMPILE_OK
++ [[ flux == flux ]]
++ timeout 1200 srun --mpi=pmi2 --kill-on-bad-exit=1 -n 1 -c 32 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/source/timing_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 1 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/flux-w1-r1.json
+TIMING_PASS flux 1 0.058588046
++ set +x
++ [[ pytorch == flux ]]
++ [[ 1 == 1 ]]
++ timeout 1200 srun --kill-on-bad-exit=1 -n1 -c32 /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/source/timing_torch.py --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 1 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/pytorch-w1-r1.json
+TIMING_PASS pytorch 1 0.08986059576272964
++ set +x
++ [[ flux == flux ]]
++ timeout 1200 srun --mpi=pmi2 --kill-on-bad-exit=1 -n 2 -c 16 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/source/timing_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 2 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/flux-w2-r1.json
+TIMING_PASS flux 2 0.058575914
++ set +x
++ [[ pytorch == flux ]]
++ [[ 2 == 1 ]]
++ timeout 1200 srun --kill-on-bad-exit=1 -n1 -c32 /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=2 /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/source/timing_torch.py --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 2 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/pytorch-w2-r1.json
+/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+TIMING_PASS pytorch 2 0.059253950603306293
++ set +x
++ [[ flux == flux ]]
++ timeout 1200 srun --mpi=pmi2 --kill-on-bad-exit=1 -n 4 -c 8 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/source/timing_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 4 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/flux-w4-r1.json
+TIMING_PASS flux 4 0.057669505
++ set +x
++ [[ pytorch == flux ]]
++ [[ 4 == 1 ]]
++ timeout 1200 srun --kill-on-bad-exit=1 -n1 -c32 /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python -m torch.distributed.run --standalone --nnodes=1 --nproc_per_node=4 /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/source/timing_torch.py --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 4 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-timing-pilot/smoke-61305319/pytorch-w4-r1.json
+/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+TIMING_PASS pytorch 4 0.05226120073348284
++ set +x
+STATIC_TIMING_smoke PASS
+TIMING_DRIVER_EXIT=0

@@ -2,5 +2,11 @@
 .julia
 Manifest.toml
 .opencode/
+*.ji
+*.jls
 artifacts/baselines/*.jld2
+artifacts/**/*.npz
+artifacts/logs/static-scaling/
 reports/
+
+__pycache__/

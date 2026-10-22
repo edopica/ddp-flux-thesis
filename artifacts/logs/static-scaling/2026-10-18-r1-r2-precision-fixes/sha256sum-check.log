@@ -1,0 +1,7 @@
+./console/precision-regression-console.log: OK
+./console/precompile-default-sh-FAILED.log: OK
+./console/precompile-phase3.log: OK
+./precision/logs/current.log: OK
+./precision/logs/fma.log: OK
+./precision/logs/policy.log: OK
+./remote-SHA256.txt: OK

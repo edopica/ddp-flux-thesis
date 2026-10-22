@@ -1,0 +1,46 @@
+{
+  "framework": "pytorch",
+  "mode": "split-control",
+  "device": "cuda",
+  "world_size": 1,
+  "bundle_path": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz",
+  "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "updates": {
+    "u1": {
+      "loss_full": 5.635497570037842,
+      "loss_half1": 5.679672718048096,
+      "loss_half2": 5.591322422027588,
+      "max_abs_full_vs_halfmean": 0.00026647932827472687,
+      "max_abs_full_vs_half1": 1.7788028717041016,
+      "max_abs_full_vs_half2": 1.778802216053009
+    },
+    "u3": {
+      "loss_full": 5.541759014129639,
+      "loss_half1": 5.542395114898682,
+      "loss_half2": 5.541122913360596,
+      "max_abs_full_vs_halfmean": 0.00028723664581775665,
+      "max_abs_full_vs_half1": 1.7845149040222168,
+      "max_abs_full_vs_half2": 1.784515142440796
+    }
+  },
+  "backend_flags": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "fixture": {
+    "data_fixture_path": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/data_fixture.npz",
+    "data_fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+    "permutation_path": "",
+    "permutation_sha256": ""
+  },
+  "npz_path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/split/pytorch/cuda/split_control.npz",
+  "npz_sha256": "5ddbe7864d9080e51e0e5782b37826e421b7441cbcaef00d4a354a9241689c86",
+  "source_commit": "",
+  "source_state_sha256": "",
+  "flux_commit": "",
+  "flux_state_sha256": "",
+  "created_at": "2026-10-18T19:23:56Z"
+}

@@ -1,0 +1,988 @@
+{
+  "schema": "static-full-dataset-python-check-v1",
+  "dataset_dir": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared",
+  "reference_dir": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference",
+  "epoch": 0,
+  "batch_size": 512,
+  "worlds": [
+    1,
+    2,
+    4
+  ],
+  "strict_contract": true,
+  "julia_json": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/check-julia-historical.json",
+  "n_samples": 100000,
+  "n_eff": 99840,
+  "tail_size": 160,
+  "updates_per_epoch": 195,
+  "checks_total": 177,
+  "checks_failed": 0,
+  "pass": true,
+  "checks": [
+    {
+      "name": "reference.npz.epoch_ids",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.rank_ids_R1",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.rank_ids_R2",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.rank_ids_R4",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.update1_global_ids",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.update1_labels",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.update1_transformed_nchw",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.stats_mean",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.npz.stats_std",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.schema",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.dataset_dir",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.epoch",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.batch_size",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.n_eff",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.tail_size",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.updates_per_epoch",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.sample_order_sha256",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.update1_order_sha256",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.transform_spec_sha256",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.transform_sample_sha256",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.bundle_hash",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.bundle_file_sha256",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.dataset_files",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.stats_mean",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.json.stats_std",
+      "pass": true,
+      "detail": "present"
+    },
+    {
+      "name": "reference.schema",
+      "pass": true,
+      "detail": "schema='static-full-dataset-reference-v1'"
+    },
+    {
+      "name": "reference.dataset_dir",
+      "pass": true,
+      "detail": "ref='/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared' actual=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared"
+    },
+    {
+      "name": "reference.epoch",
+      "pass": true,
+      "detail": "ref=0 actual=0"
+    },
+    {
+      "name": "reference.batch_size",
+      "pass": true,
+      "detail": "ref=512 actual=512"
+    },
+    {
+      "name": "reference.n_eff",
+      "pass": true,
+      "detail": "ref=99840 actual=99840"
+    },
+    {
+      "name": "reference.tail_size",
+      "pass": true,
+      "detail": "ref=160 actual=160"
+    },
+    {
+      "name": "reference.updates_per_epoch",
+      "pass": true,
+      "detail": "ref=195 actual=195"
+    },
+    {
+      "name": "epoch_ids.shape",
+      "pass": true,
+      "detail": "ref=(99840,) actual=(99840,)"
+    },
+    {
+      "name": "epoch_ids.dtype",
+      "pass": true,
+      "detail": "ref=int64"
+    },
+    {
+      "name": "epoch_ids.values",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "epoch_ids.unique",
+      "pass": true,
+      "detail": "unique=99840 total=99840"
+    },
+    {
+      "name": "epoch_ids.range",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "epoch_ids.missing_equals_final_tail",
+      "pass": true,
+      "detail": "missing=160 tail=160"
+    },
+    {
+      "name": "contract.n_eff",
+      "pass": true,
+      "detail": "n_eff=99840"
+    },
+    {
+      "name": "contract.tail_size",
+      "pass": true,
+      "detail": "tail=160"
+    },
+    {
+      "name": "contract.unique",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contract.range",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "contract.updates.b512",
+      "pass": true,
+      "detail": "updates=195 expected=195"
+    },
+    {
+      "name": "contract.length.b512",
+      "pass": true,
+      "detail": "length=99840"
+    },
+    {
+      "name": "contract.updates.b256",
+      "pass": true,
+      "detail": "updates=390 expected=390"
+    },
+    {
+      "name": "contract.length.b256",
+      "pass": true,
+      "detail": "length=99840"
+    },
+    {
+      "name": "sample_order_sha256",
+      "pass": true,
+      "detail": "npz=f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335 json='f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335' expected=f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335"
+    },
+    {
+      "name": "update1_order_sha256",
+      "pass": true,
+      "detail": "actual=23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a ref='23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a'"
+    },
+    {
+      "name": "transform_spec_sha256",
+      "pass": true,
+      "detail": "actual=e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa ref='e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa'"
+    },
+    {
+      "name": "transform_sample_sha256",
+      "pass": true,
+      "detail": "actual=ab5730ec5bd7f2e144355de91ba889e7220937ac9ef812f4b6dfa6b4ef0f4cf0 ref='ab5730ec5bd7f2e144355de91ba889e7220937ac9ef812f4b6dfa6b4ef0f4cf0'"
+    },
+    {
+      "name": "stats_mean.shape",
+      "pass": true,
+      "detail": "ref=(3,)"
+    },
+    {
+      "name": "stats_std.shape",
+      "pass": true,
+      "detail": "ref=(3,)"
+    },
+    {
+      "name": "stats_mean.dtype",
+      "pass": true,
+      "detail": "ref=float32"
+    },
+    {
+      "name": "stats_std.dtype",
+      "pass": true,
+      "detail": "ref=float32"
+    },
+    {
+      "name": "stats_mean.npz_vs_dataset",
+      "pass": true,
+      "detail": "npz=array([0.48023695, 0.44806704, 0.39750364], dtype=float32) dataset=array([0.48023695, 0.44806704, 0.39750364], dtype=float32)"
+    },
+    {
+      "name": "stats_std.npz_vs_dataset",
+      "pass": true,
+      "detail": "npz=array([0.27643642, 0.2688633 , 0.28158993], dtype=float32) dataset=array([0.27643642, 0.2688633 , 0.28158993], dtype=float32)"
+    },
+    {
+      "name": "stats_mean.json_vs_dataset",
+      "pass": true,
+      "detail": "json=array([0.48023695, 0.44806704, 0.39750364], dtype=float32) dataset=array([0.48023695, 0.44806704, 0.39750364], dtype=float32)"
+    },
+    {
+      "name": "stats_std.json_vs_dataset",
+      "pass": true,
+      "detail": "json=array([0.27643642, 0.2688633 , 0.28158993], dtype=float32) dataset=array([0.27643642, 0.2688633 , 0.28158993], dtype=float32)"
+    },
+    {
+      "name": "stats_mean.json_vs_npz",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "stats_std.json_vs_npz",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R1.shape",
+      "pass": true,
+      "detail": "ref=(99840,) actual=(99840,)"
+    },
+    {
+      "name": "rank_sequence.R1.dtype",
+      "pass": true,
+      "detail": "ref=int64"
+    },
+    {
+      "name": "rank_sequence.R1.rank0",
+      "pass": true,
+      "detail": "first_ref=59951 first_expected=59951"
+    },
+    {
+      "name": "rank_sequence.R1.concatenation",
+      "pass": true,
+      "detail": "per-update rank order"
+    },
+    {
+      "name": "rank_sequence.R1.length",
+      "pass": true,
+      "detail": "length=99840 expected=99840"
+    },
+    {
+      "name": "rank_sequence.R1.union",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R1.unique",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R1.disjoint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R2.shape",
+      "pass": true,
+      "detail": "ref=(2, 49920) actual=(2, 49920)"
+    },
+    {
+      "name": "rank_sequence.R2.dtype",
+      "pass": true,
+      "detail": "ref=int64"
+    },
+    {
+      "name": "rank_sequence.R2.rank0",
+      "pass": true,
+      "detail": "first_ref=59951 first_expected=59951"
+    },
+    {
+      "name": "rank_sequence.R2.rank1",
+      "pass": true,
+      "detail": "first_ref=67487 first_expected=67487"
+    },
+    {
+      "name": "rank_sequence.R2.concatenation",
+      "pass": true,
+      "detail": "per-update rank order"
+    },
+    {
+      "name": "rank_sequence.R2.length",
+      "pass": true,
+      "detail": "length=99840 expected=99840"
+    },
+    {
+      "name": "rank_sequence.R2.union",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R2.unique",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R2.disjoint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R4.shape",
+      "pass": true,
+      "detail": "ref=(4, 24960) actual=(4, 24960)"
+    },
+    {
+      "name": "rank_sequence.R4.dtype",
+      "pass": true,
+      "detail": "ref=int64"
+    },
+    {
+      "name": "rank_sequence.R4.rank0",
+      "pass": true,
+      "detail": "first_ref=59951 first_expected=59951"
+    },
+    {
+      "name": "rank_sequence.R4.rank1",
+      "pass": true,
+      "detail": "first_ref=512 first_expected=512"
+    },
+    {
+      "name": "rank_sequence.R4.rank2",
+      "pass": true,
+      "detail": "first_ref=67487 first_expected=67487"
+    },
+    {
+      "name": "rank_sequence.R4.rank3",
+      "pass": true,
+      "detail": "first_ref=75635 first_expected=75635"
+    },
+    {
+      "name": "rank_sequence.R4.concatenation",
+      "pass": true,
+      "detail": "per-update rank order"
+    },
+    {
+      "name": "rank_sequence.R4.length",
+      "pass": true,
+      "detail": "length=99840 expected=99840"
+    },
+    {
+      "name": "rank_sequence.R4.union",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R4.unique",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "rank_sequence.R4.disjoint",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.global_ids.shape",
+      "pass": true,
+      "detail": "ref=(512,) actual=(512,)"
+    },
+    {
+      "name": "update1.global_ids.dtype",
+      "pass": true,
+      "detail": "ref=int64"
+    },
+    {
+      "name": "update1.global_ids.values",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.global_ids.first_batch",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.global_ids.local_agreement",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.labels.shape",
+      "pass": true,
+      "detail": "ref=(512,) actual=(512,)"
+    },
+    {
+      "name": "update1.labels.dtype",
+      "pass": true,
+      "detail": "ref=int64"
+    },
+    {
+      "name": "update1.labels.values",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.labels.range",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.transformed.shape",
+      "pass": true,
+      "detail": "ref=(512, 3, 64, 64) actual=(512, 3, 64, 64)"
+    },
+    {
+      "name": "update1.transformed.dtype",
+      "pass": true,
+      "detail": "ref=float32"
+    },
+    {
+      "name": "update1.transformed.max_abs_diff",
+      "pass": true,
+      "detail": "max_abs_diff=0.0"
+    },
+    {
+      "name": "update1.R1.rank0.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R1.transformed.max_abs_diff",
+      "pass": true,
+      "detail": "max_abs_diff=0.0"
+    },
+    {
+      "name": "update1.R1.shard_ids",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R2.rank0.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R2.rank1.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R2.transformed.max_abs_diff",
+      "pass": true,
+      "detail": "max_abs_diff=0.0"
+    },
+    {
+      "name": "update1.R2.shard_ids",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R4.rank0.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R4.rank1.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R4.rank2.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R4.rank3.labels",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "update1.R4.transformed.max_abs_diff",
+      "pass": true,
+      "detail": "max_abs_diff=0.0"
+    },
+    {
+      "name": "update1.R4.shard_ids",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "onehot.labels_in_range",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "onehot.shape",
+      "pass": true,
+      "detail": "actual=(512, 200)"
+    },
+    {
+      "name": "onehot.row_sums",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "onehot.row_argmax",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "onehot.flux.shape",
+      "pass": true,
+      "detail": "actual=(200, 512)"
+    },
+    {
+      "name": "onehot.flux.column_sums",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "onehot.flux.row_argmax",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "onehot.flux.explicit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "bundle.bundle_hash",
+      "pass": true,
+      "detail": "actual=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23 ref='a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23'"
+    },
+    {
+      "name": "bundle.file_sha256",
+      "pass": true,
+      "detail": "actual=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref='a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317'"
+    },
+    {
+      "name": "bundle.array_count",
+      "pass": true,
+      "detail": "actual=62"
+    },
+    {
+      "name": "bundle.element_count",
+      "pass": true,
+      "detail": "actual=11271432"
+    },
+    {
+      "name": "dataset_files.manifest",
+      "pass": true,
+      "detail": "files=12"
+    },
+    {
+      "name": "dataset_file.augmentation.npy.bytes",
+      "pass": true,
+      "detail": "actual=15000128 ref=15000128"
+    },
+    {
+      "name": "dataset_file.augmentation.npy.sha256",
+      "pass": true,
+      "detail": "actual=9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b ref='9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b'"
+    },
+    {
+      "name": "dataset_file.augmentation.npy.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b ref='9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b'"
+    },
+    {
+      "name": "dataset_file.class_wnids.txt.bytes",
+      "pass": true,
+      "detail": "actual=2000 ref=2000"
+    },
+    {
+      "name": "dataset_file.class_wnids.txt.sha256",
+      "pass": true,
+      "detail": "actual=a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b ref='a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b'"
+    },
+    {
+      "name": "dataset_file.class_wnids.txt.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b ref='a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b'"
+    },
+    {
+      "name": "dataset_file.dataset_manifest.json.bytes",
+      "pass": true,
+      "detail": "actual=4288 ref=4288"
+    },
+    {
+      "name": "dataset_file.dataset_manifest.json.sha256",
+      "pass": true,
+      "detail": "actual=584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a ref='584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a'"
+    },
+    {
+      "name": "dataset_file.dataset_manifest.json.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a ref='584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a'"
+    },
+    {
+      "name": "dataset_file.initial_bundle.manifest.json.bytes",
+      "pass": true,
+      "detail": "actual=16437 ref=16437"
+    },
+    {
+      "name": "dataset_file.initial_bundle.manifest.json.sha256",
+      "pass": true,
+      "detail": "actual=4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571 ref='4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571'"
+    },
+    {
+      "name": "dataset_file.initial_bundle.manifest.json.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571 ref='4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571'"
+    },
+    {
+      "name": "dataset_file.initial_bundle.npz.bytes",
+      "pass": true,
+      "detail": "actual=45103060 ref=45103060"
+    },
+    {
+      "name": "dataset_file.initial_bundle.npz.sha256",
+      "pass": true,
+      "detail": "actual=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref='a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317'"
+    },
+    {
+      "name": "dataset_file.initial_bundle.npz.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref='a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317'"
+    },
+    {
+      "name": "dataset_file.permutations.npy.bytes",
+      "pass": true,
+      "detail": "actual=40000128 ref=40000128"
+    },
+    {
+      "name": "dataset_file.permutations.npy.sha256",
+      "pass": true,
+      "detail": "actual=7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd ref='7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd'"
+    },
+    {
+      "name": "dataset_file.permutations.npy.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd ref='7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd'"
+    },
+    {
+      "name": "dataset_file.schedule_manifest.json.bytes",
+      "pass": true,
+      "detail": "actual=1773 ref=1773"
+    },
+    {
+      "name": "dataset_file.schedule_manifest.json.sha256",
+      "pass": true,
+      "detail": "actual=0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295 ref='0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295'"
+    },
+    {
+      "name": "dataset_file.schedule_manifest.json.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295 ref='0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295'"
+    },
+    {
+      "name": "dataset_file.stats.json.bytes",
+      "pass": true,
+      "detail": "actual=1238 ref=1238"
+    },
+    {
+      "name": "dataset_file.stats.json.sha256",
+      "pass": true,
+      "detail": "actual=6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc ref='6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc'"
+    },
+    {
+      "name": "dataset_file.stats.json.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc ref='6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc'"
+    },
+    {
+      "name": "dataset_file.train_images.npy.bytes",
+      "pass": true,
+      "detail": "actual=1228800128 ref=1228800128"
+    },
+    {
+      "name": "dataset_file.train_images.npy.sha256",
+      "pass": true,
+      "detail": "actual=ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510 ref='ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510'"
+    },
+    {
+      "name": "dataset_file.train_images.npy.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510 ref='ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510'"
+    },
+    {
+      "name": "dataset_file.train_labels.npy.bytes",
+      "pass": true,
+      "detail": "actual=800128 ref=800128"
+    },
+    {
+      "name": "dataset_file.train_labels.npy.sha256",
+      "pass": true,
+      "detail": "actual=fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79 ref='fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79'"
+    },
+    {
+      "name": "dataset_file.train_labels.npy.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79 ref='fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79'"
+    },
+    {
+      "name": "dataset_file.val_images.npy.bytes",
+      "pass": true,
+      "detail": "actual=122880128 ref=122880128"
+    },
+    {
+      "name": "dataset_file.val_images.npy.sha256",
+      "pass": true,
+      "detail": "actual=5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46 ref='5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46'"
+    },
+    {
+      "name": "dataset_file.val_images.npy.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46 ref='5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46'"
+    },
+    {
+      "name": "dataset_file.val_labels.npy.bytes",
+      "pass": true,
+      "detail": "actual=80128 ref=80128"
+    },
+    {
+      "name": "dataset_file.val_labels.npy.sha256",
+      "pass": true,
+      "detail": "actual=631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487 ref='631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487'"
+    },
+    {
+      "name": "dataset_file.val_labels.npy.manifest_sha256",
+      "pass": true,
+      "detail": "manifest=631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487 ref='631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487'"
+    },
+    {
+      "name": "dataset_file.train_images.npy.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dataset_file.train_labels.npy.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dataset_file.permutations.npy.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dataset_file.augmentation.npy.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dataset_file.stats.json.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dataset_file.dataset_manifest.json.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "dataset_file.schedule_manifest.json.required",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "julia.pass",
+      "pass": true,
+      "detail": "pass=True checks_failed=0"
+    },
+    {
+      "name": "julia.checks_failed",
+      "pass": true,
+      "detail": "checks_failed=0"
+    },
+    {
+      "name": "julia.sample_order_sha256",
+      "pass": true,
+      "detail": "julia='f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335' python='f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335'"
+    },
+    {
+      "name": "julia.update1_order_sha256",
+      "pass": true,
+      "detail": "julia='23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a' python='23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a'"
+    },
+    {
+      "name": "julia.transform_spec_sha256",
+      "pass": true,
+      "detail": "julia='e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa' python='e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa'"
+    },
+    {
+      "name": "julia.update1_transformed_sha256",
+      "pass": true,
+      "detail": "julia='ab5730ec5bd7f2e144355de91ba889e7220937ac9ef812f4b6dfa6b4ef0f4cf0' python='ab5730ec5bd7f2e144355de91ba889e7220937ac9ef812f4b6dfa6b4ef0f4cf0'"
+    },
+    {
+      "name": "julia.bundle_hash",
+      "pass": true,
+      "detail": "julia='a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23' python='a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23'"
+    },
+    {
+      "name": "julia.bundle_file_sha256",
+      "pass": true,
+      "detail": "julia='a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317' python='a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317'"
+    }
+  ],
+  "hashes": {
+    "sample_order_sha256": "f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335",
+    "update1_order_sha256": "23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a",
+    "transform_spec_sha256": "e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa",
+    "transform_sample_sha256": "ab5730ec5bd7f2e144355de91ba889e7220937ac9ef812f4b6dfa6b4ef0f4cf0",
+    "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+    "bundle_file_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317"
+  },
+  "bundle": {
+    "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+    "bundle_file_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+    "array_count": 62,
+    "element_count": 11271432,
+    "bundle_path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.npz",
+    "manifest_path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.manifest.json"
+  },
+  "dataset_files": {
+    "augmentation.npy": {
+      "bytes": 15000128,
+      "sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b"
+    },
+    "class_wnids.txt": {
+      "bytes": 2000,
+      "sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b"
+    },
+    "dataset_manifest.json": {
+      "bytes": 4288,
+      "sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a"
+    },
+    "initial_bundle.manifest.json": {
+      "bytes": 16437,
+      "sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571"
+    },
+    "initial_bundle.npz": {
+      "bytes": 45103060,
+      "sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317"
+    },
+    "permutations.npy": {
+      "bytes": 40000128,
+      "sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd"
+    },
+    "schedule_manifest.json": {
+      "bytes": 1773,
+      "sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295"
+    },
+    "stats.json": {
+      "bytes": 1238,
+      "sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc"
+    },
+    "train_images.npy": {
+      "bytes": 1228800128,
+      "sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510"
+    },
+    "train_labels.npy": {
+      "bytes": 800128,
+      "sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79"
+    },
+    "val_images.npy": {
+      "bytes": 122880128,
+      "sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46"
+    },
+    "val_labels.npy": {
+      "bytes": 80128,
+      "sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487"
+    }
+  },
+  "stats_mean": [
+    0.4802369475364685,
+    0.4480670392513275,
+    0.39750364422798157
+  ],
+  "stats_std": [
+    0.2764364182949066,
+    0.2688632905483246,
+    0.28158992528915405
+  ],
+  "julia": {
+    "path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/check-julia-historical.json",
+    "pass": true
+  }
+}

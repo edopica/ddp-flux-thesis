@@ -1,0 +1,39 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_lprod -N1 --ntasks=1 --cpus-per-task=32 --gres=gpu:4 --time=01:00:00 srun -n1 -c32 --chdir=$HOME/projects/ddp-flux-thesis bash scripts/remote/leonardo/run-static-revision-check.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 61402797
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0986 are ready for job
+=== run-static-revision-check: START 2026-10-19T11:48:18Z ===
+host=lrdn0986.leonardo.local SLURM_JOB_ID=61402797 SLURM_JOB_NODELIST=lrdn0986
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+FLUX_CURRENT=/leonardo/home/userexternal/epicazio/projects/flux-integration
+FLUX_HISTORICAL=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+REF=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61402797
+WORLD_SIZES=1 2 4 TOTAL_CPUS=32
+=== STAGE 0 :: preflight ===
+MISSING /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml
+       copy the matching test manifest manually; this driver never resolves deps
+MISSING /leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Manifest.toml
+       copy the matching test manifest manually; this driver never resolves deps
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-integration is not a git worktree (remote sync excludes .git);
+      recording expected current commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-static-baseline is not a git worktree (remote sync excludes .git);
+      recording expected historical commit 8add0e42b7d9388ff365335152126e5b1e9de657
+=== summary ===
+STAGE 0 FAIL preflight checks failed
+STAGE a SKIP preflight failed
+STAGE b SKIP earlier stage failed
+STAGE c SKIP earlier stage failed
+STAGE d SKIP earlier stage failed
+STAGE e SKIP earlier stage failed
+STAGE f PASS no precompilation marker in stage logs
+STATIC_REVISION_CHECK FAIL stage=0 reason=preflight checks failed
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61402797
+=== run-static-revision-check: EXIT 1 (log: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61402797/logs/driver.log) ===
+srun: error: lrdn0986: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 61402797

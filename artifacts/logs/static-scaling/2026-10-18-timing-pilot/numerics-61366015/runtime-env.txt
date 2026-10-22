@@ -1,0 +1,71 @@
+--- runtime identity ---
+Mon Oct 19 08:57:22 UTC 2026
+lrdn2256.leonardo.local
+JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+JULIA_LOAD_PATH=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-integration/test:@stdlib
+julia version 1.12.6
+Status `~/projects/flux-integration/test/Project.toml`
+  [fbb218c0] BSON v0.3.9
+⌃ [052768ef] CUDA v6.2.2
+  [b0b7db55] ComponentArrays v0.15.50
+  [e30172f5] Documenter v1.19.0
+  [7da242da] Enzyme v0.13.209
+  [1a297f60] FillArrays v1.17.1
+  [26cc04aa] FiniteDifferences v0.12.34
+  [587475ba] Flux v0.16.11 `.`
+  [f6369f11] ForwardDiff v1.4.6
+  [d9f16b24] Functors v0.5.3
+  [46192b85] GPUArraysCore v0.2.1
+⌅ [61eb1bfa] GPUCompiler v1.23.0
+  [c8e1da08] IterTools v1.10.0
+  [f1d291b0] MLUtils v0.4.13
+  [da04e1cc] MPI v0.20.27
+  [da2b9cff] Mooncake v0.5.63
+  [3fe64909] NCCL v0.1.3
+  [3bd65402] Optimisers v0.4.9
+  [d3525ed8] ParallelTestRunner v2.9.1
+  [10745b16] Statistics v1.11.5
+  [9f7883ad] Tracker v0.2.39
+  [e88e6eb3] Zygote v0.7.13
+⌃ [02a925ec] cuDNN v6.2.2
+  [37e2e46d] LinearAlgebra v1.12.0
+  [44cfe95a] Pkg v1.12.1
+  [9a3f8284] Random v1.11.0
+  [2f01184e] SparseArrays v1.12.0
+  [8dfed614] Test v1.11.0
+Info Packages marked with ⌃ and ⌅ have new versions available. Those with ⌃ may be upgradable, but those with ⌅ are restricted by compatibility constraints from upgrading. To see why use `status --outdated`
+/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Project.toml
+/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/share/julia/stdlib/v1.12
+python 3.11.17
+python_executable /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+torch 2.9.1+cu126 /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/__init__.py
+numpy 2.4.6 /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/numpy/__init__.py
+package filelock 3.32.3
+package fsspec 2026.7.0
+package Jinja2 3.1.6
+package MarkupSafe 3.0.3
+package mpmath 1.3.0
+package networkx 3.6.1
+package numpy 2.4.6
+package nvidia-cublas-cu12 12.6.4.1
+package nvidia-cuda-cupti-cu12 12.6.80
+package nvidia-cuda-nvrtc-cu12 12.6.77
+package nvidia-cuda-runtime-cu12 12.6.77
+package nvidia-cudnn-cu12 9.10.2.21
+package nvidia-cufft-cu12 11.3.0.4
+package nvidia-cufile-cu12 1.11.1.6
+package nvidia-curand-cu12 10.3.7.77
+package nvidia-cusolver-cu12 11.7.1.2
+package nvidia-cusparse-cu12 12.5.4.2
+package nvidia-cusparselt-cu12 0.7.1
+package nvidia-nccl-cu12 2.27.5
+package nvidia-nvjitlink-cu12 12.6.85
+package nvidia-nvshmem-cu12 3.3.20
+package nvidia-nvtx-cu12 12.6.77
+package pillow 12.3.0
+package sympy 1.14.0
+package torch 2.9.1+cu126
+package torchvision 0.24.1+cu126
+package triton 3.5.1
+package typing_extensions 4.16.0

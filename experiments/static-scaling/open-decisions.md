@@ -1,26 +1,39 @@
 # Open decisions: static-network GPU scaling (Phase 1)
 
-Date: 2026-10-15 (OD-1, OD-5, OD-6 recorded 2026-10-16; OD-10 recorded 2026-10-17; OD-2, OD-3, OD-4, OD-11 recorded 2026-10-18)
-Status: OD-1, OD-2, OD-3, OD-4, OD-5, OD-6, OD-10, and OD-11 are recorded (see the decision record); OD-7, OD-8, OD-9, OD-12, and OD-13 remain open and need a recorded decision before the phase they block.
+**2026-10-19 OD-7 decision:** the user selected global batch 256 for the urgent campaign.
+Local batches are 256/128/64 at W=1/2/4. One epoch contains 390 updates and 99,840 images.
+The launcher skips batch 512. The nine-configuration memory preflight remains required.
+OD-8 acceptance remains unresolved until GPU measurements exist.
+
+**2026-10-18 Phase 4 decision:** the user approved finite absolute numerical error `<1e-3`, with exact structural and rank consistency checks.
+CPU validation is deferred. The immediate priority is the bounded GPU timing pilot at W=1,2,4.
+Its global batch 12 is the accepted fixture batch, not the final OD-7 campaign batch.
+The pilot retains the current strict precision helper, including its overhead. OD-14 was subsequently recorded on 2026-10-19.
+See the [Phase 4 results](../../artifacts/logs/static-scaling/2026-10-18-phase4/RESULTS.md) and [session devlog](../../wiki/devlog/03-static-scaling/2026-10-18-phase4-distributed-correctness.md).
+
+Date: 2026-10-15 (OD-1, OD-5, OD-6 recorded 2026-10-16; OD-10 recorded 2026-10-17; OD-2, OD-3, OD-4, OD-11 recorded 2026-10-18; OD-14 recorded 2026-10-19)
+Status: OD-1, OD-2, OD-3, OD-4, OD-5, OD-6, OD-7, OD-10, OD-11, and OD-14 are recorded. OD-8, OD-9, OD-12, and OD-13 remain open.
 Values for recorded decisions are fixed; proposed defaults for the open decisions live in [experiment.toml](experiment.toml) and [specification.md](specification.md), and this file tracks what is not yet frozen.
 
 ## Decision table
 
 | ID | Decision | Value (recorded) or proposed default | Why it matters | Blocks |
 |---|---|---|---|---|
+| 2026-10-19 | OD-7 | Global batch 256, local batches 256/128/64, K=390 for one measured epoch; nine-configuration memory preflight required | user | specification.md, experiment.toml, campaign launcher |
 | OD-1 | Architecture confirmation — **recorded 2026-10-16** | Small-image ResNet-18, 3x3 stride-1 stem, no max-pool, GroupNorm-32 eps 1e-5, biased 200-class classifier, 11,271,432 parameters | Any change alters gradients, memory, and measured work | Phase 2, 3 |
 | OD-2 | AdamW hyperparameters — **recorded 2026-10-18** | `lr = 1e-3`, `wd = 1e-4`, `betas = (0.9, 0.999)`, `eps = 1e-8` | Sets the learning dynamics for all six configurations | Phase 3, 8 |
 | OD-3 | Weight-decay exclusions — **recorded 2026-10-18** | No decay for GroupNorm `gamma`/`beta` and classifier bias (41 leaves); decay only for conv and classifier weights (21 leaves) | Couples to optimization quality and to the PyTorch/Flux group implementations | Phase 3 |
 | OD-4 | LR schedule and learning-curve budget — **recorded 2026-10-18** | Linear warm-up over 5 epochs, cosine to 0 over a 50-epoch budget, indexed by global update (`W` = 975, `T` = 9,750 at batch 512; `W` = 1,950, `T` = 19,500 at 256) | Fixes the training budget and every schedule position | Phase 3, 8 |
 | OD-5 | Input normalization constants — **recorded 2026-10-16** | Per-channel RGB population mean and standard deviation from all 100,000 original training images (decoded uint8 scaled to [0,1], float64 accumulation), computed before augmentation, padding, and tail dropping; float32 constants frozen in the fixture manifest | Changes effective conditioning of the first layers | Phase 2 |
 | OD-6 | Augmentation set — **recorded 2026-10-16** | Zero-padding of 4 per side, uniformly sampled 64x64 crop (zero-based offsets 0..8, independent), horizontal flip p=0.5; `(crop_top, crop_left, flip)` saved per (epoch, sample_id) | Affects accuracy trajectory and end-to-end timing; the saved-decision mechanism itself is fixed | Phase 2 |
-| OD-7 | Final global batch | 512, fallback 256 if the memory pilot fails the margin | Batch is the fixed-work unit of the whole comparison | Phase 5 |
+| OD-7 | Final global batch — **recorded 2026-10-19** | 256, selected by the user; no automatic fallback | Batch is the fixed-work unit of the whole comparison | Phase 5 memory evidence remains required |
 | OD-8 | Memory margin | Peak process memory at most 80% of 64 GiB (at least 12.8 GiB free) | Defines pass/fail for the memory pilot | Phase 5 |
 | OD-9 | End-to-end timing excludes JPEG decode | Decoded uint8 arrays are prepared once with one canonical decoder and consumed by both frameworks | Removes decoder differences but narrows the meaning of "end-to-end" | Phase 6 |
 | OD-10 | Cross-framework tolerance — **recorded 2026-10-17** | Base `atol = 1e-5`, `rtol = 1e-4` for all categories except three frozen backward floors: `grads.u1 atol = 1e-3`, `grads.u3 atol = 2e-3`, `m.u3 atol = 2e-4`, each with `rtol = 1e-4`; calibrated on the frozen fixtures and same-framework PyTorch CPU-vs-GPU control | Defines cross-framework acceptance; too loose hides defects, too tight blocks acceptance | Phase 3 |
 | OD-11 | Flux entry point — **recorded 2026-10-18** | Explicit `Zygote.withgradient` + `Optimisers.update!` (64 collectives/update; the eager path adds a loss vote, 65) | Changes the measured work and which guard runs | Phase 3, 6 |
 | OD-12 | Throughput update count `K` | Chosen in Phase 6: tens of seconds of work for the fastest configuration | Must be identical in all configurations | Phase 6 |
 | OD-13 | CPU/thread/worker policy | 32 CPUs per job total, 1 compute thread per rank, 4 loader workers per rank, Slurm default affinity | Required for interpreting end-to-end scaling and avoiding oversubscription | Phase 6, 7 |
+| OD-14 | Benchmark execution and numerical-acceptance policy — **recorded 2026-10-19** | Qualified descriptive baseline; separate short-horizon gates and long-run diagnostics; no long-run equivalence threshold; deterministic sensitivity for the final report; prospective criteria for stronger claims. [Decision](OD-14-benchmark-acceptance.md) | Separates throughput from numerical equivalence and training quality | Phase 6 policy recorded; evidence requirements remain |
 
 ## Notes per decision
 
@@ -42,12 +55,15 @@ Values for recorded decisions are fixed; proposed defaults for the open decision
 
 **OD-12/OD-13.** The phases document requires one fixed update count for timing and a fixed total CPU budget with recorded worker and thread counts. The proposed policy keeps total CPU at 32 cores for every configuration and one compute thread per rank; the pilot and the timing dry run record the effective thread and affinity settings.
 
+**OD-14.** **Recorded 2026-10-19:** [benchmark policy and numerical claims](OD-14-benchmark-acceptance.md). The baseline retains strict FP32, Flux FMA-only selection, deterministic PyTorch cuDNN, and the existing timed guard differences. Claims remain descriptive. Phase 3/4 acceptance stays short-horizon and source-specific. Long-run diagnostics require finite complete state, consistent replicas, and matched work, but apply no trajectory-equivalence threshold. Same-framework and cross-framework discrepancies remain separate. Stronger numerical or training-quality claims require prospective criteria and distinct acceptance evidence. The final Phase 6 cross-framework report requires a deterministic-mode sensitivity in both frameworks. Historical artifacts keep their qualifications.
+
 ## Decision record
 
 When a decision is made, add a row here and update the affected files.
 
 | Date | Decision | Value | Recorded by | Files updated |
 |---|---|---|---|---|
+| 2026-10-19 | OD-14 | Descriptive baseline; separate short-horizon correctness and long-run diagnostics; no fitted long-run threshold; prospective equivalence/quality criteria; deterministic sensitivity for final report | user instruction, formalized by assistant | OD-14-benchmark-acceptance.md, specification.md, experiment.toml |
 | 2026-10-16 | OD-1 | Small-image ResNet-18 as specified (3x3 stride-1 stem, no initial max-pool, affine GroupNorm-32 eps 1e-5, biased 200-class classifier) frozen at 11,271,432 trainable parameters across 62 arrays; convolution weights Kaiming-normal `fan_out` with ReLU gain; classifier weight and bias use the PyTorch `Linear` defaults; GN `gamma = 1`, `beta = 0`; one canonical bundle with recorded generator, version, and seed loaded by both frameworks | supervisor | specification.md, experiment.toml |
 | 2026-10-16 | OD-5 | Per-channel RGB population mean and standard deviation from all 100,000 original training images, canonical decoded uint8 scaled to [0,1], float64 accumulation, computed before augmentation, padding, and epoch tail dropping; float32 constants and the calculation method frozen in the fixture manifest; validation and test images excluded; the same rule applies to training and validation | supervisor | specification.md, experiment.toml |
 | 2026-10-16 | OD-6 | Zero-padding of 4 per side, then a uniformly sampled 64x64 crop (zero-based `crop_top`/`crop_left` in `0..8`, sampled independently), then a horizontal flip with probability 0.5; `(crop_top, crop_left, flip)` saved per (epoch, sample_id), independent of rank and loader worker; padding/crop/flip applied to decoded uint8, then float32 conversion, division by 255, and normalization; validation uses conversion and normalization only | supervisor | specification.md, experiment.toml |
@@ -64,4 +80,4 @@ acceptance run (job `60942933`) and the Step 4 optimizer-contract probe (job
 `lambda = 0`, `beta = (0.9, 0.999)`, `epsilon = 1e-8`, `couple = true`;
 schedule boundaries `W = 975`, `T = 9,750`). No numeric value changed relative
 to the configuration used in those runs. OD-7, OD-8, OD-9, OD-12, and OD-13
-remain open with their proposed defaults unchanged.
+remain open. OD-14 was recorded on 2026-10-19 in the decision linked above.

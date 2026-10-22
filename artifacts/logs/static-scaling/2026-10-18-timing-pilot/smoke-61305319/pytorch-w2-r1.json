@@ -1,0 +1,49 @@
+{
+  "schema": "static-timing-pilot-v1",
+  "framework": "pytorch",
+  "world_size": 2,
+  "global_batch": 12,
+  "updates": 3,
+  "warmup": 2,
+  "seconds": 0.059253950603306293,
+  "images_per_second": 607.5544268940482,
+  "update_seconds": 0.019751316867768764,
+  "ranks": [
+    {
+      "rank": 0,
+      "seconds": 0.05921928305178881,
+      "hashes": {
+        "param": "8e523a542dbe8925f1ee5a7a3e812afd8d1d9ff739b57ce89c88bdbce67d9d83",
+        "m": "364c2c1aaea453fe96483659fcc154169f9619b7846ce58744c3559866bd4bef",
+        "v": "ecf48d669403ca6f3571b8a77135eda70d133840d30cdbcdb16bb2af49acdff8",
+        "step": 3
+      },
+      "device": 1
+    },
+    {
+      "rank": 1,
+      "seconds": 0.059253950603306293,
+      "hashes": {
+        "param": "8e523a542dbe8925f1ee5a7a3e812afd8d1d9ff739b57ce89c88bdbce67d9d83",
+        "m": "364c2c1aaea453fe96483659fcc154169f9619b7846ce58744c3559866bd4bef",
+        "v": "ecf48d669403ca6f3571b8a77135eda70d133840d30cdbcdb16bb2af49acdff8",
+        "step": 3
+      },
+      "device": 2
+    }
+  ],
+  "node": "lrdn1233.leonardo.local",
+  "fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "workload": "alternating-two-fixture-batches",
+  "timing": "training-only",
+  "precision": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "job": "61305319",
+  "pass_checks": true
+}

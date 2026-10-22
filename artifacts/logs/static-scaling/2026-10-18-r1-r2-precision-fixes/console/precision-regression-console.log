@@ -1,0 +1,68 @@
+START_UTC=2026-10-18T08:10:08Z
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision/logs SOURCE_COMMIT=a3786d97f3263cad20b254206f09c095880f624d SOURCE_STATE_SHA256=2a3513638b615358793c848433e9e0f80ba8ab490b8a1c1809b8c9e7151fac8d FLUX_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e FLUX_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bash scripts/remote/leonardo/run-phase3-precision-regression.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 61077382
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0200 are ready for job
+=== run-phase3-precision-regression: START ===
+utc=2026-10-18T08:10:19Z host=lrdn0200.leonardo.local
+SLURM_JOB_ID=61077382 SLURM_JOB_NODELIST=lrdn0200
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+CHECK=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_precision_math.jl
+POLICY=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/test_precision_policy.jl
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision
+LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision/logs
+RUNNER=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-julia-phase3.sh
+=== PRECISION_REGRESSION_CASE fma START utc=2026-10-18T08:10:19Z ===
+CHECK_PRECISION_MATH_CONFIG mode=fma cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_FMA_MATH(3) cudnn_effective_conv1=CUDNN_FMA_MATH(3) cudnn_effective_conv2=CUDNN_FMA_MATH(3) cudnn_effective_proj=CUDNN_FMA_MATH(3) cuda_package_version=6.2.2 cudnn_package_version=6.2.2 cudnn_library_version=92.60.0 cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+CHECK_PRECISION_MATH_CONFIG_CHECK requested=CUDNN_FMA_MATH(3) expected=CUDNN_FMA_MATH(3) PASS
+CHECK_PRECISION_MATH_VERSION cuda_package_version=6.2.2 cudnn_package_version=6.2.2 cudnn_library_version=92.60.0 versions_supported=true PASS
+CHECK_PRECISION_MATH_BACKEND algo_fwd=1 algo_data=1 algo_filter=1 fwd_ws=7296 data_ws=0 filter_ws=590992
+CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=5.998539e-07 max_abs=8.698975e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_fixed_dx        rel_l2=2.103432e-07 max_abs=1.475017e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_fixed_dw        rel_l2=1.121881e-06 max_abs=1.011678e-03 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM classifier_matmul    rel_l2=1.107716e-07 max_abs=4.209593e-07 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_nnlib_fwd       rel_l2=4.248559e-07 max_abs=5.245658e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ALGO kind=fwd algo=0 math_type=CUDNN_FMA_MATH(3) fallback=false time=0.084991999 memory=0 shape=32x32x64x12
+CHECK_PRECISION_MATH_ALGO_CHOICES choices=1 fma=1 fallback=0 PASS
+CHECK_PRECISION_MATH PASS
+PRECISION_REGRESSION_CASE fma COMPLETE exit=0 log=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision/logs/fma.log
+=== PRECISION_REGRESSION_CASE current START utc=2026-10-18T08:14:26Z ===
+CHECK_PRECISION_MATH_CONFIG mode=current cublas_math_mode=PEDANTIC_MATH cudnn_requested=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv1=CUDNN_DEFAULT_MATH(0) cudnn_effective_conv2=CUDNN_DEFAULT_MATH(0) cudnn_effective_proj=CUDNN_DEFAULT_MATH(0) cuda_package_version=6.2.2 cudnn_package_version=6.2.2 cudnn_library_version=92.60.0 cudnn_version=92.60.0 CUDNN_FMA_MATH=CUDNN_FMA_MATH(3)
+CHECK_PRECISION_MATH_MODE mode=current note="negative control; a conv discrepancy is expected"
+CHECK_PRECISION_MATH_CONFIG_CHECK requested=CUDNN_DEFAULT_MATH(0) expected=CUDNN_DEFAULT_MATH(0) PASS
+CHECK_PRECISION_MATH_VERSION cuda_package_version=6.2.2 cudnn_package_version=6.2.2 cudnn_library_version=92.60.0 versions_supported=true PASS
+CHECK_PRECISION_MATH_BACKEND algo_fwd=1 algo_data=1 algo_filter=1 fwd_ws=6881296 data_ws=13172752 filter_ws=14942352
+CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=2.932134e-04 max_abs=1.600785e-03 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM conv_fixed_dx        rel_l2=2.928844e-04 max_abs=1.434166e-03 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM conv_fixed_dw        rel_l2=2.930009e-04 max_abs=1.480980e-01 bound=1.0e-04 FAIL
+CHECK_PRECISION_MATH_ITEM classifier_matmul    rel_l2=1.107716e-07 max_abs=4.209593e-07 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ITEM conv_nnlib_fwd       rel_l2=4.248559e-07 max_abs=5.245658e-06 bound=1.0e-04 PASS
+CHECK_PRECISION_MATH_ALGO kind=fwd algo=0 math_type=CUDNN_DEFAULT_MATH(0) fallback=false time=0.088064 memory=0 shape=32x32x64x12
+CHECK_PRECISION_MATH_NNLIB_DIAG mode=current nnlib_ok=true choices=1 note="diagnostic only; fixed-algo negative control decides"
+CHECK_PRECISION_MATH FAIL
+PRECISION_REGRESSION_CASE current COMPLETE exit=1 log=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision/logs/current.log
+=== PRECISION_REGRESSION_CASE policy START utc=2026-10-18T08:15:14Z ===
+CHECK_PRECISION_POLICY case=strict_fma_prefers_fma PASS
+CHECK_PRECISION_POLICY case=strict_fma_rejects_non_fma PASS
+CHECK_PRECISION_POLICY case=strict_fma_rejects_all_failed PASS
+CHECK_PRECISION_POLICY case=stock_float32_selection PASS
+CHECK_PRECISION_POLICY case=versions_supported PASS
+┌ Warning: StaticScalingPrecision: continuing with unsupported package versions because allow_unsupported_versions=true
+│   package_versions = "unsupported CUDA.jl/cuDNN.jl package versions: CUDA.jl=6.2.1 (supported 6.2.2), cuDNN.jl=6.2.2 (supported 6.2.2)"
+│   supported = false
+└ @ Main.StaticScalingPrecision ~/projects/ddp-flux-thesis/scripts/static_scaling/precision.jl:243
+CHECK_PRECISION_POLICY case=versions_unsupported_gate PASS
+CHECK_PRECISION_POLICY case=strict_resolve_never_returns_non_fma PASS
+CHECK_PRECISION_POLICY PASS
+PRECISION_REGRESSION_CASE policy COMPLETE exit=0 log=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-precision-fixes/precision/logs/policy.log
+=== summary ===
+PRECISION_REGRESSION_CHECK fma PASS exit=0 algo_choices="CHECK_PRECISION_MATH_ALGO_CHOICES choices=1 fma=1 fallback=0 PASS"
+PRECISION_REGRESSION_CHECK current PASS exit=1 conv_fail="CHECK_PRECISION_MATH_ITEM conv_fixed_fwd       rel_l2=2.932134e-04 max_abs=1.600785e-03 bound=1.0e-04 FAIL"
+PRECISION_REGRESSION_CHECK policy PASS exit=0
+PHASE3_PRECISION_REGRESSION PASS
+salloc: Relinquishing job allocation 61077382
+END_UTC=2026-10-18T08:15:20Z
+PRECISION_REGRESSION_DRIVER_EXIT=0

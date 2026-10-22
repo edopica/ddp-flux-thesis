@@ -1,0 +1,7 @@
+=== STAGE f :: verify-pytorch-ddp-w1 START 2026-10-18T19:24:32Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ntest -d "$1" || { echo "MISSING directory $1"; exit 1; }\nfind "$1" -maxdepth 1 -type f -print | sort\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch/w1 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/f-verify-pytorch-ddp-w1.log
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch/w1/rank0.json
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch/w1/rank0.npz
+/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/ddp/pytorch/w1/summary.json
+=== STAGE f :: verify-pytorch-ddp-w1 END 2026-10-18T19:24:32Z EXIT 0 ===

@@ -1,15 +1,472 @@
 # Current context
 
-## Phase 3 acceptance choices reviewed — 2026-10-18
+## Benchmark artifacts committed — 2026-10-22
 
-The [acceptance review](../../reports/static-scaling-phase3-acceptance-review.md) supports the recorded Phase 3 acceptance.
-Fresh local checks passed all 30 evidence hashes, 29 source hashes, and the independent 337-array reference check.
-The review found two reuse defects in `precision.jl`: non-FMA fallback candidates can return, and supported package versions are not enforced.
-The final run used no fallback, so its acceptance remains valid.
-The benchmark needs an explicit decision on deterministic PyTorch versus timing-based Flux algorithm selection.
-The calibrated tolerances remain specific to the cross-framework fixture, not automatic Phase 4 DDP tolerances.
+The static-scaling benchmark worktree was committed: 582 files (15.4 MB) covering
+the new remote runners and checkers, the experiment contract, the wiki records,
+the reports, and the ten evidence bundles under `artifacts/logs/` and
+`artifacts/baselines/`.
+The 12 GB already ignored under `artifacts/` stayed ignored (arrays, caches).
+Presentation slide renders (`dist/`, `components/test_*`), the stray root
+`out.pdf`, and notebook checkpoints are now ignored as build products.
+Raw campaign logs were kept because their `SHA256SUMS` and the
+`RESULTS.md`/`PROVENANCE.md` documents reference them; dropping them would break
+16 document links.
+The presentation `Makefile` now targets `presentation.pdf`, the name used by the
+revision devlog and the supervisor next action; the byte-identical
+`benchmark_presentation.pdf` duplicate was removed.
+Details: [devlog](../devlog/03-static-scaling/2026-10-22-artifact-commit-scope.md).
 
-**Exact next action:** make strict-FMA selection fail closed and enforce supported package versions, then run focused regressions before Phase 4 GPU acceptance.
+**EXACT NEXT ACTION:** push the commit, then send `presentation.pdf` to the
+supervisor.
+
+## Supervisor presentation revised — 2026-10-22
+
+The static-scaling deck was rebuilt for a supervisor audience.
+`presentations/static-scaling-benchmark/presentation.pdf` is now 27 pages.
+It adds a candidate-comparison slide, removes internal phase/commit/job/OD/Slurm
+labels, uses one palette (static Flux red, guarded Flux yellow, PyTorch blue),
+and enlarges the charts to fill the slide.
+The benchmark numbers and claim boundaries are unchanged.
+Details: [devlog](../devlog/03-static-scaling/2026-10-22-presentation-revision.md).
+
+**EXACT NEXT ACTION:** send `presentation.pdf` to the supervisor; if the
+narrative is approved, present from that PDF.
+
+## Full campaign claims checked — 2026-10-20
+
+Job `61493236` completed `0:0` in `02:46:11` on `lrdn1300`.
+The saved evidence contains 45/45 timing records, 9/9 diagnostics, and campaign/artifact PASS markers.
+All 307 remote checksum entries pass. Independent arithmetic reproduces the submitted table.
+Batch 256 passed all nine preflight configurations.
+
+The result supports qualified descriptive throughput and strong scaling.
+Historical Flux scales best at W4. PyTorch has slightly greater observed speedup at W2.
+The first current-W1 repeat took 680.785 seconds, but a cold-cache cause remains unconfirmed.
+Diagnostics report aggregate parameter relative L2 of 1.8877–2.0819%, with no equivalence threshold.
+The review did not recompute snapshot differences or run new training.
+
+Slurm step `61493236.9` was an operator diagnostic `srun` that polled `/proc` for 60 seconds, not a campaign workload. It exited 2 when the Julia process ended. The campaign evidence is unaffected.
+**EXACT NEXT ACTION:** run the OD-14 deterministic-mode sensitivity and a controlled cache experiment before offering stronger claims.
+Retain the qualified label and unconfirmed outlier cause in the summary.
+
+Details: [structured report](../../reports/static-scaling-full-campaign-61493236-report.md),
+[review](../../reports/static-scaling-full-campaign-61493236-review.md),
+[commands](../devlog/03-static-scaling/2026-10-20-full-campaign-claims-review.md).
+
+## Batch-256 launcher corrections — 2026-10-19
+
+The user selected global batch **256** for the urgent full-dataset campaign.
+The launcher now runs only the nine batch-256 preflight cases.
+The campaign uses 390 measured updates, 20 discarded warmup updates, and five repeats.
+The batch-512 fallback path is removed.
+
+The precompile declaration is corrected. Both launcher branches run the new
+`ready` checker before timing. Reused decisions require matching source, dataset,
+runtime, hardware capacity, CPU policy, and a complete PASS matrix.
+Each preflight rank writes its PID and GPU UUID to a separate file.
+The memory checker requires repeated timestamped samples for every rank's PID/GPU pair.
+The memory result is a sampled peak, not a guaranteed continuous high-water mark.
+
+Both full-dataset runners now use the batch-dependent OD-4 learning-rate schedule.
+Batch 256 uses 1,950 warmup updates and 19,500 total updates.
+The 390-entry Float32 schedule hashes match across the Julia and Python helpers.
+
+Local gates: six regression tests PASS, checker self-test PASS (21 checks),
+shell syntax PASS, Julia parse PASS, and `git diff --check` PASS.
+No remote command ran. GPU memory acceptance remains unmeasured.
+Details: [devlog](../devlog/03-static-scaling/2026-10-19-batch256-launcher-corrections.md).
+
+**EXACT NEXT ACTION:** resolve the historical worktree identity difference before sync.
+Then sync the corrected thesis files and run the four-GPU preflight-only job.
+The launcher precompiles both Flux worktrees on the compute node before workloads.
+Require the new batch-256 preflight and `FULL_CAMPAIGN_READY PASS` before the campaign.
+
+## Campaign readiness review — 2026-10-19
+
+**NO-GO for the current launcher, including preflight.** Local review reproduced
+an unset-variable failure in `precompile_variant` at launcher line 262.
+The batch-512 memory rejection also exits before the batch-256 fallback
+(lines 631–634). The Python self-test does not exercise these shell paths.
+
+Campaign mode accepts a reused decision's batch before it checks the decision's
+PASS status and source identity. Those checks occur after timing and diagnostics.
+Memory acceptance also lacks per-rank sample coverage: one process sample can
+pass a four-rank case. No remote command ran during this review.
+
+Local checks passed: shell syntax, checker self-test (21 checks), and Julia parse.
+These results do not establish launcher readiness.
+Details and reproduction commands: [review](../devlog/03-static-scaling/2026-10-19-full-campaign-readiness-review.md).
+
+**EXACT NEXT ACTION:** correct the shell failures and the preflight acceptance gaps.
+Then run shell control-flow regressions before the nine-configuration GPU preflight.
+Resolve the recorded historical worktree identity difference before any source sync.
+
+## Full-dataset campaign launcher hardened — 2026-10-19
+
+**Status: local hardening only.** The full-dataset launcher
+`scripts/remote/leonardo/run-static-full-campaign.sh` implements `all`,
+`preflight`, and `campaign` modes behind `CONFIRM_CAMPAIGN=1`. It verifies the
+thesis commit and each Flux commit, state, and source-tree hash against pinned
+constants, precompiles both Flux worktrees on the compute node, and
+writes source/runtime/resource/dataset identity, campaign config, provenance,
+preflight decision, timing records, diagnostics, `REPORT.json`, `SUMMARY.json`,
+`SHA256SUMS`, and driver markers.
+
+Preflight covers all 9 framework/world combinations (`flux-current`,
+`flux-historical`, `pytorch` at W=1,2,4), the full dataset, 20 discarded warmup
+plus 20 sustained updates, and external `nvidia-smi` per-process peak sampling.
+Batch 512 is selected only if all 9 pass the OD-8 80%-of-64-GiB criterion;
+otherwise batch 256 is tested for all 9 and selected only if all 9 pass. A
+failed 512 candidate is excluded and no longer aborts the fallback.
+
+The campaign uses the selected batch, K=195 at 512 or K=390 at 256, 5 repeats,
+repeat-first (9 configurations per repeat, alternating order on even repeats),
+then a separate untimed diagnostics matrix with snapshots.
+
+`scripts/static_scaling/check_full_campaign.py` validates the pinned source
+constants, current/historical distinctness, runtime-versus-record
+Julia/Python/torch/numpy versions, exact timing and diagnostic record sets,
+`eta_sha256` consistency, OD-14 descriptive diagnostics, and
+`NUMERICAL_EQUIVALENCE_CLAIM none`. `full_dataset_timing.jl` and
+`timing_torch.py` now emit `eta_sha256` for the Float32 learning-rate sequence
+for updates `1..K`.
+
+Local gates pass: `bash -n` exit 0, `py_compile` exit 0,
+`FULL_CAMPAIGN_SELFTEST PASS checks=21`, and Julia parse `JULIA_PARSE_OK`.
+`shellcheck` is not installed locally. The launcher and checker are untracked
+in git. **No preflight or campaign ran. No throughput, scaling, memory-margin,
+or numerical-equivalence claim exists.**
+
+**Unresolved OD-8 memory risk:** the loader dry runs measured Flux device-used
+at 86.34% (current) and 83.14% (historical) of the A100 total at batch 512/W=1,
+above the 80% criterion. Batch 512 did not OOM and no 256 fallback ran then.
+Peak process memory has not been measured by the new preflight.
+
+**Preflight risk:** the local historical Flux worktree state is
+`34005a430cc8be2aa662e0ca59328e07a824231cb9858f52fce3ac388afc330c`
+versus the pinned `4af8409c...`. Remote state was not re-verified. The launcher
+fails closed on a mismatch; this is a risk, not evidence that the remote tree
+drifted.
+
+This checkpoint supersedes the earlier Phase 5 memory-pilot next action below;
+OD-8 is still unresolved and is the first preflight question.
+
+**EXACT NEXT ACTION:** sync the thesis and both Flux worktrees, precompile on a
+compute node, and submit the preflight-only job with 4 GPUs
+(`CONFIRM_CAMPAIGN=1 CAMPAIGN_MODE=preflight`). Inspect the 9-config decision.
+Do not launch the campaign until preflight is PASS.
+
+```bash
+ssh leonardo 'CONFIRM_CAMPAIGN=1 CAMPAIGN_MODE=preflight sbatch --parsable \
+  -A iscrc_unmasked -p boost_usr_prod --qos=boost_qos_lprod -N1 -n1 \
+  --cpus-per-task=32 --gres=gpu:4 --time=04:00:00 \
+  --job-name=static-full-campaign \
+  --output=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-%j.log \
+  "$HOME/projects/ddp-flux-thesis/scripts/remote/leonardo/run-static-full-campaign.sh"'
+```
+
+Evidence: [devlog](../devlog/03-static-scaling/2026-10-19-full-campaign-launcher-hardening.md),
+[launcher](../../scripts/remote/leonardo/run-static-full-campaign.sh),
+[checker](../../scripts/static_scaling/check_full_campaign.py),
+[prior loader validation](../../artifacts/logs/static-scaling/2026-10-19-full-loader-validation-61450014/RESULTS.md).
+
+## Full-dataset loader validated — 2026-10-19
+
+The minimal full-dataset path is implemented for PyTorch, Flux current
+`f7b4520c`, and Flux historical `8add0e42`, and it passes the frozen loader
+contract. Job `61450014` (`lrdn0667`, `boost_qos_dbg`, 1 node / 1 task /
+32 CPUs / 4×A100, `00:14:09`, `COMPLETED 0:0`) printed
+`FULL_VALIDATION PASS` after compute-node precompile and:
+
+- `FULL_DATASET_REFERENCE PASS`;
+- `FULL_DATASET_PYTHON_CHECK PASS checks=169`;
+- `FULL_DATASET_JULIA_CHECK PASS label=flux-current checks=111`;
+- `FULL_DATASET_JULIA_CHECK PASS label=flux-historical checks=108`;
+- `FULL_DATASET_PYTHON_CHECK PASS checks=177` for both revisions;
+- `FIXTURE_TIMING_PATH PASS` (the unchanged fixture path);
+- `FULL_DATASET_DRYRUN PASS` for all three configurations.
+
+The loader reproduces the epoch-0 sample order, the W=1/2/4 rank shards,
+99,840 ids with the 160-id tail dropped, 195/390 update counts, the one-hot
+mapping, and the frozen bundle. The Julia transformed update-1 tensor matches
+the Python reference with `max_abs_diff=0.0` at W=1, 2, and 4. The three
+1-update, batch-512, W=1 dry runs had finite loss
+`5.492467880249023`; they are validation only, not benchmark results.
+
+The dry runs expose a memory risk: Flux device-used was
+`58,796,081,152 / 68,099,571,712` bytes (`86.34%`) for current and
+`56,615,043,072 / 68,099,571,712` (`83.14%`) for historical. This
+`total - free` counter includes context/allocator caches, but it is above the
+proposed OD-8 80% margin. PyTorch max allocated was `15,394,088,960` bytes
+(`22.61%`), max reserved `24,540,872,704` (`36.04%`). Batch 512 did not OOM;
+no fallback to 256 was performed.
+
+Evidence: [RESULTS](../../artifacts/logs/static-scaling/2026-10-19-full-loader-validation-61450014/RESULTS.md),
+[COMMANDS](../../artifacts/logs/static-scaling/2026-10-19-full-loader-validation-61450014/COMMANDS.md),
+[devlog](../devlog/03-static-scaling/2026-10-19-full-dataset-loader-validation.md),
+[failure note](../failures/2026-10-19-full-loader-validation-driver.md),
+[Slurm log](../../artifacts/logs/leonardo/2026-10-19-static-full-loader-validation-61450014.log).
+
+**EXACT NEXT ACTION:** run the Phase 5 larger-batch memory pilot under OD-14,
+measure peak process memory at batch 512/W=1 (and the W=2/4 matrix), and record
+OD-7/OD-8 before any full-dataset campaign. The campaign command is documented
+in the devlog but was **not** executed. Do not cite the dry-run timings as
+throughput results.
+
+## OD-14 recorded — 2026-10-19
+
+The [OD-14 decision](../../experiments/static-scaling/OD-14-benchmark-acceptance.md)
+records qualified descriptive benchmark claims under the existing FP32 policies.
+Short-horizon correctness and long-run diagnostics remain separate.
+No long-run numerical-equivalence threshold is adopted from the observed envelope.
+Stronger equivalence or training-quality claims require prospective criteria.
+The final Phase 6 report requires a deterministic-mode sensitivity in both frameworks.
+Historical helper drift and missing runtime evidence remain explicit limitations.
+
+The specification and TOML policy now reflect this decision.
+Policy requirements do not imply automatic enforcement by current runners.
+The printed diagnostic has parameter `rel_l2=0.00225564012` at Flux-versus-PyTorch
+W=2, slightly above the earlier summary's `0.00224`.
+
+**EXACT NEXT ACTION:** run the Phase 5 larger-batch memory pilot under OD-14.
+Record OD-7 and OD-8 before the full-dataset campaign.
+
+## Fixture timing review — 2026-10-19
+
+Campaign `61314790` retains a **qualified timing PASS**. The reviewer accepted
+the medians and scaling ratios and found no timing-boundary, sample-count, or
+gradient-averaging defect. The four P2 findings and the response are recorded in
+[REVIEW-RESPONSE.md](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/campaign-61314790/REVIEW-RESPONSE.md).
+
+The checker was hardened to require the exact schema and precision metadata,
+non-empty job and node, exact fixture/bundle hashes, complete state hashes, all
+36 source-snapshot hashes, the required driver lines, and `provenance.json`
+schema/source/policy/qualifications. Its self-test prints
+`TIMING_ARTIFACT_SELFTEST PASS checks=13` (one positive and 12 mutations).
+
+| Framework | W | median_s | images/s | speedup | efficiency |
+|---|---|---:|---:|---:|---:|
+| Flux | 1 | 5.483059 | 656.568 | 1.0000 | 1.0000 |
+| Flux | 2 | 5.714868 | 629.936 | 0.9594 | 0.4797 |
+| Flux | 4 | 5.664201 | 635.571 | 0.9680 | 0.2420 |
+| PyTorch | 1 | 8.203725 | 438.825 | 1.0000 | 1.0000 |
+| PyTorch | 2 | 5.258007 | 684.670 | 1.5602 | 0.7801 |
+| PyTorch | 4 | 4.542426 | 792.528 | 1.8060 | 0.4515 |
+
+Flux remains flat across W=1/2/4; PyTorch scales `1.56x` at W=2 and `1.81x` at
+W=4 on this fixture.
+
+**Review qualifications and follow-up:**
+
+- Execution policies differ. PyTorch uses deterministic cuDNN
+  (`benchmark=False`), TF32 off, and `float32_matmul_precision="highest"`; Flux
+  uses strict FMA candidate filtering without a determinism filter. Flux DDP
+  includes synchronized gradient-finiteness checks inside the timed window;
+  PyTorch has no such guard in the timed loop. The cross-framework timing is
+  descriptive, not a communication-only isolation.
+- The 300-update final-state snapshot diagnostic is complete and descriptive
+  (job `61366015`, `lrdn2256.leonardo.local`, `COMPLETED 0:0`, elapsed
+  `00:13:26`; 6/6 JSON records and 6/6 snapshots; `STATIC_TIMING_numerics PASS`
+  and `TIMING_DRIVER_EXIT=0`). All arrays are finite; `beta_power` is exact
+  (62/62); no `param`, `m`, or `v` array is exactly equal. The envelope is
+  `param` `max_abs` up to `0.0333` and `rel_l2` up to `0.00224`, `m` `rel_l2`
+  up to `0.0485`, and `v` `rel_l2` up to `0.000333`. No equivalence rule is
+  applied; `NUMERICAL_EQUIVALENCE_CLAIM none`. Do not claim correctness,
+  equivalence, or an error bound. Flux produced five distinct final hash sets
+  per configuration across campaign repeats; PyTorch one. This is consistent
+  with Flux's non-deterministic FMA-compatible algorithm selection, not
+  evidence of an incorrect result.
+- The two loaded shared helpers differ from the Phase 4 accepted snapshot:
+  `phase4_common.jl` (accepted `32d85954...`, timing `30892f68...`) and
+  `phase4_torch.py` (accepted `75c19051...`, timing `7620d9d1...`). The drift
+  is recorded, not asserted equivalent.
+- `runtime-env.txt` capture is present for job `61366015` and records Julia
+  1.12.6, Flux 0.16.11, CUDA.jl/cuDNN.jl 6.2.2, Python 3.11.17, torch
+  2.9.1+cu126, and numpy 2.4.6 with executable/module paths; no
+  `RUNTIME_ENV_CAPTURE_FAILED` line. Campaign `61314790` predates the capture
+  and retains only the copied manifests and requirements freeze.
+- The earlier Leonardo SSH publickey rejection (2026-10-19) is retained as
+  history ([failure](../failures/2026-10-17-leonardo-ssh-publickey.md)); job
+  `61366015` subsequently ran and completed.
+
+The fixture evidence is bounded training-only: not full-dataset, not
+end-to-end, not the Phase 5 memory pilot, and not learning curves. Timing
+results, the descriptive snapshot, and provenance: [RESULTS.md](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/campaign-61314790/RESULTS.md),
+[300-update snapshot results](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/numerics-61366015/RESULTS.md),
+[provenance.json](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/campaign-61314790/provenance.json),
+[CAMPAIGN.md](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/CAMPAIGN.md),
+[devlog](../devlog/03-static-scaling/2026-10-19-timing-review-response.md),
+[failure record](../failures/2026-10-19-timing-numerics-attempts.md).
+
+**Next-action update:** OD-14 is recorded in the section above. The Phase 5 larger-batch memory pilot is next.
+
+## Fixture GPU timing campaign record — 2026-10-19 (qualified by the review above)
+
+The bounded fixture GPU timing campaign (job `61314790`, `static-timing-campaign`,
+`lrdn3064.leonardo.local`, `boost_qos_lprod`, 1 node / 1 task / 32 CPUs /
+4× A100-SXM-64GB, `02:00:00`) is **complete and PASS**, qualified by the
+2026-10-19 review above. It ran from
+`2026-10-18T23:06:02Z` to `2026-10-18T23:48:09Z` (approx.; `00:42:07` elapsed),
+and Slurm reports `COMPLETED` exit `0:0`. The compute-node precompile printed
+`FLUX_PRECOMPILE_OK`; the driver printed `STATIC_TIMING_campaign PASS` and
+`TIMING_DRIVER_EXIT=0`. All 30/30 JSON records are present (5 repeats × 6
+configurations), with no failed runs. The artifact checker prints
+`TIMING_ARTIFACT_CHECK PASS`.
+
+Fixture: global batch 12, alternating two saved Phase 2 batches, 20 warmup +
+300 measured training-only updates, strict FP32 FMA/TF32 off, native NCCL DDP
+at W=2,4.
+
+| Framework | W | median_s | images/s | speedup | efficiency |
+|---|---:|---:|---:|---:|---:|
+| Flux | 1 | 5.483059 | 656.568 | 1.0000 | 1.0000 |
+| Flux | 2 | 5.714868 | 629.936 | 0.9594 | 0.4797 |
+| Flux | 4 | 5.664201 | 635.571 | 0.9680 | 0.2420 |
+| PyTorch | 1 | 8.203725 | 438.825 | 1.0000 | 1.0000 |
+| PyTorch | 2 | 5.258007 | 684.670 | 1.5602 | 0.7801 |
+| PyTorch | 4 | 4.542426 | 792.528 | 1.8060 | 0.4515 |
+
+Flux is flat across W=1/2/4; PyTorch scales `1.56x` at W=2 and `1.81x` at W=4
+on this fixture. These are bounded fixture measurements only.
+
+This campaign supersedes canceled partial campaign `61305371` (23/30 records),
+which remains non-evidence; smoke `61305319` remains the preflight. GPU timing
+was previously deferred, and the user requested it on 2026-10-19.
+
+It is **not** the full-dataset campaign, **not** end-to-end timing (no input
+staging or H2D in the window), **not** the Phase 5 larger-batch memory pilot,
+and **not** learning curves. Do not claim more than measured.
+
+Evidence: [RESULTS.md](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/campaign-61314790/RESULTS.md),
+[CAMPAIGN.md](../../artifacts/logs/static-scaling/2026-10-18-timing-pilot/CAMPAIGN.md),
+[devlog](../devlog/03-static-scaling/2026-10-19-fixture-timing-campaign.md).
+Local artifacts: `artifacts/logs/static-scaling/2026-10-18-timing-pilot/campaign-61314790/`
+(30 JSON, `driver.log`, manifests, source snapshot; 2.4 MB); Slurm log
+`artifacts/logs/leonardo/2026-10-19-static-timing-campaign-61314790.log`.
+
+**Historical next action (superseded by the review section above):** run the
+Phase 5 larger-batch memory pilot before the full-dataset campaign, and decide
+whether to add the end-to-end timing view.
+
+## Phase 4 GPU accepted and finalized — 2026-10-18
+
+The user approved finite absolute numerical error `<1e-3`, with exact structural and rank checks.
+The fresh artifact recheck passes all 202 categories for Flux/PyTorch at W=1,2,4.
+It finished at `2026-10-18T21:44:16Z`; the canonical report SHA-256 is
+`a5ca161c3e7b7b57a9d5b3d24c7ddb9236ce613554db5ab95f391976a1fa7f8c`.
+The checker self-test passes 36 checks.
+CPU validation is deferred. The previous CUDA-only trajectory overrides are removed.
+The original strict same-framework rule did not pass and is not the acceptance claim.
+Evidence: [Phase 4 results](../../artifacts/logs/static-scaling/2026-10-18-phase4/RESULTS.md).
+
+Phase 4 is finalized for the GPU scope.
+GPU timing was the next phase; that statement is superseded by the completed
+fixture campaign above.
+The preflight smoke (`61305319`) and canceled partial campaign (`61305371`) are
+not Phase 4 acceptance evidence. Campaign `61305371` was canceled at user
+request after 23 of 30 records.
+The full-dataset campaign and larger-batch memory pilot remain pending.
+**Exact next action (historical; superseded by the fixture timing section above):**
+review the Phase 4 changes; start timing only on explicit request.
+
+## Historical Phase 4 handoff — superseded — 2026-10-18
+
+Phase 4 is **not accepted**. The Flux runner, independent checker, and remote
+drivers are implemented and pass local CPU checks; the PyTorch DDP runner is
+missing. The remaining Flux issue is the `u3` same-framework comparison
+(`grads.u3` ~4e-4, `m.u3` ~4e-5) caused by trajectory sensitivity after two
+updates; an independent shard-arithmetic reference is the recommended control.
+Leonardo SSH publickey and deathstar DNS were both unavailable at handoff.
+Do not rerun the full local CPU matrix; use deathstar/Leonardo.
+
+Read the complete state, evidence, and exact next actions in
+[`temp/phase4-handoff.md`](../../temp/phase4-handoff.md). Details:
+[devlog](../devlog/03-static-scaling/2026-10-18-phase4-implementation-handoff.md),
+[failure note](../failures/2026-10-18-phase4-remote-access.md).
+
+**Exact next action:** implement `scripts/static_scaling/phase4_torch.py`,
+then add the shard-arithmetic reference mode and resolve the Flux `u3`
+comparison before any remote acceptance run.
+
+## Focused R1/R2 review (2026-10-18): GO for Phase 4
+
+Focused R1/R2 review (2026-10-18): **GO for Phase 4**. Source inspection and
+retained evidence revealed no blocking defect. Fresh local hash checks passed
+for 23 evidence files and matched all seven scripts in the recorded provenance.
+See the [review record](../devlog/03-static-scaling/2026-10-18-r1-r2-precision-policy-fixes.md#focused-phase-4-readiness-review-2026-10-18).
+
+## Phase 3 acceptance-review fixes verified — 2026-10-18
+
+R1/R2 are hardened and verified remotely; Phase 3 acceptance is retained. The
+[acceptance review](../../reports/static-scaling-phase3-acceptance-review.md)
+found no evidence of invalidating the accepted run, which used 32 FMA choices
+and zero fallbacks. The independent-review hardening found no blocking defect
+and closed the identified reuse risks.
+
+- Canonical precompile: job `61187225` (`lrdn0241`, UTC
+  `12:20:59`-`12:24:36`), `FLUX_PRECOMPILE_OK`, exit 0. Use
+  `precompile-phase3.sh`; the default `precompile.sh` is the wrong target for
+  Leonardo (root `Manifest.toml` excluded, compute nodes offline).
+- Focused precision regression: job `61188854` (`lrdn1845`, UTC start
+  `2026-10-18T12:24:49Z`, driver `12:24:54Z`, exit 0),
+  `PHASE3_PRECISION_REGRESSION PASS`; fma PASS with `fallback=0`, current
+  negative control as expected at `~2.932134e-4`, policy 10/10 PASS, 0 FAIL.
+- Full Phase 3 recheck on the hardened helper: job `61191281` (`lrdn2911`,
+  UTC start `2026-10-18T12:30:16Z`, driver `12:30:21Z`, elapsed `00:07:52`,
+  exit 0), all four summaries PASS, 337/337 exact-equal to the preserved
+  reference (`max_abs_diff=0`), 32/32 cuDNN choices `CUDNN_FMA_MATH` with
+  `fallback=0`, zero violations in every category, and no
+  `Precompiling packages...` line.
+
+| Category | Max abs diff | Violations |
+|---|---:|---:|
+| eta | 0 | 0 |
+| activations | 1.56164169e-05 | 0 |
+| logits | 1.7285347e-06 | 0 |
+| loss | 4.76837158e-07 | 0 |
+| grads.u1 | 3.02582979e-04 | 0 |
+| grads.u3 | 6.08410686e-04 | 0 |
+| params.u3 | 4.77954745e-06 | 0 |
+| m.u3 | 6.32628798e-05 | 0 |
+| v.u3 | 2.32830644e-07 | 0 |
+| beta_power.u3 | 0 | 0 |
+| step | reference 3 = Flux 3 | 0 |
+
+Reference identity: NPZ SHA-256
+`97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783`,
+manifest SHA-256
+`bfd979e2d575e24004860c07c216779325923b73e9873bb063c899acab04109a`;
+337/337 exact-equal to the preserved attempt-3 archive, independent check
+PASS, remote/local SHA-256 3/3 precision and 5/5 Phase 3. Source identity is
+generation-time: thesis state
+`da20dddc8616f2b53b7ab7095ee0e3bc1794bece3916b1806cf83ee725fdf199`, Flux
+`f7b4520c...` state `e3b0c442...` (clean); later doc edits move the live
+worktree hash.
+
+Evidence: [precision hardening](../../artifacts/logs/static-scaling/2026-10-18-r1-r2-precision-hardening/),
+[full recheck logs](../../artifacts/logs/static-scaling/2026-10-18-r1-r2-phase3-hardening/),
+[recheck reference](../../artifacts/baselines/static-scaling/2026-10-18-r1-r2-phase3-hardening/),
+[response report](../../reports/static-scaling-phase3-acceptance-review-response.md),
+[devlog](../devlog/03-static-scaling/2026-10-18-r1-r2-precision-policy-fixes.md).
+
+R3 is recorded as open OD-14, a Phase 6 benchmark-policy decision with a
+proposed default, not a Phase 4 blocker. R4 is corrected in the response
+report: the "no sign flips" claim is withdrawn and the zero/nonzero check is
+whole-leaf L2, not elementwise. The calibrated tolerances remain specific to
+the cross-framework fixture, not automatic Phase 4 DDP tolerances. The
+independent delta review's non-blocking reuse/test gaps are listed in the
+[devlog](../devlog/03-static-scaling/2026-10-18-r1-r2-precision-policy-fixes.md#deferred-non-blocking-findings-2026-10-18);
+none blocks Phase 4.
+
+Leonardo access currently works. The earlier transient local DNS/network drop
+did not affect the final hardened evidence; it is not evidence of a key
+change. The superseded intermediate runs remain under
+`artifacts/logs/static-scaling/2026-10-18-r1-r2-precision-fixes/` and
+`artifacts/logs/static-scaling/2026-10-18-r1-r2-phase3-recheck/`.
+
+**Exact next action:** start Phase 4 distributed correctness at two and four
+ranks per `temp/static-graph-gpu-scaling-implementation-phases.md` section 6.
 
 ## Phase 3 accepted — 2026-10-18
 
@@ -59,8 +516,10 @@ Float32 autotuner skips the math-type check. The isolated stage-2 convolution
 reproduced the failure; explicit `CUDNN_FMA_MATH` removed it. The reusable
 `scripts/static_scaling/precision.jl` now installs an FMA-aware
 `math_mode`/chooser and clears the algorithm caches. The residual backward
-differences are ordinary FP32 algorithm rounding, covered by the frozen OD-10
-floors with at least 2x margin.
+differences are consistent with FP32 backend/algorithm differences, including
+possible sensitivity near nonlinear boundaries; they are covered by the frozen
+OD-10 floors with at least 2x margin. The controls support that explanation
+but do not isolate every residual to backward-kernel rounding.
 
 Evidence: [results](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/RESULTS.md),
 [commands](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/COMMANDS.md),
@@ -71,10 +530,9 @@ Evidence: [results](../../artifacts/logs/static-scaling/2026-10-18-phase3-final/
 The hardened Phase 2 prerequisite remains
 [`60951247`](../../artifacts/logs/static-scaling/2026-10-18-phase2-hardened-recheck/PROVENANCE.md).
 
-Benchmarks are **not** part of Phase 3. **Exact next action:** if
-`ssh leonardo true` still returns `Permission denied (publickey,...)`, restore
-Leonardo SSH access first (see the [failure record](../failures/2026-10-17-leonardo-ssh-publickey.md));
-then start Phase 4, distributed correctness at two and four ranks, per
+Benchmarks are **not** part of Phase 3. The later acceptance-review R1/R2
+fixes and the hardened full recheck are recorded in the top section. **Exact
+next action:** start Phase 4 distributed correctness at two and four ranks per
 `temp/static-graph-gpu-scaling-implementation-phases.md` section 6.
 
 ## Phase 3 Step 5 complete: hardened Phase 2 re-check PASS, decisions frozen — 2026-10-18 (historical; superseded by acceptance above)
@@ -437,7 +895,7 @@ directory; retain per-category maxima, violation counts, and relative L2.
 ## Phase 2 acceptance checks corrected and independently verified — 2026-10-17
 
 Original-reviewer follow-up: R1–R3 are closed locally after source inspection and a fresh six-case harness run.
-Canonical Julia acceptance passed 81 checks. The real-PREP remote re-check remains pending.
+Canonical Julia acceptance passed 81 checks. The real-PREP remote re-check ran later as job `60951247` and passed (113 checks, exit 0; see the Phase 3 Step 5 section).
 The [review](../../reports/static-scaling-phase2-review.md) now records this closure.
 
 The [implementation review](../../reports/static-scaling-phase2-review.md) found three P2 acceptance gaps (R1-R3): prepared-file hashes were not enforced, Julia ignored fixture integrity hashes, and both GroupNorm checks covered only 4 of 20 layers. All three are corrected and independently verified in the [response report](../../reports/static-scaling-phase2-review-response.md); the findings concerned acceptance coverage, not demonstrated corruption of the canonical artifacts.
@@ -450,9 +908,9 @@ Positive reruns: `selftest_local.py` five groups PASS; local `check_all.jl` 81/8
 
 Residual limitations: a fully self-consistent rewrite of `data_fixture.npz` plus `fixture_manifest.json` still passes the local Julia-only check because Julia has no PREP reference; the Python PREP cross-check catches it (`data_fixture.train_labels FAIL`), and the remote combined acceptance runs Python first. A self-consistent dataset-image rewrite is bounded by the manifest hashes, global statistics, and sampled fixtures.
 
-Remote re-check on the real `$PREP` was not run: `ssh leonardo` failed on 2026-10-17 with `epicazio@login.leonardo.cineca.it: Permission denied (publickey,gssapi-keyex,gssapi-with-mic)`. The local agent has no identities and the on-disk `~/.ssh/id_ed25519` (`SHA256:TDVaBv4y...`) is rejected by the server. This is an access/ops blocker, not a code result; the remote re-check is the first step once SSH is restored ([failure](../failures/2026-10-17-leonardo-ssh-publickey.md)).
+Remote re-check on the real `$PREP` was completed as job `60951247` (113 checks, 0 FAIL, exit 0). Earlier on 2026-10-17 `ssh leonardo` had failed with `epicazio@login.leonardo.cineca.it: Permission denied (publickey,gssapi-keyex,gssapi-with-mic)`; access later worked. The recurrence and the separate transient 2026-10-18 DNS/network drop are recorded in the [failure note](../failures/2026-10-17-leonardo-ssh-publickey.md).
 
-**Exact next action:** restore Leonardo SSH access, then re-run `scripts/remote/leonardo/run-phase2-check.sh` on the real `$PREP`/fixtures with the hardened checkers (sync first), then proceed to Phase 3 per `temp/static-graph-gpu-scaling-implementation-phases.md`.
+**Historical next action (completed):** the real-`$PREP` re-check ran, Phase 3 proceeded, and Phase 3 was accepted. The current exact next action is stated at the top of this file.
 
 Details: [acceptance-fix devlog](../devlog/03-static-scaling/2026-10-17-phase2-acceptance-fixes.md), [prior review devlog](../devlog/03-static-scaling/2026-10-17-phase2-implementation-review.md).
 

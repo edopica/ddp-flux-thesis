@@ -1,0 +1,61 @@
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_lprod -N1 --ntasks=1 --cpus-per-task=32 --gres=gpu:4 --time=01:00:00 srun -n1 -c32 --chdir=$HOME/projects/ddp-flux-thesis bash scripts/remote/leonardo/run-static-revision-check.sh
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Pending job allocation 61406220
+salloc: job 61406220 queued and waiting for resources
+salloc: job 61406220 has been allocated resources
+salloc: Granted job allocation 61406220
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0253 are ready for job
+=== run-static-revision-check: START 2026-10-19T12:01:25Z ===
+host=lrdn0253.leonardo.local SLURM_JOB_ID=61406220 SLURM_JOB_NODELIST=lrdn0253
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+FLUX_CURRENT=/leonardo/home/userexternal/epicazio/projects/flux-integration
+FLUX_HISTORICAL=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+REF=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/flux/cuda/phase4_reference.npz
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61406220
+WORLD_SIZES=1 2 4 TOTAL_CPUS=32
+=== STAGE 0 :: preflight ===
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml is absent; the test project resolves from the depot (same as current campaign)
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Manifest.toml is absent; the test project resolves from the depot (same as current campaign)
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-integration is not a git worktree (remote sync excludes .git);
+      recording expected current commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e
+NOTE: /leonardo/home/userexternal/epicazio/projects/flux-static-baseline is not a git worktree (remote sync excludes .git);
+      recording expected historical commit 8add0e42b7d9388ff365335152126e5b1e9de657
+=== STAGE a :: source-snapshot START 2026-10-19T12:01:25Z ===
+COMMAND: bash -c $'\nset -euo pipefail\ncp -a "$SCRIPTS/." "$OUT/source/thesis/scripts/static_scaling/"\ncp -a "$DRIVER_PATH" "$OUT/source/thesis/scripts/remote/leonardo/$(basename "$DRIVER_PATH")"\nmkdir -p "$OUT/source/current/scripts/static_scaling" "$OUT/source/historical/scripts/static_scaling"\ncp -a "$SCRIPTS/." "$OUT/source/current/scripts/static_scaling/"\ncp -a "$SCRIPTS/." "$OUT/source/historical/scripts/static_scaling/"\ncp -a "$FLUX_CURRENT/src" "$FLUX_CURRENT/ext" "$OUT/source/current/"\ncp -a "$FLUX_CURRENT/Project.toml" "$OUT/source/current/Project.toml"\ncp -a "$FLUX_CURRENT/Manifest.toml" "$OUT/source/current/Manifest.toml"\ncp -a "$FLUX_HISTORICAL/src" "$FLUX_HISTORICAL/ext" "$OUT/source/historical/"\ncp -a "$FLUX_HISTORICAL/Project.toml" "$OUT/source/historical/Project.toml"\ncp -a "$FLUX_HISTORICAL/Manifest.toml" "$OUT/source/historical/Manifest.toml"\nif [ -f "$FLUX_CURRENT/test/Manifest.toml" ]; then\n  mkdir -p "$OUT/source/current/test"\n  cp -a "$FLUX_CURRENT/test/Manifest.toml" "$OUT/source/current/test/Manifest.toml"\nfi\nif [ -f "$FLUX_HISTORICAL/test/Manifest.toml" ]; then\n  mkdir -p "$OUT/source/historical/test"\n  cp -a "$FLUX_HISTORICAL/test/Manifest.toml" "$OUT/source/historical/test/Manifest.toml"\nfi\nfind "$OUT/source" -type f -not -path "*/__pycache__/*" -print0 \\\n  | sort -z | xargs -0 -r sha256sum > "$OUT/source-sha256.txt"\n' _ 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61406220/logs/a-source-snapshot.log
+=== STAGE a :: source-snapshot END 2026-10-19T12:01:25Z EXIT 0 ===
+=== STAGE current :: ddp-w1 START 2026-10-19T12:01:30Z ===
+COMMAND: timeout 1800 srun --overlap --mpi=pmi2 --kill-on-bad-exit=1 -n1 -c32 --chdir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis bash -c unset\ JULIA_PROJECT\;\ export\ JULIA_DEPOT_PATH=\"\$1\"\ JULIA_LOAD_PATH=\"\$2\"\ JULIA_PKG_PRECOMPILE_AUTO=0\ JULIA_NUM_THREADS=\"\$3\"\ OMP_NUM_THREADS=\"\$3\"\ OPENBLAS_NUM_THREADS=\"\$3\"\ MKL_NUM_THREADS=\"\$3\"\;\ shift\ 3\;\ exec\ \"\$@\" _ /leonardo_work/IscrC_UNMASKED/epicazio/julia-depot /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env:/leonardo/home/userexternal/epicazio/projects/flux-integration/test:@stdlib 1 /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --startup-file=no /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --mode ddp --device cuda --backend nccl --world-size 1 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61406220/current --distributed-api guarded --source-state-sha256 a2a593cb7cf06d13453d8eceb06bfe63cfe5188c55c73398eabf7d70fe63301b --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 cacdbfc32bac0941a521d7323b71b8af7e4ce8afd0d8c609fe83f08fb1115650 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61406220/logs/current-ddp-w1.log
+PHASE4_FLUX ERROR: BoundsError: attempt to access 4-element Vector{CUDACore.CuDevice} at index [0]
+  throw_boundserror(A::Vector{CUDACore.CuDevice}, I::Tuple{Int64}) at essentials.jl:15
+  getindex at essentials.jl:919 [inlined]
+  set_device! at CUDAExt.jl:46 [inlined]
+  __initialize(::Type{Flux.MPIBackend}; cuda_devices::Vector{Int64}, amdgpu_devices::Missing, force_cuda::Bool, caller::String, force::Bool, force_amdgpu::Bool) at FluxMPIExt.jl:31
+  __initialize at FluxMPIExt.jl:9 [inlined]
+  #__initialize#1 at FluxMPINCCLExt.jl:14 [inlined]
+  __initialize at FluxMPINCCLExt.jl:10 [inlined]
+  #initialize#1 at public_api.jl:55 [inlined]
+PHASE4_FLUX FAIL
+srun: error: lrdn0253: task 0: Exited with exit code 1
+srun: Terminating StepId=61406220.1
+=== STAGE current :: ddp-w1 END 2026-10-19T12:04:24Z EXIT 1 ===
+=== summary ===
+STAGE 0 PASS preflight
+STAGE a PASS source snapshot and metadata
+STAGE b FAIL current guarded DDP failed
+STAGE c SKIP earlier stage failed
+STAGE d SKIP earlier stage failed
+STAGE e SKIP earlier stage failed
+STAGE f PASS no precompilation marker in stage logs
+STATIC_REVISION_CHECK FAIL stage=b reason=current guarded DDP failed
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61406220
+=== run-static-revision-check: EXIT 1 (log: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-revision-check-61406220/logs/driver.log) ===
+srun: error: lrdn0253: task 0: Exited with exit code 1
+salloc: Relinquishing job allocation 61406220
+salloc: Job allocation 61406220 has been revoked.

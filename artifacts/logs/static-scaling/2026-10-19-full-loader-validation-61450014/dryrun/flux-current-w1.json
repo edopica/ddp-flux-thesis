@@ -1,0 +1,190 @@
+{
+  "batch_size": 512,
+  "bundle_file_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "bundle_path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.npz",
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "config_kind": "single_gpu",
+  "dataset_dir": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared",
+  "dataset_hashes": {
+    "augmentation.npy": {
+      "actual_sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "bytes": 15000128,
+      "declared_bytes": null,
+      "declared_sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "source": "schedule_manifest.json"
+    },
+    "class_wnids.txt": {
+      "actual_sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "bytes": 2000,
+      "declared_bytes": 2000,
+      "declared_sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "source": "dataset_manifest.json"
+    },
+    "dataset_manifest.json": {
+      "actual_sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a",
+      "bytes": 4288,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a",
+      "source": "actual-only"
+    },
+    "initial_bundle.manifest.json": {
+      "actual_sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571",
+      "bytes": 16437,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571",
+      "source": "actual-only"
+    },
+    "initial_bundle.npz": {
+      "actual_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+      "bytes": 45103060,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+      "source": "actual-only"
+    },
+    "permutations.npy": {
+      "actual_sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "bytes": 40000128,
+      "declared_bytes": null,
+      "declared_sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "source": "schedule_manifest.json"
+    },
+    "schedule_manifest.json": {
+      "actual_sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295",
+      "bytes": 1773,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295",
+      "source": "actual-only"
+    },
+    "stats.json": {
+      "actual_sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "bytes": 1238,
+      "declared_bytes": 1238,
+      "declared_sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "source": "dataset_manifest.json"
+    },
+    "train_images.npy": {
+      "actual_sha256": "",
+      "bytes": 1228800128,
+      "declared_bytes": 1228800128,
+      "declared_sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "hash_verified": false,
+      "large": true,
+      "sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "source": "dataset_manifest.json"
+    },
+    "train_labels.npy": {
+      "actual_sha256": "",
+      "bytes": 800128,
+      "declared_bytes": 800128,
+      "declared_sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "hash_verified": false,
+      "large": true,
+      "sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "source": "dataset_manifest.json"
+    },
+    "val_images.npy": {
+      "actual_sha256": "",
+      "bytes": 122880128,
+      "declared_bytes": 122880128,
+      "declared_sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "hash_verified": false,
+      "large": true,
+      "sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "source": "dataset_manifest.json"
+    },
+    "val_labels.npy": {
+      "actual_sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "bytes": 80128,
+      "declared_bytes": 80128,
+      "declared_sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "source": "dataset_manifest.json"
+    }
+  },
+  "distributed_api": "single_gpu",
+  "epoch": 0,
+  "final_loss": 5.492467880249023,
+  "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+  "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+  "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "framework": "flux",
+  "global_batch": 512,
+  "guard_policy": "not applicable: single-GPU baseline",
+  "hashes": {
+    "beta_power": "39f9bd96b005e98ccc9db60377df758313adb3444972d7d8ec43d82e1e545f67",
+    "m": "696b370a5d0a3422677623cb3b7077c086d7e812c92c8bb949501fc5827acb5d",
+    "param": "e515ac1ae46f411c66fddfea1308bc20f87fa32a2ef31d155760ebe6a384a392",
+    "v": "a57402aab9008516f5ef1aa68dbb5a5f07c4a19e6c268b3b4a9aba2205eee393"
+  },
+  "images_per_second": 1012.534825166284,
+  "job": "61450014",
+  "loader_policy": "mmap opened once per process before timing; every timed update assembles its batch from the map",
+  "loss_finite": true,
+  "memory": {
+    "device_free_bytes": 9303490560,
+    "device_total_bytes": 68099571712,
+    "device_used_bytes": 58796081152,
+    "host_maxrss_bytes": 3088822272
+  },
+  "n_eff": 99840,
+  "node": "lrdn0667.leonardo.local",
+  "pass_checks": true,
+  "precision": "FP32 strict FMA, TF32 off",
+  "rank_seconds": [
+    0.50566162
+  ],
+  "sample_order_sha256": "f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335",
+  "schema": "static-timing-full-dataset-v1",
+  "seconds": 0.50566162,
+  "snapshot": false,
+  "source": {
+    "blas_threads": 1,
+    "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+    "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+    "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "host": "lrdn0667.leonardo.local",
+    "julia_threads": 1,
+    "julia_version": "1.12.6",
+    "thesis_commit": "a3786d97f3263cad20b254206f09c095880f624d",
+    "thesis_state_sha256": "336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3"
+  },
+  "tail_size": 160,
+  "timing": "full-dataset-end-to-end",
+  "timing_policy": "mmap opened before timing; timed region includes batch assembly, transform, onehot, H2D, forward, backward, and optimizer step",
+  "transform_spec_sha256": "e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa",
+  "update1_order_sha256": "23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a",
+  "update_seconds": 0.50566162,
+  "updates": 1,
+  "updates_per_epoch": 195,
+  "warmup": 20,
+  "warmup_policy": "20 discarded updates at t=1..20; model and optimizer reset from the bundle; measured region restarts at update 1 and data at batch 1",
+  "workload": "full-dataset-epoch",
+  "world_size": 1
+}

@@ -1,0 +1,7 @@
+36a855f8588ebafd7c89870bee52b179e378932dd5f1c600f2898306f2096f81  ./console/precision-regression-console.log
+8b19adb8200e89e989de19f1a4886e0079142bb31b217b25d402ec26179101d6  ./console/precompile-default-sh-FAILED.log
+66911f58fd8184a0d09d3d0dcb92c1c3aa7e4c20ac73fa2b04755ebbb8f0a8a3  ./console/precompile-phase3.log
+843a9779d062f7e76304e64787956fdd89bb7e3e7cc340d9c27936432559648d  ./precision/logs/current.log
+d20da59c0f11c3690459b52e322a09336147aea2c92e78ad993aa8063e7180b4  ./precision/logs/fma.log
+0289da3b56bab4b96c71ff260cb60e7895c419e2191c44c435cde82f3a2a2557  ./precision/logs/policy.log
+1f93faaae3dbf818eb4f04bf8ef1a5901370335f523ac7a12f58689899650f2b  ./remote-SHA256.txt

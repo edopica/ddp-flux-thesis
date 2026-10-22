@@ -1,0 +1,8 @@
+0	PASS	preflight
+a	PASS	source, versions, hashes
+b	PASS	Flux single-GPU reference (reused)
+c	PASS	PyTorch single-GPU reference and identity (reused)
+d	PASS	split-control both frameworks
+e	PASS	Flux DDP worlds: 1 2 4 (reused)
+f	PASS	PyTorch DDP worlds: 1 2 4
+g	PASS	checker PHASE4_CHECK PASS

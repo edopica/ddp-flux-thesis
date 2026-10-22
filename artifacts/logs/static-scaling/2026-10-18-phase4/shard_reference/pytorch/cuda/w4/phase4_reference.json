@@ -1,0 +1,90 @@
+{
+  "framework": "pytorch",
+  "mode": "shard-reference",
+  "device": "cuda",
+  "cuda_device_name": "NVIDIA A100-SXM-64GB",
+  "world_size": 4,
+  "updates": 3,
+  "global_batch_size": 12,
+  "local_batch_size": 3,
+  "parameter_count": 11271432,
+  "array_count": 62,
+  "reference_array_count": 337,
+  "bundle_path": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz",
+  "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "init_param_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "etas": {
+    "u1": 1.0256410256410257e-06,
+    "u2": 2.0512820512820513e-06,
+    "u3": 3.076923076923077e-06
+  },
+  "losses": {
+    "u1": 5.635497093200684,
+    "u2": 5.554323196411133,
+    "u3": 5.5417585372924805
+  },
+  "shard_losses": {
+    "u1": [
+      5.7079620361328125,
+      5.651382923126221,
+      5.202955722808838,
+      5.979689121246338
+    ],
+    "u2": [
+      5.549611568450928,
+      5.587656021118164,
+      5.1544013023376465,
+      5.925623416900635
+    ],
+    "u3": [
+      5.569861888885498,
+      5.514929294586182,
+      5.145092487335205,
+      5.9371514320373535
+    ]
+  },
+  "state_hashes": {
+    "u1": {
+      "param": "fce7ebf8c01cde83f98325aa291ef54bcf3d32c4b5b5f920c22162f0207ec17d",
+      "m": "bd10a0e86c2dd23aa40fd29bedf3edbecd1bfd3fec99d9b289903a2aebe0ff21",
+      "v": "3ab9a00b1e4aad3be23d4c4c0a0175c7c6dfeaa32320457ccf40a27c8cfefb7b",
+      "step": 1
+    },
+    "u2": {
+      "param": "5bcf6ec89d91458e142b9596fab7d9ff538b3ff3bccafe0df20c61121d70d61f",
+      "m": "9eb9d8d79f80f234975806d1068ba57855ce935b6c77fe9e9f0be6c4690dfceb",
+      "v": "f4955b9dc923c5151a9ebc6e8701861fa6ec23742f5ab809931255df7b1ca3c8",
+      "step": 2
+    },
+    "u3": {
+      "param": "9fbc704ad2e534d48f4a55eba2f80125adda3891a8e7c2ec537f86bf29b6de96",
+      "m": "bdc085dd82e48ef5c400d22536fcf2847c555d851fb117b66ee6f377a00c8475",
+      "v": "2d183a53c92ae5cf4f9e6dbace96d374b74dc70a3278ff0875c23c3c07751be2",
+      "step": 3
+    }
+  },
+  "final_param_hash": "9fbc704ad2e534d48f4a55eba2f80125adda3891a8e7c2ec537f86bf29b6de96",
+  "final_m_hash": "bdc085dd82e48ef5c400d22536fcf2847c555d851fb117b66ee6f377a00c8475",
+  "final_v_hash": "2d183a53c92ae5cf4f9e6dbace96d374b74dc70a3278ff0875c23c3c07751be2",
+  "final_step": 3,
+  "backend_flags": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "fixture": {
+    "data_fixture_path": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/data_fixture.npz",
+    "data_fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+    "permutation_path": "",
+    "permutation_sha256": ""
+  },
+  "npz_path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/shard_reference/pytorch/cuda/w4/phase4_reference.npz",
+  "npz_sha256": "fa1dd3de2af6a613a67f85fc5c6e41575a90b8dd87e851bb338d5aade33a14ae",
+  "source_commit": "",
+  "source_state_sha256": "",
+  "flux_commit": "",
+  "flux_state_sha256": "",
+  "created_at": "2026-10-18T19:24:16Z"
+}

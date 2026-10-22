@@ -1,0 +1,10 @@
+./COMMANDS.md: OK
+./console/precision-regression-console.log: OK
+./console/precompile-phase3.log: OK
+./policy-cases.txt: OK
+./precision/logs/current.log: OK
+./precision/logs/fma.log: OK
+./precision/logs/policy.log: OK
+./remote-SHA256.txt: OK
+./RESULTS.md: OK
+./SHA256-COMPARISON.txt: OK

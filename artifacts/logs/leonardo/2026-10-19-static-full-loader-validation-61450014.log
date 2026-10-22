@@ -1,0 +1,278 @@
+FULL_VALIDATION START utc=2026-10-19T15:44:15Z host=lrdn0667.leonardo.local job=61450014
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014
+PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared
+CURRENT=/leonardo/home/userexternal/epicazio/projects/flux-integration (f7b4520c4bd307c67bbc5ac92a1c68493eccff6e/e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855)
+HISTORICAL=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline (8add0e42b7d9388ff365335152126e5b1e9de657/4af8409c2a2ed1c661e8ae7742877f1ee9789d00dc7e404365ecefd98ab0d34c)
+THESIS_STATE=336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3
+STAGE precompile-current
+PREcompile host=lrdn0667.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-integration julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+FLUX_PRECOMPILE_OK
+PRECOMPILE_current OK
+STAGE precompile-historical
+PREcompile host=lrdn0667.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Project.toml
+FLUX_PRECOMPILE_OK
+PRECOMPILE_historical OK
+STAGE reference
+RUN /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/full_dataset_reference.py --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --out-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference --epoch 0 --batch-size 512 --worlds 1,2,4 --verify-large-hashes
+FULL_DATASET_REFERENCE PASS
+STAGE python-check
+RUN /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_full_dataset.py --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --reference-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference/python-check.json --epoch 0 --batch-size 512 --worlds 1,2,4 --strict-contract true
+FULL_DATASET_PYTHON_CHECK PASS checks=169
+STAGE julia-check-current
+RUN julia_current /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_full_dataset.jl --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --reference-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/check-julia-current.json --batch-size 512 --epoch 0 --worlds 1,2,4 --label flux-current --verify-large-hashes true --strict-contract true
+CHECK reference.epoch PASS ref=0 actual=0
+CHECK reference.batch_size PASS ref=512 actual=512
+CHECK reference.n_eff PASS ref=99840 actual=99840
+CHECK reference.tail_size PASS ref=160 actual=160
+CHECK reference.updates_per_epoch PASS ref=195 actual=195
+CHECK epoch_ids.shape PASS ref=(99840,) actual=(99840,)
+CHECK epoch_ids.eltype PASS ref=Int64
+CHECK epoch_ids.values PASS
+CHECK sample_order_sha256 PASS julia=f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335 ref=f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335
+CHECK update1_order_sha256 PASS julia=23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a ref=23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a
+CHECK transform_spec_sha256 PASS julia=e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa ref=e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa
+CHECK stats.mean PASS ref=Float32[0.48023695, 0.44806704, 0.39750364] actual=Float32[0.48023695, 0.44806704, 0.39750364]
+CHECK stats.std PASS ref=Float32[0.27643642, 0.2688633, 0.28158993] actual=Float32[0.27643642, 0.2688633, 0.28158993]
+CHECK rank_sequence.R1.shape PASS ref=(99840,) actual=(99840,)
+CHECK rank_sequence.R1.values PASS
+CHECK rank_sequence.R1.concatenation PASS per-update rank order
+CHECK rank_sequence.R1.union PASS
+CHECK rank_sequence.R1.length PASS length=99840 expected=99840
+CHECK rank_sequence.R1.unique PASS
+CHECK rank_sequence.R1.rank1_unique PASS
+CHECK rank_sequence.R2.shape PASS ref=(2, 49920) actual=(2, 49920)
+CHECK rank_sequence.R2.rank1 PASS
+CHECK rank_sequence.R2.rank2 PASS
+CHECK rank_sequence.R2.concatenation PASS per-update rank order
+CHECK rank_sequence.R2.union PASS
+CHECK rank_sequence.R2.length PASS length=99840 expected=99840
+CHECK rank_sequence.R2.unique PASS
+CHECK rank_sequence.R2.rank1_unique PASS
+CHECK rank_sequence.R2.rank2_unique PASS
+CHECK rank_sequence.R4.shape PASS ref=(4, 24960) actual=(4, 24960)
+CHECK rank_sequence.R4.rank1 PASS
+CHECK rank_sequence.R4.rank2 PASS
+CHECK rank_sequence.R4.rank3 PASS
+CHECK rank_sequence.R4.rank4 PASS
+CHECK rank_sequence.R4.concatenation PASS per-update rank order
+CHECK rank_sequence.R4.union PASS
+CHECK rank_sequence.R4.length PASS length=99840 expected=99840
+CHECK rank_sequence.R4.unique PASS
+CHECK rank_sequence.R4.rank1_unique PASS
+CHECK rank_sequence.R4.rank2_unique PASS
+CHECK rank_sequence.R4.rank3_unique PASS
+CHECK rank_sequence.R4.rank4_unique PASS
+CHECK contract.n_eff PASS n_eff=99840
+CHECK contract.tail_size PASS tail=160
+CHECK contract.unique PASS
+CHECK contract.range PASS
+CHECK contract.updates.b512 PASS updates=195 expected=195
+CHECK contract.length.b512 PASS length=99840
+CHECK contract.updates.b256 PASS updates=390 expected=390
+CHECK contract.length.b256 PASS length=99840
+CHECK contract.missing_tail PASS missing=160 tail=160
+CHECK update1.global_ids PASS
+CHECK update1.labels PASS
+CHECK update1.transformed.shape PASS ref=(512, 3, 64, 64)
+CHECK update1.transformed.eltype PASS ref=Float32
+CHECK update1.R1.transformed.shape PASS actual=(512, 3, 64, 64) ref=(512, 3, 64, 64)
+CHECK update1.R1.transformed.eltype PASS
+CHECK update1.R1.transformed.max_abs_diff PASS max_abs_diff=0.0
+CHECK update1.R1.labels PASS
+CHECK update1.R1.shard_ids PASS
+CHECK update1.R1.local_size PASS batch=512 world=1
+CHECK update1.R2.transformed.shape PASS actual=(512, 3, 64, 64) ref=(512, 3, 64, 64)
+CHECK update1.R2.transformed.eltype PASS
+CHECK update1.R2.transformed.max_abs_diff PASS max_abs_diff=0.0
+CHECK update1.R2.labels PASS
+CHECK update1.R2.shard_ids PASS
+CHECK update1.R2.local_size PASS batch=512 world=2
+CHECK update1.R4.transformed.shape PASS actual=(512, 3, 64, 64) ref=(512, 3, 64, 64)
+CHECK update1.R4.transformed.eltype PASS
+CHECK update1.R4.transformed.max_abs_diff PASS max_abs_diff=0.0
+CHECK update1.R4.labels PASS
+CHECK update1.R4.shard_ids PASS
+CHECK update1.R4.local_size PASS batch=512 world=4
+CHECK onehot.shape PASS actual=(200, 512)
+CHECK onehot.eltype PASS onehot=Bool matrix=Float32
+CHECK onehot.column_sums PASS
+CHECK onehot.argmax PASS
+CHECK onehot.explicit PASS
+CHECK bundle.array_count PASS actual=62
+CHECK bundle.parameter_count PASS actual=11271432
+CHECK bundle.name_set PASS
+CHECK bundle.shapes PASS
+CHECK bundle.bundle_hash PASS julia=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23 ref=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+CHECK bundle.file_sha256 PASS julia=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317
+CHECK bundle.frozen_hash PASS actual=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+CHECK dataset_file.train_images.npy.bytes PASS actual=1228800128 ref=1228800128
+CHECK dataset_file.train_images.npy.sha256 PASS actual=ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510 ref=ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510
+CHECK dataset_file.train_labels.npy.bytes PASS actual=800128 ref=800128
+CHECK dataset_file.train_labels.npy.sha256 PASS actual=fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79 ref=fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79
+CHECK dataset_file.permutations.npy.bytes PASS actual=40000128 ref=40000128
+CHECK dataset_file.permutations.npy.sha256 PASS actual=7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd ref=7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd
+CHECK dataset_file.augmentation.npy.bytes PASS actual=15000128 ref=15000128
+CHECK dataset_file.augmentation.npy.sha256 PASS actual=9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b ref=9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b
+CHECK dataset_file.stats.json.bytes PASS actual=1238 ref=1238
+CHECK dataset_file.stats.json.sha256 PASS actual=6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc ref=6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc
+CHECK dataset_file.dataset_manifest.json.bytes PASS actual=4288 ref=4288
+CHECK dataset_file.dataset_manifest.json.sha256 PASS actual=584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a ref=584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a
+CHECK dataset_file.schedule_manifest.json.bytes PASS actual=1773 ref=1773
+CHECK dataset_file.schedule_manifest.json.sha256 PASS actual=0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295 ref=0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295
+CHECK dataset_file.initial_bundle.npz.bytes PASS actual=45103060 ref=45103060
+CHECK dataset_file.initial_bundle.npz.sha256 PASS actual=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317
+CHECK dataset_file.initial_bundle.manifest.json.bytes PASS actual=16437 ref=16437
+CHECK dataset_file.initial_bundle.manifest.json.sha256 PASS actual=4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571 ref=4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571
+CHECK dataset_file.class_wnids.txt.bytes PASS actual=2000 ref=2000
+CHECK dataset_file.class_wnids.txt.sha256 PASS actual=a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b ref=a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b
+CHECK dataset_file.val_images.npy.bytes PASS actual=122880128 ref=122880128
+CHECK dataset_file.val_images.npy.sha256 PASS actual=5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46 ref=5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46
+CHECK dataset_file.val_labels.npy.bytes PASS actual=80128 ref=80128
+CHECK dataset_file.val_labels.npy.sha256 PASS actual=631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487 ref=631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487
+CHECK dataset.train_images.npy.size PASS bytes=1228800128
+CHECK dataset.train_labels.npy.size PASS bytes=800128
+FULL_DATASET_JULIA_CHECK PASS label=flux-current checks=111
+STAGE python-check-current
+RUN /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_full_dataset.py --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --reference-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference/python-check-current-combined.json --epoch 0 --batch-size 512 --worlds 1,2,4 --strict-contract true --julia-json /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/check-julia-current.json
+FULL_DATASET_PYTHON_CHECK PASS checks=177
+STAGE julia-check-historical
+RUN julia_historical /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_full_dataset.jl --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --reference-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/check-julia-historical.json --batch-size 512 --epoch 0 --worlds 1,2,4 --label flux-historical --verify-large-hashes false --strict-contract true
+CHECK reference.epoch PASS ref=0 actual=0
+CHECK reference.batch_size PASS ref=512 actual=512
+CHECK reference.n_eff PASS ref=99840 actual=99840
+CHECK reference.tail_size PASS ref=160 actual=160
+CHECK reference.updates_per_epoch PASS ref=195 actual=195
+CHECK epoch_ids.shape PASS ref=(99840,) actual=(99840,)
+CHECK epoch_ids.eltype PASS ref=Int64
+CHECK epoch_ids.values PASS
+CHECK sample_order_sha256 PASS julia=f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335 ref=f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335
+CHECK update1_order_sha256 PASS julia=23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a ref=23c183e8e1b9b777a70013926c30590851cda4ae2c7fbb18ec8a0aa21515a61a
+CHECK transform_spec_sha256 PASS julia=e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa ref=e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa
+CHECK stats.mean PASS ref=Float32[0.48023695, 0.44806704, 0.39750364] actual=Float32[0.48023695, 0.44806704, 0.39750364]
+CHECK stats.std PASS ref=Float32[0.27643642, 0.2688633, 0.28158993] actual=Float32[0.27643642, 0.2688633, 0.28158993]
+CHECK rank_sequence.R1.shape PASS ref=(99840,) actual=(99840,)
+CHECK rank_sequence.R1.values PASS
+CHECK rank_sequence.R1.concatenation PASS per-update rank order
+CHECK rank_sequence.R1.union PASS
+CHECK rank_sequence.R1.length PASS length=99840 expected=99840
+CHECK rank_sequence.R1.unique PASS
+CHECK rank_sequence.R1.rank1_unique PASS
+CHECK rank_sequence.R2.shape PASS ref=(2, 49920) actual=(2, 49920)
+CHECK rank_sequence.R2.rank1 PASS
+CHECK rank_sequence.R2.rank2 PASS
+CHECK rank_sequence.R2.concatenation PASS per-update rank order
+CHECK rank_sequence.R2.union PASS
+CHECK rank_sequence.R2.length PASS length=99840 expected=99840
+CHECK rank_sequence.R2.unique PASS
+CHECK rank_sequence.R2.rank1_unique PASS
+CHECK rank_sequence.R2.rank2_unique PASS
+CHECK rank_sequence.R4.shape PASS ref=(4, 24960) actual=(4, 24960)
+CHECK rank_sequence.R4.rank1 PASS
+CHECK rank_sequence.R4.rank2 PASS
+CHECK rank_sequence.R4.rank3 PASS
+CHECK rank_sequence.R4.rank4 PASS
+CHECK rank_sequence.R4.concatenation PASS per-update rank order
+CHECK rank_sequence.R4.union PASS
+CHECK rank_sequence.R4.length PASS length=99840 expected=99840
+CHECK rank_sequence.R4.unique PASS
+CHECK rank_sequence.R4.rank1_unique PASS
+CHECK rank_sequence.R4.rank2_unique PASS
+CHECK rank_sequence.R4.rank3_unique PASS
+CHECK rank_sequence.R4.rank4_unique PASS
+CHECK contract.n_eff PASS n_eff=99840
+CHECK contract.tail_size PASS tail=160
+CHECK contract.unique PASS
+CHECK contract.range PASS
+CHECK contract.updates.b512 PASS updates=195 expected=195
+CHECK contract.length.b512 PASS length=99840
+CHECK contract.updates.b256 PASS updates=390 expected=390
+CHECK contract.length.b256 PASS length=99840
+CHECK contract.missing_tail PASS missing=160 tail=160
+CHECK update1.global_ids PASS
+CHECK update1.labels PASS
+CHECK update1.transformed.shape PASS ref=(512, 3, 64, 64)
+CHECK update1.transformed.eltype PASS ref=Float32
+CHECK update1.R1.transformed.shape PASS actual=(512, 3, 64, 64) ref=(512, 3, 64, 64)
+CHECK update1.R1.transformed.eltype PASS
+CHECK update1.R1.transformed.max_abs_diff PASS max_abs_diff=0.0
+CHECK update1.R1.labels PASS
+CHECK update1.R1.shard_ids PASS
+CHECK update1.R1.local_size PASS batch=512 world=1
+CHECK update1.R2.transformed.shape PASS actual=(512, 3, 64, 64) ref=(512, 3, 64, 64)
+CHECK update1.R2.transformed.eltype PASS
+CHECK update1.R2.transformed.max_abs_diff PASS max_abs_diff=0.0
+CHECK update1.R2.labels PASS
+CHECK update1.R2.shard_ids PASS
+CHECK update1.R2.local_size PASS batch=512 world=2
+CHECK update1.R4.transformed.shape PASS actual=(512, 3, 64, 64) ref=(512, 3, 64, 64)
+CHECK update1.R4.transformed.eltype PASS
+CHECK update1.R4.transformed.max_abs_diff PASS max_abs_diff=0.0
+CHECK update1.R4.labels PASS
+CHECK update1.R4.shard_ids PASS
+CHECK update1.R4.local_size PASS batch=512 world=4
+CHECK onehot.shape PASS actual=(200, 512)
+CHECK onehot.eltype PASS onehot=Bool matrix=Float32
+CHECK onehot.column_sums PASS
+CHECK onehot.argmax PASS
+CHECK onehot.explicit PASS
+CHECK bundle.array_count PASS actual=62
+CHECK bundle.parameter_count PASS actual=11271432
+CHECK bundle.name_set PASS
+CHECK bundle.shapes PASS
+CHECK bundle.bundle_hash PASS julia=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23 ref=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+CHECK bundle.file_sha256 PASS julia=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317
+CHECK bundle.frozen_hash PASS actual=a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23
+CHECK dataset_file.train_images.npy.bytes PASS actual=1228800128 ref=1228800128
+CHECK dataset_file.train_labels.npy.bytes PASS actual=800128 ref=800128
+CHECK dataset_file.permutations.npy.bytes PASS actual=40000128 ref=40000128
+CHECK dataset_file.permutations.npy.sha256 PASS actual=7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd ref=7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd
+CHECK dataset_file.augmentation.npy.bytes PASS actual=15000128 ref=15000128
+CHECK dataset_file.augmentation.npy.sha256 PASS actual=9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b ref=9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b
+CHECK dataset_file.stats.json.bytes PASS actual=1238 ref=1238
+CHECK dataset_file.stats.json.sha256 PASS actual=6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc ref=6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc
+CHECK dataset_file.dataset_manifest.json.bytes PASS actual=4288 ref=4288
+CHECK dataset_file.dataset_manifest.json.sha256 PASS actual=584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a ref=584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a
+CHECK dataset_file.schedule_manifest.json.bytes PASS actual=1773 ref=1773
+CHECK dataset_file.schedule_manifest.json.sha256 PASS actual=0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295 ref=0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295
+CHECK dataset_file.initial_bundle.npz.bytes PASS actual=45103060 ref=45103060
+CHECK dataset_file.initial_bundle.npz.sha256 PASS actual=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317 ref=a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317
+CHECK dataset_file.initial_bundle.manifest.json.bytes PASS actual=16437 ref=16437
+CHECK dataset_file.initial_bundle.manifest.json.sha256 PASS actual=4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571 ref=4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571
+CHECK dataset_file.class_wnids.txt.bytes PASS actual=2000 ref=2000
+CHECK dataset_file.class_wnids.txt.sha256 PASS actual=a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b ref=a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b
+CHECK dataset_file.val_images.npy.bytes PASS actual=122880128 ref=122880128
+CHECK dataset_file.val_labels.npy.bytes PASS actual=80128 ref=80128
+CHECK dataset_file.val_labels.npy.sha256 PASS actual=631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487 ref=631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487
+CHECK dataset.train_images.npy.size PASS bytes=1228800128
+CHECK dataset.train_labels.npy.size PASS bytes=800128
+FULL_DATASET_JULIA_CHECK PASS label=flux-historical checks=108
+STAGE python-check-historical
+RUN /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_full_dataset.py --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --reference-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/reference/python-check-historical-combined.json --epoch 0 --batch-size 512 --worlds 1,2,4 --strict-contract true --julia-json /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/check-julia-historical.json
+FULL_DATASET_PYTHON_CHECK PASS checks=177
+STAGE fixture-flux-current
+RUN julia_current /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/timing_flux.jl --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 1 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/fixture-smoke/flux-current-w1.json --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+TIMING_PASS flux 1 0.058378593
+STAGE fixture-pytorch
+RUN /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/timing_torch.py --fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --world-size 1 --updates 3 --warmup 2 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/fixture-smoke/pytorch-w1.json --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3
+TIMING_PASS pytorch 1 0.08964534476399422
+FIXTURE_TIMING_JSON PASS flux-current-w1.json schema static-timing-pilot-v1
+FIXTURE_TIMING_JSON PASS pytorch-w1.json schema static-timing-pilot-v1
+FIXTURE_TIMING_PATH PASS
+STAGE dryrun-flux-current
+RUN julia_current /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/timing_flux.jl --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --world-size 1 --updates 1 --warmup 20 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/dryrun/flux-current-w1.json --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+TIMING_PASS flux-full 1 0.50566162
+STAGE dryrun-flux-historical
+RUN julia_historical /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/timing_flux.jl --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --world-size 1 --updates 1 --warmup 20 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/dryrun/flux-historical-w1.json --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3 --flux-commit 8add0e42b7d9388ff365335152126e5b1e9de657 --flux-state-sha256 4af8409c2a2ed1c661e8ae7742877f1ee9789d00dc7e404365ecefd98ab0d34c
+TIMING_PASS flux-full 1 0.512345482
+STAGE dryrun-pytorch
+RUN /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/timing_torch.py --dataset-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared --world-size 1 --updates 1 --warmup 20 --out /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/dryrun/pytorch-w1.json --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 336f2bb618e9a8c7a7b6797b8a990b84e4df609cf363111cb1cb523cdbd8dda3 --flux-commit  --flux-state-sha256 
+TIMING_PASS pytorch-full 1 0.5795233901590109
+FULL_DATASET_DRYRUN PASS flux-current-w1.json world 1 loss 5.492467880249023 device_used_fraction 0.863384
+FULL_DATASET_DRYRUN PASS flux-historical-w1.json world 1 loss 5.492467880249023 device_used_fraction 0.831357
+FULL_DATASET_DRYRUN PASS pytorch-w1.json world 1 loss 5.492467880249023 max_memory_allocated_fraction 0.226053
+FULL_VALIDATION_SUMMARY_WRITTEN /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014/SUMMARY.json
+FULL_VALIDATION PASS utc=2026-10-19T15:58:08Z host=lrdn0667.leonardo.local job=61450014 OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-19-full-loader-validation-61450014

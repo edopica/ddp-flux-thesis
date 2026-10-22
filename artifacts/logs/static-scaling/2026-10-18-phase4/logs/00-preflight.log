@@ -1,0 +1,2 @@
+TORCH_OUT_FLAG=--out-dir
+CHECK_TORCH_FLAG=--pytorch-reference CHECK_DDP_FLAG=--ddp-root

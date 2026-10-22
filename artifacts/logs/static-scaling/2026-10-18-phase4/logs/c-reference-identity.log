@@ -1,0 +1,8 @@
+=== STAGE c :: pytorch-reference-identity START 2026-10-18T18:14:31Z ===
+COMMAND: bash -c $'\nset -euo pipefail\nactual=$(sha256sum "$1" | cut -d" " -f1)\nexpected=$(sha256sum "$2" | cut -d" " -f1)\necho "preserved=$2"\necho "preserved_sha256=$expected"\necho "generated=$1"\necho "generated_sha256=$actual"\ntest "$actual" = "$expected"\n' _ /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference.npz /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/c-reference-identity.log
+preserved=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz
+preserved_sha256=97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783
+generated=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/reference/pytorch/cuda/phase3_reference.npz
+generated_sha256=97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783
+=== STAGE c :: pytorch-reference-identity END 2026-10-18T18:14:31Z EXIT 0 ===

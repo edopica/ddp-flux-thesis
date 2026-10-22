@@ -1,0 +1,48 @@
+START_UTC=2026-10-18T08:34:15Z
+Executing on leonardo: JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin:$PATH SLURM_MPI_TYPE=pmi2 JULIA_PKG_PRECOMPILE_AUTO=0 salloc --account=iscrc_unmasked --partition=boost_usr_prod --qos=boost_qos_dbg -N1 --ntasks=1 --cpus-per-task=8 --gres=gpu:1 --time=00:30:00 srun --mpi=pmi2 -n1 -c8 --chdir=$HOME/projects/ddp-flux-thesis bash -c 'OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/logs SOURCE_COMMIT=a3786d97f3263cad20b254206f09c095880f624d SOURCE_STATE_SHA256=69721e8bffe84592393e3f0f80067c9338596134194c6eee330558c5439236a0 FLUX_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e FLUX_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 STATIC_SCALING_PRECISION_LOG_CANDIDATES=1 bash scripts/remote/leonardo/run-phase3-check.sh'
+** WARNING: connection is not using a post-quantum key exchange algorithm.
+** This session may be vulnerable to "store now, decrypt later" attacks.
+** The server may need to be upgraded. See https://openssh.com/pq.html
+salloc: Granted job allocation 61091402
+salloc: Waiting for resource configuration
+salloc: Nodes lrdn0870 are ready for job
+=== run-phase3-check: START ===
+utc=2026-10-18T08:34:33Z host=lrdn0870.leonardo.local
+SLURM_JOB_ID=61091402 SLURM_JOB_NODELIST=lrdn0870
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference
+REFERENCE=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference/phase3_reference.npz
+REFERENCE_MANIFEST=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference/phase3_reference_manifest.json
+LOG_FILE=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/logs/remote-check.log
+DEVICE=cuda FLUX_DIR=/leonardo/home/userexternal/epicazio/projects/flux-integration ATOL=1e-5 RTOL=1e-4
+SOURCE_COMMIT=a3786d97f3263cad20b254206f09c095880f624d SOURCE_STATE_SHA256=69721e8bffe84592393e3f0f80067c9338596134194c6eee330558c5439236a0
+FLUX_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e FLUX_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+THESIS_GIT=<no-git>
+FLUX_GIT=<no-git>
+--- versions ---
+python 3.11.17 numpy 2.4.6
+torch 2.9.1+cu126 cuda 12.6 cuda_available True
+julia version 1.12.6
+--- reference overwrite policy ---
+generator may overwrite only /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference/phase3_reference.npz and /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference/phase3_reference_manifest.json; /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/logs/remote-check.log is append-only
+--- disk (/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference) ---
+Filesystem                                        Size  Used Avail Use% Mounted on
+10.128.82.1@o2ib:10.128.82.2@o2ib:/larchive/work  1.0T   71G  954G   7% /leonardo_work
+generator_force_flag=1 generator_args=--fixture-dir /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2 --bundle /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz --out-dir /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-r1-r2-phase3-recheck/reference --device cuda --force --source-commit a3786d97f3263cad20b254206f09c095880f624d --source-state-sha256 69721e8bffe84592393e3f0f80067c9338596134194c6eee330558c5439236a0 --flux-commit f7b4520c4bd307c67bbc5ac92a1c68493eccff6e --flux-state-sha256 e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+=== 1/3 make_phase3_reference.py ===
+CHECK backend.tf32_disabled PASS cuda_matmul_allow_tf32=False cudnn_allow_tf32=False float32_matmul_precision='highest'
+CHECK backend.cudnn_deterministic PASS deterministic=True benchmark=False
+CHECK backend.cuda_available PASS device=cuda:0 name='NVIDIA A100-SXM-64GB' capability=(8, 0)
+CHECK model.parameter_count PASS count=11271432 want=11271432
+CHECK model.array_count PASS count=62 want=62
+CHECK model.parameter_names PASS names=62 bundle_names=62
+CHECK bundle.names_shapes PASS arrays=62 elements=11271432
+CHECK bundle.load_exact PASS mismatched=0 max_abs_diff=0.0
+CHECK model.device PASS device=cuda:0
+CHECK optimizer.param_groups PASS decay=21 no_decay=41
+CHECK optimizer.group_membership PASS decay=20 conv weights + classifier.weight; no_decay=20 GN weight + 20 GN bias + classifier.bias
+Timeout, server login.leonardo.cineca.it not responding.
+END_UTC=2026-10-18T08:36:52Z
+PHASE3_RECHECK_DRIVER_EXIT=255

@@ -1,0 +1,310 @@
+=== STAGE a :: source-and-tool-metadata START 2026-10-18T19:21:44Z ===
+COMMAND: bash -c $'\nset -euxo pipefail\ndate -u +%Y-%m-%dT%H:%M:%SZ\nhostname\necho "SLURM_JOB_ID=${SLURM_JOB_ID:-<unset>}"\necho "SLURM_JOB_NODELIST=${SLURM_JOB_NODELIST:-<unset>}"\necho "SLURM_NTASKS=${SLURM_NTASKS:-<unset>}"\necho "SLURM_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK:-<unset>}"\necho "SLURM_PROCID=${SLURM_PROCID:-<unset>}"\necho "THESIS=$THESIS"\necho "FLUX_DIR=$FLUX_DIR"\necho "FIX=$FIX"\necho "BUNDLE=$BUNDLE"\necho "PY_REF=$PY_REF"\necho "PY_MANIFEST=$PY_MANIFEST"\necho "OUT=$OUT"\necho "LOG_DIR=$LOG_DIR"\necho "DEVICE=$DEVICE BACKEND=$BACKEND FLUX_BACKEND=$FLUX_BACKEND TORCH_BACKEND=$TORCH_BACKEND"\necho "WORLD_SIZES=$WORLD_SIZES TOTAL_CPUS=$TOTAL_CPUS REF_CPUS=$REF_CPUS"\necho "SOURCE_COMMIT=${SOURCE_COMMIT:-<unset>} SOURCE_STATE_SHA256=${SOURCE_STATE_SHA256:-<unset>}"\necho "FLUX_COMMIT=${FLUX_COMMIT:-<unset>} FLUX_STATE_SHA256=${FLUX_STATE_SHA256:-<unset>}"\nif command -v git >/dev/null 2>&1; then\n  echo "THESIS_GIT=$(git -C "$THESIS" rev-parse HEAD 2>/dev/null || echo "<no-git>")"\n  echo "FLUX_GIT=$(git -C "$FLUX_DIR" rev-parse HEAD 2>/dev/null || echo "<no-git>")"\nelse\n  echo "THESIS_GIT=<no-git-command>"\n  echo "FLUX_GIT=<no-git-command>"\nfi\necho "PROCESS_COMMAND=$(tr "\\0" " " < /proc/$$/cmdline 2>/dev/null || echo "<unavailable>")"\necho "PARENT_COMMAND=$(ps -o args= -p "$PPID" 2>/dev/null || echo "<unavailable>")"\necho "--- srun ---"\nsrun --version\nif [ "$DEVICE" = cuda ]; then\n  echo "--- nvidia-smi ---"\n  nvidia-smi -L\n  nvidia-smi --query-gpu=index,name,driver_version,memory.total --format=csv,noheader\nfi\necho "--- python/torch ---"\n"$VENV_PY" - <<"PY"\nimport sys\nprint("python", sys.version.split()[0])\nimport numpy\nprint("numpy", numpy.__version__)\nimport torch\nprint("torch", torch.__version__, "cuda", torch.version.cuda)\nprint("cuda_available", torch.cuda.is_available())\nprint("cudnn", torch.backends.cudnn.version())\ntry:\n    print("nccl", torch.cuda.nccl.version())\nexcept Exception as exc:\n    print("nccl unavailable:", exc)\nPY\necho "--- julia ---"\n"$JULIA_BIN" --version\necho "--- hash manifest ---"\n{\n  echo "# static_scaling sources"\n  find "$THESIS/scripts/static_scaling" -maxdepth 1 -type f \\( -name "*.jl" -o -name "*.py" \\) -print0 | sort -z | xargs -0 sha256sum\n  echo "# remote drivers"\n  for f in "$THESIS/scripts/remote/leonardo/run-phase4-check.sh" "$THESIS/scripts/remote/leonardo/precompile-phase3.sh"; do\n    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi\n  done\n  echo "# inputs"\n  sha256sum "$FIX/data_fixture.npz" "$FIX/fixture_manifest.json" "$FIX/schedule_fixture.npz" "$BUNDLE"\n  for f in "$PY_REF" "$PY_MANIFEST"; do\n    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi\n  done\n  echo "# environments"\n  for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"; do\n    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi\n  done\n} | tee "$LOG_DIR/source-sha256.txt"\n' 
+LOG: /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/a-source-metadata.log
++ date -u +%Y-%m-%dT%H:%M:%SZ
+2026-10-18T19:21:44Z
++ hostname
+lrdn0983.leonardo.local
++ echo SLURM_JOB_ID=61296074
+SLURM_JOB_ID=61296074
++ echo SLURM_JOB_NODELIST=lrdn0983
+SLURM_JOB_NODELIST=lrdn0983
++ echo SLURM_NTASKS=1
+SLURM_NTASKS=1
++ echo SLURM_CPUS_PER_TASK=32
+SLURM_CPUS_PER_TASK=32
++ echo SLURM_PROCID=0
+SLURM_PROCID=0
++ echo THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
++ echo FLUX_DIR=/leonardo/home/userexternal/epicazio/projects/flux-integration
+FLUX_DIR=/leonardo/home/userexternal/epicazio/projects/flux-integration
++ echo FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
+FIX=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2
++ echo BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+BUNDLE=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
++ echo PY_REF=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz
+PY_REF=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz
++ echo PY_MANIFEST=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference_manifest.json
+PY_MANIFEST=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference_manifest.json
++ echo OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4
++ echo LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs
+LOG_DIR=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs
++ echo 'DEVICE=cuda BACKEND=nccl FLUX_BACKEND=nccl TORCH_BACKEND=nccl'
+DEVICE=cuda BACKEND=nccl FLUX_BACKEND=nccl TORCH_BACKEND=nccl
++ echo 'WORLD_SIZES=1 2 4 TOTAL_CPUS=32 REF_CPUS=8'
+WORLD_SIZES=1 2 4 TOTAL_CPUS=32 REF_CPUS=8
++ echo 'SOURCE_COMMIT=<unset> SOURCE_STATE_SHA256=<unset>'
+SOURCE_COMMIT=<unset> SOURCE_STATE_SHA256=<unset>
++ echo 'FLUX_COMMIT=<unset> FLUX_STATE_SHA256=<unset>'
+FLUX_COMMIT=<unset> FLUX_STATE_SHA256=<unset>
++ command -v git
+++ git -C /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis rev-parse HEAD
+++ echo '<no-git>'
++ echo 'THESIS_GIT=<no-git>'
+THESIS_GIT=<no-git>
+++ git -C /leonardo/home/userexternal/epicazio/projects/flux-integration rev-parse HEAD
+++ echo '<no-git>'
++ echo 'FLUX_GIT=<no-git>'
+FLUX_GIT=<no-git>
+++ tr '\0' ' '
++ echo 'PROCESS_COMMAND=bash -c 
+set -euxo pipefail
+date -u +%Y-%m-%dT%H:%M:%SZ
+hostname
+echo "SLURM_JOB_ID=${SLURM_JOB_ID:-<unset>}"
+echo "SLURM_JOB_NODELIST=${SLURM_JOB_NODELIST:-<unset>}"
+echo "SLURM_NTASKS=${SLURM_NTASKS:-<unset>}"
+echo "SLURM_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK:-<unset>}"
+echo "SLURM_PROCID=${SLURM_PROCID:-<unset>}"
+echo "THESIS=$THESIS"
+echo "FLUX_DIR=$FLUX_DIR"
+echo "FIX=$FIX"
+echo "BUNDLE=$BUNDLE"
+echo "PY_REF=$PY_REF"
+echo "PY_MANIFEST=$PY_MANIFEST"
+echo "OUT=$OUT"
+echo "LOG_DIR=$LOG_DIR"
+echo "DEVICE=$DEVICE BACKEND=$BACKEND FLUX_BACKEND=$FLUX_BACKEND TORCH_BACKEND=$TORCH_BACKEND"
+echo "WORLD_SIZES=$WORLD_SIZES TOTAL_CPUS=$TOTAL_CPUS REF_CPUS=$REF_CPUS"
+echo "SOURCE_COMMIT=${SOURCE_COMMIT:-<unset>} SOURCE_STATE_SHA256=${SOURCE_STATE_SHA256:-<unset>}"
+echo "FLUX_COMMIT=${FLUX_COMMIT:-<unset>} FLUX_STATE_SHA256=${FLUX_STATE_SHA256:-<unset>}"
+if command -v git >/dev/null 2>&1; then
+  echo "THESIS_GIT=$(git -C "$THESIS" rev-parse HEAD 2>/dev/null || echo "<no-git>")"
+  echo "FLUX_GIT=$(git -C "$FLUX_DIR" rev-parse HEAD 2>/dev/null || echo "<no-git>")"
+else
+  echo "THESIS_GIT=<no-git-command>"
+  echo "FLUX_GIT=<no-git-command>"
+fi
+echo "PROCESS_COMMAND=$(tr "\0" " " < /proc/$$/cmdline 2>/dev/null || echo "<unavailable>")"
+echo "PARENT_COMMAND=$(ps -o args= -p "$PPID" 2>/dev/null || echo "<unavailable>")"
+echo "--- srun ---"
+srun --version
+if [ "$DEVICE" = cuda ]; then
+  echo "--- nvidia-smi ---"
+  nvidia-smi -L
+  nvidia-smi --query-gpu=index,name,driver_version,memory.total --format=csv,noheader
+fi
+echo "--- python/torch ---"
+"$VENV_PY" - <<"PY"
+import sys
+print("python", sys.version.split()[0])
+import numpy
+print("numpy", numpy.__version__)
+import torch
+print("torch", torch.__version__, "cuda", torch.version.cuda)
+print("cuda_available", torch.cuda.is_available())
+print("cudnn", torch.backends.cudnn.version())
+try:
+    print("nccl", torch.cuda.nccl.version())
+except Exception as exc:
+    print("nccl unavailable:", exc)
+PY
+echo "--- julia ---"
+"$JULIA_BIN" --version
+echo "--- hash manifest ---"
+{
+  echo "# static_scaling sources"
+  find "$THESIS/scripts/static_scaling" -maxdepth 1 -type f \( -name "*.jl" -o -name "*.py" \) -print0 | sort -z | xargs -0 sha256sum
+  echo "# remote drivers"
+  for f in "$THESIS/scripts/remote/leonardo/run-phase4-check.sh" "$THESIS/scripts/remote/leonardo/precompile-phase3.sh"; do
+    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi
+  done
+  echo "# inputs"
+  sha256sum "$FIX/data_fixture.npz" "$FIX/fixture_manifest.json" "$FIX/schedule_fixture.npz" "$BUNDLE"
+  for f in "$PY_REF" "$PY_MANIFEST"; do
+    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi
+  done
+  echo "# environments"
+  for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"; do
+    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi
+  done
+} | tee "$LOG_DIR/source-sha256.txt"
+ '
+PROCESS_COMMAND=bash -c 
+set -euxo pipefail
+date -u +%Y-%m-%dT%H:%M:%SZ
+hostname
+echo "SLURM_JOB_ID=${SLURM_JOB_ID:-<unset>}"
+echo "SLURM_JOB_NODELIST=${SLURM_JOB_NODELIST:-<unset>}"
+echo "SLURM_NTASKS=${SLURM_NTASKS:-<unset>}"
+echo "SLURM_CPUS_PER_TASK=${SLURM_CPUS_PER_TASK:-<unset>}"
+echo "SLURM_PROCID=${SLURM_PROCID:-<unset>}"
+echo "THESIS=$THESIS"
+echo "FLUX_DIR=$FLUX_DIR"
+echo "FIX=$FIX"
+echo "BUNDLE=$BUNDLE"
+echo "PY_REF=$PY_REF"
+echo "PY_MANIFEST=$PY_MANIFEST"
+echo "OUT=$OUT"
+echo "LOG_DIR=$LOG_DIR"
+echo "DEVICE=$DEVICE BACKEND=$BACKEND FLUX_BACKEND=$FLUX_BACKEND TORCH_BACKEND=$TORCH_BACKEND"
+echo "WORLD_SIZES=$WORLD_SIZES TOTAL_CPUS=$TOTAL_CPUS REF_CPUS=$REF_CPUS"
+echo "SOURCE_COMMIT=${SOURCE_COMMIT:-<unset>} SOURCE_STATE_SHA256=${SOURCE_STATE_SHA256:-<unset>}"
+echo "FLUX_COMMIT=${FLUX_COMMIT:-<unset>} FLUX_STATE_SHA256=${FLUX_STATE_SHA256:-<unset>}"
+if command -v git >/dev/null 2>&1; then
+  echo "THESIS_GIT=$(git -C "$THESIS" rev-parse HEAD 2>/dev/null || echo "<no-git>")"
+  echo "FLUX_GIT=$(git -C "$FLUX_DIR" rev-parse HEAD 2>/dev/null || echo "<no-git>")"
+else
+  echo "THESIS_GIT=<no-git-command>"
+  echo "FLUX_GIT=<no-git-command>"
+fi
+echo "PROCESS_COMMAND=$(tr "\0" " " < /proc/$$/cmdline 2>/dev/null || echo "<unavailable>")"
+echo "PARENT_COMMAND=$(ps -o args= -p "$PPID" 2>/dev/null || echo "<unavailable>")"
+echo "--- srun ---"
+srun --version
+if [ "$DEVICE" = cuda ]; then
+  echo "--- nvidia-smi ---"
+  nvidia-smi -L
+  nvidia-smi --query-gpu=index,name,driver_version,memory.total --format=csv,noheader
+fi
+echo "--- python/torch ---"
+"$VENV_PY" - <<"PY"
+import sys
+print("python", sys.version.split()[0])
+import numpy
+print("numpy", numpy.__version__)
+import torch
+print("torch", torch.__version__, "cuda", torch.version.cuda)
+print("cuda_available", torch.cuda.is_available())
+print("cudnn", torch.backends.cudnn.version())
+try:
+    print("nccl", torch.cuda.nccl.version())
+except Exception as exc:
+    print("nccl unavailable:", exc)
+PY
+echo "--- julia ---"
+"$JULIA_BIN" --version
+echo "--- hash manifest ---"
+{
+  echo "# static_scaling sources"
+  find "$THESIS/scripts/static_scaling" -maxdepth 1 -type f \( -name "*.jl" -o -name "*.py" \) -print0 | sort -z | xargs -0 sha256sum
+  echo "# remote drivers"
+  for f in "$THESIS/scripts/remote/leonardo/run-phase4-check.sh" "$THESIS/scripts/remote/leonardo/precompile-phase3.sh"; do
+    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi
+  done
+  echo "# inputs"
+  sha256sum "$FIX/data_fixture.npz" "$FIX/fixture_manifest.json" "$FIX/schedule_fixture.npz" "$BUNDLE"
+  for f in "$PY_REF" "$PY_MANIFEST"; do
+    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi
+  done
+  echo "# environments"
+  for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"; do
+    if [ -f "$f" ]; then sha256sum "$f"; else echo "MISSING $f"; fi
+  done
+} | tee "$LOG_DIR/source-sha256.txt"
+ 
+++ ps -o args= -p 3314350
++ echo 'PARENT_COMMAND=bash scripts/remote/leonardo/run-phase4-check.sh'
+PARENT_COMMAND=bash scripts/remote/leonardo/run-phase4-check.sh
++ echo '--- srun ---'
+--- srun ---
++ srun --version
+slurm 25.05.7-BullSequana.1.2
++ '[' cuda = cuda ']'
++ echo '--- nvidia-smi ---'
+--- nvidia-smi ---
++ nvidia-smi -L
+GPU 0: NVIDIA A100-SXM-64GB (UUID: GPU-8c81f9a0-a04e-1811-def3-f89530b5dc6d)
+GPU 1: NVIDIA A100-SXM-64GB (UUID: GPU-e4ee1f47-a977-5d74-7ee9-9bed04080b7c)
+GPU 2: NVIDIA A100-SXM-64GB (UUID: GPU-169e17d6-ef25-bf82-0339-fee7935d17f9)
+GPU 3: NVIDIA A100-SXM-64GB (UUID: GPU-bf51a3b1-ebd0-6c9f-964b-4b73751ecb6f)
++ nvidia-smi --query-gpu=index,name,driver_version,memory.total --format=csv,noheader
+0, NVIDIA A100-SXM-64GB, 535.274.02, 65536 MiB
+1, NVIDIA A100-SXM-64GB, 535.274.02, 65536 MiB
+2, NVIDIA A100-SXM-64GB, 535.274.02, 65536 MiB
+3, NVIDIA A100-SXM-64GB, 535.274.02, 65536 MiB
++ echo '--- python/torch ---'
+--- python/torch ---
++ /leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python -
+python 3.11.17
+numpy 2.4.6
+torch 2.9.1+cu126 cuda 12.6
+cuda_available True
+cudnn 91002
+nccl (2, 27, 5)
++ echo '--- julia ---'
+--- julia ---
++ /leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia --version
+julia version 1.12.6
++ echo '--- hash manifest ---'
+--- hash manifest ---
++ echo '# static_scaling sources'
++ tee /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/2026-10-18-phase4/logs/source-sha256.txt
++ find /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling -maxdepth 1 -type f '(' -name '*.jl' -o -name '*.py' ')' -print0
++ sort -z
++ xargs -0 sha256sum
+# static_scaling sources
+62f3c64d7a2bb9ca28133545ec5303140458660ca3784823be56238aa82febeb  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_all.jl
+ee3f10b248ff9a6075f5e828e030096bf5b6f46b5d30a608dcfd5e16b464f038  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_dataset.py
+8135a2417c271b811bc39b2f32a8f800d14475764b60348351637629af07abda  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_fixtures_data.jl
+4f9421548609b7ba4f0047593a2124cc053a381d5f1529049190ce25e98377ee  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_fixtures_operators.jl
+43ad641bfaad58f52e5aa2ab1405113dde29b107a27c5e21f8f549d978b985a1  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_phase3_flux.jl
+85297025dfd9b2222e2ecbae6c5bdca80f0e724f80b680fcdc67fa6653723515  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_phase3_reference.py
+51633091cf0ebcbf4a0504911d76f31e1d547ef028f89dd3cb9876760180fac8  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_phase4.py
+dfd28b9f4911b5d7f10558904a146970ef5c3624d51bdd0d55ed5920ca39497e  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_precision_math.jl
+27edd256f917cc8101c3d881d16949695c71f4fac7265eaccb1a8498c44885e5  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/compare_reference_arrays.py
+15205ada4dac120d52ad10f851e43386fd1135ed756e42bd2507f9af7089f855  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/dataset_adapter.py
+383f1fa02fd11e308292eda3d9e41ac916236b17cd3406e9c370bc64b2e63d16  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/diagnose_phase3_flux.jl
+3316869b7ab18d69b1c7127df85b9c674743a3be25e691052babaa62326536dc  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/diagnose_phase3_flux_stage2.jl
+cb37fc124b7dab1ffcd43ed0f02fa56dc2f425333980c5f30ea67fd89ea26e97  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/diagnose_phase3_torch_stage2.py
+95af202557ff715913617432c473e3b4c4554b994b82602441818ec97e25359b  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_fixtures.py
+1529d738327aa7e2a9764eb0a218a1932f8d330a3cd4e083c2eb9fcd74a47241  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_initial_bundle.py
+0a9a2645f2bf0bd66e94e1351d3538e050a8261dee451c77dd4b7b282cdab21d  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_phase3_reference.py
+653d1709e86707a8ebaba29cb35c0e2064b8dadc136e12a1d16248489acab12b  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/make_schedule.py
+9bc2d752bb7c5543374ed4ed8e107048bec95ec17d5e293a2bade23f0a7055a4  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/model_flux.jl
+77ac48e815b58948ab64b16938d988cae35f4719f084c25432703f6ffadfdf76  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/model_torch.py
+b570933f425a6d555afd066651a8a2b341a211faa2877fc71e128abd9779fe1d  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/negative_tests_local.py
+32d85954fdc7eba2b0073106faddde195adb73819c4b85855204bf08cc6351e6  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_common.jl
+ceb7b710fd934f9baa1775fa713ca2c689bd294a92794af5642a6203b5007400  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_flux.jl
+75c1905118b0d53b96f48efa1c32fc4cfbe09782aee605f125013391923d2712  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/phase4_torch.py
+3efd8f4a1b37da847a7bd456138dff86a8dfb927e9cdfb0ebfb64011564c2b81  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/precision.jl
+e0f8e5e58c673dd1e64ad0d0ca34196261e39f21d630ba10dbdceb9c7153065f  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/prepare_dataset.py
+098cc7ab2072f9c2f7bebe577db26f9a757020de8eb29c80e2f3a1cdbe4ff63e  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/replay.jl
+e270c774b6cd5d34af55805cdb2c3caf0af832d125b7e2531f7e14eb4a5abad0  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/selftest_local.py
+e0aef52ec41a4bf5822793141141522d8b09af166d0fb595df0673d1363141fe  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/test_precision_policy.jl
++ echo '# remote drivers'
+# remote drivers
++ for f in "$THESIS/scripts/remote/leonardo/run-phase4-check.sh" "$THESIS/scripts/remote/leonardo/precompile-phase3.sh"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-phase4-check.sh ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-phase4-check.sh
+e16612b5a1a6d299221bdcac929770bc1ada95365597eb5799705868be53e7fd  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-phase4-check.sh
++ for f in "$THESIS/scripts/remote/leonardo/run-phase4-check.sh" "$THESIS/scripts/remote/leonardo/precompile-phase3.sh"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/precompile-phase3.sh ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/precompile-phase3.sh
+ddb4e3b8a107341ccb8f1004248450836dc1bad9a88b0b6837169adfd65212b1  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/precompile-phase3.sh
++ echo '# inputs'
+# inputs
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/data_fixture.npz /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/fixture_manifest.json /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/schedule_fixture.npz /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
+6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/data_fixture.npz
+51448d5905c5dfd9a47b945d96102d19ea55073fbfe9f249fd268cca03455a65  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/fixture_manifest.json
+aba66a8ef7bbc82fc81db8cd629092b917cd7d85efafed82553f853c45352662  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/schedule_fixture.npz
+a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-16-phase2/initial_bundle.npz
++ for f in "$PY_REF" "$PY_MANIFEST"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz
+97e5007cbb557f4c4a476a00c7e8076e8c59858e58d597d0df88529985da0783  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference.npz
++ for f in "$PY_REF" "$PY_MANIFEST"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference_manifest.json ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference_manifest.json
+5ba6c29f3a6167f4341e8e78b0685cb93a5b76e83575beca8db82d8585753eb7  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/artifacts/baselines/static-scaling/2026-10-18-phase3-final/phase3_reference_manifest.json
++ echo '# environments'
+# environments
++ for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Project.toml ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Project.toml
+6e75702e0e98a6fe3a3c253a278be827f771295d950dee67eae38367bb8f032d  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Project.toml
++ for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Manifest.toml ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Manifest.toml
+c8077e0c6504adedfdce5a35dd1a2ba6bde057fc45ee9bd7ba1edbd35ee23874  /leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/julia-env/Manifest.toml
++ for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml ']'
++ sha256sum /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+13970e0a9b8595595ce63a9e05d69de0b381fff86d16f774c4e0d04d8bb38853  /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
++ for f in "$JULIA_ENV/Project.toml" "$JULIA_ENV/Manifest.toml" "$FLUX_DIR/test/Project.toml" "$FLUX_DIR/test/Manifest.toml"
++ '[' -f /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml ']'
++ echo 'MISSING /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml'
+MISSING /leonardo/home/userexternal/epicazio/projects/flux-integration/test/Manifest.toml
+=== STAGE a :: source-and-tool-metadata END 2026-10-18T19:23:04Z EXIT 0 ===

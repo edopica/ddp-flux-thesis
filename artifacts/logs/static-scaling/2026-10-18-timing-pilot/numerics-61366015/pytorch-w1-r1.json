@@ -1,0 +1,39 @@
+{
+  "schema": "static-timing-pilot-v1",
+  "framework": "pytorch",
+  "world_size": 1,
+  "global_batch": 12,
+  "updates": 300,
+  "warmup": 20,
+  "seconds": 8.198794928379357,
+  "images_per_second": 439.0889187310856,
+  "update_seconds": 0.02732931642793119,
+  "ranks": [
+    {
+      "rank": 0,
+      "seconds": 8.198794928379357,
+      "hashes": {
+        "param": "66ae81fdf509e3ae535ca8ea9a4f7d850d008bb8a15590270448599f723fda44",
+        "m": "980cc944a0b767e3eef3ccde365c943074c0c7cc765ac842d78b31aa09b770f5",
+        "v": "9c5fda65d9321cdcb81ea0b868d53a76b6db52eb70da28d29c7a6e9d0986b6a9",
+        "step": 300
+      },
+      "device": 0
+    }
+  ],
+  "node": "lrdn2256.leonardo.local",
+  "fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "workload": "alternating-two-fixture-batches",
+  "timing": "training-only",
+  "precision": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "job": "61366015",
+  "snapshot": true,
+  "pass_checks": true
+}

@@ -1,7 +1,22 @@
 # Static-network GPU scaling: shared experiment specification (Phase 1)
 
+## Phase 4 GPU rule and immediate timing scope — 2026-10-18
+
+The user approved finite `abs(a-b)<1e-3` for Phase 4 FP32 comparisons, with no relative allowance.
+Structural, hash, counter, shard, protocol, and rank consistency checks remain exact.
+The explicit checker option is `--fp32-absolute-1e3`. CPU validation is deferred.
+This rule supersedes the Phase 4 CUDA trajectory overrides, not the historical Phase 3 result record.
+The [Phase 4 report](../../artifacts/logs/static-scaling/2026-10-18-phase4/RESULTS.md) records the actual acceptance evidence.
+
+The immediate GPU timing pilot uses global batch 12, two alternating saved fixture batches, and W=1,2,4.
+It retains the existing update-indexed learning-rate schedule and strict FP32 precision helper.
+The pilot measures training-only duration, images/s, and update time after excluded warmup and state reset.
+The larger-batch and full-dataset requirements in this specification remain subsequent campaign requirements.
+
+## Original specification record
+
 Date: 2026-10-15 (review findings R1-R4 corrected 2026-10-16; OD-1, OD-5, OD-6 recorded 2026-10-16; OD-10 recorded 2026-10-17; OD-2, OD-3, OD-4, OD-11 recorded 2026-10-18)
-Status: architecture, initialization, normalization, augmentation, optimizer, schedule, cross-framework tolerance, and Flux entry point are recorded. OD-7, OD-8, OD-9, OD-12, and OD-13 remain proposed in [open-decisions.md](open-decisions.md).
+Status: architecture, initialization, normalization, augmentation, optimizer, schedule, cross-framework tolerance, Flux entry point, and OD-14 benchmark policy are recorded. OD-7, OD-8, OD-9, OD-12, and OD-13 remain proposed in [open-decisions.md](open-decisions.md).
 Review: [Phase 1 implementation review](../../reports/static-scaling-phase1-review.md); R1 (classifier axis), R2 (kernel orientation), R3 (AdamW constructor), R4 (beta-power mapping) corrected in both companions.
 Scope: define one workload that the Flux and PyTorch implementations can each reproduce.
 
@@ -324,7 +339,28 @@ Before any Phase 3 or later remote run:
 3. Precompile on a compute node (never the login node).
 4. Re-record the patch identity and manifest hash in the run metadata.
 
+### 10.6 Precision policy (accepted 2026-10-18)
+
+FP32 is used with TF32 disabled. The reusable policy in
+`scripts/static_scaling/precision.jl` requests explicit `CUDNN_FMA_MATH` and
+installs the FMA-aware `math_mode` mapping and convolution chooser methods.
+Strict FMA is fail-closed: a non-FMA descriptor or the absence of a successful
+FMA candidate raises `PrecisionPolicyError`; there is no non-FMA fallback.
+
+Supported package versions are CUDA.jl `6.2.2` and cuDNN.jl `6.2.2`. A loaded
+cuDNN library version is recorded separately from the Julia package versions.
+`configure_precision!` must run before convolution work in every process;
+running a convolution before it is configured raises `PrecisionPolicyError`.
+Unsupported package versions are rejected unless the clearly marked diagnostic
+`allow_unsupported_versions=true` override is used, which warns and records
+`versions_supported=false`. The version and library policy evidence is in the
+[R1/R2 acceptance-review response](../../reports/static-scaling-phase3-acceptance-review-response.md).
+
 ## 11. Acceptance tolerances
+
+These rules cover short-horizon correctness. They do not define long-run benchmark equivalence.
+Phase 4 GPU acceptance subsequently adopted finite `abs(a-b) < 1e-3`, with exact structural and rank checks.
+That Phase 4 rule supersedes the historical same-framework default for its accepted GPU fixture only.
 
 Rule: elementwise `|a - b| <= atol + rtol * max(|a|, |b|)`.
 
@@ -345,22 +381,44 @@ with identical generator, fixture, bundle, updates, and provenance: it
 fails the base rule on exactly these three backward categories, with the
 same worst leaves. The maximum Flux residual is within 1.63x of that
 same-framework envelope, and each new absolute floor has at least 2x margin
-over the observed envelope. The residual is ordinary FP32 convolution and
-reduction-order variation between valid backends, not a TF32/FMA policy or
-model-math difference. Per-leaf relative L2 stays a supplementary
-diagnostic and does not replace the elementwise rule; zero/nonzero gradient
-checks remain unchanged.
+over the observed envelope. The residual is consistent with FP32
+backend/algorithm differences between valid backends, including possible
+sensitivity near nonlinear boundaries. The same-framework control supports
+that explanation but does not isolate every residual to backward-kernel
+rounding. Per-leaf relative L2 stays a supplementary diagnostic and does not
+replace the elementwise rule; the zero/nonzero check compares whole-leaf L2
+norms, not individual elements.
 
 Categories covered: logits, loss, gradients, updated parameters, optimizer moments `m` and `v`, step counters.
 Integer counters are compared exactly; the tolerances above apply only to floating-point arrays.
 A tolerance revision requires a documented numerical cause (kernel or reduction-order difference) recorded in [experiment.toml](experiment.toml) before the acceptance evidence is generated.
 Acceptance evidence includes multiple optimizer updates, covering nonzero moments and the schedule.
 
+### 11.1. OD-14 benchmark acceptance — recorded 2026-10-19
+
+The normative decision is [OD-14: benchmark policy and numerical claims](OD-14-benchmark-acceptance.md).
+The primary claim is qualified descriptive throughput and strong scaling under explicit policies.
+Flux retains FMA-only candidate selection and its timed gradient guard.
+PyTorch retains deterministic cuDNN, disabled benchmarking, and its native DDP guard behavior.
+Both frameworks retain FP32 with TF32 disabled.
+
+Short-horizon correctness gates remain separate from long-run diagnostics.
+Long-run diagnostics require matched work, finite complete state, exact replica agreement, and consistent update state.
+They report same-framework and cross-framework discrepancies separately, with no numerical-equivalence threshold.
+The report retains `NUMERICAL_EQUIVALENCE_CLAIM none`.
+Neither the 300-update envelope nor the short-horizon tolerances become long-run acceptance bounds.
+
+Numerical-equivalence and comparable-training-quality claims require prospective criteria and separate acceptance evidence.
+The final Phase 6 cross-framework report requires a deterministic-mode sensitivity in both frameworks.
+Qualified descriptive results and the Phase 5 capacity pilot can precede that sensitivity.
+Every campaign records loaded runtime identity, source and input hashes, algorithm policies, guard placement, resources, and timer semantics.
+Recorded source drift requires relevant correctness evidence before acceptance transfers to that source.
+
 ## 12. Open decisions and change control
 
-The open decisions, their proposed defaults, and their blocking phases are in [open-decisions.md](open-decisions.md): final batch (OD-7), memory margin (OD-8), JPEG-decode exclusion from the end-to-end view (OD-9), throughput update count (OD-12), and the CPU/thread/worker policy (OD-13).
+The open decisions are in [open-decisions.md](open-decisions.md): final batch (OD-7), memory margin (OD-8), JPEG-decode exclusion (OD-9), update count (OD-12), and CPU/thread/worker policy (OD-13).
 OD-1, OD-5, and OD-6 were recorded on 2026-10-16; OD-10 on 2026-10-17; OD-2, OD-3, OD-4, and OD-11 on 2026-10-18. Their values appear in sections 3, 4, 6, 10.4, and 11 and in the companion config.
-OD-7, OD-8, OD-9, OD-12, and OD-13 remain open.
+OD-14 was recorded on 2026-10-19 in section 11.1. OD-7, OD-8, OD-9, OD-12, and OD-13 remain open.
 
 Change rule: a change to any value in [experiment.toml](experiment.toml) that can affect gradients, sample exposure, or measured work requires an update of this specification and, where acceptance evidence already exists, renewed correctness checks.
 
@@ -373,3 +431,11 @@ Change rule: a change to any value in [experiment.toml](experiment.toml) that ca
 5. [ADR-0008](../../wiki/decisions/ADR-0008-coordinated-nonfinite-loss-rejection.md), [ADR-0009](../../wiki/decisions/ADR-0009-post-reduction-nonfinite-gradient-rejection.md) (guards).
 6. Pinned sources: Optimisers 0.4.9 `src/rules.jl` (AdamW, Adam, WeightDecay); `flux-integration/src/layers/normalise.jl` + NNlib `src/normalization.jl` (GroupNorm grouping, eps placement); CUDA.jl 6.x `CUDACore` math modes (`math_mode!`, `PEDANTIC_MATH`) with cuBLAS/cuDNN mappings.
 7. PyTorch 2.9 documentation: [AdamW](https://docs.pytorch.org/docs/2.9/generated/torch.optim.AdamW.html), [GroupNorm](https://docs.pytorch.org/docs/2.9/generated/torch.nn.GroupNorm.html), [CrossEntropyLoss](https://docs.pytorch.org/docs/2.9/generated/torch.nn.CrossEntropyLoss.html), [DistributedDataParallel](https://docs.pytorch.org/docs/2.9/generated/torch.nn.parallel.DistributedDataParallel.html).
+# Campaign batch decision — 2026-10-19
+
+OD-7 now fixes the global batch at 256 for the full-dataset campaign.
+This decision supersedes earlier proposed batch-512 defaults in this document.
+Local batches are 256, 128, and 64 at W=1, 2, and 4.
+One measured epoch contains 390 updates and 99,840 images.
+The learning-rate schedule uses 1,950 warmup updates and 19,500 total updates, as recorded in OD-4.
+The nine-configuration memory preflight remains required before timing.

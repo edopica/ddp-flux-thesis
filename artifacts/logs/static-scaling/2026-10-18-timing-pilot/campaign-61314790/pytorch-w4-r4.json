@@ -1,0 +1,71 @@
+{
+  "schema": "static-timing-pilot-v1",
+  "framework": "pytorch",
+  "world_size": 4,
+  "global_batch": 12,
+  "updates": 300,
+  "warmup": 20,
+  "seconds": 4.540238643065095,
+  "images_per_second": 792.9098628986726,
+  "update_seconds": 0.015134128810216984,
+  "ranks": [
+    {
+      "rank": 0,
+      "seconds": 4.540196372196078,
+      "hashes": {
+        "param": "57d00d27be9506d30f9b6f565383dbe1401d28fcff5726d6a75dc3bdc88284f5",
+        "m": "ed8c3b20fbba1204651e8cdb8e9abe29d07ebbc837e35c4f38b9cd9bac263484",
+        "v": "891ef182006e343df1e1868cfbcbdf31190e9bbfac20ed07022890f5e28c80be",
+        "step": 300
+      },
+      "device": 1
+    },
+    {
+      "rank": 1,
+      "seconds": 4.540238643065095,
+      "hashes": {
+        "param": "57d00d27be9506d30f9b6f565383dbe1401d28fcff5726d6a75dc3bdc88284f5",
+        "m": "ed8c3b20fbba1204651e8cdb8e9abe29d07ebbc837e35c4f38b9cd9bac263484",
+        "v": "891ef182006e343df1e1868cfbcbdf31190e9bbfac20ed07022890f5e28c80be",
+        "step": 300
+      },
+      "device": 2
+    },
+    {
+      "rank": 2,
+      "seconds": 4.540220400318503,
+      "hashes": {
+        "param": "57d00d27be9506d30f9b6f565383dbe1401d28fcff5726d6a75dc3bdc88284f5",
+        "m": "ed8c3b20fbba1204651e8cdb8e9abe29d07ebbc837e35c4f38b9cd9bac263484",
+        "v": "891ef182006e343df1e1868cfbcbdf31190e9bbfac20ed07022890f5e28c80be",
+        "step": 300
+      },
+      "device": 3
+    },
+    {
+      "rank": 3,
+      "seconds": 4.54019589908421,
+      "hashes": {
+        "param": "57d00d27be9506d30f9b6f565383dbe1401d28fcff5726d6a75dc3bdc88284f5",
+        "m": "ed8c3b20fbba1204651e8cdb8e9abe29d07ebbc837e35c4f38b9cd9bac263484",
+        "v": "891ef182006e343df1e1868cfbcbdf31190e9bbfac20ed07022890f5e28c80be",
+        "step": 300
+      },
+      "device": 0
+    }
+  ],
+  "node": "lrdn3064.leonardo.local",
+  "fixture_sha256": "6614a00ba7cac588b331b65cef4240f27624944c7a9df0383fdbeee3124066b3",
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "workload": "alternating-two-fixture-batches",
+  "timing": "training-only",
+  "precision": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "job": "61314790",
+  "pass_checks": true
+}

@@ -28,3 +28,15 @@ temp/
 artifacts/**/*.npz
 __pycache__/
 *.pyc
+
+# Benchmark presentation build products. The Typst sources (main.typ, slides/,
+# components/*.typ) and the final deck (presentation.pdf) are committed; the
+# slide renders and the throwaway component test renders are not.
+presentations/**/dist/
+presentations/**/components/test_*
+
+# Stray Typst compile output at the repository root
+/out.pdf
+
+# Notebook execution checkpoints
+.ipynb_checkpoints/
