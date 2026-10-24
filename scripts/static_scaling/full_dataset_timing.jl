@@ -169,9 +169,15 @@ function run_full_dataset_timing(opts::AbstractDict;
     P4.phase4_barrier(MPI, backend)
     CUDA.synchronize()
 
+    # Wall-clock epoch timestamps bracket the same synchronized boundaries as the
+    # monotonic timing measurement so the external nvidia-smi sampler can be
+    # clipped to the post-warmup training window. Final hashing, snapshots, and
+    # teardown stay outside this window.
+    start_epoch = time()
     start = time_ns()
     model, state, loss = steps(model, state, updates)
     CUDA.synchronize()
+    end_epoch = time()
     elapsed = (time_ns() - start) / 1e9
     @assert isfinite(P4.loss32(loss))
 
@@ -193,6 +199,13 @@ function run_full_dataset_timing(opts::AbstractDict;
     rank_hashes = Dict(key => _gather_hash_values(MPI, comm, hashes[key], world)
                        for key in keys(hashes))
     durations = world == 1 ? [elapsed] : MPI.Allgather(elapsed, comm)
+    window_starts = world == 1 ? [start_epoch] : MPI.Allgather(start_epoch, comm)
+    window_ends = world == 1 ? [end_epoch] : MPI.Allgather(end_epoch, comm)
+    rank_training_windows = [
+        Dict("rank" => index - 1, "start_epoch" => window_starts[index],
+             "end_epoch" => window_ends[index], "seconds" => durations[index])
+        for index in eachindex(durations)
+    ]
 
     if !isempty(snapshot_dir) && rank == 0
         mkpath(snapshot_dir)
@@ -244,6 +257,8 @@ function run_full_dataset_timing(opts::AbstractDict;
             "images_per_second" => batch_size * updates / seconds,
             "update_seconds" => seconds / updates,
             "rank_seconds" => durations,
+            "rank_training_windows" => rank_training_windows,
+            "training_window_basis" => "per-rank wall-clock epoch seconds recorded at the synchronized start and after the synchronized end of the measured updates; warmup, reset, final hashing, snapshots, and teardown are outside the window",
             "hashes" => hashes,
             "rank_hashes" => rank_hashes,
             "device" => Int(CUDA.deviceid(CUDA.device())),

@@ -142,9 +142,9 @@ class AcceptanceTests(unittest.TestCase):
                     (ranks / ("rank-%d.json" % rank)).write_text(json.dumps(
                         dict(rank=rank, pid=100 + rank, gpu_uuid="GPU-%d" % rank)))
                 (candidate / "samples" / (label + ".csv")).write_text("".join(
-                    "TIME,%d\n" % stamp + "".join(
+                    "TIME,%.1f\n" % stamp + "".join(
                         "%d, GPU-%d, 1000\n" % (100 + rank, rank)
-                        for rank in range(world)) for stamp in (1, 2)))
+                        for rank in range(world)) for stamp in (1002.0, 1006.0)))
         self.args = argparse.Namespace(root=str(self.root), candidate=[(256, str(candidate))],
                                        updates=2, warmup=2, epoch=0, select=True,
                                        out=str(self.root / "preflight/decision.json"))
@@ -181,10 +181,10 @@ class AcceptanceTests(unittest.TestCase):
 
     def test_missing_wrong_gpu_and_single_sample_rejected(self):
         sample = self.root / "preflight/b256/samples/flux-current-w4.csv"
-        for text in ("TIME,1\n100, GPU-0, 1000\nTIME,2\n100, GPU-0, 1000\n",
-                     "TIME,1\n100, GPU-wrong, 1000\n",
-                     "TIME,1\n" + "".join("%d, GPU-%d, 1000\n" % (100+r, r)
-                                            for r in range(4))):
+        for text in ("TIME,1002.0\n100, GPU-0, 1000\nTIME,1006.0\n100, GPU-0, 1000\n",
+                     "TIME,1002.0\n100, GPU-wrong, 1000\n",
+                     "TIME,1002.0\n" + "".join("%d, GPU-%d, 1000\n" % (100+r, r)
+                                                for r in range(4))):
             sample.write_text(text)
             with contextlib.redirect_stdout(io.StringIO()):
                 self.assertEqual(c._preflight(self.args), 1)

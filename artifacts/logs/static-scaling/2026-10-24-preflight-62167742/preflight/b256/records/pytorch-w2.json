@@ -1,0 +1,161 @@
+{
+  "schema": "static-timing-full-dataset-v1",
+  "framework": "pytorch",
+  "world_size": 2,
+  "global_batch": 256,
+  "batch_size": 256,
+  "epoch": 0,
+  "updates": 20,
+  "warmup": 20,
+  "updates_per_epoch": 390,
+  "n_eff": 99840,
+  "tail_size": 160,
+  "seconds": 2.561484446981922,
+  "images_per_second": 1998.8409478857693,
+  "update_seconds": 0.1280742223490961,
+  "ranks": [
+    {
+      "rank": 0,
+      "seconds": 2.5614632370416075,
+      "hashes": {
+        "param": "e6ddae85c32c8354143db297d6bf54d8f9ee6d61026a5a0673d9d1d0fd93c7e4",
+        "m": "7a1a2570734386b6495353ff4ec9310c45bd33cb9680aad080c0c025d5654a37",
+        "v": "efe087153d25d6e87408c954a1cbced10a6bd6993c53a3df7d42c2c453ff6620",
+        "step": 20
+      },
+      "device": 1,
+      "training_start_epoch": 1792870671.1106675,
+      "training_end_epoch": 1792870673.6721337,
+      "memory": {
+        "max_memory_allocated": 4047445504,
+        "max_memory_reserved": 5530189824,
+        "memory_allocated": 248775680,
+        "memory_reserved": 5530189824,
+        "mem_get_info_free": 61654695936,
+        "mem_get_info_total": 68099571712,
+        "host_maxrss_bytes": 1370034176
+      }
+    },
+    {
+      "rank": 1,
+      "seconds": 2.561484446981922,
+      "hashes": {
+        "param": "e6ddae85c32c8354143db297d6bf54d8f9ee6d61026a5a0673d9d1d0fd93c7e4",
+        "m": "7a1a2570734386b6495353ff4ec9310c45bd33cb9680aad080c0c025d5654a37",
+        "v": "efe087153d25d6e87408c954a1cbced10a6bd6993c53a3df7d42c2c453ff6620",
+        "step": 20
+      },
+      "device": 2,
+      "training_start_epoch": 1792870671.110658,
+      "training_end_epoch": 1792870673.6721458,
+      "memory": {
+        "max_memory_allocated": 4047445504,
+        "max_memory_reserved": 5530189824,
+        "memory_allocated": 248775680,
+        "memory_reserved": 5530189824,
+        "mem_get_info_free": 61654695936,
+        "mem_get_info_total": 68099571712,
+        "host_maxrss_bytes": 1369358336
+      }
+    }
+  ],
+  "node": "lrdn3250.leonardo.local",
+  "job": "62167742",
+  "dataset_dir": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared",
+  "dataset_hashes": {
+    "train_images.npy": {
+      "bytes": 1228800128,
+      "sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "source": "dataset_manifest.json"
+    },
+    "train_labels.npy": {
+      "bytes": 800128,
+      "sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "source": "dataset_manifest.json"
+    },
+    "permutations.npy": {
+      "bytes": 40000128,
+      "sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "source": "schedule_manifest.json"
+    },
+    "augmentation.npy": {
+      "bytes": 15000128,
+      "sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "source": "schedule_manifest.json"
+    },
+    "stats.json": {
+      "bytes": 1238,
+      "sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "source": "dataset_manifest.json"
+    },
+    "dataset_manifest.json": {
+      "bytes": 4288,
+      "sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a",
+      "source": "actual-only"
+    },
+    "schedule_manifest.json": {
+      "bytes": 1773,
+      "sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295",
+      "source": "actual-only"
+    },
+    "initial_bundle.npz": {
+      "bytes": 45103060,
+      "sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+      "source": "actual-only"
+    },
+    "initial_bundle.manifest.json": {
+      "bytes": 16437,
+      "sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571",
+      "source": "actual-only"
+    },
+    "class_wnids.txt": {
+      "bytes": 2000,
+      "sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "source": "dataset_manifest.json"
+    },
+    "val_images.npy": {
+      "bytes": 122880128,
+      "sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "source": "dataset_manifest.json"
+    },
+    "val_labels.npy": {
+      "bytes": 80128,
+      "sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "source": "dataset_manifest.json"
+    }
+  },
+  "sample_order_sha256": "f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335",
+  "update1_order_sha256": "eea6efa65ca0c8edd4a7ef209b52fc1bfad3a9f266993df544681e866b081e9c",
+  "transform_spec_sha256": "e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa",
+  "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "bundle_file_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "loader_policy": "mmap opened once per process before timing; synchronous numpy batch assembly and transform; no DataLoader workers",
+  "timing": "full-dataset-end-to-end",
+  "timing_policy": "timed region includes batch assembly, transform, H2D, forward, backward, and optimizer step",
+  "training_window_basis": "per-rank wall-clock epoch seconds recorded at the synchronized start and after the synchronized end of the measured updates; warmup, reset, final hashing, snapshots, and teardown are outside the window",
+  "warmup_policy": "20 discarded updates at t=1..20; model and optimizer reset from the bundle; measured region restarts at update 1 and data at batch 1",
+  "workload": "full-dataset-epoch",
+  "precision": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "cpu_policy": "torch.set_num_threads(1) via mt.configure_backend; CPU batch assembly only",
+  "source": {
+    "thesis_commit": "660e363e6de5b6e4b398e542d79b6ce1adb381da",
+    "thesis_state_sha256": "1ddd2d20a3cdb83c6418807ddbebd7f7abc8a3952950d12990cdafc7c5698ecf",
+    "flux_commit": "",
+    "flux_state_sha256": "",
+    "python_version": "3.11.17",
+    "torch_version": "2.9.1+cu126",
+    "numpy_version": "2.4.6",
+    "host": "lrdn3250.leonardo.local"
+  },
+  "snapshot": false,
+  "pass_checks": true,
+  "eta_sha256": "4b161d703bfa834dff5b12495d8fd6a98e4e51af85c4b0ab272f3e87c4e2b820",
+  "final_loss": 5.421014785766602,
+  "loss_finite": true
+}

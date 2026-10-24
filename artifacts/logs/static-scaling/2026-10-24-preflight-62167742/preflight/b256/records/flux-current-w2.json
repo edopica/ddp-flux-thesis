@@ -1,0 +1,226 @@
+{
+  "batch_size": 256,
+  "bundle_file_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "bundle_path": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared/initial_bundle.npz",
+  "bundle_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "config_kind": "guarded_ddp",
+  "dataset_dir": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared",
+  "dataset_hashes": {
+    "augmentation.npy": {
+      "actual_sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "bytes": 15000128,
+      "declared_bytes": null,
+      "declared_sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "source": "schedule_manifest.json"
+    },
+    "class_wnids.txt": {
+      "actual_sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "bytes": 2000,
+      "declared_bytes": 2000,
+      "declared_sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "source": "dataset_manifest.json"
+    },
+    "dataset_manifest.json": {
+      "actual_sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a",
+      "bytes": 4288,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a",
+      "source": "actual-only"
+    },
+    "initial_bundle.manifest.json": {
+      "actual_sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571",
+      "bytes": 16437,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571",
+      "source": "actual-only"
+    },
+    "initial_bundle.npz": {
+      "actual_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+      "bytes": 45103060,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+      "source": "actual-only"
+    },
+    "permutations.npy": {
+      "actual_sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "bytes": 40000128,
+      "declared_bytes": null,
+      "declared_sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "source": "schedule_manifest.json"
+    },
+    "schedule_manifest.json": {
+      "actual_sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295",
+      "bytes": 1773,
+      "declared_bytes": null,
+      "declared_sha256": "",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295",
+      "source": "actual-only"
+    },
+    "stats.json": {
+      "actual_sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "bytes": 1238,
+      "declared_bytes": 1238,
+      "declared_sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "source": "dataset_manifest.json"
+    },
+    "train_images.npy": {
+      "actual_sha256": "",
+      "bytes": 1228800128,
+      "declared_bytes": 1228800128,
+      "declared_sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "hash_verified": false,
+      "large": true,
+      "sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "source": "dataset_manifest.json"
+    },
+    "train_labels.npy": {
+      "actual_sha256": "",
+      "bytes": 800128,
+      "declared_bytes": 800128,
+      "declared_sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "hash_verified": false,
+      "large": true,
+      "sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "source": "dataset_manifest.json"
+    },
+    "val_images.npy": {
+      "actual_sha256": "",
+      "bytes": 122880128,
+      "declared_bytes": 122880128,
+      "declared_sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "hash_verified": false,
+      "large": true,
+      "sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "source": "dataset_manifest.json"
+    },
+    "val_labels.npy": {
+      "actual_sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "bytes": 80128,
+      "declared_bytes": 80128,
+      "declared_sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "hash_verified": true,
+      "large": false,
+      "sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "source": "dataset_manifest.json"
+    }
+  },
+  "device": 1,
+  "distributed_api": "guarded",
+  "epoch": 0,
+  "eta_sha256": "4b161d703bfa834dff5b12495d8fd6a98e4e51af85c4b0ab272f3e87c4e2b820",
+  "final_loss": 5.421015739440918,
+  "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+  "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+  "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "framework": "flux",
+  "global_batch": 256,
+  "guard_policy": "presence + nonfinite loss/gradient rejection inside timed window",
+  "hashes": {
+    "beta_power": "af471960ca51d1af9c0fb7e0bf4ef42020461ba0b9ad27abac165cac145ceb05",
+    "m": "7451bd661e06d11de30967b8def298e53059a0cde57905c5f0e6fae966dc28b2",
+    "param": "afabcf291bf4d518d74a7e03b2d8b9511b87b592b3085c4c904dfd54e72a345f",
+    "v": "0e7ad9dbd29af5166cf9ffc0649d294751051508aab2fe44852dbe371e55dc33"
+  },
+  "images_per_second": 1914.8786582253754,
+  "job": "62167742",
+  "loader_policy": "mmap opened once per process before timing; every timed update assembles its batch from the map",
+  "loss_finite": true,
+  "memory": {
+    "device_free_bytes": 29006233600,
+    "device_total_bytes": 68099571712,
+    "device_used_bytes": 39093338112,
+    "host_maxrss_bytes": 3068407808
+  },
+  "n_eff": 99840,
+  "node": "lrdn3250.leonardo.local",
+  "pass_checks": true,
+  "precision": "FP32 strict FMA, TF32 off",
+  "rank_hashes": {
+    "beta_power": [
+      "af471960ca51d1af9c0fb7e0bf4ef42020461ba0b9ad27abac165cac145ceb05",
+      "af471960ca51d1af9c0fb7e0bf4ef42020461ba0b9ad27abac165cac145ceb05"
+    ],
+    "m": [
+      "7451bd661e06d11de30967b8def298e53059a0cde57905c5f0e6fae966dc28b2",
+      "7451bd661e06d11de30967b8def298e53059a0cde57905c5f0e6fae966dc28b2"
+    ],
+    "param": [
+      "afabcf291bf4d518d74a7e03b2d8b9511b87b592b3085c4c904dfd54e72a345f",
+      "afabcf291bf4d518d74a7e03b2d8b9511b87b592b3085c4c904dfd54e72a345f"
+    ],
+    "v": [
+      "0e7ad9dbd29af5166cf9ffc0649d294751051508aab2fe44852dbe371e55dc33",
+      "0e7ad9dbd29af5166cf9ffc0649d294751051508aab2fe44852dbe371e55dc33"
+    ]
+  },
+  "rank_seconds": [
+    2.673798665,
+    2.673795913
+  ],
+  "rank_training_windows": [
+    {
+      "end_epoch": 1.792870520512076e9,
+      "rank": 0,
+      "seconds": 2.673798665,
+      "start_epoch": 1.792870517838278e9
+    },
+    {
+      "end_epoch": 1.792870520512081e9,
+      "rank": 1,
+      "seconds": 2.673795913,
+      "start_epoch": 1.792870517838285e9
+    }
+  ],
+  "sample_order_sha256": "f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335",
+  "schema": "static-timing-full-dataset-v1",
+  "seconds": 2.673798665,
+  "snapshot": false,
+  "source": {
+    "blas_threads": 1,
+    "flux_commit": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+    "flux_repo_root": "/leonardo/home/userexternal/epicazio/projects/flux-integration",
+    "flux_state_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "host": "lrdn3250.leonardo.local",
+    "julia_threads": 1,
+    "julia_version": "1.12.6",
+    "thesis_commit": "660e363e6de5b6e4b398e542d79b6ce1adb381da",
+    "thesis_state_sha256": "1ddd2d20a3cdb83c6418807ddbebd7f7abc8a3952950d12990cdafc7c5698ecf"
+  },
+  "tail_size": 160,
+  "timing": "full-dataset-end-to-end",
+  "timing_policy": "mmap opened before timing; timed region includes batch assembly, transform, onehot, H2D, forward, backward, and optimizer step",
+  "training_window_basis": "per-rank wall-clock epoch seconds recorded at the synchronized start and after the synchronized end of the measured updates; warmup, reset, final hashing, snapshots, and teardown are outside the window",
+  "transform_spec_sha256": "e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa",
+  "update1_order_sha256": "eea6efa65ca0c8edd4a7ef209b52fc1bfad3a9f266993df544681e866b081e9c",
+  "update_seconds": 0.13368993325,
+  "updates": 20,
+  "updates_per_epoch": 390,
+  "warmup": 20,
+  "warmup_policy": "20 discarded updates at t=1..20; model and optimizer reset from the bundle; measured region restarts at update 1 and data at batch 1",
+  "workload": "full-dataset-epoch",
+  "world_size": 2
+}

@@ -1,5 +1,128 @@
 # Current context
 
+## Memory preflight PASS — 2026-10-24
+
+Preflight-only job `62167742` (`static-full-preflight`, `lrdn3250`,
+`boost_qos_lprod`, 1 node, 1 task, **4 CPUs**, 4×A100-SXM-64GB, `02:00:00`)
+completed `0:0` in `00:23:27` and printed
+`FULL_CAMPAIGN_READY PASS batch=256 updates=390`,
+`FULL_CAMPAIGN_preflight PASS`, and `TIMING_DRIVER_EXIT=0`. All nine batch-256
+framework/world configurations pass the unchanged OD-8 whole-process sampled
+peak gate.
+
+| Framework | W=1 | W=2 | W=4 |
+|---|---:|---:|---:|
+| flux-current | 49,792 MiB (76.67%) | 37,274 MiB (57.39%) | 34,250 MiB (52.74%) |
+| flux-historical | 49,728 MiB (76.57%) | 41,914 MiB (64.54%) | 39,242 MiB (60.42%) |
+| pytorch | 10,894 MiB (16.77%) | 6,138 MiB (9.45%) | 3,994 MiB (6.15%) |
+
+The device is `64,944.8 MiB`; the 80% limit is `51,955.8 MiB`. The tightest cases
+are Flux at W=1, only **2,163.8 MiB** (current) and **2,227.8 MiB**
+(historical) below the gate. W=2/4 and PyTorch have larger margins. The
+whole-process peak equals the training-window peak in every row. Every rank
+had 5–18 training-window samples; maximum trace gaps were `0.29–0.44 s`.
+
+**Peak composition:** Flux W=1 is already at 45,504 MiB before the measured
+window; the 20-update increment is only 4,288 MiB. Flux W=4 is 34,250 MiB
+before and 34,250 MiB at the training peak. PyTorch W=1 is 10,894 MiB before
+and 10,894 MiB at peak. So the 4.6× W=1 process-footprint difference is real,
+but 91% of the Flux peak is pre-window/warmup/cache. The harness calls
+`GC.gc()` but deliberately does not call `CUDA.reclaim()`, so `nvidia-smi`
+counts CUDA.jl's cached blocks. This is **not** a clean live-tensor
+measurement of one training step; a reclaim diagnostic is required before
+making a framework conclusion.
+
+The allocation was deliberately reduced from 32 to 4 CPUs because resource
+usage scales with core count and throughput is not the goal. Julia uses one
+thread per rank; PyTorch uses four processes on four CPUs with one thread each.
+These timings are not comparable to the 32-CPU campaign. The preflight window
+is 20 warmup + 20 measured updates; the campaign is 20 + 390 updates and can
+peak higher. This PASS does **not** establish campaign headroom.
+
+Evidence: [RESULTS](../../artifacts/logs/static-scaling/2026-10-24-preflight-62167742/RESULTS.md),
+[COMMANDS](../../artifacts/logs/static-scaling/2026-10-24-preflight-62167742/COMMANDS.md),
+[decision](../../artifacts/logs/static-scaling/2026-10-24-preflight-62167742/preflight/decision.json),
+[devlog](../devlog/03-static-scaling/2026-10-24-memory-preflight-62167742.md).
+The local checker re-ran on the copied artifact and returned the same nine
+PASS rows and `PREFLIGHT_SELECTED 256`.
+
+**EXACT NEXT ACTION:** decide whether to run the 390-update campaign with the
+same 4-CPU policy and `REPEATS=3`, using the stored decision as
+`PREFLIGHT_DECISION`. Do not start it automatically: the Flux W=1 margin is
+only about 2.1 GiB. Do not sync documentation-only edits first; the decision
+binds `THESIS_STATE_SHA256=1ddd2d20…` to the current remote tree, so a sync
+requires a fresh preflight.
+
+## Memory harness prepared — 2026-10-24
+
+Local implementation and gates only; no remote job ran and no GPU memory was
+measured. This supersedes the planning-only checkpoint below. The full-dataset
+campaign now samples **every timing repeat** with the existing 0.25 s
+`nvidia-smi` per-process sampler and keeps the raw trace plus per-rank PID/GPU
+registration. Both full-dataset runners record per-rank wall-clock training
+windows around the already-synchronized measured region; final hashing,
+snapshots, and teardown are outside the window.
+
+The checker now validates the windows, rejects missing traces/rank
+registration, traces outside a 5 s coverage slack, sampling gaps over 5 s, and
+campaign traces below one sample per second (two-sample floor) in each rank's
+window and in the simultaneous aggregate. It also requires strictly increasing
+sample timestamps: duplicate or out-of-order `TIME` blocks are rejected, so
+repeated blocks cannot inflate density. The simultaneous aggregate is checked
+directly, not only by count: its own first and last samples must span the
+common training window within the 5 s slack and it must contain no internal
+gap over 5 s. The short preflight keeps one training-window sample per rank
+after whole-process coverage and does not require aggregate span. The checker
+reports per-rank training peak/median, startup and whole-process peaks, actual
+gap median/max, worst rank, repeat median/min/max/spread, and the aggregate
+coverage fields, and writes a `memory` section to `REPORT.json` plus a
+nine-row `FULL_MEMORY` table. The aggregate footprint is the maximum sum of
+simultaneous per-rank samples, never the sum of independent rank maxima. The
+preflight OD-8 rule stays the whole-process sampled peak at or below 80% of
+the device total; training-window values are reported alongside. Sampled peaks
+are not continuous high-water marks, process usage includes allocator
+caches/runtime overhead, and framework allocator counters remain
+supplementary.
+
+The thesis commit pin is now `660e363e6de5b6e4b398e542d79b6ce1adb381da`
+(local HEAD) in the campaign launcher, the checker, and the full-validation
+driver. The harness edits are uncommitted, so the recorded
+`THESIS_STATE_SHA256` identifies the working tree; the Git-free remote copy is
+the supported path in this state. If the tree is committed before launch,
+update `EXPECTED_THESIS_COMMIT` and the checker constant to the new HEAD and
+re-run the gates; a plain checkout of the old commit cannot contain this
+uncommitted pin fix.
+
+Local gates: `FULL_CAMPAIGN_SELFTEST PASS checks=37`, 8/8 launcher regression
+tests, `py_compile` exit 0, `bash -n` exit 0, Julia parse `JULIA_PARSE_OK` for
+both runners, and `git diff --check` exit 0. The checker revision now requires
+campaign traces, so the accepted 2026-10-20 artifact (which predates them)
+cannot be re-verified with it; its frozen evidence is unchanged. Details:
+[harness devlog](../devlog/03-static-scaling/2026-10-24-memory-harness-prepared.md),
+[plan](../devlog/03-static-scaling/2026-10-24-memory-rerun-plan.md).
+
+**Status update:** the sync and nine-case batch-256 preflight described here
+have since run as job `62167742`; see the preflight section above. The
+remaining decision is the 390-update campaign.
+
+## Memory benchmark rerun plan — 2026-10-24
+
+Planning only; no benchmark code changed and no remote measurements ran.
+Reuse the full-dataset harness and accepted three-arm, W=1/2/4, batch-256
+workload. Enable the existing external GPU sampler for campaign repeats,
+add per-rank training-window timestamps, and validate sample coverage.
+Run the existing short preflight, then 20 warmup + 390 training updates,
+three fresh-process repeats, retaining alternating configuration order.
+Report sampled GPU process peaks per rank, worst rank, steady-state usage,
+and repeat spread; distinguish startup from training and allocator counters
+from process usage. Details: [plan/devlog](../devlog/03-static-scaling/2026-10-24-memory-rerun-plan.md).
+
+**EXACT NEXT ACTION:** enable campaign sampling in
+`scripts/remote/leonardo/run-static-full-campaign.sh`, add training-window
+timestamps to both full-dataset runners, and extend the checker for coverage
+and memory summaries. Load the remote skill and Leonardo context before
+remote execution.
+
 ## Benchmark artifacts committed — 2026-10-22
 
 The static-scaling benchmark worktree was committed: 582 files (15.4 MB) covering

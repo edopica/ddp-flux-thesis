@@ -230,14 +230,22 @@ def run_full_dataset(a):
     if w > 1:
         dist.barrier()
     torch.cuda.synchronize()
+    # Wall-clock epoch timestamps bracket the same synchronized boundaries as
+    # perf_counter so the external nvidia-smi sampler can be clipped to the
+    # post-warmup training window. Final hashing, snapshots, and teardown stay
+    # outside this window.
+    start_epoch = time.time()
     start = time.perf_counter()
     loss = steps(model, opt, updates)
     torch.cuda.synchronize()
+    end_epoch = time.time()
     elapsed = time.perf_counter() - start
     loss_value = float(loss.detach().cpu().item())
     assert math.isfinite(loss_value)
     hashes = compute_state_hashes(inner, opt, updates)
     local = dict(rank=rank, seconds=elapsed, hashes=hashes, device=index,
+                 training_start_epoch=start_epoch,
+                 training_end_epoch=end_epoch,
                  memory=memory_record(torch))
     records = [None] * w
     if w > 1:
@@ -286,6 +294,7 @@ def run_full_dataset(a):
             loader_policy="mmap opened once per process before timing; synchronous numpy batch assembly and transform; no DataLoader workers",
             timing="full-dataset-end-to-end",
             timing_policy="timed region includes batch assembly, transform, H2D, forward, backward, and optimizer step",
+            training_window_basis="per-rank wall-clock epoch seconds recorded at the synchronized start and after the synchronized end of the measured updates; warmup, reset, final hashing, snapshots, and teardown are outside the window",
             warmup_policy="%d discarded updates at t=1..%d; model and optimizer reset from the bundle; measured region restarts at update 1 and data at batch 1"
             % (a.warmup, a.warmup),
             workload="full-dataset-epoch", precision=flags,

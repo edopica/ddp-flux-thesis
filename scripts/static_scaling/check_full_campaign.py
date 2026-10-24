@@ -15,8 +15,12 @@ The checker has two subcommands.
   Verifies the selected configuration, actual source identity, loaded runtime
   versions, device mapping, resource policy, complete repeat set, timing
   arithmetic, and the matching untimed state diagnostics required by OD-14.
-  It writes ``REPORT.json`` and prints the timing and diagnostic summaries.
-  Finite differences in the diagnostics receive no pass/fail threshold.
+  It also requires every timing repeat's timestamped ``nvidia-smi`` trace and
+  per-rank PID/GPU registration, clips samples to each rank's recorded
+  training window, and reports sampled training, startup, and whole-process
+  peaks with a simultaneous-sum aggregate footprint. It writes ``REPORT.json``
+  and prints the timing, memory, and diagnostic summaries. Finite differences
+  in the diagnostics receive no pass/fail threshold.
 
 Reproduction::
 
@@ -52,7 +56,7 @@ RUNTIME_SCHEMA = "static-full-runtime-v1"
 RESOURCES_SCHEMA = "static-full-resources-v1"
 DATASET_SCHEMA = "static-full-dataset-identity-v1"
 
-THESIS_COMMIT = "a3786d97f3263cad20b254206f09c095880f624d"
+THESIS_COMMIT = "660e363e6de5b6e4b398e542d79b6ce1adb381da"
 CURRENT_COMMIT = "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e"
 CURRENT_STATE_SHA256 = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
 CURRENT_SOURCE_TREE_SHA256 = "83da2929ab7ebd66dbceb83452c8e55eae5e0444c8e96866cc2a25b513c3eb0d"
@@ -65,6 +69,39 @@ WORLDS = (1, 2, 4)
 BATCHES = (512, 256)
 N_EFF = 99840
 TAIL = 160
+TARGET_SAMPLE_INTERVAL_SECONDS = 0.25
+MAX_SAMPLE_GAP_SECONDS = 5.0
+SAMPLE_COVERAGE_SLACK_SECONDS = 5.0
+MIN_TRAINING_SAMPLES = 2
+MIN_PREFLIGHT_TRAINING_SAMPLES = 1
+MIN_TRAINING_SAMPLE_FRACTION = 0.25
+CAMPAIGN_CPUS = 4
+MEMORY_QUALIFICATIONS = (
+    "Reported peaks are sampled nvidia-smi per-process used-memory values at a "
+    "%.2f s target interval, not continuous high-water marks." % TARGET_SAMPLE_INTERVAL_SECONDS,
+    "GPU process usage includes framework allocator caches and runtime/"
+    "communication overhead; it is not a pure tensor footprint.",
+    "Training-window peaks use per-rank wall-clock windows recorded at the "
+    "synchronized start and end of the measured updates; warmup, reset, final "
+    "hashing, snapshots, and teardown are outside the window.",
+    "Campaign coverage requires at least max(%d, ceil(window_seconds)) "
+    "training samples per rank inside its training window, plus simultaneous "
+    "samples spanning the common window within a %.1f s slack and no "
+    "simultaneous gap over %.1f s; the short preflight requires one "
+    "training-window sample per rank after whole-process coverage. A trace "
+    "that stops early is rejected."
+    % (MIN_TRAINING_SAMPLES, SAMPLE_COVERAGE_SLACK_SECONDS,
+       MAX_SAMPLE_GAP_SECONDS),
+    "Sample timestamps must be strictly increasing. Duplicate or out-of-order "
+    "TIME blocks are rejected, and only distinct instants contribute to "
+    "sample density.",
+    "Startup peaks and whole-process peaks are reported separately so "
+    "initialization is not attributed to training.",
+    "Aggregate device footprint sums simultaneous per-rank samples; it is never "
+    "the sum of independent rank maxima.",
+    "Framework allocator counters are supplementary and retain their own "
+    "semantics; they are not substituted for sampled process usage.",
+)
 LARGE_FILES = {"train_images.npy", "train_labels.npy", "val_images.npy"}
 REQUIRED_DATASET_FILES = (
     "train_images.npy",
@@ -219,24 +256,70 @@ def _record_total_bytes(record):
     return totals.pop()
 
 
-def _parse_gpu_samples(path, world):
-    path = Path(path)
-    rank_dir = path.with_suffix(".ranks")
+def _load_rank_registration(sample_path, world):
+    """Load the per-rank PID/GPU registration written by each runner."""
+    sample_path = Path(sample_path)
+    rank_dir = sample_path.with_suffix(".ranks")
     ranks = [_load_json(rank_dir / ("rank-%d.json" % rank)) for rank in range(world)]
-    _require([row.get("rank") for row in ranks] == list(range(world)), "memory rank mismatch")
-    expected = {(row["pid"], row["gpu_uuid"]) for row in ranks}
+    _require([row.get("rank") for row in ranks] == list(range(world)),
+             "memory rank mismatch")
+    for row in ranks:
+        pid = row.get("pid")
+        _require(isinstance(pid, int) and not isinstance(pid, bool) and pid > 0,
+                 "memory rank %r has an invalid PID" % row.get("rank"))
+        _require(isinstance(row.get("gpu_uuid"), str) and row["gpu_uuid"],
+                 "memory rank %r has an invalid GPU UUID" % row.get("rank"))
     _require(len({row["pid"] for row in ranks}) == world, "duplicate memory PID")
     _require(len({row["gpu_uuid"] for row in ranks}) == world, "duplicate memory GPU")
+    return ranks
+
+
+def _read_gpu_samples(path, ranks):
+    """Parse timestamped ``nvidia-smi`` process samples into per-stamp batches.
+
+    Every ``TIME`` block must carry a strictly later timestamp than the
+    previous block. This rejects duplicate or out-of-order stamps, which would
+    otherwise inflate the sample count and hide a stalled or stepped clock.
+    """
+    path = Path(path)
     _require(path.is_file(), "missing GPU samples")
-    peaks = {}
-    times = {key: set() for key in expected}
-    stamp = None
+    expected = {(row["pid"], row["gpu_uuid"]) for row in ranks}
+    by_pid = {row["pid"]: row for row in ranks}
+    batches = []
+    current_stamp = None
+    previous_stamp = None
+    current = None
     samples = 0
+
+    def flush():
+        nonlocal current_stamp, current
+        if current_stamp is not None:
+            batches.append((current_stamp, current or {}))
+        current_stamp = None
+        current = None
+
     for raw in path.read_text(encoding="utf-8", errors="replace").splitlines():
-        if raw.startswith("TIME,"):
-            stamp = float(raw.split(",", 1)[1])
+        line = raw.strip()
+        if not line:
             continue
-        parts = [item.strip() for item in raw.split(",")]
+        if line.startswith("TIME,"):
+            flush()
+            try:
+                stamp = float(line.split(",", 1)[1])
+            except ValueError:
+                continue
+            if not math.isfinite(stamp):
+                continue
+            _require(previous_stamp is None or stamp > previous_stamp,
+                     "GPU sample timestamps must be strictly increasing; "
+                     "got %r after %r" % (stamp, previous_stamp))
+            previous_stamp = stamp
+            current_stamp = stamp
+            current = {}
+            continue
+        if current_stamp is None:
+            continue
+        parts = [item.strip() for item in line.split(",")]
         if len(parts) < 3:
             continue
         try:
@@ -246,23 +329,207 @@ def _parse_gpu_samples(path, world):
         except ValueError:
             continue
         key = (pid, uuid)
-        if pid < 0 or mib < 0 or key not in expected or stamp is None:
+        if pid < 0 or mib < 0 or key not in expected:
             continue
-        peaks[pid] = max(peaks.get(pid, 0), mib * 1024 * 1024)
-        times[key].add(stamp)
+        current[pid] = max(current.get(pid, 0), mib * 1024 * 1024)
         samples += 1
-    _require(all(len(values) >= 2 for values in times.values()),
-             "missing repeated GPU samples for a training rank/PID/UUID")
-    if not peaks:
-        return None, [], samples
-    process_peaks = [
-        {"pid": pid, "peak_bytes": value,
-         "gpu_uuid": next(uuid for process, uuid in expected if process == pid),
-         "sample_times": sorted(next(values for (process, _), values in times.items()
-                                     if process == pid))}
-        for pid, value in sorted(peaks.items())
-    ]
-    return max(peaks.values()), process_peaks, samples
+    flush()
+    _require(batches, "GPU sample trace is empty")
+    return by_pid, batches, samples
+
+
+def _sample_times_and_gaps(batches):
+    stamps = [stamp for stamp, _ in batches]
+    _require(all(later > earlier for earlier, later in zip(stamps, stamps[1:])),
+             "GPU sample timestamps are not strictly increasing")
+    gaps = [later - earlier for earlier, later in zip(stamps, stamps[1:])]
+    return stamps, gaps
+
+
+def _required_training_samples(start_epoch, end_epoch):
+    """Minimum campaign training-window samples for a rank.
+
+    The 0.25 s target is ideal; the acceptance floor is one sample per second
+    (a quarter of the target rate) with an absolute floor of two samples.
+    """
+    duration = max(0.0, float(end_epoch) - float(start_epoch))
+    return max(MIN_TRAINING_SAMPLES,
+               int(math.ceil(duration * MIN_TRAINING_SAMPLE_FRACTION
+                             / TARGET_SAMPLE_INTERVAL_SECONDS)))
+
+
+def _summarize_gpu_samples(sample_path, world, windows, *,
+                           require_density=False):
+    """Summarize per-rank and simultaneous aggregate sampled GPU usage.
+
+    ``windows`` maps rank index to ``(start_epoch, end_epoch)``. Training peaks
+    and medians use only samples inside each rank's window; whole-process and
+    startup peaks are kept separate so initialization is not reported as
+    training. The aggregate is the maximum of the sum of simultaneous per-rank
+    samples, never the sum of independent per-rank maxima. Its timestamps must
+    themselves span the common window and contain no gap over the limit when
+    campaign density is required; a dense burst followed by a long uncovered
+    tail is rejected even if the sample count is high. Campaign repeats pass
+    ``require_density=True``; the short preflight requires only whole-process
+    coverage plus one training-window sample per rank.
+    """
+    ranks = _load_rank_registration(sample_path, world)
+    by_pid, batches, samples = _read_gpu_samples(sample_path, ranks)
+    _require(set(windows) == set(range(world)),
+             "training windows do not cover every rank")
+    _, trace_gaps = _sample_times_and_gaps(batches)
+    trace_gap_max = max(trace_gaps) if trace_gaps else None
+    trace_gap_median = statistics.median(trace_gaps) if trace_gaps else None
+
+    entries = []
+    rank_gap_max = None
+    for row in ranks:
+        rank = row["rank"]
+        pid = row["pid"]
+        start, end = windows[rank]
+        start = float(start)
+        end = float(end)
+        whole_samples = [(stamp, memory[pid]) for stamp, memory in batches
+                         if pid in memory]
+        whole = [value for _, value in whole_samples]
+        _require(len(whole) >= 2,
+                 "missing repeated GPU samples for rank %d PID %d" % (rank, pid))
+        first_sample_epoch = min(stamp for stamp, _ in whole_samples)
+        last_sample_epoch = max(stamp for stamp, _ in whole_samples)
+        _require(first_sample_epoch <= start + SAMPLE_COVERAGE_SLACK_SECONDS,
+                 "GPU samples start %.2f s after rank %d's training window"
+                 % (first_sample_epoch - start, rank))
+        _require(last_sample_epoch >= end - SAMPLE_COVERAGE_SLACK_SECONDS,
+                 "GPU samples end %.2f s before rank %d's training window"
+                 % (end - last_sample_epoch, rank))
+        rank_stamps = sorted({stamp for stamp, _ in whole_samples})
+        rank_gaps = [later - earlier
+                     for earlier, later in zip(rank_stamps, rank_stamps[1:])]
+        rank_gap = max(rank_gaps) if rank_gaps else None
+        if rank_gap is not None:
+            rank_gap_max = (rank_gap if rank_gap_max is None
+                            else max(rank_gap_max, rank_gap))
+        training = [memory[pid] for stamp, memory in batches
+                    if start <= stamp <= end and pid in memory]
+        required_training = (_required_training_samples(start, end)
+                             if require_density
+                             else MIN_PREFLIGHT_TRAINING_SAMPLES)
+        _require(len(training) >= required_training,
+                 "rank %d has %d training-window samples; need at least %d"
+                 % (rank, len(training), required_training))
+        startup = [memory[pid] for stamp, memory in batches
+                   if stamp < start and pid in memory]
+        entries.append({
+            "rank": rank,
+            "pid": pid,
+            "gpu_uuid": row["gpu_uuid"],
+            "whole_process_peak_bytes": max(whole),
+            "startup_peak_bytes": max(startup) if startup else None,
+            "training_peak_bytes": max(training),
+            "training_median_bytes": statistics.median(training),
+            "training_samples": len(training),
+            "required_training_samples": required_training,
+            "sample_count": len(whole),
+            "max_gap_seconds": rank_gap,
+            "first_sample_epoch": first_sample_epoch,
+            "last_sample_epoch": last_sample_epoch,
+        })
+    common_start = max(start for start, _ in windows.values())
+    common_end = min(end for _, end in windows.values())
+    _require(common_end > common_start,
+             "per-rank training windows do not overlap")
+    aggregate_samples = []
+    for stamp, memory in batches:
+        if not common_start <= stamp <= common_end:
+            continue
+        if not all(pid in memory for pid in by_pid):
+            continue
+        aggregate_samples.append(
+            (stamp, sum(memory[pid] for pid in by_pid)))
+    aggregate_stamps = [stamp for stamp, _ in aggregate_samples]
+    aggregate_values = [value for _, value in aggregate_samples]
+    aggregate_gaps = [later - earlier
+                      for earlier, later in zip(aggregate_stamps,
+                                                aggregate_stamps[1:])]
+    aggregate_gap_max = max(aggregate_gaps) if aggregate_gaps else None
+    required_aggregate = (_required_training_samples(common_start, common_end)
+                          if require_density
+                          else MIN_PREFLIGHT_TRAINING_SAMPLES)
+    _require(len(aggregate_values) >= required_aggregate,
+             "only %d simultaneous samples cover every rank inside the "
+             "training window; need at least %d"
+             % (len(aggregate_values), required_aggregate))
+    aggregate_first = aggregate_stamps[0]
+    aggregate_last = aggregate_stamps[-1]
+    if require_density:
+        _require(aggregate_first <= common_start + SAMPLE_COVERAGE_SLACK_SECONDS,
+                 "simultaneous GPU samples start %.2f s after the common "
+                 "training window" % (aggregate_first - common_start))
+        _require(aggregate_last >= common_end - SAMPLE_COVERAGE_SLACK_SECONDS,
+                 "simultaneous GPU samples end %.2f s before the common "
+                 "training window" % (common_end - aggregate_last))
+
+    gap_values = [value for value in
+                  (trace_gap_max, rank_gap_max, aggregate_gap_max)
+                  if value is not None]
+    _require(gap_values, "GPU samples contain no comparable timestamp gaps")
+    gap_max = max(gap_values)
+    _require(gap_max <= MAX_SAMPLE_GAP_SECONDS,
+             "GPU sampling gap of %.2f s exceeds the %.2f s limit "
+             "(trace=%s, rank=%s, simultaneous=%s)"
+             % (gap_max, MAX_SAMPLE_GAP_SECONDS,
+                trace_gap_max, rank_gap_max, aggregate_gap_max))
+
+    return {
+        "ranks": entries,
+        "whole_process_peak_bytes": max(entry["whole_process_peak_bytes"]
+                                        for entry in entries),
+        "training_peak_bytes": max(entry["training_peak_bytes"]
+                                   for entry in entries),
+        "aggregate_training_peak_bytes": max(aggregate_values),
+        "aggregate_training_samples": len(aggregate_values),
+        "required_aggregate_samples": required_aggregate,
+        "aggregate_gap_max_seconds": aggregate_gap_max,
+        "aggregate_first_sample_epoch": aggregate_first,
+        "aggregate_last_sample_epoch": aggregate_last,
+        "aggregate_window_start_epoch": common_start,
+        "aggregate_window_end_epoch": common_end,
+        "sample_count": samples,
+        "gap_median_seconds": trace_gap_median,
+        "trace_gap_max_seconds": trace_gap_max,
+        "rank_gap_max_seconds": rank_gap_max,
+        "gap_max_seconds": gap_max,
+        "trace_start_epoch": min(stamp for stamp, _ in batches),
+        "trace_end_epoch": max(stamp for stamp, _ in batches),
+    }
+
+
+def _record_training_windows(record, world):
+    """Return rank -> (start_epoch, end_epoch) from a timing record."""
+    if record.get("framework") == "flux":
+        raw = record.get("rank_training_windows")
+        start_key, end_key = "start_epoch", "end_epoch"
+    else:
+        raw = record.get("ranks")
+        start_key, end_key = "training_start_epoch", "training_end_epoch"
+    _require(isinstance(raw, list) and len(raw) == world,
+             "record training windows mismatch")
+    windows = {}
+    for entry in raw:
+        _require(isinstance(entry, dict), "record training window is not an object")
+        rank = entry.get("rank")
+        _require(isinstance(rank, int) and not isinstance(rank, bool)
+                 and 0 <= rank < world,
+                 "record training window rank is invalid")
+        _require(rank not in windows, "duplicate record training window rank")
+        start = entry.get(start_key)
+        end = entry.get(end_key)
+        _require(_finite_number(start) and _finite_number(end) and end > start,
+                 "record training window is invalid for rank %d" % rank)
+        windows[rank] = (float(start), float(end))
+    _require(set(windows) == set(range(world)),
+             "record training windows do not cover every rank")
+    return windows
 
 
 def _source_relative(raw):
@@ -649,6 +916,15 @@ def _check_record(path, framework, world, expected_updates_value, expected_warmu
     _require(math.isclose(record.get("update_seconds"),
                           seconds / expected_updates_value, rel_tol=1e-12),
              "record update_seconds is inconsistent")
+    duration_by_rank = (dict(enumerate(durations)) if kind == "flux"
+                        else {rank["rank"]: rank["seconds"] for rank in ranks})
+    windows = _record_training_windows(record, world)
+    for rank, (window_start, window_end) in windows.items():
+        duration = duration_by_rank[rank]
+        _require(abs((window_end - window_start) - duration)
+                 <= max(0.02 * duration, 1.0),
+                 "record training window for rank %d does not match its "
+                 "measured duration" % rank)
 
     source = record.get("source")
     _require(isinstance(source, dict), "record source is missing")
@@ -816,6 +1092,9 @@ def _evaluate_preflight_candidate(batch, root, updates, warmup, epoch,
                 "world_size": world,
                 "status": "INCOMPLETE",
                 "peak_process_bytes": None,
+                "training_peak_process_bytes": None,
+                "aggregate_training_peak_bytes": None,
+                "max_sample_gap_seconds": None,
                 "limit_bytes": None,
                 "margin_bytes": None,
                 "sample_count": 0,
@@ -831,6 +1110,7 @@ def _evaluate_preflight_candidate(batch, root, updates, warmup, epoch,
                     batch, identity, dataset, False)
                 records.append(record)
                 total = _record_total_bytes(record)
+                windows = _record_training_windows(record, world)
                 row["device_total_bytes"] = total
                 row["limit_bytes"] = int(0.8 * total)
                 memory = (record.get("memory") if record.get("framework") == "flux"
@@ -841,24 +1121,25 @@ def _evaluate_preflight_candidate(batch, root, updates, warmup, epoch,
                 rows.append(row)
                 continue
             try:
-                peak, process_peaks, samples = _parse_gpu_samples(sample_path, world)
+                summary = _summarize_gpu_samples(sample_path, world, windows)
             except AssertionError as exc:
                 errors.append("%s:%s" % (label, exc))
                 rows.append(row)
                 continue
-            row["sample_count"] = samples
-            row["process_peaks"] = process_peaks
-            if peak is None:
-                errors.append("%s:gpu_process_peak_unavailable" % label)
+            row["sample_count"] = summary["sample_count"]
+            row["process_peaks"] = summary["ranks"]
+            row["training_peak_process_bytes"] = summary["training_peak_bytes"]
+            row["aggregate_training_peak_bytes"] = summary["aggregate_training_peak_bytes"]
+            row["max_sample_gap_seconds"] = summary["gap_max_seconds"]
+            peak = summary["whole_process_peak_bytes"]
+            row["peak_process_bytes"] = peak
+            row["margin_bytes"] = row["device_total_bytes"] - peak
+            if peak > row["limit_bytes"]:
+                errors.append("%s:over_memory_limit:%d>%d"
+                              % (label, peak, row["limit_bytes"]))
+                row["status"] = "FAIL"
             else:
-                row["peak_process_bytes"] = peak
-                row["margin_bytes"] = row["device_total_bytes"] - peak
-                if peak > row["limit_bytes"]:
-                    errors.append("%s:over_memory_limit:%d>%d"
-                                  % (label, peak, row["limit_bytes"]))
-                    row["status"] = "FAIL"
-                else:
-                    row["status"] = "PASS"
+                row["status"] = "PASS"
             rows.append(row)
     _check_record_identity(records)
     complete = len(records) == len(FRAMEWORKS) * len(WORLDS) and not errors
@@ -876,17 +1157,23 @@ def _evaluate_preflight_candidate(batch, root, updates, warmup, epoch,
 def _print_preflight(result):
     print("PREFLIGHT_BATCH %d %s root=%s"
           % (result["batch"], result["status"], result["root"]))
-    print("framework W status peak_process_MiB limit_MiB margin_MiB samples")
+    print("framework W status peak_process_MiB training_peak_MiB "
+          "limit_MiB margin_MiB samples train_samples")
     for row in result["rows"]:
         peak = row["peak_process_bytes"]
+        training_peak = row.get("training_peak_process_bytes")
         limit = row["limit_bytes"]
         margin = row["margin_bytes"]
-        print("%s %d %s %s %s %s %d" % (
+        training_samples = min((entry.get("training_samples", 0)
+                                for entry in row.get("process_peaks", [])),
+                               default=0)
+        print("%s %d %s %s %s %s %s %d %d" % (
             row["framework"], row["world_size"], row["status"],
             "NA" if peak is None else "%.1f" % (peak / 2**20),
+            "NA" if training_peak is None else "%.1f" % (training_peak / 2**20),
             "NA" if limit is None else "%.1f" % (limit / 2**20),
             "NA" if margin is None else "%.1f" % (margin / 2**20),
-            row["sample_count"],
+            row["sample_count"], training_samples,
         ))
     for error in result["errors"]:
         print("PREFLIGHT_ERROR " + error)
@@ -964,8 +1251,9 @@ def _check_ready(args):
     for key in ("ntasks", "cpus_per_task"):
         _require(decision.get("resources", {}).get(key) == resources[key],
                  "preflight resources differ: " + key)
-    _require(resources["ntasks"] == 1 and resources["cpus_per_task"] == 32,
-             "campaign requires one task and 32 CPUs")
+    _require(resources["ntasks"] == 1
+             and resources["cpus_per_task"] == CAMPAIGN_CPUS,
+             "campaign requires one task and %d CPUs" % CAMPAIGN_CPUS)
     selected = decision["candidates"]["256"]
     rows = selected.get("rows", [])
     _require(len(rows) == 9 and {(r["framework"], r["world_size"]) for r in rows}
@@ -973,10 +1261,16 @@ def _check_ready(args):
     for row in rows:
         _require(row["status"] == "PASS" and row["peak_process_bytes"] <= row["limit_bytes"],
                  "preflight memory did not pass")
+        _require(_finite_number(row.get("training_peak_process_bytes")),
+                 "preflight row lacks a training-window peak")
+        _require(row["training_peak_process_bytes"] <= row["limit_bytes"],
+                 "preflight training-window peak did not pass")
         peaks = row.get("process_peaks", [])
-        _require(len(peaks) == row["world_size"]
-                 and all(len(p.get("sample_times", [])) >= 2 for p in peaks),
+        _require(len(peaks) == row["world_size"],
                  "preflight lacks per-rank sample coverage")
+        _require(all(p.get("training_samples", 0) >= MIN_PREFLIGHT_TRAINING_SAMPLES
+                     for p in peaks),
+                 "preflight lacks per-rank training-window sample coverage")
     print("FULL_CAMPAIGN_READY PASS batch=256 updates=390")
     return 0
 
@@ -1228,6 +1522,182 @@ def _timing_table(records, config):
     return rows
 
 
+def _check_memory(root, config, records):
+    """Validate per-repeat GPU sampling and summarize sampled memory.
+
+    Every repeat must have a parseable trace, complete per-rank PID/GPU
+    registration, and enough samples inside each rank's recorded training
+    window. The simultaneous sample stream must also span the common window
+    without an over-limit internal gap. Missing coverage is an error, not a
+    zero. Reported peaks are sampled values, not continuous high-water marks.
+    """
+    root = Path(root)
+    rows = []
+    totals = set()
+    for framework in FRAMEWORKS:
+        for world in WORLDS:
+            per_repeat = []
+            for repeat in range(1, config["repeats"] + 1):
+                record = records[framework, world, repeat]
+                total = _record_total_bytes(record)
+                totals.add(total)
+                windows = _record_training_windows(record, world)
+                sample_path = root / "samples" / ("%s-w%d-r%d.csv"
+                                                  % (framework, world, repeat))
+                summary = _summarize_gpu_samples(sample_path, world, windows,
+                                                 require_density=True)
+                per_repeat.append({
+                    "repeat": repeat,
+                    "worst_rank_peak_bytes": summary["training_peak_bytes"],
+                    "training_peak_bytes": summary["training_peak_bytes"],
+                    "aggregate_training_peak_bytes":
+                        summary["aggregate_training_peak_bytes"],
+                    "aggregate_training_samples":
+                        summary["aggregate_training_samples"],
+                    "required_aggregate_samples":
+                        summary["required_aggregate_samples"],
+                    "aggregate_gap_max_seconds":
+                        summary["aggregate_gap_max_seconds"],
+                    "aggregate_first_sample_epoch":
+                        summary["aggregate_first_sample_epoch"],
+                    "aggregate_last_sample_epoch":
+                        summary["aggregate_last_sample_epoch"],
+                    "aggregate_window_start_epoch":
+                        summary["aggregate_window_start_epoch"],
+                    "aggregate_window_end_epoch":
+                        summary["aggregate_window_end_epoch"],
+                    "whole_process_peak_bytes": summary["whole_process_peak_bytes"],
+                    "max_sample_gap_seconds": summary["gap_max_seconds"],
+                    "trace_gap_max_seconds": summary["trace_gap_max_seconds"],
+                    "rank_gap_max_seconds": summary["rank_gap_max_seconds"],
+                    "median_sample_gap_seconds": summary["gap_median_seconds"],
+                    "sample_count": summary["sample_count"],
+                    "ranks": summary["ranks"],
+                })
+            rank_entries = {}
+            for repeat_summary in per_repeat:
+                for entry in repeat_summary["ranks"]:
+                    rank_entries.setdefault(entry["rank"], []).append(entry)
+            per_rank = []
+            for rank in sorted(rank_entries):
+                entries = rank_entries[rank]
+                peaks = [entry["training_peak_bytes"] for entry in entries]
+                medians = [entry["training_median_bytes"] for entry in entries]
+                startup = [entry["startup_peak_bytes"] for entry in entries
+                           if entry["startup_peak_bytes"] is not None]
+                per_rank.append({
+                    "rank": rank,
+                    "pids": [entry["pid"] for entry in entries],
+                    "gpu_uuids": [entry["gpu_uuid"] for entry in entries],
+                    "training_peak_bytes": max(peaks),
+                    "training_peak_median_bytes": int(round(statistics.median(peaks))),
+                    "training_median_bytes": int(round(statistics.median(medians))),
+                    "training_samples_min": min(entry["training_samples"]
+                                                for entry in entries),
+                    "startup_peak_bytes": max(startup) if startup else None,
+                    "whole_process_peak_bytes": max(entry["whole_process_peak_bytes"]
+                                                    for entry in entries),
+                })
+            run_peaks = [summary["worst_rank_peak_bytes"] for summary in per_repeat]
+            aggregate = [summary["aggregate_training_peak_bytes"]
+                         for summary in per_repeat]
+            startup_peaks = [entry["startup_peak_bytes"] for entry in per_rank
+                             if entry["startup_peak_bytes"] is not None]
+            worst = max(per_rank, key=lambda entry: entry["training_peak_bytes"])
+            limit = int(0.8 * total)
+            rows.append({
+                "framework": framework,
+                "world_size": world,
+                "repeats": len(per_repeat),
+                "device_total_bytes": total,
+                "limit_bytes": limit,
+                "training_peak_worst_rank_bytes": worst["training_peak_bytes"],
+                "training_peak_worst_rank": worst["rank"],
+                "training_peak_median_bytes": int(round(statistics.median(run_peaks))),
+                "training_peak_min_bytes": min(run_peaks),
+                "training_peak_max_bytes": max(run_peaks),
+                "training_peak_spread_bytes": max(run_peaks) - min(run_peaks),
+                "whole_process_peak_worst_rank_bytes": max(
+                    entry["whole_process_peak_bytes"] for entry in per_rank),
+                "startup_peak_worst_rank_bytes": (max(startup_peaks)
+                                                  if startup_peaks else None),
+                "aggregate_training_peak_median_bytes":
+                    int(round(statistics.median(aggregate))),
+                "aggregate_training_peak_min_bytes": min(aggregate),
+                "aggregate_training_peak_max_bytes": max(aggregate),
+                "aggregate_training_samples_min": min(
+                    summary["aggregate_training_samples"]
+                    for summary in per_repeat),
+                "aggregate_gap_max_seconds": max(
+                    (summary["aggregate_gap_max_seconds"]
+                     for summary in per_repeat), default=None),
+                "margin_bytes": limit - worst["training_peak_bytes"],
+                "max_sample_gap_seconds": max(summary["max_sample_gap_seconds"]
+                                              for summary in per_repeat),
+                "training_samples_min": min(entry["training_samples_min"]
+                                            for entry in per_rank),
+                "per_rank": per_rank,
+                "per_repeat": per_repeat,
+            })
+    _require(len(totals) == 1, "campaign device totals differ across records")
+    return {
+        "target_sample_interval_seconds": TARGET_SAMPLE_INTERVAL_SECONDS,
+        "max_sample_gap_seconds": MAX_SAMPLE_GAP_SECONDS,
+        "min_training_samples_per_rank": MIN_TRAINING_SAMPLES,
+        "criterion": (
+            "The preflight OD-8 gate still uses the whole-process sampled peak "
+            "at or below 80% of the device total. Campaign rows report "
+            "training-window and whole-process sampled peaks without adding a "
+            "new acceptance threshold."
+        ),
+        "aggregate_policy": (
+            "sum of simultaneous per-rank samples at the same sample "
+            "timestamp; never the sum of independent rank maxima"
+        ),
+        "qualifications": list(MEMORY_QUALIFICATIONS),
+        "rows": rows,
+    }
+
+
+def _print_memory(memory):
+    print("FULL_MEMORY target_interval_s=%.2f min_training_samples_per_rank=%d"
+          % (memory["target_sample_interval_seconds"],
+             memory["min_training_samples_per_rank"]))
+    print("framework W worst_rank_MiB rank median_MiB min_MiB max_MiB "
+          "whole_peak_MiB startup_peak_MiB agg_median_MiB agg_min_MiB "
+          "agg_max_MiB margin_MiB gap_max_s train_samples")
+    for row in memory["rows"]:
+        startup = row["startup_peak_worst_rank_bytes"]
+        print("%s %d %.1f %d %.1f %.1f %.1f %.1f %s %.1f %.1f %.1f %.1f %.2f %d" % (
+            row["framework"], row["world_size"],
+            row["training_peak_worst_rank_bytes"] / 2**20,
+            row["training_peak_worst_rank"],
+            row["training_peak_median_bytes"] / 2**20,
+            row["training_peak_min_bytes"] / 2**20,
+            row["training_peak_max_bytes"] / 2**20,
+            row["whole_process_peak_worst_rank_bytes"] / 2**20,
+            "NA" if startup is None else "%.1f" % (startup / 2**20),
+            row["aggregate_training_peak_median_bytes"] / 2**20,
+            row["aggregate_training_peak_min_bytes"] / 2**20,
+            row["aggregate_training_peak_max_bytes"] / 2**20,
+            row["margin_bytes"] / 2**20,
+            row["max_sample_gap_seconds"],
+            row["training_samples_min"],
+        ))
+    for row in memory["rows"]:
+        for rank in row["per_rank"]:
+            startup = rank["startup_peak_bytes"]
+            print("MEMORY_RANK framework=%s W=%d rank=%d peak_MiB=%.1f "
+                  "median_MiB=%.1f startup_MiB=%s whole_MiB=%.1f "
+                  "train_samples_min=%d"
+                  % (row["framework"], row["world_size"], rank["rank"],
+                     rank["training_peak_bytes"] / 2**20,
+                     rank["training_median_bytes"] / 2**20,
+                     "NA" if startup is None else "%.1f" % (startup / 2**20),
+                     rank["whole_process_peak_bytes"] / 2**20,
+                     rank["training_samples_min"]))
+
+
 def _check_campaign(args):
     root = Path(args.root)
     config = _check_config(root)
@@ -1273,6 +1743,7 @@ def _check_campaign(args):
         _require(marker in driver_text, "driver.log is missing %r" % marker)
 
     timing = _timing_table(records, config)
+    memory = _check_memory(root, config, records)
     diagnostics = _check_diagnostics(
         root, config, identity, dataset,
         {(framework, world): records[framework, world, 1]
@@ -1292,6 +1763,7 @@ def _check_campaign(args):
             "decision_sha256": _sha256(root / "preflight" / "decision.json"),
         },
         "timing": timing,
+        "memory": memory,
         "diagnostics": diagnostics,
         "qualifications": [
             "Descriptive throughput and strong scaling only.",
@@ -1315,6 +1787,7 @@ def _check_campaign(args):
             row["framework"], row["world_size"], row["median_s"],
             row["min_s"], row["max_s"], row["spread_s"], row["stdev_s"],
             row["images_per_second"], row["speedup"], row["efficiency"]))
+    _print_memory(memory)
     print("FULL_DIAGNOSTICS updates=%d policy=descriptive" % config["updates"])
     print("comparison category arrays exact max_abs rel_l2 worst_leaf")
     for comparison in diagnostics["comparisons"]:
@@ -1326,6 +1799,37 @@ def _check_campaign(args):
     print("NUMERICAL_EQUIVALENCE_CLAIM none")
     print("FULL_CAMPAIGN_ARTIFACT_CHECK PASS")
     return 0
+
+
+def _write_gpu_trace(sample_path, samples, world, pid_base=100):
+    """Write a synthetic timestamped ``nvidia-smi`` trace and rank registration."""
+    sample_path = Path(sample_path)
+    sample_path.parent.mkdir(parents=True, exist_ok=True)
+    lines = []
+    for stamp, values in samples:
+        lines.append("TIME,%.9f" % stamp)
+        for rank, mib in enumerate(values):
+            if mib is None:
+                continue
+            lines.append("%d, GPU-%d, %d" % (pid_base + rank, rank, mib))
+    sample_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    rank_dir = sample_path.with_suffix(".ranks")
+    rank_dir.mkdir(parents=True, exist_ok=True)
+    for rank in range(world):
+        (rank_dir / ("rank-%d.json" % rank)).write_text(json.dumps(
+            {"rank": rank, "pid": pid_base + rank, "gpu_uuid": "GPU-%d" % rank}),
+            encoding="utf-8")
+
+
+def _synthetic_trace(world):
+    samples = [(999.0, [900] * world)]
+    for index in range(21):  # 1000.0 .. 1010.0 every 0.5 s
+        stamp = 1000.0 + 0.5 * index
+        bump = 10 if 1005.0 <= stamp < 1006.0 else 5
+        samples.append((stamp, [1000 + 100 * rank + bump
+                                for rank in range(world)]))
+    samples.append((1011.0, [950] * world))
+    return samples
 
 
 def _write_synthetic(root, repeats=2, batch=512):
@@ -1444,7 +1948,7 @@ def _write_synthetic(root, repeats=2, batch=512):
         "qos": "boost_qos_lprod",
         "account": "iscrc_unmasked",
         "ntasks": 1,
-        "cpus_per_task": 32,
+        "cpus_per_task": CAMPAIGN_CPUS,
         "gres": "gpu:4",
         "time_limit": "04:00:00",
         "cuda_visible_devices": "0,1,2,3",
@@ -1531,6 +2035,10 @@ def _write_synthetic(root, repeats=2, batch=512):
                 "config_kind": "single_gpu" if world == 1 else ("guarded_ddp" if framework == "flux-current" else "historical_static_ddp"),
                 "guard_policy": SINGLE_GUARD if world == 1 else (FLUX_GUARD if framework == "flux-current" else FLUX_STATIC_GUARD),
                 "rank_seconds": [10.0] * world,
+                "rank_training_windows": [
+                    {"rank": rank, "start_epoch": 1000.0,
+                     "end_epoch": 1010.0, "seconds": 10.0}
+                    for rank in range(world)],
                 "hashes": {key: hashlib.sha256((framework + key).encode()).hexdigest()
                            for key in ("param", "m", "v", "beta_power")},
                 "device": 0,
@@ -1552,6 +2060,8 @@ def _write_synthetic(root, repeats=2, batch=512):
                 "rank": rank,
                 "seconds": 10.0,
                 "device": (rank + 1) % 4 if world > 1 else 0,
+                "training_start_epoch": 1000.0,
+                "training_end_epoch": 1010.0,
                 "hashes": {key: hashlib.sha256(("pytorch" + key).encode()).hexdigest()
                            for key in ("param", "m", "v")} | {"step": count},
                 "memory": {"mem_get_info_total": 64 * 1024**3},
@@ -1565,13 +2075,16 @@ def _write_synthetic(root, repeats=2, batch=512):
         return record
 
     (root / "records").mkdir()
+    (root / "samples").mkdir()
     for framework in FRAMEWORKS:
         for world in WORLDS:
             for repeat in range(1, repeats + 1):
                 record = base_record(framework, world, False, updates)
-                (root / "records" / ("%s-w%d-r%d.json"
-                                     % (framework, world, repeat))).write_text(
+                label = "%s-w%d-r%d" % (framework, world, repeat)
+                (root / "records" / (label + ".json")).write_text(
                     json.dumps(record, indent=2) + "\n")
+                _write_gpu_trace(root / "samples" / (label + ".csv"),
+                                 _synthetic_trace(world), world)
 
     (root / "diagnostics").mkdir()
     (root / "diagnostics" / "records").mkdir()
@@ -1650,21 +2163,13 @@ def run_self_tests():
             (candidate / "samples").mkdir(parents=True)
             for framework in FRAMEWORKS:
                 for world in WORLDS:
+                    label = "%s-w%d" % (framework, world)
                     record = base_record(framework, world, False, 2,
                                          batch_value=batch, warmup_value=2)
-                    (candidate / "records" / ("%s-w%d.json"
-                                              % (framework, world))).write_text(
+                    (candidate / "records" / (label + ".json")).write_text(
                         json.dumps(record, indent=2) + "\n")
-                    (candidate / "samples" / ("%s-w%d.csv"
-                                               % (framework, world))).write_text(
-                        "".join("TIME,%d\n" % stamp + "".join(
-                            "%d, GPU-%d, 1000\n" % (1234 + rank, rank)
-                            for rank in range(world)) for stamp in (1, 2)))
-                    rank_dir = candidate / "samples" / ("%s-w%d.ranks" % (framework, world))
-                    rank_dir.mkdir()
-                    for rank in range(world):
-                        (rank_dir / ("rank-%d.json" % rank)).write_text(json.dumps(
-                            dict(rank=rank, pid=1234 + rank, gpu_uuid="GPU-%d" % rank)))
+                    _write_gpu_trace(candidate / "samples" / (label + ".csv"),
+                                     _synthetic_trace(world), world, pid_base=1234)
 
         def run_preflight():
             return _preflight(argparse.Namespace(
@@ -1686,9 +2191,11 @@ def run_self_tests():
 
         for framework in FRAMEWORKS:
             for world in WORLDS:
-                (preflight_base / "preflight" / "b512" / "samples"
-                 / ("%s-w%d.csv" % (framework, world))).write_text(
-                    "TIME,1\n1234, GPU-0, 60000\nTIME,2\n1234, GPU-0, 60000\n")
+                _write_gpu_trace(
+                    preflight_base / "preflight" / "b512" / "samples"
+                    / ("%s-w%d.csv" % (framework, world)),
+                    [(1002.0, [60000] * world), (1006.0, [60000] * world)],
+                    world, pid_base=1234)
         _require(run_preflight() == 0, "preflight fallback did not select 256")
         decision = _load_json(preflight_base / "preflight" / "decision.json")
         _require(decision["selected_global_batch"] == 256,
@@ -1771,7 +2278,107 @@ def run_self_tests():
         reject("extra-timing-record", lambda root: shutil.copyfile(
             root / "records" / "pytorch-w1-r1.json",
             root / "records" / "pytorch-w1-r99.json"))
-    expected_checks = 21
+        reject("missing-campaign-sample", lambda root: (
+            root / "samples" / "flux-current-w2-r2.csv").unlink())
+        reject("missing-rank-registration", lambda root: (
+            root / "samples" / "pytorch-w4-r2.ranks" / "rank-3.json").unlink())
+        reject("no-training-sample", lambda root: _write_gpu_trace(
+            root / "samples" / "flux-current-w2-r1.csv",
+            [(996.0, [1000, 1100]), (998.0, [1000, 1100])], 2))
+        reject("sampling-gap", lambda root: _write_gpu_trace(
+            root / "samples" / "pytorch-w2-r1.csv",
+            [(1000.0 + 0.5 * index, [1000, 1100]) for index in range(9)]
+            + [(1009.5, [1000, 1100])], 2))
+        reject("truncated-trace", lambda root: _write_gpu_trace(
+            root / "samples" / "pytorch-w4-r1.csv",
+            [(1000.0 + 0.5 * index, [1000, 1100, 1200, 1300])
+             for index in range(10)], 4))
+        reject("sparse-trace", lambda root: _write_gpu_trace(
+            root / "samples" / "flux-historical-w2-r2.csv",
+            [(1001.0, [1000, 1100]), (1005.0, [1000, 1100]),
+             (1009.0, [1000, 1100])], 2))
+        reject("missing-training-window", lambda root: mutate_json(
+            root, "records/flux-current-w2-r1.json",
+            lambda record: record.pop("rank_training_windows")))
+        reject("window-order", lambda root: mutate_json(
+            root, "records/pytorch-w4-r1.json",
+            lambda record: record["ranks"][1].__setitem__(
+                "training_end_epoch", 1000.0)))
+        reject("window-duration", lambda root: mutate_json(
+            root, "records/flux-current-w4-r1.json",
+            lambda record: record["rank_training_windows"][2].__setitem__(
+                "start_epoch", 900.0)))
+        reject("duplicate-sample-pid", lambda root: mutate_json(
+            root, "samples/pytorch-w4-r1.ranks/rank-3.json",
+            lambda document: document.__setitem__("pid", 100)))
+        reject("duplicate-sample-timestamp", lambda root: _write_gpu_trace(
+            root / "samples" / "flux-historical-w2-r1.csv",
+            [(stamp, [1000, 1100]) for stamp in (1001.0, 1005.0, 1009.0)
+             for _ in range(4)], 2))
+        reject("aggregate-start-coverage", lambda root: _write_gpu_trace(
+            root / "samples" / "flux-current-w2-r1.csv",
+            [(1000.0 + 0.5 * index, [1000, 1100]) for index in range(10)]
+            + [(1005.0 + 0.5 * index,
+                [1000, None] if index % 2 == 0 else [None, 1100])
+               for index in range(11)], 2))
+        reject("aggregate-middle-gap", lambda root: _write_gpu_trace(
+            root / "samples" / "pytorch-w2-r1.csv",
+            [(1000.0 + 0.5 * index, [1000, 1100]) for index in range(5)]
+            + [(1002.5 + 0.5 * index,
+                [1000, None] if index % 2 == 0 else [None, 1100])
+               for index in range(11)]
+            + [(1008.0 + 0.5 * index, [1000, 1100])
+               for index in range(5)], 2))
+
+        report = _load_json(base / "REPORT.json")
+        _require(len(report["memory"]["rows"]) == 9,
+                 "campaign report is missing the nine memory rows")
+        row = report["memory"]["rows"][0]
+        _require(row["training_peak_worst_rank_bytes"] > 0,
+                 "campaign memory row has no training peak")
+        _require(row["aggregate_training_samples_min"] >= MIN_TRAINING_SAMPLES,
+                 "campaign memory row has no simultaneous coverage")
+        _require(row["aggregate_gap_max_seconds"] is not None,
+                 "campaign memory row is missing the simultaneous gap")
+        checks += 1
+
+        with tempfile.TemporaryDirectory() as trace_tmp:
+            path = Path(trace_tmp) / "staggered.csv"
+            _write_gpu_trace(path, [
+                (1002.0, [1000, 500]),
+                (1004.0, [500, 1000]),
+                (1006.0, [700, 700]),
+            ], 2)
+            summary = _summarize_gpu_samples(
+                path, 2, {0: (1000.0, 1010.0), 1: (1000.0, 1010.0)})
+            _require(summary["aggregate_training_peak_bytes"] == 1500 * 2**20,
+                     "aggregate sample peak is not the simultaneous sum")
+            _require(summary["aggregate_training_peak_bytes"]
+                     < sum(entry["training_peak_bytes"]
+                           for entry in summary["ranks"]),
+                     "aggregate sample peak must not sum independent rank maxima")
+            checks += 1
+
+        with tempfile.TemporaryDirectory() as trace_tmp:
+            path = Path(trace_tmp) / "early-burst-20s.csv"
+            samples = [(1000.0 + 0.25 * index, [1000, 1100])
+                       for index in range(20)]
+            samples += [(1005.0 + 0.25 * index,
+                         [1000, None] if index % 2 == 0 else [None, 1100])
+                        for index in range(61)]
+            _write_gpu_trace(path, samples, 2)
+            try:
+                _summarize_gpu_samples(
+                    path, 2, {0: (1000.0, 1020.0), 1: (1000.0, 1020.0)},
+                    require_density=True)
+            except AssertionError as exc:
+                _require("simultaneous GPU samples end" in str(exc),
+                         "20 s early-burst trace failed for the wrong reason: %s"
+                         % exc)
+                checks += 1
+            else:
+                _fail("20 s early-burst aggregate was accepted")
+    expected_checks = 37
     _require(checks == expected_checks,
              "self-test check count is %d, expected %d"
              % (checks, expected_checks))

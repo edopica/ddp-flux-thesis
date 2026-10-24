@@ -1,0 +1,170 @@
+FULL_CAMPAIGN_DRIVER START utc=2026-10-24T19:19:31Z host=lrdn3250.leonardo.local job=62167742 mode=preflight
+OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742 PREP=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared THESIS=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+THESIS_SOURCE thesis=660e363e6de5b6e4b398e542d79b6ce1adb381da state=1ddd2d20a3cdb83c6418807ddbebd7f7abc8a3952950d12990cdafc7c5698ecf commit_source=expected-no-git
+FLUX_SOURCE name=current repo=/leonardo/home/userexternal/epicazio/projects/flux-integration commit=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e state=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 source_tree=83da2929ab7ebd66dbceb83452c8e55eae5e0444c8e96866cc2a25b513c3eb0d commit_source=expected-no-git state_source=expected-no-git
+FLUX_SOURCE name=historical repo=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline commit=8add0e42b7d9388ff365335152126e5b1e9de657 state=4af8409c2a2ed1c661e8ae7742877f1ee9789d00dc7e404365ecefd98ab0d34c source_tree=ad114ed385f7cc78e8409fa8e1f09d38133555f7fd58d5d9aca6a846bcf5e757 commit_source=expected-no-git state_source=expected-no-git
+THESIS_COMMIT=660e363e6de5b6e4b398e542d79b6ce1adb381da
+THESIS_COMMIT_SOURCE=expected-no-git
+THESIS_STATE_SHA256=1ddd2d20a3cdb83c6418807ddbebd7f7abc8a3952950d12990cdafc7c5698ecf
+THESIS_STATE_RECIPE=sha256 of sorted (sha256sum) over the synced thesis tree, excluding __pycache__ and .git
+CURRENT_COMMIT=f7b4520c4bd307c67bbc5ac92a1c68493eccff6e
+CURRENT_STATE_SHA256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+CURRENT_SOURCE_TREE_SHA256=83da2929ab7ebd66dbceb83452c8e55eae5e0444c8e96866cc2a25b513c3eb0d
+CURRENT_COMMIT_SOURCE=expected-no-git
+CURRENT_STATE_SOURCE=expected-no-git
+HISTORICAL_COMMIT=8add0e42b7d9388ff365335152126e5b1e9de657
+HISTORICAL_STATE_SHA256=4af8409c2a2ed1c661e8ae7742877f1ee9789d00dc7e404365ecefd98ab0d34c
+HISTORICAL_SOURCE_TREE_SHA256=ad114ed385f7cc78e8409fa8e1f09d38133555f7fd58d5d9aca6a846bcf5e757
+HISTORICAL_COMMIT_SOURCE=expected-no-git
+HISTORICAL_STATE_SOURCE=expected-no-git
+STAGE precompile-current
+PREcompile host=lrdn3250.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-integration julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+FLUX_PRECOMPILE_OK
+STAGE precompile-historical
+PREcompile host=lrdn3250.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Project.toml
+FLUX_PRECOMPILE_OK
+{
+  "account": "iscrc_unmasked",
+  "cpus_per_task": 4,
+  "cuda_visible_devices": "0,1,2,3",
+  "gpu_mapping": [
+    {
+      "index": 0,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "173e4630-982c-bd4e-084f-584cde0c4e02"
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "dcdf4f5b-62d4-a73d-5064-857ce019a6a1"
+    },
+    {
+      "index": 2,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "eb70f755-9e06-c8ac-337f-ac473a615303"
+    },
+    {
+      "index": 3,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "956c6d60-a0d9-a3fb-3ff0-81cb62c88b6c"
+    }
+  ],
+  "gres": "gpu:4",
+  "job": "62167742",
+  "node": "lrdn3250.leonardo.local",
+  "ntasks": 1,
+  "partition": "boost_usr_prod",
+  "qos": "boost_qos_lprod",
+  "schema": "static-full-resources-v1",
+  "slurm_env": {
+    "SLURM_CLUSTER_NAME": "leonardo",
+    "SLURM_CONF": "/var/spool/slurmd/conf-cache/slurm.conf",
+    "SLURM_CPUS_ON_NODE": "4",
+    "SLURM_CPUS_PER_TASK": "4",
+    "SLURM_EXPORT_ENV": "ALL,CONFIRM_CAMPAIGN=1",
+    "SLURM_GET_USER_ENV": "1",
+    "SLURM_GPUS_ON_NODE": "4",
+    "SLURM_GTIDS": "0",
+    "SLURM_JOBID": "62167742",
+    "SLURM_JOB_ACCOUNT": "iscrc_unmasked",
+    "SLURM_JOB_CPUS_PER_NODE": "4",
+    "SLURM_JOB_END_TIME": "1792876768",
+    "SLURM_JOB_GID": "25200",
+    "SLURM_JOB_GPUS": "0,1,2,3",
+    "SLURM_JOB_ID": "62167742",
+    "SLURM_JOB_NAME": "static-full-preflight",
+    "SLURM_JOB_NODELIST": "lrdn3250",
+    "SLURM_JOB_NUM_NODES": "1",
+    "SLURM_JOB_PARTITION": "boost_usr_prod",
+    "SLURM_JOB_QOS": "boost_qos_lprod",
+    "SLURM_JOB_START_TIME": "1792869565",
+    "SLURM_JOB_UID": "134397",
+    "SLURM_JOB_USER": "epicazio",
+    "SLURM_LOCALID": "0",
+    "SLURM_MEM_PER_CPU": "15400",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_NODELIST": "lrdn3250",
+    "SLURM_NPROCS": "1",
+    "SLURM_NTASKS": "1",
+    "SLURM_OOM_KILL_STEP": "0",
+    "SLURM_PRIO_PROCESS": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_SCRIPT_CONTEXT": "prolog_task",
+    "SLURM_SUBMIT_DIR": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis",
+    "SLURM_SUBMIT_HOST": "login05.leonardo.local",
+    "SLURM_TASKS_PER_NODE": "1",
+    "SLURM_TASK_PID": "1984314",
+    "SLURM_TOPOLOGY_ADDR": "HeadSwitche.isw-L2-CELLG19.isw100104.lrdn3250",
+    "SLURM_TOPOLOGY_ADDR_PATTERN": "switch.switch.switch.node",
+    "SLURM_TRES_PER_TASK": "cpu=4"
+  },
+  "time_limit": "02:00:00"
+}
+DATASET_IDENTITY_WRITTEN /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/dataset-identity.json
+CASE framework=flux-current world=1 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS flux-full 1 4.689429042
+CASE_PASS framework=flux-current world=1 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/flux-current-w1.json
+CASE framework=flux-historical world=1 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS flux-full 1 4.698676941
+CASE_PASS framework=flux-historical world=1 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/flux-historical-w1.json
+CASE framework=pytorch world=1 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS pytorch-full 1 4.920940276933834
+CASE_PASS framework=pytorch world=1 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/pytorch-w1.json
+CASE framework=flux-current world=2 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS flux-full 2 2.673798665
+CASE_PASS framework=flux-current world=2 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/flux-current-w2.json
+CASE framework=flux-historical world=2 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS flux-full 2 2.452050721
+CASE_PASS framework=flux-historical world=2 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/flux-historical-w2.json
+CASE framework=pytorch world=2 updates=20 warmup=20 batch=256 snapshot=none
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+TIMING_PASS pytorch-full 2 2.561484446981922
+CASE_PASS framework=pytorch world=2 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/pytorch-w2.json
+CASE framework=flux-current world=4 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS flux-full 4 2.172898201
+CASE_PASS framework=flux-current world=4 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/flux-current-w4.json
+CASE framework=flux-historical world=4 updates=20 warmup=20 batch=256 snapshot=none
+TIMING_PASS flux-full 4 1.543832056
+CASE_PASS framework=flux-historical world=4 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/flux-historical-w4.json
+CASE framework=pytorch world=4 updates=20 warmup=20 batch=256 snapshot=none
+
+*****************************************
+Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed. 
+*****************************************
+/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/distributed/distributed_c10d.py:4876: UserWarning: barrier(): using the device under current context. You can specify `device_id` in `init_process_group` to mute this warning.
+  warnings.warn(  # warn only once
+TIMING_PASS pytorch-full 4 1.4754937710240483
+CASE_PASS framework=pytorch world=4 out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256/records/pytorch-w4.json
+PREFLIGHT_BATCH 256 PASS root=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/b256
+framework W status peak_process_MiB training_peak_MiB limit_MiB margin_MiB samples train_samples
+flux-current 1 PASS 49792.0 49792.0 51955.8 15152.8 948 16
+flux-current 2 PASS 37274.0 37274.0 51955.8 27670.8 864 9
+flux-current 4 PASS 34250.0 34250.0 51955.8 30694.8 1762 7
+flux-historical 1 PASS 49728.0 49728.0 51955.8 15216.8 398 17
+flux-historical 2 PASS 41914.0 41914.0 51955.8 23030.8 793 8
+flux-historical 4 PASS 39242.0 39242.0 51955.8 25702.8 1653 5
+pytorch 1 PASS 10894.0 10894.0 51955.8 54050.8 215 18
+pytorch 2 PASS 6138.0 6138.0 51955.8 58806.8 74 9
+pytorch 4 PASS 3994.0 3994.0 51955.8 60950.8 139 5
+PREFLIGHT_SELECTED 256
+PREFLIGHT_DECISION_WRITTEN /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/decision.json
+PREFLIGHT_SELECTED_BATCH 256
+CAMPAIGN_METADATA_WRITTEN /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/campaign-config.json /leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/provenance.json
+FULL_CAMPAIGN_READY PASS batch=256 updates=390
+FULL_CAMPAIGN_preflight PASS batch=256 k=390
+TIMING_DRIVER_EXIT=0
+FULL_CAMPAIGN_DRIVER COMPLETE mode=preflight OUT=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742

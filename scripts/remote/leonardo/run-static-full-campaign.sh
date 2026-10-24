@@ -15,7 +15,11 @@
 # user decision on 2026-10-19; batch 512 is not attempted.
 #
 # The campaign runs batch 256 with K=390, five repeats by default,
-# repeat-first. It then runs the matching
+# repeat-first. Every repeat is sampled with the external nvidia-smi
+# per-process sampler (0.25 s target interval) and keeps its own raw trace and
+# per-rank PID/GPU registration; both runners record per-rank wall-clock
+# training windows so the checker can separate startup from training and
+# exclude final hashing/snapshots. It then runs the matching
 # untimed diagnostics (same epoch, batch, K, and warmup) and writes snapshots.
 # A separate artifact checker enforces configuration, source, runtime, resource,
 # provenance, timing, and OD-14 diagnostic requirements.
@@ -23,7 +27,7 @@
 # SINGLE SUBMISSION COMMAND (all):
 #   ssh leonardo 'CONFIRM_CAMPAIGN=1 CAMPAIGN_MODE=all sbatch --parsable \
 #     -A iscrc_unmasked -p boost_usr_prod --qos=boost_qos_lprod -N1 -n1 \
-#     --cpus-per-task=32 --gres=gpu:4 --time=04:00:00 \
+#     --cpus-per-task=4 --gres=gpu:4 --time=04:00:00 \
 #     --job-name=static-full-campaign \
 #     --output=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-%j.log \
 #     "$HOME/projects/ddp-flux-thesis/scripts/remote/leonardo/run-static-full-campaign.sh"'
@@ -58,7 +62,7 @@ PYTHON_BIN=${PYTHON_BIN:-$WORK/epicazio/venvs/pytorch-scaling/bin/python}
 SCRIPTS=$THESIS/scripts/static_scaling
 PRECOMPILE=$THESIS/scripts/remote/leonardo/precompile-phase3.sh
 CHECKER=$SCRIPTS/check_full_campaign.py
-TOTAL_CPUS=${SLURM_CPUS_PER_TASK:-32}
+TOTAL_CPUS=${SLURM_CPUS_PER_TASK:-4}
 JOB_ID=${SLURM_JOB_ID:-manual}
 OUT=${OUT:-$WORK/epicazio/static-scaling-evidence/static-full-campaign-$JOB_ID}
 REPEATS=${REPEATS:-5}
@@ -81,7 +85,7 @@ EXPECTED_CURRENT_SOURCE_TREE=${EXPECTED_CURRENT_SOURCE_TREE:-83da2929ab7ebd66dbc
 EXPECTED_HISTORICAL_COMMIT=${EXPECTED_HISTORICAL_COMMIT:-8add0e42b7d9388ff365335152126e5b1e9de657}
 EXPECTED_HISTORICAL_STATE=${EXPECTED_HISTORICAL_STATE:-4af8409c2a2ed1c661e8ae7742877f1ee9789d00dc7e404365ecefd98ab0d34c}
 EXPECTED_HISTORICAL_SOURCE_TREE=${EXPECTED_HISTORICAL_SOURCE_TREE:-ad114ed385f7cc78e8409fa8e1f09d38133555f7fd58d5d9aca6a846bcf5e757}
-EXPECTED_THESIS_COMMIT=${EXPECTED_THESIS_COMMIT:-a3786d97f3263cad20b254206f09c095880f624d}
+EXPECTED_THESIS_COMMIT=${EXPECTED_THESIS_COMMIT:-660e363e6de5b6e4b398e542d79b6ce1adb381da}
 
 host=$(hostname)
 case "$host" in
@@ -479,6 +483,9 @@ start_gpu_sampler() {
   : > "$sample" || return 1
   (
     while :; do
+      # The timestamp is taken before the query: each memory value is stamped
+      # slightly earlier than the instant nvidia-smi reports it. This shifts at
+      # most the boundary samples by one query latency.
       printf 'TIME,%s\n' "$(date +%s.%N)"
       nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory \
         --format=csv,noheader,nounits 2>/dev/null || true
@@ -556,6 +563,7 @@ run_case() {
     mkdir -p "$FULL_PREFLIGHT_RANK_DIR"
     start_gpu_sampler "$sample" || {
       echo "CASE_FAIL framework=$framework world=$world sampler_start" >&2
+      unset FULL_PREFLIGHT_RANK_DIR
       return 1
     }
     sampler=$GPU_SAMPLER_PID
@@ -773,7 +781,7 @@ fi
 PREFLIGHT_BATCH=$SELECTED
 echo "FULL_CAMPAIGN_CAMPAIGN START utc=$(utc_now) batch=$SELECTED updates=$K repeats=$REPEATS"
 
-mkdir -p "$OUT/records"
+mkdir -p "$OUT/records" "$OUT/samples"
 for repeat in $(seq 1 "$REPEATS"); do
   if [ $((repeat % 2)) -eq 1 ]; then
     repeat_worlds=$WORLDS
@@ -785,8 +793,12 @@ for repeat in $(seq 1 "$REPEATS"); do
   for world in $repeat_worlds; do
     for framework in $repeat_frameworks; do
       log="$OUT/logs/timing-$framework-w$world-r$repeat.log"
+      # Each repeat keeps its own timestamped nvidia-smi trace and per-rank
+      # PID/GPU registration. The checker clips these samples to the
+      # per-rank training window recorded by the runner.
       if ! run_case "$framework" "$world" \
-          "$OUT/records/$framework-w$world-r$repeat.json" "" \
+          "$OUT/records/$framework-w$world-r$repeat.json" \
+          "$OUT/samples/$framework-w$world-r$repeat.csv" \
           "$K" "$WARMUP" "" "$log"; then
         echo "FULL_CAMPAIGN FAIL timing framework=$framework world=$world repeat=$repeat" >&2
         exit 1

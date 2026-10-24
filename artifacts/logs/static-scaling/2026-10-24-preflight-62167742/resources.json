@@ -1,0 +1,82 @@
+{
+  "account": "iscrc_unmasked",
+  "cpus_per_task": 4,
+  "cuda_visible_devices": "0,1,2,3",
+  "gpu_mapping": [
+    {
+      "index": 0,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "173e4630-982c-bd4e-084f-584cde0c4e02"
+    },
+    {
+      "index": 1,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "dcdf4f5b-62d4-a73d-5064-857ce019a6a1"
+    },
+    {
+      "index": 2,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "eb70f755-9e06-c8ac-337f-ac473a615303"
+    },
+    {
+      "index": 3,
+      "name": "NVIDIA",
+      "total_bytes": 68099571712,
+      "uuid": "956c6d60-a0d9-a3fb-3ff0-81cb62c88b6c"
+    }
+  ],
+  "gres": "gpu:4",
+  "job": "62167742",
+  "node": "lrdn3250.leonardo.local",
+  "ntasks": 1,
+  "partition": "boost_usr_prod",
+  "qos": "boost_qos_lprod",
+  "schema": "static-full-resources-v1",
+  "slurm_env": {
+    "SLURM_CLUSTER_NAME": "leonardo",
+    "SLURM_CONF": "/var/spool/slurmd/conf-cache/slurm.conf",
+    "SLURM_CPUS_ON_NODE": "4",
+    "SLURM_CPUS_PER_TASK": "4",
+    "SLURM_EXPORT_ENV": "ALL,CONFIRM_CAMPAIGN=1",
+    "SLURM_GET_USER_ENV": "1",
+    "SLURM_GPUS_ON_NODE": "4",
+    "SLURM_GTIDS": "0",
+    "SLURM_JOBID": "62167742",
+    "SLURM_JOB_ACCOUNT": "iscrc_unmasked",
+    "SLURM_JOB_CPUS_PER_NODE": "4",
+    "SLURM_JOB_END_TIME": "1792876768",
+    "SLURM_JOB_GID": "25200",
+    "SLURM_JOB_GPUS": "0,1,2,3",
+    "SLURM_JOB_ID": "62167742",
+    "SLURM_JOB_NAME": "static-full-preflight",
+    "SLURM_JOB_NODELIST": "lrdn3250",
+    "SLURM_JOB_NUM_NODES": "1",
+    "SLURM_JOB_PARTITION": "boost_usr_prod",
+    "SLURM_JOB_QOS": "boost_qos_lprod",
+    "SLURM_JOB_START_TIME": "1792869565",
+    "SLURM_JOB_UID": "134397",
+    "SLURM_JOB_USER": "epicazio",
+    "SLURM_LOCALID": "0",
+    "SLURM_MEM_PER_CPU": "15400",
+    "SLURM_NNODES": "1",
+    "SLURM_NODEID": "0",
+    "SLURM_NODELIST": "lrdn3250",
+    "SLURM_NPROCS": "1",
+    "SLURM_NTASKS": "1",
+    "SLURM_OOM_KILL_STEP": "0",
+    "SLURM_PRIO_PROCESS": "0",
+    "SLURM_PROCID": "0",
+    "SLURM_SCRIPT_CONTEXT": "prolog_task",
+    "SLURM_SUBMIT_DIR": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis",
+    "SLURM_SUBMIT_HOST": "login05.leonardo.local",
+    "SLURM_TASKS_PER_NODE": "1",
+    "SLURM_TASK_PID": "1984314",
+    "SLURM_TOPOLOGY_ADDR": "HeadSwitche.isw-L2-CELLG19.isw100104.lrdn3250",
+    "SLURM_TOPOLOGY_ADDR_PATTERN": "switch.switch.switch.node",
+    "SLURM_TRES_PER_TASK": "cpu=4"
+  },
+  "time_limit": "02:00:00"
+}

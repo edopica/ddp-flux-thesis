@@ -1,0 +1,109 @@
+UTC=2026-10-24T19:25:00Z
+HOST=lrdn3250.leonardo.local
+SLURM_CLUSTER_NAME=leonardo
+SLURM_CONF=/var/spool/slurmd/conf-cache/slurm.conf
+SLURM_CPUS_ON_NODE=4
+SLURM_CPUS_PER_TASK=4
+SLURM_EXPORT_ENV=ALL,CONFIRM_CAMPAIGN=1
+SLURM_GET_USER_ENV=1
+SLURM_GPUS_ON_NODE=4
+SLURM_GTIDS=0
+SLURM_JOB_ACCOUNT=iscrc_unmasked
+SLURM_JOB_CPUS_PER_NODE=4
+SLURM_JOB_END_TIME=1792876768
+SLURM_JOB_GID=25200
+SLURM_JOB_GPUS=0,1,2,3
+SLURM_JOB_ID=62167742
+SLURM_JOBID=62167742
+SLURM_JOB_NAME=static-full-preflight
+SLURM_JOB_NODELIST=lrdn3250
+SLURM_JOB_NUM_NODES=1
+SLURM_JOB_PARTITION=boost_usr_prod
+SLURM_JOB_QOS=boost_qos_lprod
+SLURM_JOB_START_TIME=1792869565
+SLURM_JOB_UID=134397
+SLURM_JOB_USER=epicazio
+SLURM_LOCALID=0
+SLURM_MEM_PER_CPU=15400
+SLURM_NNODES=1
+SLURM_NODEID=0
+SLURM_NODELIST=lrdn3250
+SLURM_NPROCS=1
+SLURM_NTASKS=1
+SLURM_OOM_KILL_STEP=0
+SLURM_PRIO_PROCESS=0
+SLURM_PROCID=0
+SLURM_SCRIPT_CONTEXT=prolog_task
+SLURM_SUBMIT_DIR=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+SLURM_SUBMIT_HOST=login05.leonardo.local
+SLURM_TASK_PID=1984314
+SLURM_TASKS_PER_NODE=1
+SLURM_TOPOLOGY_ADDR=HeadSwitche.isw-L2-CELLG19.isw100104.lrdn3250
+SLURM_TOPOLOGY_ADDR_PATTERN=switch.switch.switch.node
+SLURM_TRES_PER_TASK=cpu=4
+CUDA_VISIBLE_DEVICES=0,1,2,3
+JobId=62167742 JobName=static-full-preflight
+   UserId=epicazio(134397) GroupId=interactive(25200) MCS_label=N/A
+   Priority=144143 Nice=0 Account=iscrc_unmasked QOS=boost_qos_lprod
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:05:36 TimeLimit=02:00:00 TimeMin=N/A
+   SubmitTime=2026-10-24T21:19:16 EligibleTime=2026-10-24T21:19:16
+   AccrueTime=2026-10-24T21:19:16
+   StartTime=2026-10-24T21:19:25 EndTime=2026-10-24T23:19:28 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-24T21:19:25 Scheduler=Backfill
+   Partition=boost_usr_prod AllocNode:Sid=login05-interconnect-1:1961193
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=lrdn3250
+   BatchHost=lrdn3250
+   NumNodes=1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=4,mem=61600M,node=1,billing=4,gres/gpu=4
+   AllocTRES=cpu=4,mem=61600M,node=1,billing=4,gres/gpu=4
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=4 MinMemoryCPU=15400M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
+   Command=./scripts/remote/leonardo/run-static-full-campaign.sh
+   WorkDir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+   StdErr=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-preflight-62167742.log
+   StdIn=/dev/null
+   StdOut=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-preflight-62167742.log
+   TresPerNode=gres/gpu:4
+   TresPerTask=cpu=4
+   
+
+GPU 0: NVIDIA A100-SXM-64GB (UUID: GPU-173e4630-982c-bd4e-084f-584cde0c4e02)
+GPU 1: NVIDIA A100-SXM-64GB (UUID: GPU-dcdf4f5b-62d4-a73d-5064-857ce019a6a1)
+GPU 2: NVIDIA A100-SXM-64GB (UUID: GPU-eb70f755-9e06-c8ac-337f-ac473a615303)
+GPU 3: NVIDIA A100-SXM-64GB (UUID: GPU-956c6d60-a0d9-a3fb-3ff0-81cb62c88b6c)
+0, GPU-173e4630-982c-bd4e-084f-584cde0c4e02, NVIDIA A100-SXM-64GB, 65536 MiB, 535.274.02
+1, GPU-dcdf4f5b-62d4-a73d-5064-857ce019a6a1, NVIDIA A100-SXM-64GB, 65536 MiB, 535.274.02
+2, GPU-eb70f755-9e06-c8ac-337f-ac473a615303, NVIDIA A100-SXM-64GB, 65536 MiB, 535.274.02
+3, GPU-956c6d60-a0d9-a3fb-3ff0-81cb62c88b6c, NVIDIA A100-SXM-64GB, 65536 MiB, 535.274.02
+	[4mGPU0	GPU1	GPU2	GPU3	NIC0	NIC1	NIC2	NIC3	CPU Affinity	NUMA Affinity	GPU NUMA ID[0m
+GPU0	 X 	NV4	NV4	NV4	PXB	NODE	NODE	NODE	0-3	0		N/A
+GPU1	NV4	 X 	NV4	NV4	NODE	PXB	NODE	NODE	0-3	0		N/A
+GPU2	NV4	NV4	 X 	NV4	NODE	NODE	PXB	NODE	0-3	0		N/A
+GPU3	NV4	NV4	NV4	 X 	NODE	NODE	NODE	PXB	0-3	0		N/A
+NIC0	PXB	NODE	NODE	NODE	 X 	NODE	NODE	NODE				
+NIC1	NODE	PXB	NODE	NODE	NODE	 X 	NODE	NODE				
+NIC2	NODE	NODE	PXB	NODE	NODE	NODE	 X 	NODE				
+NIC3	NODE	NODE	NODE	PXB	NODE	NODE	NODE	 X 				
+
+Legend:
+
+  X    = Self
+  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)
+  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node
+  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)
+  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)
+  PIX  = Connection traversing at most a single PCIe bridge
+  NV#  = Connection traversing a bonded set of # NVLinks
+
+NIC Legend:
+
+  NIC0: mlx5_0
+  NIC1: mlx5_1
+  NIC2: mlx5_2
+  NIC3: mlx5_3
+
