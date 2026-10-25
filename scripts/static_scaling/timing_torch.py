@@ -1,5 +1,6 @@
 """Fixture and full-dataset PyTorch timing paths for static scaling."""
 import argparse
+import gc
 import hashlib
 import math
 import os
@@ -12,6 +13,7 @@ import numpy as np
 
 import dataset_adapter as da
 import full_dataset_common as fdc
+import cache_diagnostic as cache_diag
 
 
 def parse_args(argv=None):
@@ -30,6 +32,7 @@ def parse_args(argv=None):
     p.add_argument("--source-state-sha256", default=None)
     p.add_argument("--flux-commit", default=None)
     p.add_argument("--flux-state-sha256", default=None)
+    p.add_argument("--cache-diagnostic", choices=("true", "false"), default="false")
     return p.parse_args(argv)
 
 
@@ -155,6 +158,9 @@ def run_full_dataset(a):
     updates = 195 if a.updates is None else a.updates
     batch = a.batch_size
     w = a.world_size
+    cache_enabled = a.cache_diagnostic == "true"
+    if cache_enabled and w != 1:
+        raise ValueError("--cache-diagnostic requires --world-size 1")
     rank = int(os.environ.get("RANK", 0))
     assert w in (1, 2, 4)
     assert batch in (512, 256)
@@ -222,11 +228,20 @@ def run_full_dataset(a):
         return loss
 
     inner, model, opt = setup()
+    diagnostic = cache_diag.diagnostic_init(
+        torch, gpu_uuid_string(torch.cuda.get_device_properties(index))) if cache_enabled else None
+    if cache_enabled:
+        cache_diag.snapshot(diagnostic, torch, "initialized")
     steps(model, opt, a.warmup)
     torch.cuda.synchronize()
+    if cache_enabled:
+        cache_diag.snapshot(diagnostic, torch, "post_warmup")
     mt.load_bundle(inner, bundle_path)
     opt = mt.build_optimizer(inner)
     torch.cuda.synchronize()
+    if cache_enabled:
+        gc.collect()
+        cache_diag.snapshot(diagnostic, torch, "post_reset_gc")
     if w > 1:
         dist.barrier()
     torch.cuda.synchronize()
@@ -242,7 +257,18 @@ def run_full_dataset(a):
     elapsed = time.perf_counter() - start
     loss_value = float(loss.detach().cpu().item())
     assert math.isfinite(loss_value)
+    if cache_enabled:
+        cache_diag.snapshot(diagnostic, torch, "post_training")
+        invariant_before = compute_state_hashes(inner, opt, updates)
+        gc.collect()
+        cache_diag.snapshot(diagnostic, torch, "post_gc")
+        torch.cuda.empty_cache()
+        cache_diag.snapshot(diagnostic, torch, "post_reclaim")
     hashes = compute_state_hashes(inner, opt, updates)
+    if cache_enabled:
+        if hashes != invariant_before:
+            raise AssertionError("cache release changed model or optimizer state")
+        diagnostic["state_invariant"] = dict(before=invariant_before, after=hashes, passed=True)
     local = dict(rank=rank, seconds=elapsed, hashes=hashes, device=index,
                  training_start_epoch=start_epoch,
                  training_end_epoch=end_epoch,
@@ -300,7 +326,8 @@ def run_full_dataset(a):
             workload="full-dataset-epoch", precision=flags,
             cpu_policy="torch.set_num_threads(1) via mt.configure_backend; CPU batch assembly only",
             source=source, snapshot=bool(a.snapshot_dir), pass_checks=True,
-            eta_sha256=eta_sha256, final_loss=loss_value, loss_finite=True))
+            eta_sha256=eta_sha256, final_loss=loss_value, loss_finite=True,
+            **({"cache_diagnostic": diagnostic} if cache_enabled else {})))
         print("TIMING_PASS pytorch-full", w, seconds, flush=True)
     if w > 1:
         dist.destroy_process_group()
@@ -308,6 +335,8 @@ def run_full_dataset(a):
 
 def main(argv=None):
     a = parse_args(argv)
+    if a.cache_diagnostic == "true" and not a.dataset_dir:
+        raise ValueError("--cache-diagnostic requires --dataset-dir")
     if a.dataset_dir:
         run_full_dataset(a)
     else:

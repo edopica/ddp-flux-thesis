@@ -1,0 +1,21 @@
+{
+  "batch": 256,
+  "epoch": 0,
+  "frameworks": [
+    "flux-current",
+    "flux-historical",
+    "pytorch"
+  ],
+  "mode": "campaign",
+  "preflight_updates": 20,
+  "preflight_warmup": 20,
+  "repeats": 3,
+  "schema": "static-full-campaign-config-v1",
+  "updates": 390,
+  "warmup": 20,
+  "worlds": [
+    1,
+    2,
+    4
+  ]
+}

@@ -1,5 +1,167 @@
 # Current context
 
+## W=1 cache diagnostic PASS — 2026-10-25
+
+Job `62241616` completed `COMPLETED 0:0` in `00:14:00` on `lrdn3215`:
+current Flux/PyTorch, W=1, batch256, 20 warmup +20 updates, two fresh-process
+repeats each, four CPUs and one GPU. Remote and independent local
+`CACHE_DIAGNOSTIC_CHECK PASS`; all 118 original evidence checksums and the
+Slurm log SHA match. All four cleanup state invariants pass. Independent
+post-run review found no blocking issue.
+
+| Framework | Post-GC process (MiB) | Post-release process (MiB) | Released (MiB) |
+|---|---:|---:|---:|
+| Current Flux r1 | 49,792 | 1,270 | 48,522 |
+| Current Flux r2 | 49,760 | 1,334 | 48,426 |
+| PyTorch, both | 10,894 | 1,786 | 9,108 |
+
+Flux pool use falls from 21,533.365 MiB at the raw post-training sample to
+128.991 MiB after cleanup/GC; reservation remains 49,248/49,216 MiB until
+reclaim, then falls to 736/800 MiB. GC alone does not reduce process residency.
+This establishes substantial collectible allocations and predominantly
+reclaimable pool reservation at this boundary. W=1 reproduces the footprint
+without DDP. It does not quantify DDP overhead, transient within-step peaks,
+or leak behavior. PyTorch retains parameter gradients and Flux does not;
+allocator-used counters and post-release residuals are not pure comparable
+live-tensor totals. The original 390-update operational sampled peaks remain
+valid. No reclaim was added to the normal training path, and no Flux source
+changed. All 26 archived Flux src and 10 ext files match job `62195500`.
+
+**Why keep caching:** freed blocks can serve later updates without repeated
+driver allocation. CUDA.jl documents automatic reclamation under pressure;
+our post-training release is a diagnostic, not a demonstrated reduction in
+training capacity or an optimization to enable per step. The allocation sites
+responsible for the large reservation have not been isolated. See the
+[interpretation and default caching rationale](../../reports/static-scaling-memory-interpretation.md).
+
+**Evidence:** [results](../../artifacts/logs/static-scaling/2026-10-25-cache-diagnostic-62241616/RESULTS.md),
+[devlog](../devlog/03-static-scaling/2026-10-25-cache-diagnostic.md).
+**Exact next action:** integrate the capacity and cache findings into the
+presentation; retain OD-14 deterministic-mode sensitivity as a separate
+final-report requirement. No further general memory campaign is needed for
+this cache-attribution question.
+
+## W=1 cache diagnostic submission record — 2026-10-25 (completed)
+
+Job `62241616` (`static-cache-diagnostic`) was submitted after delegated
+implementation, independent review and passing local gates (15 diagnostic
+tests, 8 campaign tests, 37-check self-test, syntax and whitespace). Scope:
+current Flux/PyTorch, W=1, batch256, 20 warmup +20 updates, 2 fresh-process
+repeats each, 4 CPUs and 1 GPU. Compute-node precompile precedes measurements.
+Six remote harness hashes match local copies. This is an allocator diagnostic,
+separate from the accepted capacity campaign; no result exists at submission.
+No Flux worktree changed. See
+[devlog](../devlog/03-static-scaling/2026-10-25-cache-diagnostic.md).
+
+**Exact next action:** monitor `62241616`, fetch the complete evidence, and
+run the independent checker locally before interpreting the memory counters.
+
+## Post-campaign recommendation — 2026-10-25
+
+Do not repeat the full memory matrix merely to add profiling. Preserve job
+`62195500` as the sampled process-memory baseline. Next prepare a bounded
+full-dataset batch-256 diagnostic for current Flux and PyTorch at W=1, keeping
+the 4-CPU policy and recording synchronized allocator counters and process
+memory before/after GC and cache release, with model/optimizer/data references
+held consistently. Verify counter semantics against the loaded versions; the
+older fixture memory probe is not a drop-in full-dataset diagnostic. Extend
+to W=4/historical only if the initial evidence leaves a specific question.
+
+Startup residency does not establish that 45,504 MiB is cache. Similar sampled
+peaks at 20 and 390 updates do not prove absence of leaks, and the first-repeat
+timing outlier does not establish JIT as its cause. Keep those claims qualified.
+The separate deterministic-mode sensitivity in both frameworks remains an
+explicit final-report requirement under
+[OD-14](../../experiments/static-scaling/OD-14-benchmark-acceptance.md).
+No new run was launched during this advisory review.
+
+**Exact next action:** prepare and locally review the matched W=1 full-dataset
+cache diagnostic, with separate source identity and untimed cache release.
+
+## Memory campaign completed — job 62195500 — 2026-10-25
+
+The three-repeat 390-update memory campaign `62195500` (`static-full-memory`)
+completed `COMPLETED 0:0` on `lrdn2909` in `01:51:47`. All nine batch-256
+framework/world configurations remained below the OD-8 whole-process sampled
+peak limit (`51,955.8 MiB`, 80% of `64,944.8 MiB`) across all 390 measured updates.
+Independent local check passed: `FULL_CAMPAIGN_ARTIFACT_CHECK PASS`.
+
+| Framework | W | Peak (MiB) | % Device | Margin to 80% (MiB) | Startup (MiB) | Repeat spread (MiB) | Delta vs Preflight (MiB) |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| `flux-current` | 1 | 49,856.0 | 76.77% | **2,099.8** | 45,504.0 | 96.0 | +64.0 (+0.13%) |
+| `flux-current` | 2 | 37,338.0 | 57.49% | 14,617.8 | 35,482.0 | 32.0 | +64.0 (+0.17%) |
+| `flux-current` | 4 | 34,282.0 | 52.79% | 17,673.8 | 34,282.0 | 32.0 | +32.0 (+0.09%) |
+| `flux-historical` | 1 | 49,760.0 | 76.62% | **2,195.8** | 45,504.0 | 0.0 | +32.0 (+0.06%) |
+| `flux-historical` | 2 | 41,978.0 | 64.64% | 9,977.8 | 35,354.0 | 32.0 | +64.0 (+0.15%) |
+| `flux-historical` | 4 | 39,370.0 | 60.62% | 12,585.8 | 36,458.0 | 64.0 | +128.0 (+0.33%) |
+| `pytorch` | 1 | 10,894.0 | 16.77% | 41,061.8 | 10,894.0 | 0.0 | 0.0 |
+| `pytorch` | 2 | 6,138.0 | 9.45% | 45,817.8 | 6,138.0 | 0.0 | 0.0 |
+| `pytorch` | 4 | 3,994.0 | 6.15% | 47,961.8 | 3,992.0 | 0.0 | 0.0 |
+
+**Memory stability:** Flux worst sampled peaks differ by 32–128 MiB between
+the 20-update preflight and 390-update campaign.
+The sampled peak comparison alone does not establish absence of leaks.
+**Peak composition:** At `flux-current` W=1, 91.3% (45,504 MiB) of the peak was resident
+before the measured window; training updates added only 4,352 MiB. At W=4, 0 MiB was
+added during training.
+**Evidence:** [RESULTS](../../artifacts/logs/static-scaling/2026-10-25-campaign-62195500/RESULTS.md),
+[devlog](../devlog/03-static-scaling/2026-10-25-memory-campaign-completed-62195500.md),
+local root `artifacts/logs/static-scaling/2026-10-25-campaign-62195500`.
+
+## Memory campaign launched — 2026-10-25
+
+The three-repeat 390-update campaign was launched as job `62195500`
+(`static-full-memory`) at `2026-10-24T23:43:05Z` and is RUNNING on `lrdn2909`.
+Preconditions matched: remote thesis state `1ddd2d20…`; launcher and checker
+hashes `23db28f3…` and `fa5b3a4d…`; no `.git`; stored decision
+`selected_global_batch=256` with the same state hash (decision sha256
+`1400b09a…`). Both Flux worktrees precompiled (`FLUX_PRECOMPILE_OK`), and the
+required markers printed at `2026-10-24T23:48:23Z`:
+`FULL_CAMPAIGN_READY PASS batch=256 updates=390` and
+`FULL_CAMPAIGN_CAMPAIGN START ... repeats=3`. The first case is
+`flux-current` W=1; at `2026-10-24T23:49:48Z` Slurm reported RUNNING
+`00:06:30` on `lrdn2909`. No sync was run and the remote tree was not modified.
+Output root:
+`/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62195500`.
+Details: [launch record](../../artifacts/logs/leonardo/2026-10-25-static-full-memory-62195500.md),
+[poll log](../../artifacts/logs/leonardo/2026-10-25-static-full-memory-62195500.poll.log).
+
+## Memory campaign launch readiness — 2026-10-25
+
+Local review only; no remote command ran and no memory result exists. The
+preflight source and the current campaign scripts are byte-identical, the local
+gates re-pass (`FULL_CAMPAIGN_SELFTEST PASS checks=37`, 8/8 tests), and
+`ready` accepts the copied preflight decision
+(`FULL_CAMPAIGN_READY PASS batch=256 updates=390`).
+
+**Conditional GO for the measurement, NO-GO for a final campaign-length memory
+claim.** The preflight is 20 warmup + 20 measured updates; the campaign is
+20 + 390. Flux W=1 is only 2.1–2.2 GiB below the 80% gate. The campaign checker
+reports `margin_bytes` but does not re-apply OD-8 at 390 updates, so
+`FULL_CAMPAIGN_ARTIFACT_CHECK PASS` is not a campaign memory PASS. Read the
+`FULL_MEMORY` row's `margin_MiB`. The Flux W=1 peak is 91% pre-window
+(45,504 MiB before the measured window); the harness does not call
+`CUDA.reclaim()`, so this is a sampled process footprint, not a live-tensor
+comparison. The existing Phase 5 probe records live/reserved counters and calls
+`CUDA.reclaim()`; it has not been run on this workload.
+
+**Do not sync before launch.** The decision binds
+`THESIS_STATE_SHA256=1ddd2d20…` to the remote tree; at review time, before
+these doc edits, the local tree was `7f1c9518…` at HEAD `976db1f` (the
+preflight used expected commit `660e363e…` in a Git-free copy). A sync changes
+the state hash and campaign mode fails closed at `ready` with
+`preflight decision source identity differs`; it then requires a fresh
+preflight. Set `REPEATS=3` explicitly (default 5), keep
+`--cpus-per-task=4`, and reuse the stored
+`static-full-campaign-62167742/preflight/decision.json`. `boost_qos_lprod`
+allows 4 days; the three-repeat run is expected to fit in roughly 2–3 hours,
+and 8 hours leaves margin.
+
+**Recommendation:** launch the three-repeat measurement under those conditions,
+or run a one-repeat 390-update full-matrix probe first and inspect the Flux W=1
+margin. Run the reclaim diagnostic before claiming a live-tensor difference.
+Details: [readiness devlog](../devlog/03-static-scaling/2026-10-25-memory-campaign-readiness.md).
+
 ## Memory preflight PASS — 2026-10-24
 
 Preflight-only job `62167742` (`static-full-preflight`, `lrdn3250`,

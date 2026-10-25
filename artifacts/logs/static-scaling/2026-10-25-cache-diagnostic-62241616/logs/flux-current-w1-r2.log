@@ -1,0 +1,7 @@
+CACHE_SNAPSHOT initialized process_MiB=690.0 allocator_used_bytes=135257509 allocator_reserved_bytes=167772160
+CACHE_SNAPSHOT post_warmup process_MiB=45504.0 allocator_used_bytes=33692587188 allocator_reserved_bytes=47143976960
+CACHE_SNAPSHOT post_reset_gc process_MiB=45504.0 allocator_used_bytes=135257184 allocator_reserved_bytes=47143976960
+CACHE_SNAPSHOT post_training process_MiB=49760.0 allocator_used_bytes=22579370132 allocator_reserved_bytes=51606716416
+CACHE_SNAPSHOT post_gc process_MiB=49760.0 allocator_used_bytes=135257184 allocator_reserved_bytes=51606716416
+CACHE_SNAPSHOT post_reclaim process_MiB=1334.0 allocator_used_bytes=135257184 allocator_reserved_bytes=838860800
+TIMING_PASS flux-full 1 10.377575201

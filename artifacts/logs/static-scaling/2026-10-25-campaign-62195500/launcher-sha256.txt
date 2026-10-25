@@ -1,0 +1,2 @@
+23db28f38d0cf298265d2e289a03f498c1bfb32bc083180faa3d81c350a370d8  launcher/run-static-full-campaign.sh
+fa5b3a4db93033a28f0b03472c89570f1b68d6769f4b128f4f051fb7b75bb017  check_full_campaign.py

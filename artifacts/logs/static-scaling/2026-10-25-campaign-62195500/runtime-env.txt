@@ -1,0 +1,16 @@
+UTC=2026-10-24T23:46:58Z
+HOST=lrdn2909.leonardo.local
+julia version 1.12.6
+RUNTIME_JULIA variant=flux-current julia=1.12.6 flux=0.16.11 cuda=6.2.2 nccl=0.1.3 mpi=0.20.27 optimisers=0.4.9 functors=0.5.3
+RUNTIME_JULIA variant=flux-historical julia=1.12.6 flux=0.16.11 cuda=6.2.2 nccl=0.1.3 mpi=0.20.27 optimisers=0.4.9 functors=0.5.3
+RUNTIME_PYTHON python=3.11.17 torch=2.9.1+cu126 numpy=2.4.6 cuda=12.6 cudnn=91002 executable=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python
+RUNTIME_PYTHON_PATH torch=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/__init__.py numpy=/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/numpy/__init__.py
+RUNTIME_GPU index=0 uuid=0100127c-6f50-da31-587f-c4e5f2980a84 name=NVIDIA A100-SXM-64GB total_bytes=68099571712
+RUNTIME_GPU index=1 uuid=ab0e9ed5-576c-d5b8-2a05-e78e36104ce7 name=NVIDIA A100-SXM-64GB total_bytes=68099571712
+RUNTIME_GPU index=2 uuid=ed689316-81e4-6bd5-2e23-551843579bc4 name=NVIDIA A100-SXM-64GB total_bytes=68099571712
+RUNTIME_GPU index=3 uuid=e062e0a9-f705-c08c-aa80-ab79816d9e64 name=NVIDIA A100-SXM-64GB total_bytes=68099571712
+GPU 0: NVIDIA A100-SXM-64GB (UUID: GPU-0100127c-6f50-da31-587f-c4e5f2980a84)
+GPU 1: NVIDIA A100-SXM-64GB (UUID: GPU-ab0e9ed5-576c-d5b8-2a05-e78e36104ce7)
+GPU 2: NVIDIA A100-SXM-64GB (UUID: GPU-ed689316-81e4-6bd5-2e23-551843579bc4)
+GPU 3: NVIDIA A100-SXM-64GB (UUID: GPU-e062e0a9-f705-c08c-aa80-ab79816d9e64)
+RUNTIME_DRIVER=535.274.02

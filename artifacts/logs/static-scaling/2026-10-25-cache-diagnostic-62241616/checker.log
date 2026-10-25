@@ -1,0 +1,5 @@
+CACHE_DIAGNOSTIC flux-current repeat=1 GC_drop_MiB=0.000 cache_release_drop_MiB=48522.000
+CACHE_DIAGNOSTIC flux-current repeat=2 GC_drop_MiB=0.000 cache_release_drop_MiB=48426.000
+CACHE_DIAGNOSTIC pytorch repeat=1 GC_drop_MiB=0.000 cache_release_drop_MiB=9108.000
+CACHE_DIAGNOSTIC pytorch repeat=2 GC_drop_MiB=0.000 cache_release_drop_MiB=9108.000
+CACHE_DIAGNOSTIC_CHECK PASS

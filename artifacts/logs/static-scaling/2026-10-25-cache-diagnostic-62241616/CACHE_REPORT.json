@@ -1,0 +1,636 @@
+{
+  "schema": "static-cache-diagnostic-report-v1",
+  "status": "PASS",
+  "runs": [
+    {
+      "pid": 2019527,
+      "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+      "counter_semantics": {
+        "allocator_reserved_bytes": "CUDA pool backing/reserved bytes INCLUDING in-use bytes; CUDA.cached_memory is not unused-cache bytes",
+        "allocator_used_bytes": "application-in-use CUDA pool bytes; not a pure model-tensor total",
+        "device_used_bytes": "device total minus free; includes other processes and runtime allocations",
+        "process_bytes": "nvidia-smi per-process resident GPU memory, MiB converted to bytes",
+        "total_bytes": "device total bytes"
+      },
+      "snapshots": [
+        {
+          "allocator_reserved_bytes": 167772160,
+          "allocator_used_bytes": 135257509,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 732233728,
+          "end_epoch": 1792920773.595384,
+          "epoch": 1792920773.53605,
+          "phase": "initialized",
+          "process_bytes": 723517440,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 47143976960,
+          "allocator_used_bytes": 33692587188,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 47723118592,
+          "end_epoch": 1792921012.43754,
+          "epoch": 1792921012.413814,
+          "phase": "post_warmup",
+          "process_bytes": 47714402304,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 47143976960,
+          "allocator_used_bytes": 135257184,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 47723118592,
+          "end_epoch": 1792921012.961164,
+          "epoch": 1792921012.948348,
+          "phase": "post_reset_gc",
+          "process_bytes": 47714402304,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 51640270848,
+          "allocator_used_bytes": 22579370132,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 52219412480,
+          "end_epoch": 1792921017.674627,
+          "epoch": 1792921017.650786,
+          "phase": "post_training",
+          "process_bytes": 52210696192,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 51640270848,
+          "allocator_used_bytes": 135257184,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 52219412480,
+          "end_epoch": 1792921020.062008,
+          "epoch": 1792921020.049144,
+          "phase": "post_gc",
+          "process_bytes": 52210696192,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 771751936,
+          "allocator_used_bytes": 135257184,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 1340407808,
+          "end_epoch": 1792921020.598385,
+          "epoch": 1792921020.586546,
+          "phase": "post_reclaim",
+          "process_bytes": 1331691520,
+          "total_bytes": 68099571712
+        }
+      ],
+      "process_gc_drop_bytes": 0,
+      "process_cache_release_drop_bytes": 50879004672,
+      "framework": "flux-current",
+      "repeat": 1,
+      "sampled_memory": {
+        "ranks": [
+          {
+            "rank": 0,
+            "pid": 2019527,
+            "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+            "whole_process_peak_bytes": 52210696192,
+            "startup_peak_bytes": 47714402304,
+            "training_peak_bytes": 52210696192,
+            "training_median_bytes": 52076478464.0,
+            "training_samples": 18,
+            "required_training_samples": 5,
+            "sample_count": 1043,
+            "max_gap_seconds": 0.2874932289123535,
+            "first_sample_epoch": 1792920746.256063,
+            "last_sample_epoch": 1792921023.7175426
+          }
+        ],
+        "whole_process_peak_bytes": 52210696192,
+        "training_peak_bytes": 52210696192,
+        "aggregate_training_peak_bytes": 52210696192,
+        "aggregate_training_samples": 18,
+        "required_aggregate_samples": 5,
+        "aggregate_gap_max_seconds": 0.2754707336425781,
+        "aggregate_first_sample_epoch": 1792921013.1071901,
+        "aggregate_last_sample_epoch": 1792921017.6190934,
+        "aggregate_window_start_epoch": 1792921012.96122,
+        "aggregate_window_end_epoch": 1792921017.643728,
+        "sample_count": 1043,
+        "gap_median_seconds": 0.2639123201370239,
+        "trace_gap_max_seconds": 0.2889699935913086,
+        "rank_gap_max_seconds": 0.2874932289123535,
+        "gap_max_seconds": 0.2889699935913086,
+        "trace_start_epoch": 1792920721.8497138,
+        "trace_end_epoch": 1792921023.7175426
+      }
+    },
+    {
+      "pid": 2023724,
+      "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+      "counter_semantics": {
+        "allocator_reserved_bytes": "CUDA pool backing/reserved bytes INCLUDING in-use bytes; CUDA.cached_memory is not unused-cache bytes",
+        "allocator_used_bytes": "application-in-use CUDA pool bytes; not a pure model-tensor total",
+        "device_used_bytes": "device total minus free; includes other processes and runtime allocations",
+        "process_bytes": "nvidia-smi per-process resident GPU memory, MiB converted to bytes",
+        "total_bytes": "device total bytes"
+      },
+      "snapshots": [
+        {
+          "allocator_reserved_bytes": 167772160,
+          "allocator_used_bytes": 135257509,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 732233728,
+          "end_epoch": 1792921117.966864,
+          "epoch": 1792921117.921918,
+          "phase": "initialized",
+          "process_bytes": 723517440,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 47143976960,
+          "allocator_used_bytes": 33692587188,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 47723118592,
+          "end_epoch": 1792921268.596013,
+          "epoch": 1792921268.583315,
+          "phase": "post_warmup",
+          "process_bytes": 47714402304,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 47143976960,
+          "allocator_used_bytes": 135257184,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 47723118592,
+          "end_epoch": 1792921269.139306,
+          "epoch": 1792921269.125875,
+          "phase": "post_reset_gc",
+          "process_bytes": 47714402304,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 51606716416,
+          "allocator_used_bytes": 22579370132,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 52185858048,
+          "end_epoch": 1792921279.548571,
+          "epoch": 1792921279.524275,
+          "phase": "post_training",
+          "process_bytes": 52177141760,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 51606716416,
+          "allocator_used_bytes": 135257184,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 52185858048,
+          "end_epoch": 1792921281.966453,
+          "epoch": 1792921281.94239,
+          "phase": "post_gc",
+          "process_bytes": 52177141760,
+          "total_bytes": 68099571712
+        },
+        {
+          "allocator_reserved_bytes": 838860800,
+          "allocator_used_bytes": 135257184,
+          "counter_status": {
+            "allocator_reserved_bytes": "measured",
+            "allocator_used_bytes": "measured",
+            "device_used_bytes": "measured",
+            "process_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "device_used_bytes": 1407516672,
+          "end_epoch": 1792921282.51653,
+          "epoch": 1792921282.504154,
+          "phase": "post_reclaim",
+          "process_bytes": 1398800384,
+          "total_bytes": 68099571712
+        }
+      ],
+      "process_gc_drop_bytes": 0,
+      "process_cache_release_drop_bytes": 50778341376,
+      "framework": "flux-current",
+      "repeat": 2,
+      "sampled_memory": {
+        "ranks": [
+          {
+            "rank": 0,
+            "pid": 2023724,
+            "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+            "whole_process_peak_bytes": 52177141760,
+            "startup_peak_bytes": 47714402304,
+            "training_peak_bytes": 52177141760,
+            "training_median_bytes": 47714402304,
+            "training_samples": 39,
+            "required_training_samples": 11,
+            "sample_count": 713,
+            "max_gap_seconds": 0.28818225860595703,
+            "first_sample_epoch": 1792921096.4579728,
+            "last_sample_epoch": 1792921285.6554737
+          }
+        ],
+        "whole_process_peak_bytes": 52177141760,
+        "training_peak_bytes": 52177141760,
+        "aggregate_training_peak_bytes": 52177141760,
+        "aggregate_training_samples": 39,
+        "required_aggregate_samples": 11,
+        "aggregate_gap_max_seconds": 0.27597904205322266,
+        "aggregate_first_sample_epoch": 1792921269.1792672,
+        "aggregate_last_sample_epoch": 1792921279.2940226,
+        "aggregate_window_start_epoch": 1792921269.13936,
+        "aggregate_window_end_epoch": 1792921279.516935,
+        "sample_count": 713,
+        "gap_median_seconds": 0.2639901638031006,
+        "trace_gap_max_seconds": 0.2885291576385498,
+        "rank_gap_max_seconds": 0.28818225860595703,
+        "gap_max_seconds": 0.2885291576385498,
+        "trace_start_epoch": 1792921079.7608302,
+        "trace_end_epoch": 1792921285.6554737
+      }
+    },
+    {
+      "pid": 2023070,
+      "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+      "counter_semantics": {
+        "allocator_used_bytes": "current tensor bytes managed by the PyTorch allocator; excludes runtime/library allocations",
+        "allocator_reserved_bytes": "current total allocator-managed bytes INCLUDING allocated tensor bytes",
+        "process_bytes": "nvidia-smi per-process resident GPU memory, MiB converted to bytes",
+        "device_used_bytes": "device total minus free; includes other processes and runtime allocations",
+        "total_bytes": "device total bytes"
+      },
+      "snapshots": [
+        {
+          "phase": "initialized",
+          "epoch": 1792921048.1111126,
+          "end_epoch": 1792921048.1473017,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 45088768,
+          "allocator_reserved_bytes": 90177536,
+          "process_bytes": 677380096,
+          "device_used_bytes": 686096384,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_warmup",
+          "epoch": 1792921071.6226263,
+          "end_epoch": 1792921071.6341867,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 200015872,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_reset_gc",
+          "epoch": 1792921071.8043115,
+          "end_epoch": 1792921071.828246,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 109838336,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_training",
+          "epoch": 1792921076.7741652,
+          "end_epoch": 1792921076.797236,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 201720320,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_gc",
+          "epoch": 1792921077.0729613,
+          "end_epoch": 1792921077.0859268,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 201720320,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_reclaim",
+          "epoch": 1792921077.0902488,
+          "end_epoch": 1792921077.1020358,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 201720320,
+          "allocator_reserved_bytes": 1260388352,
+          "process_bytes": 1872756736,
+          "device_used_bytes": 1881473024,
+          "total_bytes": 68099571712
+        }
+      ],
+      "process_gc_drop_bytes": 0,
+      "process_cache_release_drop_bytes": 9550430208,
+      "framework": "pytorch",
+      "repeat": 1,
+      "sampled_memory": {
+        "ranks": [
+          {
+            "rank": 0,
+            "pid": 2023070,
+            "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+            "whole_process_peak_bytes": 11423186944,
+            "startup_peak_bytes": 11423186944,
+            "training_peak_bytes": 11423186944,
+            "training_median_bytes": 11423186944,
+            "training_samples": 19,
+            "required_training_samples": 5,
+            "sample_count": 203,
+            "max_gap_seconds": 0.28694844245910645,
+            "first_sample_epoch": 1792921025.7589984,
+            "last_sample_epoch": 1792921079.521249
+          }
+        ],
+        "whole_process_peak_bytes": 11423186944,
+        "training_peak_bytes": 11423186944,
+        "aggregate_training_peak_bytes": 11423186944,
+        "aggregate_training_samples": 19,
+        "required_aggregate_samples": 5,
+        "aggregate_gap_max_seconds": 0.27573680877685547,
+        "aggregate_first_sample_epoch": 1792921071.8482203,
+        "aggregate_last_sample_epoch": 1792921076.6089158,
+        "aggregate_window_start_epoch": 1792921071.828334,
+        "aggregate_window_end_epoch": 1792921076.7446609,
+        "sample_count": 203,
+        "gap_median_seconds": 0.2636277675628662,
+        "trace_gap_max_seconds": 0.28694844245910645,
+        "rank_gap_max_seconds": 0.28694844245910645,
+        "gap_max_seconds": 0.28694844245910645,
+        "trace_start_epoch": 1792921023.887434,
+        "trace_end_epoch": 1792921079.521249
+      }
+    },
+    {
+      "pid": 2026180,
+      "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+      "counter_semantics": {
+        "allocator_used_bytes": "current tensor bytes managed by the PyTorch allocator; excludes runtime/library allocations",
+        "allocator_reserved_bytes": "current total allocator-managed bytes INCLUDING allocated tensor bytes",
+        "process_bytes": "nvidia-smi per-process resident GPU memory, MiB converted to bytes",
+        "device_used_bytes": "device total minus free; includes other processes and runtime allocations",
+        "total_bytes": "device total bytes"
+      },
+      "snapshots": [
+        {
+          "phase": "initialized",
+          "epoch": 1792921289.4463735,
+          "end_epoch": 1792921289.4598022,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 45088768,
+          "allocator_reserved_bytes": 90177536,
+          "process_bytes": 677380096,
+          "device_used_bytes": 686096384,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_warmup",
+          "epoch": 1792921294.7014215,
+          "end_epoch": 1792921294.7131658,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 200015872,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_reset_gc",
+          "epoch": 1792921294.876971,
+          "end_epoch": 1792921294.901089,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 109838336,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_training",
+          "epoch": 1792921299.8147242,
+          "end_epoch": 1792921299.8264775,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 201720320,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_gc",
+          "epoch": 1792921300.0952334,
+          "end_epoch": 1792921300.1081052,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 201720320,
+          "allocator_reserved_bytes": 10810818560,
+          "process_bytes": 11423186944,
+          "device_used_bytes": 11431903232,
+          "total_bytes": 68099571712
+        },
+        {
+          "phase": "post_reclaim",
+          "epoch": 1792921300.112424,
+          "end_epoch": 1792921300.1351297,
+          "counter_status": {
+            "allocator_used_bytes": "measured",
+            "allocator_reserved_bytes": "measured",
+            "process_bytes": "measured",
+            "device_used_bytes": "measured",
+            "total_bytes": "measured"
+          },
+          "allocator_used_bytes": 201720320,
+          "allocator_reserved_bytes": 1260388352,
+          "process_bytes": 1872756736,
+          "device_used_bytes": 1881473024,
+          "total_bytes": 68099571712
+        }
+      ],
+      "process_gc_drop_bytes": 0,
+      "process_cache_release_drop_bytes": 9550430208,
+      "framework": "pytorch",
+      "repeat": 2,
+      "sampled_memory": {
+        "ranks": [
+          {
+            "rank": 0,
+            "pid": 2026180,
+            "gpu_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+            "whole_process_peak_bytes": 11423186944,
+            "startup_peak_bytes": 11423186944,
+            "training_peak_bytes": 11423186944,
+            "training_median_bytes": 11423186944.0,
+            "training_samples": 18,
+            "required_training_samples": 5,
+            "sample_count": 50,
+            "max_gap_seconds": 0.2806699275970459,
+            "first_sample_epoch": 1792921287.6642978,
+            "last_sample_epoch": 1792921300.7248561
+          }
+        ],
+        "whole_process_peak_bytes": 11423186944,
+        "training_peak_bytes": 11423186944,
+        "aggregate_training_peak_bytes": 11423186944,
+        "aggregate_training_samples": 18,
+        "required_aggregate_samples": 5,
+        "aggregate_gap_max_seconds": 0.2758908271789551,
+        "aggregate_first_sample_epoch": 1792921295.115804,
+        "aggregate_last_sample_epoch": 1792921299.6463277,
+        "aggregate_window_start_epoch": 1792921294.9011722,
+        "aggregate_window_end_epoch": 1792921299.814595,
+        "sample_count": 50,
+        "gap_median_seconds": 0.2638014554977417,
+        "trace_gap_max_seconds": 0.2806699275970459,
+        "rank_gap_max_seconds": 0.2806699275970459,
+        "gap_max_seconds": 0.2806699275970459,
+        "trace_start_epoch": 1792921285.8035188,
+        "trace_end_epoch": 1792921300.7248561
+      }
+    }
+  ],
+  "qualifications": [
+    "Snapshot counters are synchronized point samples, not within-step peaks.",
+    "Process memory includes allocator cache, libraries and runtime overhead.",
+    "The process-memory drop after cache release measures observed reclaimability at that boundary; the remainder is not pure live-tensor memory.",
+    "Framework allocator counters retain their loaded API semantics; cross-framework values are not assumed equivalent.",
+    "Short W=1 runs diagnose the baseline footprint; they do not establish absence of leaks or quantify multi-rank DDP overhead.",
+    "Diagnostic timing includes instrumentation and is not throughput evidence.",
+    "State hashing between post_training and explicit GC may itself trigger ordinary collection; the observed GC-stage drop includes any such collection."
+  ],
+  "NUMERICAL_EQUIVALENCE_CLAIM": "none"
+}

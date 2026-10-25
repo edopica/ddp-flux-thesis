@@ -1,5 +1,13 @@
 # Wiki Quickstart
 
+**2026-10-25 update:** the full 390-update memory campaign and four-run W=1
+cache diagnostic both pass. Flux releases over 97% of post-GC process residency
+at the diagnostic boundary; operational training peaks remain unchanged.
+See [current context](context/current.md) and the
+[memory interpretation](../reports/static-scaling-memory-interpretation.md)
+for results and why per-step cache release is not the baseline default.
+Earlier next-action notes below are historical.
+
 **2026-10-19 update:** [OD-14](../experiments/static-scaling/OD-14-benchmark-acceptance.md) is recorded.
 The fixture timing remains a qualified descriptive result, with no long-run numerical-equivalence claim.
 The next action is the Phase 5 larger-batch memory pilot. See [current context](context/current.md).

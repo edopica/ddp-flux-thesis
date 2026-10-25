@@ -1,0 +1,73 @@
+2026-10-25T09:27:59Z
+lrdn3215.leonardo.local
+CUDA_VISIBLE_DEVICES=0
+SLURM_CLUSTER_NAME=leonardo
+SLURM_CONF=/var/spool/slurmd/conf-cache/slurm.conf
+SLURM_CPUS_ON_NODE=4
+SLURM_CPUS_PER_TASK=4
+SLURM_GPUS_ON_NODE=1
+SLURM_GTIDS=0
+SLURM_JOBID=62241616
+SLURM_JOB_ACCOUNT=iscrc_unmasked
+SLURM_JOB_CPUS_PER_NODE=4
+SLURM_JOB_END_TIME=1792927663
+SLURM_JOB_GID=25200
+SLURM_JOB_GPUS=3
+SLURM_JOB_ID=62241616
+SLURM_JOB_NAME=static-cache-diagnostic
+SLURM_JOB_NODELIST=lrdn3215
+SLURM_JOB_NUM_NODES=1
+SLURM_JOB_PARTITION=boost_usr_prod
+SLURM_JOB_QOS=boost_qos_lprod
+SLURM_JOB_START_TIME=1792920461
+SLURM_JOB_UID=134397
+SLURM_JOB_USER=epicazio
+SLURM_LOCALID=0
+SLURM_MEM_PER_CPU=15400
+SLURM_NNODES=1
+SLURM_NODEID=0
+SLURM_NODELIST=lrdn3215
+SLURM_NPROCS=1
+SLURM_NTASKS=1
+SLURM_OOM_KILL_STEP=0
+SLURM_PRIO_PROCESS=0
+SLURM_PROCID=0
+SLURM_SCRIPT_CONTEXT=prolog_task
+SLURM_SUBMIT_DIR=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+SLURM_SUBMIT_HOST=login01.leonardo.local
+SLURM_TASKS_PER_NODE=1
+SLURM_TASK_PID=2019171
+SLURM_TOPOLOGY_ADDR=HeadSwitche.isw-L2-CELLG18.isw91200.lrdn3215
+SLURM_TOPOLOGY_ADDR_PATTERN=switch.switch.switch.node
+SLURM_TRES_PER_TASK=cpu=4
+JobId=62241616 JobName=static-cache-diagnostic
+   UserId=epicazio(134397) GroupId=interactive(25200) MCS_label=N/A
+   Priority=144155 Nice=0 Account=iscrc_unmasked QOS=boost_qos_lprod
+   JobState=RUNNING Reason=None Dependency=(null)
+   Requeue=0 Restarts=0 BatchFlag=1 Reboot=0 ExitCode=0:0
+   RunTime=00:00:18 TimeLimit=02:00:00 TimeMin=N/A
+   SubmitTime=2026-10-25T10:27:36 EligibleTime=2026-10-25T10:27:36
+   AccrueTime=2026-10-25T10:27:36
+   StartTime=2026-10-25T10:27:41 EndTime=2026-10-25T12:27:43 Deadline=N/A
+   SuspendTime=None SecsPreSuspend=0 LastSchedEval=2026-10-25T10:27:41 Scheduler=Backfill
+   Partition=boost_usr_prod AllocNode:Sid=login01-interconnect-1:282473
+   ReqNodeList=(null) ExcNodeList=(null)
+   NodeList=lrdn3215
+   BatchHost=lrdn3215
+   NumNodes=1 NumCPUs=4 NumTasks=1 CPUs/Task=4 ReqB:S:C:T=0:0:*:*
+   ReqTRES=cpu=4,mem=61600M,node=1,billing=4,gres/gpu=1
+   AllocTRES=cpu=4,mem=61600M,node=1,billing=4,gres/gpu=1
+   Socks/Node=* NtasksPerN:B:S:C=0:0:*:* CoreSpec=*
+   MinCPUsNode=4 MinMemoryCPU=15400M MinTmpDiskNode=0
+   Features=(null) DelayBoot=00:00:00
+   OverSubscribe=OK Contiguous=0 Licenses=(null) LicensesAlloc=(null) Network=(null)
+   Command=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-static-cache-diagnostic.sh
+   WorkDir=/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis
+   StdErr=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-cache-62241616.log
+   StdIn=/dev/null
+   StdOut=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-cache-62241616.log
+   TresPerNode=gres/gpu:1
+   TresPerTask=cpu=4
+   
+
+0, GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c, NVIDIA A100-SXM-64GB, 65536 MiB, 535.274.02

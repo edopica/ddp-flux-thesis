@@ -1,0 +1,10 @@
+{
+  "cuda": "12.6",
+  "cudnn": 91002,
+  "executable": "/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python",
+  "numpy": "2.4.6",
+  "numpy_path": "/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/numpy/__init__.py",
+  "python": "3.11.17 (main, Oct 14 2026, 01:05:33) [Clang 23.1.3 ]",
+  "torch": "2.9.1+cu126",
+  "torch_path": "/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/lib/python3.11/site-packages/torch/__init__.py"
+}

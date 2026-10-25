@@ -1,0 +1,283 @@
+{
+  "schema": "static-timing-full-dataset-v1",
+  "framework": "pytorch",
+  "world_size": 1,
+  "global_batch": 256,
+  "batch_size": 256,
+  "epoch": 0,
+  "updates": 20,
+  "warmup": 20,
+  "updates_per_epoch": 390,
+  "n_eff": 99840,
+  "tail_size": 160,
+  "seconds": 4.913414720445871,
+  "images_per_second": 1042.0451541968316,
+  "update_seconds": 0.24567073602229356,
+  "ranks": [
+    {
+      "rank": 0,
+      "seconds": 4.913414720445871,
+      "hashes": {
+        "param": "76da530180589fbba22335416939052675d73673f51108b3873f618a289f495b",
+        "m": "629c4e6cf12b4556e2974d66d25e3d17a3c6db01ea40f06bb3fcaf8800f6c09b",
+        "v": "1306c717f35bb620684a1b3dcbb72a86ac7c66984864309b07087ed0658fb8ca",
+        "step": 20
+      },
+      "device": 0,
+      "training_start_epoch": 1792921294.9011722,
+      "training_end_epoch": 1792921299.814595,
+      "memory": {
+        "max_memory_allocated": 7798464512,
+        "max_memory_reserved": 10810818560,
+        "memory_allocated": 201720320,
+        "memory_reserved": 1260388352,
+        "mem_get_info_free": 66218098688,
+        "mem_get_info_total": 68099571712,
+        "host_maxrss_bytes": 1203204096
+      }
+    }
+  ],
+  "node": "lrdn3215.leonardo.local",
+  "job": "62241616",
+  "dataset_dir": "/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-prepared",
+  "dataset_hashes": {
+    "train_images.npy": {
+      "bytes": 1228800128,
+      "sha256": "ba43b39f8384d5b6230f676f3f649640a302a952b848a193c034828e6bd35510",
+      "source": "dataset_manifest.json"
+    },
+    "train_labels.npy": {
+      "bytes": 800128,
+      "sha256": "fd297be84d7737ab295f758c1e5829a00e5015a983c7f2de51e2baafa6dc6e79",
+      "source": "dataset_manifest.json"
+    },
+    "permutations.npy": {
+      "bytes": 40000128,
+      "sha256": "7f687b61877483a9154bd6abf871533751e1e06aba993a218474f234b8c85bfd",
+      "source": "schedule_manifest.json"
+    },
+    "augmentation.npy": {
+      "bytes": 15000128,
+      "sha256": "9f6bbea465cf24938ef326c92b7516209123520cad3cb50a65928b4f9c4d528b",
+      "source": "schedule_manifest.json"
+    },
+    "stats.json": {
+      "bytes": 1238,
+      "sha256": "6bf4de44cb7fd035812917e2c34a8b25cdbc503be9b947885bd33e0b2fc324bc",
+      "source": "dataset_manifest.json"
+    },
+    "dataset_manifest.json": {
+      "bytes": 4288,
+      "sha256": "584b900565ebfd02d6d323db393425b6263170f55ebf6a928a49fb5a956b875a",
+      "source": "actual-only"
+    },
+    "schedule_manifest.json": {
+      "bytes": 1773,
+      "sha256": "0136a0a2d1d768bf2c2a8544bd10f7893b533911bad37d77b09a1ae277121295",
+      "source": "actual-only"
+    },
+    "initial_bundle.npz": {
+      "bytes": 45103060,
+      "sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+      "source": "actual-only"
+    },
+    "initial_bundle.manifest.json": {
+      "bytes": 16437,
+      "sha256": "4996517497edfd66cf259bb7d51d2ca8f0d44076bc958438af33df5920b0c571",
+      "source": "actual-only"
+    },
+    "class_wnids.txt": {
+      "bytes": 2000,
+      "sha256": "a36eb4b603007f1985cdfbfc5987166a2710b3c6f0f6d3e29636fc129bba527b",
+      "source": "dataset_manifest.json"
+    },
+    "val_images.npy": {
+      "bytes": 122880128,
+      "sha256": "5e25fedd066f1e0bf9b3ed767438f6155414f1594ea2557b98c6278b290a2b46",
+      "source": "dataset_manifest.json"
+    },
+    "val_labels.npy": {
+      "bytes": 80128,
+      "sha256": "631d5760a11d79c22b5b4de5767b738c81bcc7b6cf1346b0bea1f89b2357b487",
+      "source": "dataset_manifest.json"
+    }
+  },
+  "sample_order_sha256": "f773fcec7d5b5bd9f7b0f98c3fdf0364be5233ffb15cfa05f97ad06c3d865335",
+  "update1_order_sha256": "eea6efa65ca0c8edd4a7ef209b52fc1bfad3a9f266993df544681e866b081e9c",
+  "transform_spec_sha256": "e82e0703f40b15e2cf7f95c404a21e0ca8ae3efd403fa54da8c30a19cd5825fa",
+  "bundle_hash": "a7632ca90c9c51cd022b3c82e0dc81391608f317c1afbd17889deeb2d1dcce23",
+  "bundle_file_sha256": "a790b03c1d68361a09171ae53870bd49ffad73c80144b2db54263bed6f9d0317",
+  "loader_policy": "mmap opened once per process before timing; synchronous numpy batch assembly and transform; no DataLoader workers",
+  "timing": "full-dataset-end-to-end",
+  "timing_policy": "timed region includes batch assembly, transform, H2D, forward, backward, and optimizer step",
+  "training_window_basis": "per-rank wall-clock epoch seconds recorded at the synchronized start and after the synchronized end of the measured updates; warmup, reset, final hashing, snapshots, and teardown are outside the window",
+  "warmup_policy": "20 discarded updates at t=1..20; model and optimizer reset from the bundle; measured region restarts at update 1 and data at batch 1",
+  "workload": "full-dataset-epoch",
+  "precision": {
+    "cuda_matmul_allow_tf32": false,
+    "cudnn_allow_tf32": false,
+    "float32_matmul_precision": "highest",
+    "cudnn_deterministic": true,
+    "cudnn_benchmark": false
+  },
+  "cpu_policy": "torch.set_num_threads(1) via mt.configure_backend; CPU batch assembly only",
+  "source": {
+    "thesis_commit": "976db1ffbc63472d306412b620d856a0cfd9cbc9",
+    "thesis_state_sha256": "1c8f61ce2ac67e2be9429460d48ac1a0303e094aad8f3d902f689d4206ac73f9",
+    "flux_commit": "",
+    "flux_state_sha256": "",
+    "python_version": "3.11.17",
+    "torch_version": "2.9.1+cu126",
+    "numpy_version": "2.4.6",
+    "host": "lrdn3215.leonardo.local"
+  },
+  "snapshot": false,
+  "pass_checks": true,
+  "eta_sha256": "4b161d703bfa834dff5b12495d8fd6a98e4e51af85c4b0ab272f3e87c4e2b820",
+  "final_loss": 5.427201271057129,
+  "loss_finite": true,
+  "cache_diagnostic": {
+    "schema": "static-cache-diagnostic-v1",
+    "pid": 2026180,
+    "device_uuid": "GPU-7b1fb829-117d-ae9c-e184-6ba576bba08c",
+    "cuda_version": "12.6",
+    "runtime_api_evidence": {
+      "allocator_used_bytes": {
+        "api": "torch.cuda.memory_allocated()",
+        "doc": "Return the current GPU memory occupied by tensors in bytes for a given device.\n\n    Args:\n        device (torch.device or int, optional): selected device. Returns\n            statistic for the current device, given by :func:`~torch.cuda.current_device`,\n            if :attr:`device` is ``None`` (default).\n\n    .. note::\n        This is likely less than the amount shown in `nvidia-smi` since some\n        unused memory can be held by the caching allocator and some context\n        needs to be created on GPU. See :ref:`cuda-memory-management` for more\n        details about GPU memory management.\n    "
+      },
+      "allocator_reserved_bytes": {
+        "api": "torch.cuda.memory_reserved()",
+        "doc": "Return the current GPU memory managed by the caching allocator in bytes for a given device.\n\n    Args:\n        device (torch.device or int, optional): selected device. Returns\n            statistic for the current device, given by :func:`~torch.cuda.current_device`,\n            if :attr:`device` is ``None`` (default).\n\n    .. note::\n        See :ref:`cuda-memory-management` for more details about GPU memory\n        management.\n    "
+      }
+    },
+    "retention_policy": "At post_training/post_gc/post_reclaim the same model, optimizer, dataset maps, final loss and parameter .grad buffers are retained. Per-step x/y do not escape steps(). Raw post_training is captured before state hashing; model/optimizer copies to CPU for invariant hashing occur between post_training and explicit GC, and again after post_reclaim.",
+    "counter_semantics": {
+      "allocator_used_bytes": "current tensor bytes managed by the PyTorch allocator; excludes runtime/library allocations",
+      "allocator_reserved_bytes": "current total allocator-managed bytes INCLUDING allocated tensor bytes",
+      "process_bytes": "nvidia-smi per-process resident GPU memory, MiB converted to bytes",
+      "device_used_bytes": "device total minus free; includes other processes and runtime allocations",
+      "total_bytes": "device total bytes"
+    },
+    "peak_policy": "snapshots are synchronized point samples, not within-step high-water marks; external nvidia-smi trace remains sampled process footprint",
+    "snapshots": [
+      {
+        "phase": "initialized",
+        "epoch": 1792921289.4463735,
+        "end_epoch": 1792921289.4598022,
+        "counter_status": {
+          "allocator_used_bytes": "measured",
+          "allocator_reserved_bytes": "measured",
+          "process_bytes": "measured",
+          "device_used_bytes": "measured",
+          "total_bytes": "measured"
+        },
+        "allocator_used_bytes": 45088768,
+        "allocator_reserved_bytes": 90177536,
+        "process_bytes": 677380096,
+        "device_used_bytes": 686096384,
+        "total_bytes": 68099571712
+      },
+      {
+        "phase": "post_warmup",
+        "epoch": 1792921294.7014215,
+        "end_epoch": 1792921294.7131658,
+        "counter_status": {
+          "allocator_used_bytes": "measured",
+          "allocator_reserved_bytes": "measured",
+          "process_bytes": "measured",
+          "device_used_bytes": "measured",
+          "total_bytes": "measured"
+        },
+        "allocator_used_bytes": 200015872,
+        "allocator_reserved_bytes": 10810818560,
+        "process_bytes": 11423186944,
+        "device_used_bytes": 11431903232,
+        "total_bytes": 68099571712
+      },
+      {
+        "phase": "post_reset_gc",
+        "epoch": 1792921294.876971,
+        "end_epoch": 1792921294.901089,
+        "counter_status": {
+          "allocator_used_bytes": "measured",
+          "allocator_reserved_bytes": "measured",
+          "process_bytes": "measured",
+          "device_used_bytes": "measured",
+          "total_bytes": "measured"
+        },
+        "allocator_used_bytes": 109838336,
+        "allocator_reserved_bytes": 10810818560,
+        "process_bytes": 11423186944,
+        "device_used_bytes": 11431903232,
+        "total_bytes": 68099571712
+      },
+      {
+        "phase": "post_training",
+        "epoch": 1792921299.8147242,
+        "end_epoch": 1792921299.8264775,
+        "counter_status": {
+          "allocator_used_bytes": "measured",
+          "allocator_reserved_bytes": "measured",
+          "process_bytes": "measured",
+          "device_used_bytes": "measured",
+          "total_bytes": "measured"
+        },
+        "allocator_used_bytes": 201720320,
+        "allocator_reserved_bytes": 10810818560,
+        "process_bytes": 11423186944,
+        "device_used_bytes": 11431903232,
+        "total_bytes": 68099571712
+      },
+      {
+        "phase": "post_gc",
+        "epoch": 1792921300.0952334,
+        "end_epoch": 1792921300.1081052,
+        "counter_status": {
+          "allocator_used_bytes": "measured",
+          "allocator_reserved_bytes": "measured",
+          "process_bytes": "measured",
+          "device_used_bytes": "measured",
+          "total_bytes": "measured"
+        },
+        "allocator_used_bytes": 201720320,
+        "allocator_reserved_bytes": 10810818560,
+        "process_bytes": 11423186944,
+        "device_used_bytes": 11431903232,
+        "total_bytes": 68099571712
+      },
+      {
+        "phase": "post_reclaim",
+        "epoch": 1792921300.112424,
+        "end_epoch": 1792921300.1351297,
+        "counter_status": {
+          "allocator_used_bytes": "measured",
+          "allocator_reserved_bytes": "measured",
+          "process_bytes": "measured",
+          "device_used_bytes": "measured",
+          "total_bytes": "measured"
+        },
+        "allocator_used_bytes": 201720320,
+        "allocator_reserved_bytes": 1260388352,
+        "process_bytes": 1872756736,
+        "device_used_bytes": 1881473024,
+        "total_bytes": 68099571712
+      }
+    ],
+    "state_invariant": {
+      "before": {
+        "param": "76da530180589fbba22335416939052675d73673f51108b3873f618a289f495b",
+        "m": "629c4e6cf12b4556e2974d66d25e3d17a3c6db01ea40f06bb3fcaf8800f6c09b",
+        "v": "1306c717f35bb620684a1b3dcbb72a86ac7c66984864309b07087ed0658fb8ca",
+        "step": 20
+      },
+      "after": {
+        "param": "76da530180589fbba22335416939052675d73673f51108b3873f618a289f495b",
+        "m": "629c4e6cf12b4556e2974d66d25e3d17a3c6db01ea40f06bb3fcaf8800f6c09b",
+        "v": "1306c717f35bb620684a1b3dcbb72a86ac7c66984864309b07087ed0658fb8ca",
+        "step": 20
+      },
+      "passed": true
+    }
+  }
+}

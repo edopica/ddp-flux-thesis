@@ -1,0 +1,7 @@
+CACHE_SNAPSHOT initialized process_MiB= 646.0 allocator_used_bytes= 45088768 allocator_reserved_bytes= 90177536
+CACHE_SNAPSHOT post_warmup process_MiB= 10894.0 allocator_used_bytes= 200015872 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_reset_gc process_MiB= 10894.0 allocator_used_bytes= 109838336 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_training process_MiB= 10894.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_gc process_MiB= 10894.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_reclaim process_MiB= 1786.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 1260388352
+TIMING_PASS pytorch-full 1 4.91631636954844

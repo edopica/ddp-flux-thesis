@@ -8,6 +8,7 @@ Included after `replay.jl`, `model_flux.jl`, `precision.jl`,
 
 using SHA
 using Sockets
+include(joinpath(@__DIR__, "cache_diagnostic.jl"))
 
 function _expected_beta_power(updates::Integer)
     b1 = Float32(0.9)
@@ -67,6 +68,8 @@ function run_full_dataset_timing(opts::AbstractDict;
     warmup = Int(warmup)
     world === nothing && (world = parse(Int, opts["world-size"]))
     world = Int(world)
+    cache_enabled = _timing_bool(get(opts, "cache-diagnostic", "false"))
+    cache_enabled && world != 1 && error("--cache-diagnostic requires --world-size 1")
     0 <= epoch <= 49 || error("--epoch must be in 0:49; got $(epoch)")
     world in (1, 2, 4) || error("--world-size must be 1, 2, or 4; got $(world)")
     1 <= updates <= expected_updates ||
@@ -161,14 +164,18 @@ function run_full_dataset_timing(opts::AbstractDict;
     end
 
     model, state = setup()
+    cache_diagnostic = cache_enabled ? _cache_diagnostic_init() : nothing
+    cache_enabled && _cache_snapshot!(cache_diagnostic, "initialized")
     steps(model, state, warmup)
     CUDA.synchronize()
+    cache_enabled && _cache_snapshot!(cache_diagnostic, "post_warmup")
     model, state = setup()
     GC.gc()
     CUDA.synchronize()
     P4.phase4_barrier(MPI, backend)
     CUDA.synchronize()
 
+    cache_enabled && _cache_snapshot!(cache_diagnostic, "post_reset_gc")
     # Wall-clock epoch timestamps bracket the same synchronized boundaries as the
     # monotonic timing measurement so the external nvidia-smi sampler can be
     # clipped to the post-warmup training window. Final hashing, snapshots, and
@@ -180,6 +187,21 @@ function run_full_dataset_timing(opts::AbstractDict;
     end_epoch = time()
     elapsed = (time_ns() - start) / 1e9
     @assert isfinite(P4.loss32(loss))
+
+    if cache_enabled
+        GC.@preserve model state ds bundle loss begin
+            _cache_snapshot!(cache_diagnostic, "post_training")
+            invariant_before = P4.state_hashes(model, state)
+            GC.gc(true)
+            _cache_snapshot!(cache_diagnostic, "post_gc")
+            CUDA.reclaim()
+            _cache_snapshot!(cache_diagnostic, "post_reclaim")
+            invariant_after = P4.state_hashes(model, state)
+            invariant_before == invariant_after || error("cache release changed model or optimizer state")
+            cache_diagnostic["state_invariant"] = Dict("before" => invariant_before,
+                "after" => invariant_after, "passed" => true)
+        end
+    end
 
     expected_beta = _expected_beta_power(updates)
     for (name, leaf) in P4._state_leaf_map(state)
@@ -293,6 +315,7 @@ function run_full_dataset_timing(opts::AbstractDict;
             "final_loss" => P4.loss32(loss),
             "loss_finite" => true,
         )
+        cache_enabled && (payload["cache_diagnostic"] = cache_diagnostic)
         P4.write_json(out_path, payload)
         println("TIMING_PASS flux-full $(world) $(seconds)")
     end

@@ -1,0 +1,223 @@
+{
+  "NUMERICAL_EQUIVALENCE_CLAIM": "none",
+  "campaign_config": {
+    "batch": 256,
+    "epoch": 0,
+    "frameworks": [
+      "flux-current",
+      "flux-historical",
+      "pytorch"
+    ],
+    "mode": "campaign",
+    "preflight_updates": 20,
+    "preflight_warmup": 20,
+    "repeats": 3,
+    "schema": "static-full-campaign-config-v1",
+    "updates": 390,
+    "warmup": 20,
+    "worlds": [
+      1,
+      2,
+      4
+    ]
+  },
+  "checker": {
+    "name": "check_full_campaign.py",
+    "path": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/static_scaling/check_full_campaign.py",
+    "sha256": "fa5b3a4db93033a28f0b03472c89570f1b68d6769f4b128f4f051fb7b75bb017"
+  },
+  "dataset_identity_sha256": "dea758c9df01338036a3b173da77dab7a61c107e4be6c2ddde2a0817200f66b6",
+  "execution_policy": {
+    "flux": {
+      "cudnn_deterministic": false,
+      "distributed_api_current": "guarded",
+      "distributed_api_historical": "static",
+      "nonfinite_guard": "presence + nonfinite loss/gradient rejection inside timed window",
+      "precision": "FP32 strict FMA, TF32 off"
+    },
+    "pytorch": {
+      "cuda_matmul_allow_tf32": false,
+      "cudnn_allow_tf32": false,
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "float32_matmul_precision": "highest",
+      "nonfinite_guard": "outside timed loop"
+    }
+  },
+  "launcher": {
+    "name": "run-static-full-campaign.sh",
+    "path": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis/scripts/remote/leonardo/run-static-full-campaign.sh",
+    "sha256": "23db28f38d0cf298265d2e289a03f498c1bfb32bc083180faa3d81c350a370d8"
+  },
+  "preflight_decision_sha256": "1400b09ae23f17743d3a3bb37b3fd3e3d86fc7ace4f9c3f0169aa8247702549d",
+  "qualifications": [
+    "Descriptive throughput and strong scaling only.",
+    "Flux uses strict FMA candidate selection without a determinism filter.",
+    "PyTorch uses deterministic cuDNN, benchmark disabled, and highest matmul precision.",
+    "Flux DDP includes its non-finite guard inside the timed window; PyTorch does not.",
+    "The state diagnostics are descriptive and apply no numerical-equivalence threshold.",
+    "NUMERICAL_EQUIVALENCE_CLAIM none."
+  ],
+  "resources": {
+    "account": "iscrc_unmasked",
+    "cpus_per_task": 4,
+    "cuda_visible_devices": "0,1,2,3",
+    "gpu_mapping": [
+      {
+        "index": 0,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "0100127c-6f50-da31-587f-c4e5f2980a84"
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "ab0e9ed5-576c-d5b8-2a05-e78e36104ce7"
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "ed689316-81e4-6bd5-2e23-551843579bc4"
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "e062e0a9-f705-c08c-aa80-ab79816d9e64"
+      }
+    ],
+    "gres": "gpu:4",
+    "job": "62195500",
+    "node": "lrdn2909.leonardo.local",
+    "ntasks": 1,
+    "partition": "boost_usr_prod",
+    "qos": "boost_qos_lprod",
+    "schema": "static-full-resources-v1",
+    "slurm_env": {
+      "SLURM_CLUSTER_NAME": "leonardo",
+      "SLURM_CONF": "/var/spool/slurmd/conf-cache/slurm.conf",
+      "SLURM_CPUS_ON_NODE": "4",
+      "SLURM_CPUS_PER_TASK": "4",
+      "SLURM_EXPORT_ENV": "ALL,CONFIRM_CAMPAIGN=1,REPEATS=3,PREFLIGHT_DECISION=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-full-campaign-62167742/preflight/decision.json",
+      "SLURM_GET_USER_ENV": "1",
+      "SLURM_GPUS_ON_NODE": "4",
+      "SLURM_GTIDS": "0",
+      "SLURM_JOBID": "62195500",
+      "SLURM_JOB_ACCOUNT": "iscrc_unmasked",
+      "SLURM_JOB_CPUS_PER_NODE": "4",
+      "SLURM_JOB_END_TIME": "1792914207",
+      "SLURM_JOB_GID": "25200",
+      "SLURM_JOB_GPUS": "0,1,2,3",
+      "SLURM_JOB_ID": "62195500",
+      "SLURM_JOB_NAME": "static-full-memory",
+      "SLURM_JOB_NODELIST": "lrdn2909",
+      "SLURM_JOB_NUM_NODES": "1",
+      "SLURM_JOB_PARTITION": "boost_usr_prod",
+      "SLURM_JOB_QOS": "boost_qos_lprod",
+      "SLURM_JOB_START_TIME": "1792885402",
+      "SLURM_JOB_UID": "134397",
+      "SLURM_JOB_USER": "epicazio",
+      "SLURM_LOCALID": "0",
+      "SLURM_MEM_PER_CPU": "15400",
+      "SLURM_NNODES": "1",
+      "SLURM_NODEID": "0",
+      "SLURM_NODELIST": "lrdn2909",
+      "SLURM_NPROCS": "1",
+      "SLURM_NTASKS": "1",
+      "SLURM_OOM_KILL_STEP": "0",
+      "SLURM_PRIO_PROCESS": "0",
+      "SLURM_PROCID": "0",
+      "SLURM_SCRIPT_CONTEXT": "prolog_task",
+      "SLURM_SUBMIT_DIR": "/leonardo/home/userexternal/epicazio/projects/ddp-flux-thesis",
+      "SLURM_SUBMIT_HOST": "login07.leonardo.local",
+      "SLURM_TASKS_PER_NODE": "1",
+      "SLURM_TASK_PID": "1009284",
+      "SLURM_TOPOLOGY_ADDR": "HeadSwitche.isw-L2-CELLG17.isw90104.lrdn2909",
+      "SLURM_TOPOLOGY_ADDR_PATTERN": "switch.switch.switch.node",
+      "SLURM_TRES_PER_TASK": "cpu=4"
+    },
+    "time_limit": "08:00:00"
+  },
+  "resources_json_sha256": "97e5616253b9eb3e86dd035f0c8e6fe34dd724eef04f1f844ead66998c412ab4",
+  "runtime": {
+    "driver_version": "535.274.02",
+    "gpus": [
+      {
+        "index": 0,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "0100127c-6f50-da31-587f-c4e5f2980a84"
+      },
+      {
+        "index": 1,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "ab0e9ed5-576c-d5b8-2a05-e78e36104ce7"
+      },
+      {
+        "index": 2,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "ed689316-81e4-6bd5-2e23-551843579bc4"
+      },
+      {
+        "index": 3,
+        "name": "NVIDIA",
+        "total_bytes": 68099571712,
+        "uuid": "e062e0a9-f705-c08c-aa80-ab79816d9e64"
+      }
+    ],
+    "julia_version": "1.12.6",
+    "python": {
+      "cuda": "12.6",
+      "cudnn": "91002",
+      "executable": "/leonardo_work/IscrC_UNMASKED/epicazio/venvs/pytorch-scaling/bin/python",
+      "numpy": "2.4.6",
+      "python": "3.11.17",
+      "torch": "2.9.1+cu126"
+    },
+    "schema": "static-full-runtime-v1",
+    "variants": {
+      "flux-current": {
+        "cuda": "6.2.2",
+        "flux": "0.16.11",
+        "functors": "0.5.3",
+        "julia": "1.12.6",
+        "mpi": "0.20.27",
+        "nccl": "0.1.3",
+        "optimisers": "0.4.9"
+      },
+      "flux-historical": {
+        "cuda": "6.2.2",
+        "flux": "0.16.11",
+        "functors": "0.5.3",
+        "julia": "1.12.6",
+        "mpi": "0.20.27",
+        "nccl": "0.1.3",
+        "optimisers": "0.4.9"
+      }
+    }
+  },
+  "runtime_env_sha256": "a0b71c278a2eae49c3d9d42b9818287a74311c6662fb01efaafc5647a5e5e03b",
+  "runtime_json_sha256": "da529f2b18669267a9a87bb3acbd268445b7678d9bcc59c016863432564f7019",
+  "schema": "static-full-campaign-provenance-v1",
+  "source_identity": {
+    "CURRENT_COMMIT": "f7b4520c4bd307c67bbc5ac92a1c68493eccff6e",
+    "CURRENT_COMMIT_SOURCE": "expected-no-git",
+    "CURRENT_SOURCE_TREE_SHA256": "83da2929ab7ebd66dbceb83452c8e55eae5e0444c8e96866cc2a25b513c3eb0d",
+    "CURRENT_STATE_SHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "CURRENT_STATE_SOURCE": "expected-no-git",
+    "HISTORICAL_COMMIT": "8add0e42b7d9388ff365335152126e5b1e9de657",
+    "HISTORICAL_COMMIT_SOURCE": "expected-no-git",
+    "HISTORICAL_SOURCE_TREE_SHA256": "ad114ed385f7cc78e8409fa8e1f09d38133555f7fd58d5d9aca6a846bcf5e757",
+    "HISTORICAL_STATE_SHA256": "4af8409c2a2ed1c661e8ae7742877f1ee9789d00dc7e404365ecefd98ab0d34c",
+    "HISTORICAL_STATE_SOURCE": "expected-no-git",
+    "THESIS_COMMIT": "660e363e6de5b6e4b398e542d79b6ce1adb381da",
+    "THESIS_COMMIT_SOURCE": "expected-no-git",
+    "THESIS_STATE_RECIPE": "sha256 of sorted (sha256sum) over the synced thesis tree, excluding __pycache__ and .git",
+    "THESIS_STATE_SHA256": "1ddd2d20a3cdb83c6418807ddbebd7f7abc8a3952950d12990cdafc7c5698ecf"
+  },
+  "source_snapshot_manifest_sha256": "f18f61d537762b0abd00053d25463949ccc4d878eb02c067d68ef987f04338a7"
+}

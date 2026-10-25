@@ -1,0 +1,4 @@
+PREcompile host=lrdn2909.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-static-baseline/test/Project.toml
+FLUX_PRECOMPILE_OK

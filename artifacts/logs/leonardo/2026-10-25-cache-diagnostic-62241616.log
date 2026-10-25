@@ -1,0 +1,49 @@
+CACHE_DIAGNOSTIC START utc=2026-10-25T09:27:45Z job=62241616 host=lrdn3215.leonardo.local out=/leonardo_work/IscrC_UNMASKED/epicazio/static-scaling-evidence/static-cache-62241616
+STAGE precompile-current
+PREcompile host=lrdn3215.leonardo.local pwd=/leonardo/home/userexternal/epicazio/projects/flux-integration julia=/leonardo_work/IscrC_UNMASKED/epicazio/julia-1.12.6/bin/julia
+JULIA_PROJECT=<unset> JULIA_DEPOT_PATH=/leonardo_work/IscrC_UNMASKED/epicazio/julia-depot
+ACTIVE_PROJECT=/leonardo/home/userexternal/epicazio/projects/flux-integration/test/Project.toml
+FLUX_PRECOMPILE_OK
+CASE framework=flux-current world=1 repeat=1
+CACHE_SNAPSHOT initialized process_MiB=690.0 allocator_used_bytes=135257509 allocator_reserved_bytes=167772160
+CACHE_SNAPSHOT post_warmup process_MiB=45504.0 allocator_used_bytes=33692587188 allocator_reserved_bytes=47143976960
+CACHE_SNAPSHOT post_reset_gc process_MiB=45504.0 allocator_used_bytes=135257184 allocator_reserved_bytes=47143976960
+CACHE_SNAPSHOT post_training process_MiB=49792.0 allocator_used_bytes=22579370132 allocator_reserved_bytes=51640270848
+CACHE_SNAPSHOT post_gc process_MiB=49792.0 allocator_used_bytes=135257184 allocator_reserved_bytes=51640270848
+CACHE_SNAPSHOT post_reclaim process_MiB=1270.0 allocator_used_bytes=135257184 allocator_reserved_bytes=771751936
+TIMING_PASS flux-full 1 4.682508615
+CASE_PASS flux-current-w1-r1
+CASE framework=pytorch world=1 repeat=1
+CACHE_SNAPSHOT initialized process_MiB= 646.0 allocator_used_bytes= 45088768 allocator_reserved_bytes= 90177536
+CACHE_SNAPSHOT post_warmup process_MiB= 10894.0 allocator_used_bytes= 200015872 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_reset_gc process_MiB= 10894.0 allocator_used_bytes= 109838336 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_training process_MiB= 10894.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_gc process_MiB= 10894.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_reclaim process_MiB= 1786.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 1260388352
+TIMING_PASS pytorch-full 1 4.91631636954844
+CASE_PASS pytorch-w1-r1
+CASE framework=flux-current world=1 repeat=2
+CACHE_SNAPSHOT initialized process_MiB=690.0 allocator_used_bytes=135257509 allocator_reserved_bytes=167772160
+CACHE_SNAPSHOT post_warmup process_MiB=45504.0 allocator_used_bytes=33692587188 allocator_reserved_bytes=47143976960
+CACHE_SNAPSHOT post_reset_gc process_MiB=45504.0 allocator_used_bytes=135257184 allocator_reserved_bytes=47143976960
+CACHE_SNAPSHOT post_training process_MiB=49760.0 allocator_used_bytes=22579370132 allocator_reserved_bytes=51606716416
+CACHE_SNAPSHOT post_gc process_MiB=49760.0 allocator_used_bytes=135257184 allocator_reserved_bytes=51606716416
+CACHE_SNAPSHOT post_reclaim process_MiB=1334.0 allocator_used_bytes=135257184 allocator_reserved_bytes=838860800
+TIMING_PASS flux-full 1 10.377575201
+CASE_PASS flux-current-w1-r2
+CASE framework=pytorch world=1 repeat=2
+CACHE_SNAPSHOT initialized process_MiB= 646.0 allocator_used_bytes= 45088768 allocator_reserved_bytes= 90177536
+CACHE_SNAPSHOT post_warmup process_MiB= 10894.0 allocator_used_bytes= 200015872 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_reset_gc process_MiB= 10894.0 allocator_used_bytes= 109838336 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_training process_MiB= 10894.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_gc process_MiB= 10894.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 10810818560
+CACHE_SNAPSHOT post_reclaim process_MiB= 1786.0 allocator_used_bytes= 201720320 allocator_reserved_bytes= 1260388352
+TIMING_PASS pytorch-full 1 4.913414720445871
+CASE_PASS pytorch-w1-r2
+CACHE_DIAGNOSTIC flux-current repeat=1 GC_drop_MiB=0.000 cache_release_drop_MiB=48522.000
+CACHE_DIAGNOSTIC flux-current repeat=2 GC_drop_MiB=0.000 cache_release_drop_MiB=48426.000
+CACHE_DIAGNOSTIC pytorch repeat=1 GC_drop_MiB=0.000 cache_release_drop_MiB=9108.000
+CACHE_DIAGNOSTIC pytorch repeat=2 GC_drop_MiB=0.000 cache_release_drop_MiB=9108.000
+CACHE_DIAGNOSTIC_CHECK PASS
+CACHE_DIAGNOSTIC PASS
+CACHE_DIAGNOSTIC_DRIVER_EXIT=0
