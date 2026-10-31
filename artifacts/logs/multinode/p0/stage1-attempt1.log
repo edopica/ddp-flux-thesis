@@ -1,0 +1,15 @@
+ERROR: LoadError: ArgumentError: Non-default environment behavior is only permitted for the first interpolant.
+Stacktrace:
+ [1] arg_gen(cmd::Cmd)
+   @ Base ./cmd.jl:440
+ [2] cmd_gen(parsed::Tuple{Tuple{SubString{String}}, Tuple{SubString{String}}, Tuple{SubString{String}}, Tuple{SubString{String}}, Tuple{Cmd}, Tuple{SubString{String}}, Tuple{Int64}, Tuple{Cmd}, Tuple{SubString{String}}, Tuple{SubString{String}, String}, Tuple{String}})
+   @ Base ./cmd.jl:479
+ [3] top-level scope
+   @ ~/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/run_cpu.jl:7
+ [4] include(mod::Module, _path::String)
+   @ Base ./Base.jl:306
+ [5] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:317
+ [6] _start()
+   @ Base ./client.jl:550
+in expression starting at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/run_cpu.jl:5

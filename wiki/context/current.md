@@ -1,3 +1,15 @@
+## P0 CPU implementation — 2026-10-31
+
+Single-parent CPU launcher repair and deterministic direct worker implemented.
+Five primitive files plus six-step Descent/Adam fixture PASS at W=2 and W=4,
+final driver exit 0. Flux sources unchanged. Full audit evidence closure remains
+pending (native collective trace, effective preferences and loader/shard metadata).
+See [implementation record](../devlog/04-multinode/2026-10-31-p0-cpu-implementation.md).
+
+**Exact next action:** close those stage-1 evidence gaps and review the harness
+before stage 2. Multi-node CPU/GPU remain unverified. Earlier next actions below
+are historical.
+
 # Current context
 
 ## W=1 cache diagnostic PASS — 2026-10-25

@@ -1,0 +1,3 @@
+JULIA_MPI_TEST_NPROCS=2 FLUX_TEST_DISTRIBUTED_NCCL=false FLUX_TEST_DISTRIBUTED_TIMEOUT=900 /tmp/tmpimbw9m8b/julia --startup-file=no --project=../flux-multinode/test ../flux-multinode/test/ext_distributed/runtests.jl
+JULIA_MPI_TEST_NPROCS=4 FLUX_TEST_DISTRIBUTED_NCCL=false FLUX_TEST_DISTRIBUTED_TIMEOUT=900 /tmp/tmpimbw9m8b/julia --startup-file=no --project=../flux-multinode/test ../flux-multinode/test/ext_distributed/runtests.jl
+LAUNCHER_STUB PASS

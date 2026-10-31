@@ -97,10 +97,10 @@ example-ddp:
 	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=. scripts/examples/train_ddp.jl; else $(MPIEXECJL) --project=. -n 2 $(JULIA) scripts/examples/train_ddp.jl; fi
 
 c8-mpi:
-	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl mpi; else $(MPIEXECJL) --project=$(FLUX_REPO_PATH)/test -n 2 $(JULIA) --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl mpi; fi
+	JULIA_MPI_TEST_NPROCS=2 FLUX_TEST_DISTRIBUTED_NCCL=false FLUX_TEST_DISTRIBUTED_TIMEOUT=900 $(JULIA) --startup-file=no --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl
 
 c8-mpi-4:
-	if [ -n "$$SLURM_JOB_ID" ]; then srun --mpi=$(SLURM_MPI_TYPE) -n 4 $(JULIA) --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl mpi; else $(MPIEXECJL) --project=$(FLUX_REPO_PATH)/test -n 4 $(JULIA) --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl mpi; fi
+	JULIA_MPI_TEST_NPROCS=4 FLUX_TEST_DISTRIBUTED_NCCL=false FLUX_TEST_DISTRIBUTED_TIMEOUT=900 $(JULIA) --startup-file=no --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl
 
 c8-nccl:
 	if [ -n "$$SLURM_JOB_ID" ]; then FLUX_TEST_DISTRIBUTED_NCCL=true srun --mpi=$(SLURM_MPI_TYPE) -n 2 $(JULIA) --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl nccl; else FLUX_TEST_DISTRIBUTED_NCCL=true $(MPIEXECJL) --project=$(FLUX_REPO_PATH)/test -n 2 $(JULIA) --project=$(FLUX_REPO_PATH)/test $(FLUX_REPO_PATH)/test/ext_distributed/runtests.jl nccl; fi

@@ -1,0 +1,138 @@
+PrecompilingPrecompiling  packages...packages...
+
+    IRTools Being precompiled by another process (pid: 50651, pidfile: /home/kurapica/.julia/compiled/v1.12/IRTools/oFGpw_UqiLT.ji.pidfile)
+    IRTools Being precompiled by another process (pid: 50651, pidfile: /home/kurapica/.julia/compiled/v1.12/IRTools/oFGpw_UqiLT.ji.pidfile)
+    SPIRV_LLVM_Backend_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/SPIRV_LLVM_Backend_jll/JZY6E_UqiLT.ji.pidfile)
+    LLVMOpenMP_jll Being precompiled by another process (pid: 53195, pidfile: /home/kurapica/.julia/compiled/v1.12/LLVMOpenMP_jll/KocKf_UqiLT.ji.pidfile)
+    tree_sitter_spirv_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/tree_sitter_spirv_jll/4DbdU_UqiLT.ji.pidfile)
+    LibTracyClient_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/LibTracyClient_jll/mti1A_UqiLT.ji.pidfile)
+    SPIRV_Tools_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/SPIRV_Tools_jll/jUR9U_UqiLT.ji.pidfile)
+    tree_sitter_gcn_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/tree_sitter_gcn_jll/bPIzo_UqiLT.ji.pidfile)
+    LLVMExtra_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/LLVMExtra_jll/R9OeX_UqiLT.ji.pidfile)
+    Zstd_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/Zstd_jll/cFDJB_UqiLT.ji.pidfile)
+    tree_sitter_llvm_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/tree_sitter_llvm_jll/WNatb_UqiLT.ji.pidfile)
+    tree_sitter_ptx_jll Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/tree_sitter_ptx_jll/A9M2F_UqiLT.ji.pidfile)
+    ADTypes Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/ADTypes/czFbS_UqiLT.ji.pidfile)
+    MLDataDevices → FillArraysExt Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/FillArraysExt/uB9Hx_UqiLT.ji.pidfile)
+    MLDataDevices → ChainRulesCoreExt Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/ChainRulesCoreExt/r0jyu_UqiLT.ji.pidfile)
+    MLDataDevices → SparseArraysExt Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/SparseArraysExt/FB5Xc_UqiLT.ji.pidfile)
+   2158.1 ms  ✓ MLDataDevices → FillArraysExt
+   2001.6 ms  ✓ MLDataDevices → FillArraysExt
+   2785.7 ms  ✓ tree_sitter_ptx_jll
+   2634.5 ms  ✓ tree_sitter_ptx_jll
+   2807.4 ms  ✓ MLDataDevices → SparseArraysExt
+   2282.9 ms  ✓ MLDataDevices → SparseArraysExt
+   3253.5 ms  ✓ LLVMOpenMP_jll
+   3214.4 ms  ✓ LLVMOpenMP_jll
+    SLEEF_jll Being precompiled by another process (pid: 53195, pidfile: /home/kurapica/.julia/compiled/v1.12/SLEEF_jll/Hv7zO_UqiLT.ji.pidfile)
+   3315.5 ms  ✓ tree_sitter_spirv_jll
+   3225.0 ms  ✓ tree_sitter_spirv_jll
+   3620.8 ms  ✓ SPIRV_LLVM_Backend_jll
+   3593.3 ms  ✓ SPIRV_LLVM_Backend_jll
+   3566.9 ms  ✓ tree_sitter_llvm_jll
+   3406.6 ms  ✓ tree_sitter_llvm_jll
+   3652.9 ms  ✓ Zstd_jll
+   3506.8 ms  ✓ Zstd_jll
+   3872.1 ms  ✓ LibTracyClient_jll
+   3750.2 ms  ✓ LibTracyClient_jll
+    Tracy Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/Tracy/QvZG9_UqiLT.ji.pidfile)
+   3913.9 ms  ✓ MLDataDevices → ChainRulesCoreExt
+   3965.3 ms  ✓ tree_sitter_gcn_jll
+   3445.9 ms  ✓ MLDataDevices → ChainRulesCoreExt
+   3930.6 ms  ✓ tree_sitter_gcn_jll
+   4198.3 ms  ✓ ADTypes
+   4028.0 ms  ✓ ADTypes
+    ADTypes → ADTypesChainRulesCoreExt Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/ADTypesChainRulesCoreExt/7JI5I_UqiLT.ji.pidfile)
+    ADTypes → ADTypesEnzymeCoreExt Being precompiled by another process (pid: 53194, pidfile: /home/kurapica/.julia/compiled/v1.12/ADTypesEnzymeCoreExt/KQ4Cg_UqiLT.ji.pidfile)
+    ADTypes → ADTypesConstructionBaseExt Being precompiled by another process (pid: 53195, pidfile: /home/kurapica/.julia/compiled/v1.12/ADTypesConstructionBaseExt/1jNpr_UqiLT.ji.pidfile)
+   4469.3 ms  ✓ LLVMExtra_jll
+   4342.2 ms  ✓ LLVMExtra_jll
+    LLVM Being precompiled by another process (pid: 50651, pidfile: /home/kurapica/.julia/compiled/v1.12/LLVM/e8NBy_UqiLT.ji.pidfile)
+    LLVM Being precompiled by another process (pid: 50651, pidfile: /home/kurapica/.julia/compiled/v1.12/LLVM/e8NBy_UqiLT.ji.pidfile)
+   5000.6 ms  ✓ SPIRV_Tools_jll
+   4887.5 ms  ✓ SPIRV_Tools_jll
+   1093.3 ms  ✓ ADTypes → ADTypesConstructionBaseExt
+   1102.8 ms  ✓ ADTypes → ADTypesConstructionBaseExt
+   1250.4 ms  ✓ ADTypes → ADTypesChainRulesCoreExt
+   1251.0 ms  ✓ ADTypes → ADTypesChainRulesCoreExt
+   1269.2 ms  ✓ ADTypes → ADTypesEnzymeCoreExt
+
+[52641] signal 15: Terminated
+in expression starting at none:1
+unknown function (ip: 0x7f9e2c0a08f0) at /usr/lib/libc.so.6
+unknown function (ip: 0x7f9e2c094c78) at /usr/lib/libc.so.6
+pthread_cond_wait at /usr/lib/libc.so.6 (unknown line)
+uv_cond_wait at /workspace/srcdir/libuv/src/unix/thread.c:822
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:523
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 53194 RUNNING AT omarchy
+=   EXIT CODE: 15
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Terminated (signal 15)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+_trywait at ./asyncevent.jl:185
+profile_printing_listener at ./Base.jl:332
+#start_profile_listener##0 at ./Base.jl:352
+jfptr_YY.start_profile_listenerYY.YY.0_16003.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1252
+unknown function (ip: (nil)) at (unknown file)
+unknown function (ip: 0x7f9e2c0a08f2) at /usr/lib/libc.so.6
+epoll_pwait at /usr/lib/libc.so.6 (unknown line)
+uv__io_poll at /workspace/srcdir/libuv/src/unix/linux.c:1404
+uv_run at /workspace/srcdir/libuv/src/unix/core.c:430
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:457
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+task_done_hook at ./task.jl:868
+jfptr_task_done_hook_59905.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+jl_finish_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:341
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1263
+unknown function (ip: (nil)) at (unknown file)
+Allocations: 872147 (Pool: 872040; Big: 107); GC: 2
+Precompiling packages...
+    MPIPreferences Being precompiled by another process (pid: 52436, pidfile: /home/kurapica/.julia/compiled/v1.12/MPIPreferences/rGk9Z_UqiLT.ji.pidfile)
+    570.1 ms  ✓ MPIPreferences
+   1318.0 ms  ✓ JLLWrappers
+    Xorg_libpciaccess_jll Being precompiled by another process (pid: 52519, pidfile: /home/kurapica/.julia/compiled/v1.12/Xorg_libpciaccess_jll/Y7Kz1_UqiLT.ji.pidfile)
+   1173.0 ms  ✓ PrecompileTools
+   1763.8 ms  ✓ Xorg_libpciaccess_jll
+   1728.9 ms  ✓ Libiconv_jll
+   2653.9 ms  ✓ MPItrampoline_jll
+   2676.8 ms  ✓ MicrosoftMPI_jll
+   1507.0 ms  ✓ XML2_jll
+   1475.6 ms  ✓ Hwloc_jll
+    MPICH_jll Being precompiled by another process (pid: 52891, pidfile: /home/kurapica/.julia/compiled/v1.12/MPICH_jll/vDjle_UqiLT.ji.pidfile)
+   1213.1 ms  ✓ MPICH_jll
+   2137.8 ms  ✓ MPIABI_jll
+   2424.6 ms  ✓ OpenMPI_jll
+    MPI Being precompiled by another process (pid: 50651, pidfile: /home/kurapica/.julia/compiled/v1.12/MPI/nO0XF_UqiLT.ji.pidfile)
+   5468.7 ms  ✓ MPI
+  13 dependencies successfully precompiled in 14 seconds. 32 already precompiled.
+ERROR: failed process: Process(setenv(`/home/kurapica/.julia/artifacts/5d01062e0bb24ddc69e3bc74d421671c3328df53/bin/mpiexec -n 2 /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/julia -C native -J/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so -g1 --startup-file=no --startup-file=no --project=scripts/multinode/env scripts/multinode/acceptance.jl --backend=mpi --world=2 --nodes=1 --ranks-per-node=2`,["GUM_TABLE_BORDER_FOREGROUND=#72696a", "GUM_LOG_TIME_FOREGROUND=#72696a", "GUM_PAGER_MATCH_BACKGROUND=#2c2525", "GUM_FILE_CURSOR_BACKGROUND=#2c2525", "GUM_TABLE_SELECTED_BACKGROUND=#403e41", "__MISE_DIFF=eAFqWVjGtDg/J6VhcV5qecOSgsSSjCk3rfQz8nNT9bNLixILMpMBS9TXy8lPTszRL85ILErVz80sTtXPzCsuSczJKdZPzk9JrdDPSSxJLS7RT8rMu+lHvN70DJjG9Ix4Iz1DAyM9g/iczLzSivjE3BQzE7B5lsSbl5efkqpvZKpnoWcA1upNvNb8gtQ8kFdgDgIZFZ+bn1Kak1qsr5eUmQcAJkpv8A", "GUM_FILE_SELECTED_BACKGROUND=#403e41", "GUM_WRITE_LINE_NUMBER_BACKGROUND=#2c2525", "LD_LIBRARY_PATH=/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/kurapica/.julia/artifacts/5acd766faaca59c3c1f3cfa67e2bf6dcf1e3e883/lib:/home/kurapica/.julia/artifacts/0347524dbdef62819619b71a2fb991a60bc1659b/lib:/home/kurapica/.julia/artifacts/f36f3fe2fef57e1f6dc8a55991543cf71bfa6ce0/lib:/home/kurapica/.julia/artifacts/ecf26eae5dcb0d7b5dcef8262cd870e441268d04/lib:/home/kurapica/.julia/artifacts/5d01062e0bb24ddc69e3bc74d421671c3328df53/lib:/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib/julia:/home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/bin/../lib", "HYPRLAND_INSTANCE_SIGNATURE=efb50993780079460b0cbed1363e2166a2de1d9f_1793374437_1567420055"  …  "NO_COLOR=1", "MANROFFOPT=-c", "GUM_FILTER_PLACEHOLDER_BACKGROUND=#2c2525", "JOURNAL_STREAM=10:17491", "GUM_WRITE_PLACEHOLDER_BACKGROUND=#2c2525", "__MISE_SESSION=eAHqWVjGtCYnPzElNSW+JD8/p3jCOigvOT8vLTO9eNJNdf2M/NxU/ezSosSCzOREfT2IjH5uZnGqPoStV5Kfm7NXP7UkGSGql6Kfn5tYlJxRCZZdA1EZX5BYklE8YXFqXlnD8sSczMTi1OKGVSWpRYnxaZk5qcUTVpcnliRnQDhT8BsJGNEuu6mA7oWc/OTEHP3ijMSiVLCLbxrgUFGSWAJRoV9SVFpckpqiC/FH8eKUzKKbGmi6Aorys1KTS4r1C1LL8vWzSnMyE+OTc/LzUtek5pXFlyUWxWckFmdsSDK2NExNMzVIMjdMNjS1MFubk1iSWlwSX1qQkliSekSAAQ4YF0407nm3IyM/PzseZERxRn5RSXJpSXF8aV5xaslhAJtWrxo", "FOREGROUND=#e6d9db", "GUM_FILTER_PROMPT_BACKGROUND=#2c2525", "GUM_WRITE_END_OF_BUFFER_BACKGROUND=#2c2525", "OZONE_PLATFORM=wayland"]), ProcessExited(15)) [15]
+
+Stacktrace:
+ [1] pipeline_error
+   @ ./process.jl:597 [inlined]
+ [2] run(::Cmd; wait::Bool)
+   @ Base ./process.jl:512
+ [3] run(::Cmd)
+   @ Base ./process.jl:509
+ [4] top-level scope
+   @ none:1
+ [5] eval(m::Module, e::Any)
+   @ Core ./boot.jl:489
+ [6] exec_options(opts::Base.JLOptions)
+   @ Base ./client.jl:283
+ [7] _start()
+   @ Base ./client.jl:550

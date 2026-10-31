@@ -1,0 +1,6 @@
+   Resolving package versions...
+    Updating `~/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/env/Project.toml`
+  [587475ba] ~ Flux v0.16.11 `../../../../flux-multinode` ⇒ v0.16.11 `~/Projects/ddp_flux/flux-multinode`
+    Updating `~/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/env/Manifest.toml`
+  [587475ba] ~ Flux v0.16.11 `../../../../flux-multinode` ⇒ v0.16.11 `~/Projects/ddp_flux/flux-multinode`
+BASE_CPU_PRECOMPILE PASS flux=/home/kurapica/Projects/ddp_flux/flux-multinode/src/Flux.jl

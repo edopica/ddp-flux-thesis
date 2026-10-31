@@ -1,0 +1,14 @@
+Test Summary:                           | Test Summary:                           | Pass  Total  Time
+DistributedDataContainer cyclic padding |   51     51  0.8s
+Pass  Total  Time
+DistributedDataContainer cyclic padding |   51     51  0.8s
+BASE_DDP_ACCEPTANCE PASS world=2
+Test Summary:                           | Test Summary:                           | Test Summary:                           | Test Summary:                           | Pass  Total  Pass  Total  TimePass  Total  TimeTimePass  Total  Time
+
+
+
+DistributedDataContainer cyclic paddingDistributedDataContainer cyclic padding | DistributedDataContainer cyclic padding | DistributedDataContainer cyclic padding |  |   51    51    51    51     51     51  0.9s   51     51  0.9s
+0.9s
+
+0.9s
+BASE_DDP_ACCEPTANCE PASS world=4

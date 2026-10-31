@@ -1,3 +1,5 @@
+**2026-10-31 P0 update:** CPU launcher and initial deterministic fixture pass at two/four ranks; full audit evidence review remains pending. [Results](devlog/04-multinode/2026-10-31-p0-cpu-implementation.md).
+
 # Wiki Quickstart
 
 **2026-10-25 update:** the full 390-update memory campaign and four-run W=1

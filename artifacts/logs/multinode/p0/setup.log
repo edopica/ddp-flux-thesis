@@ -1,0 +1,355 @@
+    Updating registry at `~/.julia/registries/General.toml`
+   Resolving package versions...
+   Installed SPIRVIntrinsics ──────── v1.6.0
+   Installed MPICH_jll ────────────── v5.0.3+0
+   Installed IrrationalConstants ──── v0.2.7
+   Installed IRTools ──────────────── v0.4.24
+   Installed Functors ─────────────── v0.5.4
+   Installed Preferences ──────────── v1.6.1
+   Installed JSON ─────────────────── v1.13.4
+   Installed MPI ──────────────────── v0.20.29
+   Installed MicrosoftMPI_jll ─────── v10.1.5+0
+   Installed Setfield ─────────────── v1.2.0
+   Installed OpenMPI_jll ──────────── v5.0.14+0
+   Installed GPUCompiler ──────────── v2.19.0
+   Installed SpecialFunctions ─────── v2.9.1
+   Installed NNlib ────────────────── v0.9.56
+   Installed Parsers ──────────────── v3.0.5
+   Installed Zygote ───────────────── v0.7.15
+   Installed EnzymeCore ───────────── v0.8.26
+   Installed Optimisers ───────────── v0.4.11
+   Installed pocl_standalone_jll ──── v7.2.3+2
+   Installed NaNMath ──────────────── v1.1.5
+   Installed StructArrays ─────────── v0.7.4
+   Installed LLVMExtra_jll ────────── v0.0.56+0
+   Installed GPUToolbox ───────────── v3.5.0
+   Installed CompilerCaching ──────── v0.4.5
+   Installed SLEEF_jll ────────────── v3.9.0+2
+   Installed SPIRV_LLVM_Backend_jll ─ v23.1.1+8
+   Installed MLDataDevices ────────── v1.18.0
+   Installed CEnum ────────────────── v1.0.0
+   Installed SPIRV_Tools_jll ──────── v2025.4.0+0
+   Installed ChainRulesCore ───────── v1.26.8
+   Installed BFloat16s ────────────── v0.6.3
+   Installed FillArrays ───────────── v1.18.2
+   Installed MPItrampoline_jll ────── v5.5.7+0
+   Installed ChainRules ───────────── v1.74.8
+   Installed LogExpFunctions ──────── v1.0.3
+   Installed KernelInterface ──────── v0.4.3
+   Installed Missings ─────────────── v1.2.1
+   Installed Atomix ───────────────── v1.7.0
+   Installed KernelAbstractions ───── v0.10.4
+   Installed MLUtils ──────────────── v0.4.15
+   Installed LLVM ─────────────────── v10.4.2
+   Installed StructUtils ──────────── v2.12.0
+   Installed DocStringExtensions ──── v0.10.2
+  Installing 6 artifacts
+   Installed artifact SPIRV_Tools        3.7 MiB
+   Installed artifact LLVMExtra          5.1 MiB
+   Installed artifact SLEEF              5.7 MiB
+   Installed artifact MPICH              8.8 MiB
+   Installed artifact SPIRV_LLVM_Backend 9.7 MiB
+   Installed artifact pocl_standalone    105.7 MiB
+    Updating `~/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/env/Project.toml`
+  [587475ba] + Flux v0.16.11 `../../../../flux-multinode`
+  [d9f16b24] + Functors v0.5.4
+  [682c06a0] + JSON v1.13.4
+  [da04e1cc] + MPI v0.20.29
+  [3bd65402] + Optimisers v0.4.11
+    Updating `~/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/env/Manifest.toml`
+  [47edcb42] + ADTypes v1.24.0
+  [621f4979] + AbstractFFTs v1.5.0
+  [79e6a3ab] + Adapt v4.7.4
+  [66dad0bd] + AliasTables v1.1.3
+  [a9b6321e] + Atomix v1.7.0
+  [ab4f0b2a] + BFloat16s v0.6.3
+  [fa961155] + CEnum v1.0.0
+  [082447d4] + ChainRules v1.74.8
+  [d360d2e6] + ChainRulesCore v1.26.8
+  [da1fd8a2] + CodeTracking v3.0.2
+  [bbf7d656] + CommonSubexpressions v0.3.1
+  [34da2185] + Compat v4.18.1
+⌃ [9db33cc3] + CompilerCaching v0.4.5
+  [187b0558] + ConstructionBase v1.6.0
+  [9a962f9c] + DataAPI v1.16.0
+  [864edb3b] + DataStructures v0.19.6
+  [e2d170a0] + DataValueInterfaces v1.0.0
+  [8bb1440f] + DelimitedFiles v1.9.1
+  [163ba53b] + DiffResults v1.1.0
+  [b552c78f] + DiffRules v1.16.0
+  [ffbed154] + DocStringExtensions v0.10.2
+  [f151be2c] + EnzymeCore v0.8.26
+  [e2ba6199] + ExprTools v0.1.11
+  [1a297f60] + FillArrays v1.18.2
+  [587475ba] + Flux v0.16.11 `../../../../flux-multinode`
+  [f6369f11] + ForwardDiff v1.4.6
+  [d9f16b24] + Functors v0.5.4
+⌅ [0c68f7d7] + GPUArrays v11.5.16
+⌅ [46192b85] + GPUArraysCore v0.2.1
+  [61eb1bfa] + GPUCompiler v2.19.0
+  [096a3bc2] + GPUToolbox v3.5.0
+  [076d061b] + HashArrayMappedTries v0.2.0
+  [7869d1d1] + IRTools v0.4.24
+  [92d709cd] + IrrationalConstants v0.2.7
+  [82899510] + IteratorInterfaceExtensions v1.0.0
+  [692b3bcd] + JLLWrappers v1.8.0
+  [682c06a0] + JSON v1.13.4
+  [63c18a36] + KernelAbstractions v0.10.4
+  [4ee993da] + KernelInterface v0.4.3
+  [929cbde3] + LLVM v10.4.2
+  [2ab3a3ac] + LogExpFunctions v1.0.3
+  [c2834f40] + MLCore v1.1.0
+  [7e8f7934] + MLDataDevices v1.18.0
+  [f1d291b0] + MLUtils v0.4.15
+  [da04e1cc] + MPI v0.20.29
+  [3da0fdf6] + MPIPreferences v0.1.12
+  [1914dd2f] + MacroTools v0.5.16
+  [e1d29d7a] + Missings v1.2.1
+  [872c559c] + NNlib v0.9.56
+  [77ba4419] + NaNMath v1.1.5
+  [0b1bfda6] + OneHotArrays v0.2.11
+  [3bd65402] + Optimisers v0.4.11
+  [bac558e1] + OrderedCollections v2.0.3
+  [69de0a69] + Parsers v3.0.5
+  [eebad327] + PkgVersion v0.3.3
+  [aea7be01] + PrecompileTools v1.3.4
+  [21216c6a] + Preferences v1.6.1
+  [33c8b6b6] + ProgressLogging v0.1.6
+  [43287f4e] + PtrArrays v1.4.0
+  [74087812] + Random123 v1.7.1
+  [e6cf234a] + RandomNumbers v1.6.0
+  [c1ae055f] + RealDot v0.1.0
+  [189a3867] + Reexport v1.2.2
+  [71d1d633] + SPIRVIntrinsics v1.6.0
+  [431bcebd] + SciMLPublic v1.3.0
+  [7e506255] + ScopedValues v1.6.2
+  [efcf1570] + Setfield v1.2.0
+  [605ecd9f] + ShowCases v0.1.0
+  [699a6c99] + SimpleTraits v0.9.6
+  [a2af1166] + SortingAlgorithms v1.2.3
+  [dc90abb0] + SparseInverseSubset v0.1.3
+  [276daf66] + SpecialFunctions v2.9.1
+  [1e83bf80] + StaticArraysCore v1.4.4
+  [10745b16] + Statistics v1.11.5
+  [82ae8749] + StatsAPI v1.8.0
+  [2913bbd2] + StatsBase v0.34.13
+  [09ab397b] + StructArrays v0.7.4
+  [ec057cc2] + StructUtils v2.12.0
+  [3783bdb8] + TableTraits v1.0.1
+  [bd369af6] + Tables v1.14.0
+  [e689c965] + Tracy v0.1.6
+  [013be700] + UnsafeAtomics v0.4.0
+  [e88e6eb3] + Zygote v0.7.15
+  [700de1a5] + ZygoteRules v0.2.8
+  [e33a78d0] + Hwloc_jll v2.15.0+0
+  [dad2f222] + LLVMExtra_jll v0.0.56+0
+  [1d63c593] + LLVMOpenMP_jll v23.1.1+0
+  [ad6e5548] + LibTracyClient_jll v0.13.1+0
+  [94ce4f54] + Libiconv_jll v1.18.0+0
+  [b5ada748] + MPIABI_jll v1.0.1+0
+  [7cb0a576] + MPICH_jll v5.0.3+0
+  [f1f71cc9] + MPItrampoline_jll v5.5.7+0
+  [9237b28f] + MicrosoftMPI_jll v10.1.5+0
+  [fe0851c0] + OpenMPI_jll v5.0.14+0
+  [efe28fd5] + OpenSpecFun_jll v0.5.6+0
+  [63e82ce6] + SLEEF_jll v3.9.0+2
+  [4376b9bf] + SPIRV_LLVM_Backend_jll v23.1.1+8
+  [6ac6d60f] + SPIRV_Tools_jll v2025.4.0+0
+  [02c8fc9c] + XML2_jll v2.15.4+0
+  [a65dc6b1] + Xorg_libpciaccess_jll v0.19.0+0
+  [3161d3a3] + Zstd_jll v1.5.7+1
+  [54f56a70] + pocl_standalone_jll v7.2.3+2
+  [8b5cbfcf] + tree_sitter_gcn_jll v0.1.0+0
+  [44208993] + tree_sitter_llvm_jll v1.1.0+0
+  [71e3f6e6] + tree_sitter_ptx_jll v0.1.0+0
+  [f0e86581] + tree_sitter_spirv_jll v0.1.0+0
+  [0dad84c5] + ArgTools v1.1.2
+  [56f22d72] + Artifacts v1.11.0
+  [2a0f44e3] + Base64 v1.11.0
+  [ade2ca70] + Dates v1.11.0
+  [8ba89e20] + Distributed v1.11.0
+  [f43a241f] + Downloads v1.7.0
+  [7b1f6079] + FileWatching v1.11.0
+  [9fa8497b] + Future v1.11.0
+  [b77e0a4c] + InteractiveUtils v1.11.0
+  [ac6e5ff7] + JuliaSyntaxHighlighting v1.12.0
+  [4af54fe1] + LazyArtifacts v1.11.0
+  [b27032c2] + LibCURL v0.6.4
+  [76f85450] + LibGit2 v1.11.0
+  [8f399da3] + Libdl v1.11.0
+  [37e2e46d] + LinearAlgebra v1.12.0
+  [56ddb016] + Logging v1.11.0
+  [d6f4376e] + Markdown v1.11.0
+  [a63ad114] + Mmap v1.11.0
+  [ca575930] + NetworkOptions v1.3.0
+  [44cfe95a] + Pkg v1.12.1
+  [de0858da] + Printf v1.11.0
+  [3fa0cd96] + REPL v1.11.0
+  [9a3f8284] + Random v1.11.0
+  [ea8e919c] + SHA v0.7.0
+  [9e88b42a] + Serialization v1.11.0
+  [6462fe0b] + Sockets v1.11.0
+  [2f01184e] + SparseArrays v1.12.0
+  [f489334b] + StyledStrings v1.11.0
+  [4607b0f0] + SuiteSparse
+  [fa267f1f] + TOML v1.0.3
+  [a4e569a6] + Tar v1.10.0
+  [cf7118a7] + UUIDs v1.11.0
+  [4ec0a83e] + Unicode v1.11.0
+  [e66e0078] + CompilerSupportLibraries_jll v1.3.0+1
+  [deac9b47] + LibCURL_jll v8.15.0+0
+  [e37daf67] + LibGit2_jll v1.9.0+0
+  [29816b5a] + LibSSH2_jll v1.11.3+1
+  [14a3606d] + MozillaCACerts_jll v2025.11.4
+  [4536629a] + OpenBLAS_jll v0.3.29+0
+  [05823500] + OpenLibm_jll v0.8.7+0
+  [458c3c95] + OpenSSL_jll v3.5.4+0
+  [bea87d4a] + SuiteSparse_jll v7.8.3+2
+  [83775a58] + Zlib_jll v1.3.1+2
+  [8e850b90] + libblastrampoline_jll v5.15.0+0
+  [8e850ede] + nghttp2_jll v1.64.0+1
+  [3f19e933] + p7zip_jll v17.7.0+0
+        Info Packages marked with ⌃ and ⌅ have new versions available. Those with ⌃ may be upgradable, but those with ⌅ are restricted by compatibility constraints from upgrading. To see why use `status --outdated -m`
+Precompiling packages...
+   1647.9 ms  ✓ CEnum
+   1956.0 ms  ✓ EnzymeCore
+   2176.2 ms  ✓ KernelInterface
+   2047.2 ms  ✓ CompilerCaching
+   3349.6 ms  ✓ FillArrays
+   3783.0 ms  ✓ DocStringExtensions
+   1969.2 ms  ✓ Preferences
+   3800.4 ms  ✓ Setfield
+   1163.6 ms  ✓ EnzymeCore → AdaptExt
+   1168.0 ms  ✓ FillArrays → FillArraysStatisticsExt
+   5995.1 ms  ✓ Missings
+   1969.4 ms  ✓ FillArrays → FillArraysSparseArraysExt
+   6486.4 ms  ✓ NaNMath
+   6139.2 ms  ✓ BFloat16s
+   1672.0 ms  ✓ JLLWrappers
+   1818.1 ms  ✓ MPIPreferences
+   7294.1 ms  ✓ GPUToolbox
+   1381.4 ms  ✓ PrecompileTools
+   1914.0 ms  ✓ LLVMOpenMP_jll
+   8563.0 ms  ✓ ChainRulesCore
+   2116.1 ms  ✓ tree_sitter_spirv_jll
+   2117.2 ms  ✓ Xorg_libpciaccess_jll
+   2205.3 ms  ✓ SPIRV_LLVM_Backend_jll
+   7065.2 ms  ✓ StructArrays
+   2163.7 ms  ✓ LibTracyClient_jll
+   9392.5 ms  ✓ IrrationalConstants
+   1809.6 ms  ✓ tree_sitter_gcn_jll
+   8341.0 ms  ✓ StructUtils
+   6651.1 ms  ✓ Functors
+   1921.4 ms  ✓ tree_sitter_llvm_jll
+   1959.3 ms  ✓ OpenSpecFun_jll
+   2275.9 ms  ✓ Zstd_jll
+   2168.7 ms  ✓ Libiconv_jll
+   1863.8 ms  ✓ tree_sitter_ptx_jll
+   2494.1 ms  ✓ LLVMExtra_jll
+   3845.6 ms  ✓ SPIRV_Tools_jll
+   1650.8 ms  ✓ SciMLPublic
+   1235.9 ms  ✓ AbstractFFTs → AbstractFFTsChainRulesCoreExt
+   2701.1 ms  ✓ ADTypes
+   1246.1 ms  ✓ StructArrays → AdaptExt
+   1417.1 ms  ✓ EnzymeCore → EnzymeCoreChainRulesCoreExt
+   2335.4 ms  ✓ SLEEF_jll
+   2241.3 ms  ✓ ZygoteRules
+   1625.1 ms  ✓ StructArrays → SparseArraysExt
+   1273.1 ms  ✓ StructArrays → GPUArraysCoreExt
+   1293.6 ms  ✓ StructUtils → StructUtilsTablesExt
+   1685.1 ms  ✓ LogExpFunctions
+   1290.7 ms  ✓ StructUtils → StructUtilsStaticArraysCoreExt
+   2319.0 ms  ✓ Tracy
+   1544.5 ms  ✓ StructArrays → LinearAlgebraExt
+   5774.5 ms  ✓ ChainRulesCore → ChainRulesCoreSparseArraysExt
+   7528.0 ms  ✓ MicrosoftMPI_jll
+   7857.0 ms  ✓ MPItrampoline_jll
+   3793.5 ms  ✓ ADTypes → ADTypesConstructionBaseExt
+   4074.4 ms  ✓ ADTypes → ADTypesEnzymeCoreExt
+   4588.9 ms  ✓ ADTypes → ADTypesChainRulesCoreExt
+   5421.8 ms  ✓ XML2_jll
+   3937.7 ms  ✓ LogExpFunctions → LogExpFunctionsChainRulesCoreExt
+   5196.1 ms  ✓ MLDataDevices
+   1214.8 ms  ? Hwloc_jll
+   7306.6 ms  ✓ Optimisers
+   4762.0 ms  ✓ MLDataDevices → FillArraysExt
+   5075.2 ms  ✓ MLDataDevices → ChainRulesCoreExt
+   5122.3 ms  ✓ MLDataDevices → SparseArraysExt
+   1230.7 ms  ✓ Optimisers → OptimisersEnzymeCoreExt
+   1175.5 ms  ✓ Optimisers → OptimisersAdaptExt
+   8320.4 ms  ✓ StatsBase
+   8701.7 ms  ✓ SpecialFunctions
+   1443.5 ms  ✓ DiffRules
+   7039.3 ms  ? pocl_standalone_jll
+   7180.8 ms  ? MPICH_jll
+   8393.3 ms  ✓ MPIABI_jll
+   8690.2 ms  ✓ OpenMPI_jll
+  15239.5 ms  ✓ ChainRules
+  11396.1 ms  ✓ SpecialFunctions → SpecialFunctionsChainRulesCoreExt
+   4432.6 ms  ✓ MLDataDevices → ChainRulesExt
+  10990.7 ms  ✓ MPI
+  13406.8 ms  ✓ ForwardDiff
+  47228.1 ms  ✓ IRTools
+  46768.7 ms  ✓ LLVM
+  55130.2 ms  ✓ Parsers
+  33525.4 ms  ✓ Zygote
+   1878.2 ms  ✓ MLDataDevices → ZygoteExt
+  30127.3 ms  ✓ LLVM → BFloat16sExt
+  34064.5 ms  ✓ UnsafeAtomics
+   1228.0 ms  ✓ Atomix
+   6422.3 ms  ✓ SPIRVIntrinsics
+   1119.3 ms  ✓ SPIRVIntrinsics → SPIRVIntrinsicsSpecialFunctionsExt
+  58055.9 ms  ✓ JSON
+    620.4 ms  ✓ JSON → JSONSerializationExt
+  89650.8 ms  ✓ GPUCompiler
+    972.0 ms  ✓ UnsafeAtomics → UnsafeAtomicsGPUCompilerExt
+  66239.2 ms  ✓ KernelAbstractions
+   1754.6 ms  ✓ KernelAbstractions → LinearAlgebraExt
+   1811.5 ms  ✓ StructArrays → KernelAbstractionsExt
+   1914.6 ms  ✓ KernelAbstractions → SparseArraysExt
+   4453.8 ms  ✓ GPUArrays
+   2050.4 ms  ✓ MLDataDevices → GPUArraysSparseArraysExt
+  14493.8 ms  ✓ NNlib
+   2392.9 ms  ✓ NNlib → NNlibForwardDiffExt
+   2395.8 ms  ✓ NNlib → NNlibSpecialFunctionsExt
+   2541.9 ms  ✓ OneHotArrays
+   3994.2 ms  ✓ NNlib → NNlibEnzymeCoreExt
+   1810.6 ms  ✓ MLDataDevices → OneHotArraysExt
+   5469.8 ms  ✓ MLUtils
+   2012.6 ms  ✓ MLDataDevices → MLUtilsExt
+   9691.3 ms  ✓ Flux
+   3658.5 ms  ✓ Flux → FluxMPIExt
+  105 dependencies successfully precompiled in 253 seconds. 78 already precompiled.
+  3 dependencies failed but may be precompilable after restarting julia
+  4 dependencies had output during precompilation:
+┌ Hwloc_jll
+│  ┌ Warning: Module JLLWrappers with build ID fafbfcfd-3a18-888e-c92d-51480fd76b01 is missing from the cache.
+│  │ This may mean JLLWrappers [692b3bcd-3c85-4b1f-b108-f13ce0eb3210] does not support precompilation but is imported by a module that does.
+│  └ @ Base loading.jl:2643
+└  
+┌ pocl_standalone_jll
+│  ┌ Warning: Module JLLWrappers with build ID fafbfcfd-e26f-00a3-bd42-72c17457794d is missing from the cache.
+│  │ This may mean JLLWrappers [692b3bcd-3c85-4b1f-b108-f13ce0eb3210] does not support precompilation but is imported by a module that does.
+│  └ @ Base loading.jl:2643
+└  
+┌ MPICH_jll
+│  ┌ Warning: Module JLLWrappers with build ID fafbfcfd-e26f-00a3-bd42-72c17457794d is missing from the cache.
+│  │ This may mean JLLWrappers [692b3bcd-3c85-4b1f-b108-f13ce0eb3210] does not support precompilation but is imported by a module that does.
+│  └ @ Base loading.jl:2643
+└  
+┌ KernelAbstractions
+│  ┌ Warning: attempting to remove probably stale pidfile
+│  │   path = "/home/kurapica/.julia/compiled/v1.12/SLEEF_jll/Hv7zO_UqiLT.ji.pidfile"
+│  └ @ FileWatching.Pidfile ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/FileWatching/src/pidfile.jl:250
+└  
+┌ Warning: The project dependencies or compat requirements have changed since the manifest was last resolved.
+│ It is recommended to `Pkg.resolve()` or consider `Pkg.update()` if necessary.
+└ @ Pkg.API ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/Pkg/src/API.jl:1322
+Precompiling packages...
+┌ Warning: attempting to remove probably stale pidfile
+│   path = "/home/kurapica/.julia/compiled/v1.12/Tracy/QvZG9_UqiLT.ji.pidfile"
+└ @ FileWatching.Pidfile ~/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/share/julia/stdlib/v1.12/FileWatching/src/pidfile.jl:250
+    564.3 ms  ✓ StructUtils → StructUtilsStaticArraysCoreExt
+    610.4 ms  ✓ StructUtils → StructUtilsTablesExt
+   1108.0 ms  ✓ Tracy
+  3 dependencies successfully precompiled in 1 seconds. 183 already precompiled.

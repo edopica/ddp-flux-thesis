@@ -1,0 +1,164 @@
+PrecompilingPrecompiling  packages...packages...
+
+    ChainRulesCore → ChainRulesCoreSparseArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/ChainRulesCoreSparseArraysExt/QNMPN_UqiLT.ji.pidfile)
+    LLVM Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/LLVM/e8NBy_UqiLT.ji.pidfile)
+    MLDataDevices → SparseArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/SparseArraysExt/FB5Xc_UqiLT.ji.pidfile)
+    FillArrays → FillArraysSparseArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/FillArraysSparseArraysExt/pkjPP_UqiLT.ji.pidfile)
+    StructArrays → SparseArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/SparseArraysExt/5fvUy_UqiLT.ji.pidfile)
+    StatsBase Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/StatsBase/EZjIG_UqiLT.ji.pidfile)
+   1021.6 ms  ✓ StructArrays → SparseArraysExt
+    774.3 ms  ✓ StructArrays → SparseArraysExt
+   1054.9 ms  ✓ FillArrays → FillArraysSparseArraysExt
+    784.5 ms  ✓ FillArrays → FillArraysSparseArraysExt
+   1055.7 ms  ✓ MLDataDevices → SparseArraysExt
+    813.0 ms  ✓ MLDataDevices → SparseArraysExt
+   2510.9 ms  ✓ ChainRulesCore → ChainRulesCoreSparseArraysExt
+   2515.5 ms  ✓ ChainRulesCore → ChainRulesCoreSparseArraysExt
+    ChainRules Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/ChainRules/AzGmQ_UqiLT.ji.pidfile)
+   4152.6 ms  ✓ StatsBase
+   3904.7 ms  ✓ StatsBase
+   7152.2 ms  ✓ ChainRules
+   7226.0 ms  ✓ ChainRules
+    Zygote Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/Zygote/4kbLI_UqiLT.ji.pidfile)
+    MLDataDevices → ChainRulesExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/ChainRulesExt/eEX33_UqiLT.ji.pidfile)
+    962.1 ms  ✓ MLDataDevices → ChainRulesExt
+    926.8 ms  ✓ MLDataDevices → ChainRulesExt
+  23575.8 ms  ✓ LLVM
+  23339.2 ms  ✓ LLVM
+    UnsafeAtomics Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/UnsafeAtomics/OuhNJ_UqiLT.ji.pidfile)
+    LLVM → BFloat16sExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/BFloat16sExt/B6KwG_UqiLT.ji.pidfile)
+    GPUCompiler Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/GPUCompiler/yPwef_UqiLT.ji.pidfile)
+    788.8 ms  ✓ LLVM → BFloat16sExt
+    783.8 ms  ✓ LLVM → BFloat16sExt
+   3635.8 ms  ✓ UnsafeAtomics
+   3647.7 ms  ✓ UnsafeAtomics
+    Atomix Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/Atomix/3LdQ4_UqiLT.ji.pidfile)
+    SPIRVIntrinsics Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/SPIRVIntrinsics/2FSF6_UqiLT.ji.pidfile)
+    956.6 ms  ✓ Atomix
+    946.0 ms  ✓ Atomix
+   5298.1 ms  ✓ SPIRVIntrinsics
+   5287.2 ms  ✓ SPIRVIntrinsics
+    SPIRVIntrinsics → SPIRVIntrinsicsSpecialFunctionsExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/SPIRVIntrinsicsSpecialFunctionsExt/c5qRt_UqiLT.ji.pidfile)
+   1089.5 ms  ✓ SPIRVIntrinsics → SPIRVIntrinsicsSpecialFunctionsExt
+   1225.7 ms  ✓ SPIRVIntrinsics → SPIRVIntrinsicsSpecialFunctionsExt
+  29042.6 ms  ✓ Zygote
+  29019.4 ms  ✓ Zygote
+    MLDataDevices → ZygoteExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/ZygoteExt/9zIyF_UqiLT.ji.pidfile)
+   1627.3 ms  ✓ MLDataDevices → ZygoteExt
+   1614.8 ms  ✓ MLDataDevices → ZygoteExt
+ 101191.3 ms  ✓ GPUCompiler
+ 101201.1 ms  ✓ GPUCompiler
+    UnsafeAtomics → UnsafeAtomicsGPUCompilerExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/UnsafeAtomicsGPUCompilerExt/zGWGe_UqiLT.ji.pidfile)
+   1033.9 ms  ✓ UnsafeAtomics → UnsafeAtomicsGPUCompilerExt
+   1039.6 ms  ✓ UnsafeAtomics → UnsafeAtomicsGPUCompilerExt
+    KernelAbstractions Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/KernelAbstractions/aywHT_UqiLT.ji.pidfile)
+  63859.4 ms  ✓ KernelAbstractions
+  63875.7 ms  ✓ KernelAbstractions
+    KernelAbstractions → SparseArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/SparseArraysExt/TR6ym_UqiLT.ji.pidfile)
+    KernelAbstractions → LinearAlgebraExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/LinearAlgebraExt/1TyTB_UqiLT.ji.pidfile)
+    StructArrays → KernelAbstractionsExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/KernelAbstractionsExt/6RTD4_UqiLT.ji.pidfile)
+   1889.8 ms  ✓ KernelAbstractions → LinearAlgebraExt
+   1898.8 ms  ✓ StructArrays → KernelAbstractionsExt
+   1895.1 ms  ✓ KernelAbstractions → LinearAlgebraExt
+   1949.8 ms  ✓ StructArrays → KernelAbstractionsExt
+    NNlib Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/NNlib/A7zdE_UqiLT.ji.pidfile)
+   2059.1 ms  ✓ KernelAbstractions → SparseArraysExt
+   2088.5 ms  ✓ KernelAbstractions → SparseArraysExt
+    GPUArrays Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/GPUArrays/v5u0T_UqiLT.ji.pidfile)
+   4602.7 ms  ✓ GPUArrays
+   4580.8 ms  ✓ GPUArrays
+    MLDataDevices → GPUArraysSparseArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/GPUArraysSparseArraysExt/XJ27E_UqiLT.ji.pidfile)
+   2106.1 ms  ✓ MLDataDevices → GPUArraysSparseArraysExt
+   2126.4 ms  ✓ MLDataDevices → GPUArraysSparseArraysExt
+  14903.2 ms  ✓ NNlib
+  15185.7 ms  ✓ NNlib
+    NNlib → NNlibEnzymeCoreExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/NNlibEnzymeCoreExt/Qdp4P_UqiLT.ji.pidfile)
+    NNlib → NNlibSpecialFunctionsExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/NNlibSpecialFunctionsExt/JaZsz_UqiLT.ji.pidfile)
+    NNlib → NNlibForwardDiffExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/NNlibForwardDiffExt/DguJf_UqiLT.ji.pidfile)
+    OneHotArrays Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/OneHotArrays/tlvsG_UqiLT.ji.pidfile)
+    MLUtils Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/MLUtils/S1qG5_UqiLT.ji.pidfile)
+   2382.7 ms  ✓ NNlib → NNlibForwardDiffExt
+   2414.4 ms  ✓ NNlib → NNlibSpecialFunctionsExt
+   2060.3 ms  ✓ NNlib → NNlibForwardDiffExt
+   2127.4 ms  ✓ NNlib → NNlibSpecialFunctionsExt
+   2663.6 ms  ✓ OneHotArrays
+   2341.3 ms  ✓ OneHotArrays
+    MLDataDevices → OneHotArraysExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/OneHotArraysExt/fpb1k_UqiLT.ji.pidfile)
+   3922.4 ms  ✓ NNlib → NNlibEnzymeCoreExt
+   3596.5 ms  ✓ NNlib → NNlibEnzymeCoreExt
+   1826.8 ms  ✓ MLDataDevices → OneHotArraysExt
+   1823.4 ms  ✓ MLDataDevices → OneHotArraysExt
+ 162050.2 ms  ✓ MLUtils
+ 161762.4 ms  ✓ MLUtils
+    MLDataDevices → MLUtilsExt Being precompiled by another process (pid: 55638, pidfile: /home/kurapica/.julia/compiled/v1.12/MLUtilsExt/rSsxv_UqiLT.ji.pidfile)
+
+[55621] signal 15: Terminated
+in expression starting at /home/kurapica/Projects/ddp_flux/ddp-flux-thesis/scripts/multinode/run_cpu.jl:6
+unknown function (ip: 0x7f743a8a08f0) at /usr/lib/libc.so.6
+unknown function (ip: 0x7f743a894c78) at /usr/lib/libc.so.6
+pthread_cond_wait at /usr/lib/libc.so.6 (unknown line)
+uv_cond_wait at /workspace/srcdir/libuv/src/unix/thread.c:822
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:523
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 55638 RUNNING AT omarchy
+=   EXIT CODE: 15
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Terminated (signal 15)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+_trywait at ./asyncevent.jl:185
+profile_printing_listener at ./Base.jl:332
+#start_profile_listener##0 at ./Base.jl:352
+jfptr_YY.start_profile_listenerYY.YY.0_16003.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+start_task at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/task.c:1252
+unknown function (ip: (nil)) at (unknown file)
+unknown function (ip: 0x7f743a8a08f2) at /usr/lib/libc.so.6
+epoll_pwait at /usr/lib/libc.so.6 (unknown line)
+uv__io_poll at /workspace/srcdir/libuv/src/unix/linux.c:1404
+uv_run at /workspace/srcdir/libuv/src/unix/core.c:430
+ijl_task_get_next at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/scheduler.c:457
+poptask at ./task.jl:1216
+wait at ./task.jl:1228
+#wait#398 at ./condition.jl:141
+wait at ./condition.jl:136 [inlined]
+wait at ./process.jl:693
+wait at ./process.jl:686 [inlined]
+success at ./process.jl:555
+#run#705 at ./process.jl:512
+run at ./process.jl:509
+unknown function (ip: 0x7f741d1064ab) at (unknown file)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+do_call at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:123
+eval_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:243
+eval_stmt_value at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:194 [inlined]
+eval_body at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:707
+jl_interpret_toplevel_thunk at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/interpreter.c:898
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1035
+jl_toplevel_eval_flex at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:975
+ijl_toplevel_eval at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1047
+ijl_toplevel_eval_in at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/toplevel.c:1092
+eval at ./boot.jl:489
+include_string at ./loading.jl:2874
+_include at ./loading.jl:2934
+include at ./Base.jl:306
+exec_options at ./client.jl:317
+_start at ./client.jl:550
+jfptr__start_63319.1 at /home/kurapica/.julia/juliaup/julia-1.12.6+0.x64.linux.gnu/lib/julia/sys.so (unknown line)
+jl_apply at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/julia.h:2391 [inlined]
+true_main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:971
+jl_repl_entrypoint at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/src/jlapi.c:1139
+main at /cache/build/builder-amdci5-4/julialang/julia-release-1-dot-12/cli/loader_exe.c:58
+unknown function (ip: 0x7f743a827780) at /usr/lib/libc.so.6
+__libc_start_main at /usr/lib/libc.so.6 (unknown line)
+unknown function (ip: 0x4010b8) at /workspace/srcdir/glibc-2.17/csu/../sysdeps/x86_64/start.S
+unknown function (ip: (nil)) at (unknown file)
+Allocations: 676675 (Pool: 676612; Big: 63); GC: 1
